@@ -1,22 +1,22 @@
 {
-  "name": "@hmcts/rpx-xui-common-lib",
+  "name": "rpx-xui-common-lib",
   "version": "0.0.2",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build exui-common-lib",
+    "build:library": "ng build payment-lib",
+    "package": "cat dist/rpx-xui-common-lib/{runtime,polyfills,scripts,main}.js | gzip > elements.js.gz",
+    "start": "ng serve -o",
+    "start:no-open": "ng serve",
+    "build": "ng build --prod xui-common-lib",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
 
   },
-  "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/hmcts" 
-  },
   "repository": {
     "url": "https://github.com/hmcts/rpx-xui-common-lib.git"
   },
-  "private": false,
+  "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",

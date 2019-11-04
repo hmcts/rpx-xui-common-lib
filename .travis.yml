@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- 10.6.0
+sudo: required
+services:
+- docker
+script:
+- yarn install
+- yarn run build:library
+before_deploy:
+- cd dist/exui-common-lib
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: jenkins-reform@HMCTS.NET
+  api_key:
+    secure: p6NubYaXsvw+0Qrh4XRstRU7LBhyp9PH+A1HSgpcvUvIlIdVCcyz7USJ5ZkSGSgjJMkMc/2JSz5wYups3PoWt3k1JqbZvwA5tQZapRaXkPukPu+DivLbeH8TVAsZjzgwRD/7dhjH5SCsX4wMEPZjmGIMPMKFhk8hW07bxC/JXFfAbm+eVv+0OECz7c3l5tN1aqNPsivy0wpVonGrVHqOm4IwAPNiZDQmTMXz4m7tyHb9rr0Mubt1INE3H8z9MfULKPJrOk41RcsO4/4FTg2YtmMmIU0di/1HqTMRl1N3abvbHu3fAd91csQtKRNJ1tT7Fv5r+bZaDD7VYOXFswKcALSN+ZJ1VstoAeMNdjlMEc5Dpq3Yh3i6kc3TDbfpbWAWSzo5ZGow3zh2/C35m/9ZNuZ/00is25YajXJRtOz1T+xXVFOHSwckANaLIx77qdvMOSVIRVTdXRc3kNylY6URvyn5H1VMTNAhvCcZl0d8fT3zujYJksSlvKwzv9XzgPmwGjKjjSaNHz+L8wZhoH2zoRt0Wfm654gCQZ7yedCotvfEFIm81UDY1yaGUdg+iEwP8jIkbMfdrYuBK70t20x04i7C4uMAlA3kqJB3YfrKfTlwJo6YpcRFRGK0ETl2Y7qneHp5hb4nw0Ko4I62I+DNv+dyR9iisRLbVV+i6kkVRqg=
+  on:
+    tags: true
+    repo: hmcts/rpx-xui-common-lib
+repo: hmcts/rpx-xui-common-lib
