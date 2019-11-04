@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "exui-common-lib": [
+        "dist/exui-common-lib"
+      ],
+      "exui-common-lib/*": [
+        "dist/exui-common-lib/*"
+      ]
+    }
   }
 }

@@ -1,0 +1,21 @@
+{
+  "name": "@hmcts/exui-common-lib",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/hmcts/rpx-xui-common-lib.git",
+  "description": "Angular web component for EXUI common library - xui-common-lib",
+  "author": "Elviani Huseyin <elviani.huseyin@hmcts.net>",
+  "contributors": [
+    {
+      "name": "Elviani Huseyin",
+      "email": "elviani.huseyin@hmcts.net"
+    }
+  ]
+}

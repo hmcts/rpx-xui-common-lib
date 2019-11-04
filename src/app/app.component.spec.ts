@@ -1,12 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { WindowToken } from 'projects/exui-common-lib/src/lib/window';
+
+const windowMock: Window = { gtag: () => {}} as any;
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
+      ],
+      providers: [
+        {
+          provide: WindowToken,
+          useValue: windowMock
+        },
       ],
       declarations: [
         AppComponent
