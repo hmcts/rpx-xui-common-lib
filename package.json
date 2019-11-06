@@ -1,13 +1,13 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
     "package": "cat dist/rpx-xui-common-lib/{runtime,polyfills,scripts,main}.js | gzip > elements.js.gz",
     "start": "ng serve -o",
     "start:no-open": "ng serve",
-    "build": "ng build --prod exui-common-lib",
+    "build": "ng build exui-common-lib",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
