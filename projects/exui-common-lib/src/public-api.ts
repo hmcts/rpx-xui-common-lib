@@ -3,3 +3,4 @@
  */
 
 export * from './lib/exui-common-lib.module';
+export * from './lib/services/google-analytics/google-analytics.service';

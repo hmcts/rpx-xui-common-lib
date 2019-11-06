@@ -10,13 +10,20 @@ import { WindowToken } from '../../window';
 
 export class GoogleAnalyticsService {
 
+  private readonly document: Document;
+  private readonly window: Window;
+
   public googleAnalyticsKey: string;
   constructor(
     private readonly router: Router,
     private readonly title: Title,
-    @Inject(WindowToken) private readonly window: Window,
-    @Inject(DOCUMENT) private readonly document: Document,
-  ) {}
+    @Inject(WindowToken) window: any,
+    @Inject(DOCUMENT) document: any,
+  ) {
+    this.window = window as Window;
+    this.document = document as Document;
+
+  }
 
   public init(googleAnalyticsKey: string) {
     this.googleAnalyticsKey = googleAnalyticsKey;
