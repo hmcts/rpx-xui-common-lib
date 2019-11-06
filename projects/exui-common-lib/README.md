@@ -1,7 +1,7 @@
 # ExuiCommonLib
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
-exui-commong-lib is used as common library for EXUI projects
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.\
+Exui-common-lib is used as common library for EXUI projects
 
 ## Code scaffolding
 
@@ -38,7 +38,7 @@ import { ExuiCommonLibModule } from '@hmcts/rpx-xui-common-lib';
 ```
 
 ### Google Analytics
-To use google analytics, inject GoogleAnalyticsService, and call googleAnalyticService.init('Your google analytic key')
+To use google analytics, inject GoogleAnalyticsService in your component, and call googleAnalyticService.init('Your google analytic key')
 
 ```
 export class AppComponent {
