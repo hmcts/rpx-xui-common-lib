@@ -36,9 +36,7 @@ export class GoogleAnalyticsService {
       const script2 = this.document.createElement('script');
       script2.innerHTML = `
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);
-          console.log('gtag', arguments);
-        }
+        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '` + this.googleAnalyticsKey + `', {'send_page_view': false});
       `;
