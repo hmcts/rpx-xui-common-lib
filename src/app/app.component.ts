@@ -8,13 +8,13 @@ import { GoogleAnalyticsService } from 'projects/exui-common-lib/src/lib/service
 })
 
 export class AppComponent implements OnInit {
-  title = 'rpx-xui-common-lib';
+  public title = 'rpx-xui-common-lib';
 
   constructor(
-    private googleAnalytics: GoogleAnalyticsService
+    private readonly googleAnalytics: GoogleAnalyticsService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.googleAnalytics.init('UA-151027057-1');
   }
 }

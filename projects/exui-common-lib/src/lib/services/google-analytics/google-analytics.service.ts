@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
-import { WindowToken } from '../../window';
+import { Inject, Injectable } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { windowToken } from '../../window';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class GoogleAnalyticsService {
   constructor(
     private readonly router: Router,
     private readonly title: Title,
-    @Inject(WindowToken) window: any,
+    @Inject(windowToken) window: any,
     @Inject(DOCUMENT) document: any,
   ) {
     this.window = window as Window;
@@ -30,7 +30,7 @@ export class GoogleAnalyticsService {
     try {
       const script1 = this.document.createElement('script');
       script1.async = true;
-      script1.src = 'https://www.googletagmanager.com/gtag/js?id=' + this.googleAnalyticsKey;
+      script1.src = `https://www.googletagmanager.com/gtag/js?id=${this.googleAnalyticsKey}`;
       this.document.head.appendChild(script1);
 
       const script2 = this.document.createElement('script');
@@ -38,7 +38,7 @@ export class GoogleAnalyticsService {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '` + this.googleAnalyticsKey + `', {'send_page_view': false});
+        gtag('config', '${this.googleAnalyticsKey}', {'send_page_view': false});
       `;
       this.document.head.appendChild(script2);
     } catch (ex) {

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { WindowToken, windowProvider } from './window';
-import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
+import { windowProvider, windowToken } from './window';
 
 @NgModule({
   declarations: [
@@ -8,7 +7,7 @@ import { GoogleAnalyticsService } from './services/google-analytics/google-analy
   imports: [
   ],
   providers: [
-    { provide: WindowToken, useFactory: windowProvider }
+    { provide: windowToken, useFactory: windowProvider }
   ],
   exports: [
   ]

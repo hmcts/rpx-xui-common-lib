@@ -1,13 +1,13 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
+import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BehaviorSubject } from 'rxjs';
+import { windowToken } from '../../window';
 import { GoogleAnalyticsService } from './google-analytics.service';
-import { Title } from '@angular/platform-browser';
-import { WindowToken } from '../../window';
 
 class MockTitle {
-  getTitle(): string {
+  public getTitle(): string {
     return 'mockTitle';
   }
 }
@@ -35,14 +35,14 @@ describe('GoogleAnalyticsService', () => {
           }
         },
         {
-          provide: WindowToken,
+          provide: windowToken,
           useValue: windowMock
         },
       ]
     });
 
     titleTestBed = TestBed.get(Title);
-    windowTestBed = TestBed.get(WindowToken);
+    windowTestBed = TestBed.get(windowToken);
 
   });
 
