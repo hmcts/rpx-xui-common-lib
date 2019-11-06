@@ -21,6 +21,7 @@ jobs:
           node-version: 10
       - run: npm ci
       - run: npm run build:library
+      - run: npm test
 
   publish-npm:
     needs: build
