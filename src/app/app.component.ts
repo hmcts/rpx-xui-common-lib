@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TCDocument } from 'projects/exui-common-lib/src';
 import { GoogleAnalyticsService } from 'projects/exui-common-lib/src/lib/services/google-analytics/google-analytics.service';
 
 @Component({
@@ -9,6 +10,18 @@ import { GoogleAnalyticsService } from 'projects/exui-common-lib/src/lib/service
 
 export class AppComponent implements OnInit {
   public title = 'rpx-xui-common-lib';
+
+  public testDocumentPlain: TCDocument = {
+    version: 1,
+    content: 'Test Document Content',
+    mimeType: 'text/plain'
+  };
+
+  public testDocumentHtml: TCDocument = {
+    version: 2,
+    content: `<h1>HTML Test</h1><p>Document to test HTML content</p>`,
+    mimeType: 'text/html'
+  };
 
   constructor(
     private readonly googleAnalytics: GoogleAnalyticsService
