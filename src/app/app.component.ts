@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   public testDocumentHtml: TCDocument = {
     version: 2,
-    content: `<h1>HTML Test</h1><p>Document to test HTML content</p>`,
+    content: `<h1>HTML Test</h1><p>Document to test <b>HTML</b> content</p>`,
     mimeType: 'text/html'
   };
 

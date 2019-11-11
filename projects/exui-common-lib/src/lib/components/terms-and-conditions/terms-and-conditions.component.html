@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="document.mimeType">
   <xuilib-tc-display-html *ngSwitchCase="'text/html'">
-    {{ document.content }}
+    <div [innerHTML]="document.content"></div>
   </xuilib-tc-display-html>
   <xuilib-tc-display-plain *ngSwitchCase="'text/plain'">
     {{ document.content }}

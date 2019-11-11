@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { AcceptTermsAndConditionsComponent } from './components/accept-terms-and-conditions/accept-terms-and-conditions.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
@@ -13,8 +12,7 @@ export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_G
   declarations: [
     TermsAndConditionsComponent,
     TcDisplayHtmlComponent,
-    TcDisplayPlainComponent,
-    AcceptTermsAndConditionsComponent
+    TcDisplayPlainComponent
   ],
   imports: [
     CommonModule
@@ -23,13 +21,12 @@ export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_G
     { provide: windowToken, useFactory: windowProvider }
   ],
   exports: [
-    TermsAndConditionsComponent,
-    AcceptTermsAndConditionsComponent
+    TermsAndConditionsComponent
   ]
 })
 export class ExuiCommonLibModule {
 
-  constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) {}
+  constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
 
   public static forRoot(): ModuleWithProviders {
     return {
