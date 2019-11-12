@@ -27,14 +27,26 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Usage
 ## Integration
-Import ExuiCommonLibModule into your angular project module
+Import ExuiCommonLibModule into your angular project module using the forRoot method:
 
 ```
 import { ExuiCommonLibModule } from '@hmcts/rpx-xui-common-lib';
 @NgModule({
   imports: [
-    ExuiCommonLibModule
+    ExuiCommonLibModule.forRoot()
   ],
+```
+
+To import ExuiCommonLibModule in lazy loaded modules, use the forChild method:
+
+```
+import { ExuiCommonLibModule } from '@hmcts/rpx-xui-common-lib';
+
+@NgModule({
+  imports: [
+    ExuiCommonLibModule.forChild()
+  ]
+})
 ```
 
 ### Google Analytics
@@ -47,3 +59,12 @@ export class AppComponent {
   }
 }
 ```
+
+### Terms and Conditions
+To display Terms and Conditions, import the Module as described above to get access to the following component:
+
+```
+<xuilib-terms-and-conditions [document]="your_tc_document"></xuilib-terms-and-conditions>
+```
+
+The document attribute should conform to the TCDocument interface that is exported as part of the library.
