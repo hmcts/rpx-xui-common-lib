@@ -15,7 +15,8 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "baseUrl": "../../node_modules"
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

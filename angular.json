@@ -139,7 +139,12 @@
       "root": "projects/exui-common-lib",
       "sourceRoot": "projects/exui-common-lib/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "xuilib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

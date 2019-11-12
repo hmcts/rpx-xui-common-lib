@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="document.mimeType">
+  <xuilib-tc-display-html *ngSwitchCase="'text/html'">
+    <div [innerHTML]="document.content"></div>
+  </xuilib-tc-display-html>
+  <xuilib-tc-display-plain *ngSwitchCase="'text/plain'">
+    {{ document.content }}
+  </xuilib-tc-display-plain>
+  <div *ngSwitchDefault>
+    An error occured. Please try again.
+  </div>
+</ng-container>

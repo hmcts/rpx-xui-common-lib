@@ -25,6 +25,11 @@
       "exui-common-lib/*": [
         "dist/exui-common-lib/*"
       ]
-    }
+    },
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false
   }
 }
