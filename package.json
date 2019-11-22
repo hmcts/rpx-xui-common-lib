@@ -11,7 +11,6 @@
     "test": "ng test exui-common-lib",
     "lint": "ng lint",
     "e2e": "ng e2e"
-
   },
   "repository": {
     "type": "git",
