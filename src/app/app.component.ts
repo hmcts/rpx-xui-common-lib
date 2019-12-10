@@ -32,11 +32,6 @@ export class AppComponent implements OnInit {
     openingTimes: 'bla bla bla'
   };
 
-  public contactDetailsDataMissingData: ContactDetailsDataModel = {
-    title: 'Contact Details Component',
-    badgeColour: BadgeColour.BADGE_RED,
-  };
-
   constructor(
     private readonly googleAnalytics: GoogleAnalyticsService
   ) { }
