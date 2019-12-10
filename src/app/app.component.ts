@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TCDocument, GetHelpDetailsDataModel, BadgeColour } from 'projects/exui-common-lib/src';
+import { BadgeColour, ContactDetailsDataModel, TCDocument } from 'projects/exui-common-lib/src';
 import { GoogleAnalyticsService } from 'projects/exui-common-lib/src/lib/services/google-analytics/google-analytics.service';
 
 @Component({
@@ -23,13 +23,18 @@ export class AppComponent implements OnInit {
     mimeType: 'text/html'
   };
 
-  public getHelpDetailsData: GetHelpDetailsDataModel = {
-    title: 'Get Help Details Component',
-      badgeColour: BadgeColour.BADGE_RED,
-      badgeText: 'PRIVATE BETA',
-      email: 'test@justice.gov.uk',
-      phone: '1111111',
-      openingTimes: 'bla bla bla'
+  public contactDetailsData: ContactDetailsDataModel = {
+    title: 'Contact Details Component',
+    badgeColour: BadgeColour.BADGE_RED,
+    badgeText: 'PRIVATE BETA',
+    email: 'test@justice.gov.uk',
+    phone: '1111111',
+    openingTimes: 'bla bla bla'
+  };
+
+  public contactDetailsDataMissingData: ContactDetailsDataModel = {
+    title: 'Contact Details Component',
+    badgeColour: BadgeColour.BADGE_RED,
   };
 
   constructor(

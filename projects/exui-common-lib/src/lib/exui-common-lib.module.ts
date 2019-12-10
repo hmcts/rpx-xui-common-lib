@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GetHelpDetailsComponent } from './components/get-help-details/get-help-details.component';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
@@ -17,7 +17,7 @@ export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_G
     TcDisplayHtmlComponent,
     TcDisplayPlainComponent,
     TcConfirmComponent,
-    GetHelpDetailsComponent
+    ContactDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +29,7 @@ export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_G
   exports: [
     TermsAndConditionsComponent,
     TcConfirmComponent,
-    GetHelpDetailsComponent
+    ContactDetailsComponent
   ]
 })
 export class ExuiCommonLibModule {

@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BadgeColour } from '../../models';
-import { GetHelpDetailsComponent } from './get-help-details.component';
+import { ContactDetailsComponent } from './contact-details.component';
 
-describe('GetHelpDetailsComponent', () => {
-  let component: GetHelpDetailsComponent;
-  let fixture: ComponentFixture<GetHelpDetailsComponent>;
+describe('ContactDetailsComponent', () => {
+  let component: ContactDetailsComponent;
+  let fixture: ComponentFixture<ContactDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ GetHelpDetailsComponent ]
+      declarations: [ ContactDetailsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GetHelpDetailsComponent);
+    fixture = TestBed.createComponent(ContactDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -49,6 +49,22 @@ describe('GetHelpDetailsComponent', () => {
     expect(phone.textContent).toContain('1111111');
     const openingTimes = fixture.nativeElement.querySelector('.opening-times');
     expect(openingTimes.textContent).toContain('bla bla bla');
+  });
+
+  it('should not display html when data is missing', () => {
+    component.data = {
+      title: 'Test Title',
+      badgeColour: BadgeColour.BADGE_RED,
+      badgeText: 'PRIVATE BETA',
+      openingTimes: 'bla bla bla'
+    };
+
+    fixture.detectChanges();
+
+    const email = fixture.nativeElement.querySelector('.email');
+    expect(email).toBeNull();
+    const phone = fixture.nativeElement.querySelector('.phone');
+    expect(phone).toBeNull();
   });
 
 });

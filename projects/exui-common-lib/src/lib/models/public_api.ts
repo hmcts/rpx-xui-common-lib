@@ -1,2 +1,2 @@
 export * from './tcDocument.model';
-export * from './get-help-details.model';
+export * from './contact-details.model';
