@@ -1,6 +1,6 @@
 import { Directive, Input, OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { FeatureToggleService } from '../../services/public-api';
+import { FeatureToggleService } from '../../services';
 
 @Directive({
     selector: '[xuilib-feature-toggle]'
