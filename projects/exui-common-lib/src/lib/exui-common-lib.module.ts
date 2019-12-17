@@ -9,6 +9,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { FeatureToggleService, LAUNCHDARKLYKEY, LaunchDarklyService } from './services/public-api';
 import { windowProvider, windowToken } from './window';
+import { FeatureToggleDirective } from './directives';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -20,7 +21,8 @@ export interface CommonLibOptions { launchDarklyKey?: string; }
     TcDisplayHtmlComponent,
     TcDisplayPlainComponent,
     TcConfirmComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    FeatureToggleDirective
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ export interface CommonLibOptions { launchDarklyKey?: string; }
   exports: [
     TermsAndConditionsComponent,
     TcConfirmComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    FeatureToggleDirective
   ]
 })
 export class ExuiCommonLibModule {
