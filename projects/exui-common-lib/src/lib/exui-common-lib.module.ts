@@ -6,10 +6,10 @@ import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { FeatureToggleDirective } from './directives';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { FeatureToggleService, LAUNCHDARKLYKEY, LaunchDarklyService } from './services/public-api';
 import { windowProvider, windowToken } from './window';
-import { FeatureToggleDirective } from './directives';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
