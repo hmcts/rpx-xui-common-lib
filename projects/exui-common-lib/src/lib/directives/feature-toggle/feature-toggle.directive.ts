@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { FeatureToggleService } from '../../services';
 
 @Directive({
-    selector: '[xuilib-feature-toggle]'
+    selector: '[xuilibFeatureToggle]'
 })
 export class FeatureToggleDirective implements OnDestroy {
     private feature: string;
