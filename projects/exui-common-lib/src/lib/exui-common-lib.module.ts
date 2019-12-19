@@ -10,6 +10,7 @@ import { FeatureToggleDirective } from './directives';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { FeatureToggleService, LAUNCHDARKLYKEY, LaunchDarklyService } from './services/public-api';
 import { windowProvider, windowToken } from './window';
+import { FeatureToggleDirective } from './directives';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
