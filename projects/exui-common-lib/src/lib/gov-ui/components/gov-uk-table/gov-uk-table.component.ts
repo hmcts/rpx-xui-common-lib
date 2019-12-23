@@ -2,9 +2,9 @@ import {formatDate} from '@angular/common';
 import {Component, Input} from '@angular/core';
 
 @Component({
-    selector: 'app-govuk-table',
-    templateUrl: './govuk-table.component.html',
-    styleUrls: ['./govuk-table.component.scss']
+    selector: 'xuilib-gov-uk-table',
+    templateUrl: './gov-uk-table.component.html',
+    styleUrls: ['./gov-uk-table.component.scss']
 })
 export class GovukTableComponent {
 

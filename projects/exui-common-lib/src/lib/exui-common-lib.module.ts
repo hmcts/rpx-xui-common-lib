@@ -20,8 +20,8 @@ import { GovUkLabelComponent } from './gov-ui/components/gov-uk-label/gov-uk-lab
 import { GovUkRadioComponent } from './gov-ui/components/gov-uk-radio/gov-uk-radio.component';
 import { GovUkRadiosComponent } from './gov-ui/components/gov-uk-radios/gov-uk-radios.component';
 import { GovUkSelectComponent } from './gov-ui/components/gov-uk-select/gov-uk-select.component';
+import { GovukTableComponent } from './gov-ui/components/gov-uk-table/gov-uk-table.component';
 import { GovUkTextareaComponent } from './gov-ui/components/gov-uk-textarea/gov-uk-textarea.component';
-import { GovukTableComponent } from './gov-ui/components/govuk-table/govuk-table.component';
 import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
 import { HmctsPrimaryNavigationComponent } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';

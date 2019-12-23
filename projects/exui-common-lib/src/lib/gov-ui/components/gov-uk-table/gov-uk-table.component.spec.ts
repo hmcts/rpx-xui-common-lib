@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GovukTableComponent } from './govuk-table.component';
 import { RouterModule } from '@angular/router';
+import { GovukTableComponent } from './gov-uk-table.component';
 
 describe('GovukTableComponent', () => {
   let component: GovukTableComponent;
