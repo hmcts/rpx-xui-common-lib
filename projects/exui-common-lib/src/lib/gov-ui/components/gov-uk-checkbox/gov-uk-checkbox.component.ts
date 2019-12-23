@@ -7,29 +7,20 @@ import {FormGroup} from '@angular/forms';
 * */
 @Component({
   selector: 'lib-gov-checkbox',
-  template: `
-      <div class="govuk-checkboxes__item" [formGroup]="group">
-        <input class="govuk-checkboxes__input" type="checkbox" [attr.aria-describedby]="config.hint ? config.value+'-item-hint' : null"
-        [id]="config.id" [name]="config.name" [formControlName]="config.value">
-        <lib-gov-label appRemoveHost [config]="config"></lib-gov-label>
-        <span [id]="config.value+'-item-hint'" class="govuk-hint govuk-checkboxes__hint">
-          {{config.hint}}
-        </span>
-      </div>
-  `
+  templateUrl: './gov-uk-checkbox.component.html'
 })
 export class GovUkCheckboxComponent implements OnInit {
   constructor() { }
-  @Input() group: FormGroup;
-  @Input() config: {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string};
+  @Input() public group: FormGroup;
+  @Input() public config: {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string};
 
-  id: string;
+  public id: string;
 /**
 * ngOnInIt
  * needed to manage the focus id if passed on in config
  * si it can focus on element when user clicks on error message in the header.
 * */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const id =  this.config.focusOn ? this.config.focusOn : this.config.value;
     this.config.id = id;
     this.config.classes = this.config.classes ?

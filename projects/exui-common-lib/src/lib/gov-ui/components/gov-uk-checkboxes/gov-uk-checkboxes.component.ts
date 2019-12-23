@@ -9,23 +9,11 @@ import {CheckboxesModel} from '../../models/checkboxesModel';
 * */
 @Component({
   selector: 'lib-gov-uk-checkboxes',
-  template: `
-    <lib-gov-uk-form-group-wrapper
-      [error]="errors"
-      [config]="options.config"
-      [group]="options.key">
-      <div class="govuk-checkboxes">
-        <lib-gov-checkbox *ngFor="let item of options.items"
-          [group]="item.group"
-          [config]="item.config">
-        </lib-gov-checkbox>
-      </div>
-    </lib-gov-uk-form-group-wrapper>
-  `
+  templateUrl: './gov-uk-checkboxes.component.html'
 })
 export class CheckboxesComponent {
 
-  @Input() options: CheckboxesModel;
-  @Input() errors: string[];
+  @Input() public options: CheckboxesModel;
+  @Input() public errors: string[];
 
 }
