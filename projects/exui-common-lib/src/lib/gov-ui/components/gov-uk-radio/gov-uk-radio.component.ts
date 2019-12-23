@@ -6,7 +6,7 @@ import {FormGroup} from '@angular/forms';
 *
 * */
 @Component({
-  selector: 'lib-gov-radio',
+  selector: 'xuilib-gov-radio',
   templateUrl: './gov-uk-radio.component.html'
 })
 export class GovUkRadioComponent implements OnInit{

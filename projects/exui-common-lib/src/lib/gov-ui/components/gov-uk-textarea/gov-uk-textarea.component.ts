@@ -9,7 +9,7 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 * @param: errors - array of errorMessage
 * */
 @Component({
-  selector: 'lib-gov-uk-textarea',
+  selector: 'xuilib-gov-uk-textarea',
   templateUrl: './gov-uk-textarea.component.html'
 })
 export class GovUkTextareaComponent {

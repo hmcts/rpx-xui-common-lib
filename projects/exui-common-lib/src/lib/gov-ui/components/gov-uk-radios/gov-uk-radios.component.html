@@ -1,13 +1,13 @@
-<lib-gov-uk-form-group-wrapper
+<xuilib-gov-uk-form-group-wrapper
 [error]="errors"
 [config]="options.config"
 [group]="options.key">
 <div class="govuk-radios">
-  <lib-gov-radio
+  <xuilib-gov-radio
     appRemoveHost
     *ngFor="let item of options.items"
     [group]="options.group"
     [config]="item.config">
-  </lib-gov-radio>
+  </xuilib-gov-radio>
 </div>
-</lib-gov-uk-form-group-wrapper>
+</xuilib-gov-uk-form-group-wrapper>

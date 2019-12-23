@@ -1,11 +1,11 @@
-<lib-gov-uk-form-group-wrapper
+<xuilib-gov-uk-form-group-wrapper
 [error]="errors"
 [config]="options.config"
 [group]="options.key">
 <div class="govuk-checkboxes">
-  <lib-gov-checkbox *ngFor="let item of options.items"
+  <xuilib-gov-checkbox *ngFor="let item of options.items"
     [group]="item.group"
     [config]="item.config">
-  </lib-gov-checkbox>
+  </xuilib-gov-checkbox>
 </div>
-</lib-gov-uk-form-group-wrapper>
+</xuilib-gov-uk-form-group-wrapper>

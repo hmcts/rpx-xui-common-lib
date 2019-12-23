@@ -6,7 +6,7 @@ import {FormGroup} from '@angular/forms';
 *
 * */
 @Component({
-  selector: 'lib-gov-checkbox',
+  selector: 'xuilib-gov-checkbox',
   templateUrl: './gov-uk-checkbox.component.html'
 })
 

@@ -8,7 +8,7 @@ import {CheckboxesModel} from '../../models/checkboxesModel';
 * @param: errors - array of error stings
 * */
 @Component({
-  selector: 'lib-gov-uk-checkboxes',
+  selector: 'xuilib-gov-uk-checkboxes',
   templateUrl: './gov-uk-checkboxes.component.html'
 })
 export class CheckboxesComponent {

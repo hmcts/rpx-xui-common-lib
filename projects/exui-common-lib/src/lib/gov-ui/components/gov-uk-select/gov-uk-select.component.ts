@@ -6,7 +6,7 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 * dropdown input.
 * */
 @Component({
-  selector: 'lib-gov-select',
+  selector: 'xuilib-gov-select',
   templateUrl: './gov-uk-select.component.html'
 })
 export class GovUkSelectComponent {

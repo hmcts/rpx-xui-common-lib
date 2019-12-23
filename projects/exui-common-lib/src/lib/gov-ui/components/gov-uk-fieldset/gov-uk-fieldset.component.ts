@@ -9,23 +9,8 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 * @param errorMessage - used for aria tag
 * */
 @Component({
-  selector: 'lib-gov-uk-fieldset',
-  template: `
-      <fieldset class="govuk-fieldset" [attr.aria-describedby]="setDescribedBy()">
-        <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="!isHeading">
-          {{config.legend}}
-        </legend>
-
-        <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="isHeading">
-          <h1>{{config.legend}}</h1>
-        </legend>
-
-        <span [id]="config.id+'-hint'" class="govuk-hint" *ngIf="config.hint">
-          {{config.hint}}
-        </span>
-        <ng-content></ng-content>
-      </fieldset>
-  `
+  selector: 'xuilib-gov-uk-fieldset',
+  templateUrl: './gov-uk-fieldset.component.html'
 })
 export class GovUkFieldsetComponent {
   constructor() { }
