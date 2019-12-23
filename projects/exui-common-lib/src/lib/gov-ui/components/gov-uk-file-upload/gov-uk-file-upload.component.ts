@@ -34,7 +34,7 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper'
 })
 export class GovUkFileUploadComponent implements OnInit {
   constructor() { }
-  @Input() public errorMessage: string[];
+  @Input() public errorMessage: {isInvalid: boolean; messages: string[]};
   @Input() public group: FormGroup;
   @Input() public config: { label: string, hint: string; name: string; id: string, type: string; isPageHeading: boolean, classes: string };
 

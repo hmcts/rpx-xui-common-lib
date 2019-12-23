@@ -63,7 +63,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class GovUkDateComponent implements OnInit {
   constructor() { }
   @Input() public config: { id: string };
-  @Input() public errorMessage: {isInvalid: boolean; messages: string[]}
+  @Input() public errorMessage: {isInvalid: boolean; messages: string[]};
   @Input() public formGroup: any;
 
   public ngOnInit(): void {

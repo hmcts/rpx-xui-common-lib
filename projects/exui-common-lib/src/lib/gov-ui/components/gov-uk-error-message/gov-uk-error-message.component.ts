@@ -16,5 +16,5 @@ import {Component, Input} from '@angular/core';
 export class GovUkErrorMessageComponent {
   constructor() { }
   @Input() public config: { id: string };
-  @Input() public errorMessage: string[];
+  @Input() public errorMessage: {isInvalid: boolean; messages: string[]};
 }
