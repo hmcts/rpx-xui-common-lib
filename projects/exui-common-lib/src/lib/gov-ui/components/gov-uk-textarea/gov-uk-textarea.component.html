@@ -1,0 +1,12 @@
+<div [formGroup]="group" 
+class="govuk-form-group" [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
+<lib-gov-label [config]="config"></lib-gov-label>
+<span id="more-detail-hint" class="govuk-hint">
+  {{config.hint}}
+</span>
+<lib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></lib-gov-uk-error-message>
+<textarea
+  class="govuk-textarea" [formControlName]="config.key"
+  [ngClass]="{'govuk-textarea--error': errorMessage?.isInvalid}"
+  [id]="config.id" name="more-detail" [rows]="config.rows" [attr.aria-describedby]="setDescribedBy()"></textarea>
+</div>

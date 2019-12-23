@@ -7,17 +7,7 @@ import {FormGroup} from '@angular/forms';
 * */
 @Component({
   selector: 'lib-gov-radio',
-  template: `
-    <div class="govuk-radios__item" [formGroup]="group">
-      <input [className]="'govuk-radios__input ' + config.classes"
-             [id]="config.id"
-             [value]="config.value" type="radio"
-             [attr.data-aria-controls]="config.id"
-             [name]="config.name"
-             [formControl]="group.controls[config.name]">
-      <lib-gov-label appRemoveHost [config]="config"></lib-gov-label>
-    </div>
-  `
+  templateUrl: './gov-uk-radio.component.html'
 })
 export class GovUkRadioComponent implements OnInit{
   constructor() { }

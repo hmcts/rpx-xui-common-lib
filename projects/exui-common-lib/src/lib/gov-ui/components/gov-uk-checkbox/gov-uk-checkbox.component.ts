@@ -9,6 +9,7 @@ import {FormGroup} from '@angular/forms';
   selector: 'lib-gov-checkbox',
   templateUrl: './gov-uk-checkbox.component.html'
 })
+
 export class GovUkCheckboxComponent implements OnInit {
   constructor() { }
   @Input() public group: FormGroup;
