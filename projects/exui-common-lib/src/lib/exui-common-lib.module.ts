@@ -22,7 +22,9 @@ import { GovUkRadiosComponent } from './gov-ui/components/gov-uk-radios/gov-uk-r
 import { GovUkSelectComponent } from './gov-ui/components/gov-uk-select/gov-uk-select.component';
 import { GovukTableComponent } from './gov-ui/components/gov-uk-table/gov-uk-table.component';
 import { GovUkTextareaComponent } from './gov-ui/components/gov-uk-textarea/gov-uk-textarea.component';
+import { HmctsErrorSummaryComponent } from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
 import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
+import { HmctsMainWrapperComponent } from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
 import { HmctsPrimaryNavigationComponent } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
@@ -34,10 +36,12 @@ export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_G
 export interface CommonLibOptions { launchDarklyKey?: string; }
 
 export const GOV_UI_COMPONENTS = [
-  GovukTableComponent,
   HmctsIdentityBarComponent,
   HmctsSubNavigationComponent,
   HmctsPrimaryNavigationComponent,
+  HmctsErrorSummaryComponent,
+  HmctsMainWrapperComponent,
+  GovukTableComponent,
   GovUkInputComponent,
   GovUkCheckboxComponent,
   GovUkFormGroupWrapperComponent,
