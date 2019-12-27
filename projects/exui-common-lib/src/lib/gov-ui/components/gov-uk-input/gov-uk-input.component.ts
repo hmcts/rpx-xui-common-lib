@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import { ErrorMessagesModel } from '../../models';
 import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper'
 /*
 * Gov UK Input component
@@ -14,7 +15,7 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper'
 })
 export class GovUkInputComponent implements OnInit {
   constructor() { }
-  @Input() public errorMessage: {isInvalid: boolean; mesages: string[] };
+  @Input() public errorMessage: ErrorMessagesModel;
   @Input() public group: FormGroup;
   @Input() public config: { label: string, hint: string; name: string; id: string, type: string; isPageHeading: boolean, classes: string };
 

@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import { ErrorMessagesModel } from '../../models';
 import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 /*
 * Gov Uk Fieldset Component
@@ -16,7 +17,7 @@ export class GovUkFieldsetComponent {
   constructor() { }
   @Input() public config: {legend: string; classes: string, id: string, hint: string, key: string};
   @Input() public isHeading: boolean;
-  @Input() public errorMessage: string[];
+  @Input() public errorMessage: ErrorMessagesModel;
 
   public setDescribedBy(): string {
     return HtmlTemplatesHelper.setDescribedBy(this.errorMessage, this.config);

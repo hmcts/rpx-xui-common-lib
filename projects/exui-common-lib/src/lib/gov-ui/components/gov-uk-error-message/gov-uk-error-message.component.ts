@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import { ErrorMessagesModel } from '../../models';
 /*
 * Gov UK Error Message
 * Responsible for displaying in-line error messages
@@ -12,5 +13,5 @@ import {Component, Input} from '@angular/core';
 export class GovUkErrorMessageComponent {
   constructor() { }
   @Input() public config: { id: string };
-  @Input() public errorMessage: {isInvalid: boolean; messages: string[]};
+  @Input() public errorMessage: ErrorMessagesModel;
 }

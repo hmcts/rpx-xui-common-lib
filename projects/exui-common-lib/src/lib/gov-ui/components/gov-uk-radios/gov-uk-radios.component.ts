@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {CheckboxesModel} from '../../models/checkboxesModel';
+import {CheckboxesModel} from '../../models/checkboxes-model';
 /*
 * Radios component - state less
 * Responsible for displaying a list of gov-uk-radio components

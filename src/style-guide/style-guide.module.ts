@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
 import { styleGuideRouting } from './style-guide.routing';
-
-import { GovUiModule } from 'projects/exui-common-lib/src/lib/gov-ui';
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
 
@@ -16,7 +14,6 @@ import * as fromContainers from './containers';
     CommonModule,
     HttpClientModule,
     styleGuideRouting,
-    GovUiModule,
     StoreModule.forFeature('style-guide', reducers),
     FormsModule,
     ReactiveFormsModule
