@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import { ErrorMessagesModel } from '../../models';
+import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
 * Gov UK Error Message
 * Responsible for displaying in-line error messages
@@ -12,6 +13,7 @@ import { ErrorMessagesModel } from '../../models';
 })
 export class GovUkErrorMessageComponent {
   constructor() { }
-  @Input() public config: { id: string };
+  @Input() public config: GovUiConfigModel;
+  // { id: string };
   @Input() public errorMessage: ErrorMessagesModel;
 }

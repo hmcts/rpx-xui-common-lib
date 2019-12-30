@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
 * Gov Uk Checkbox Dumb Component responsible for
 * displaying checkbox input and hint
@@ -13,7 +14,8 @@ import {FormGroup} from '@angular/forms';
 export class GovUkCheckboxComponent implements OnInit {
   constructor() { }
   @Input() public group: FormGroup;
-  @Input() public config: {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string};
+  @Input() public config: GovUiConfigModel;
+  // {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string};
 
   public id: string;
 /**

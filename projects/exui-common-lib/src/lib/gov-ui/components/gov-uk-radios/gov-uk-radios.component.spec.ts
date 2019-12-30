@@ -1,0 +1,35 @@
+import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GovUkRadiosComponent } from './gov-uk-radios.component';
+
+describe('GovUkRadiosComponent', () => {
+  let component: GovUkRadiosComponent;
+  let fixture: ComponentFixture<GovUkRadiosComponent>;
+  const formBuilder: FormBuilder = new FormBuilder();
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [ GovUkRadiosComponent ],
+      providers: [
+        { provide: FormBuilder, useValue: formBuilder }
+    ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GovUkRadiosComponent);
+    component = fixture.componentInstance;
+    component.options = { key: 'key', group: null, config: {hint: 'hint', legend: 'legend', id: 'id'}, errors: null, items: []};
+    component.errors = { isInvalid: false, messages: ['Error']};
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+});

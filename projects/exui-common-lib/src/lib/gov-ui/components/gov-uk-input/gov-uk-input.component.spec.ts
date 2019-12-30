@@ -2,18 +2,18 @@ import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { GovUkCheckboxComponent } from './gov-uk-checkbox.component';
+import { GovUkInputComponent } from './gov-uk-input.component';
 
-describe('GovUkCheckboxComponent', () => {
-  let component: GovUkCheckboxComponent;
-  let fixture: ComponentFixture<GovUkCheckboxComponent>;
+describe('GovUkInputComponent', () => {
+  let component: GovUkInputComponent;
+  let fixture: ComponentFixture<GovUkInputComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkCheckboxComponent ],
+      declarations: [ GovUkInputComponent ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
@@ -22,10 +22,11 @@ describe('GovUkCheckboxComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GovUkCheckboxComponent);
+    fixture = TestBed.createComponent(GovUkInputComponent);
     component = fixture.componentInstance;
-    component.group = formBuilder.group({ checkbox: null});
-    component.config = {value: 'checkbox', label: 'checkbox', hint: 'hint', name: 'checkbox', focusOn: 'checkbox', id: 'id', classes: ''};
+    component.group = formBuilder.group({ name: null});
+    component.config = { label: 'label', hint: 'hint', name: 'name', id: 'id', type: 'type', isPageHeading: true, classes: '' };
+    component.errorMessage = {isInvalid: false, messages: ['Error']};
     fixture.detectChanges();
   });
 

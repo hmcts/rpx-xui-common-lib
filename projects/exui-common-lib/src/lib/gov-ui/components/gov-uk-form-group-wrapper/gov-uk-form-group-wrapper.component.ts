@@ -1,4 +1,6 @@
 import {Component, Input} from '@angular/core';
+import { ErrorMessagesModel } from '../../models';
+import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
 * Gov Uk Form Group Wrapper
 * Used to wrap group form elements in html tags below such as
@@ -11,9 +13,10 @@ import {Component, Input} from '@angular/core';
 })
 export class GovUkFormGroupWrapperComponent {
   constructor() { }
-  @Input() public error: {isInvalid: boolean; messages: string}; // todo add interface
+  @Input() public error: ErrorMessagesModel;
   @Input() public group: string;
-  @Input() public config: {hint: string; legend: string, key: string, isHeading: boolean;}; // TODO create a global interface
+  @Input() public config: GovUiConfigModel;
+  // {hint: string; legend: string, key: string, isPageHeading: boolean;}; // TODO create a global interface
 
 }
 

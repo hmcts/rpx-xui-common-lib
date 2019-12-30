@@ -24,8 +24,8 @@ describe('GovUkFieldsetComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GovUkFieldsetComponent);
     component = fixture.componentInstance;
-    component.config = {legend: 'legend', classes: '', id: 'id', hint: 'hint', key: 'key'};
-    component.isHeading = true;
+    component.config = {legend: 'legend', classes: '', id: 'id', hint: 'hint', key: 'key', isPageHeading: true};
+    // component.isPageHeading = true;
     component.errorMessage = { isInvalid: false, messages: ['Error1', 'Error2']};
     fixture.detectChanges();
   });
@@ -35,14 +35,14 @@ describe('GovUkFieldsetComponent', () => {
   });
 
   it('should have h1 component when its a page heading', () => {
-    component.isHeading = true;
+    component.config.isPageHeading = true;
     fixture.detectChanges();
     const header = fixture.debugElement.query(By.css('h1'));
     expect(header).toBeTruthy();
   });
 
   it('should have no h1 component when its a page heading is false', () => {
-    component.isHeading = false;
+    component.config.isPageHeading = false;
     fixture.detectChanges();
     const header = fixture.debugElement.query(By.css('h1'));
     expect(header).toBeFalsy();

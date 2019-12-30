@@ -1,7 +1,6 @@
 <div class="govuk-form-group" [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}" [formGroup]="formGroup">
   <xuilib-gov-uk-fieldset
-    [config]="{legend: 'Date component', classes: 'govuk-label--m', id: config.id, hint: ' For example, 12 11 2007'}"
-    [isHeading]="false"
+    [config]="{legend: 'Date component', classes: 'govuk-label--m', id: config.id, hint: ' For example, 12 11 2007', isPageHeading: config.isPageHeading}"
     [errorMessage]="errorMessage">
     <xuilib-gov-uk-error-message
       [config]="{id: 'passport'}"

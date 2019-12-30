@@ -3,10 +3,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './store';
-import { styleGuideRouting } from './style-guide.routing';
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
+import { reducers } from './store';
+import { styleGuideRouting } from './style-guide.routing';
 
 
 @NgModule({

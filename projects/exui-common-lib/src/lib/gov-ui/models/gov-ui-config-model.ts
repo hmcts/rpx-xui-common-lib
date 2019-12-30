@@ -1,9 +1,14 @@
 export interface GovUiConfigModel {
-  value: string;
-  label: string;
-  hint: string;
-  name: string;
-  focusOn: string;
   id: string;
-  classes: string;
+  value?: string;
+  label?: string;
+  hint?: string;
+  name?: string;
+  focusOn?: string;
+  classes?: string;
+  legend?: string;
+  key?: string;
+  type?: string;
+  isPageHeading?: boolean;
+  rows?: number;
 }

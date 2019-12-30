@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import { ErrorMessagesModel } from '../../models';
+import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 /*
 * Gov Uk Select Dumb Component responsible for
@@ -11,9 +13,10 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 })
 export class GovUkSelectComponent {
   constructor() {}
-  @Input() public errorMessage: any;
+  @Input() public errorMessage: ErrorMessagesModel;
   @Input() public group: FormGroup;
-  @Input() public config: {hint: string; name: string; id: string,  sPageHeading: boolean, classes: string };
+  @Input() public config: GovUiConfigModel;
+  // {hint: string; name: string; id: string,  isPageHeading: boolean, classes: string };
   @Input() public items: {label: string, value: string; id: string}[];
 
   public setDescribedBy(): string {

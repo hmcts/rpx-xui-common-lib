@@ -1,9 +1,10 @@
 import {FormGroup} from '@angular/forms';
+import { GovUiConfigModel } from './gov-ui-config-model';
 
 export interface CheckboxesModel {
   key: string;
   group: FormGroup;
-  config: {hint: string; legend: string};
+  config: GovUiConfigModel;
   errors: any;
-  items: object[];
+  items: GovUiConfigModel[];
 }

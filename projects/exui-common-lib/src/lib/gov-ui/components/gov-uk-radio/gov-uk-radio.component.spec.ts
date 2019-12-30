@@ -2,18 +2,18 @@ import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { GovUkCheckboxComponent } from './gov-uk-checkbox.component';
+import { GovUkRadioComponent } from './gov-uk-radio.component';
 
-describe('GovUkCheckboxComponent', () => {
-  let component: GovUkCheckboxComponent;
-  let fixture: ComponentFixture<GovUkCheckboxComponent>;
+describe('GovUkRadioComponent', () => {
+  let component: GovUkRadioComponent;
+  let fixture: ComponentFixture<GovUkRadioComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkCheckboxComponent ],
+      declarations: [ GovUkRadioComponent ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
@@ -22,10 +22,10 @@ describe('GovUkCheckboxComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GovUkCheckboxComponent);
+    fixture = TestBed.createComponent(GovUkRadioComponent);
     component = fixture.componentInstance;
-    component.group = formBuilder.group({ checkbox: null});
-    component.config = {value: 'checkbox', label: 'checkbox', hint: 'hint', name: 'checkbox', focusOn: 'checkbox', id: 'id', classes: ''};
+    component.group = formBuilder.group({ name: null});
+    component.config = { label: 'label', hint: 'hint', name: 'name', id: 'id', type: 'type', isPageHeading: true, classes: '', value: 'value', focusOn: 'focuson'};
     fixture.detectChanges();
   });
 

@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import { ErrorMessagesModel } from '../../models';
 import {CheckboxesModel} from '../../models/checkboxes-model';
 /*
 * Radios component - state less
@@ -11,9 +12,10 @@ import {CheckboxesModel} from '../../models/checkboxes-model';
   selector: 'xuilib-gov-uk-radios',
   templateUrl: './gov-uk-radios.component.html'
 })
+
 export class GovUkRadiosComponent {
 
   @Input() public options: CheckboxesModel;
-  @Input() public errors: string[];
+  @Input() public errors: ErrorMessagesModel;
 
 }

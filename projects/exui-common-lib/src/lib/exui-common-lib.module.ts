@@ -9,7 +9,7 @@ import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-di
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { FeatureToggleDirective } from './directives';
 import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
-import { CheckboxesComponent } from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
+import { GovUkCheckboxesComponent } from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
 import { GovUkDateComponent } from './gov-ui/components/gov-uk-date/gov-uk-date.component';
 import { GovUkErrorMessageComponent } from './gov-ui/components/gov-uk-error-message/gov-uk-error-message.component';
 import { GovUkFieldsetComponent } from './gov-ui/components/gov-uk-fieldset/gov-uk-fieldset.component';
@@ -49,7 +49,7 @@ export const GOV_UI_COMPONENTS = [
   GovUkErrorMessageComponent,
   GovUkFieldsetComponent,
   GovUkDateComponent,
-  CheckboxesComponent,
+  GovUkCheckboxesComponent,
   GovUkRadioComponent,
   GovUkRadiosComponent,
   GovUkSelectComponent,

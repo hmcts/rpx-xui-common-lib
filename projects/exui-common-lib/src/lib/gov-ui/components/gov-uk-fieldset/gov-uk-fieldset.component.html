@@ -1,9 +1,9 @@
 <fieldset class="govuk-fieldset" [attr.aria-describedby]="setDescribedBy()">
-  <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="!isHeading">
+  <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="!config.isPageHeading">
     {{config.legend}}
   </legend>
 
-  <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="isHeading">
+  <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="config.isPageHeading">
     <h1>{{config.legend}}</h1>
   </legend>
 

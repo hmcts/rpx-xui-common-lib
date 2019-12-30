@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
 * Gov Uk Radio state-less  Component responsible for
 * displaying radios input and hint
@@ -12,7 +13,8 @@ import {FormGroup} from '@angular/forms';
 export class GovUkRadioComponent implements OnInit{
   constructor() { }
   @Input() public group: FormGroup;
-  @Input() public config: {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string}; // TODO create interface
+  @Input() public config: GovUiConfigModel;
+  // {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string}; // TODO create interface
 
   public id: string;
   /*

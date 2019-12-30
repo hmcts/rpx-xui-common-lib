@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import { ErrorMessagesModel } from '../../models';
+import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 /*
 * CheckBox component - state less
@@ -13,8 +15,9 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
   templateUrl: './gov-uk-textarea.component.html'
 })
 export class GovUkTextareaComponent {
-  @Input() public config: {label: string; classes: string; hint: string; key: string; rows: number, id: string};
-  @Input() public errorMessage: any;
+  @Input() public config: GovUiConfigModel;
+  // {label: string; classes: string; hint: string; key: string; rows: number, id: string};
+  @Input() public errorMessage: ErrorMessagesModel;
   @Input() public group: FormGroup;
 
   public setDescribedBy(): string {

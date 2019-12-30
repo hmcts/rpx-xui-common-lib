@@ -2,18 +2,18 @@ import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { GovUkCheckboxComponent } from './gov-uk-checkbox.component';
+import { GovUkTextareaComponent } from './gov-uk-textarea.component';
 
-describe('GovUkCheckboxComponent', () => {
-  let component: GovUkCheckboxComponent;
-  let fixture: ComponentFixture<GovUkCheckboxComponent>;
+describe('GovUkSelectComponent', () => {
+  let component: GovUkTextareaComponent;
+  let fixture: ComponentFixture<GovUkTextareaComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkCheckboxComponent ],
+      declarations: [ GovUkTextareaComponent ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
@@ -22,10 +22,11 @@ describe('GovUkCheckboxComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GovUkCheckboxComponent);
+    fixture = TestBed.createComponent(GovUkTextareaComponent);
     component = fixture.componentInstance;
-    component.group = formBuilder.group({ checkbox: null});
-    component.config = {value: 'checkbox', label: 'checkbox', hint: 'hint', name: 'checkbox', focusOn: 'checkbox', id: 'id', classes: ''};
+    component.group = formBuilder.group({ name: null});
+    component.config = { label: 'label', hint: 'hint', name: 'name', id: 'id', key: 'name', isPageHeading: true, classes: '', rows: 3 };
+    component.errorMessage = {isInvalid: false, messages: ['Error']};
     fixture.detectChanges();
   });
 
@@ -33,9 +34,8 @@ describe('GovUkCheckboxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have input element', () => {
-    const input = fixture.debugElement.query(By.css('input'));
+  it('should have textarea element', () => {
+    const input = fixture.debugElement.query(By.css('textarea'));
     expect(input).toBeTruthy();
   });
-
 });

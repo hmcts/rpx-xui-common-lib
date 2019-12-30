@@ -2,18 +2,18 @@ import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { GovUkCheckboxComponent } from './gov-uk-checkbox.component';
+import { GovUkFormGroupWrapperComponent } from './gov-uk-form-group-wrapper.component';
 
-describe('GovUkCheckboxComponent', () => {
-  let component: GovUkCheckboxComponent;
-  let fixture: ComponentFixture<GovUkCheckboxComponent>;
+describe('GovUkFormGroupWrapperComponent', () => {
+  let component: GovUkFormGroupWrapperComponent;
+  let fixture: ComponentFixture<GovUkFormGroupWrapperComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkCheckboxComponent ],
+      declarations: [ GovUkFormGroupWrapperComponent ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
@@ -22,10 +22,11 @@ describe('GovUkCheckboxComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GovUkCheckboxComponent);
+    fixture = TestBed.createComponent(GovUkFormGroupWrapperComponent);
     component = fixture.componentInstance;
-    component.group = formBuilder.group({ checkbox: null});
-    component.config = {value: 'checkbox', label: 'checkbox', hint: 'hint', name: 'checkbox', focusOn: 'checkbox', id: 'id', classes: ''};
+    component.group = 'group';
+    component.config = {hint: 'hint', legend: 'legend', key: 'key', isPageHeading: true, id: 'id'};
+    component.error = {isInvalid: false, messages: ['Error']};
     fixture.detectChanges();
   });
 
@@ -33,9 +34,9 @@ describe('GovUkCheckboxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have input element', () => {
-    const input = fixture.debugElement.query(By.css('input'));
-    expect(input).toBeTruthy();
+  it('should have form group element', () => {
+    const formGroup = fixture.debugElement.query(By.css('.govuk-form-group'));
+    expect(formGroup).toBeTruthy();
   });
 
 });
