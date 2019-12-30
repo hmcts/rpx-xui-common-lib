@@ -36,5 +36,11 @@ describe('HmctsIdentityBarComponent', () => {
     const main = fixture.debugElement.query(By.css('.hmcts-identity-bar'));
     expect(main).toBeTruthy();
   });
-  
+
+  it('should have contained value', () => {
+    component.content = { name: 'name'};
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.textContent).toContain('name');
+  });
+
 });

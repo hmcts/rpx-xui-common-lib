@@ -40,4 +40,11 @@ describe('HmctsMainWrapperComponent', () => {
     expect(back).toBeTruthy();
   });
 
+  it('should have the title when title value is assigned', () => {
+    component.title = 'title';
+    fixture.detectChanges();
+    const title = fixture.debugElement.query(By.css('h1'));
+    expect(title).toBeTruthy();
+  });
+
 });

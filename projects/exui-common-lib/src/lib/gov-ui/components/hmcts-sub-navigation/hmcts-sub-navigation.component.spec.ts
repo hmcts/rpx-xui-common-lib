@@ -1,8 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsSubNavigationComponent } from './hmcts-sub-navigation.component';
-import { By } from '@angular/platform-browser';
 
 describe('HmctsSubNavigationComponent', () => {
   let component: HmctsSubNavigationComponent;
@@ -34,6 +34,10 @@ describe('HmctsSubNavigationComponent', () => {
   it('should have the hmcts-sub-navigation element', () => {
     const nav = fixture.debugElement.query(By.css('.hmcts-sub-navigation'));
     expect(nav).toBeTruthy();
+  });
+
+  it('should have contained items.text', () => {
+    expect(fixture.debugElement.nativeElement.textContent).toContain('text');
   });
 
 });
