@@ -3,4 +3,3 @@
  */
 
 export * from './gov-ui.service';
-// export * from './gov-ui.module';
