@@ -1,0 +1,15 @@
+<div id="errorSummary" class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+      data-module="error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    {{header}}
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li *ngFor="let message of messages">
+        <a (click)="scrollTo(message['id'])" [routerLink]="" [fragment]="message['id']"
+          *ngIf="hasElement(message['id'])">{{message['message']}}</a>
+        <span *ngIf="!hasElement(message['id'])">{{message['message']}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

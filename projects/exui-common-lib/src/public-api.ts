@@ -3,6 +3,7 @@
  */
 
 export * from './lib/exui-common-lib.module';
+export * from './lib/gov-ui';
 export * from './lib/models';
 export * from './lib/directives';
 export * from './lib/components';

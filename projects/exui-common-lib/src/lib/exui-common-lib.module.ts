@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, Provider, SkipSelf } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
@@ -7,6 +8,25 @@ import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-dis
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { FeatureToggleDirective } from './directives';
+import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
+import { GovUkCheckboxesComponent } from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
+import { GovUkDateComponent } from './gov-ui/components/gov-uk-date/gov-uk-date.component';
+import { GovUkErrorMessageComponent } from './gov-ui/components/gov-uk-error-message/gov-uk-error-message.component';
+import { GovUkFieldsetComponent } from './gov-ui/components/gov-uk-fieldset/gov-uk-fieldset.component';
+import { GovUkFileUploadComponent } from './gov-ui/components/gov-uk-file-upload/gov-uk-file-upload.component';
+import { GovUkFormGroupWrapperComponent } from './gov-ui/components/gov-uk-form-group-wrapper/gov-uk-form-group-wrapper.component';
+import { GovUkInputComponent } from './gov-ui/components/gov-uk-input/gov-uk-input.component';
+import { GovUkLabelComponent } from './gov-ui/components/gov-uk-label/gov-uk-label.component';
+import { GovUkRadioComponent } from './gov-ui/components/gov-uk-radio/gov-uk-radio.component';
+import { GovUkRadiosComponent } from './gov-ui/components/gov-uk-radios/gov-uk-radios.component';
+import { GovUkSelectComponent } from './gov-ui/components/gov-uk-select/gov-uk-select.component';
+import { GovukTableComponent } from './gov-ui/components/gov-uk-table/gov-uk-table.component';
+import { GovUkTextareaComponent } from './gov-ui/components/gov-uk-textarea/gov-uk-textarea.component';
+import { HmctsErrorSummaryComponent } from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
+import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
+import { HmctsMainWrapperComponent } from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
+import { HmctsPrimaryNavigationComponent } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
+import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { FeatureToggleService, LAUNCHDARKLYKEY, LaunchDarklyService } from './services/public-api';
 import { windowProvider, windowToken } from './window';
@@ -15,6 +35,28 @@ export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_G
 
 export interface CommonLibOptions { launchDarklyKey?: string; }
 
+export const GOV_UI_COMPONENTS = [
+  HmctsIdentityBarComponent,
+  HmctsSubNavigationComponent,
+  HmctsPrimaryNavigationComponent,
+  HmctsErrorSummaryComponent,
+  HmctsMainWrapperComponent,
+  GovukTableComponent,
+  GovUkInputComponent,
+  GovUkCheckboxComponent,
+  GovUkFormGroupWrapperComponent,
+  GovUkLabelComponent,
+  GovUkErrorMessageComponent,
+  GovUkFieldsetComponent,
+  GovUkDateComponent,
+  GovUkCheckboxesComponent,
+  GovUkRadioComponent,
+  GovUkRadiosComponent,
+  GovUkSelectComponent,
+  GovUkTextareaComponent,
+  GovUkFileUploadComponent
+];
+
 @NgModule({
   declarations: [
     TermsAndConditionsComponent,
@@ -22,10 +64,13 @@ export interface CommonLibOptions { launchDarklyKey?: string; }
     TcDisplayPlainComponent,
     TcConfirmComponent,
     ContactDetailsComponent,
-    FeatureToggleDirective
+    FeatureToggleDirective,
+    ...GOV_UI_COMPONENTS
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([])
   ],
   providers: [
@@ -35,7 +80,8 @@ export interface CommonLibOptions { launchDarklyKey?: string; }
     TermsAndConditionsComponent,
     TcConfirmComponent,
     ContactDetailsComponent,
-    FeatureToggleDirective
+    FeatureToggleDirective,
+    ...GOV_UI_COMPONENTS
   ]
 })
 export class ExuiCommonLibModule {
