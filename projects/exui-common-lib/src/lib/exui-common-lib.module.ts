@@ -1,19 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, Provider, SkipSelf } from '@angular/core';
+import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
-import { FeatureToggleDirective } from './directives';
+import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
+import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
+import { LAUNCHDARKLYKEY, LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { FeatureToggleService, LAUNCHDARKLYKEY, LaunchDarklyService } from './services/public-api';
 import { windowProvider, windowToken } from './window';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
-export interface CommonLibOptions { launchDarklyKey?: string; }
+export class ExuiCommonLibModuleOptions {
+  public launchDarklyKey: string;
+}
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ export interface CommonLibOptions { launchDarklyKey?: string; }
     RouterModule.forChild([])
   ],
   providers: [
-    { provide: windowToken, useFactory: windowProvider }
+    { provide: windowToken, useFactory: windowProvider },
+    { provide: FeatureToggleService, useClass: LaunchDarklyService }
   ],
   exports: [
     TermsAndConditionsComponent,
@@ -42,31 +46,19 @@ export class ExuiCommonLibModule {
 
   constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
 
-  public static forRoot(options?: CommonLibOptions): ModuleWithProviders {
-    const providers: Provider[] = [
-      GoogleAnalyticsService,
-      {
-        provide: COMMON_LIB_ROOT_GUARD,
-        useFactory: provideForRootGuard,
-        deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
-      },
-      {
-        provide: FeatureToggleService,
-        useClass: LaunchDarklyService,
-        deps: [LAUNCHDARKLYKEY]
-      }
-    ];
-
-    if (options && options.launchDarklyKey) {
-      providers.push({
-        provide: LAUNCHDARKLYKEY,
-        useValue: options.launchDarklyKey
-      });
-    }
-
+  public static forRoot(options: ExuiCommonLibModuleOptions): ModuleWithProviders {
     return {
       ngModule: ExuiCommonLibModule,
-      providers
+      providers: [
+        GoogleAnalyticsService,
+        {
+          provide: COMMON_LIB_ROOT_GUARD,
+          useFactory: provideForRootGuard,
+          deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
+        },
+        { provide: FeatureToggleService, useClass: LaunchDarklyService },
+        { provide: LAUNCHDARKLYKEY, useValue: options.launchDarklyKey }
+      ]
     };
   }
 
