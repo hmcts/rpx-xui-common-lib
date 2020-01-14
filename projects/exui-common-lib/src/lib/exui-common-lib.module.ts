@@ -33,6 +33,7 @@ import { GoogleAnalyticsService } from './services/google-analytics/google-analy
 import { windowProvider, windowToken } from './window';
 import { HmctsDialogComponent } from './components/hmcts-dialog/hmcts-dialog.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { IdleService } from './services/idle/idle.services';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -102,6 +103,7 @@ export class ExuiCommonLibModule {
       ngModule: ExuiCommonLibModule,
       providers: [
         GoogleAnalyticsService,
+        IdleService,
         {
           provide: COMMON_LIB_ROOT_GUARD,
           useFactory: provideForRootGuard,
