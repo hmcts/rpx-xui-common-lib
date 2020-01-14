@@ -307,6 +307,20 @@
   resolved "https://registry.yarnpkg.com/@hmcts/frontend/-/frontend-0.0.41-alpha.tgz#a1f3bd75a640e92be914d42f18ce52d3dea770d2"
   integrity sha512-1EJhRYycSMsTUYAx+FsrQ3O9mB9WVsoULikd4J9Xu9nSMk2D4mABIzRdcqvXvlIIMSmVDXJD2xDxInJBg57TsA==
 
+"@ng-idle/core@^8.0.0-beta.4":
+  version "8.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@ng-idle/core/-/core-8.0.0-beta.4.tgz#c856bb2dd3c8407321380faac8c5692a5728fd0d"
+  integrity sha512-bI/tt7F5+z/w6b6SzNPc0+9rJ1knWgLzQweLd6xUQ7HHFrHsmBlJYUGiSv0cYUY+2RZAmIDbevwUDKLWmdE55w==
+  dependencies:
+    tslib "^1.9.0"
+
+"@ng-idle/keepalive@^8.0.0-beta.4":
+  version "8.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@ng-idle/keepalive/-/keepalive-8.0.0-beta.4.tgz#db385ad8833a9c42d1d8301531c47a68515a3089"
+  integrity sha512-yj7Y0pu2C7LhcjTcBE9DK5mFPFVHDj3vIVPTDzK3dN+51WoDQMrELl7BMuvzmTViat7mjsSP+00EwFvg6+FDEQ==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@ngtools/json-schema/-/json-schema-1.1.0.tgz#c3a0c544d62392acc2813a42c8a0dc6f58f86922"
