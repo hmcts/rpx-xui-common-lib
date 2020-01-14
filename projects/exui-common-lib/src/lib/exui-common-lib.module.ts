@@ -31,6 +31,7 @@ import { FeatureToggleService } from './services/feature-toggle/feature-toggle.s
 import { LAUNCHDARKLYKEY, LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { windowProvider, windowToken } from './window';
+import { HmctsDialogComponent } from './components/hmcts-dialog/hmcts-dialog.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
@@ -70,6 +71,7 @@ export const GOV_UI_COMPONENTS = [
     TcConfirmComponent,
     ContactDetailsComponent,
     FeatureToggleDirective,
+    HmctsDialogComponent,
     ...GOV_UI_COMPONENTS
   ],
   imports: [
@@ -87,6 +89,7 @@ export const GOV_UI_COMPONENTS = [
     TcConfirmComponent,
     ContactDetailsComponent,
     FeatureToggleDirective,
+    HmctsDialogComponent,
     ...GOV_UI_COMPONENTS
   ]
 })
