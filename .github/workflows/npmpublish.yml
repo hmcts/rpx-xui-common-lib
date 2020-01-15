@@ -19,9 +19,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: npm ci
-      - run: npm run build:library
-      - run: npm test
+      - run: yarn install
+      - run: yarn build:library
+      - run: yarn test
 
   publish-npm:
     needs: build
@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: 10
           registry-url: https://registry.npmjs.org/
-      - run:  npm ci && npm run build:library && cd dist/exui-common-lib && npm publish
+      - run:  yarn install && yarn build:library && cd dist/exui-common-lib && yarn publish
         if: startsWith(github.ref, 'refs/tags')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
@@ -51,7 +51,7 @@ jobs:
           node-version: 10
           registry-url: https://npm.pkg.github.com/
           scope: '@hmcts'
-      - run: npm ci && npm run build:library && cd dist/exui-common-lib && npm publish
+      - run: yarn install && yarn build:library && cd dist/exui-common-lib && yarn publish
         if: startsWith(github.ref, 'refs/tags')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
