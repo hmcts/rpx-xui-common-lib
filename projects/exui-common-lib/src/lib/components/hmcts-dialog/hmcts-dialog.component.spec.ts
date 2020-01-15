@@ -24,9 +24,6 @@ describe('HMCTS Dialog Component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have ngOnInit', () => {
-    expect(component.ngOnInit).toBeDefined();
-  })
 
   it('should have onClose', () => {
     expect(component.onClose).toBeDefined();
