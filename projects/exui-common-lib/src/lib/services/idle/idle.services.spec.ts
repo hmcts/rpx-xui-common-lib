@@ -51,7 +51,7 @@ describe('Idle Services', () => {
       };
       service.init(idleConfig);
       expect(mockIdle.setIdleName).toHaveBeenCalledWith('idleSession');
-      expect(mockIdle.setTimeout).toHaveBeenCalled();
+      expect(mockIdle.setTimeout).toHaveBeenCalledWith(idleConfig.timeout);
     }));
   });
 
