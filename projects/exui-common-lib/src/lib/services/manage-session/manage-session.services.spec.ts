@@ -4,7 +4,7 @@ import { Idle} from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { of } from 'rxjs';
 import { IdleConfigModel} from '../../models/idle-config.model';
-import { IdleService } from './idle.services';
+import { ManageSessionServices } from './manage-session.services';
 
 describe('Idle Services', () => {
 
@@ -35,14 +35,14 @@ describe('Idle Services', () => {
       providers: [
         { provide: Idle, useValue: mockIdle },
         { provide: Keepalive, useValue: mockKeepAlive },
-        IdleService,
+        ManageSessionServices,
       ]
     });
   });
 
 
   describe('init', () => {
-    it('should setup values', inject([IdleService], (service: IdleService) => {
+    it('should setup values', inject([ManageSessionServices], (service: ManageSessionServices) => {
       const idleConfig: IdleConfigModel = {
         timeout: 10 * 60, // 10 min
         idleMilliseconds: 3000,

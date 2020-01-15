@@ -6,10 +6,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 * */
 @Component({
   selector: 'xuilib-dialog',
-  templateUrl: './hmcts-dialog.component.html',
-  styleUrls: ['./hmcts-dialog.component.scss']
+  templateUrl: './hmcts-session-dialog.component.html',
+  styleUrls: ['./hmcts-session-dialog.component.scss']
 })
-export class HmctsDialogComponent  {
+export class HmctsSessionDialogComponent  {
 
   @Input() public positionTop: string;
   @Output() public close = new EventEmitter();

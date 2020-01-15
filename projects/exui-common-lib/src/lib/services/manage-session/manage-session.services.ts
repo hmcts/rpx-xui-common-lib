@@ -10,7 +10,7 @@ import {
 import {IdleConfigModel} from '../../models/idle-config.model';
 
 @Injectable()
-export class IdleService {
+export class ManageSessionServices {
   private appStateEmitter: Subject<{type: string, countdown?: string; isVisible?: boolean}>;
   constructor(
     private idle: Idle,
