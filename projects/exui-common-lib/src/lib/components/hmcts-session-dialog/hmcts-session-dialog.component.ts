@@ -5,7 +5,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 * using ng-content to display content from parent
 * */
 @Component({
-  selector: 'xuilib-dialog',
+  selector: 'xuilib-session-dialog',
   templateUrl: './hmcts-session-dialog.component.html',
   styleUrls: ['./hmcts-session-dialog.component.scss']
 })
