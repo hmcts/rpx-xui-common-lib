@@ -30,17 +30,11 @@ export class IdleService {
 
     // adding delay so that user can click on sign out before the modal shuts
     this.idle.onIdleEnd.pipe(delay(250)).subscribe(() => {
-      console.log('No longer idle.');
       this.appStateEmitter.next({type: 'modal', countdown: undefined, isVisible: false});
     });
 
     this.idle.onTimeout.subscribe(() => {
-      console.log('Timed out!');
       this.appStateEmitter.next({type: 'signout'});
-    });
-
-    this.idle.onIdleStart.subscribe(() => {
-      console.log('You\'ve gone idle!');
     });
 
     this.idle.onTimeoutWarning.pipe(
@@ -52,11 +46,9 @@ export class IdleService {
 
     this.keepalive.interval(idleConfig.keepAliveInSeconds);
     this.keepalive.onPing.pipe(delay(250)).subscribe(() => {
-      console.log('Keep alive');
       this.appStateEmitter.next({type: 'keepalive'})
     });
     const idleInSeconds = Math.floor((idleConfig.idleMilliseconds / 1000)) - idleConfig.timeout;
-    console.log('idleInSeconds', idleInSeconds)
     this.idle.setIdle(idleInSeconds);
     this.idle.watch();
   }
