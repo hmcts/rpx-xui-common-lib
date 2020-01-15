@@ -31,7 +31,9 @@ import { FeatureToggleService } from './services/feature-toggle/feature-toggle.s
 import { LAUNCHDARKLYKEY, LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { windowProvider, windowToken } from './window';
+import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { ManageSessionServices } from './services/manage-session/manage-session.services';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -70,6 +72,7 @@ export const GOV_UI_COMPONENTS = [
     TcConfirmComponent,
     ContactDetailsComponent,
     FeatureToggleDirective,
+    HmctsSessionDialogComponent,
     ...GOV_UI_COMPONENTS
   ],
   imports: [
@@ -87,6 +90,7 @@ export const GOV_UI_COMPONENTS = [
     TcConfirmComponent,
     ContactDetailsComponent,
     FeatureToggleDirective,
+    HmctsSessionDialogComponent,
     ...GOV_UI_COMPONENTS
   ]
 })
@@ -99,6 +103,7 @@ export class ExuiCommonLibModule {
       ngModule: ExuiCommonLibModule,
       providers: [
         GoogleAnalyticsService,
+        ManageSessionServices,
         {
           provide: COMMON_LIB_ROOT_GUARD,
           useFactory: provideForRootGuard,

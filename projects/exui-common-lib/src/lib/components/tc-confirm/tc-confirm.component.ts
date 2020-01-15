@@ -10,7 +10,7 @@ export class TcConfirmComponent {
   @Input() public buttonText: string;
   @Output() public confirm = new EventEmitter<void>();
 
-  constructor() { }
+  constructor() {}
 
   public onClick(): void {
     this.confirm.emit();
