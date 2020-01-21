@@ -1,4 +1,6 @@
+import {Location} from '@angular/common';
 import {Component, Input} from '@angular/core';
+import { BannerDataModel } from '../../models/banner-data-model';
 /*
 * Main Content wrapper
 * Responsible for:
@@ -13,11 +15,18 @@ import {Component, Input} from '@angular/core';
   templateUrl: './hmcts-main-wrapper.component.html'
 })
 export class HmctsMainWrapperComponent  {
+  public bannerData: BannerDataModel;
 
   @Input() public backLink: string;
   @Input() public title: string;
   @Input() public summaryErrors: {header: string; isFromValid: boolean; items: { id: string; message: any; }[]};
+  @Input() public set banner(value: BannerDataModel) {
+    this.bannerData = value;
+  }
 
-  constructor() { }
+  constructor( private readonly location: Location) { }
+  public onGoBack() {
+    this.location.back();
+  }
 
 }

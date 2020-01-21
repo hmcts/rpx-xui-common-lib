@@ -1,12 +1,13 @@
-<a *ngIf="backLink" [routerLink]="backLink" class="govuk-back-link">Back</a>
+<a *ngIf="backLink" [routerLink]="backLink" (click)="onGoBack()" class="govuk-back-link">Back</a>
 <main id="content" role="main" class="govuk-main-wrapper">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <xuilib-hmcts-error-summary
-        *ngIf="summaryErrors && !summaryErrors.isFromValid"
+        *ngIf="summaryErrors && !summaryErrors.isFromValid && summaryErrors.items && summaryErrors.items.length > 0"
         [errorMessages]="summaryErrors.items"
         [header]="summaryErrors.header">
       </xuilib-hmcts-error-summary>
+      <xuilib-hmcts-banner *ngIf="bannerData" [message]="bannerData.message" [type]="bannerData.type"></xuilib-hmcts-banner>
       <h1 *ngIf="title" class="govuk-heading-xl">{{title}}</h1>
       <ng-content></ng-content>
     </div>
