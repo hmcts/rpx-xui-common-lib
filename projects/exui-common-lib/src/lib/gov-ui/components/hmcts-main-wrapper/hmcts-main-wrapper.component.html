@@ -3,7 +3,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <xuilib-hmcts-error-summary
-        *ngIf="summaryErrors && !summaryErrors.isFromValid && summaryErrors.items && summaryErrors.items.length > 0"
+        *ngIf="summaryErrors && !summaryErrors.isFromValid"
         [errorMessages]="summaryErrors.items"
         [header]="summaryErrors.header">
       </xuilib-hmcts-error-summary>

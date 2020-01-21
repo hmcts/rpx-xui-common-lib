@@ -1,5 +1,4 @@
-import {Location} from '@angular/common';
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { BannerDataModel } from '../../models/banner-data-model';
 /*
 * Main Content wrapper
@@ -23,10 +22,11 @@ export class HmctsMainWrapperComponent  {
   @Input() public set banner(value: BannerDataModel) {
     this.bannerData = value;
   }
+  @Output() public backEvent = new EventEmitter<void>();
 
-  constructor( private readonly location: Location) { }
+  constructor() { }
+
   public onGoBack() {
-    this.location.back();
+    this.backEvent.emit();
   }
-
 }

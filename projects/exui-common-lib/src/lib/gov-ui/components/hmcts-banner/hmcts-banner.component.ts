@@ -8,7 +8,8 @@ import {Component, Input} from '@angular/core';
 * */
 @Component({
   selector: 'xuilib-hmcts-banner',
-  templateUrl: './hmcts-banner.component.html'
+  templateUrl: './hmcts-banner.component.html',
+  styleUrls: ['./hmcts-banner.component.scss']
 })
 export class HmctsBannerComponent {
   constructor() { }
