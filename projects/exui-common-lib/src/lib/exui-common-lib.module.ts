@@ -34,6 +34,7 @@ import { windowProvider, windowToken } from './window';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
+import { HmctsBannerComponent } from './gov-ui/components/hmcts-banner/hmcts-banner.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -47,6 +48,7 @@ export const GOV_UI_COMPONENTS = [
   HmctsPrimaryNavigationComponent,
   HmctsErrorSummaryComponent,
   HmctsMainWrapperComponent,
+  HmctsBannerComponent,
   GovukTableComponent,
   GovUkInputComponent,
   GovUkCheckboxComponent,

@@ -31,6 +31,8 @@ describe('HmctsErrorSummaryComponent', () => {
 
   it('should have h2 element when there is header', () => {
     component.header = 'header';
+    component.messages = [{id: 'id1', message: '1'}, {id: 'id2', message: '2'}];
+    fixture.detectChanges();
     const input = fixture.debugElement.query(By.css('h2'));
     expect(input).toBeTruthy();
   });
