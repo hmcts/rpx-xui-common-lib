@@ -25,7 +25,7 @@ describe('Idle Services', () => {
     'interval'
   ]);
 
-  mockKeepAlive.onPing = { pipe: () => of('something') };
+  mockKeepAlive.onPing =  of('something');
 
   beforeEach(() => {
     TestBed.configureTestingModule({

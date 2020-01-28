@@ -45,8 +45,8 @@ export class ManageSessionServices {
     });
 
     this.keepalive.interval(idleConfig.keepAliveInSeconds);
-    this.keepalive.onPing.pipe(delay(250)).subscribe(() => {
-      this.appStateEmitter.next({type: 'keepalive'})
+    this.keepalive.onPing.subscribe(() => {
+      this.appStateEmitter.next({type: 'keepalive'});
     });
     const idleInSeconds = Math.floor((idleConfig.idleMilliseconds / 1000)) - idleConfig.timeout;
     this.idle.setIdle(idleInSeconds);
