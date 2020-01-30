@@ -3,11 +3,13 @@ import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
+import { LetDirective } from './directives/let/let.directive';
 import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
 import { GovUkCheckboxesComponent } from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
 import { GovUkDateComponent } from './gov-ui/components/gov-uk-date/gov-uk-date.component';
@@ -22,19 +24,18 @@ import { GovUkRadiosComponent } from './gov-ui/components/gov-uk-radios/gov-uk-r
 import { GovUkSelectComponent } from './gov-ui/components/gov-uk-select/gov-uk-select.component';
 import { GovukTableComponent } from './gov-ui/components/gov-uk-table/gov-uk-table.component';
 import { GovUkTextareaComponent } from './gov-ui/components/gov-uk-textarea/gov-uk-textarea.component';
+import { HmctsBannerComponent } from './gov-ui/components/hmcts-banner/hmcts-banner.component';
 import { HmctsErrorSummaryComponent } from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
 import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
 import { HmctsMainWrapperComponent } from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
 import { HmctsPrimaryNavigationComponent } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
+import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
 import { LAUNCHDARKLYKEY, LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { windowProvider, windowToken } from './window';
-import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
-import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
-import { HmctsBannerComponent } from './gov-ui/components/hmcts-banner/hmcts-banner.component';
+import { windowProvider, windowToken } from './window';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -74,6 +75,7 @@ export const GOV_UI_COMPONENTS = [
     TcConfirmComponent,
     ContactDetailsComponent,
     FeatureToggleDirective,
+    LetDirective,
     HmctsSessionDialogComponent,
     ...GOV_UI_COMPONENTS
   ],
@@ -92,6 +94,7 @@ export const GOV_UI_COMPONENTS = [
     TcConfirmComponent,
     ContactDetailsComponent,
     FeatureToggleDirective,
+    LetDirective,
     HmctsSessionDialogComponent,
     ...GOV_UI_COMPONENTS
   ]
