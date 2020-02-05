@@ -11,3 +11,9 @@
 <xuilib-contact-details 
 [data]="contactDetailsData"
 ></xuilib-contact-details>
+
+<ng-container *xuilibLet="(testObservable | async) as data">
+  <ul>
+    <li *ngFor="let t of data">{{t}}</li>
+  </ul>
+</ng-container>

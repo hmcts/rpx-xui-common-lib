@@ -2,7 +2,7 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 export class LetContext<T = any> {
     public $implicit: T = null;
-    public ngLet: T = null;
+    public xuilibLet: T = null;
 }
 
 @Directive({
@@ -16,6 +16,6 @@ export class LetDirective<T = any> {
     }
 
     @Input() public set xuilibLet(condition: T) {
-        this.context.$implicit = this.context.ngLet = condition;
+        this.context.$implicit = this.context.xuilibLet = condition;
     }
 }
