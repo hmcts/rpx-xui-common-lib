@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BadgeColour, ContactDetailsDataModel, TCDocument } from 'projects/exui-common-lib/src';
 import { GoogleAnalyticsService } from 'projects/exui-common-lib/src/lib/services/google-analytics/google-analytics.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,8 @@ export class AppComponent implements OnInit {
     phone: '1111111',
     openingTimes: 'bla bla bla'
   };
+
+  public testObservable: Observable<string[]> = of(['this', 'is', 'a', 'test']);
 
   constructor(
     private readonly googleAnalytics: GoogleAnalyticsService
