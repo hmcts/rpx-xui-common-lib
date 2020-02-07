@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BannerDataModel } from '../../models/banner-data-model';
 /*
 * Main Content wrapper
@@ -13,7 +13,7 @@ import { BannerDataModel } from '../../models/banner-data-model';
   selector: 'xuilib-hmcts-main-wrapper',
   templateUrl: './hmcts-main-wrapper.component.html'
 })
-export class HmctsMainWrapperComponent  {
+export class HmctsMainWrapperComponent implements OnInit {
   public bannerData: BannerDataModel;
 
   @Input() public backLink: string;
@@ -24,7 +24,14 @@ export class HmctsMainWrapperComponent  {
   }
   @Output() public backEvent = new EventEmitter<void>();
 
-  constructor() { }
+  public hasBackLink: boolean;
+
+  constructor() {
+  }
+
+  public ngOnInit() {
+    this.hasBackLink = this.backLink !== undefined || this.backEvent.observers.length > 0;
+  }
 
   public onGoBack() {
     this.backEvent.emit();
