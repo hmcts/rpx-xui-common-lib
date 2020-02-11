@@ -8,6 +8,7 @@ import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
 import { LetDirective } from './directives/let/let.directive';
@@ -79,6 +80,7 @@ export const GOV_UI_COMPONENTS = [
     LetDirective,
     HmctsSessionDialogComponent,
     UserListComponent,
+    UserDetailsComponent,
     ...GOV_UI_COMPONENTS
   ],
   imports: [
@@ -99,6 +101,7 @@ export const GOV_UI_COMPONENTS = [
     LetDirective,
     HmctsSessionDialogComponent,
     UserListComponent,
+    UserDetailsComponent,
     ...GOV_UI_COMPONENTS
   ]
 })
