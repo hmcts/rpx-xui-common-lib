@@ -8,6 +8,7 @@ import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
 import { LetDirective } from './directives/let/let.directive';
 import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
@@ -40,7 +41,7 @@ import { windowProvider, windowToken } from './window';
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
 export class ExuiCommonLibModuleOptions {
-  public launchDarklyKey: string;
+  public launchDarklyKey?: string;
 }
 
 export const GOV_UI_COMPONENTS = [
@@ -77,6 +78,7 @@ export const GOV_UI_COMPONENTS = [
     FeatureToggleDirective,
     LetDirective,
     HmctsSessionDialogComponent,
+    UserListComponent,
     ...GOV_UI_COMPONENTS
   ],
   imports: [
@@ -96,6 +98,7 @@ export const GOV_UI_COMPONENTS = [
     FeatureToggleDirective,
     LetDirective,
     HmctsSessionDialogComponent,
+    UserListComponent,
     ...GOV_UI_COMPONENTS
   ]
 })
