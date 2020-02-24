@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../models/user.model';
 
 @Component({
@@ -8,4 +8,9 @@ import { User } from '../../models/user.model';
 })
 export class UserListComponent {
     @Input() public users: User[] = [];
+    @Output() public userClick = new EventEmitter<User>();
+
+    public onUserClick(user: User) {
+      this.userClick.emit(user);
+    }
 }
