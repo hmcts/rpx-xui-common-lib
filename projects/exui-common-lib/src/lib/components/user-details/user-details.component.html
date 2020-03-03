@@ -1,32 +1,38 @@
-<div class="govuk-warning-text" *ngIf="isSuspended(user.status)">
+<div class="govuk-warning-text" *ngIf="warningTitle && warningTitle !== ''">
 <span class="govuk-warning-text__icon">!</span>
 <strong class="govuk-warning-text__text">
-    This user's account has been suspended.
+    {{ warningTitle }}
 </strong>
 </div>
-<table class="govuk-table">
-<tbody class="govuk-table__body">
-<tr class="govuk-table__row">
-    <th class="govuk-table__header" scope="row">Name</th>
-    <td class="govuk-table__cell">{{user.fullName}}</td>
-</tr>
-<tr class="govuk-table__row">
-    <th class="govuk-table__header" scope="row">Email address</th>
-    <td class="govuk-table__cell">{{user.email}}</td>
-</tr>
-<tr class="govuk-table__row">
-    <th class="govuk-table__header" scope="row">Permissions</th>
-    <td class="govuk-table__cell">
-    <div *ngIf="user.manageOrganisations === 'Yes'">Manage Organisations</div>
-    <div *ngIf="user.manageUsers === 'Yes'">Manage Users</div>
-    <div *ngIf="user.manageCases === 'Yes'">Manage Cases</div>
-    </td>
-</tr>
-</tbody>
+<table class="govuk-table" *ngIf="user">
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row">Name</th>
+        <td class="govuk-table__cell">{{user.fullName}}</td>
+        <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row">Email address</th>
+        <td class="govuk-table__cell">{{user.email}}</td>
+        <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+        <th class="govuk-table__header" scope="row">Permissions</th>
+        <td class="govuk-table__cell">
+          <div *ngIf="user.manageOrganisations === 'Yes'">Manage Organisations</div>
+          <div *ngIf="user.manageUsers === 'Yes'">Manage Users</div>
+          <div *ngIf="user.manageCases === 'Yes'">Manage Cases</div>
+        </td>
+        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && !isSuspended" [routerLink]="editPermissionRouterLink">Change</a></td>   
+    </tr>
+  </tbody>
 </table>
+<button *ngIf="hasSuspendUserButton" class="govuk-button govuk-button--warning" (click)="suspendUser()">
+  Suspend account
+</button>
 <div *ngIf="reinviteButton && user.resendInvite">
     <a role="button" draggable="false" class="govuk-button" (click)="reinviteClick(user.email)">
         Reinvite user
     </a>
 </div>
-<p class="govuk-body" *ngIf="isSuspended(user.status)">Contact <a href="mailto:service-desk@hmcts.gov.uk">service-desk@hmcts.gov.uk</a> to reactivate this account.</p>
+<p class="govuk-body" *ngIf="isSuspended">Contact <a href="mailto:service-desk@hmcts.gov.uk">service-desk@hmcts.gov.uk</a> to reactivate this account.</p>

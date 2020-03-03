@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../../models';
 
 @Component({
@@ -6,18 +6,28 @@ import { User } from '../../models';
     styleUrls: ['./user-details.component.scss'],
     templateUrl: './user-details.component.html'
 })
-export class UserDetailsComponent {
+export class UserDetailsComponent implements OnInit {
     @Input() public user: User;
+    @Input() public editPermissionRouterLink: string;
+    @Input() public warningTitle: string;
+    @Input() public isSuspended: boolean = false;
+    @Output() public suspendUserEvent = new EventEmitter<void>();
+
     @Input() public readonly: boolean = true;
     @Input() public reinviteButton: boolean = false;
-
     @Output() public reinvite = new EventEmitter<string>();
+
+    public hasSuspendUserButton = false;
+
+    public ngOnInit() {
+      this.hasSuspendUserButton = this.suspendUserEvent.observers.length > 0;
+    }
 
     public reinviteClick(email: string): void {
         this.reinvite.emit(email);
     }
 
-    public isSuspended(status: string): boolean {
-        return status === 'Suspended';
+    public suspendUser(): void {
+      this.suspendUserEvent.emit();
     }
 }
