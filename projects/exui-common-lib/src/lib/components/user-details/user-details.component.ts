@@ -11,7 +11,7 @@ export class UserDetailsComponent {
     @Input() public editPermissionRouterLink: string;
     @Input() public warningTitle: string;
     @Input() public isSuspended: boolean = false;
-    @Output() public suspendUserEvent = new EventEmitter<void>();
+    @Output() public suspendUserEvent = new EventEmitter<User>();
     @Input() public showSuspendUserButton = false;
 
     @Input() public readonly: boolean = true;
@@ -22,7 +22,7 @@ export class UserDetailsComponent {
         this.reinvite.emit(email);
     }
 
-    public suspendUser(): void {
-      this.suspendUserEvent.emit();
+    public suspendUser(suspendUser: User): void {
+      this.suspendUserEvent.emit(suspendUser);
     }
 }
