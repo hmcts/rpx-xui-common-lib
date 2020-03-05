@@ -8,16 +8,21 @@ import { User } from '../../models';
 })
 export class UserDetailsComponent {
     @Input() public user: User;
+    @Input() public editPermissionRouterLink: string;
+    @Input() public warningTitle: string;
+    @Input() public isSuspended: boolean = false;
+    @Output() public suspendUserEvent = new EventEmitter<User>();
+    @Input() public showSuspendUserButton = false;
+
     @Input() public readonly: boolean = true;
     @Input() public reinviteButton: boolean = false;
-
     @Output() public reinvite = new EventEmitter<string>();
 
     public reinviteClick(email: string): void {
         this.reinvite.emit(email);
     }
 
-    public isSuspended(status: string): boolean {
-        return status === 'Suspended';
+    public suspendUser(suspendUser: User): void {
+      this.suspendUserEvent.emit(suspendUser);
     }
 }
