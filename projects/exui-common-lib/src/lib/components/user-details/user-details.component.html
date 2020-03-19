@@ -35,4 +35,4 @@
         Reinvite user
     </a>
 </div>
-<p class="govuk-body" *ngIf="isSuspended">Contact <a href="mailto:service-desk@hmcts.gov.uk">service-desk@hmcts.gov.uk</a> to reactivate this account.</p>
+<p class="govuk-body" *ngIf="isSuspended && suspendHelpLink"><a [routerLink]="suspendHelpLink" target="_blank">Get help</a> to reactivate this account.</p>
