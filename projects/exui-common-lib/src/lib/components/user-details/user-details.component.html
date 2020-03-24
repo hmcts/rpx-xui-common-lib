@@ -16,7 +16,7 @@
         <td class="govuk-table__cell">{{user.email}}</td>
         <td class="govuk-table__cell"></td>
     </tr>
-    <tr class="govuk-table__row">
+    <tr class="govuk-table__row" *ngIf="showPermissions">
         <th class="govuk-table__header" scope="row">Permissions</th>
         <td class="govuk-table__cell">
           <div *ngIf="user.manageOrganisations === 'Yes'">Manage Organisations</div>
@@ -30,9 +30,14 @@
 <button *ngIf="showSuspendUserButton" class="govuk-button govuk-button--warning" (click)="suspendUser(user)">
   Suspend account
 </button>
-<div *ngIf="reinviteButton && user.resendInvite">
-    <a role="button" draggable="false" class="govuk-button" (click)="reinviteClick(user.email)">
-        Reinvite user
-    </a>
+<div *ngIf="reinviteButton">
+  <div class="govuk-inset-text">
+    <p>This user has already been invited but has not activated their account.</p>
+    <p>If you resend an invitation, they'll receive an email from HM Courts and Tribunals to finish setting up their account.</p>
+    <p>Yoou can't invite the same user more than once an hour.</p>
+  </div>
+  <a role="button" draggable="false" class="govuk-button" (click)="reinviteClick(user)">
+      Resend invitation
+  </a>
 </div>
 <p class="govuk-body" *ngIf="isSuspended && suspendHelpLink"><a [routerLink]="suspendHelpLink" target="_blank">Get help</a> to reactivate this account.</p>

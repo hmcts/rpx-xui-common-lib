@@ -14,13 +14,12 @@ export class UserDetailsComponent {
     @Input() public suspendHelpLink: string;
     @Output() public suspendUserEvent = new EventEmitter<User>();
     @Input() public showSuspendUserButton = false;
-
-    @Input() public readonly: boolean = true;
+    @Input() public showPermissions: boolean = true;
     @Input() public reinviteButton: boolean = false;
-    @Output() public reinvite = new EventEmitter<string>();
+    @Output() public reinvite = new EventEmitter<User>();
 
-    public reinviteClick(email: string): void {
-        this.reinvite.emit(email);
+    public reinviteClick(user: User): void {
+        this.reinvite.emit(user);
     }
 
     public suspendUser(suspendUser: User): void {

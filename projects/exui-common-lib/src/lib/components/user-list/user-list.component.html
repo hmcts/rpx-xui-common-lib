@@ -9,12 +9,7 @@
     <tbody class="govuk-table__body">
         <tr class="govuk-table__row" data-selector="table-row" *ngFor="let u of users">
             <td class="govuk-table__cell" data-selector="table-cell">
-              <ng-container *ngIf="(u.status === 'Pending' || u.status === 'PENDING'); else isRouterLink">
-                {{ u.fullName }}
-                </ng-container>
-              <ng-template #isRouterLink>
-                <a class="govuk-link" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
-              </ng-template>
+              <a class="govuk-link" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
             </td>
             <td class="govuk-table__cell" data-selector="table-cell">{{ u.email }}</td>
             <td class="govuk-table__cell" data-selector="table-cell">{{ u.status }}</td>
