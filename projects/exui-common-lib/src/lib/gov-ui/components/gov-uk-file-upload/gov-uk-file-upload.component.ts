@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import { ErrorMessagesModel } from '../../models';
-import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper'
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
+import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 /*
 * Gov UK Input component
 * Responsible for displaying input, hint and error messages

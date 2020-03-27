@@ -10,7 +10,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
   selector: 'xuilib-gov-radio',
   templateUrl: './gov-uk-radio.component.html'
 })
-export class GovUkRadioComponent implements OnInit{
+export class GovUkRadioComponent implements OnInit {
   constructor() { }
   @Input() public group: FormGroup;
   @Input() public config: GovUiConfigModel;

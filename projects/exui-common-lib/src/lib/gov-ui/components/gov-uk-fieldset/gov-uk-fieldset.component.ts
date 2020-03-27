@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import { ErrorMessagesModel } from '../../models';
-import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
+import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 /*
 * Gov Uk Fieldset Component
 * Used to wrap group fieldset elements
