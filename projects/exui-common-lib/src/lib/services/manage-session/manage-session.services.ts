@@ -11,10 +11,10 @@ import {IdleConfigModel} from '../../models/idle-config.model';
 
 @Injectable()
 export class ManageSessionServices {
-  private appStateEmitter: Subject<{type: string, countdown?: string; isVisible?: boolean}>;
+  private readonly appStateEmitter: Subject<{type: string, countdown?: string; isVisible?: boolean}>;
   constructor(
-    private idle: Idle,
-    private keepalive: Keepalive,
+    private readonly idle: Idle,
+    private readonly keepalive: Keepalive,
   ) {
     this.appStateEmitter = new Subject();
   }

@@ -18,11 +18,7 @@ export class GovUkCheckboxComponent implements OnInit {
   // {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string};
 
   public id: string;
-/**
-* ngOnInIt
- * needed to manage the focus id if passed on in config
- * si it can focus on element when user clicks on error message in the header.
-* */
+
   public ngOnInit(): void {
     const id =  this.config.focusOn ? this.config.focusOn : this.config.value;
     this.config.id = id;

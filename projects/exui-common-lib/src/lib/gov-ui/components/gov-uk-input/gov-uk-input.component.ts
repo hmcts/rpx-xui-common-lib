@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import { ErrorMessagesModel } from '../../models';
-import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper'
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
+import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 /*
 * Gov UK Input component
 * Responsible for displaying input, hint and error messages
@@ -12,7 +12,8 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 * */
 @Component({
   selector: 'xuilib-gov-uk-input',
-  templateUrl: './gov-uk-input.component.html'
+  templateUrl: './gov-uk-input.component.html',
+  styleUrls: ['./gov-uk-input.component.scss']
 })
 export class GovUkInputComponent implements OnInit {
   constructor() { }
