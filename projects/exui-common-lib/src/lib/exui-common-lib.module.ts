@@ -34,7 +34,7 @@ import { HmctsPrimaryNavigationComponent } from './gov-ui/components/hmcts-prima
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
-import { LAUNCHDARKLYKEY, LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
+import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { windowProvider, windowToken } from './window';
@@ -109,7 +109,7 @@ export class ExuiCommonLibModule {
 
   constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
 
-  public static forRoot(options: ExuiCommonLibModuleOptions): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders {
     return {
       ngModule: ExuiCommonLibModule,
       providers: [
@@ -120,8 +120,7 @@ export class ExuiCommonLibModule {
           useFactory: provideForRootGuard,
           deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
         },
-        { provide: FeatureToggleService, useClass: LaunchDarklyService },
-        { provide: LAUNCHDARKLYKEY, useValue: options.launchDarklyKey }
+        { provide: FeatureToggleService, useClass: LaunchDarklyService }
       ]
     };
   }
