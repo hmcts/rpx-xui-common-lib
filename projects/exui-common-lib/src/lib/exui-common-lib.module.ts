@@ -38,12 +38,29 @@ import { LAUNCHDARKLYKEY, LaunchDarklyService } from './services/feature-toggle/
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { windowProvider, windowToken } from './window';
+import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
+import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
 export class ExuiCommonLibModuleOptions {
   public launchDarklyKey?: string;
 }
+
+export const COMMON_COMPONENTS = [ 
+  TermsAndConditionsComponent,
+  TcDisplayHtmlComponent,
+  TcDisplayPlainComponent,
+  TcConfirmComponent,
+  ContactDetailsComponent,
+  FeatureToggleDirective,
+  LetDirective,
+  HmctsSessionDialogComponent,
+  UserListComponent,
+  UserDetailsComponent,
+  InviteUserPermissionComponent,
+  InviteUserFormComponent
+];
 
 export const GOV_UI_COMPONENTS = [
   HmctsIdentityBarComponent,
@@ -71,16 +88,7 @@ export const GOV_UI_COMPONENTS = [
 
 @NgModule({
   declarations: [
-    TermsAndConditionsComponent,
-    TcDisplayHtmlComponent,
-    TcDisplayPlainComponent,
-    TcConfirmComponent,
-    ContactDetailsComponent,
-    FeatureToggleDirective,
-    LetDirective,
-    HmctsSessionDialogComponent,
-    UserListComponent,
-    UserDetailsComponent,
+   ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
   ],
   imports: [
@@ -94,17 +102,11 @@ export const GOV_UI_COMPONENTS = [
     { provide: FeatureToggleService, useClass: LaunchDarklyService }
   ],
   exports: [
-    TermsAndConditionsComponent,
-    TcConfirmComponent,
-    ContactDetailsComponent,
-    FeatureToggleDirective,
-    LetDirective,
-    HmctsSessionDialogComponent,
-    UserListComponent,
-    UserDetailsComponent,
+    ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
   ]
 })
+
 export class ExuiCommonLibModule {
 
   constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }

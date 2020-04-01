@@ -15,6 +15,7 @@ export class GovUkCheckboxComponent implements OnInit {
   constructor() { }
   @Input() public group: FormGroup;
   @Input() public config: GovUiConfigModel;
+  @Input() public isChecked: boolean = false;
   // {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string};
 
   public id: string;
