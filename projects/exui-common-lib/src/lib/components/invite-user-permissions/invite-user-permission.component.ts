@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ErrorMessagesModel } from 'exui-common-lib/lib/gov-ui/models';
+import { ErrorMessagesModel } from '../../gov-ui/models';
 
 @Component({
     selector: 'xuilib-invite-permission-form',
