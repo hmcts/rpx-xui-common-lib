@@ -30,13 +30,13 @@
 <button *ngIf="showSuspendUserButton" class="govuk-button govuk-button--warning" (click)="suspendUser(user)">
   Suspend account
 </button>
-<div *ngIf="user.resendInvite">
+<div *ngIf="user && user.resendInvite">
   <div class="govuk-inset-text">
     <p>This user has already been invited but has not activated their account.</p>
     <p>If you resend an invitation, they'll receive an email from HM Courts and Tribunals to finish setting up their account.</p>
     <p>You can't invite the same user more than once an hour.</p>
   </div>
-  <a role="button" draggable="false" class="govuk-button" (click)="reinviteClick(user)">
+  <a role="button" draggable="false" class="govuk-button" (click)="reinviteClick(user)" id="resend-invite-button">
       Resend invitation
   </a>
 </div>

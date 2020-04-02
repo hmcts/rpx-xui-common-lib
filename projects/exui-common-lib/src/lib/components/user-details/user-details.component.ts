@@ -14,8 +14,6 @@ export class UserDetailsComponent {
     @Input() public suspendHelpLink: string;
     @Output() public suspendUserEvent = new EventEmitter<User>();
     @Input() public showSuspendUserButton = false;
-    // @Input() public showPermissions: boolean = true;
-    // @Input() public reinviteButton: boolean = false;
     @Output() public reinvite = new EventEmitter<User>();
 
     public reinviteClick(user: User): void {
