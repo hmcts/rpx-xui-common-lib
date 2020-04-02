@@ -1,8 +1,8 @@
 import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GovUkRadiosComponent } from './gov-uk-radios.component';
 import { By } from '@angular/platform-browser';
+import { GovUkRadiosComponent } from './gov-uk-radios.component';
 
 describe('GovUkRadiosComponent', () => {
   let component: GovUkRadiosComponent;

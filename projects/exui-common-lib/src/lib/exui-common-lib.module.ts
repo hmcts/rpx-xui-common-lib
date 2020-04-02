@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
+import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
+import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
@@ -45,6 +47,21 @@ export class ExuiCommonLibModuleOptions {
   public launchDarklyKey?: string;
 }
 
+export const COMMON_COMPONENTS = [
+  TermsAndConditionsComponent,
+  TcDisplayHtmlComponent,
+  TcDisplayPlainComponent,
+  TcConfirmComponent,
+  ContactDetailsComponent,
+  FeatureToggleDirective,
+  LetDirective,
+  HmctsSessionDialogComponent,
+  UserListComponent,
+  UserDetailsComponent,
+  InviteUserPermissionComponent,
+  InviteUserFormComponent
+];
+
 export const GOV_UI_COMPONENTS = [
   HmctsIdentityBarComponent,
   HmctsSubNavigationComponent,
@@ -71,16 +88,7 @@ export const GOV_UI_COMPONENTS = [
 
 @NgModule({
   declarations: [
-    TermsAndConditionsComponent,
-    TcDisplayHtmlComponent,
-    TcDisplayPlainComponent,
-    TcConfirmComponent,
-    ContactDetailsComponent,
-    FeatureToggleDirective,
-    LetDirective,
-    HmctsSessionDialogComponent,
-    UserListComponent,
-    UserDetailsComponent,
+   ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
   ],
   imports: [
@@ -94,17 +102,11 @@ export const GOV_UI_COMPONENTS = [
     { provide: FeatureToggleService, useClass: LaunchDarklyService }
   ],
   exports: [
-    TermsAndConditionsComponent,
-    TcConfirmComponent,
-    ContactDetailsComponent,
-    FeatureToggleDirective,
-    LetDirective,
-    HmctsSessionDialogComponent,
-    UserListComponent,
-    UserDetailsComponent,
+    ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
   ]
 })
+
 export class ExuiCommonLibModule {
 
   constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
