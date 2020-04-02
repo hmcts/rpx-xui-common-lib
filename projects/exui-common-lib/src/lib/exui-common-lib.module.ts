@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
+import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
+import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
@@ -38,8 +40,6 @@ import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.ser
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { windowProvider, windowToken } from './window';
-import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
-import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -47,7 +47,7 @@ export class ExuiCommonLibModuleOptions {
   public launchDarklyKey?: string;
 }
 
-export const COMMON_COMPONENTS = [ 
+export const COMMON_COMPONENTS = [
   TermsAndConditionsComponent,
   TcDisplayHtmlComponent,
   TcDisplayPlainComponent,
