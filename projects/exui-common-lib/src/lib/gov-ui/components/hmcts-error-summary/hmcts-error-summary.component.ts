@@ -17,6 +17,7 @@ export class HmctsErrorSummaryComponent implements AfterViewInit, OnChanges {
   }
 
   @Input() public header: string;
+  @Input() public showWarningMessage: boolean;
 
   public messages: object[];
 

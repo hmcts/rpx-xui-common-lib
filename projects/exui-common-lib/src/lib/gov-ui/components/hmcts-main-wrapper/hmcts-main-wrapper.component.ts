@@ -22,8 +22,10 @@ export class HmctsMainWrapperComponent implements OnInit {
   @Input() public set banner(value: BannerDataModel) {
     this.bannerData = value;
   }
-  @Output() public backEvent = new EventEmitter<void>();
+  @Input() public actionButtons: {name: string, class: string, action(): {}}[];
+  @Input() public showWarningMessage: boolean;
 
+  @Output() public backEvent = new EventEmitter<void>();
   public hasBackLink: boolean;
 
   constructor() {
