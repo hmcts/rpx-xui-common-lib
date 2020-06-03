@@ -119,10 +119,18 @@
   filter: blur(2px);
 }
 
+.govuk-warning-text__icon {
+  margin: 0 0 0 12px;
+}
+
 .gem-c-modal-dialogue__header {
   padding: 9px 15px 10px;
   color: #ffffff;
-  background: #0b0c0c;
+  background: #d4351d;
+}
+
+.gem-c-modal-dialogue__title {
+  margin: 6px 0 4px 43px;
 }
 
 .gem-c-modal-dialogue__logotype-crown {
