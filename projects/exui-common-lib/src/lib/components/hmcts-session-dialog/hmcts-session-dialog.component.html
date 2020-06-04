@@ -2,7 +2,23 @@
   <div class="gem-c-modal-dialogue__overlay"></div>
   <dialog class="gem-c-modal-dialogue__box" aria-modal="true" role="dialog" tabindex="0" [ngStyle]="{'margin-top': positionTop}">
     <div class="gem-c-modal-dialogue__header">
-      <div class="govuk-warning-text__icon" aria-hidden="true">!</div>
+      <svg role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" height="33" width="33">
+        <defs>
+          <style>
+            .cls-1 {
+              fill: #020202;
+            }
+
+            .cls-2 {
+              fill: #ffffff;
+              fill-rule: evenodd;
+            }
+          </style>
+        </defs>
+        <circle class="cls-1" cx="13" cy="13" r="13"/>
+        <path class="cls-2" d="M12.181,4.581h2.295V15.3H12.181V4.581Z"/>
+        <path class="cls-2" d="M12.181,18.357h2.295v2.3H12.181v-2.3Z"/>
+      </svg>
       <div class="gem-c-modal-dialogue__title">We are about to sign you out</div>
     </div>
     <div class="gem-c-modal-dialogue__content">
