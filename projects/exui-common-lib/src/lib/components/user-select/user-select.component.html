@@ -1,0 +1,7 @@
+<input class="govuk-input" type="text" [matAutocomplete]="dropdown" [formControl]="control">
+
+<mat-autocomplete #dropdown="matAutocomplete" [displayWith]="displayValue" autoActiveFirstOption (optionSelected)="onSelected($event)">
+  <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+    {{ user.fullName }} - {{ user.email }}
+  </mat-option>
+</mat-autocomplete>
