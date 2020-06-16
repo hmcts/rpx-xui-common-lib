@@ -40,6 +40,9 @@ import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.ser
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { windowProvider, windowToken } from './window';
+import { ShareCaseComponent } from './components/share-case/share-case.component';
+import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
+import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -59,7 +62,10 @@ export const COMMON_COMPONENTS = [
   UserListComponent,
   UserDetailsComponent,
   InviteUserPermissionComponent,
-  InviteUserFormComponent
+  InviteUserFormComponent,
+  ShareCaseComponent,
+  SelectedCaseListComponent,
+  SelectedCaseComponent
 ];
 
 export const GOV_UI_COMPONENTS = [

@@ -13,7 +13,7 @@
 ></xuilib-contact-details>
 
 <!-- Session Modal Timeout Popup -->
-<xuilib-session-dialog positionTop="300px">
+<!-- <xuilib-session-dialog positionTop="300px">
   <p class="govuk-body">For your security, we will sign you out of your account in
     <strong class="body-text-highlight">42 seconds</strong>
   </p>
@@ -24,10 +24,14 @@
   <button type="sign out" class="govuk-button govuk-button--secondary">
     Sign out
   </button>
-</xuilib-session-dialog>
+</xuilib-session-dialog> -->
 
 <ng-container *xuilibLet="(testObservable | async) as data">
   <ul>
     <li *ngFor="let t of data">{{t}}</li>
   </ul>
 </ng-container>
+
+
+<h2>Case share component:</h2>
+<xuilib-share-case></xuilib-share-case>

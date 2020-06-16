@@ -1,0 +1,17 @@
+<div id="add-user">
+  <label for="add-user-input">Enter email address</label>
+  <p id="add-user-hint">Search by name or email address. You can only add people from your organisation individually - but you can add as many as you like.</p>
+  <div id="add-user-input" aria-describedby="add-user-hint"></div>
+  <button>Add</button>
+  <div id="add-user-help">
+    Can't find an email address?
+  </div>
+</div>
+
+<div id="cases">
+  <xuilib-selected-case-list [cases]="cases" (unselect)="onUnselect($event)"></xuilib-selected-case-list>
+</div>
+
+<div id="share-case-nav">
+  <button>Continue</button>
+</div>
