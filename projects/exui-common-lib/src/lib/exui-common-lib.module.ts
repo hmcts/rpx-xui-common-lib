@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
@@ -12,6 +13,7 @@ import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-di
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { UserSelectComponent } from './components/user-select/user-select.component';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
 import { LetDirective } from './directives/let/let.directive';
 import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
@@ -65,7 +67,8 @@ export const COMMON_COMPONENTS = [
   InviteUserFormComponent,
   ShareCaseComponent,
   SelectedCaseListComponent,
-  SelectedCaseComponent
+  SelectedCaseComponent,
+  UserSelectComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
@@ -101,7 +104,8 @@ export const GOV_UI_COMPONENTS = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([]),
+    MatAutocompleteModule
   ],
   providers: [
     { provide: windowToken, useFactory: windowProvider },
