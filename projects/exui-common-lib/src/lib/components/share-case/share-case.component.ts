@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { BasicUser } from '../../models/basic-user.model';
 import { ShareableCase } from '../../models/shareable-case.model';
+import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
+import { UserSelectComponent } from '../user-select/user-select.component';
 
 @Component({
   selector: 'xuilib-share-case',
@@ -14,7 +16,12 @@ export class ShareCaseComponent implements OnInit {
 
   @Output() public unselect = new EventEmitter<ShareableCase>();
 
-  constructor() { }
+  private selectedUser: BasicUser;
+
+  @ViewChild(UserSelectComponent)
+  private readonly userSelect: UserSelectComponent;
+
+  constructor(private readonly stateService: CaseSharingStateService) { }
 
   public ngOnInit() {
   }
@@ -27,6 +34,18 @@ export class ShareCaseComponent implements OnInit {
         return;
       }
     }
+  }
+
+  public onSelectedUser(user: BasicUser) {
+    this.selectedUser = user;
+  }
+
+  public addUser() {
+    this.cases.forEach(c => {
+      this.stateService.requestShare(c.id, this.selectedUser);
+    });
+    this.selectedUser = null;
+    this.userSelect.clear();
   }
 
 }
