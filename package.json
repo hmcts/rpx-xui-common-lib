@@ -28,6 +28,8 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@angular/material": "~7.2.0",
+    "@angular/cdk": "~7.2.0",
     "@hmcts/frontend": "0.0.41-alpha",
     "@ng-idle/core": "^8.0.0-beta.4",
     "@ng-idle/keepalive": "^8.0.0-beta.4",
