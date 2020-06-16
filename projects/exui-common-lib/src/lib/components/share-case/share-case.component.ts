@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BasicUser } from '../../models/basic-user.model';
+import { ShareableCaseState } from '../../models/shareable-case-state.model';
 import { ShareableCase } from '../../models/shareable-case.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { UserSelectComponent } from '../user-select/user-select.component';
@@ -16,6 +18,8 @@ export class ShareCaseComponent implements OnInit {
 
   @Output() public unselect = new EventEmitter<ShareableCase>();
 
+  public state$: Observable<ShareableCaseState[]>;
+
   private selectedUser: BasicUser;
 
   @ViewChild(UserSelectComponent)
@@ -24,16 +28,13 @@ export class ShareCaseComponent implements OnInit {
   constructor(private readonly stateService: CaseSharingStateService) { }
 
   public ngOnInit() {
+    this.state$ = this.stateService.state;
+    this.stateService.setCases('0', this.cases);
   }
 
   public onUnselect(c: ShareableCase): void {
     this.unselect.emit(c);
-    for (let i = 0, l = this.cases.length; i < l; i++) {
-      if (this.cases[i].id === c.id) {
-        this.cases.splice(i, 1);
-        return;
-      }
-    }
+    this.stateService.removeCase(c.id);
   }
 
   public onSelectedUser(user: BasicUser) {

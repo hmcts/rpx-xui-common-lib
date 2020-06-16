@@ -14,7 +14,7 @@
 </div>
 
 <div id="cases">
-  <xuilib-selected-case-list [cases]="cases" (unselect)="onUnselect($event)"></xuilib-selected-case-list>
+  <xuilib-selected-case-list [cases]="state$ | async" (unselect)="onUnselect($event)"></xuilib-selected-case-list>
 </div>
 
 <div id="share-case-nav">
