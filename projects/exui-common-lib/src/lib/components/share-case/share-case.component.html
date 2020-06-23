@@ -1,16 +1,32 @@
 <div id="add-user">
-  <label for="add-user-input">Enter email address</label>
-  <p id="add-user-hint">Search by name or email address. You can only add people from your organisation individually - but you can add as many as you like.</p>
-  <xuilib-user-select
-    id="add-user-input"
-    aria-describedby="add-user-hint"
-    [users]="users"
-    (selected)="onSelectedUser($event)"
-  ></xuilib-user-select>
-  <button (click)="addUser()" class="govuk-button">Add</button>
-  <div id="add-user-help">
-    Can't find an email address?
+  <label class="govuk-label govuk-!-font-weight-bold" for="add-user-input">Enter email address</label>
+  <span id="add-user-hint" class="govuk-hint">
+    Search by name or email address. You can only add people from your organisation individually - but you can add as many as you like.
+  </span>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <xuilib-user-select
+        id="add-user-input"
+        aria-describedby="add-user-hint"
+        [users]="users"
+        (selected)="onSelectedUser($event)">
+      </xuilib-user-select>
+    </div>
+    <div class="govuk-grid-column-one-thirds">
+      <button (click)="addUser()" class="govuk-button">Add</button>
+    </div>
   </div>
+  <details id="add-user-help" class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Can’t find an email address?
+    </span>
+    </summary>
+    <div class="govuk-details__text">
+      If you can’t find your colleague’s email address, they will need to complete their registration. Contact your
+      administrator for help.
+    </div>
+  </details>
 </div>
 
 <div id="cases">
