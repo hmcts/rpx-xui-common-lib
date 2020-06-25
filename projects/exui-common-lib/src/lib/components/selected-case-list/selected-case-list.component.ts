@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ShareableCaseState } from '../../models/shareable-case-state.model';
-import { ShareableCase } from '../../models/shareable-case.model';
+import { SharedCase } from '../../models/case-share.module';
 
 @Component({
   selector: 'xuilib-selected-case-list',
@@ -9,16 +8,16 @@ import { ShareableCase } from '../../models/shareable-case.model';
 })
 export class SelectedCaseListComponent implements OnInit {
 
-  @Input() public cases: ShareableCaseState[] = [];
+  @Input() public cases: SharedCase[] = [];
 
-  @Output() public unselect = new EventEmitter<ShareableCase>();
+  @Output() public unselect = new EventEmitter<SharedCase>();
 
   constructor() { }
 
   public ngOnInit() {
   }
 
-  public onUnselect(c: ShareableCase): void {
+  public onUnselect(c: SharedCase): void {
     this.unselect.emit(c);
   }
 

@@ -30,7 +30,15 @@
 </div>
 
 <div id="cases">
-  <xuilib-selected-case-list [cases]="state$ | async" (unselect)="onUnselect($event)"></xuilib-selected-case-list>
+  <h3 class="govuk-heading-m">Selected cases</h3>
+  <div class="govuk-accordion" data-module="accordion" id="accordion-default">
+    <div class="govuk-accordion__controls">
+      <button type="button" class="govuk-accordion__open-all" aria-expanded="true">Close all<span
+        class="govuk-visually-hidden">sections</span></button>
+    </div>
+    <xuilib-selected-case-list [cases]="cases" (unselect)="onUnselect($event)">
+    </xuilib-selected-case-list>
+  </div>
 </div>
 
 <div id="share-case-nav">
