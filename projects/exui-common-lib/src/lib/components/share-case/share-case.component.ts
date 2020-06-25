@@ -48,4 +48,11 @@ export class ShareCaseComponent implements OnInit {
     this.userSelect.clear();
   }
 
+  public isDisalbedAdd() {
+    return true;
+  }
+
+  public isDisalbedContinue() {
+    return true;
+  }
 }

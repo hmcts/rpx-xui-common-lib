@@ -13,7 +13,7 @@
       </xuilib-user-select>
     </div>
     <div class="govuk-grid-column-one-thirds">
-      <button (click)="addUser()" class="govuk-button">Add</button>
+      <button (click)="addUser()" class="govuk-button" [disabled]="isDisalbedAdd()">Add</button>
     </div>
   </div>
   <details id="add-user-help" class="govuk-details" data-module="govuk-details">
@@ -42,5 +42,5 @@
 </div>
 
 <div id="share-case-nav">
-  <button class="govuk-button">Continue</button>
+  <button class="govuk-button" [disabled]="isDisalbedContinue()">Continue</button>
 </div>
