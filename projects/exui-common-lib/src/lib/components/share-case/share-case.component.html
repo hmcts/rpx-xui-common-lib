@@ -31,16 +31,23 @@
 
 <div id="cases">
   <h3 class="govuk-heading-m">Selected cases</h3>
-  <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
-    <div class="govuk-accordion__controls">
+  <div *ngIf="cases.length > 0" class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+
+    <div  class="govuk-accordion__controls">
       <button type="button" class="govuk-accordion__open-all" aria-expanded="true">Close all<span
         class="govuk-visually-hidden"> sections</span></button>
     </div>
+
     <xuilib-selected-case-list
       [cases]="cases"
       (unselect)="onUnselect($event)">
     </xuilib-selected-case-list>
   </div>
+
+  <div *ngIf="cases.length === 0" class="govuk-hint" align="left">
+    No cases to display.
+  </div>
+
 </div>
 
 <div id="share-case-nav">
