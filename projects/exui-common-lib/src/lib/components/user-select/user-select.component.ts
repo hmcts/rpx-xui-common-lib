@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { BasicUser } from '../../models/basic-user.model';
+import { UserDetails } from '../../models/user-details.module';
 
 @Component({
   selector: 'xuilib-user-select',
@@ -12,24 +12,25 @@ import { BasicUser } from '../../models/basic-user.model';
 })
 export class UserSelectComponent implements OnInit {
 
-  @Input() public users: BasicUser[];
+  @Input() public users: UserDetails[];
 
-  @Output() public selected = new EventEmitter<BasicUser>();
+  @Output() public selected = new EventEmitter<UserDetails>();
 
-  public filteredUsers: Observable<BasicUser[]>;
+  public filteredUsers: Observable<UserDetails[]>;
 
-  public control = new FormControl('');
+  public control = new FormControl();
 
   constructor() { }
 
   public ngOnInit() {
+    console.log(this.users);
     this.filteredUsers = this.control.valueChanges.pipe(
-      map(v => this.filterUsers(v))
+      map(v => typeof v === typeof 'string' ? this.filterUsers(v) : this.users)
     );
   }
 
-  public displayValue(user: BasicUser): string {
-    return `${user.fullName} - ${user.email}`;
+  public displayValue(user: UserDetails): string {
+    return user ? `${user.firstName} ${user.lastName} - ${user.email}` : '';
   }
 
   public onSelected(e: MatAutocompleteSelectedEvent) {
@@ -37,21 +38,25 @@ export class UserSelectComponent implements OnInit {
   }
 
   public clear() {
-    this.control.setValue('');
+    this.control.setValue(null);
   }
 
-  private filterUsers(value: string): BasicUser[] {
-    value = value.toLowerCase();
-
-    return this.users.filter(u => {
-      if (u.fullName.toLowerCase().includes(value)) {
-        return true;
-      }
-      if (u.email.toLowerCase().includes(value)) {
-        return true;
-      }
-      return false;
-    });
+  private filterUsers(value: string): UserDetails[] {
+    if (value) {
+      value = value.toLowerCase();
+      return this.users.filter(u => {
+        if (u.firstName.toLowerCase().includes(value)) {
+          return true;
+        }
+        if (u.lastName.toLowerCase().includes(value)) {
+          return true;
+        }
+        if (u.email.toLowerCase().includes(value)) {
+          return true;
+        }
+        return false;
+      });
   }
-
+    return [];
+  }
 }
