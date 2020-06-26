@@ -57,6 +57,6 @@ export class UserSelectComponent implements OnInit {
         return false;
       });
   }
-    return this.users;
+    return [];
   }
 }
