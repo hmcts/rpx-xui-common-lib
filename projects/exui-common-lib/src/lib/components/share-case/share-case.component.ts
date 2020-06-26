@@ -55,4 +55,18 @@ export class ShareCaseComponent implements OnInit {
   public isDisalbedContinue() {
     return true;
   }
+
+  public onDeselect(c: SharedCase): void {
+    console.log('on deselect event')
+    if (c != null) {
+      let updated = [];
+      for (let el of this.cases) {
+        if (el.caseId !== c.caseId) {
+          updated.push(el);
+        }
+      }
+      this.cases = updated;
+    }
+    this.stateService.setCases('0', this.cases);
+  }
 }

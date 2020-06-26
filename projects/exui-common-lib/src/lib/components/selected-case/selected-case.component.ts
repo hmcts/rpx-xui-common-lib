@@ -22,4 +22,7 @@ export class SelectedCaseComponent implements OnInit {
     this.unselect.emit(this.case);
   }
 
+  public onDeselect(c: SharedCase): void {
+    this.unselect.emit(c);
+  }
 }
