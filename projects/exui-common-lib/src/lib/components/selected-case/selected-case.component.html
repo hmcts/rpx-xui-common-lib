@@ -1,21 +1,18 @@
-<div class="govuk-accordion__section govuk-accordion__section--expanded">
+<div class="govuk-accordion__section">
   <div class="govuk-accordion__section-header">
     <h2 class="govuk-accordion__section-heading">
-      <button type="button" id="accordion-default-heading-1" aria-controls="accordion-default-content-1"
-              class="govuk-accordion__section-button" aria-expanded="true">
+      <button type="button" id="accordion-with-summary-sections-heading-1"
+              aria-controls="accordion-with-summary-sections-content-1" class="govuk-accordion__section-button"
+              aria-describedby="accordion-with-summary-sections-summary-1" aria-expanded="false">
         {{ case.caseTitle }}
-        <span class="govuk-caption-m govuk-!-font-size-16">
-          {{ case.caseId }}
-        </span>
-      </button>
-      <span class="govuk-accordion__icon" aria-hidden="true"></span></h2>
-    <div id="share-case-de-select" class="deselect__section" align="right" style="margin-right:10%">
-      <button class="govuk-button hmcts-button--secondary"  (click) = "onDeselect(case)">De-select case</button>
+        <span class="govuk-accordion__icon" aria-hidden="true"></span></button>
+    </h2>
+    <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
+      {{ case.caseId }}
     </div>
-
   </div>
-  <div id="accordion-default-content-1" class="govuk-accordion__section-content"
-       aria-labelledby="accordion-default-heading-1">
+  <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content"
+       aria-labelledby="accordion-with-summary-sections-heading-1">
     <p class="govuk-body govuk-!-font-size-19">All users with access to this case.</p>
     <table class="govuk-table">
       <thead class="govuk-table__head">
