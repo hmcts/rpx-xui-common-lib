@@ -12,4 +12,8 @@ export class FeatureToggleService {
     public isEnabled(_feature: string): Observable<boolean> {
         throw new Error('Not implemented');
     }
+    // tslint:disable-next-line: variable-name
+    public getValue<R>(_key: string, _defaultValue: R): Observable<R> {
+        throw new Error('Not implemented');
+    }
 }
