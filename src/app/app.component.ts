@@ -33,8 +33,6 @@ export class AppComponent implements OnInit {
     openingTimes: 'bla bla bla'
   };
 
-  public testUsers = [{"idamId":"u111111","firstName":"Joe","lastName":"Elliott","email":"joe.elliott@woodford.com"},{"idamId":"u222222","firstName":"Steve","lastName":"Harrison","email":"steve.harrison@woodford.com"},{"idamId":"u333333","firstName":"James","lastName":"Priest","email":"james.priest@woodford.com"},{"idamId":"u444444","firstName":"Shaun","lastName":"Coldwell","email":"shaun.coldwell@woodford.com"}];
-
   public testObservable: Observable<string[]> = of(['this', 'is', 'a', 'test']);
 
   constructor(
