@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SharedCase } from '../../models/case-share.module';
+import { UserDetails } from '../../models/user-details.module';
 
 @Component({
   selector: 'xuilib-selected-case',
@@ -24,5 +25,9 @@ export class SelectedCaseComponent implements OnInit {
 
   public onDeselect(c: SharedCase): void {
     this.unselect.emit(c);
+  }
+
+  public trackByUserId(user: UserDetails): string {
+    return user.idamId;
   }
 }

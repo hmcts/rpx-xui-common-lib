@@ -17,8 +17,11 @@ export class SelectedCaseListComponent implements OnInit {
   public ngOnInit() {
   }
 
-  public onUnselect(c: SharedCase): void {
-    this.unselect.emit(c);
+  public onUnselect(sharedCase: SharedCase): void {
+    this.unselect.emit(sharedCase);
   }
 
+  public trackByCaseId(sharedCase: SharedCase): string {
+    return sharedCase.caseId;
+  }
 }

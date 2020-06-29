@@ -1,5 +1,5 @@
 <xuilib-selected-case
-  *ngFor="let case of cases"
-  [case]="case"
+  *ngFor="let selectedCase of cases; trackBy: trackByCaseId"
+  [case]="selectedCase"
   (unselect)="onUnselect($event)">
 </xuilib-selected-case>

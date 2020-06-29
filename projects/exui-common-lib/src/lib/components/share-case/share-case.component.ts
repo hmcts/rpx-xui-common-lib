@@ -48,21 +48,20 @@ export class ShareCaseComponent implements OnInit {
     this.userSelect.clear();
   }
 
-  public isDisalbedAdd() {
+  public isDisabledAdd() {
     return true;
   }
 
-  public isDisalbedContinue() {
+  public isDisabledContinue() {
     return true;
   }
 
-  public onDeselect(c: SharedCase): void {
-    console.log('on deselect event')
-    if (c != null) {
+  public onDeselect(sharedCase: SharedCase): void {
+    if (sharedCase !== null) {
       let updated = [];
-      for (let el of this.cases) {
-        if (el.caseId !== c.caseId) {
-          updated.push(el);
+      for (const element of this.cases) {
+        if (element.caseId !== sharedCase.caseId) {
+          updated.push(element);
         }
       }
       this.cases = updated;

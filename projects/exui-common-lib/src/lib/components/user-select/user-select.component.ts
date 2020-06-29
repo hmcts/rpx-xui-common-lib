@@ -25,7 +25,7 @@ export class UserSelectComponent implements OnInit {
   public ngOnInit() {
     console.log(this.users);
     this.filteredUsers = this.control.valueChanges.pipe(
-      map(v => typeof v === typeof 'string' ? this.filterUsers(v) : this.users)
+      map(value => typeof value === typeof 'string' ? this.filterUsers(value) : this.users)
     );
   }
 
@@ -44,14 +44,14 @@ export class UserSelectComponent implements OnInit {
   private filterUsers(value: string): UserDetails[] {
     if (value) {
       value = value.toLowerCase();
-      return this.users.filter(u => {
-        if (u.firstName.toLowerCase().includes(value)) {
+      return this.users.filter(user => {
+        if (user.firstName.toLowerCase().includes(value)) {
           return true;
         }
-        if (u.lastName.toLowerCase().includes(value)) {
+        if (user.lastName.toLowerCase().includes(value)) {
           return true;
         }
-        if (u.email.toLowerCase().includes(value)) {
+        if (user.email.toLowerCase().includes(value)) {
           return true;
         }
         return false;
