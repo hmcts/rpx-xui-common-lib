@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SharedCase } from '../../models/case-share.module';
-import { UserDetails } from '../../models/user-details.module';
+import { SharedCase } from '../../models/case-share.model';
+import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { UserSelectComponent } from '../user-select/user-select.component';
 

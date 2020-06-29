@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-// import { BasicUser } from '../../models/basic-user.model';
+import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
-import { UserDetails } from 'exui-common-lib/lib/models/user-details.module';
 
 describe('UserSelectComponent', () => {
   let component: UserSelectComponent;

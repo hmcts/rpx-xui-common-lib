@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { SharedCase } from '../../models/case-share.module';
-import { UserDetails } from '../../models/user-details.module';
+import { SharedCase } from '../../models/case-share.model';
+import { UserDetails } from '../../models/user-details.model';
 
 @Injectable({
   providedIn: 'root'

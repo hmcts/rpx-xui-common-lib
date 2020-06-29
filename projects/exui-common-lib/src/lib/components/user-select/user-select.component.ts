@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserDetails } from '../../models/user-details.module';
+import { UserDetails } from '../../models/user-details.model';
 
 @Component({
   selector: 'xuilib-user-select',

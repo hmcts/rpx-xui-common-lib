@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SharedCase } from '../../models/case-share.module';
-import { UserDetails } from '../../models/user-details.module';
+import { SharedCase } from '../../models/case-share.model';
+import { UserDetails } from '../../models/user-details.model';
 
 @Component({
   selector: 'xuilib-selected-case',
