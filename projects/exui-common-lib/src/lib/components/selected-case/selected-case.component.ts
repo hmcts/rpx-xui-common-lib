@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 
@@ -7,7 +7,7 @@ import { UserDetails } from '../../models/user-details.model';
   templateUrl: './selected-case.component.html',
   styleUrls: ['./selected-case.component.scss']
 })
-export class SelectedCaseComponent implements OnInit {
+export class SelectedCaseComponent {
 
   @Input() public case: SharedCase;
   @Input() public opened = false;
@@ -15,9 +15,6 @@ export class SelectedCaseComponent implements OnInit {
   @Output() public unselect = new EventEmitter<SharedCase>();
 
   constructor() { }
-
-  public ngOnInit() {
-  }
 
   public onUnselect(): void {
     this.unselect.emit(this.case);
