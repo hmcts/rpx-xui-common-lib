@@ -6,16 +6,13 @@ import { SharedCase } from '../../models/case-share.model';
   templateUrl: './selected-case-list.component.html',
   styleUrls: ['./selected-case-list.component.scss']
 })
-export class SelectedCaseListComponent implements OnInit {
+export class SelectedCaseListComponent {
 
   @Input() public cases: SharedCase[] = [];
 
   @Output() public unselect = new EventEmitter<SharedCase>();
 
   constructor() { }
-
-  public ngOnInit() {
-  }
 
   public onUnselect(sharedCase: SharedCase): void {
     this.unselect.emit(sharedCase);
