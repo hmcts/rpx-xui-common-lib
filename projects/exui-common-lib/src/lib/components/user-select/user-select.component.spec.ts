@@ -1,24 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { BasicUser } from '../../models/basic-user.model';
+import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
 
 describe('UserSelectComponent', () => {
   let component: UserSelectComponent;
   let fixture: ComponentFixture<UserSelectComponent>;
 
-  const testUsers: BasicUser[] = [
+  const testUsers: UserDetails[] = [
     {
-      fullName: 'Geddy Lee',
+      idamId: '111111',
+      firstName: 'Geddy',
+      lastName: 'Lee',
       email: 'g.lee@rush.band'
     },
     {
-      fullName: 'Alex Lifeson',
+      idamId: '222222',
+      firstName: 'Alex',
+      lastName: 'Lifeson',
       email: 'a.lifeson@rush.band'
     },
     {
-      fullName: 'Neil Peart',
+      idamId: '333333',
+      firstName: 'Neil',
+      lastName: 'Peart',
       email: 'n.peart@rush.band'
     }
   ];
@@ -51,7 +57,8 @@ describe('UserSelectComponent', () => {
     fixture.detectChanges();
     component.filteredUsers.subscribe(filtered => {
       expect(filtered.length).toBe(1);
-      expect(filtered[0].fullName).toEqual('Neil Peart');
+      expect(filtered[0].firstName).toEqual('Neil');
+      expect(filtered[0].lastName).toEqual('Peart');
     });
     fixture.detectChanges();
   }));
