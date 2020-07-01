@@ -1,0 +1,16 @@
+<div id="cases">
+  <h3 class="govuk-heading-m">Cases</h3>
+  <xuilib-selected-case-list
+    [cases]="cases"
+    (unselect)="onUnselect($event)">
+  </xuilib-selected-case-list>
+
+  <div *ngIf="cases.length === 0" class="govuk-hint" align="left">
+    No cases to display.
+  </div>
+
+</div>
+
+<div id="share-case-nav">
+  <button class="govuk-button" [disabled]="isDisabledContinue()">Confirm</button>
+</div>
