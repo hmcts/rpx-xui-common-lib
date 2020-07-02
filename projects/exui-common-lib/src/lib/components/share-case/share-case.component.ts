@@ -16,6 +16,8 @@ export class ShareCaseComponent implements OnInit {
   @Input() public users: UserDetails[] = []; // users of this organisation the cases can be shared with
 
   @Output() public unselect = new EventEmitter<SharedCase>();
+  @Output() public removeUserFromCase = new EventEmitter<SharedCase>();
+  @Output() public cancelUserRemovalFromCase = new EventEmitter<SharedCase>();
 
   public state$: Observable<SharedCase[]>;
 
@@ -34,6 +36,14 @@ export class ShareCaseComponent implements OnInit {
   public onUnselect(c: SharedCase): void {
     this.unselect.emit(c);
     this.stateService.removeCase(c.caseId);
+  }
+
+  public onRemoveUserFromCase(event: any): void {
+    this.removeUserFromCase.emit(event);
+  }
+
+  public onCancelUserRemovalFromCase(event: any): void {
+    this.removeUserFromCase.emit(event);
   }
 
   public onSelectedUser(user: UserDetails) {
@@ -58,7 +68,7 @@ export class ShareCaseComponent implements OnInit {
 
   public onDeselect(sharedCase: SharedCase): void {
     if (sharedCase !== null) {
-      let updated = [];
+      const updated = [];
       for (const element of this.cases) {
         if (element.caseId !== sharedCase.caseId) {
           updated.push(element);

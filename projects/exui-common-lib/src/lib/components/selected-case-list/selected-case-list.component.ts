@@ -12,11 +12,21 @@ export class SelectedCaseListComponent {
   @Input() public cases: SharedCase[] = [];
 
   @Output() public unselect = new EventEmitter<SharedCase>();
+  @Output() public removeUserFromCase = new EventEmitter<SharedCase>();
+  @Output() public cancelUserRemovalFromCase = new EventEmitter<SharedCase>();
 
   constructor() { }
 
   public onUnselect(sharedCase: SharedCase): void {
     this.unselect.emit(sharedCase);
+  }
+
+  public onRemoveUserFromCase(event: any): void {
+    this.removeUserFromCase.emit(event);
+  }
+
+  public onCancelUserRemovalFromCase(event: any): void {
+    this.removeUserFromCase.emit(event);
   }
 
   public trackByCaseId(sharedCase: SharedCase): string {

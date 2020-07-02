@@ -34,7 +34,10 @@
   <div *ngIf="cases.length > 0"  class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
     <xuilib-selected-case-list
       [cases]="cases"
-      (unselect)="onUnselect($event)">
+      (unselect)="onUnselect($event)"
+      (removeUserFromCase)="onRemoveUserFromCase($event)"
+      (cancelUserRemovalFromCase)="onCancelUserRemovalFromCase($event)"
+    >
     </xuilib-selected-case-list>
   </div>
 

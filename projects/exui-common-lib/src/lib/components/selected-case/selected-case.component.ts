@@ -32,28 +32,29 @@ export class SelectedCaseComponent {
   public trackByUserId(user: UserDetails): string {
     return user.idamId;
   }
-  public onRemoveUserFromCase(user: UserDetails, c: SharedCase): void {
+
+  public onRemoveUserFromCase(user: UserDetails, sharedCase: SharedCase): void {
     const payload = {
-      user: user,
-      sharedCase:c
-    }
+      user,
+      sharedCase
+    };
     console.log('in common lib onRemoveUserFromCase' + payload.user.email);
     this.removeUserFromCase.emit(payload);
   }
 
   public onCancelRemovalUserFromCase(user: UserDetails, c: SharedCase): void {
     const payload = {
-      user: user,
-      sharedCase:c
-    }
+      user,
+      sharedCase: c
+    };
     this.cancelUserRemovalFromCase.emit(payload);
   }
 
   public onCancelAddUserFromCase(user: UserDetails, c: SharedCase): void {
     const payload = {
-      user: user,
-      sharedCase:c
-    }
+      user,
+      sharedCase: c
+    };
     this.cancelAddRemovalFromCase.emit(payload);
   }
 
