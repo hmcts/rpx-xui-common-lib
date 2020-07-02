@@ -20,13 +20,21 @@
         <th class="govuk-table__header" scope="col">Name</th>
         <th class="govuk-table__header" scope="col">Email address</th>
         <th class="govuk-table__header" scope="col">Actions</th>
+        <th class="govuk-table__header" scope="col"></th>
       </tr>
       </thead>
       <tbody class="govuk-table__body">
       <tr class="govuk-table__row" *ngFor="let user of case.sharedWith; trackBy: trackByUserId">
         <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
         <td class="govuk-table__cell">{{ user.email }}</td>
-        <td class="govuk-table__cell"><a href="#"></a></td>
+        <td *ngIf="case.pendingUnshares==null || (case.pendingUnshares!=null && !case.pendingUnshares.includes(user))" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onRemoveUserFromCase(user, case)">Remove</a></td>
+        <td *ngIf="case.pendingUnshares==null || (case.pendingUnshares!=null && !case.pendingUnshares.includes(user))" class="govuk-table__cell"></td>
+         <td *ngIf="case.pendingUnshares!=null && case.pendingUnshares.includes(user)" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onCancelRemovalUserFromCase(user, case)">Cancel</a></td>
+        <td *ngIf="case.pendingUnshares!=null && case.pendingUnshares.includes(user)" class="govuk-table__cell">To be Removed</td>
+
+        <td *ngIf="case.pendingShares!=null && case.pendingShares.includes(user)" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onCancelAddUserFromCase(user, case)">Cancel</a></td>
+        <td *ngIf="case.pendingShares!=null && case.pendingShares.includes(user)" class="govuk-table__cell">To be Added</td>
+
       </tr>
       </tbody>
     </table>

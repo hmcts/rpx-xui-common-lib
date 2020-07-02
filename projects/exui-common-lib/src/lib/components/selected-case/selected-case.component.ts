@@ -10,9 +10,14 @@ import { UserDetails } from '../../models/user-details.model';
 export class SelectedCaseComponent {
 
   @Input() public case: SharedCase;
+  @Input() public selectedUser: UserDetails;
   @Input() public opened = false;
 
   @Output() public unselect = new EventEmitter<SharedCase>();
+  @Output() public removeUserFromCase = new EventEmitter<any>();
+  @Output() public cancelUserRemovalFromCase = new EventEmitter<any>();
+  @Output() public cancelAddRemovalFromCase = new EventEmitter<any>();
+
 
   constructor() { }
 
@@ -27,4 +32,32 @@ export class SelectedCaseComponent {
   public trackByUserId(user: UserDetails): string {
     return user.idamId;
   }
+  public onRemoveUserFromCase(user: UserDetails, c: SharedCase): void {
+    const payload = {
+      user: user,
+      sharedCase:c
+    }
+    console.log('in common lib onRemoveUserFromCase' + payload.user.email);
+    this.removeUserFromCase.emit(payload);
+  }
+
+  public onCancelRemovalUserFromCase(user: UserDetails, c: SharedCase): void {
+    const payload = {
+      user: user,
+      sharedCase:c
+    }
+    this.cancelUserRemovalFromCase.emit(payload);
+  }
+
+  public onCancelAddUserFromCase(user: UserDetails, c: SharedCase): void {
+    const payload = {
+      user: user,
+      sharedCase:c
+    }
+    this.cancelAddRemovalFromCase.emit(payload);
+  }
+
+
+
+
 }

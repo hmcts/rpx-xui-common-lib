@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SharedCase } from '../../models/case-share.model';
 
+
 @Component({
   selector: 'xuilib-selected-case-list',
   templateUrl: './selected-case-list.component.html',
