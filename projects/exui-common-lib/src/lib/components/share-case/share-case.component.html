@@ -13,16 +13,16 @@
       </xuilib-user-select>
     </div>
     <div class="govuk-grid-column-one-thirds">
-      <button (click)="addUser()" class="govuk-button" [disabled]="isDisabledAdd()">Add</button>
+      <button id="btn-add-user" (click)="addUser()" class="govuk-button" [disabled]="isDisabledAdd()">Add</button>
     </div>
   </div>
   <details id="add-user-help" class="govuk-details" data-module="govuk-details">
     <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
+    <span id="content-why-can-not-find-email" class="govuk-details__summary-text">
       Can’t find an email address?
     </span>
     </summary>
-    <div class="govuk-details__text">
+    <div id="content-reason-can-not-find-email" class="govuk-details__text">
       If you can’t find your colleague’s email address, they will need to complete their registration. Contact your
       administrator for help.
     </div>
@@ -30,7 +30,7 @@
 </div>
 
 <div id="cases">
-  <h3 class="govuk-heading-m">Selected cases</h3>
+  <h3 id="title-selected-cases" class="govuk-heading-m">Selected cases</h3>
   <div *ngIf="cases.length > 0"  class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
     <xuilib-selected-case-list
       [cases]="cases"
@@ -41,7 +41,7 @@
     </xuilib-selected-case-list>
   </div>
 
-  <div *ngIf="cases.length === 0" class="govuk-hint" align="left">
+  <div id="no-case-display" *ngIf="cases.length === 0" class="govuk-hint" align="left">
     No cases to display.
   </div>
 
