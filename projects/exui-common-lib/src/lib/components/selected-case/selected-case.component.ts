@@ -47,6 +47,7 @@ export class SelectedCaseComponent {
       user,
       sharedCase: c
     };
+    console.log('in common lib cancel remove user');
     this.cancelUserRemovalFromCase.emit(payload);
   }
 

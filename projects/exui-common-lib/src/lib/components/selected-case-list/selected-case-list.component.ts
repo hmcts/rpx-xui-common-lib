@@ -26,7 +26,7 @@ export class SelectedCaseListComponent {
   }
 
   public onCancelUserRemovalFromCase(event: any): void {
-    this.removeUserFromCase.emit(event);
+    this.cancelUserRemovalFromCase.emit(event);
   }
 
   public trackByCaseId(sharedCase: SharedCase): string {

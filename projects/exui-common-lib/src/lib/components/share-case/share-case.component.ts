@@ -43,7 +43,7 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public onCancelUserRemovalFromCase(event: any): void {
-    this.removeUserFromCase.emit(event);
+    this.cancelUserRemovalFromCase.emit(event);
   }
 
   public onSelectedUser(user: UserDetails) {
@@ -59,7 +59,8 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public isDisabledAdd() {
-    return true;
+    return (this.selectedUser == null);
+
   }
 
   public isDisabledContinue(): boolean {

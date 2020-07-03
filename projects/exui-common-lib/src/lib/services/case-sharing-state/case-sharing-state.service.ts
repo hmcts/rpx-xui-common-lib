@@ -31,9 +31,12 @@ export class CaseSharingStateService {
   }
 
   public requestShare(caseId: string, user: UserDetails): void {
+    console.log(' in request share of case sharing state ' + user.firstName + ' and case id is ' + caseId);
     for (let i = 0, l = this.caseState.length; i < l; i++) {
       const cs = this.caseState[i];
+      console.log(' looping for case id  ' + cs.caseId)
       if (cs.caseId === caseId) {
+
         // case 1 user doesn't have access yet
         if (!this.userHasAccess(cs, user)) {
           if (!cs.pendingShares.some(u => u.email === user.email)) {
@@ -41,6 +44,7 @@ export class CaseSharingStateService {
           }
         } else {
           // user already has access. Check if user is on remove list
+
           for (let u = 0, ul = cs.pendingUnshares.length; u < ul; u++) {
             if (cs.pendingUnshares[u].email === user.email) {
               cs.pendingUnshares.splice(u, 1);
