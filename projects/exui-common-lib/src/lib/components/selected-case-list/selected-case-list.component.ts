@@ -10,6 +10,8 @@ export class SelectedCaseListComponent {
 
   @Input() public cases: SharedCase[] = [];
 
+  @Input() public toConfirm: boolean = false;
+
   @Output() public unselect = new EventEmitter<SharedCase>();
 
   constructor() { }

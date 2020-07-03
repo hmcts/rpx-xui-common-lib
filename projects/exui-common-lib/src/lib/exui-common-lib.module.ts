@@ -47,6 +47,7 @@ import { ShareCaseComponent } from './components/share-case/share-case.component
 import { ShareCaseConfirmComponent } from './components/share-case-confirm/share-case-confirm.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
+import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -71,6 +72,7 @@ export const COMMON_COMPONENTS = [
   ShareCaseConfirmComponent,
   SelectedCaseListComponent,
   SelectedCaseComponent,
+  SelectedCaseConfirmComponent,
   UserSelectComponent
 ];
 

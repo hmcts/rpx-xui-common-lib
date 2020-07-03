@@ -1,5 +1,15 @@
-<xuilib-selected-case
-  *ngFor="let selectedCase of cases; trackBy: trackByCaseId"
-  [case]="selectedCase"
-  (unselect)="onUnselect($event)">
-</xuilib-selected-case>
+<ng-container *ngIf="!toConfirm">
+  <xuilib-selected-case
+    *ngFor="let selectedCase of cases; trackBy: trackByCaseId"
+    [case]="selectedCase"
+    (unselect)="onUnselect($event)">
+  </xuilib-selected-case>
+</ng-container>
+
+<ng-container *ngIf="toConfirm">
+  <xuilib-selected-case-confirm
+    *ngFor="let selectedCase of cases; trackBy: trackByCaseId"
+    [case]="selectedCase"
+    (unselect)="onUnselect($event)">
+  </xuilib-selected-case-confirm>
+</ng-container>

@@ -1,8 +1,9 @@
-<div id="cases">
-  <h3 class="govuk-heading-m">Cases</h3>
+<div id="casesToConfirm">
+  <h3 class="govuk-heading-l">Cases</h3>
   <xuilib-selected-case-list
     [cases]="cases"
-    (unselect)="onUnselect($event)">
+    (unselect)="onUnselect($event)"
+    [toConfirm]="true">
   </xuilib-selected-case-list>
 
   <div *ngIf="cases.length === 0" class="govuk-hint">
