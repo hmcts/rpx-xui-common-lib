@@ -30,7 +30,7 @@
         <td *ngIf="case.pendingUnshares==null || (case.pendingUnshares!=null && !case.pendingUnshares.includes(user))" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onRemoveUserFromCase(user, case)">Remove</a></td>
         <td *ngIf="case.pendingUnshares==null || (case.pendingUnshares!=null && !case.pendingUnshares.includes(user))" class="govuk-table__cell"></td>
          <td *ngIf="case.pendingUnshares!=null && case.pendingUnshares.includes(user)" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onCancelRemovalUserFromCase(user, case)">Cancel</a></td>
-        <td *ngIf="case.pendingUnshares!=null && case.pendingUnshares.includes(user)" class="govuk-table__cell">To be Removed</td>
+        <td *ngIf="case.pendingUnshares!=null && case.pendingUnshares.includes(user)" class="govuk-table__cell"><div class = "column-three-quarters">To be Removed</div></td>
 
         <td *ngIf="case.pendingShares!=null && case.pendingShares.includes(user)" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onCancelAddUserFromCase(user, case)">Cancel</a></td>
         <td *ngIf="case.pendingShares!=null && case.pendingShares.includes(user)" class="govuk-table__cell">To be Added</td>
