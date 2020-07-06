@@ -57,7 +57,7 @@ describe('ShareCaseComponent', () => {
       caseTitle: 'Sam Green Vs Williams Lee',
       sharedWith: []
     }];
-    component.state$ = of(sharedCases);
+    component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     expect(component.isDisabledContinue()).toBeTruthy();
   });
