@@ -20,6 +20,8 @@ describe('ShareCaseComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShareCaseComponent);
     component = fixture.componentInstance;
+    sharedCases = [];
+    component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
   });
 
