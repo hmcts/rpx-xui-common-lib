@@ -13,6 +13,7 @@ export class ShareCaseConfirmComponent implements OnInit {
 
   @Input() public cases: SharedCase[] = []; // cases selected for sharing
   @Input() public users: UserDetails[] = []; // users of this organisation the cases can be shared with
+  @Input() public changeLink: string = '';
 
   @Output() public unselect = new EventEmitter<SharedCase>();
 

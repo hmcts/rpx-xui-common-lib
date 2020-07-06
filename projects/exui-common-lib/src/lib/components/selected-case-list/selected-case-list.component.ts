@@ -12,6 +12,8 @@ export class SelectedCaseListComponent {
 
   @Input() public toConfirm: boolean = false;
 
+  @Input() public changeLink: string = '';
+
   @Output() public unselect = new EventEmitter<SharedCase>();
 
   constructor() { }

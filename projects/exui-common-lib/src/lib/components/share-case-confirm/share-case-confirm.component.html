@@ -3,7 +3,8 @@
   <xuilib-selected-case-list
     [cases]="cases"
     (unselect)="onUnselect($event)"
-    [toConfirm]="true">
+    [toConfirm]="true"
+    [changeLink]="changeLink">
   </xuilib-selected-case-list>
 
   <div *ngIf="cases.length === 0" class="govuk-hint">
