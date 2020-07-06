@@ -51,6 +51,17 @@ describe('ShareCaseComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('#no-case-display').textContent).toContain('No cases to display.');
   });
 
+  it('should disable continue button where there is not shared cases', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: []
+    }];
+    component.state$ = of(sharedCases);
+    fixture.detectChanges();
+    expect(component.isDisabledContinue()).toBeTruthy();
+  });
+
   it('should disable continue button', () => {
     sharedCases = [{
       caseId: '9417373995765133',
