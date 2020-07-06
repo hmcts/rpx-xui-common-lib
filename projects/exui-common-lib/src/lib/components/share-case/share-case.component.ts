@@ -12,14 +12,13 @@ import { UserSelectComponent } from '../user-select/user-select.component';
 })
 export class ShareCaseComponent implements OnInit {
 
-  @Input() public cases: SharedCase[] = []; // cases selected for sharing
+  public shareCases: SharedCase[] = []; // cases selected for sharing
+
+  @Input() public shareCases$: Observable<SharedCase[]>;
   @Input() public users: UserDetails[] = []; // users of this organisation the cases can be shared with
 
   @Output() public unselect = new EventEmitter<SharedCase>();
-  @Output() public removeUserFromCase = new EventEmitter<SharedCase>();
-  @Output() public cancelUserRemovalFromCase = new EventEmitter<SharedCase>();
-
-  public state$: Observable<SharedCase[]>;
+  @Output() public synchronizeStore = new EventEmitter<any>();
 
   private selectedUser: UserDetails;
 
@@ -29,8 +28,11 @@ export class ShareCaseComponent implements OnInit {
   constructor(private readonly stateService: CaseSharingStateService) { }
 
   public ngOnInit() {
-    this.state$ = this.stateService.state;
-    this.stateService.setCases('0', this.cases);
+    this.shareCases$.subscribe(shareCases => {
+      this.shareCases = shareCases;
+      this.stateService.setCases(shareCases);
+    });
+    this.shareCases$ = this.stateService.state;
   }
 
   public onUnselect(c: SharedCase): void {
@@ -38,12 +40,8 @@ export class ShareCaseComponent implements OnInit {
     this.stateService.removeCase(c.caseId);
   }
 
-  public onRemoveUserFromCase(event: any): void {
-    this.removeUserFromCase.emit(event);
-  }
-
-  public onCancelUserRemovalFromCase(event: any): void {
-    this.cancelUserRemovalFromCase.emit(event);
+  public onSynchronizeStore(event: any): void {
+    this.synchronizeStore.emit(event);
   }
 
   public onSelectedUser(user: UserDetails) {
@@ -51,22 +49,20 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public addUser() {
-    this.cases.forEach(c => {
-      this.stateService.requestShare(c.caseId, this.selectedUser);
-    });
+    const newSharedCases = this.stateService.requestShare(this.selectedUser);
     this.selectedUser = null;
     this.userSelect.clear();
+    this.synchronizeStore.emit(newSharedCases);
   }
 
   public isDisabledAdd() {
-    return (this.selectedUser == null);
-
+    return (this.selectedUser === null);
   }
 
   public isDisabledContinue(): boolean {
     let isDisabled: boolean = true;
-    this.state$.subscribe(casesState => {
-      for (const caseState of casesState) {
+    this.shareCases$.subscribe(shareCases => {
+      for (const caseState of shareCases) {
         if (caseState.pendingShares && caseState.pendingShares.length > 0) {
           isDisabled = false;
           break;
@@ -83,13 +79,13 @@ export class ShareCaseComponent implements OnInit {
   public onDeselect(sharedCase: SharedCase): void {
     if (sharedCase !== null) {
       const updated = [];
-      for (const element of this.cases) {
+      for (const element of this.shareCases) {
         if (element.caseId !== sharedCase.caseId) {
           updated.push(element);
         }
       }
-      this.cases = updated;
+      this.shareCases = updated;
     }
-    this.stateService.setCases('0', this.cases);
+    this.stateService.setCases(this.shareCases);
   }
 }

@@ -1,28 +1,35 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
+import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 
 @Component({
   selector: 'xuilib-selected-case',
   templateUrl: './selected-case.component.html',
   styleUrls: ['./selected-case.component.scss']
 })
-export class SelectedCaseComponent {
+export class SelectedCaseComponent implements OnInit {
 
-  @Input() public case: SharedCase;
+  @Input() public sharedCase: SharedCase;
   @Input() public selectedUser: UserDetails;
   @Input() public opened = false;
 
   @Output() public unselect = new EventEmitter<SharedCase>();
-  @Output() public removeUserFromCase = new EventEmitter<any>();
-  @Output() public cancelUserRemovalFromCase = new EventEmitter<any>();
-  @Output() public cancelAddRemovalFromCase = new EventEmitter<any>();
+  @Output() public synchronizeStore = new EventEmitter<any>();
 
+  public shareCases: SharedCase[];
+  public shareCases$: Observable<SharedCase[]>;
 
-  constructor() { }
+  constructor(private readonly stateService: CaseSharingStateService) { }
+
+  public ngOnInit() {
+    this.shareCases$ = this.stateService.state;
+    this.shareCases$.subscribe(shareCases => this.shareCases = shareCases);
+  }
 
   public onUnselect(): void {
-    this.unselect.emit(this.case);
+    this.unselect.emit(this.sharedCase);
   }
 
   public onDeselect(c: SharedCase): void {
@@ -33,33 +40,82 @@ export class SelectedCaseComponent {
     return user.idamId;
   }
 
-  public onRemoveUserFromCase(user: UserDetails, sharedCase: SharedCase): void {
-    const payload = {
-      user,
-      sharedCase
-    };
-    console.log('in common lib onRemoveUserFromCase' + payload.user.email);
-    this.removeUserFromCase.emit(payload);
+  public canRemove(caseId: string, user: UserDetails): boolean {
+    let canRemove = false;
+    this.shareCases$.subscribe(cases => {
+      for (const aCase of cases) {
+        if (aCase.caseId === caseId) {
+          if (aCase.pendingUnshares && aCase.pendingUnshares.includes(user)) {
+            canRemove = false;
+            break;
+          }
+          if (aCase.sharedWith && aCase.sharedWith.includes(user)) {
+            canRemove = true;
+            break;
+          }
+        }
+      }
+    });
+    return canRemove;
   }
 
-  public onCancelRemovalUserFromCase(user: UserDetails, c: SharedCase): void {
-    const payload = {
-      user,
-      sharedCase: c
-    };
-    console.log('in common lib cancel remove user');
-    this.cancelUserRemovalFromCase.emit(payload);
+  public canCancel(caseId: string, user: UserDetails): boolean {
+    let canCancel = false;
+    this.shareCases$.subscribe(cases => {
+      for (const aCase of cases) {
+        if (aCase.caseId === caseId) {
+          if (aCase.pendingShares && aCase.pendingShares.includes(user)) {
+            canCancel = true;
+            break;
+          }
+          if (aCase.pendingUnshares && aCase.pendingUnshares.includes(user)) {
+            canCancel = true;
+            break;
+          }
+        }
+      }
+    });
+    return canCancel;
   }
 
-  public onCancelAddUserFromCase(user: UserDetails, c: SharedCase): void {
-    const payload = {
-      user,
-      sharedCase: c
-    };
-    this.cancelAddRemovalFromCase.emit(payload);
+  public isToBeRemoved(caseId: string, user: UserDetails): boolean {
+    let isToBeRemoved = false;
+    this.shareCases$.subscribe(cases => {
+      for (const aCase of cases) {
+        if (aCase.caseId === caseId) {
+          if (aCase.pendingUnshares && aCase.pendingUnshares.includes(user)) {
+            isToBeRemoved = true;
+            break;
+          }
+        }
+      }
+    });
+    return isToBeRemoved;
   }
 
+  public isToBeAdded(caseId: string, user: UserDetails): boolean {
+    let isToBeAdded = false;
+    this.shareCases$.subscribe(cases => {
+      for (const aCase of cases) {
+        if (aCase.caseId === caseId) {
+          if (aCase.pendingShares && aCase.pendingShares.includes(user)) {
+            isToBeAdded = true;
+            break;
+          }
+        }
+      }
+    });
+    return isToBeAdded;
+  }
 
+  public onRemove(user: UserDetails, sharedCase: SharedCase): void {
+    this.stateService.requestUnshare(sharedCase.caseId, user);
+    this.synchronizeStore.emit(this.shareCases);
+  }
 
+  public onCancel(user: UserDetails, sharedCase: SharedCase): void {
+    this.stateService.requestCancel(sharedCase.caseId, user);
+    this.synchronizeStore.emit(this.shareCases);
+  }
 
 }

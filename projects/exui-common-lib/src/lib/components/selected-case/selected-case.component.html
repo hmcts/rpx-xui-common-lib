@@ -1,11 +1,11 @@
-<div id="govuk-accordion__section-{{ case.caseId }}" class="govuk-accordion__section">
+<div id="govuk-accordion__section-{{ sharedCase.caseId }}" class="govuk-accordion__section">
   <div class="govuk-grid-row govuk-case-header">
     <div class="govuk-grid-column-three-quarters">
-      <h3 id="case-title" class="govuk-case-title">{{ case.caseTitle }}</h3>
-      <h1 id="case-id" class="govuk-case-sub-title">{{ case.caseId }}</h1>
+      <h3 id="case-title" class="govuk-case-title">{{ sharedCase.caseTitle }}</h3>
+      <h1 id="case-id" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
     </div>
     <div class="govuk-grid-column-twenty-percent">
-      <button id="btn-deselect-case" class="govuk-button hmcts-button--secondary" (click)="onDeselect(case)">Deselect case</button>
+      <button id="btn-deselect-case" class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)">Deselect case</button>
     </div>
     <div class="govuk-accordion__section-header govuk-grid-column-five-percent">
       <div class="govuk-accordion__section-heading">
@@ -27,21 +27,30 @@
         <th id="th-name" class="govuk-table__header" scope="col">Name</th>
         <th id="th-email" class="govuk-table__header" scope="col">Email address</th>
         <th id="th-action" class="govuk-table__header" scope="col">Actions</th>
-        <th id="th-label" class="govuk-table__header" scope="col"></th>
+        <th id="th-label" class="govuk-table__header govuk-table-column-label" scope="col">&nbsp;&nbsp;</th>
       </tr>
       </thead>
       <tbody class="govuk-table__body">
-      <tr class="govuk-table__row" *ngFor="let user of case.sharedWith; index as idx; trackBy: trackByUserId">
+      <tr class="govuk-table__row" *ngFor="let user of sharedCase.sharedWith; index as idx; trackBy: trackByUserId">
         <td id="user-full-name-{{ idx }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
         <td id="user-email-{{ idx }}" class="govuk-table__cell">{{ user.email }}</td>
-        <td *ngIf="case.pendingUnshares==null || (case.pendingUnshares!=null && !case.pendingUnshares.includes(user))" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onRemoveUserFromCase(user, case)">Remove</a></td>
-        <td *ngIf="case.pendingUnshares==null || (case.pendingUnshares!=null && !case.pendingUnshares.includes(user))" class="govuk-table__cell"></td>
-         <td *ngIf="case.pendingUnshares!=null && case.pendingUnshares.includes(user)" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onCancelRemovalUserFromCase(user, case)">Cancel</a></td>
-        <td *ngIf="case.pendingUnshares!=null && case.pendingUnshares.includes(user)" class="govuk-table__cell"><div class = "column-three-quarters">To be Removed</div></td>
-
-        <td *ngIf="case.pendingShares!=null && case.pendingShares.includes(user)" class="govuk-table__cell"><a href="javascript:void(0);" role="button" (click) = "onCancelAddUserFromCase(user, case)">Cancel</a></td>
-        <td *ngIf="case.pendingShares!=null && case.pendingShares.includes(user)" class="govuk-table__cell">To be Added</td>
-
+        <td class="govuk-table__cell">
+          <a *ngIf="canRemove(sharedCase.caseId, user)" (click)="onRemove(user, sharedCase)" href="javascript:void(0);">Remove</a>
+          <a *ngIf="canCancel(sharedCase.caseId, user)" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">Cancel</a>
+        </td>
+        <td class="govuk-table__cell">
+          <span *ngIf="isToBeRemoved(sharedCase.caseId, user)" class="hmcts-badge hmcts-badge--red">to be removed</span>
+        </td>
+      </tr>
+      <tr class="govuk-table__row" *ngFor="let user of sharedCase.pendingShares; index as idx; trackBy: trackByUserId">
+        <td id="user-full-name-pendingShares-{{idx}}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
+        <td id="user-email-pendingShares-{{idx}}" class="govuk-table__cell">{{ user.email }}</td>
+        <td class="govuk-table__cell">
+          <a *ngIf="canCancel(sharedCase.caseId, user)" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">Cancel</a>
+        </td>
+        <td class="govuk-table__cell">
+          <span *ngIf="isToBeAdded(sharedCase.caseId, user)" class="hmcts-badge">To be added</span>
+        </td>
       </tr>
       </tbody>
     </table>
