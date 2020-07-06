@@ -10,6 +10,7 @@
   <xuilib-selected-case-confirm
     *ngFor="let selectedCase of cases; trackBy: trackByCaseId"
     [case]="selectedCase"
-    (unselect)="onUnselect($event)">
+    (unselect)="onUnselect($event)"
+    [changeLink]="changeLink">
   </xuilib-selected-case-confirm>
 </ng-container>
