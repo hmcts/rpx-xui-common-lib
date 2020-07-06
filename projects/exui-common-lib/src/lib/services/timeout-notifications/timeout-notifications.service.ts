@@ -11,10 +11,6 @@ import {IdleConfig} from '../../models/idle-config.model';
 @Injectable()
 export class TimeoutNotificationsService {
 
-  public readonly COUNTDOWN_EVENT: 'countdown';
-  public readonly SIGN_OUT_EVENT: 'sign-out';
-  public readonly KEEP_ALIVE_EVENT: 'keep-alive';
-
   private readonly eventEmitter: Subject<{eventType: string, readableCountdown?: string; }>;
 
   constructor(
@@ -65,7 +61,7 @@ export class TimeoutNotificationsService {
     this.idle.setInterrupts([interrupt]);
 
     this.idle.onTimeout.subscribe(() => {
-      this.eventEmitter.next({eventType: this.SIGN_OUT_EVENT});
+      this.eventEmitter.next({eventType: 'sign-out'});
     });
 
     // not sure what this does.
@@ -75,11 +71,11 @@ export class TimeoutNotificationsService {
       map(sec => (sec > 60) ? Math.ceil(sec / 60) + MINUTES : sec + SECONDS),
       distinctUntilChanged()
     ).subscribe((countdown) => {
-      this.eventEmitter.next({eventType: this.COUNTDOWN_EVENT, readableCountdown: countdown});
+      this.eventEmitter.next({eventType: 'countdown', readableCountdown: countdown});
     });
 
     this.keepalive.onPing.subscribe(() => {
-      this.eventEmitter.next({eventType: this.KEEP_ALIVE_EVENT});
+      this.eventEmitter.next({eventType: 'keep-alive'});
     });
 
     const idleInSeconds = Math.floor(totalIdleTimeInSeconds) - idleModalDisplayTimeInSeconds;
