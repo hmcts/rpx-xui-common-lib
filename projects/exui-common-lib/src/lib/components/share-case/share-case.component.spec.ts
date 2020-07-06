@@ -35,7 +35,7 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see case list', () => {
-    component.cases = [{
+    component.shareCases = [{
       caseId: 'C111111',
       caseTitle: 'James vs Jane'
     }];
@@ -44,7 +44,7 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see no case to display', () => {
-    component.cases = [];
+    component.shareCases = [];
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('#no-case-display').textContent).toContain('No cases to display.');
   });
@@ -61,7 +61,7 @@ describe('ShareCaseComponent', () => {
           email: 'kate.grant@lambbrooks.com'
         }]
     }];
-    component.state$ = of(sharedCases);
+    component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     expect(component.isDisabledContinue()).toBeTruthy();
   });
@@ -85,7 +85,7 @@ describe('ShareCaseComponent', () => {
           email: 'nick.rodrigues@lambbrooks.com'
         }]
     }];
-    component.state$ = of(sharedCases);
+    component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     expect(component.isDisabledContinue()).toBeFalsy();
   });
@@ -109,7 +109,7 @@ describe('ShareCaseComponent', () => {
           email: 'joel.molloy@lambbrooks.com'
         }]
     }];
-    component.state$ = of(sharedCases);
+    component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     expect(component.isDisabledContinue()).toBeFalsy();
   });

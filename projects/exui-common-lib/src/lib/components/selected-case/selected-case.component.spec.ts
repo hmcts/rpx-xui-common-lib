@@ -15,7 +15,7 @@ describe('SelectedCaseComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectedCaseComponent);
     component = fixture.componentInstance;
-    component.case = {
+    component.sharedCase = {
       caseId: 'C111111',
       caseTitle: 'Sarah vs Pete',
       sharedWith: [{
