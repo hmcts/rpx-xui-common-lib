@@ -6,7 +6,7 @@ import {
   distinctUntilChanged,
   map
 } from 'rxjs/operators';
-import {IdleConfig} from '../../models/idle-config.model';
+import {TimeoutNotificationConfig} from '../../models/timeout-notification.model';
 
 @Injectable()
 export class TimeoutNotificationsService {
@@ -20,40 +20,38 @@ export class TimeoutNotificationsService {
     this.eventEmitter = new Subject();
   }
 
+  /**
+   * Convert milliseconds to seconds.
+   *
+   * @param milliseconds - 1000
+   * @return seconds - 1
+   */
   public millisecondsToSeconds = (milliseconds: number): number => milliseconds / 1000;
 
   /**
-   * Refactored Initialise Session Timeout
+   * Initialised the Timeout Notification events.
    *
-   * TODO: Everything needs to be in milliseconds
-   * TODO: Pass in minutes text
-   * TODO: Pass in seconds text
+   * I made the decision not to make ' minutes' and ' seconds' configurable via input parameters -
+   * I'm not sure why any team would need to change this to 'secs, mins' or 's, m' within the Reform project.
    *
-   * There is a delay of 250 milliseconds so that the User can click on sign out? Is this
-   * still required.
+   * Note pass in idleModalDisplayTime, and totalIdleTime in milliseconds.
    *
-   * I made the decision not to make ' minutes' and ' seconds' configurable via input parameters,
-   * as I'm not sure why any team would need to change this to 'secs, mins' or 's, m' within the Reform project.
-   * - But you never know! If this needs to be changed please raise a PR.
-   *
-   * idleModalDisplayTime is coming in in milliseconds
-   * all inputs should be in milliseconds
-   *
-   * TODO: Should this function have the indivdual parameters instead of them being part of one object?
-   * There's only 3 parameters, so yes probably.
+   * We throw a 'countdown' event every minute, until one minute is left on the countdown. When a minute
+   * is left on the countdown we throw a 'countdown' event every second.
    */
-  public initialiseSessionTimeout(idleConfig: IdleConfig): void {
+  public initialise(config: TimeoutNotificationConfig): void {
 
     const MINUTES = ' minutes'
     const SECONDS = ' seconds'
 
+    const {idleServiceName, idleModalDisplayTime, totalIdleTime} = config;
+
     const DOCUMENT_INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
 
-    this.idle.setIdleName(idleConfig.idleServiceName);
+    this.idle.setIdleName(idleServiceName);
 
-    // idleModalDisplayTime this comes in, in seconds
-    const idleModalDisplayTimeInSeconds = this.millisecondsToSeconds(idleConfig.idleModalDisplayTime);
-    const totalIdleTimeInSeconds = this.millisecondsToSeconds(idleConfig.totalIdleTime);
+    const idleModalDisplayTimeInSeconds = this.millisecondsToSeconds(idleModalDisplayTime);
+    const totalIdleTimeInSeconds = this.millisecondsToSeconds(totalIdleTime);
 
     this.idle.setTimeout(idleModalDisplayTimeInSeconds);
 
@@ -64,9 +62,6 @@ export class TimeoutNotificationsService {
       this.eventEmitter.next({eventType: 'sign-out'});
     });
 
-    // not sure what this does.
-    // TODO: Should we pass in the minutes and seconds consts here?
-    // probably yes.
     this.idle.onTimeoutWarning.pipe(
       map(sec => (sec > 60) ? Math.ceil(sec / 60) + MINUTES : sec + SECONDS),
       distinctUntilChanged()
@@ -84,11 +79,10 @@ export class TimeoutNotificationsService {
   }
 
   /**
-   * Expose the events, so that the 3rd party service can listen to Timeout Notifications.
-   *
-   * TODO: Change to a more appropiate name
+   * Expose the notification events, so that a 3rd party service can listen to the notifications.
    */
-  public eventEmitterChanges(): Observable<any> {
+  public notificationOnChange(): Observable<any> {
+
     return this.eventEmitter.asObservable();
   }
 }
