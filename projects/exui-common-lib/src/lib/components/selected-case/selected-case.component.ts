@@ -45,11 +45,11 @@ export class SelectedCaseComponent implements OnInit {
     this.shareCases$.subscribe(cases => {
       for (const aCase of cases) {
         if (aCase.caseId === caseId) {
-          if (aCase.pendingUnshares && aCase.pendingUnshares.includes(user)) {
+          if (aCase.pendingUnshares &&  aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
             canRemove = false;
             break;
           }
-          if (aCase.sharedWith && aCase.sharedWith.includes(user)) {
+          if (aCase.sharedWith &&  aCase.sharedWith.some(u => u.idamId === user.idamId)) {
             canRemove = true;
             break;
           }
@@ -59,16 +59,17 @@ export class SelectedCaseComponent implements OnInit {
     return canRemove;
   }
 
+
   public canCancel(caseId: string, user: UserDetails): boolean {
     let canCancel = false;
     this.shareCases$.subscribe(cases => {
       for (const aCase of cases) {
         if (aCase.caseId === caseId) {
-          if (aCase.pendingShares && aCase.pendingShares.includes(user)) {
+          if (aCase.pendingShares &&  aCase.pendingShares.some(u => u.idamId === user.idamId)) {
             canCancel = true;
             break;
           }
-          if (aCase.pendingUnshares && aCase.pendingUnshares.includes(user)) {
+          if (aCase.pendingUnshares &&  aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
             canCancel = true;
             break;
           }
@@ -83,7 +84,7 @@ export class SelectedCaseComponent implements OnInit {
     this.shareCases$.subscribe(cases => {
       for (const aCase of cases) {
         if (aCase.caseId === caseId) {
-          if (aCase.pendingUnshares && aCase.pendingUnshares.includes(user)) {
+          if (aCase.pendingUnshares &&  aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
             isToBeRemoved = true;
             break;
           }
@@ -98,7 +99,7 @@ export class SelectedCaseComponent implements OnInit {
     this.shareCases$.subscribe(cases => {
       for (const aCase of cases) {
         if (aCase.caseId === caseId) {
-          if (aCase.pendingShares && aCase.pendingShares.includes(user)) {
+          if (aCase.pendingShares &&  aCase.pendingShares.some(u => u.idamId === user.idamId)) {
             isToBeAdded = true;
             break;
           }

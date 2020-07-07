@@ -1,9 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SelectedCaseComponent } from './selected-case.component';
+import {UserDetails} from "../../models/user-details.model";
+import {SharedCase} from "../../models/case-share.model";
+import {of} from "rxjs";
+
 
 describe('SelectedCaseComponent', () => {
   let component: SelectedCaseComponent;
   let fixture: ComponentFixture<SelectedCaseComponent>;
+  let user: UserDetails;
+  let shareCases: SharedCase[] = [];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,6 +21,7 @@ describe('SelectedCaseComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectedCaseComponent);
     component = fixture.componentInstance;
+    shareCases = [];
     component.sharedCase = {
       caseId: 'C111111',
       caseTitle: 'Sarah vs Pete',
@@ -25,6 +32,7 @@ describe('SelectedCaseComponent', () => {
         email: 'james.priest@test.com'
       }]
     };
+    component.shareCases$ = of(shareCases);
     fixture.detectChanges();
   });
 
@@ -43,4 +51,184 @@ describe('SelectedCaseComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('#user-full-name-0').textContent).toContain('James Priest');
     expect(fixture.debugElement.nativeElement.querySelector('#user-email-0').textContent).toContain('james.priest@test.com');
   });
+
+  it('should track by user id', () => {
+    user = {
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+    };
+    expect(component.trackByUserId(user)).toEqual('U111111');
+  });
+
+  it('should unselect', () => {
+    expect(component.onUnselect).toBeDefined();
+  });
+
+  it('should deselect', () => {
+    expect(component.onDeselect).toBeDefined();
+  });
+
+  it('case cannot be removed', () => {
+
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+
+      pendingUnshares: [{
+        idamId: 'pus111111',
+        firstName: 'JamesPUS',
+        lastName: 'PriestPUS',
+        email: 'jamespus.priestpus@test.com'
+      }],
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+    user = {
+      idamId: 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com'
+    };
+
+    expect(component.canRemove('C111111', user)).toEqual(false);
+  });
+
+  it('case can be removed', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'U111111',
+          firstName: 'James',
+          lastName: 'Priest',
+          email: 'james.priest@test.com'
+        }]
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+
+    user = {
+      idamId: 'U111111',
+      firstName: 'James',
+      lastName: 'Priest',
+      email: 'james.priest@test.com'
+    };
+   expect(component.canRemove('C111111', user)).toEqual(true);
+  });
+
+  it('case cannot be cancelled', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+      pendingShares: [{
+        idamId: 'ps111111',
+        firstName: 'JamesPS',
+        lastName: 'PriestPS',
+        email: 'jamesps.priestps@test.com'
+      }],
+      pendingUnshares: [{
+        idamId: 'pus111111',
+        firstName: 'JamesPUS',
+        lastName: 'PriestPUS',
+        email: 'jamespus.priestpus@test.com'
+      }],
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+    user = {
+      idamId: 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com'
+    };
+
+    expect(component.canCancel('C111111', user)).toEqual(true);
+  });
+
+  it('case can be cancelled', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+      pendingShares: [{
+        idamId: 'ps111111',
+        firstName: 'JamesPS',
+        lastName: 'PriestPS',
+        email: 'jamesps.priestps@test.com'
+      }],
+      pendingUnshares: [{
+        idamId: 'pus111111',
+        firstName: 'JamesPUS',
+        lastName: 'PriestPUS',
+        email: 'jamespus.priestpus@test.com'
+      }],
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+    user = {
+      idamId: 'ps111111',
+      firstName: 'JamesPS',
+      lastName: 'PriestPS',
+      email: 'jamesps.priestps@test.com'
+    };
+
+    expect(component.canCancel('C111111', user)).toEqual(true);
+  });
+
+  it('checking for isToBeRemoved', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+
+      pendingUnshares: [{
+        idamId: 'pus111111',
+        firstName: 'JamesPUS',
+        lastName: 'PriestPUS',
+        email: 'jamespus.priestpus@test.com'
+      }],
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+    user = {
+      idamId: 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com'
+    };
+
+    expect(component.isToBeRemoved('C111111', user)).toEqual(true);
+  });
+
+
+
+  afterEach(() => {
+    shareCases = [];
+  });
+
 });
