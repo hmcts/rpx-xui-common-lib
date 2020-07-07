@@ -8,6 +8,20 @@ import {
 } from 'rxjs/operators';
 import {TimeoutNotificationConfig} from '../../models/timeout-notification.model';
 
+/**
+ * TimeoutNotificationsService
+ *
+ * The Timeout Notification Service allows your application to receive notifications
+ * when a User is approaching the the total time that a User has been idle for.
+ *
+ * This can be set by your application using the Timeout Notification Config object.
+ *
+ * Your application will then have to listen to events coming from the Timeout Notification Service,
+ * and handle these events within your application.
+ *
+ * @see README.md for implementation details and code, on how to implement the Timeout Notification
+ * Service within your application.
+ */
 @Injectable()
 export class TimeoutNotificationsService {
 
@@ -29,24 +43,29 @@ export class TimeoutNotificationsService {
   public millisecondsToSeconds = (milliseconds: number): number => milliseconds / 1000;
 
   /**
-   * Initialised the Timeout Notification events.
+   * Initialise
+   *
+   * Initialise the Timeout Notification Events.
    *
    * I made the decision not to make ' minutes' and ' seconds' configurable via input parameters -
-   * I'm not sure why any team would need to change this to 'secs, mins' or 's, m' within the Reform project.
+   * As I made an assumption that any Reform team would not need to change these to 'secs, mins' or 's, m'.
    *
-   * Note pass in idleModalDisplayTime, and totalIdleTime in milliseconds.
+   * idleModalDisplayTime and totalIdleTime need to be passed in, in milliseconds.
    *
-   * We throw a 'countdown' event every minute, until one minute is left on the countdown. When a minute
-   * is left on the countdown we throw a 'countdown' event every second.
+   * @see README.md for more information on TimeoutNotificationService.
    */
   public initialise(config: TimeoutNotificationConfig): void {
+
+    const DOCUMENT_INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
 
     const MINUTES = ' minutes'
     const SECONDS = ' seconds'
 
-    const {idleServiceName, idleModalDisplayTime, totalIdleTime} = config;
+    const SIGNOUT_EVENT = 'sign-out'
+    const COUNTDOWN_EVENT = 'countdown'
+    const KEEP_ALIVE_EVENT = 'keep-alive'
 
-    const DOCUMENT_INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
+    const {idleServiceName, idleModalDisplayTime, totalIdleTime} = config;
 
     this.idle.setIdleName(idleServiceName);
 
@@ -59,18 +78,18 @@ export class TimeoutNotificationsService {
     this.idle.setInterrupts([interrupt]);
 
     this.idle.onTimeout.subscribe(() => {
-      this.eventEmitter.next({eventType: 'sign-out'});
+      this.eventEmitter.next({eventType: SIGNOUT_EVENT});
     });
 
     this.idle.onTimeoutWarning.pipe(
       map(sec => (sec > 60) ? Math.ceil(sec / 60) + MINUTES : sec + SECONDS),
       distinctUntilChanged()
     ).subscribe((countdown) => {
-      this.eventEmitter.next({eventType: 'countdown', readableCountdown: countdown});
+      this.eventEmitter.next({eventType: COUNTDOWN_EVENT, readableCountdown: countdown});
     });
 
     this.keepalive.onPing.subscribe(() => {
-      this.eventEmitter.next({eventType: 'keep-alive'});
+      this.eventEmitter.next({eventType: KEEP_ALIVE_EVENT});
     });
 
     const idleInSeconds = Math.floor(totalIdleTimeInSeconds) - idleModalDisplayTimeInSeconds;
