@@ -22,10 +22,14 @@ Run `ng build` to build the exui-common-lib project. The build artifacts will be
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 it will run the test for exui-common-lib
 
-
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
 
 ## Timeout Notification Service
 
@@ -97,7 +101,22 @@ const timeoutNotificationConfig: any = {
 this.timeoutNotificationsService.initialise(timeoutNotificationConfig);
 ```
 
-### Property names explained
+### What Timeout Notification Service Events should I handle?
+
+The Timeout Notification Service currently has three events that you can handle. These are:
+
+The 'countdown' event. This event dispatches a readable countdown timer in it's event payload. the countdown
+timer is a readable version of the countdown time ie. '10 seconds' or '1 minute'. Note that this dispatches
+once per second when the timer has reached less than 60 seconds till the 'sign-out' event is fired.
+
+If the 'countdown' timer is above a minute this event is dispatched every minute.
+
+The 'keep-alive' event dispatches when the User has interacted with the page again.
+
+The 'sign-out' event dispatches when the countdown timer has come to an end - when the User
+should be signed out.
+
+### What does totalIdleTime and idleModalDisplayTime mean?
 
 ```totalIdleTime``` is the total amount of time in milliseconds that the User is idle for. ie.
 A User is working, they then stop interacting with the page. When the User stops interacting 
@@ -128,9 +147,5 @@ This would lead to:
 When the User is in the final minute of them being idle,
 countdown events are thrown every second. So that you can display
 a 60 second countdown, within your modal dialog.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 END
