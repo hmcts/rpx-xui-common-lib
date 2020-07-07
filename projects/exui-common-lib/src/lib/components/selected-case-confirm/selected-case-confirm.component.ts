@@ -17,14 +17,6 @@ export class SelectedCaseConfirmComponent {
 
   constructor() { }
 
-  public onUnselect(): void {
-    this.unselect.emit(this.case);
-  }
-
-  public onDeselect(c: SharedCase): void {
-    this.unselect.emit(c);
-  }
-
   public trackByUserId(user: UserDetails): string {
     return user.idamId;
   }

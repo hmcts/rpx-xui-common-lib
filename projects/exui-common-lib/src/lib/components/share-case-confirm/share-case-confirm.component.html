@@ -2,7 +2,6 @@
   <h3 class="govuk-heading-l">Cases</h3>
   <xuilib-selected-case-list
     [cases]="cases"
-    (unselect)="onUnselect($event)"
     [toConfirm]="true"
     [changeLink]="changeLink">
   </xuilib-selected-case-list>
@@ -14,5 +13,5 @@
 </div>
 
 <div id="share-case-nav">
-  <button class="govuk-button" [disabled]="isDisabledContinue()">Confirm</button>
+  <button class="govuk-button">Confirm</button>
 </div>
