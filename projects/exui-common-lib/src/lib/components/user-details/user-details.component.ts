@@ -10,7 +10,8 @@ export class UserDetailsComponent {
     @Input() public user: User;
     @Input() public editPermissionRouterLink: string;
     @Input() public warningTitle: string;
-    @Input() public isSuspended: boolean = false;
+    @Input() public showEditLink: boolean = false;
+    @Input() public showHelpLink: boolean = false;
     @Input() public suspendHelpLink: string;
     @Output() public suspendUserEvent = new EventEmitter<User>();
     @Input() public showSuspendUserButton = false;
