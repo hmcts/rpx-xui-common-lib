@@ -42,7 +42,6 @@ export class ManageSessionServices {
       map(sec => (sec > 60) ? Math.ceil(sec / 60) + ' minutes' : sec + ' seconds'),
       distinctUntilChanged()
     ).subscribe((countdown) => {
-      console.log('output');
       this.appStateEmitter.next({type: 'modal', countdown, isVisible: true});
     });
 
