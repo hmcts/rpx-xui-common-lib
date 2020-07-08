@@ -191,7 +191,6 @@ describe('SelectedCaseComponent', () => {
       lastName: 'PriestPS',
       email: 'jamesps.priestps@test.com'
     };
-
     expect(component.canCancel('C111111', user)).toEqual(true);
   });
 
@@ -225,10 +224,7 @@ describe('SelectedCaseComponent', () => {
     expect(component.isToBeRemoved('C111111', user)).toEqual(true);
   });
 
-
-
   afterEach(() => {
     shareCases = [];
   });
-
 });

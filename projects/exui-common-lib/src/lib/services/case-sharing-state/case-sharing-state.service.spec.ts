@@ -25,7 +25,9 @@ describe('CaseSharingStateService', () => {
       caseTitle: 'Sam Green Vs Williams Lee'
     }];
     service.setCases(sharedCases);
-    expect(service).toBeTruthy();
+    let allCases : SharedCase[] = [];
+    service.state.subscribe(shareCases => allCases = shareCases);
+    expect(allCases.length == 1).toBeTruthy();
   });
 
   it('should request share', () => {
@@ -60,7 +62,10 @@ describe('CaseSharingStateService', () => {
     };
     service.setCases(sharedCases);
     service.requestUnshare('9417373995765133', user);
-    expect(service).toBeTruthy();
+    let allCases : SharedCase[] = [];
+    service.state.subscribe(shareCases => allCases = shareCases);
+
+    expect(allCases[0].pendingUnshares.length==1).toBeTruthy();
   });
 
   it('should cancel a user', () => {
@@ -83,7 +88,9 @@ describe('CaseSharingStateService', () => {
     };
     service.setCases(sharedCases);
     service.requestCancel('9417373995765133', user);
-    expect(service).toBeTruthy();
+    let allCases : SharedCase[] = [];
+    service.state.subscribe(shareCases => allCases = shareCases);
+    expect(allCases[0].pendingUnshares.length==0).toBeTruthy();
   });
 
 
