@@ -29,6 +29,10 @@ export class CaseSharingStateService {
     this.subject.next(this.caseState);
   }
 
+  public getCases():SharedCase[]{
+    return this.caseState;
+  }
+
   public requestShare(user: UserDetails): SharedCase[] {
     const oldSharedCases: SharedCase[] = this.caseState.slice();
     const newSharedCases: SharedCase[] = [];
