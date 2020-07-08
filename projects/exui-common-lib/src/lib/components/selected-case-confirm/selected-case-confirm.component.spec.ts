@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SelectedCaseConfirmComponent', () => {
   let component: SelectedCaseConfirmComponent;
@@ -7,7 +8,8 @@ describe('SelectedCaseConfirmComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseConfirmComponent ]
+      declarations: [ SelectedCaseConfirmComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
