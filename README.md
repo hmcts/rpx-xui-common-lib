@@ -101,6 +101,10 @@ const timeoutNotificationConfig: any = {
 this.timeoutNotificationsService.initialise(timeoutNotificationConfig);
 ```
 
+@see app.component.ts
+@see https://github.com/hmcts/rpx-xui-webapp
+@see https://github.com/hmcts/rpx-xui-manage-organisations
+
 ### What Timeout Notification Service Events should I handle?
 
 The Timeout Notification Service currently has three events that you can handle. These are:
@@ -147,5 +151,34 @@ This would lead to:
 When the User is in the final minute of them being idle,
 countdown events are thrown every second. So that you can display
 a 60 second countdown, within your modal dialog.
+
+## Timeout Notification Service Modal
+
+To implement the XUI Timeout Notification Service Modal, which is the view that goes along with the Timeout Notification Service.
+
+Step 1. Add the latest '@hmcts/rpx-xui-common-lib' into your project.
+
+Step 2. Add the following component into any parent Angular component where you wish to see the modal dialog. Within the XUI projects we've added this into our app.component.html file.
+
+```
+<xuilib-session-dialog positionTop="300px" *ngIf="timeoutModalConfig.isVisible" (close)="staySignedInHandler()">
+  <h3 class="govuk-heading-m">We are about to sign you out</h3>
+  <p class="govuk-body">For your security, we will sign you out of your account in
+    <strong>{{timeoutModalConfig.countdown}}</strong>
+  </p>
+  <p>Any information you have not saved will be lost</p>
+  <button type="submit" class="govuk-button" (click)="staySignedInHandler()">
+    Stay signed in
+  </button>
+  <div>
+    <a (click)="signOutHandler()" [routerLink]="">Sign out</a>
+  </div>
+</xuilib-session-dialog>
+```
+
+@see app.component.html
+@see app.component.ts
+@see https://github.com/hmcts/rpx-xui-webapp
+@see https://github.com/hmcts/rpx-xui-manage-organisations
 
 END
