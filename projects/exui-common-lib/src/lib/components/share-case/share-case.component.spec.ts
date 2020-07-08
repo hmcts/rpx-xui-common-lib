@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedCase } from 'exui-common-lib/lib/models/case-share.model';
 import { of } from 'rxjs';
 import { ShareCaseComponent } from './share-case.component';
+import {UserDetails} from "../../models/user-details.model";
 
 describe('ShareCaseComponent', () => {
   let component: ShareCaseComponent;
@@ -123,6 +124,40 @@ describe('ShareCaseComponent', () => {
         }]
     }];
     component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    expect(component.isDisabledContinue()).toBeFalsy();
+  });
+
+  it('should be able to add user', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }],
+      pendingShares: [
+        {
+          idamId: 'u888888',
+          firstName: 'Joel',
+          lastName: 'Molloy',
+          email: 'joel.molloy@lambbrooks.com'
+        }]
+    }];
+
+    let user: UserDetails = {
+      idamId : 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com'
+    };
+
+    component.onSelectedUser(user);
+    component.shareCases$ = of(sharedCases);
+    component.addUser();
     fixture.detectChanges();
     expect(component.isDisabledContinue()).toBeFalsy();
   });
