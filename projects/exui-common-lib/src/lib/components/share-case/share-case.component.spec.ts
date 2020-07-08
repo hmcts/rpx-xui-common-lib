@@ -43,6 +43,6 @@ describe('ShareCaseComponent', () => {
   it('should see no case to display', () => {
     component.cases = [];
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('#no-case-display').textContent).toContain('No cases to display.');
+    expect(fixture.debugElement.nativeElement.querySelector('#noCaseDisplay').textContent).toContain('No cases to display.');
   });
 });
