@@ -13,7 +13,7 @@
       </xuilib-user-select>
     </div>
     <div class="govuk-grid-column-one-thirds">
-      <button id="btn-add-user" (click)="addUser()" class="govuk-button" [disabled]="isDisabledAdd()">Add</button>
+      <button id="btn-add-user" (click)="addUser()" class="govuk-button" [disabled]="isDisabledAdd()" title="Add user to the case">Add</button>
     </div>
   </div>
   <details id="add-user-help" class="govuk-details" data-module="govuk-details">
@@ -31,19 +31,21 @@
 
 <div id="cases">
   <h3 id="title-selected-cases" class="govuk-heading-m">Selected cases</h3>
-  <div *ngIf="cases.length > 0"  class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+  <div *ngIf="shareCases && shareCases.length > 0"  class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
     <xuilib-selected-case-list
-      [cases]="cases"
-      (unselect)="onUnselect($event)">
+      [shareCases$]="shareCases$"
+      (unselect)="onUnselect($event)"
+      (synchronizeStore)="onSynchronizeStore($event)"
+    >
     </xuilib-selected-case-list>
   </div>
 
-  <div id="noCaseDisplay" *ngIf="cases.length === 0" class="govuk-hint">
+  <div id="no-case-display" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint" align="left">
     No cases to display.
   </div>
 
 </div>
 
 <div id="share-case-nav">
-  <button class="govuk-button" [disabled]="isDisabledContinue()">Continue</button>
+  <button class="govuk-button" [disabled]="isDisabledContinue()" title="Continue">Continue</button>
 </div>
