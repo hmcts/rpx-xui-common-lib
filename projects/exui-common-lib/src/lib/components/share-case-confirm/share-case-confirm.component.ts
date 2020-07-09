@@ -10,7 +10,9 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
 })
 export class ShareCaseConfirmComponent implements OnInit {
 
-  @Input() public cases: SharedCase[] = []; // cases selected for sharing
+  public shareCases: SharedCase[] = []; // cases selected for sharing
+
+  @Input() public shareCases$: Observable<SharedCase[]>;
   @Input() public changeLink: string = '';
 
   public state$: Observable<SharedCase[]>;
@@ -18,8 +20,11 @@ export class ShareCaseConfirmComponent implements OnInit {
   constructor(private readonly stateService: CaseSharingStateService) { }
 
   public ngOnInit() {
-    this.state$ = this.stateService.state;
-    this.stateService.setCases('0', this.cases);
+    this.shareCases$.subscribe(shareCases => {
+      this.shareCases = shareCases;
+      this.stateService.setCases(shareCases);
+    });
+    this.shareCases$ = this.stateService.state;
   }
 
 }

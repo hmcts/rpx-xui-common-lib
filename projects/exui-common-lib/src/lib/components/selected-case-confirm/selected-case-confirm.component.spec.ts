@@ -17,7 +17,7 @@ describe('SelectedCaseConfirmComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectedCaseConfirmComponent);
     component = fixture.componentInstance;
-    component.case = {
+    component.sharedCase = {
       caseId: 'C111111',
       caseTitle: 'Share a case',
       sharedWith: [{

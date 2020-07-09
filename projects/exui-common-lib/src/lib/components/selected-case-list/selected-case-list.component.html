@@ -8,8 +8,8 @@
 
 <ng-container *ngIf="toConfirm">
   <xuilib-selected-case-confirm
-    *ngFor="let selectedCase of cases; trackBy: trackByCaseId"
-    [case]="selectedCase"
+    *ngFor="let sharedCase of (shareCases$ | async); trackBy: trackByCaseId"
+    [sharedCase]="sharedCase"
     [changeLink]="changeLink">
   </xuilib-selected-case-confirm>
 </ng-container>

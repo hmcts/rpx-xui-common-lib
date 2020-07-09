@@ -1,12 +1,14 @@
 <div id="casesToConfirm">
   <h3 class="govuk-heading-l">Cases</h3>
-  <xuilib-selected-case-list
-    [cases]="cases"
-    [toConfirm]="true"
-    [changeLink]="changeLink">
-  </xuilib-selected-case-list>
+  <div *ngIf="shareCases && shareCases.length > 0" id="summarySections">
+    <xuilib-selected-case-list
+      [shareCases$]="shareCases$"
+      [toConfirm]="true"
+      [changeLink]="changeLink">
+    </xuilib-selected-case-list>
+  </div>
 
-  <div id="noCaseDisplay" *ngIf="cases.length === 0" class="govuk-hint">
+  <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint">
     No cases to display.
   </div>
 
