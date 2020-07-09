@@ -23,7 +23,6 @@ export class UserSelectComponent implements OnInit {
   constructor() { }
 
   public ngOnInit() {
-    console.log(this.users);
     this.filteredUsers = this.control.valueChanges.pipe(
       map(value => typeof value === typeof 'string' ? this.filterUsers(value) : this.users)
     );

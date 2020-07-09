@@ -1,10 +1,14 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedCase } from 'exui-common-lib/lib/models/case-share.model';
+import { of } from 'rxjs';
 import { ShareCaseComponent } from './share-case.component';
+import {UserDetails} from "../../models/user-details.model";
 
 describe('ShareCaseComponent', () => {
   let component: ShareCaseComponent;
   let fixture: ComponentFixture<ShareCaseComponent>;
+  let sharedCases: SharedCase[] = [];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,6 +21,8 @@ describe('ShareCaseComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShareCaseComponent);
     component = fixture.componentInstance;
+    sharedCases = [];
+    component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
   });
 
@@ -32,7 +38,7 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see case list', () => {
-    component.cases = [{
+    component.shareCases = [{
       caseId: 'C111111',
       caseTitle: 'James vs Jane'
     }];
@@ -41,8 +47,122 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see no case to display', () => {
-    component.cases = [];
+    component.shareCases = [];
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('#no-case-display').textContent).toContain('No cases to display.');
+  });
+
+  it('should disable continue button where there is not shared cases', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: []
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    expect(component.isDisabledContinue()).toBeTruthy();
+  });
+
+  it('should disable continue button', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }]
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    expect(component.isDisabledContinue()).toBeTruthy();
+  });
+
+  it('should enable continue button when remove user', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }],
+      pendingUnshares: [
+        {
+          idamId: 'u777777',
+          firstName: 'Nick',
+          lastName: 'Rodrigues',
+          email: 'nick.rodrigues@lambbrooks.com'
+        }]
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    expect(component.isDisabledContinue()).toBeFalsy();
+  });
+
+  it('should enable continue button when added user', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }],
+      pendingShares: [
+        {
+          idamId: 'u888888',
+          firstName: 'Joel',
+          lastName: 'Molloy',
+          email: 'joel.molloy@lambbrooks.com'
+        }]
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    expect(component.isDisabledContinue()).toBeFalsy();
+  });
+
+  it('should be able to add user', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }],
+      pendingShares: [
+        {
+          idamId: 'u888888',
+          firstName: 'Joel',
+          lastName: 'Molloy',
+          email: 'joel.molloy@lambbrooks.com'
+        }]
+    }];
+
+    let user: UserDetails = {
+      idamId : 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com'
+    };
+
+    component.onSelectedUser(user);
+    component.shareCases$ = of(sharedCases);
+    component.addUser();
+    fixture.detectChanges();
+    expect(component.isDisabledContinue()).toBeFalsy();
+  });
+
+  afterEach(() => {
+    sharedCases = [];
   });
 });
