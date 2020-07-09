@@ -41,6 +41,7 @@ import { FeatureToggleService } from './services/feature-toggle/feature-toggle.s
 import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
+import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
 import { ShareCaseComponent } from './components/share-case/share-case.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
@@ -127,6 +128,7 @@ export class ExuiCommonLibModule {
       providers: [
         GoogleAnalyticsService,
         ManageSessionServices,
+        TimeoutNotificationsService,
         {
           provide: COMMON_LIB_ROOT_GUARD,
           useFactory: provideForRootGuard,

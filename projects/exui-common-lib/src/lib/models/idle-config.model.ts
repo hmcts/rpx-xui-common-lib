@@ -4,3 +4,4 @@ export interface IdleConfigModel {
   keepAliveInSeconds: number;
   idleServiceName?: string;
 }
+

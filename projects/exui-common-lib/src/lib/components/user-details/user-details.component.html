@@ -23,7 +23,7 @@
           <div *ngIf="user.manageUsers === 'Yes'">Manage Users</div>
           <div *ngIf="user.manageCases === 'Yes'">Manage Cases</div>
         </td>
-        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && !isSuspended" [routerLink]="editPermissionRouterLink">Change</a></td>   
+        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">Change</a></td>   
     </tr>
   </tbody>
 </table>
@@ -40,4 +40,4 @@
       Resend invitation
   </a>
 </div>
-<p class="govuk-body" *ngIf="isSuspended && suspendHelpLink"><a [routerLink]="suspendHelpLink" target="_blank">Get help</a> to reactivate this account.</p>
+<p class="govuk-body" *ngIf="showHelpLink && suspendHelpLink"><a [routerLink]="suspendHelpLink" target="_blank">Get help</a> to reactivate this account.</p>

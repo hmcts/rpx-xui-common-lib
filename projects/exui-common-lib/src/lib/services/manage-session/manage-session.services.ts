@@ -12,6 +12,7 @@ import {IdleConfigModel} from '../../models/idle-config.model';
 @Injectable()
 export class ManageSessionServices {
   private readonly appStateEmitter: Subject<{type: string, countdown?: string; isVisible?: boolean}>;
+
   constructor(
     private readonly idle: Idle,
     private readonly keepalive: Keepalive,
@@ -56,5 +57,4 @@ export class ManageSessionServices {
   public appStateChanges(): Observable<any> {
     return this.appStateEmitter.asObservable();
   }
-
 }
