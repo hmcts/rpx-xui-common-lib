@@ -4,6 +4,7 @@ import { SharedCase } from 'exui-common-lib/lib/models/case-share.model';
 import { of } from 'rxjs';
 import { ShareCaseComponent } from './share-case.component';
 import {UserDetails} from "../../models/user-details.model";
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ShareCaseComponent', () => {
   let component: ShareCaseComponent;
@@ -13,7 +14,8 @@ describe('ShareCaseComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ ShareCaseComponent ]
+      declarations: [ ShareCaseComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
