@@ -28,33 +28,4 @@ export class SelectedCaseConfirmComponent implements OnInit {
     return user.idamId;
   }
 
-  public isToBeRemoved(caseId: string, user: UserDetails): boolean {
-    let isToBeRemoved = false;
-    this.shareCases$.subscribe(cases => {
-      for (const aCase of cases) {
-        if (aCase.caseId === caseId) {
-          if (aCase.pendingUnshares &&  aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
-            isToBeRemoved = true;
-            break;
-          }
-        }
-      }
-    });
-    return isToBeRemoved;
-  }
-
-  public isToBeAdded(caseId: string, user: UserDetails): boolean {
-    let isToBeAdded = false;
-    this.shareCases$.subscribe(cases => {
-      for (const aCase of cases) {
-        if (aCase.caseId === caseId) {
-          if (aCase.pendingShares &&  aCase.pendingShares.some(u => u.idamId === user.idamId)) {
-            isToBeAdded = true;
-            break;
-          }
-        }
-      }
-    });
-    return isToBeAdded;
-  }
 }

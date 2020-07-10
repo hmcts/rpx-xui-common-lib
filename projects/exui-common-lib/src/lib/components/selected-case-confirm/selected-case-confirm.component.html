@@ -15,12 +15,18 @@
   </tr>
   </thead>
   <tbody class="govuk-table__body">
-  <tr class="govuk-table__row" *ngFor="let user of sharedCase.sharedWith; trackBy: trackByUserId">
+  <tr class="govuk-table__row" *ngFor="let user of sharedCase.pendingShares; trackBy: trackByUserId">
     <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
     <td class="govuk-table__cell">{{ user.email }}</td>
     <td class="govuk-table__cell">
-      <span *ngIf="isToBeRemoved(sharedCase.caseId, user)" class="hmcts-badge hmcts-badge--red">to be removed</span>
-      <span *ngIf="isToBeAdded(sharedCase.caseId, user)" class="hmcts-badge">To be added</span>
+      <span class="hmcts-badge">To be added</span>
+    </td>
+  </tr>
+  <tr class="govuk-table__row" *ngFor="let user of sharedCase.pendingUnshares; trackBy: trackByUserId">
+    <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
+    <td class="govuk-table__cell">{{ user.email }}</td>
+    <td class="govuk-table__cell">
+      <span class="hmcts-badge hmcts-badge--red">to be removed</span>
     </td>
   </tr>
   </tbody>
