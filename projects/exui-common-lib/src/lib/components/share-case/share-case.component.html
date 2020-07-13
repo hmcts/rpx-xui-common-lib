@@ -40,12 +40,12 @@
     </xuilib-selected-case-list>
   </div>
 
-  <div id="no-case-display" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint" align="left">
+  <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint">
     No cases to display.
   </div>
 
 </div>
 
 <div id="share-case-nav">
-  <button class="govuk-button" [disabled]="isDisabledContinue()" title="Continue">Continue</button>
+  <button class="govuk-button" [disabled]="isDisabledContinue()" title="Continue" [routerLink]="confirmLink">Continue</button>
 </div>
