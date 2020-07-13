@@ -51,8 +51,7 @@ export class ShareCaseComponent implements OnInit {
   public addUser() {
     const newSharedCases = this.stateService.requestShare(this.selectedUser);
     this.selectedUser = null;
-    if(this.userSelect)
-      this.userSelect.clear();
+    if (this.userSelect) { this.userSelect.clear(); }
     this.synchronizeStore.emit(newSharedCases);
   }
 

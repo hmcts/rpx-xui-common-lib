@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
+import {SharedCase} from '../../models/case-share.model';
+import {UserDetails} from '../../models/user-details.model';
 import { CaseSharingStateService } from './case-sharing-state.service';
-import {SharedCase} from "../../models/case-share.model";
-import {UserDetails} from "../../models/user-details.model";
 
 describe('CaseSharingStateService', () => {
   let service: CaseSharingStateService;
-  let sharedCases: SharedCase[] =[];
+  let sharedCases: SharedCase[] = [];
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
@@ -25,9 +25,9 @@ describe('CaseSharingStateService', () => {
       caseTitle: 'Sam Green Vs Williams Lee'
     }];
     service.setCases(sharedCases);
-    let allCases : SharedCase[] = [];
+    let allCases: SharedCase[] = [];
     service.state.subscribe(shareCases => allCases = shareCases);
-    expect(allCases.length == 1).toBeTruthy();
+    expect(allCases.length === 1).toBeTruthy();
   });
 
   it('should request share', () => {
@@ -36,16 +36,15 @@ describe('CaseSharingStateService', () => {
       sharedWith: [],
       caseTitle: 'Sam Green Vs Williams Lee'
     }];
-    let user: UserDetails = {
+    const user: UserDetails = {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com'
     };
     service.setCases(sharedCases);
-    let newSharedCase: SharedCase[] = service.requestShare(user);
-    expect(newSharedCase[0].pendingShares.length==1).toBeTruthy();
-
+    const newSharedCase: SharedCase[] = service.requestShare(user);
+    expect(newSharedCase[0].pendingShares.length === 1).toBeTruthy();
   });
 
   it('should request un share', () => {
@@ -54,7 +53,7 @@ describe('CaseSharingStateService', () => {
       sharedWith: [],
       caseTitle: 'Sam Green Vs Williams Lee'
     }];
-    let user: UserDetails = {
+    const user: UserDetails = {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
@@ -62,10 +61,10 @@ describe('CaseSharingStateService', () => {
     };
     service.setCases(sharedCases);
     service.requestUnshare('9417373995765133', user);
-    let allCases : SharedCase[] = [];
+    let allCases: SharedCase[] = [];
     service.state.subscribe(shareCases => allCases = shareCases);
 
-    expect(allCases[0].pendingUnshares.length==1).toBeTruthy();
+    expect(allCases[0].pendingUnshares.length === 1).toBeTruthy();
   });
 
   it('should cancel a user', () => {
@@ -80,7 +79,7 @@ describe('CaseSharingStateService', () => {
         email: 'jamespus.priestpus@test.com'
       }]
     }];
-    let user: UserDetails = {
+    const user: UserDetails = {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
@@ -88,9 +87,9 @@ describe('CaseSharingStateService', () => {
     };
     service.setCases(sharedCases);
     service.requestCancel('9417373995765133', user);
-    let allCases : SharedCase[] = [];
+    let allCases: SharedCase[] = [];
     service.state.subscribe(shareCases => allCases = shareCases);
-    expect(allCases[0].pendingUnshares.length==0).toBeTruthy();
+    expect(allCases[0].pendingUnshares.length === 0).toBeTruthy();
   });
 
 
@@ -103,6 +102,6 @@ describe('CaseSharingStateService', () => {
 
     service.setCases(sharedCases);
     service.removeCase('9417373995765133');
-    expect(service.getCases().length==0).toBeTruthy();
+    expect(service.getCases().length === 0).toBeTruthy();
   });
 });

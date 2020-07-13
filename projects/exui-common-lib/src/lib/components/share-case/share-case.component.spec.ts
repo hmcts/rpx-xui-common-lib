@@ -2,8 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedCase } from 'exui-common-lib/lib/models/case-share.model';
 import { of } from 'rxjs';
+import { UserDetails } from '../../models/user-details.model';
 import { ShareCaseComponent } from './share-case.component';
-import {UserDetails} from "../../models/user-details.model";
 
 describe('ShareCaseComponent', () => {
   let component: ShareCaseComponent;
@@ -148,7 +148,7 @@ describe('ShareCaseComponent', () => {
         }]
     }];
 
-    let user: UserDetails = {
+    const user: UserDetails = {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',

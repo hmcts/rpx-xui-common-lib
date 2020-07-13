@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { SharedCase } from '../../models/case-share.model';
+import { UserDetails } from '../../models/user-details.model';
 import { SelectedCaseComponent } from './selected-case.component';
-import {UserDetails} from "../../models/user-details.model";
-import {SharedCase} from "../../models/case-share.model";
-import {of} from "rxjs";
-
 
 describe('SelectedCaseComponent', () => {
   let component: SelectedCaseComponent;
@@ -122,7 +121,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'Priest',
       email: 'james.priest@test.com'
     };
-   expect(component.canRemove('C111111', user)).toEqual(true);
+    expect(component.canRemove('C111111', user)).toEqual(true);
   });
 
   it('case cannot be cancelled', () => {

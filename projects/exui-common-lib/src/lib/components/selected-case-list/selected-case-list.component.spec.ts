@@ -1,15 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SharedCase } from '../../models/case-share.model';
 import { SelectedCaseListComponent } from './selected-case-list.component';
-import {SharedCase} from "../../models/case-share.model";
-
 
 describe('SelectedCaseListComponent', () => {
   let component: SelectedCaseListComponent;
   let sharedCase: SharedCase;
-
-
 
   let fixture: ComponentFixture<SelectedCaseListComponent>;
 
