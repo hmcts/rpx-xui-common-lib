@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { SharedCase } from 'exui-common-lib/lib/models/case-share.model';
 import { of } from 'rxjs';
 import { UserDetails } from '../../models/user-details.model';
@@ -13,7 +14,8 @@ describe('ShareCaseComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ ShareCaseComponent ]
+      declarations: [ ShareCaseComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
@@ -49,7 +51,7 @@ describe('ShareCaseComponent', () => {
   it('should see no case to display', () => {
     component.shareCases = [];
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('#no-case-display').textContent).toContain('No cases to display.');
+    expect(fixture.debugElement.nativeElement.querySelector('#noCaseDisplay').textContent).toContain('No cases to display.');
   });
 
   it('should disable continue button where there is not shared cases', () => {

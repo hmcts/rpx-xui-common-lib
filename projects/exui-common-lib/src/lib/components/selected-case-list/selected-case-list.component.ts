@@ -14,6 +14,10 @@ export class SelectedCaseListComponent implements OnInit {
 
   @Input() public shareCases$: Observable<SharedCase[]>;
 
+  @Input() public toConfirm: boolean = false;
+
+  @Input() public changeLink: string = '';
+
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<SharedCase>();
 

@@ -17,6 +17,8 @@ export class ShareCaseComponent implements OnInit {
   @Input() public shareCases$: Observable<SharedCase[]>;
   @Input() public users: UserDetails[] = []; // users of this organisation the cases can be shared with
 
+  @Input() public confirmLink: string = '';
+
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<any>();
 
