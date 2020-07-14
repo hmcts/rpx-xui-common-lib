@@ -29,7 +29,7 @@ export class CaseSharingStateService {
     this.subject.next(this.caseState);
   }
 
-  public getCases():SharedCase[]{
+  public getCases(): SharedCase[] {
     return this.caseState;
   }
 
@@ -53,6 +53,7 @@ export class CaseSharingStateService {
         for (let u = 0, ul = newPendingUnshares.length; u < ul; u++) {
           if (newPendingUnshares[u].email === user.email) {
             newPendingUnshares.splice(u, 1);
+            break;
           }
         }
       }
@@ -106,6 +107,7 @@ export class CaseSharingStateService {
         for (let iPendingUnshares = 0; iPendingUnshares < newPendingUnshares.length; iPendingUnshares++) {
           if (newPendingUnshares[iPendingUnshares].email === user.email) {
             newPendingUnshares.splice(iPendingUnshares, 1);
+            break;
           }
         }
         if (!sharedCase.pendingShares) {
@@ -115,6 +117,7 @@ export class CaseSharingStateService {
         for (let iPendingShares = 0; iPendingShares < newPendingShares.length; iPendingShares++) {
           if (newPendingShares[iPendingShares].email === user.email) {
             newPendingShares.splice(iPendingShares, 1);
+            break;
           }
         }
         const newSharedCase = {
