@@ -223,6 +223,188 @@ describe('SelectedCaseComponent', () => {
     expect(component.isToBeRemoved('C111111', user)).toEqual(true);
   });
 
+  it('should display Remove link to already shared user', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+
+      pendingUnshares: [{
+        idamId: 'pus111111',
+        firstName: 'JamesPUS',
+        lastName: 'PriestPUS',
+        email: 'jamespus.priestpus@test.com'
+      }],
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+    const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
+    expect(userActionLink.length).toEqual(1);
+    expect(userActionLink[0].textContent).toEqual('Remove');
+  });
+
+  it('should display Cancel link to pending unshare user', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+
+      pendingUnshares: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+    const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
+    expect(userActionLink.length).toEqual(1);
+    expect(userActionLink[0].textContent).toEqual('Cancel');
+  });
+
+  it('should call onCancel when when html link cancel clicked', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+
+      pendingUnshares: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+    }];
+    spyOn(component, 'onCancel');
+    component.shareCases$ = of(shareCases);
+    component.sharedCase = shareCases[0];
+    fixture.detectChanges();
+
+    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');
+    expect(userActionLink.textContent).toEqual('Cancel');
+    userActionLink.click();
+    expect(component.onCancel).toHaveBeenCalled();
+  });
+
+
+  it('should display Cancel link to pending share user', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james1.priest@test.com'
+      }
+    ],
+      pendingShares: [{
+        idamId: 'N111111',
+        firstName: 'New',
+        lastName: 'user',
+        email: 'new.priest@test.com'
+      }
+    ]
+    }];
+    component.shareCases$ = of(shareCases);
+    component.sharedCase = shareCases[0];
+    fixture.detectChanges();
+    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr:nth-of-type(2) td a');
+    expect(userActionLink.textContent).toEqual('Cancel');
+  });
+
+  it('should call onRemove when when html link Remove clicked', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }],
+
+      pendingUnshares: [],
+    }];
+    spyOn(component, 'onRemove');
+    component.shareCases$ = of(shareCases);
+    component.sharedCase = shareCases[0];
+    fixture.detectChanges();
+
+    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');
+    expect(userActionLink.textContent).toEqual('Remove');
+    userActionLink.click();
+    expect(component.onRemove).toHaveBeenCalled();
+  });
+
+  it('should display label to be added for pending share user', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james1.priest@test.com'
+      }
+      ],
+      pendingShares: [{
+        idamId: 'N111111',
+        firstName: 'New',
+        lastName: 'user',
+        email: 'new.priest@test.com'
+      }
+      ]
+    }];
+    component.shareCases$ = of(shareCases);
+    component.sharedCase = shareCases[0];
+    fixture.detectChanges();
+    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr:nth-of-type(2) td:nth-of-type(4)');
+    expect(userActionLink.textContent).toEqual('To be added');
+  });
+
+  it('should display label to be Removed for pending unshare user', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }
+      ],
+      pendingUnshares: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }
+      ]
+    }];
+    component.shareCases$ = of(shareCases);
+    component.sharedCase = shareCases[0];
+    fixture.detectChanges();
+    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td:nth-of-type(4)');
+    expect(userActionLink.textContent).toEqual('to be removed');
+  });
+
   afterEach(() => {
     shareCases = [];
   });
