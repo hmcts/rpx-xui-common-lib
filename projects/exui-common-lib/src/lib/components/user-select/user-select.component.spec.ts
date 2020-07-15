@@ -63,7 +63,7 @@ describe('UserSelectComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should clear filter users when value is empty', async(() => {
+  it('should clear filter users when value is empty', () => {
     component.users = testUsers;
     component.control.setValue('');
     fixture.detectChanges();
@@ -71,6 +71,6 @@ describe('UserSelectComponent', () => {
       expect(filtered.length).toBe(0);
     });
     fixture.detectChanges();
-  }));
+  });
 
 });
