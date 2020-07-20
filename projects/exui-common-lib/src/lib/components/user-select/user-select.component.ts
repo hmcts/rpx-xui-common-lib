@@ -26,6 +26,7 @@ export class UserSelectComponent implements OnInit {
     this.filteredUsers = this.control.valueChanges.pipe(
       map(value => typeof value === typeof 'string' ? this.filterUsers(value) : this.users)
     );
+    this.selected.emit(null);
   }
 
   public displayValue(user: UserDetails): string {
@@ -38,6 +39,12 @@ export class UserSelectComponent implements OnInit {
 
   public clear() {
     this.control.setValue(null);
+  }
+
+  public onUserChange(newUserValue: UserDetails) {
+    if (!newUserValue || !newUserValue.email) {
+      this.selected.emit(null);
+    }
   }
 
   private filterUsers(value: string): UserDetails[] {
