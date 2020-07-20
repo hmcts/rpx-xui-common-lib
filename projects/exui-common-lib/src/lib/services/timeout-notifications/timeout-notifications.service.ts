@@ -58,12 +58,12 @@ export class TimeoutNotificationsService {
 
     const DOCUMENT_INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
 
-    const MINUTES = ' minutes'
-    const SECONDS = ' seconds'
+    const MINUTES = ' minutes';
+    const SECONDS = ' seconds';
 
-    const SIGNOUT_EVENT = 'sign-out'
-    const COUNTDOWN_EVENT = 'countdown'
-    const KEEP_ALIVE_EVENT = 'keep-alive'
+    const SIGNOUT_EVENT = 'sign-out';
+    const COUNTDOWN_EVENT = 'countdown';
+    const KEEP_ALIVE_EVENT = 'keep-alive';
 
     const {idleServiceName, idleModalDisplayTime, totalIdleTime} = config;
 
