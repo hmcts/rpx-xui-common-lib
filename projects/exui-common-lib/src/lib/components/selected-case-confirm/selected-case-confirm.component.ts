@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'xuilib-selected-case-confirm',

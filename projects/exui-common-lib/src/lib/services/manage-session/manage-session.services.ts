@@ -39,7 +39,7 @@ export class ManageSessionServices {
     });
 
     this.idle.onTimeoutWarning.pipe(
-      map(sec => (sec > 60) ? Math.ceil(sec / 60) + ' minutes' : sec + ' seconds'),
+      map(sec => (sec > 60) ? `${Math.ceil(sec / 60)} minutes` : `${sec} seconds`),
       distinctUntilChanged()
     ).subscribe((countdown) => {
       this.appStateEmitter.next({type: 'modal', countdown, isVisible: true});
