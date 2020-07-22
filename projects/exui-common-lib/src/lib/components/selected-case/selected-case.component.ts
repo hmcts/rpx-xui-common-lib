@@ -119,4 +119,44 @@ export class SelectedCaseComponent implements OnInit {
     this.synchronizeStore.emit(this.shareCases);
   }
 
+  public showNoUsersAccessInfo(): boolean {
+    // A user is added to a case
+    if (this.sharedCase.pendingShares) {
+      if (this.sharedCase.pendingShares.length > 0) {
+        return false;
+      }
+    }
+    // A case has 0 users with access to it
+    if (this.sharedCase.sharedWith) {
+      if (this.sharedCase.sharedWith.length === 0) {
+        return true;
+      }
+    }
+    // Access to the last user is removed
+    if (this.sharedCase.sharedWith && this.sharedCase.pendingUnshares) {
+      if (this.sharedCase.pendingUnshares.length > 0
+        && this.sharedCase.sharedWith.length === this.sharedCase.pendingUnshares.length) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public showUserHasAccessInfo(): boolean {
+    return !this.showNoUsersAccessInfo();
+  }
+
+  public showUserAccessTable(): boolean {
+    if (this.sharedCase.pendingShares) {
+      if (this.sharedCase.pendingShares.length > 0) {
+        return true;
+      }
+    }
+    if (this.sharedCase.sharedWith) {
+      if (this.sharedCase.sharedWith.length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
