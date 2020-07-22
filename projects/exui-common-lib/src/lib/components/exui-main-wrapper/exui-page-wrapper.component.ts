@@ -5,6 +5,7 @@ import {Component, Input} from '@angular/core';
  * Wrapping content within the gov-uk html elements bellow
  * @prop showBackLink - switch for back link
  * @prop appHeaderTitle = appHeaderTitle
+ * @prop appFunctionalTitle = appFunctionalTitle
  * @prop summaryErrors list of errors
  * @prop back link, appHeaderTitle (appHeaderTitle), summaryErrors (array of errors)
  */
