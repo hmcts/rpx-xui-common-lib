@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
 
 describe('SelectedCaseConfirmComponent', () => {
   let component: SelectedCaseConfirmComponent;
