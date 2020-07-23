@@ -18,10 +18,13 @@
   </div>
   <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content"
        aria-labelledby="accordion-with-summary-sections-heading-1">
-    <div class="govuk-grid-row">
-      <span id="access-info" class="govuk-div-align-left">All users with access to this case.</span>
+    <div class="govuk-grid-row" *ngIf="showNoUsersAccessInfo()">
+      <span id="access-info-no-user" class="govuk-div-align-left">No users currently have access to this case.</span>
     </div>
-    <table class="govuk-table">
+    <div class="govuk-grid-row" *ngIf="showUserHasAccessInfo()">
+      <span id="access-info-has-users" class="govuk-div-align-left">All users with access to this case.</span>
+    </div>
+    <table class="govuk-table" *ngIf="showUserAccessTable()">
       <thead class="govuk-table__head">
       <tr class="govuk-table__row">
         <th id="th-name" class="govuk-table__header" scope="col">Name</th>

@@ -164,6 +164,33 @@ describe('ShareCaseComponent', () => {
     expect(component.isDisabledContinue()).toBeFalsy();
   });
 
+  it('should enable Add button when selected user', () => {
+    const user: UserDetails = {
+      idamId: 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com'
+    };
+    const addButton = fixture.nativeElement.querySelector('#btn-add-user');
+    component.onSelectedUser(user);
+    fixture.detectChanges();
+    expect(addButton.disabled).toBeFalsy();
+  });
+
+  it('should disable Add button after selected user is added', () => {
+    const user: UserDetails = {
+      idamId: 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com'
+    };
+    const addButton = fixture.nativeElement.querySelector('#btn-add-user');
+    component.onSelectedUser(user);
+    component.addUser();
+    fixture.detectChanges();
+    expect(addButton.disabled).toBeTruthy();
+  });
+
   afterEach(() => {
     sharedCases = [];
   });

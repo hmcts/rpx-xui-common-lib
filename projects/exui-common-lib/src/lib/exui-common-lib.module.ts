@@ -4,9 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
+import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
+import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
+import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
+import { ShareCaseConfirmComponent } from './components/share-case-confirm/share-case-confirm.component';
+import { ShareCaseComponent } from './components/share-case/share-case.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
@@ -43,11 +49,6 @@ import { GoogleAnalyticsService } from './services/google-analytics/google-analy
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
-import { ShareCaseComponent } from './components/share-case/share-case.component';
-import { ShareCaseConfirmComponent } from './components/share-case-confirm/share-case-confirm.component';
-import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
-import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
-import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -56,6 +57,7 @@ export class ExuiCommonLibModuleOptions {
 }
 
 export const COMMON_COMPONENTS = [
+  ExuiPageWrapperComponent,
   TermsAndConditionsComponent,
   TcDisplayHtmlComponent,
   TcDisplayPlainComponent,
