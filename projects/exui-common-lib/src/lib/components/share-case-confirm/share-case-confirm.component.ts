@@ -14,6 +14,7 @@ export class ShareCaseConfirmComponent implements OnInit {
 
   @Input() public shareCases$: Observable<SharedCase[]>;
   @Input() public changeLink: string = '';
+  @Input() public completeLink: string = '';
 
   public state$: Observable<SharedCase[]>;
 
