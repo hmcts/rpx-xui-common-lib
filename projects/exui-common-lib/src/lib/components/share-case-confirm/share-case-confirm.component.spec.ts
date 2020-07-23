@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { SharedCase } from 'exui-common-lib/lib/models/case-share.model';
 import { of } from 'rxjs';
 import { ShareCaseConfirmComponent } from './share-case-confirm.component';
@@ -12,7 +13,8 @@ describe('ShareCaseConfirmComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ ShareCaseConfirmComponent ]
+      declarations: [ ShareCaseConfirmComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
