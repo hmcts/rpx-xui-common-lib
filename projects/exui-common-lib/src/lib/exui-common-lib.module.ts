@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
@@ -56,6 +57,7 @@ export class ExuiCommonLibModuleOptions {
 }
 
 export const COMMON_COMPONENTS = [
+  ExuiPageWrapperComponent,
   TermsAndConditionsComponent,
   TcDisplayHtmlComponent,
   TcDisplayPlainComponent,
