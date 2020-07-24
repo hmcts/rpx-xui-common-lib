@@ -28,4 +28,17 @@ export class SelectedCaseConfirmComponent implements OnInit {
     return user.idamId;
   }
 
+  public showUserAccessBlock(): boolean {
+    if (this.sharedCase.pendingShares) {
+      if (this.sharedCase.pendingShares.length > 0) {
+        return true;
+      }
+    }
+    if (this.sharedCase.pendingUnshares) {
+      if (this.sharedCase.pendingUnshares.length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

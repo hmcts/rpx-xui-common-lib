@@ -22,9 +22,9 @@ export class CaseSharingStateService {
 
   public setCases(cases: SharedCase[]): void {
     this.caseState = [];
-    cases.forEach(c => {
-      this.caseState.push({ caseId: c.caseId, caseTitle: c.caseTitle, roles: c.roles,
-        sharedWith: c.sharedWith, pendingShares: c.pendingShares, pendingUnshares: c.pendingUnshares });
+    cases.forEach(aCase => {
+      this.caseState.push({ caseId: aCase.caseId, caseTitle: aCase.caseTitle, caseTypeId: aCase.caseTypeId, roles: aCase.roles,
+        sharedWith: aCase.sharedWith, pendingShares: aCase.pendingShares, pendingUnshares: aCase.pendingUnshares });
     });
     this.subject.next(this.caseState);
   }
