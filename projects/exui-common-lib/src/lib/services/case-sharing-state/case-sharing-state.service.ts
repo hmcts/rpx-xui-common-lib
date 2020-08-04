@@ -10,6 +10,7 @@ import { UserDetails } from '../../models/user-details.model';
 export class CaseSharingStateService {
 
   private caseState: SharedCase[] = [];
+  private pendingSharesInSession: SharedCase[] = [];
   private readonly subject = new BehaviorSubject<SharedCase[]>(this.caseState);
 
   public get state() {
@@ -21,11 +22,17 @@ export class CaseSharingStateService {
   constructor() { }
 
   public setCases(cases: SharedCase[]): void {
-    this.caseState = [];
-    cases.forEach(aCase => {
-      this.caseState.push({ caseId: aCase.caseId, caseTitle: aCase.caseTitle, caseTypeId: aCase.caseTypeId, roles: aCase.roles,
-        sharedWith: aCase.sharedWith, pendingShares: aCase.pendingShares, pendingUnshares: aCase.pendingUnshares });
-    });
+    if(this.pendingSharesInSession.length == 0) {
+      this.caseState = [];
+      cases.forEach(c => {
+        this.caseState.push({ caseId: c.caseId, caseTitle: c.caseTitle, roles: c.roles,
+          sharedWith: c.sharedWith, pendingShares: c.pendingShares, pendingUnshares: c.pendingUnshares });
+      });
+    }
+    else {
+      this.caseState = this.pendingSharesInSession.slice();
+    }
+    //this.pendingSharesInSession = [];
     this.subject.next(this.caseState);
   }
 
@@ -64,6 +71,7 @@ export class CaseSharingStateService {
       };
       newSharedCases.push(newSharedCase);
     }
+    this.pendingSharesInSession = newSharedCases;
     this.subject.next(newSharedCases);
     return newSharedCases;
   }
@@ -93,6 +101,7 @@ export class CaseSharingStateService {
       }
     }
     this.subject.next(newSharedCases);
+    this.pendingSharesInSession = newSharedCases;
     return;
   }
 
@@ -131,6 +140,7 @@ export class CaseSharingStateService {
       }
     }
     this.subject.next(newSharedCases);
+    this.pendingSharesInSession = newSharedCases;
     return;
   }
 
