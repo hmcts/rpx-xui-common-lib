@@ -9,13 +9,10 @@ export interface TabItem {
     templateUrl: './tab.component.html'
   })
 
-export class TabComponent implements OnInit {
+export class TabComponent {
     @Input() public tabItems: any [];
     @Output() public tabChange = new EventEmitter<void>();
     constructor() {}
-    public ngOnInit(): void {
-       console.log(this.tabItems);
-    }
 
     public tabChanged(event: any): void {
       this.tabChange.emit(event);
