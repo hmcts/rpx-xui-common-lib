@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
@@ -13,6 +15,7 @@ import { SelectedCaseListComponent } from './components/selected-case-list/selec
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
 import { ShareCaseConfirmComponent } from './components/share-case-confirm/share-case-confirm.component';
 import { ShareCaseComponent } from './components/share-case/share-case.component';
+import { TabComponent } from './components/tab/tab.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
@@ -75,7 +78,8 @@ export const COMMON_COMPONENTS = [
   SelectedCaseListComponent,
   SelectedCaseComponent,
   SelectedCaseConfirmComponent,
-  UserSelectComponent
+  UserSelectComponent,
+  TabComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
@@ -112,7 +116,9 @@ export const GOV_UI_COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([]),
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTabsModule,
+    NoopAnimationsModule
   ],
   providers: [
     { provide: windowToken, useFactory: windowProvider },
