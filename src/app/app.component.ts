@@ -10,6 +10,10 @@ import { Observable, of } from 'rxjs';
 })
 
 export class AppComponent implements OnInit {
+
+  constructor(
+    private readonly googleAnalytics: GoogleAnalyticsService
+  ) { }
   public title = 'rpx-xui-common-lib';
 
   public testDocumentPlain: TCDocument = {
@@ -33,11 +37,17 @@ export class AppComponent implements OnInit {
     openingTimes: 'bla bla bla'
   };
 
+  public tabItems = [{
+    text: 'Tab1'
+  }, {
+    text: 'Tab2'
+  }];
+
   public testObservable: Observable<string[]> = of(['this', 'is', 'a', 'test']);
 
-  constructor(
-    private readonly googleAnalytics: GoogleAnalyticsService
-  ) { }
+  public tabChangeEvent(eventObject: any) {
+    console.log(eventObject);
+  }
 
   public ngOnInit() {
     this.googleAnalytics.init('UA-151027057-1');
