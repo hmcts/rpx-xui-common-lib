@@ -3,7 +3,6 @@ import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
@@ -117,8 +116,7 @@ export const GOV_UI_COMPONENTS = [
     ReactiveFormsModule,
     RouterModule.forChild([]),
     MatAutocompleteModule,
-    MatTabsModule,
-    NoopAnimationsModule
+    MatTabsModule
   ],
   providers: [
     { provide: windowToken, useFactory: windowProvider },
