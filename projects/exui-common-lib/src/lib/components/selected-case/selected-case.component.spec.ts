@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
+import { FeatureToggleService } from '../../services';
 import { SelectedCaseComponent } from './selected-case.component';
 
 describe('SelectedCaseComponent', () => {
@@ -9,12 +10,18 @@ describe('SelectedCaseComponent', () => {
   let fixture: ComponentFixture<SelectedCaseComponent>;
   let user: UserDetails;
   let shareCases: SharedCase[] = [];
+  const mockFeatureToggleService = jasmine.createSpyObj('FeatureToggleService', ['getValue']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseComponent ]
+      declarations: [ SelectedCaseComponent ],
+      providers: [{
+        provide: FeatureToggleService,
+        useValue: mockFeatureToggleService
+      }]
     })
     .compileComponents();
+    mockFeatureToggleService.getValue.and.returnValue(of(true));
   }));
 
   beforeEach(() => {
@@ -67,6 +74,29 @@ describe('SelectedCaseComponent', () => {
 
   it('should deselect', () => {
     expect(component.onDeselect).toBeDefined();
+  });
+
+  it('remove case is toggled off', () => {
+    mockFeatureToggleService.getValue.and.returnValue(of(false));
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }]
+    }];
+    component.shareCases$ = of(shareCases);
+    fixture.detectChanges();
+    user = {
+      idamId: 'U111111',
+      firstName: 'James',
+      lastName: 'Priest',
+      email: 'james.priest@test.com'
+    };
+    expect(component.canRemove('C111111', user)).toEqual(false);
   });
 
   it('case cannot be removed', () => {
