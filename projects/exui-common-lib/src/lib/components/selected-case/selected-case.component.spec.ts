@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
-import { FeatureToggleService } from '../../services';
 import { SelectedCaseComponent } from './selected-case.component';
 
 describe('SelectedCaseComponent', () => {
@@ -10,18 +9,12 @@ describe('SelectedCaseComponent', () => {
   let fixture: ComponentFixture<SelectedCaseComponent>;
   let user: UserDetails;
   let shareCases: SharedCase[] = [];
-  const mockFeatureToggleService = jasmine.createSpyObj('FeatureToggleService', ['getValue']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseComponent ],
-      providers: [{
-        provide: FeatureToggleService,
-        useValue: mockFeatureToggleService
-      }]
+      declarations: [ SelectedCaseComponent ]
     })
     .compileComponents();
-    mockFeatureToggleService.getValue.and.returnValue(of(true));
   }));
 
   beforeEach(() => {
@@ -77,7 +70,6 @@ describe('SelectedCaseComponent', () => {
   });
 
   it('remove case is toggled off', () => {
-    mockFeatureToggleService.getValue.and.returnValue(of(false));
     shareCases = [{
       caseId: 'C111111',
       caseTitle: 'Sarah vs Pete',
@@ -89,6 +81,7 @@ describe('SelectedCaseComponent', () => {
       }]
     }];
     component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = false;
     fixture.detectChanges();
     user = {
       idamId: 'U111111',
@@ -143,6 +136,7 @@ describe('SelectedCaseComponent', () => {
         }]
     }];
     component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
 
     user = {
@@ -272,6 +266,7 @@ describe('SelectedCaseComponent', () => {
       }],
     }];
     component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
     expect(userActionLink.length).toEqual(1);
@@ -375,6 +370,7 @@ describe('SelectedCaseComponent', () => {
     spyOn(component, 'onRemove');
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
+    component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
 
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');

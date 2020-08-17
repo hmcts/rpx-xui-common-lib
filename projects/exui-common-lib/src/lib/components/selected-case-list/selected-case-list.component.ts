@@ -14,6 +14,8 @@ export class SelectedCaseListComponent implements OnInit {
 
   @Input() public shareCases$: Observable<SharedCase[]>;
 
+  @Input() public removeUserFromCaseToggleOn: boolean;
+
   @Input() public toConfirm: boolean = false;
 
   @Input() public changeLink: string = '';

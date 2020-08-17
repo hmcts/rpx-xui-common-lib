@@ -2,6 +2,7 @@
   <xuilib-selected-case
     *ngFor="let sharedCase of (shareCases$ | async); trackBy: trackByCaseId"
     [sharedCase]="sharedCase"
+    [removeUserFromCaseToggleOn]="removeUserFromCaseToggleOn"
     (unselect)="onUnselect($event)"
     (synchronizeStore)="onSynchronizeStore($event)"
     >

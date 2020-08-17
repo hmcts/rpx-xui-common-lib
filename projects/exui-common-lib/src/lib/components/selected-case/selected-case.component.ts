@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
-import { FeatureToggleService } from '../../services';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 
 @Component({
@@ -15,6 +14,7 @@ export class SelectedCaseComponent implements OnInit {
   @Input() public sharedCase: SharedCase;
   @Input() public selectedUser: UserDetails;
   @Input() public opened = false;
+  @Input() public removeUserFromCaseToggleOn: boolean;
 
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<any>();
@@ -22,8 +22,7 @@ export class SelectedCaseComponent implements OnInit {
   public shareCases: SharedCase[];
   public shareCases$: Observable<SharedCase[]>;
 
-  constructor(private readonly stateService: CaseSharingStateService,
-              private readonly featureToggleService: FeatureToggleService) { }
+  constructor(private readonly stateService: CaseSharingStateService) { }
 
   public ngOnInit() {
     this.shareCases$ = this.stateService.state;
@@ -42,13 +41,7 @@ export class SelectedCaseComponent implements OnInit {
     return user.idamId;
   }
 
-  public getFeatureToggleFlag(): Observable<boolean> {
-    return this.featureToggleService.getValue('remove-user-from-case', false);
-  }
-
   public canRemove(caseId: string, user: UserDetails): boolean {
-    let removeUserFromCaseToggleOn = false;
-    this.getFeatureToggleFlag().subscribe(flag => removeUserFromCaseToggleOn = flag);
     let canRemove = false;
     this.shareCases$.subscribe(cases => {
       for (const aCase of cases) {
@@ -64,7 +57,7 @@ export class SelectedCaseComponent implements OnInit {
         }
       }
     });
-    return removeUserFromCaseToggleOn && canRemove;
+    return this.removeUserFromCaseToggleOn && canRemove;
   }
 
   public canCancel(caseId: string, user: UserDetails): boolean {
