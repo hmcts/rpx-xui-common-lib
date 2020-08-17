@@ -58,7 +58,7 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public isDisabledAdd() {
-    return (this.selectedUser === null);
+    return this.selectedUser === null || this.shareCases.length === 0;
   }
 
   public isDisabledContinue(): boolean {
