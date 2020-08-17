@@ -112,6 +112,7 @@ describe('SelectedCaseComponent', () => {
       }],
     }];
     component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = false;
     fixture.detectChanges();
     user = {
       idamId: 'pus111111',
