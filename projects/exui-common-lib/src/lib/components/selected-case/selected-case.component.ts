@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
@@ -41,42 +42,38 @@ export class SelectedCaseComponent implements OnInit {
     return user.idamId;
   }
 
-  public canRemove(caseId: string, user: UserDetails): boolean {
-    let canRemove = false;
-    this.shareCases$.subscribe(cases => {
-      for (const aCase of cases) {
-        if (aCase.caseId === caseId) {
-          if (aCase.pendingUnshares &&  aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
-            canRemove = false;
-            break;
-          }
-          if (aCase.sharedWith &&  aCase.sharedWith.some(u => u.idamId === user.idamId)) {
-            canRemove = true;
-            break;
+  public canRemove(caseId: string, user: UserDetails): Observable<boolean> {
+    return this.shareCases$.pipe(map(cases => {
+      if (this.removeUserFromCaseToggleOn) {
+        for (const aCase of cases) {
+          if (aCase.caseId === caseId) {
+            if (aCase.pendingUnshares && aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
+              return false;
+            }
+            if (aCase.sharedWith && aCase.sharedWith.some(u => u.idamId === user.idamId)) {
+              return true;
+            }
           }
         }
       }
-    });
-    return this.removeUserFromCaseToggleOn && canRemove;
+      return false;
+    }));
   }
 
-  public canCancel(caseId: string, user: UserDetails): boolean {
-    let canCancel = false;
-    this.shareCases$.subscribe(cases => {
+  public canCancel(caseId: string, user: UserDetails): Observable<boolean> {
+    return this.shareCases$.pipe(map(cases => {
       for (const aCase of cases) {
         if (aCase.caseId === caseId) {
-          if (aCase.pendingShares &&  aCase.pendingShares.some(u => u.idamId === user.idamId)) {
-            canCancel = true;
-            break;
+          if (aCase.pendingShares && aCase.pendingShares.some(u => u.idamId === user.idamId)) {
+            return true;
           }
-          if (aCase.pendingUnshares &&  aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
-            canCancel = true;
-            break;
+          if (aCase.pendingUnshares && aCase.pendingUnshares.some(u => u.idamId === user.idamId)) {
+            return true;
           }
+          return false;
         }
       }
-    });
-    return canCancel;
+    }));
   }
 
   public isToBeRemoved(caseId: string, user: UserDetails): boolean {

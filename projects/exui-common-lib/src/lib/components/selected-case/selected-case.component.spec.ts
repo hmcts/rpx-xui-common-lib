@@ -89,7 +89,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'Priest',
       email: 'james.priest@test.com'
     };
-    expect(component.canRemove('C111111', user)).toEqual(false);
+    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
   });
 
   it('case cannot be removed', () => {
@@ -120,8 +120,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com'
     };
-
-    expect(component.canRemove('C111111', user)).toEqual(false);
+    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
   });
 
   it('case can be removed', () => {
@@ -146,7 +145,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'Priest',
       email: 'james.priest@test.com'
     };
-    expect(component.canRemove('C111111', user)).toEqual(true);
+    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('case cannot be cancelled', () => {
@@ -180,8 +179,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com'
     };
-
-    expect(component.canCancel('C111111', user)).toEqual(true);
+    component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('case can be cancelled', () => {
@@ -215,7 +213,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'PriestPS',
       email: 'jamesps.priestps@test.com'
     };
-    expect(component.canCancel('C111111', user)).toEqual(true);
+    component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('checking for isToBeRemoved', () => {
