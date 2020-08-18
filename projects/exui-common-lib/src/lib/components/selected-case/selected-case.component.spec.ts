@@ -69,6 +69,29 @@ describe('SelectedCaseComponent', () => {
     expect(component.onDeselect).toBeDefined();
   });
 
+  it('remove case is toggled off', () => {
+    shareCases = [{
+      caseId: 'C111111',
+      caseTitle: 'Sarah vs Pete',
+      sharedWith: [{
+        idamId: 'U111111',
+        firstName: 'James',
+        lastName: 'Priest',
+        email: 'james.priest@test.com'
+      }]
+    }];
+    component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = false;
+    fixture.detectChanges();
+    user = {
+      idamId: 'U111111',
+      firstName: 'James',
+      lastName: 'Priest',
+      email: 'james.priest@test.com'
+    };
+    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
+  });
+
   it('case cannot be removed', () => {
 
     shareCases = [{
@@ -89,6 +112,7 @@ describe('SelectedCaseComponent', () => {
       }],
     }];
     component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = false;
     fixture.detectChanges();
     user = {
       idamId: 'pus111111',
@@ -96,8 +120,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com'
     };
-
-    expect(component.canRemove('C111111', user)).toEqual(false);
+    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
   });
 
   it('case can be removed', () => {
@@ -113,6 +136,7 @@ describe('SelectedCaseComponent', () => {
         }]
     }];
     component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
 
     user = {
@@ -121,7 +145,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'Priest',
       email: 'james.priest@test.com'
     };
-    expect(component.canRemove('C111111', user)).toEqual(true);
+    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('case cannot be cancelled', () => {
@@ -155,8 +179,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com'
     };
-
-    expect(component.canCancel('C111111', user)).toEqual(true);
+    component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('case can be cancelled', () => {
@@ -190,7 +213,7 @@ describe('SelectedCaseComponent', () => {
       lastName: 'PriestPS',
       email: 'jamesps.priestps@test.com'
     };
-    expect(component.canCancel('C111111', user)).toEqual(true);
+    component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('checking for isToBeRemoved', () => {
@@ -220,7 +243,7 @@ describe('SelectedCaseComponent', () => {
       email: 'jamespus.priestpus@test.com'
     };
 
-    expect(component.isToBeRemoved('C111111', user)).toEqual(true);
+    component.isToBeRemoved('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('should display Remove link to already shared user', () => {
@@ -242,6 +265,7 @@ describe('SelectedCaseComponent', () => {
       }],
     }];
     component.shareCases$ = of(shareCases);
+    component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
     expect(userActionLink.length).toEqual(1);
@@ -345,6 +369,7 @@ describe('SelectedCaseComponent', () => {
     spyOn(component, 'onRemove');
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
+    component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
 
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');

@@ -14,6 +14,8 @@ export class ShareCaseComponent implements OnInit {
 
   public shareCases: SharedCase[] = []; // cases selected for sharing
 
+  @Input() public removeUserFromCaseToggleOn: boolean = false;
+
   @Input() public shareCases$: Observable<SharedCase[]>;
   @Input() public users: UserDetails[] = []; // users of this organisation the cases can be shared with
 
@@ -58,7 +60,7 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public isDisabledAdd() {
-    return (this.selectedUser === null);
+    return this.selectedUser === null || this.shareCases.length === 0;
   }
 
   public isDisabledContinue(): boolean {
