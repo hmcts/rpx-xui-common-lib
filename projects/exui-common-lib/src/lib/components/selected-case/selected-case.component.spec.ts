@@ -243,7 +243,7 @@ describe('SelectedCaseComponent', () => {
       email: 'jamespus.priestpus@test.com'
     };
 
-    expect(component.isToBeRemoved('C111111', user)).toEqual(true);
+    component.isToBeRemoved('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
 
   it('should display Remove link to already shared user', () => {
