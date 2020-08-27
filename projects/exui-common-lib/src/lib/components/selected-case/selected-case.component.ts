@@ -146,4 +146,13 @@ export class SelectedCaseComponent implements OnInit {
     }
     return false;
   }
+
+  public combinedSortedShares(sharedWith: {firstName?: string}[], pendingShares: {firstName?: string}[]): {}[] {
+    return [
+      ...sharedWith,
+      ...pendingShares
+    ].sort((user1, user2) => {
+      return user1.firstName > user2.firstName ? 1 : (user2.firstName > user1.firstName ? -1 : 0);
+    });
+  }
 }
