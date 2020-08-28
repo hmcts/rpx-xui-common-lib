@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SharedCase } from '../../models/case-share.model';
@@ -10,7 +10,7 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
   templateUrl: './selected-case.component.html',
   styleUrls: ['./selected-case.component.scss']
 })
-export class SelectedCaseComponent implements OnInit {
+export class SelectedCaseComponent implements OnInit, OnChanges {
 
   @Input() public sharedCase: SharedCase;
   @Input() public selectedUser: UserDetails;
@@ -23,11 +23,22 @@ export class SelectedCaseComponent implements OnInit {
   public shareCases: SharedCase[];
   public shareCases$: Observable<SharedCase[]>;
 
+  public combinedSortedShares: {}[];
+
   constructor(private readonly stateService: CaseSharingStateService) { }
 
   public ngOnInit() {
     this.shareCases$ = this.stateService.state;
     this.shareCases$.subscribe(shareCases => this.shareCases = shareCases);
+
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.sharedCase) {
+      const sharedWith = this.sharedCase.sharedWith ? this.sharedCase.sharedWith : [];
+      const pendingShares = this.sharedCase.pendingShares ? this.sharedCase.pendingShares : [];
+      this.combinedSortedShares = this.combineAndSortShares(sharedWith, pendingShares);
+    }
   }
 
   public onUnselect(): void {
@@ -146,13 +157,17 @@ export class SelectedCaseComponent implements OnInit {
     }
     return false;
   }
-
-  public combinedSortedShares(sharedWith: {firstName?: string}[], pendingShares: {firstName?: string}[]): {}[] {
+  
+  public combineAndSortShares(sharedWith: {firstName?: string}[], pendingShares: {firstName?: string}[]): {}[] {
     return [
       ...sharedWith,
       ...pendingShares
     ].sort((user1, user2) => {
-      return user1.firstName > user2.firstName ? 1 : (user2.firstName > user1.firstName ? -1 : 0);
+      return user1.firstName.toLowerCase() > user2.firstName.toLowerCase() ? 1 : (user2.firstName.toLowerCase() > user1.firstName.toLowerCase() ? -1 : 0);
     });
+  }
+
+  public userIdSetter(isPending: boolean, id: number): string {
+    return isPending ? `pendingShares-${id}` : `${id}`;
   }
 }

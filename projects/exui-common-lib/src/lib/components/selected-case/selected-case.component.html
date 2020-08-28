@@ -34,41 +34,18 @@
       </tr>
       </thead>
       <tbody class="govuk-table__body">
-        <tr class="govuk-table__row" *ngFor="let user of combinedSortedShares(sharedCase.sharedWith, sharedCase.pendingShares); index as idx; trackBy: trackByUserId">
-          <td id="user-full-name-{{ idx }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
-          <td id="user-email-{{ idx }}" class="govuk-table__cell">{{ user.email }}</td>
+        <tr class="govuk-table__row" *ngFor="let user of combinedSortedShares; index as idx; trackBy: trackByUserId">
+          <td id="user-full-name-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
+          <td id="user-email-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.email }}</td>
           <td class="govuk-table__cell">
-            <a *ngIf="canRemove(sharedCase.caseId, user)" (click)="onRemove(user, sharedCase)" href="javascript:void(0);">Remove</a>
-            <a *ngIf="canCancel(sharedCase.caseId, user)" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">Cancel</a>
+            <a *ngIf="canRemove(sharedCase.caseId, user) | async" (click)="onRemove(user, sharedCase)" href="javascript:void(0);">Remove</a>
+            <a *ngIf="canCancel(sharedCase.caseId, user) | async" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">Cancel</a>
           </td>
           <td class="govuk-table__cell">
-            <span *ngIf="isToBeRemoved(sharedCase.caseId, user)" class="hmcts-badge hmcts-badge--red">to be removed</span>
-            <span *ngIf="isToBeAdded(sharedCase.caseId, user)" class="hmcts-badge">To be added</span>
+            <span *ngIf="isToBeRemoved(sharedCase.caseId, user) | async" class="hmcts-badge hmcts-badge--red">to be removed</span>
+            <span *ngIf="isToBeAdded(sharedCase.caseId, user) | async" class="hmcts-badge">To be added</span>
           </td>
         </tr>
-
-
-      <!-- <tr class="govuk-table__row" *ngFor="let user of sharedCase.sharedWith; index as idx; trackBy: trackByUserId">
-        <td id="user-full-name-{{ idx }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
-        <td id="user-email-{{ idx }}" class="govuk-table__cell">{{ user.email }}</td>
-        <td class="govuk-table__cell">
-          <a *ngIf="canRemove(sharedCase.caseId, user) | async" (click)="onRemove(user, sharedCase)" href="javascript:void(0);">Remove</a>
-          <a *ngIf="canCancel(sharedCase.caseId, user) | async" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">Cancel</a>
-        </td>
-        <td class="govuk-table__cell">
-          <span *ngIf="isToBeRemoved(sharedCase.caseId, user) | async" class="hmcts-badge hmcts-badge--red">to be removed</span>
-        </td>
-      </tr>
-      <tr class="govuk-table__row" *ngFor="let user of sharedCase.pendingShares; index as idx; trackBy: trackByUserId">
-        <td id="user-full-name-pendingShares-{{idx}}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
-        <td id="user-email-pendingShares-{{idx}}" class="govuk-table__cell">{{ user.email }}</td>
-        <td class="govuk-table__cell">
-          <a *ngIf="canCancel(sharedCase.caseId, user) | async" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">Cancel</a>
-        </td>
-        <td class="govuk-table__cell">
-          <span *ngIf="isToBeAdded(sharedCase.caseId, user) | async" class="hmcts-badge">To be added</span>
-        </td>
-      </tr> -->
       </tbody>
     </table>
   </div>
