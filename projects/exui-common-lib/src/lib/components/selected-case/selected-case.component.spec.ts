@@ -32,6 +32,23 @@ describe('SelectedCaseComponent', () => {
       }]
     };
     component.shareCases$ = of(shareCases);
+    component.ngOnChanges({
+      sharedCase: {
+        previousValue: {},
+        firstChange: false,
+        isFirstChange: () => false,
+        currentValue: {
+          caseId: 'C111111',
+          caseTitle: 'Sarah vs Pete',
+          sharedWith: [{
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com'
+          }]
+        }
+      }
+    });
     fixture.detectChanges();
   });
 
@@ -348,6 +365,14 @@ describe('SelectedCaseComponent', () => {
     }];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
+    component.ngOnChanges({
+      sharedCase: {
+        previousValue: {},
+        firstChange: false,
+        isFirstChange: () => false,
+        currentValue: shareCases[0]
+      }
+    });
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr:nth-of-type(2) td a');
     expect(userActionLink.textContent).toEqual('Cancel');
@@ -399,6 +424,14 @@ describe('SelectedCaseComponent', () => {
     }];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
+    component.ngOnChanges({
+      sharedCase: {
+        previousValue: {},
+        firstChange: false,
+        isFirstChange: () => false,
+        currentValue: shareCases[0]
+      }
+    });
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr:nth-of-type(2) td:nth-of-type(4)');
     expect(userActionLink.textContent).toEqual('To be added');
@@ -495,6 +528,62 @@ describe('SelectedCaseComponent', () => {
     expect(component.showUserAccessTable()).toBeTruthy();
     expect(fixture.debugElement.nativeElement.querySelector('#access-info-no-user').textContent).toContain('No users from your organisation currently have access to this case.');
     expect(fixture.debugElement.nativeElement.querySelector('#access-info-has-users')).toBeNull();
+  });
+
+  describe('combineAndSortShares', () => {
+    it('should return a combined and sorted array', () => {
+      const sharedWith = [
+        {
+          firstName: 'C'
+        },
+        {
+          firstName: 'a'
+        }
+      ];
+
+      const pendingShares = [
+        {
+          firstName: 'b'
+        },
+        {
+          firstName: 'e'
+        }
+      ];
+
+      const result = component.combineAndSortShares(sharedWith, pendingShares);
+      const expected = [
+        {
+          firstName: 'a'
+        },
+        {
+          firstName: 'b'
+        },
+        {
+          firstName: 'C'
+        },
+        {
+          firstName: 'e'
+        }
+      ];
+
+      expect(result).toEqual(expected);
+    });
+  });
+
+  describe('userIdSetter', () => {
+    it('should set the correct id when pending', () => {
+      const result = component.userIdSetter(true, 4);
+      const expected = 'pendingShares-4';
+
+      expect(result).toEqual(expected);
+    });
+
+    it('should set the correct id when not pending', () => {
+      const result = component.userIdSetter(false, 4);
+      const expected = '4';
+
+      expect(result).toEqual(expected);
+    });
   });
 
   afterEach(() => {
