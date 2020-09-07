@@ -35,8 +35,14 @@
   width: 5%;
   float: left;
 }
+.govuk-table-column-header {
+  width: 40%;
+}
+.govuk-table-column-actions {
+  width: 10%;
+}
 .govuk-table-column-label {
-  width: 15%;
+  width: 10%;
 }
 .govuk-div-align-left {
   font-family: "nta", Arial, sans-serif;
