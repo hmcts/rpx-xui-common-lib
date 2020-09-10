@@ -24,7 +24,7 @@
           <div *ngIf="user.manageCases === 'Yes'">Manage Cases</div>
           <div *ngIf="user.roles && user.roles.includes('pui-caa')">Case Access Administrator</div>
         </td>
-        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">Change</a></td>   
+        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">Change <span class="govuk-visually-hidden">roles</span></a></td>   
     </tr>
   </tbody>
 </table>
