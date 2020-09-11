@@ -286,7 +286,7 @@ describe('SelectedCaseComponent', () => {
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
     expect(userActionLink.length).toEqual(1);
-    expect(userActionLink[0].textContent).toEqual('Remove');
+    expect(userActionLink[0].textContent).toContain('Remove');
   });
 
   it('should display Cancel link to pending unshare user', () => {
@@ -311,7 +311,7 @@ describe('SelectedCaseComponent', () => {
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
     expect(userActionLink.length).toEqual(1);
-    expect(userActionLink[0].textContent).toEqual('Cancel');
+    expect(userActionLink[0].textContent).toContain('Cancel');
   });
 
   it('should call onCancel when when html link cancel clicked', () => {
@@ -338,7 +338,7 @@ describe('SelectedCaseComponent', () => {
     fixture.detectChanges();
 
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');
-    expect(userActionLink.textContent).toEqual('Cancel');
+    expect(userActionLink.textContent).toContain('Cancel');
     userActionLink.click();
     expect(component.onCancel).toHaveBeenCalled();
   });
@@ -375,7 +375,7 @@ describe('SelectedCaseComponent', () => {
     });
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr:nth-of-type(2) td a');
-    expect(userActionLink.textContent).toEqual('Cancel');
+    expect(userActionLink.textContent).toContain('Cancel');
   });
 
   it('should call onRemove when when html link Remove clicked', () => {
@@ -398,7 +398,7 @@ describe('SelectedCaseComponent', () => {
     fixture.detectChanges();
 
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');
-    expect(userActionLink.textContent).toEqual('Remove');
+    expect(userActionLink.textContent).toContain('Remove');
     userActionLink.click();
     expect(component.onRemove).toHaveBeenCalled();
   });
@@ -460,7 +460,7 @@ describe('SelectedCaseComponent', () => {
     component.sharedCase = shareCases[0];
     fixture.detectChanges();
     const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td:nth-of-type(4)');
-    expect(userActionLink.textContent).toEqual('to be removed');
+    expect(userActionLink.textContent).toEqual('To be removed');
   });
 
   it('should show "All users with access to this case" when a user is added to the case', () => {
@@ -550,7 +550,7 @@ describe('SelectedCaseComponent', () => {
         }
       ];
 
-      const result = component.combineAndSortShares(sharedWith, pendingShares);
+      const result = component.combineAndSortShares(sharedWith as UserDetails[], pendingShares as UserDetails[]);
       const expected = [
         {
           firstName: 'a'
@@ -566,7 +566,7 @@ describe('SelectedCaseComponent', () => {
         }
       ];
 
-      expect(result).toEqual(expected);
+      expect(result).toEqual(expected as UserDetails[]);
     });
   });
 

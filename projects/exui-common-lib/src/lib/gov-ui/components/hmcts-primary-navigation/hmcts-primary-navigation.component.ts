@@ -12,7 +12,7 @@ export class HmctsPrimaryNavigationComponent {
     }
 
     @Input() public label: string;
-    @Input() public items: object[];
+    @Input() public items: {active: boolean, href: string, text: string}[];
     @Input() public isBrandedHeader: boolean;
 
     public isUserLoggedIn: boolean;

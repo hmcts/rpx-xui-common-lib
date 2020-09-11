@@ -23,7 +23,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   public shareCases: SharedCase[];
   public shareCases$: Observable<SharedCase[]>;
 
-  public combinedSortedShares: {}[];
+  public combinedSortedShares: UserDetails[];
 
   constructor(private readonly stateService: CaseSharingStateService) { }
 
@@ -158,7 +158,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
     return false;
   }
   
-  public combineAndSortShares(sharedWith: {firstName?: string}[], pendingShares: {firstName?: string}[]): {}[] {
+  public combineAndSortShares(sharedWith: UserDetails[], pendingShares: UserDetails[]): UserDetails[] {
     return [
       ...sharedWith,
       ...pendingShares
