@@ -1,3 +1,4 @@
+export * from './accessibility/accessibility.component';
 export * from './contact-details/contact-details.component';
 export * from './hmcts-session-dialog/hmcts-session-dialog.component';
 export * from './tc-confirm/tc-confirm.component';

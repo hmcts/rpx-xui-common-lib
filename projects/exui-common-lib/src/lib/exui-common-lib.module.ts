@@ -51,6 +51,7 @@ import { GoogleAnalyticsService } from './services/google-analytics/google-analy
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
+import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -78,7 +79,8 @@ export const COMMON_COMPONENTS = [
   SelectedCaseComponent,
   SelectedCaseConfirmComponent,
   UserSelectComponent,
-  TabComponent
+  TabComponent,
+  AccessibilityComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
