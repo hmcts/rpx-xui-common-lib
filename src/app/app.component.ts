@@ -43,6 +43,30 @@ export class AppComponent implements OnInit {
     text: 'Tab2'
   }];
 
+  // START: Due Date Component.
+  public dueDate: Date; // = new Date();
+  public dueDateText: string; // = this.dueDate.toLocaleDateString();
+  public updateDueDate(value: string): void {
+    const parts: string[] = value.split('/');
+    if (parts.length == 3) {
+      const parsedDate: number = Date.parse(parts.reverse().join('-'));
+      if (isNaN(parsedDate) == false) {
+        this.dueDate = new Date(parsedDate);
+      } 
+    }
+  }
+  public highUrgencyCutoff: number = 0;
+  public highUrgencyCutoffText: string = '0';
+  public updateHighUrgencyCutoff(value: string): void {
+    this.highUrgencyCutoff = parseInt(value);
+  }
+  public mediumUrgencyCutoff: number = 2;
+  public mediumUrgencyCutoffText: string = '2';
+  public updateMediumUrgencyCutoff(value: string): void {
+    this.mediumUrgencyCutoff = parseInt(value);
+  }
+  // END: Due Date Component.
+
   public testObservable: Observable<string[]> = of(['this', 'is', 'a', 'test']);
 
   public tabChangeEvent(eventObject: any) {

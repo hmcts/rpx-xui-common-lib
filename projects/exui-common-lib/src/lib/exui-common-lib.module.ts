@@ -1,3 +1,4 @@
+import {DueDateComponent} from './components/due-date/due-date.component';
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -80,7 +81,8 @@ export const COMMON_COMPONENTS = [
   SelectedCaseConfirmComponent,
   UserSelectComponent,
   TabComponent,
-  AccessibilityComponent
+  AccessibilityComponent,
+  DueDateComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
