@@ -26,8 +26,8 @@ export class GoogleTagManagerService {
     this.googleTagManagerKey = googleTagManagerKey;
     try {
 
-      this.window['dataLayer'] = this.window['dataLayer'] || [];
-      this.window['dataLayer'].push({
+      (this.window as any).dataLayer = (this.window as any).dataLayer || [];
+      (this.window as any).dataLayer.push({
         'gtm.start': new Date().getTime(),
         event: 'gtm.js'
       });
