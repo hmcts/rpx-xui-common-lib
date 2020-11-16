@@ -12,7 +12,7 @@ class MockTitle {
   }
 }
 
-const windowMock: Window = { gtag: () => {}} as any;
+const windowMock: Window = { dataLayer : []} as any;
 
 describe('GoogleTagManagerService', () => {
 
@@ -51,9 +51,10 @@ describe('GoogleTagManagerService', () => {
   }));
 
   it('should call gtag with correct params', inject([GoogleTagManagerService], (service: GoogleTagManagerService) => {
-    spyOn(windowTestBed as any, 'gtag').and.callThrough();
-    service.event('eventName', {});
-    expect((windowTestBed as any).gtag).toHaveBeenCalledWith('event', 'eventName', {});
+    spyOn((windowTestBed as any).dataLayer, 'push').and.callThrough();
+    const params = {};
+    service.event('eventName', params);
+    expect((windowTestBed as any).dataLayer.push).toHaveBeenCalledWith({ event: 'eventName', params });
   }));
 
   it('init should call router navigation end and gtag with correct config',
@@ -61,11 +62,14 @@ describe('GoogleTagManagerService', () => {
     const event = new NavigationEnd(42, '/url', '/redirect-url');
     TestBed.get(Router).events.next(event);
     spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
-    spyOn(windowTestBed as any, 'gtag').and.callThrough();
+    spyOn((windowTestBed as any).dataLayer, 'push').and.callThrough();
     service.init('testId');
-    expect((windowTestBed as any).gtag).toHaveBeenCalledWith('config', 'testId', {
-      page_path: '/redirect-url',
-      page_title: 'testTitle'
+    expect((windowTestBed as any).dataLayer.push).toHaveBeenCalledWith({
+      event: 'pageview',
+      page: {
+        path: '/redirect-url',
+        title: 'testTitle'
+      }
     });
   }));
 
