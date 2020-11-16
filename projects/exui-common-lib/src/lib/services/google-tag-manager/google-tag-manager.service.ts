@@ -25,22 +25,17 @@ export class GoogleTagManagerService {
   public init(googleTagManagerKey: string) {
     this.googleTagManagerKey = googleTagManagerKey;
     try {
+
+      this.window['dataLayer'] = this.window['dataLayer'] || [];
+      this.window['dataLayer'].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+
       const script = this.document.createElement('script');
       script.async = true;
       script.src = `https://www.googletagmanager.com/gtm.js?id=${this.googleTagManagerKey}`;
       this.document.head.appendChild(script);
-
-      const script2 = this.document.createElement('script');
-      script2.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag({
-          'gtm.start': new Date().getTime(),
-          event: 'gtm.js',
-        });
-        gtag('config', '${this.googleTagManagerKey}', {'send_page_view': false});
-      `;
-      this.document.head.appendChild(script2);
 
     } catch (ex) {
       console.error('Error appending google tag manager');
@@ -53,9 +48,12 @@ export class GoogleTagManagerService {
     if (this.googleTagManagerKey) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          (this.window as any).gtag('config', this.googleTagManagerKey, {
-            page_path: event.urlAfterRedirects,
-            page_title: this.title.getTitle(),
+          (this.window as any).dataLayer.push({
+            event: 'pageview',
+            page: {
+              path: event.urlAfterRedirects,
+              title: this.title.getTitle()
+            }
           });
         }
       });
@@ -63,6 +61,9 @@ export class GoogleTagManagerService {
   }
 
   public event(eventName: string, params: {}) {
-    (this.window as any).gtag('event', eventName, params);
+    (this.window as any).dataLayer.push({
+      event: eventName,
+      params
+    });
   }
 }
