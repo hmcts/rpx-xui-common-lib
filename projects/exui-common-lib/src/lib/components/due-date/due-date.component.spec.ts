@@ -1,7 +1,8 @@
-import {BadgeColour} from '../../models/due-date.model';
-import {formatDate} from '@angular/common';
-import {DueDateComponent} from './due-date.component';
-import {async, TestBed, ComponentFixture} from '@angular/core/testing';
+import { formatDate } from '@angular/common';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { BadgeColour } from '../../models/due-date.model';
+import { DueDateComponent } from './due-date.component';
 
 describe('DueDateComponent', () => {
   let component: DueDateComponent;
