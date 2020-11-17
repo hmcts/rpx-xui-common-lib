@@ -59,6 +59,8 @@ export class AppComponent implements OnInit {
 
   // START: Checkbox List Component properties.
   public twickers: CheckboxLocation = { value: 6, name: 'Twickenham', borough: 'Richmond' };
+  public wimbledon: CheckboxLocation = { value: 8, name: 'Wimbledon', borough: 'Merton' };
+  public goldersGreen: CheckboxLocation = { value: 9, name: 'Golders Green', borough: 'Barnet' };
   public locations: CheckboxLocation[] = [
     { value: 1, name: 'Baker Street', borough: 'Westminster' },
     { value: 2, name: 'Clapham Junction', borough: 'Wandsworth' },
@@ -71,6 +73,12 @@ export class AppComponent implements OnInit {
   public preselection: CheckboxLocation[] = [ this.twickers ];
   public listHeight: string = '000';
   public checkboxEvents: string = '';
+  public get wimbledonAdded(): boolean {
+    return this.locations.includes(this.wimbledon);
+  }
+  public get goldersGreenAdded(): boolean {
+    return this.locations.includes(this.goldersGreen);
+  }
   // END: Checkbox List Component properties.
 
   public testObservable: Observable<string[]> = of(['this', 'is', 'a', 'test']);
@@ -107,6 +115,17 @@ export class AppComponent implements OnInit {
     thisEvent += selection.map(item => this.labelFunction(item)).join(', ');
     console.log(thisEvent, selection);
     this.checkboxEvents += `\n\n${thisEvent}`;
+  }
+  public addLocation(location: CheckboxLocation): void {
+    if (!this.locations.includes(location)) {
+      this.locations = [ ...this.locations, location ];
+    }
+  }
+  public removeLocation(location: CheckboxLocation): void {
+    if (this.locations.includes(location)) {
+      this.locations.splice(this.locations.indexOf(location), 1);
+      this.locations = [ ...this.locations ];
+    }
   }
   // END: Checkbox List Component functions.
 
