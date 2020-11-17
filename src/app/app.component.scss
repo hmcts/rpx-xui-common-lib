@@ -5,3 +5,16 @@
 .body-text-highlight {
   font-weight: bold;
 }
+
+#checkbox_list_height {
+  margin-bottom: 5px;
+}
+:host ::ng-deep .checkbox-list-test {
+  &.h_000 .xui-checkbox-list { height: auto; }
+  &.h_050 .xui-checkbox-list { height: 50px; }
+  &.h_080 .xui-checkbox-list { height: 80px; }
+  &.h_100 .xui-checkbox-list { height: 100px; }
+}
+.checkbox-events {
+  white-space: pre;
+}

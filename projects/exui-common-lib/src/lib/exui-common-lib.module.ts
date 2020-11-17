@@ -1,11 +1,14 @@
-import {DueDateComponent} from './components/due-date/due-date.component';
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
+
+import { AccessibilityComponent } from './components/accessibility/accessibility.component';
+import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
@@ -17,8 +20,12 @@ import { ShareCaseConfirmComponent } from './components/share-case-confirm/share
 import { ShareCaseComponent } from './components/share-case/share-case.component';
 import { TabComponent } from './components/tab/tab.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
-import { TcDisplayHtmlComponent } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
-import { TcDisplayPlainComponent } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
+import {
+  TcDisplayHtmlComponent,
+} from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
+import {
+  TcDisplayPlainComponent,
+} from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -31,7 +38,9 @@ import { GovUkDateComponent } from './gov-ui/components/gov-uk-date/gov-uk-date.
 import { GovUkErrorMessageComponent } from './gov-ui/components/gov-uk-error-message/gov-uk-error-message.component';
 import { GovUkFieldsetComponent } from './gov-ui/components/gov-uk-fieldset/gov-uk-fieldset.component';
 import { GovUkFileUploadComponent } from './gov-ui/components/gov-uk-file-upload/gov-uk-file-upload.component';
-import { GovUkFormGroupWrapperComponent } from './gov-ui/components/gov-uk-form-group-wrapper/gov-uk-form-group-wrapper.component';
+import {
+  GovUkFormGroupWrapperComponent,
+} from './gov-ui/components/gov-uk-form-group-wrapper/gov-uk-form-group-wrapper.component';
 import { GovUkInputComponent } from './gov-ui/components/gov-uk-input/gov-uk-input.component';
 import { GovUkLabelComponent } from './gov-ui/components/gov-uk-label/gov-uk-label.component';
 import { GovUkRadioComponent } from './gov-ui/components/gov-uk-radio/gov-uk-radio.component';
@@ -43,7 +52,9 @@ import { HmctsBannerComponent } from './gov-ui/components/hmcts-banner/hmcts-ban
 import { HmctsErrorSummaryComponent } from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
 import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
 import { HmctsMainWrapperComponent } from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
-import { HmctsPrimaryNavigationComponent } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
+import {
+  HmctsPrimaryNavigationComponent,
+} from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
@@ -53,7 +64,6 @@ import { GoogleTagManagerService } from './services/google-tag-manager/google-ta
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
-import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -83,7 +93,8 @@ export const COMMON_COMPONENTS = [
   UserSelectComponent,
   TabComponent,
   AccessibilityComponent,
-  DueDateComponent
+  DueDateComponent,
+  CheckboxListComponent
 ];
 
 export const GOV_UI_COMPONENTS = [

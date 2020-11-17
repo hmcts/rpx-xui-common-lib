@@ -57,3 +57,21 @@
     <td><input type="number" [value]="mediumUrgencyCutoffText" (input)="updateMediumUrgencyCutoff($event.target.value)" /></td>
   </tr>
 </table>
+
+
+<h2>
+  Checkbox list component:
+</h2>
+List height:
+<select id="checkbox_list_height" [value]="listHeight" (change)="listHeight = $event.target.value">
+  <option value="000">Default (no limt)</option>
+  <option value="100">100px</option>
+  <option value="080">80px</option>
+  <option value="050">50px</option>
+</select>
+<xuilib-checkbox-list [options]="locations" [labelFunction]="labelFunction" [preselection]="preselection"
+                      [className]="'checkbox-list-test h_' + listHeight"
+                      (selectionChange)="onCheckboxSelectionChange($event)"></xuilib-checkbox-list>
+<div class="checkbox-events">
+  {{checkboxEvents}}
+</div>
