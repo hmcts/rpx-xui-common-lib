@@ -107,8 +107,15 @@ export class AppComponent implements OnInit {
   // END: Due Date Component functions.
 
   // START: Checkbox List Component functions.
-  public labelFunction(item: CheckboxLocation): string {
+  public labelName = (item: CheckboxLocation): string => {
     return item.name;
+  }
+  public labelBorough = (item: CheckboxLocation): string => {
+    return item.borough;
+  }
+  public labelFunction: (item: CheckboxLocation) => string = this.labelName;
+  public setLabelFunction(fn: (item: CheckboxLocation) => string): void {
+    this.labelFunction = fn;
   }
   public onCheckboxSelectionChange(selection: CheckboxLocation[]): void {
     let thisEvent: string = 'Selection changed to:\n * ';
