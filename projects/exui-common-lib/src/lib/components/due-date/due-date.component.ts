@@ -1,6 +1,7 @@
-import {BadgeColour, SECONDS_IN_A_DAY} from '../../models/due-date.model';
-import {formatDate} from '@angular/common';
-import {Component, Input, OnChanges, ViewEncapsulation} from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
+
+import { BadgeColour, SECONDS_IN_A_DAY } from '../../models/due-date.model';
 
 @Component({
   selector: 'xuilib-due-date',
@@ -22,13 +23,13 @@ export class DueDateComponent implements OnChanges {
    *    * Set to 0 if you want it to show HIGH if it was due yesterday.
    *    * Set to 1 if you want it to show HIGH if it's due today.
    *    * Set to 2 if you want it to show HIGH if it's due tomorrow.
-   * 
+   *
    * Defaults to 0 (ZERO), which means it won't show as HIGH urgency until the
    * due date is in the past.
-   * 
+   *
    * NOTE: If this is higher than the mediumUrgencyCutoff value, MEDIUM urgency
    * will never be shown.
-   * 
+   *
    * ALSO NOTE: Anything overdue is automatically considered HIGH urgency.
    */
   @Input() public highUrgencyCutoff: number = 0; // Default
@@ -39,41 +40,41 @@ export class DueDateComponent implements OnChanges {
    *    * Set to 1 if you want it to show MEDIUM if it's due today.
    *    * Set to 2 if you want it to show MEDIUM if it's due tomorrow.
    *    * Set to 3 if you want it to show MEDIUM if it's due the day after tomorrow.
-   * 
+   *
    * Defaults to 2, which means it won't show as MEDIUM urgency unless the
    * due date is today or tomorrow.
-   * 
+   *
    * NOTE: If this is lower than the highUrgencyCutoff value, MEDIUM urgency
    * will never be shown.
    */
   @Input() public mediumUrgencyCutoff: number = 2;
 
   // The HMCTS badge class, used for colouration.
-  private _badge: string;
+  private pBadge: string;
   public get badge(): string {
-    return this._badge;
+    return this.pBadge;
   }
 
   // The textual label to display in the component.
-  private _label: string;
+  private pLabel: string;
   public get label(): string {
-    return this._label;
+    return this.pLabel;
   }
 
   // The accessible label, which is also used for the tooltip.
-  private _accessibleLabel: string;
+  private pAccessibleLabel: string;
   public get accessibleLabel(): string {
-    return this._accessibleLabel;
+    return this.pAccessibleLabel;
   }
 
   // How many days the dueDate varies from today.
-  private _daysDiff: number;
+  private pDaysDiff: number;
   public get daysDiff(): number {
-    return this._daysDiff;
+    return this.pDaysDiff;
   }
 
   // Catch any changes to any of the Input() properties.
-  ngOnChanges(): void {
+  public ngOnChanges(): void {
     this.handleInputChanges();
   }
 
@@ -83,34 +84,34 @@ export class DueDateComponent implements OnChanges {
     if (!this.dueDate) {
       return;
     }
-    
+
     // How many days from today is the due date?
     // Already happened means daysDiff > 0;
     // Today means daysDiff = 0;
     // Yet to come means daysDiff < 0;
-    this._daysDiff = this.getDaysDifference(this.dueDate, new Date());
+    this.pDaysDiff = this.getDaysDifference(this.dueDate, new Date());
 
     // Is it overdue?
     if (this.daysDiff > 0) {
-      this._badge = BadgeColour.RED;
-      const daysLabel = this.daysDiff == 1 ? 'day' : 'days';
-      this._label = `+${this.daysDiff} ${daysLabel}`;
-      this._accessibleLabel = `Overdue by ${this.daysDiff} ${daysLabel}`;
+      this.pBadge = BadgeColour.RED;
+      const daysLabel = this.daysDiff === 1 ? 'day' : 'days';
+      this.pLabel = `+${this.daysDiff} ${daysLabel}`;
+      this.pAccessibleLabel = `Overdue by ${this.daysDiff} ${daysLabel}`;
     } else {
       // Special label for "Today".
-      if (this.daysDiff == 0) {
-        this._label = 'TODAY';
-        this._accessibleLabel = 'Due today';
+      if (this.daysDiff === 0) {
+        this.pLabel = 'TODAY';
+        this.pAccessibleLabel = 'Due today';
       } else {
-        this._label = `${formatDate(this.dueDate, 'd MMM', 'en-GB')}`;
-        this._accessibleLabel = `Due on ${formatDate(this.dueDate, 'dd/MM/yyyy', 'en-GB')}`;
+        this.pLabel = `${formatDate(this.dueDate, 'd MMM', 'en-GB')}`;
+        this.pAccessibleLabel = `Due on ${formatDate(this.dueDate, 'dd/MM/yyyy', 'en-GB')}`;
       }
       if (this.daysDiff + this.highUrgencyCutoff > 0) {
-        this._badge = BadgeColour.RED;
+        this.pBadge = BadgeColour.RED;
       } else if (this.daysDiff + this.mediumUrgencyCutoff > 0) {
-        this._badge = BadgeColour.ORANGE;
+        this.pBadge = BadgeColour.ORANGE;
       } else {
-        this._badge = BadgeColour.GREEN;
+        this.pBadge = BadgeColour.GREEN;
       }
     }
   }
