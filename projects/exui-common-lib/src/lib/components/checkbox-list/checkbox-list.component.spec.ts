@@ -14,7 +14,7 @@ class WrapperComponent {
   @Input() public labelFunction: (item: any) => string;
 }
 
-fdescribe('CheckboxListComponent', () => {
+describe('CheckboxListComponent', () => {
   let component: CheckboxListComponent<any>;
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
