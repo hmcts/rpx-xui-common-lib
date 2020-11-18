@@ -49,4 +49,20 @@ export class LaunchDarklyService implements FeatureToggleService {
             distinctUntilChanged()
         );
     }
+
+    /**
+     * This method returns an observable that will only get the state of the feature toggle
+     * once. It calls the LD SDK directly, and should only be used in circumstances where
+     * only one value should be emitted, that value coming directly from LD. This will likely
+     * only apply for Guards, and should be used only when absolutely necessary.
+     * @see getValue for regular usage.
+     * @param feature string
+     * @param defaultValue R
+     */
+    public getValueOnce<R>(feature: string, defaultValue: R): Observable<R> {
+        return this.ready.pipe(
+            filter(ready => ready),
+            map(() => this.client.variation(feature, defaultValue))
+        );
+    }
 }
