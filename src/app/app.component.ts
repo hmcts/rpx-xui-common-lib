@@ -79,6 +79,7 @@ export class AppComponent implements OnInit {
   public get goldersGreenAdded(): boolean {
     return this.locations.includes(this.goldersGreen);
   }
+  public labelFunction: (item: CheckboxLocation) => string;
   // END: Checkbox List Component properties.
 
   public testObservable: Observable<string[]> = of(['this', 'is', 'a', 'test']);
@@ -113,7 +114,6 @@ export class AppComponent implements OnInit {
   public labelBorough = (item: CheckboxLocation): string => {
     return item.borough;
   }
-  public labelFunction: (item: CheckboxLocation) => string = this.labelName;
   public setLabelFunction(fn: (item: CheckboxLocation) => string): void {
     this.labelFunction = fn;
   }
@@ -139,5 +139,6 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
     // TODO: gtm key here will give 404 as it doesn't have a container
     this.googleTagManagerService.init('GTM-1234');
+    this.setLabelFunction(this.labelName);
   }
 }
