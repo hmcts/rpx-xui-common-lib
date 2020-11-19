@@ -21,7 +21,7 @@ function firstExampleLabelFunction(item: any): string {
 
 // second example of a label function to mock
 function secondExampleLabelFunction(item: any): string {
-  return item.toLowerCase()
+  return item.toLowerCase();
 }
 
 describe('CheckboxListComponent', () => {
@@ -238,7 +238,7 @@ describe('CheckboxListComponent', () => {
   it('should not display if the options are removed', () => {
     // set the options and labelFunction
     wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = exampleLabelFunction;
+    wrapper.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // get one of the checkboxes and confirm it is available
@@ -274,7 +274,7 @@ describe('CheckboxListComponent', () => {
     checkbox = element.querySelector('input');
     expect(checkbox).toBe(null);
 
-    //add the options and remove the labelFunction
+    // add the options and remove the labelFunction
     wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
     wrapper.labelFunction = undefined;
     fixture.detectChanges();
@@ -283,7 +283,7 @@ describe('CheckboxListComponent', () => {
     checkbox = element.querySelector('input');
     expect(checkbox).toBe(null);
 
-    //remove the options
+    // remove the options
     wrapper.options = undefined;
     fixture.detectChanges();
 
