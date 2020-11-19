@@ -14,9 +14,14 @@ class WrapperComponent {
   @Input() public labelFunction: (item: any) => string;
 }
 
-// example of a label function to mock this
-function exampleLabelFunction(item: any): string {
+// example of a label function to mock
+function firstExampleLabelFunction(item: any): string {
   return item.toUpperCase();
+}
+
+// second example of a label function to mock
+function secondExampleLabelFunction(item: any): string {
+  return item.toLowerCase()
 }
 
 describe('CheckboxListComponent', () => {
@@ -163,7 +168,7 @@ describe('CheckboxListComponent', () => {
 
   });
 
-  it('should allow getting the selectied content', () => {
+  it('should allow getting the selected content', () => {
     // set the options for testing
     component.options = ['firstOption', 'secondOption', 'thirdOption'];
     fixture.detectChanges();
@@ -193,7 +198,7 @@ describe('CheckboxListComponent', () => {
 
     // set the options and labelFunction
     component.options = ['firstOption', 'secondOption', 'thirdOption'];
-    component.labelFunction = exampleLabelFunction;
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // get one of the checkboxes and confirm it is available
@@ -207,7 +212,7 @@ describe('CheckboxListComponent', () => {
 
     // set the labelFunction
     component.options = undefined;
-    component.labelFunction = exampleLabelFunction;
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // get one of the checkboxes and confirm it is not available
@@ -229,5 +234,151 @@ describe('CheckboxListComponent', () => {
     const checkbox = element.querySelector(`input`);
     expect(checkbox).toBe(null);
 
+  });
+
+  it('should allow hiding and re-rendering depending on options and the label function', () => {
+    // set the options and labelFunction
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = firstExampleLabelFunction;
+    fixture.detectChanges();
+
+    // get one of the checkboxes and confirm it is available
+    const element = fixture.debugElement.nativeElement;
+    let checkbox = element.querySelector('input');
+    expect(checkbox).not.toBe(null);
+
+    // remove wrapper options
+    wrapper.options = undefined;
+    fixture.detectChanges();
+
+    // Make sure there are no checkboxes.
+    checkbox = element.querySelector('input');
+    expect(checkbox).toBe(null);
+
+    //add the options and remove the labelFunction
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = undefined;
+    fixture.detectChanges();
+
+    // Make sure there are no checkboxes.
+    checkbox = element.querySelector('input');
+    expect(checkbox).toBe(null);
+
+    //remove the options
+    wrapper.options = undefined;
+    fixture.detectChanges();
+
+    // Make sure there are no checkboxes.
+    checkbox = element.querySelector('input');
+    expect(checkbox).toBe(null);
+
+    // set the options and labelFunction
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = firstExampleLabelFunction;
+    fixture.detectChanges();
+
+    // Make sure there are checkboxes.
+    checkbox = element.querySelector('input');
+    expect(checkbox).not.toBe(null);
+  });
+
+  it('should throw a select all change event',  () => {
+    // mock the emitter
+    spyOn(component.selectionChange, 'emit');
+
+    // set the options for testing
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = firstExampleLabelFunction;
+    fixture.detectChanges();
+
+    // dispatch the change event
+    const element = fixture.debugElement.nativeElement;
+    const checkbox = element.querySelector('#select_all');
+    expect(checkbox).not.toBe(null);
+    checkbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    // make sure event called with correct data
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['firstOption', 'secondOption', 'thirdOption']);
+
+    // dispatch event again and make sure no options data is called
+    checkbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith([]);
+
+  });
+
+  it('should throw a select item change event',  () => {
+    // mock the emitter
+    spyOn(component.selectionChange, 'emit');
+
+    // set the options for testing
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = firstExampleLabelFunction;
+    fixture.detectChanges();
+
+    // dispatch a change event
+    const element = fixture.debugElement.nativeElement;
+    const firstCheckbox = element.querySelector('#select_0');
+    const secondCheckbox = element.querySelector('#select_1');
+    expect(firstCheckbox).not.toBe(null);
+    firstCheckbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    // confirm that first option gets emitted
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['firstOption']);
+
+    // dispatch first change event again and confirm no options emitted
+    firstCheckbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith([]);
+
+    // emit second change event
+    expect(secondCheckbox).not.toBe(null);
+    secondCheckbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    // confirm that second option gets emitted
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption']);
+
+    // dispatch first change event and verify first option is emitted with second option
+    firstCheckbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption', 'firstOption']);
+
+    // dispatch first change event again and verify only second option emitted
+    firstCheckbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption']);
+  });
+
+  it('should use a label function to display edited text',  () => {
+    // mock the emitter
+    spyOn(component.selectionChange, 'emit');
+
+    // set the options for testing
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = firstExampleLabelFunction;
+    fixture.detectChanges();
+
+    // verify that the label function works as expected
+    const element = fixture.debugElement.nativeElement;
+    expect(element.querySelectorAll('label')[1].textContent).toContain('FIRSTOPTION');
+    expect(element.querySelectorAll('label')[2].textContent).toContain('SECONDOPTION');
+    expect(element.querySelectorAll('label')[3].textContent).toContain('THIRDOPTION');
+
+    // verify that the second label function works as expected
+    wrapper.labelFunction = secondExampleLabelFunction;
+    fixture.detectChanges();
+    expect(element.querySelectorAll('label')[1].textContent).toContain('firstoption');
+    expect(element.querySelectorAll('label')[2].textContent).toContain('secondoption');
+    expect(element.querySelectorAll('label')[3].textContent).toContain('thirdoption');
   });
 });
