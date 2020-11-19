@@ -19,7 +19,7 @@ function exampleLabelFunction(item: any): string {
   return item.toUpperCase();
 }
 
-describe('CheckboxListComponent', () => {
+fdescribe('CheckboxListComponent', () => {
   let component: CheckboxListComponent<any>;
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
@@ -197,7 +197,7 @@ describe('CheckboxListComponent', () => {
 
     // get one of the checkboxes and confirm it is available
     const element = fixture.debugElement.nativeElement;
-    const checkbox = element.querySelector(`input`);
+    const checkbox = element.querySelector('input');
     expect(checkbox).not.toBe(null);
 
   });
@@ -211,7 +211,7 @@ describe('CheckboxListComponent', () => {
 
     // get one of the checkboxes and confirm it is not available
     const element = fixture.debugElement.nativeElement;
-    const checkbox = element.querySelector(`input`);
+    const checkbox = element.querySelector('input');
     expect(checkbox).toBe(null);
 
   });
@@ -225,7 +225,27 @@ describe('CheckboxListComponent', () => {
 
     // get one of the checkboxes and confirm it is not available
     const element = fixture.debugElement.nativeElement;
-    const checkbox = element.querySelector(`input`);
+    const checkbox = element.querySelector('input');
+    expect(checkbox).toBe(null);
+
+  });
+
+  it('should not display if the options are removed', () => {
+    // set the options and labelFunction
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = exampleLabelFunction;
+    fixture.detectChanges();
+
+    // get one of the checkboxes and confirm it is available
+    const element = fixture.debugElement.nativeElement;
+    let checkbox = element.querySelector('input');
+    expect(checkbox).not.toBe(null);
+
+    wrapper.options = undefined;
+    fixture.detectChanges();
+
+    // Make sure there are no checkboxes.
+    checkbox = element.querySelector('input');
     expect(checkbox).toBe(null);
 
   });
