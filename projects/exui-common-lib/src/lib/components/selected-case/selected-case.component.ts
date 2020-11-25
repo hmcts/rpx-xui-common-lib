@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
@@ -157,7 +158,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
     }
     return false;
   }
-  
+
   public combineAndSortShares(sharedWith: UserDetails[], pendingShares: UserDetails[]): UserDetails[] {
     return [
       ...sharedWith,

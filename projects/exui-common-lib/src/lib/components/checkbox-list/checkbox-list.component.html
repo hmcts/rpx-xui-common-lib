@@ -1,0 +1,13 @@
+<div class="xui-checkbox-list" *ngIf="hasOptions && labelFunction">
+  <div class="select-all checkbox-item">
+    <input type="checkbox" id="select_all" [checked]="allSelected" (change)="toggleSelectAll()" />
+    <label for="select_all">Select all / Deselect all</label>
+  </div>
+  <div class="checkbox-items">
+    <div *ngFor="let item of options; let i = index" class="checkbox-item">
+      <input type="checkbox" [id]="'select_' + i"
+             [checked]="isSelected(item)" (change)="toggleItemSelection(item)" />
+      <label [for]="'select_' + i">{{labelFunction(item)}}</label>
+    </div>
+  </div>
+</div>

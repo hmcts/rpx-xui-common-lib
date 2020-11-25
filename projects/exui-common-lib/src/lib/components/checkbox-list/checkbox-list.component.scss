@@ -1,0 +1,24 @@
+.xui-checkbox-list {
+  .select-all {
+    margin-bottom: 5px;
+  }
+  .checkbox-items {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    max-height: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: scroll;
+
+    .checkbox-item {
+      margin-right: 10px;
+    }
+  }
+  .checkbox-item label {
+    padding-left: 5px;
+  }
+}
