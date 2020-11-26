@@ -57,6 +57,7 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { FeatureToggleGuard } from './services/feature-toggle/feature-toggle.guard';
 import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
 import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
@@ -136,7 +137,8 @@ export const GOV_UI_COMPONENTS = [
   ],
   providers: [
     { provide: windowToken, useFactory: windowProvider },
-    { provide: FeatureToggleService, useClass: LaunchDarklyService }
+    { provide: FeatureToggleService, useClass: LaunchDarklyService },
+    FeatureToggleGuard
   ],
   exports: [
     ...COMMON_COMPONENTS,
