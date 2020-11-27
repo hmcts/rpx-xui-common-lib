@@ -117,6 +117,20 @@ export class CheckboxListComponent<T> implements OnChanges {
     this.selectionChange.emit(this.pSelection);
   }
 
+  /**
+   * Handle keyboard interaction for selection (for accessibility purposes).
+   * This will behave like a click when space is pressed.
+   */
+  public handleKeypress($event: KeyboardEvent, item: T): void {
+    if ($event.code === 'Space') {
+      if (item === null) {
+        this.toggleSelectAll();
+      } else {
+        this.toggleItemSelection(item);
+      }
+    }
+  }
+
   // Simple utility function to indicate whether there is an active preselection.
   private get hasPreselection(): boolean {
     return this.preselection && this.preselection.length > 0;

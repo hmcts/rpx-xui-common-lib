@@ -1,6 +1,6 @@
 .xui-checkbox-list {
   .select-all {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
   .checkbox-items {
     display: flex;
@@ -13,12 +13,5 @@
     width: 100%;
     max-width: 100%;
     overflow-x: scroll;
-
-    .checkbox-item {
-      margin-right: 10px;
-    }
-  }
-  .checkbox-item label {
-    padding-left: 5px;
   }
 }
