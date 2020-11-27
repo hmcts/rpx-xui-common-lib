@@ -329,6 +329,35 @@ describe('CheckboxListComponent', () => {
 
   });
 
+
+  it('should handle a select all event from the keyboard',  () => {
+    // mock the emitter
+    spyOn(component.selectionChange, 'emit');
+
+    // set the options for testing
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = firstExampleLabelFunction;
+    fixture.detectChanges();
+
+    // dispatch the change event
+    const element = fixture.debugElement.nativeElement;
+    const checkbox = element.querySelector('#select_all');
+    expect(checkbox).not.toBe(null);
+    checkbox.dispatchEvent(new KeyboardEvent('keypress', { code: 'Space' }));
+    fixture.detectChanges();
+
+    // make sure event called with correct data
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['firstOption', 'secondOption', 'thirdOption']);
+
+    // dispatch event again and make sure no options data is called
+    checkbox.dispatchEvent(new KeyboardEvent('keypress', { code: 'Space' }));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith([]);
+
+  });
+
   it('should throw a select item change event',  () => {
     // mock the emitter
     spyOn(component.selectionChange, 'emit');
@@ -373,6 +402,55 @@ describe('CheckboxListComponent', () => {
 
     // dispatch first change event again and verify only second option emitted
     firstCheckbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption']);
+  });
+
+  it('should throw a select item event from the keyboard',  () => {
+    // mock the emitter
+    spyOn(component.selectionChange, 'emit');
+
+    // set the options for testing
+    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
+    wrapper.labelFunction = firstExampleLabelFunction;
+    fixture.detectChanges();
+
+    // dispatch a change event
+    const element = fixture.debugElement.nativeElement;
+    const firstCheckbox = element.querySelector('#select_0');
+    const secondCheckbox = element.querySelector('#select_1');
+    expect(firstCheckbox).not.toBe(null);
+    firstCheckbox.dispatchEvent(new KeyboardEvent('keypress', { code: 'Space' }));
+    fixture.detectChanges();
+
+    // confirm that first option gets emitted
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['firstOption']);
+
+    // dispatch first change event again and confirm no options emitted
+    firstCheckbox.dispatchEvent(new KeyboardEvent('keypress', { code: 'Space' }));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith([]);
+
+    // emit second change event
+    expect(secondCheckbox).not.toBe(null);
+    secondCheckbox.dispatchEvent(new KeyboardEvent('keypress', { code: 'Space' }));
+    fixture.detectChanges();
+
+    // confirm that second option gets emitted
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption']);
+
+    // dispatch first change event and verify first option is emitted with second option
+    firstCheckbox.dispatchEvent(new KeyboardEvent('keypress', { code: 'Space' }));
+    fixture.detectChanges();
+    expect(component.selectionChange.emit).toHaveBeenCalled();
+    expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption', 'firstOption']);
+
+    // dispatch first change event again and verify only second option emitted
+    firstCheckbox.dispatchEvent(new KeyboardEvent('keypress', { code: 'Space' }));
     fixture.detectChanges();
     expect(component.selectionChange.emit).toHaveBeenCalled();
     expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption']);
