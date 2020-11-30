@@ -1,13 +1,13 @@
 <div class="xui-checkbox-list govuk-checkboxes govuk-checkboxes--small" *ngIf="hasOptions && labelFunction">
   <div class="select-all govuk-checkboxes__item">
     <input type="checkbox" id="select_all" class="govuk-checkboxes__input" [checked]="allSelected"
-           (change)="toggleSelectAll()" (keypress)="handleKeypress($event, null)" />
+           (change)="toggleSelectAll()" />
     <label for="select_all" class="govuk-label govuk-checkboxes__label">Select all / Deselect all</label>
   </div>
   <div class="checkbox-items">
     <div *ngFor="let item of options; let i = index" class="govuk-checkboxes__item">
       <input type="checkbox" [id]="'select_' + i" class="govuk-checkboxes__input" [checked]="isSelected(item)"
-             (change)="toggleItemSelection(item)" (keypress)="handleKeypress($event, item)" />
+             (change)="toggleItemSelection(item)" />
       <label [for]="'select_' + i" class="govuk-label govuk-checkboxes__label">{{labelFunction(item)}}</label>
     </div>
   </div>
