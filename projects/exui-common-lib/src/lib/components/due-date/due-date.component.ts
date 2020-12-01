@@ -96,15 +96,15 @@ export class DueDateComponent implements OnChanges {
       this.pBadge = BadgeColour.RED;
       const daysLabel = this.daysDiff === 1 ? 'day' : 'days';
       this.pLabel = `+${this.daysDiff} ${daysLabel}`;
-      this.pAccessibleLabel = `This task is ${this.daysDiff} ${daysLabel} past its due date`;
+      this.pAccessibleLabel = `Overdue by ${this.daysDiff} ${daysLabel}`;
     } else {
       // Special label for "Today".
       if (this.daysDiff === 0) {
         this.pLabel = 'TODAY';
-        this.pAccessibleLabel = 'This task is due to be completed today';
+        this.pAccessibleLabel = 'Due today';
       } else {
         this.pLabel = `${formatDate(this.dueDate, 'd MMM', 'en-GB')}`;
-        this.pAccessibleLabel = `This task is due to be completed by ${formatDate(this.dueDate, 'd MMMM, y', 'en-GB')}`;
+        this.pAccessibleLabel = `Due on ${formatDate(this.dueDate, 'dd/MM/yyyy', 'en-GB')}`;
       }
       if (this.daysDiff + this.highUrgencyCutoff > 0) {
         this.pBadge = BadgeColour.RED;

@@ -54,10 +54,10 @@ describe('DueDateComponent', () => {
     component.ngOnChanges();
     fixture.detectChanges();
     expect(component.label).toBe('TODAY');
-    expect(component.accessibleLabel).toBe('This task is due to be completed today');
+    expect(component.accessibleLabel).toBe('Due today');
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe('TODAY');
-    expect(element.getAttribute('aria-label')).toBe('This task is due to be completed today');
+    expect(element.getAttribute('aria-label')).toBe('Due today');
 
     // Default for TODAY is MEDIUM urgency.
     expect(component.badge).toBe(BadgeColour.ORANGE);
@@ -72,10 +72,10 @@ describe('DueDateComponent', () => {
     component.ngOnChanges();
     fixture.detectChanges();
     expect(component.label).toBe('+1 day');
-    expect(component.accessibleLabel).toBe('This task is 1 day past its due date');
+    expect(component.accessibleLabel).toBe('Overdue by 1 day');
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe('+1 day'); // Uppercased by the badge.
-    expect(element.getAttribute('aria-label')).toBe('This task is 1 day past its due date');
+    expect(element.getAttribute('aria-label')).toBe('Overdue by 1 day');
 
     // Overdue so definitely "HIGH" urgency.
     expect(component.badge).toBe(BadgeColour.RED);
@@ -90,10 +90,10 @@ describe('DueDateComponent', () => {
     component.ngOnChanges();
     fixture.detectChanges();
     expect(component.label).toBe('+3 days');
-    expect(component.accessibleLabel).toBe('This task is 3 days past its due date');
+    expect(component.accessibleLabel).toBe('Overdue by 3 days');
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe('+3 days'); // Uppercased by the badge.
-    expect(element.getAttribute('aria-label')).toBe('This task is 3 days past its due date');
+    expect(element.getAttribute('aria-label')).toBe('Overdue by 3 days');
 
     // Overdue so definitely "HIGH" urgency.
     expect(component.badge).toBe(BadgeColour.RED);
@@ -109,7 +109,7 @@ describe('DueDateComponent', () => {
     fixture.detectChanges();
     const EXPECTED_LABEL: string = formatDate(TOMORROW, 'd MMM', 'en-GB');
     expect(component.label).toBe(EXPECTED_LABEL);
-    const EXPECTED_ACCESSIBLE_LABEL: string = `This task is due to be completed by ${formatDate(TOMORROW, 'd MMMM, y', 'en-GB')}`;
+    const EXPECTED_ACCESSIBLE_LABEL: string = `Due on ${formatDate(TOMORROW, 'dd/MM/yyyy', 'en-GB')}`;
     expect(component.accessibleLabel).toBe(EXPECTED_ACCESSIBLE_LABEL);
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe(EXPECTED_LABEL); // Uppercased by the badge.
@@ -129,7 +129,7 @@ describe('DueDateComponent', () => {
     fixture.detectChanges();
     const EXPECTED_LABEL: string = formatDate(DAY_AFTER_TOMORROW, 'd MMM', 'en-GB');
     expect(component.label).toBe(EXPECTED_LABEL);
-    const EXPECTED_ACCESSIBLE_LABEL: string = `This task is due to be completed by ${formatDate(DAY_AFTER_TOMORROW, 'd MMMM, y', 'en-GB')}`;
+    const EXPECTED_ACCESSIBLE_LABEL: string = `Due on ${formatDate(DAY_AFTER_TOMORROW, 'dd/MM/yyyy', 'en-GB')}`;
     expect(component.accessibleLabel).toBe(EXPECTED_ACCESSIBLE_LABEL);
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe(EXPECTED_LABEL); // Uppercased by the badge.
@@ -196,10 +196,10 @@ describe('DueDateComponent', () => {
     component.ngOnChanges();
     fixture.detectChanges();
     expect(component.label).toBe('TODAY');
-    expect(component.accessibleLabel).toBe('This task is due to be completed today');
+    expect(component.accessibleLabel).toBe('Due today');
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe('TODAY');
-    expect(element.getAttribute('aria-label')).toBe('This task is due to be completed today');
+    expect(element.getAttribute('aria-label')).toBe('Due today');
 
     // Default for TODAY is MEDIUM urgency.
     expect(component.badge).toBe(BadgeColour.ORANGE);
@@ -213,9 +213,9 @@ describe('DueDateComponent', () => {
 
     // The labels should have changed, as should the badge and urgency.
     expect(component.label).toBe('+1 day');
-    expect(component.accessibleLabel).toBe('This task is 1 day past its due date');
+    expect(component.accessibleLabel).toBe('Overdue by 1 day');
     expect(element.textContent.trim()).toBe('+1 day'); // Uppercased by the badge.
-    expect(element.getAttribute('aria-label')).toBe('This task is 1 day past its due date');
+    expect(element.getAttribute('aria-label')).toBe('Overdue by 1 day');
 
     // Overdue so definitely "HIGH" urgency.
     expect(component.badge).toBe(BadgeColour.RED);
