@@ -340,8 +340,8 @@ describe('CheckboxListComponent', () => {
 
     // dispatch a change event
     const element = fixture.debugElement.nativeElement;
-    const firstCheckbox = element.querySelector('#select_0');
-    const secondCheckbox = element.querySelector('#select_1');
+    const firstCheckbox = element.querySelector('#checkbox_0');
+    const secondCheckbox = element.querySelector('#checkbox_1');
     expect(firstCheckbox).not.toBe(null);
     firstCheckbox.dispatchEvent(new Event('change'));
     fixture.detectChanges();

@@ -1,14 +1,14 @@
 <div class="xui-checkbox-list govuk-checkboxes govuk-checkboxes--small" *ngIf="hasOptions && labelFunction">
   <div class="select-all govuk-checkboxes__item">
-    <input type="checkbox" id="select_all" class="govuk-checkboxes__input" [checked]="allSelected"
-           (change)="toggleSelectAll()" />
-    <label for="select_all" class="govuk-label govuk-checkboxes__label">Select all / Deselect all</label>
+    <input type="checkbox" id="select_all" name="select_all" class="govuk-checkboxes__input" [checked]="allSelected"
+           (change)="toggleSelectAll()" #checkbox />
+    <label for="select_all" class="govuk-label govuk-checkboxes__label" (click)="onLabelClick($event)">Select all / Deselect all</label>
   </div>
   <div class="checkbox-items">
     <div *ngFor="let item of options; let i = index" class="govuk-checkboxes__item">
-      <input type="checkbox" [id]="'select_' + i" class="govuk-checkboxes__input" [checked]="isSelected(item)"
-             (change)="toggleItemSelection(item)" />
-      <label [for]="'select_' + i" class="govuk-label govuk-checkboxes__label">{{labelFunction(item)}}</label>
+      <input type="checkbox" [id]="'checkbox_' + i" [name]="'checkbox_' + i" class="govuk-checkboxes__input" [checked]="isSelected(item)"
+             (change)="toggleItemSelection(item)" #checkbox />
+      <label [for]="'checkbox_' + i" class="govuk-label govuk-checkboxes__label" (click)="onLabelClick($event)">{{labelFunction(item)}}</label>
     </div>
   </div>
 </div>

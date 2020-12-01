@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  ViewChildren,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'xuilib-checkbox-list',
@@ -7,6 +16,11 @@ import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } 
   encapsulation: ViewEncapsulation.None
 })
 export class CheckboxListComponent<T> implements OnChanges {
+  /**
+   * EUI-2989. Local reference to the checkboxes so that they can be
+   * focussed when the corresponding label is clicked.
+   */
+  @ViewChildren('checkbox') public checkboxes: ElementRef[];
 
   /**
    * The options to show checkboxes for. Note that the type
@@ -117,9 +131,29 @@ export class CheckboxListComponent<T> implements OnChanges {
     this.selectionChange.emit(this.pSelection);
   }
 
+  /**
+   * When the user clicks on the label for the input, we need to set the
+   * focus back to the input so that keyboard tabbing still works.
+   */
+  public onLabelClick($event: any): void {
+    const attrFor = $event.target.getAttribute('for');
+    const checkbox: HTMLInputElement = this.getCheckbox(attrFor);
+    if (checkbox) {
+      checkbox.focus();
+    }
+  }
+
   // Simple utility function to indicate whether there is an active preselection.
   private get hasPreselection(): boolean {
     return this.preselection && this.preselection.length > 0;
+  }
+
+  // Get hold of the checkbox for the specified ID from @ViewChildren.
+  private getCheckbox(id: string): HTMLInputElement {
+    const ref = this.checkboxes.find(checkbox => {
+      return checkbox.nativeElement.id === id;
+    });
+    return ref ? ref.nativeElement : undefined;
   }
 
   // Set up the initially selected values.
