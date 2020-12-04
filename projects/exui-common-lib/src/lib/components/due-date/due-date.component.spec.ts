@@ -109,7 +109,7 @@ describe('DueDateComponent', () => {
     fixture.detectChanges();
     const EXPECTED_LABEL: string = formatDate(TOMORROW, 'd MMM', 'en-GB');
     expect(component.label).toBe(EXPECTED_LABEL);
-    const EXPECTED_ACCESSIBLE_LABEL: string = `This task is due to be completed by ${formatDate(TOMORROW, 'd MMMM, y', 'en-GB')}`;
+    const EXPECTED_ACCESSIBLE_LABEL: string = `This task is due to be completed by ${formatDate(TOMORROW, 'd MMMM y', 'en-GB')}`;
     expect(component.accessibleLabel).toBe(EXPECTED_ACCESSIBLE_LABEL);
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe(EXPECTED_LABEL); // Uppercased by the badge.
@@ -129,7 +129,7 @@ describe('DueDateComponent', () => {
     fixture.detectChanges();
     const EXPECTED_LABEL: string = formatDate(DAY_AFTER_TOMORROW, 'd MMM', 'en-GB');
     expect(component.label).toBe(EXPECTED_LABEL);
-    const EXPECTED_ACCESSIBLE_LABEL: string = `This task is due to be completed by ${formatDate(DAY_AFTER_TOMORROW, 'd MMMM, y', 'en-GB')}`;
+    const EXPECTED_ACCESSIBLE_LABEL: string = `This task is due to be completed by ${formatDate(DAY_AFTER_TOMORROW, 'd MMMM y', 'en-GB')}`;
     expect(component.accessibleLabel).toBe(EXPECTED_ACCESSIBLE_LABEL);
     const element: HTMLElement = fixture.debugElement.nativeElement.querySelector('.due-date');
     expect(element.textContent.trim()).toBe(EXPECTED_LABEL); // Uppercased by the badge.
