@@ -104,7 +104,7 @@ export class DueDateComponent implements OnChanges {
         this.pAccessibleLabel = 'This task is due to be completed today';
       } else {
         this.pLabel = `${formatDate(this.dueDate, 'd MMM', 'en-GB')}`;
-        this.pAccessibleLabel = `This task is due to be completed by ${formatDate(this.dueDate, 'd MMMM, y', 'en-GB')}`;
+        this.pAccessibleLabel = `This task is due to be completed by ${formatDate(this.dueDate, 'd MMMM y', 'en-GB')}`;
       }
       if (this.daysDiff + this.highUrgencyCutoff > 0) {
         this.pBadge = BadgeColour.RED;
