@@ -1,4 +1,4 @@
-<div class="xui-checkbox-list govuk-checkboxes govuk-checkboxes--small" *ngIf="hasOptions && labelFunction">
+<div class="xui-checkbox-list govuk-checkboxes govuk-checkboxes--small" *ngIf="isFunctional">
   <div class="select-all govuk-checkboxes__item">
     <input type="checkbox" id="select_all" class="govuk-checkboxes__input" [checked]="allSelected"
            (change)="toggleSelectAll()" />

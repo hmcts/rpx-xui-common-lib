@@ -37,8 +37,12 @@ export class CheckboxListComponent<T> implements OnChanges {
    * Note: This array is immutable, which means pushing and popping will
    * have no effect on which checkboxes are selected.
    */
+  @Input()
   public get selection(): T[] {
     return this.pSelection ? [ ...this.pSelection ] : [];
+  }
+  public set selection(value: T[]) {
+    this.pSelection = this.getSelection(value);
   }
   private pSelection: T[];
   private pSelectionMade: boolean;
@@ -63,6 +67,10 @@ export class CheckboxListComponent<T> implements OnChanges {
    */
   public get hasOptions(): boolean {
     return this.options && this.options.length > 0;
+  }
+
+  public get isFunctional(): boolean {
+    return this.labelFunction && this.hasOptions;
   }
 
   /**
@@ -117,6 +125,24 @@ export class CheckboxListComponent<T> implements OnChanges {
     this.selectionChange.emit(this.pSelection);
   }
 
+  /**
+   * Use the labelFunction to determine whether the options include the item.
+   * This is to handle partial objects being set in the pre-selection where
+   * they may not be available by the same mechanism as the options.
+   *
+   * @param items The array of items in which to look for the item.
+   * @param item The item to check in the options.
+   */
+  public containsItem(items: T[], item: T): boolean {
+    if (this.isFunctional) {
+      const itemLabel: string = this.labelFunction(item);
+      return items.some(opt => {
+        return this.labelFunction(opt) === itemLabel;
+      });
+    }
+    return false;
+  }
+
   // Simple utility function to indicate whether there is an active preselection.
   private get hasPreselection(): boolean {
     return this.preselection && this.preselection.length > 0;
@@ -127,38 +153,48 @@ export class CheckboxListComponent<T> implements OnChanges {
   // the current selection will also be changed. As soon as the user has made an
   // active selection, however, the preselection is no longer relevant.
   private setupPreselection(): void {
-    if (!this.pSelectionMade && this.hasPreselection) {
+    if (this.isFunctional && !this.pSelectionMade && this.hasPreselection) {
       let changed = true; // Assume this is a change.
       if (this.pSelection) {
         // If there is no difference between the arrays, this is not a change.
         changed = this.pSelection.filter((item: T) => {
-          return !this.preselection.includes(item);
+          return !this.containsItem(this.preselection, item);
         }).length > 0;
       }
 
       // If this is a change, update the selection and then emit an
       // event so any containers know about the change to selection.
       if (changed) {
-        this.pSelection = [ ...this.preselection ];
+        this.pSelection = this.getSelection(this.preselection);
         this.selectionChange.emit(this.selection);
       }
     }
   }
 
+  private getSelection(items: T[]): T[] {
+    return [
+      ...this.options.filter(opt => {
+        return this.containsItem(items, opt);
+      })
+    ];
+  }
+
   // The options have changed. Let's make sure the selection
   // doesn't contain anything that's not currently an option.
   private checkSelection(): void {
-    // Check which of the currently selected items are actually options.
-    const allowedSelection: T[] = this.selection.filter((item: T) => {
-      return this.options.includes(item);
-    });
+    if (this.isFunctional) {
+      // Check which of the currently selected items are actually options.
+      const allowedSelection: T[] = this.selection.filter((item: T) => {
+        return this.containsItem(this.options, item);
+      });
 
-    // If any have dropped out, change the selection.
-    if (allowedSelection.length !== this.selection.length) {
-      this.pSelection = [ ...allowedSelection ];
+      // If any have dropped out, change the selection.
+      if (allowedSelection.length !== this.selection.length) {
+        this.pSelection = [ ...allowedSelection ];
 
-      // And emit an event so any containers know about the change to selection.
-      this.selectionChange.emit(this.selection);
+        // And emit an event so any containers know about the change to selection.
+        this.selectionChange.emit(this.selection);
+      }
     }
   }
 }

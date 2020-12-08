@@ -11,7 +11,11 @@ class WrapperComponent {
   @ViewChild(CheckboxListComponent) public appComponentRef: CheckboxListComponent<any>;
   @Input() public options: any[];
   @Input() public preselection: any[];
-  @Input() public labelFunction: (item: any) => string;
+  @Input() public labelFunction: (item: any) => string = defaultLabelFunction;
+}
+
+function defaultLabelFunction(item: any): string {
+  return item;
 }
 
 // example of a label function to mock
@@ -59,6 +63,33 @@ describe('CheckboxListComponent', () => {
     component.options.pop();
     fixture.detectChanges();
     expect(component.allSelected).toBeTruthy();
+  });
+
+  it('should allow preselection with objects', () => {
+    component.options = [{ id: 'a', name: 'Arthur' }, { id: 'b', name: 'Bob' }];
+    component.preselection = [ { id: 'c', name: 'Arthur' } ]; // Note that this is a distinct object.
+    // Based on the label function, it only cares about the name (not the id).
+    component.labelFunction = (item: { name: string }) => {
+      return item.name;
+    };
+    component.ngOnChanges();
+    fixture.detectChanges();
+    expect(component.selection.length).toEqual(1);
+    expect(component.selection[0].name).toEqual('Arthur');
+    expect(component.selection[0].id).toEqual('a'); // The one in the options.
+  });
+
+  it('should prevent object preselection when it is not a valid option', () => {
+    // set the checkbox detais with preselections and expect all selected to be false
+    component.options = [{ id: 'a', name: 'Arthur' }, { id: 'b', name: 'Bob' }];
+    component.preselection = [ { id: 'a', name: 'Albert' } ]; // Note that this is a distinct object.
+    // Based on the label function, it only cares about the name.
+    component.labelFunction = (item: { name: string }) => {
+      return item.name;
+    };
+    component.ngOnChanges();
+    fixture.detectChanges();
+    expect(component.selection.length).toEqual(0);
   });
 
   it('should verify when there are options to select', () => {
@@ -399,5 +430,27 @@ describe('CheckboxListComponent', () => {
     expect(element.querySelectorAll('label')[1].textContent).toContain('firstoption');
     expect(element.querySelectorAll('label')[2].textContent).toContain('secondoption');
     expect(element.querySelectorAll('label')[3].textContent).toContain('thirdoption');
+  });
+
+  it('should allow selection to be set', () => {
+    component.options = [{ id: 'a', name: 'Arthur' }, { id: 'b', name: 'Bob' }];
+    component.preselection = [ { id: 'c', name: 'Arthur' } ]; // Note that this is a distinct object.
+    // Based on the label function, it only cares about the name (not the id).
+    component.labelFunction = (item: { name: string }) => {
+      return item.name;
+    };
+    component.ngOnChanges();
+    fixture.detectChanges();
+    expect(component.selection.length).toEqual(1);
+    expect(component.selection[0].name).toEqual('Arthur');
+    expect(component.selection[0].id).toEqual('a'); // The one in the options.
+
+    component.selection = [ { name: 'Bob' } ];
+    expect(component.selection.length).toEqual(1);
+    expect(component.selection[0].name).toEqual('Bob');
+    expect(component.selection[0].id).toEqual('b'); // The one in the options.
+
+    component.selection = [ { name: 'Dave' } ];
+    expect(component.selection.length).toEqual(0);
   });
 });
