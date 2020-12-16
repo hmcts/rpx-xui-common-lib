@@ -24,5 +24,8 @@
       "name": "Ronald Mansveld",
       "email": "ronald.mansveld@hmcts.net"
     }
-  ]
+  ],
+  "devDependencies": {
+    "ngx-spec": "^2.1.4"
+  }
 }
