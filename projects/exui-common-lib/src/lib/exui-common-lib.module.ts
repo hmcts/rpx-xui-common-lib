@@ -65,6 +65,8 @@ import { GoogleTagManagerService } from './services/google-tag-manager/google-ta
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
+import { RoleGuard } from './services/role-guard/role.guard';
+import { RoleService } from './services/role-guard/role.service';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -138,7 +140,9 @@ export const GOV_UI_COMPONENTS = [
   providers: [
     { provide: windowToken, useFactory: windowProvider },
     { provide: FeatureToggleService, useClass: LaunchDarklyService },
-    FeatureToggleGuard
+    FeatureToggleGuard,
+    RoleGuard,
+    RoleService
   ],
   exports: [
     ...COMMON_COMPONENTS,
@@ -163,7 +167,9 @@ export class ExuiCommonLibModule {
           useFactory: provideForRootGuard,
           deps: [[GoogleAnalyticsService, GoogleTagManagerService, new Optional(), new SkipSelf()]]
         },
-        { provide: FeatureToggleService, useClass: LaunchDarklyService }
+        { provide: FeatureToggleService, useClass: LaunchDarklyService },
+        RoleGuard,
+        RoleService
       ]
     };
   }

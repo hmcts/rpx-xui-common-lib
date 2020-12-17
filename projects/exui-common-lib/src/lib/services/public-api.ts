@@ -8,3 +8,5 @@ export * from './google-analytics/google-analytics.service';
 export * from './google-tag-manager/google-tag-manager.service';
 export * from './manage-session/manage-session.services';
 export * from './timeout-notifications/timeout-notifications.service';
+export * from './role-guard/role.guard';
+export * from './role-guard/role.service';
