@@ -7,7 +7,9 @@ export const enum RoleMatching {
     ANY
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class RoleGuard implements CanActivate {
 
     public constructor(

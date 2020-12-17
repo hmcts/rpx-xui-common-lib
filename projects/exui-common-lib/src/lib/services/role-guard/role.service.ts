@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
 export type Role = string;
 export type Roles = Role[];
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class RoleService {
     private pRoles: Roles = [];
 
