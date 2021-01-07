@@ -67,6 +67,8 @@ import { TimeoutNotificationsService } from './services/timeout-notifications/ti
 import { windowProvider, windowToken } from './window';
 import { RoleGuard } from './services/role-guard/role.guard';
 import { RoleService } from './services/role-guard/role.service';
+import { ServiceMessagesComponent } from './components/service-messages/service-messages.component';
+import { ServiceMessageComponent } from './components/service-message/service-message.component';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -97,7 +99,8 @@ export const COMMON_COMPONENTS = [
   TabComponent,
   AccessibilityComponent,
   DueDateComponent,
-  CheckboxListComponent
+  CheckboxListComponent,
+  ServiceMessagesComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
@@ -127,7 +130,8 @@ export const GOV_UI_COMPONENTS = [
 @NgModule({
   declarations: [
    ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS
+    ...GOV_UI_COMPONENTS,
+    ServiceMessageComponent
   ],
   imports: [
     CommonModule,
