@@ -33,7 +33,6 @@ export class ServiceMessagesComponent implements OnInit {
   }
 
   private createFilteredMessages(messages: ServiceMessages): void {
-    this.filteredMessages.clear;
     this.hiddenBanners = JSON.parse(window.sessionStorage.getItem(this.serviceMessageCookie)) || [];
     Object.keys(messages).forEach(key => {
       const regEx = new RegExp(key);            
