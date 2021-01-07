@@ -16,6 +16,8 @@ import { InviteUserPermissionComponent } from './components/invite-user-permissi
 import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
+import { ServiceMessageComponent } from './components/service-message/service-message.component';
+import { ServiceMessagesComponent } from './components/service-messages/service-messages.component';
 import { ShareCaseConfirmComponent } from './components/share-case-confirm/share-case-confirm.component';
 import { ShareCaseComponent } from './components/share-case/share-case.component';
 import { TabComponent } from './components/tab/tab.component';
@@ -63,12 +65,10 @@ import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.ser
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { GoogleTagManagerService } from './services/google-tag-manager/google-tag-manager.service';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
-import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
-import { windowProvider, windowToken } from './window';
 import { RoleGuard } from './services/role-guard/role.guard';
 import { RoleService } from './services/role-guard/role.service';
-import { ServiceMessagesComponent } from './components/service-messages/service-messages.component';
-import { ServiceMessageComponent } from './components/service-message/service-message.component';
+import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
+import { windowProvider, windowToken } from './window';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -129,7 +129,7 @@ export const GOV_UI_COMPONENTS = [
 
 @NgModule({
   declarations: [
-   ...COMMON_COMPONENTS,
+    ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS,
     ServiceMessageComponent
   ],
