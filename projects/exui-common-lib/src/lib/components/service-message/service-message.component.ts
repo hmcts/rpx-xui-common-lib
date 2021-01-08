@@ -7,10 +7,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ServiceMessageComponent {
   @Input() public message: string;
   @Input() public key: string;
-  @Output() onHideMessage = new EventEmitter<string>();
+  @Output() public hideMessage = new EventEmitter<string>();
   constructor() { }
 
   public onHideMessageEvent(key: string) {
-    this.onHideMessage.emit(key);
+    this.hideMessage.emit(key);
   }
 }
