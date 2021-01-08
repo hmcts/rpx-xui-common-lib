@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FeatureToggleService } from '../../services';
+import { FeatureToggleService } from '../../services/feature-toggle/feature-toggle.service';
 
 export interface ServiceMessages {
   [key: string]: string;
