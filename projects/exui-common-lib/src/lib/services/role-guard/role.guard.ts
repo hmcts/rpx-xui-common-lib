@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
 import { RoleService } from './role.service';
 
-export const enum RoleMatching {
+export enum RoleMatching {
     ALL,
     ANY
 }
