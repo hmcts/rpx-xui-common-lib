@@ -1,11 +1,11 @@
 <div id="govuk-accordion__section-{{ sharedCase.caseId }}" class="govuk-accordion__section">
   <div class="govuk-grid-row govuk-case-header">
     <div class="govuk-grid-column-three-quarters">
-      <h3 id="case-title" class="govuk-case-title">{{ sharedCase.caseTitle }}</h3>
-      <h1 id="case-id" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
+      <h3 id="case-title-{{ sharedCase.caseId }}" class="govuk-case-title">{{ sharedCase.caseTitle }}</h3>
+      <h1 id="case-id-{{ sharedCase.caseId }}" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
     </div>
     <div class="govuk-grid-column-twenty-percent">
-      <button id="btn-deselect-case" class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" title="Deselect case">Deselect case</button>
+      <button id="btn-deselect-case-{{ sharedCase.caseId }}" class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" title="Deselect case">Deselect case</button>
     </div>
     <div class="govuk-accordion__section-header govuk-grid-column-five-percent">
       <div class="govuk-accordion__section-heading">

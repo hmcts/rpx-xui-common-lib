@@ -57,9 +57,9 @@ describe('SelectedCaseComponent', () => {
   });
 
   it('should see page elements', () => {
-    expect(fixture.debugElement.nativeElement.querySelector('#case-title').textContent).toContain('Sarah vs Pete');
-    expect(fixture.debugElement.nativeElement.querySelector('#case-id').textContent).toContain('C111111');
-    expect(fixture.debugElement.nativeElement.querySelector('#btn-deselect-case').textContent).toContain('Deselect case');
+    expect(fixture.debugElement.nativeElement.querySelector("[id^='case-title']").textContent).toContain('Sarah vs Pete');
+    expect(fixture.debugElement.nativeElement.querySelector("[id^='case-id']").textContent).toContain('C111111');
+    expect(fixture.debugElement.nativeElement.querySelector("[id^='btn-deselect-case']").textContent).toContain('Deselect case');
     expect(fixture.debugElement.nativeElement.querySelector('#access-info-has-users').textContent).toContain('Users from your organisation with access to this case.');
     expect(fixture.debugElement.nativeElement.querySelector('#th-name').textContent).toContain('Name');
     expect(fixture.debugElement.nativeElement.querySelector('#th-email').textContent).toContain('Email address');
