@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { distinctUntilChanged } from "rxjs/operators";
 
 
@@ -27,12 +27,13 @@ export class LoadingService implements HasLoadingState {
   }
 
   private generateToken(): string {
-    return 'toolkit-loading-' + Date.now();
+    const timestamp = window.performance.now();
+    return 'common-lib-loading-' + timestamp; // format: [source-library]-[unique incrementing number]
   }
 }
 
 export abstract class HasLoadingState {
   public get isLoading(): Observable<boolean> {
-    return of(false);
+    return;
   };
 }
