@@ -64,6 +64,7 @@ import { FeatureToggleService } from './services/feature-toggle/feature-toggle.s
 import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 import { GoogleTagManagerService } from './services/google-tag-manager/google-tag-manager.service';
+import { LoadingService } from './services/loading/loading.service';
 import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { RoleGuard } from './services/role-guard/role.guard';
 import { RoleService } from './services/role-guard/role.service';
@@ -146,7 +147,8 @@ export const GOV_UI_COMPONENTS = [
     { provide: FeatureToggleService, useClass: LaunchDarklyService },
     FeatureToggleGuard,
     RoleGuard,
-    RoleService
+    RoleService,
+    LoadingService
   ],
   exports: [
     ...COMMON_COMPONENTS,
@@ -173,7 +175,8 @@ export class ExuiCommonLibModule {
         },
         { provide: FeatureToggleService, useClass: LaunchDarklyService },
         RoleGuard,
-        RoleService
+        RoleService,
+        LoadingService
       ]
     };
   }
