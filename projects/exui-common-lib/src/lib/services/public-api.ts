@@ -10,3 +10,4 @@ export * from './manage-session/manage-session.services';
 export * from './timeout-notifications/timeout-notifications.service';
 export * from './role-guard/role.guard';
 export * from './role-guard/role.service';
+export * from './loading/loading.service';
