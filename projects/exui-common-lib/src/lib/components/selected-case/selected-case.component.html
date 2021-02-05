@@ -1,36 +1,36 @@
-<div id="govuk-accordion__section-{{ sharedCase.caseId }}" class="govuk-accordion__section">
+<div id="{{buildElementId('govuk-accordion__section')}}" class="govuk-accordion__section">
   <div class="govuk-grid-row govuk-case-header">
     <div class="govuk-grid-column-three-quarters">
-      <h3 id="case-title" class="govuk-case-title">{{ sharedCase.caseTitle }}</h3>
-      <h1 id="case-id" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
+      <h3 id="{{buildElementId('case-title')}}" class="govuk-case-title">{{ sharedCase.caseTitle }}</h3>
+      <h1 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
     </div>
     <div class="govuk-grid-column-twenty-percent">
-      <button id="btn-deselect-case" class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" title="Deselect case">Deselect case</button>
+      <button id="{{buildElementId('btn-deselect-case')}}" class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" title="Deselect case">Deselect case</button>
     </div>
     <div class="govuk-accordion__section-header govuk-grid-column-five-percent">
       <div class="govuk-accordion__section-heading">
-        <button type="button" id="accordion-with-summary-sections-heading-1"
+        <button type="button" id="{{buildElementId('accordion-with-summary-sections-heading')}}"
               aria-controls="accordion-with-summary-sections-content-1" class="govuk-accordion__section-button"
               aria-describedby="accordion-with-summary-sections-summary-1" aria-expanded="false" title="Expand or Collapse">
         <span class="govuk-accordion__icon" aria-hidden="true"></span></button>
       </div>
     </div>
   </div>
-  <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content"
-       aria-labelledby="accordion-with-summary-sections-heading-1">
+  <div id="{{buildElementId('accordion-with-summary-sections-content')}}" class="govuk-accordion__section-content"
+       aria-labelledby="buildElementId('accordion-with-summary-sections-heading')" >
     <div class="govuk-grid-row" *ngIf="showNoUsersAccessInfo()">
-      <span id="access-info-no-user" class="govuk-div-align-left">No users from your organisation currently have access to this case.</span>
+      <span id="{{buildElementId('access-info-no-user')}}" class="govuk-div-align-left">No users from your organisation currently have access to this case.</span>
     </div>
     <div class="govuk-grid-row" *ngIf="showUserHasAccessInfo()">
-      <span id="access-info-has-users" class="govuk-div-align-left">Users from your organisation with access to this case.</span>
+      <span id="{{buildElementId('access-info-has-users')}}" class="govuk-div-align-left">Users from your organisation with access to this case.</span>
     </div>
     <table class="govuk-table" *ngIf="showUserAccessTable()">
       <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <th id="th-name" class="govuk-table__header govuk-table-column-header" scope="col">Name</th>
-        <th id="th-email" class="govuk-table__header govuk-table-column-header" scope="col">Email address</th>
-        <th id="th-action" class="govuk-table__header govuk-table-column-actions" scope="col">Actions</th>
-        <th id="th-label" class="govuk-table__header govuk-table-column-label" scope="col">&nbsp;&nbsp;</th>
+        <th id="{{buildElementId('name-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">Name</th>
+        <th id="{{buildElementId('email-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">Email address</th>
+        <th id="{{buildElementId('action-heading')}}" class="govuk-table__header govuk-table-column-actions" scope="col">Actions</th>
+        <th id="{{buildElementId('label-heading')}}" class="govuk-table__header govuk-table-column-label" scope="col">&nbsp;&nbsp;</th>
       </tr>
       </thead>
       <tbody class="govuk-table__body">
