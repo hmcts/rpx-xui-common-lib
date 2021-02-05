@@ -171,4 +171,8 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   public userIdSetter(isPending: boolean, id: number): string {
     return isPending ? `pendingShares-${id}` : `${id}`;
   }
+
+  public buildElementId(elementName: string): string {
+    return `${elementName}-${this.sharedCase.caseId}`;
+  }
 }
