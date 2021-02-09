@@ -19,12 +19,12 @@
     <tr class="govuk-table__row" *ngIf="!user.resendInvite">
         <th class="govuk-table__header" scope="row">Permissions</th>
         <td class="govuk-table__cell">
-          <div *ngIf="user.manageOrganisations === 'Yes'">Manage Organisations</div>
-          <div *ngIf="user.manageUsers === 'Yes'">Manage Users</div>
-          <div *ngIf="user.manageCases === 'Yes'">Manage Cases</div>
-          <div *ngIf="user.roles && user.roles.includes('pui-caa')">Case Access Administrator</div>
+          <div *ngIf="user.manageOrganisations === 'Yes'">Manage organisations</div>
+          <div *ngIf="user.manageUsers === 'Yes'">Manage users</div>
+          <div *ngIf="user.manageCases === 'Yes'">Manage cases</div>
+          <div *ngIf="user.roles && user.roles.includes('pui-caa')">Case access administrator</div>
         </td>
-        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">Change <span class="govuk-visually-hidden">roles</span></a></td>   
+        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">Change <span class="govuk-visually-hidden">roles</span></a></td>
     </tr>
   </tbody>
 </table>
