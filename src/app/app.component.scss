@@ -18,3 +18,13 @@
 .checkbox-events {
   white-space: pre;
 }
+
+.spinner-tester {
+
+  position: relative;
+
+  &__button {
+    position: absolute;
+    z-index: 2000;
+  }
+}

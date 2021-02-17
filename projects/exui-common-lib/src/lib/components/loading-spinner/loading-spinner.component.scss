@@ -1,0 +1,69 @@
+@mixin spinnerDivs($count) {
+  @for $i from 1 through $count {
+    &:nth-child(#{$i}) {
+      transform: rotate(#{30 * ($i - 1)}deg);
+      animation-delay: #{($i / 10) - 1.2}s;
+    }
+  }
+}
+
+.loading-spinner-in-action {
+  overflow: hidden;
+
+  .loading-spinner {
+
+    &__overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba(255,255,255, 0.7);
+    }
+
+    &__box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+
+    &__fan {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+
+      div {
+        transform-origin: 32px 32px;
+        animation: lds-spinner 1.2s linear infinite;
+
+        &:after {
+          content: " ";
+          display: block;
+          position: absolute;
+          top: 3px;
+          left: 29px;
+          width: 5px;
+          height: 14px;
+          border-radius: 20%;
+          background: #0b0c0c;
+        }
+
+        @include spinnerDivs(12);
+
+      }
+    }
+  }
+}
+
+@keyframes lds-spinner {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}

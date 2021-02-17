@@ -13,6 +13,7 @@ import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-pa
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
@@ -101,7 +102,8 @@ export const COMMON_COMPONENTS = [
   AccessibilityComponent,
   DueDateComponent,
   CheckboxListComponent,
-  ServiceMessagesComponent
+  ServiceMessagesComponent,
+  LoadingSpinnerComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
