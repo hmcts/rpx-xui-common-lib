@@ -102,6 +102,7 @@ export const COMMON_COMPONENTS = [
   AccessibilityComponent,
   DueDateComponent,
   CheckboxListComponent,
+  ServiceMessageComponent,
   ServiceMessagesComponent,
   LoadingSpinnerComponent
 ];
@@ -133,8 +134,7 @@ export const GOV_UI_COMPONENTS = [
 @NgModule({
   declarations: [
     ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS,
-    ServiceMessageComponent
+    ...GOV_UI_COMPONENTS
   ],
   imports: [
     CommonModule,
