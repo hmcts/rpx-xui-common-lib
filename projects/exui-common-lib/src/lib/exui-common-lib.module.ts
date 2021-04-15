@@ -145,12 +145,6 @@ export const GOV_UI_COMPONENTS = [
     MatTabsModule
   ],
   providers: [
-    { provide: windowToken, useFactory: windowProvider },
-    { provide: FeatureToggleService, useClass: LaunchDarklyService },
-    FeatureToggleGuard,
-    RoleGuard,
-    RoleService,
-    LoadingService
   ],
   exports: [
     ...COMMON_COMPONENTS,
@@ -173,12 +167,14 @@ export class ExuiCommonLibModule {
         {
           provide: COMMON_LIB_ROOT_GUARD,
           useFactory: provideForRootGuard,
-          deps: [[GoogleAnalyticsService, GoogleTagManagerService, new Optional(), new SkipSelf()]]
+          deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
         },
         { provide: FeatureToggleService, useClass: LaunchDarklyService },
         RoleGuard,
         RoleService,
-        LoadingService
+        LoadingService,
+        { provide: windowToken, useFactory: windowProvider },
+        FeatureToggleGuard,
       ]
     };
   }
