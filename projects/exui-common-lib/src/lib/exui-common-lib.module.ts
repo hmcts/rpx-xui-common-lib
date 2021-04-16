@@ -160,21 +160,12 @@ export class ExuiCommonLibModule {
     return {
       ngModule: ExuiCommonLibModule,
       providers: [
-        GoogleAnalyticsService,
-        GoogleTagManagerService,
-        ManageSessionServices,
-        TimeoutNotificationsService,
         {
           provide: COMMON_LIB_ROOT_GUARD,
           useFactory: provideForRootGuard,
           deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
         },
-        { provide: FeatureToggleService, useClass: LaunchDarklyService },
-        RoleGuard,
-        RoleService,
-        LoadingService,
-        { provide: windowToken, useFactory: windowProvider },
-        FeatureToggleGuard,
+        { provide: FeatureToggleService, useExisting: LaunchDarklyService },
       ]
     };
   }
