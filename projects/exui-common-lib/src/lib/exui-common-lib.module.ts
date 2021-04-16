@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -59,10 +59,6 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
-import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-
-
-export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
 export class ExuiCommonLibModuleOptions {
   public launchDarklyKey?: string;
@@ -144,32 +140,25 @@ export const GOV_UI_COMPONENTS = [
 
 export class ExuiCommonLibModule {
 
-  constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
+  constructor() { }
 
+  /**
+   * @deprecated
+   */
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: ExuiCommonLibModule,
-      providers: [
-        {
-          provide: COMMON_LIB_ROOT_GUARD,
-          useFactory: provideForRootGuard,
-          deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
-        },
-      ]
+      providers: []
     };
   }
 
+  /**
+   * @deprecated
+   */
   public static forChild(): ModuleWithProviders {
     return {
       ngModule: ExuiCommonLibModule,
       providers: []
     };
   }
-}
-
-export function provideForRootGuard(service: GoogleAnalyticsService): any {
-  if (service) {
-    throw new Error(`ExuiCommonLibModule.forRoot() called twice. Lazy loaded modules should use forChild() instead.`);
-  }
-  return 'guarded';
 }
