@@ -157,7 +157,6 @@ export class ExuiCommonLibModule {
           useFactory: provideForRootGuard,
           deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
         },
-        { provide: FeatureToggleService, useExisting: LaunchDarklyService },
       ]
     };
   }
