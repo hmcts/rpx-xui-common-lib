@@ -59,8 +59,6 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
-import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
-import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 
 
