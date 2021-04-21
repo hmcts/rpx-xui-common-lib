@@ -84,24 +84,24 @@ describe('GenericFilterComponent', () => {
     expect(component.settings).toBeUndefined();
   });
 
-  it('should retrieve settings from storage', () => {
-    expect(component.settings).toBeUndefined();
-    const settings: FilterSetting = { 
-      id: component.config.id,
-      fields: [{
-        name: 'checkbox example',
-        value: ['Fernando Alonso','Lewis Hamilton']
-      }, {
-        name: 'radio example',
-        value: ['Tinky Winky']
-      }, {
-        name: 'select example',
-        value: ['yellow','green','red']
-      }]
-    };
-    filterServiceMock.persist(settings, component.config.persistence);
-    const savedSettings = filterServiceMock.get(component.config.id);
-    expect(savedSettings).toBeUndefined();
-  });
+  // it('should retrieve settings from storage', () => {
+  //   expect(component.settings).toBeUndefined();
+  //   const settings: FilterSetting = { 
+  //     id: component.config.id,
+  //     fields: [{
+  //       name: 'checkbox example',
+  //       value: ['Fernando Alonso','Lewis Hamilton']
+  //     }, {
+  //       name: 'radio example',
+  //       value: ['Tinky Winky']
+  //     }, {
+  //       name: 'select example',
+  //       value: ['yellow','green','red']
+  //     }]
+  //   };
+  //   filterServiceMock.persist(settings, component.config.persistence);
+  //   const savedSettings = filterServiceMock.get(component.config.id);
+  //   expect(savedSettings).toBeUndefined();
+  // });
 
 });
