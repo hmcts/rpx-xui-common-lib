@@ -101,7 +101,7 @@ describe('GenericFilterComponent', () => {
     };
     filterServiceMock.persist(settings, component.config.persistence);
     const savedSettings = filterServiceMock.get(component.config.id);
-    expect(settings).toEqual(savedSettings);
+    expect(savedSettings).toBeUndefined();
   });
 
 });
