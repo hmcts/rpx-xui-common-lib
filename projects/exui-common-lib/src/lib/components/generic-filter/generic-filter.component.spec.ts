@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterSetting } from '../../models';
 import { FilterService } from '../../services/filter/filter.service';
 import { GenericFilterComponent } from './generic-filter.component';
 
