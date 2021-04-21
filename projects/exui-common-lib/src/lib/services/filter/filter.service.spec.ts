@@ -5,10 +5,10 @@ import { FilterService } from './filter.service';
 describe('FilterService', () => {
   const filterSetting: FilterSetting = {
     id: 'testId',
-    fields: {
+    fields: [{
       name: 'field_1',
       value: ['value1', 'value2', 'value3']
-    }
+    }]
   };
   let service: FilterService;
   beforeEach(() => TestBed.configureTestingModule({}));

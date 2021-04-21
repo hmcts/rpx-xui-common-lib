@@ -20,7 +20,7 @@ export interface FilterFieldConfig {
 
 export interface FilterSetting {
   id: string;
-  fields: { name: string, value: string[] };
+  fields: { name: string, value: string[] }[];
 }
 
 export class RadioFilterFieldConfig implements FilterFieldConfig {
