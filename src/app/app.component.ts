@@ -140,7 +140,7 @@ export class AppComponent implements OnInit {
   public filterConfig: FilterConfig = {
     id: 'examples',
     fields: [{
-      name: 'checkbox example',
+      name: 'example1',
       options: [
         { key: 'Fernando Alonso', label: 'Fernando Alonso' },
         { key: 'Sebastian Vettel', label: 'Sebastian Vettel' },
@@ -152,7 +152,7 @@ export class AppComponent implements OnInit {
       maxSelected: 1,
       type: 'checkbox'
     }, {
-      name: 'radio example',
+      name: 'example2',
       options: [
         { key: 'Tinky Winky', label: 'Tinky Winky' },
         { key: 'Dipsy', label: 'Dipsy' },
@@ -164,7 +164,7 @@ export class AppComponent implements OnInit {
       maxSelected: 1,
       type: 'radio'
     }, {
-      name: 'select example',
+      name: 'example3',
       options: [
         { key: 'yellow', label: 'Yellow' },
         { key: 'green', label: 'Green' },

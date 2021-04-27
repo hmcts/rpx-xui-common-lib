@@ -10,15 +10,15 @@ describe('GenericFilterComponent', () => {
   const filterServiceMock = jasmine.createSpyObj('FilterService', [
     'persist',
     'get',
+    'getStream'
   ]);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [GenericFilterComponent],
-      providers: [{
-        provide: FilterService,
-        useValue: filterServiceMock,
-      }]
+      providers: [
+        { provide: FilterService, useValue: filterServiceMock }
+      ]
     })
     .compileComponents();
   }));
@@ -29,7 +29,7 @@ describe('GenericFilterComponent', () => {
     component.config = {
       id: 'examples',
       fields: [{
-        name: 'checkbox example',
+        name: 'example1',
         options: [
           { key: 'Fernando Alonso', label: 'Fernando Alonso' },
           { key: 'Sebastian Vettel', label: 'Sebastian Vettel' },
@@ -41,7 +41,7 @@ describe('GenericFilterComponent', () => {
         maxSelected: 1,
         type: 'checkbox'
       }, {
-        name: 'radio example',
+        name: 'example2',
         options: [
           { key: 'Tinky Winky', label: 'Tinky Winky' },
           { key: 'Dipsy', label: 'Dipsy' },
@@ -53,7 +53,7 @@ describe('GenericFilterComponent', () => {
         maxSelected: 1,
         type: 'radio'
       }, {
-        name: 'select example',
+        name: 'example3',
         options: [
           { key: 'yellow', label: 'Yellow' },
           { key: 'green', label: 'Green' },
@@ -65,7 +65,7 @@ describe('GenericFilterComponent', () => {
         maxSelected: 1,
         type: 'select'
       }],
-      persistence: 'local',
+      persistence: 'session',
     };
     fixture.detectChanges();
   });
@@ -75,32 +75,11 @@ describe('GenericFilterComponent', () => {
   });
 
   it('should be defined', () => {
-    // filterServiceMock.get().and.returnValue(of(component.config));
     expect(component.config).toBeDefined();
   });
 
   it('should be undefined', () => {
     expect(component.settings).toBeUndefined();
   });
-
-  // it('should retrieve settings from storage', () => {
-  //   expect(component.settings).toBeUndefined();
-  //   const settings: FilterSetting = { 
-  //     id: component.config.id,
-  //     fields: [{
-  //       name: 'checkbox example',
-  //       value: ['Fernando Alonso','Lewis Hamilton']
-  //     }, {
-  //       name: 'radio example',
-  //       value: ['Tinky Winky']
-  //     }, {
-  //       name: 'select example',
-  //       value: ['yellow','green','red']
-  //     }]
-  //   };
-  //   filterServiceMock.persist(settings, component.config.persistence);
-  //   const savedSettings = filterServiceMock.get(component.config.id);
-  //   expect(savedSettings).toBeUndefined();
-  // });
 
 });

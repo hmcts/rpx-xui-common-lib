@@ -32,10 +32,10 @@ export class FilterService {
       return this.filterSettings[id];
     }
     if (sessionStorage.getItem(id)) {
-      return JSON.parse(sessionStorage.getItem(id));
+      return JSON.parse(window.sessionStorage.getItem(id));
     }
     if (localStorage.getItem(id)) {
-      return JSON.parse(localStorage.getItem(id));
+      return JSON.parse(window.localStorage.getItem(id));
     }
     return null;
   }
@@ -48,11 +48,11 @@ export class FilterService {
   }
 
   private persistLocal(setting: FilterSetting) {
-    localStorage.setItem(setting.id, JSON.stringify(setting));
+    window.localStorage.setItem(setting.id, JSON.stringify(setting));
   }
 
   private persistSession(setting: FilterSetting) {
-    sessionStorage.setItem(setting.id, JSON.stringify(setting));
+    window.sessionStorage.setItem(setting.id, JSON.stringify(setting));
   }
 
   private persistMemory(setting: FilterSetting) {
