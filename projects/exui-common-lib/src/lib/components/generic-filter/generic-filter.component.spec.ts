@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FilterSetting } from '../../models/filter.model';
 import { FilterService } from '../../services/filter/filter.service';
 import { GenericFilterComponent } from './generic-filter.component';
 
@@ -80,6 +81,31 @@ describe('GenericFilterComponent', () => {
 
   it('should be undefined', () => {
     expect(component.settings).toBeUndefined();
+  });
+
+  it('should be selected', () => {
+    expect(component.settings).toBeUndefined();
+    const settings: FilterSetting = {
+      id: component.config.id,
+      fields: [{
+        name: 'example1',
+        value: [ 'Fernando Alonso', 'Lewis Hamilton' ]
+      }, {
+        name: 'example2',
+        value: [ 'Tinky Winky' ]
+      }, {
+        name: 'example3',
+        value: [ 'yellow', 'green', 'red' ]
+      }]
+    };
+    component.settings = settings;
+    fixture.detectChanges();
+    expect(component.isSelected(settings.fields[0].name, 'Lewis Hamilton')).toEqual(true);
+    expect(component.isSelected(settings.fields[1].name, 'Po')).toEqual(false);
+    expect(component.isSelected(settings.fields[1].name, 'Tinky Winky')).toEqual(true);
+    expect(component.isSelected(settings.fields[2].name, 'green')).toEqual(true);
+    expect(component.isSelected(settings.fields[2].name, 'red')).toEqual(true);
+    expect(component.isSelected(settings.fields[2].name, 'blue')).toEqual(false);
   });
 
 });
