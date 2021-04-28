@@ -13,11 +13,11 @@ export class LoadingSpinnerComponent implements OnInit, OnDestroy {
 
   constructor(private readonly renderer: Renderer2) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.renderer.addClass(document.body, 'loading-spinner-in-action');
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.renderer.removeClass(document.body, 'loading-spinner-in-action');
   }
 }

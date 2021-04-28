@@ -7,9 +7,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
   providedIn: 'root'
 })
 export abstract class HasLoadingState {
-  public get isLoading(): Observable<boolean> {
-    return;
-  }
+  public abstract get isLoading(): Observable<boolean>;
 }
 
 export class LoadingService implements HasLoadingState {
