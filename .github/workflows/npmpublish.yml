@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: 10
       - run: yarn install
-      - run: yarn build:library
       - run: yarn lint
+      - run: yarn build:library
       - run: yarn test
 
   publish-npm:
