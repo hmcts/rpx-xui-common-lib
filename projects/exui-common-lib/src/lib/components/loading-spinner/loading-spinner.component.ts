@@ -8,16 +8,16 @@ import { Component, Input, OnDestroy, OnInit, Renderer2, ViewEncapsulation } fro
 })
 
 export class LoadingSpinnerComponent implements OnInit, OnDestroy {
-  @Input() zIndex: number = 1000;
-  @Input() loadingText: string = 'Page can take up to 30 seconds to load';
+  @Input() public zIndex: number = 1000;
+  @Input() public loadingText: string = 'Page can take up to 30 seconds to load';
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private readonly renderer: Renderer2) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.renderer.addClass(document.body, 'loading-spinner-in-action');
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.renderer.removeClass(document.body, 'loading-spinner-in-action');
   }
 }
