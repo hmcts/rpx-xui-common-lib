@@ -2,11 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
-export abstract class HasLoadingState {
-  public get isLoading(): Observable<boolean> {
-    return;
-  }
-}
 
 @Injectable({
   providedIn: 'root'
