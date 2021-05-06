@@ -60,6 +60,7 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { CookieService } from './services/cookie/cookie.service';
 import { FeatureToggleGuard } from './services/feature-toggle/feature-toggle.guard';
 import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
 import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
@@ -150,7 +151,8 @@ export const GOV_UI_COMPONENTS = [
     FeatureToggleGuard,
     RoleGuard,
     RoleService,
-    LoadingService
+    LoadingService,
+    CookieService
   ],
   exports: [
     ...COMMON_COMPONENTS,
