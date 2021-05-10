@@ -1,0 +1,36 @@
+<div class="govuk-form-group">
+  <div class="xui-generic-filter" *ngFor="let field of config.fields">
+    <ng-container *ngIf="field.type === 'checkbox'">
+      <div class="govuk-checkboxes govuk-checkboxes--small">
+        <div class="checkbox-items">
+          <div *ngFor="let item of field.options" class="govuk-checkboxes__item">
+            <input type="checkbox" [name]="'checkbox_' + field.name" [id]="'checkbox_' + item.key" [value]="item.key" [checked]="isSelected(field.name,item.key)" (change)="onSelectionChange($event)" class="govuk-checkboxes__input" />
+            <label [for]="'checkbox_' + item.key" class="govuk-label govuk-checkboxes__label">{{item.label}}</label>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="field.type === 'radio'">
+      <div class="govuk-radios">
+        <div *ngFor="let item of field.options" class="govuk-radios__item">
+          <input type="radio" [name]="'radio_' + field.name" [id]="'radio_' + item.key" [value]="item.key" [checked]="isSelected(field.name,item.key)" (change)="onSelectionChange($event)" class="govuk-radios__input" />
+          <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="field.type === 'select'">
+      <select class="govuk-select" [name]="field.name" [id]="field.name" (change)="onSelectionChange($event)">
+        <ng-container *ngFor="let item of field.options">
+          <option class="govuk-radios__item" [value]="item.key" [selected]="isSelected(field.name,item.key)">{{item.label}}</option>
+        </ng-container>
+      </select>
+    </ng-container>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+        <button class="govuk-button govuk-!-margin-right-1" type="submit" id="applyFilter" (click)="applyFilter()">Apply</button>
+        <button class="govuk-button govuk-button--secondary" id="cancelFilter" (click)="cancelFilter()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
