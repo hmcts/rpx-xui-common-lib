@@ -1,8 +1,8 @@
-import { CommonModule } from "@angular/common";
-import { InjectionToken, NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatAutocompleteModule, MatTabsModule } from "@angular/material";
-import { RouterModule } from "@angular/router";
+import { CommonModule } from '@angular/common';
+import { InjectionToken, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatTabsModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
 import {
   AccessibilityComponent,
   CheckboxListComponent,
@@ -28,8 +28,8 @@ import {
   UserDetailsComponent,
   UserListComponent,
   UserSelectComponent
-} from "./components";
-import { FeatureToggleDirective, LetDirective } from "./directives";
+} from './components';
+import { FeatureToggleDirective, LetDirective } from './directives';
 import {
   GovUkCheckboxComponent,
   GovUkCheckboxesComponent,
@@ -51,9 +51,9 @@ import {
   HmctsMainWrapperComponent,
   HmctsPrimaryNavigationComponent,
   HmctsSubNavigationComponent
-} from "./gov-ui/components";
-import { RemoveHostDirective } from "./gov-ui/directives";
-import { windowProvider, windowToken } from "./window";
+} from './gov-ui/components';
+import { RemoveHostDirective } from './gov-ui/directives';
+import { windowProvider, windowToken } from './window';
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
