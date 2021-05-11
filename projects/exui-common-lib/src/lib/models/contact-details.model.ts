@@ -1,4 +1,4 @@
-import { BadgeColour } from "./badge-colour.enum";
+import { BadgeColour } from './badge-colour.enum';
 
 export interface ContactDetailsDataModel {
     title?: string;
