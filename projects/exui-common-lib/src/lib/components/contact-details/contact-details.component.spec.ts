@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BadgeColour } from '../../models/contact-details.model';
+import { BadgeColour } from '../../models/badge-colour.enum';
 import { ContactDetailsComponent } from './contact-details.component';
 
 describe('ContactDetailsComponent', () => {
@@ -28,7 +28,7 @@ describe('ContactDetailsComponent', () => {
   it('should display html based on data', () => {
     component.data = {
       title: 'Test Title',
-      badgeColour: BadgeColour.BADGE_RED,
+      badgeColour: BadgeColour.RED,
       badgeText: 'PRIVATE BETA',
       email: 'test@justice.gov.uk',
       phone: '1111111',
@@ -54,7 +54,7 @@ describe('ContactDetailsComponent', () => {
   it('should not display html when data is missing', () => {
     component.data = {
       title: 'Test Title',
-      badgeColour: BadgeColour.BADGE_RED,
+      badgeColour: BadgeColour.RED,
       badgeText: 'PRIVATE BETA',
       openingTimes: 'bla bla bla'
     };
