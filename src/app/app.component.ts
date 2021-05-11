@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BadgeColour, ContactDetailsDataModel, FilterConfig, TCDocument } from 'projects/exui-common-lib/src';
-import { GoogleTagManagerService} from 'projects/exui-common-lib/src/lib/services/google-tag-manager/google-tag-manager.service';
+import { GoogleTagManagerService } from 'projects/exui-common-lib/src/lib/services/google-tag-manager/google-tag-manager.service';
 import { Observable, of } from 'rxjs';
 
 interface CheckboxLocation {
