@@ -7,7 +7,9 @@ import { FeatureToggleService } from './feature-toggle.service';
 
 export const LAUNCHDARKLYKEY = new InjectionToken<string>('LAUNCHDARKLYKEY');
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class LaunchDarklyService implements FeatureToggleService {
 
     private readonly client: LDClient.LDClient;
