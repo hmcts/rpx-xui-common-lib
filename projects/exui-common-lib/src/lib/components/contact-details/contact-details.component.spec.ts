@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BadgeColour } from '../../models';
+import { BadgeColour } from '../../models/contact-details.model';
 import { ContactDetailsComponent } from './contact-details.component';
 
 describe('ContactDetailsComponent', () => {
