@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BadgeColour, ContactDetailsDataModel, FilterConfig, TCDocument } from 'projects/exui-common-lib/src';
+import { BadgeColour, ContactDetailsDataModel, TCDocument } from 'projects/exui-common-lib/src';
 import { GoogleTagManagerService } from 'projects/exui-common-lib/src/lib/services/google-tag-manager/google-tag-manager.service';
 import { Observable, of } from 'rxjs';
 
@@ -135,50 +135,6 @@ export class AppComponent implements OnInit {
     }
   }
   // END: Checkbox List Component functions.
-
-  // START: Generic Filter Component.
-  public filterConfig: FilterConfig = {
-    id: 'examples',
-    fields: [{
-      name: 'example1',
-      options: [
-        { key: 'Fernando Alonso', label: 'Fernando Alonso' },
-        { key: 'Sebastian Vettel', label: 'Sebastian Vettel' },
-        { key: 'Lewis Hamilton', label: 'Lewis Hamilton' },
-        { key: 'Mick Schumacher', label: 'Mick Schumacher' },
-        { key: 'Lando Norris', label: 'Lando Norris' },
-      ],
-      minSelected: 1,
-      maxSelected: 1,
-      type: 'checkbox'
-    }, {
-      name: 'example2',
-      options: [
-        { key: 'Tinky Winky', label: 'Tinky Winky' },
-        { key: 'Dipsy', label: 'Dipsy' },
-        { key: 'Laa-Laa', label: 'Laa-Laa' },
-        { key: 'Po', label: 'Po' },
-        { key: 'Noo-noo', label: 'Noo-noo' },
-      ],
-      minSelected: 1,
-      maxSelected: 1,
-      type: 'radio'
-    }, {
-      name: 'example3',
-      options: [
-        { key: 'yellow', label: 'Yellow' },
-        { key: 'green', label: 'Green' },
-        { key: 'red', label: 'Red' },
-        { key: 'blue', label: 'Blue' },
-        { key: 'orange', label: 'Orange' },
-      ],
-      minSelected: 1,
-      maxSelected: 1,
-      type: 'select'
-    }],
-    persistence: 'local',
-  };
-  // END: Generic Filter Component.
 
   public ngOnInit() {
     // TODO: gtm key here will give 404 as it doesn't have a container
