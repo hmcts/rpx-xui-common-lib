@@ -5,7 +5,7 @@ import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { FeatureUser } from '../../models/feature-user';
 import { FeatureToggleService } from './feature-toggle.service';
 
-export const LAUNCHDARKLYKEY = new InjectionToken<string>('LAUNCHDARKLYKEY');
+export const LAUNCHDARKLYKEY = new InjectionToken<string>('LAUNCHDARKLYKEY', { providedIn: 'root', factory: () => '' });
 
 @Injectable({
     providedIn: 'root'
