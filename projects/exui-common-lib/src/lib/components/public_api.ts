@@ -22,3 +22,4 @@ export * from './terms-and-conditions/tc-display/tc-display-plain/tc-display-pla
 export * from './user-details/user-details.component';
 export * from './user-list/user-list.component';
 export * from './user-select/user-select.component';
+export * from './generic-filter/generic-filter.component';
