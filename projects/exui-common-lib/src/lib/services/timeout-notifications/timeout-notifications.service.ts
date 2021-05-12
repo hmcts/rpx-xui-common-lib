@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {DocumentInterruptSource, Idle, } from '@ng-idle/core';
-import {Keepalive} from '@ng-idle/keepalive';
-import {Observable, Subject} from 'rxjs';
+import { DocumentInterruptSource, Idle } from '@ng-idle/core';
+import { Keepalive } from '@ng-idle/keepalive';
+import { Observable, Subject } from 'rxjs';
 import {
   distinctUntilChanged,
   map
 } from 'rxjs/operators';
-import {TimeoutNotificationConfig} from '../../models/timeout-notification.model';
+import { TimeoutNotificationConfig } from '../../models/timeout-notification.model';
 
 /**
  * TimeoutNotificationsService
@@ -22,7 +22,9 @@ import {TimeoutNotificationConfig} from '../../models/timeout-notification.model
  * @see README.md for implementation details and code, on how to implement the Timeout Notification
  * Service within your application.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TimeoutNotificationsService {
 
   private readonly eventEmitter: Subject<{eventType: string, readableCountdown?: string; }>;

@@ -1,7 +1,6 @@
 import { formatDate } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BadgeColour } from '../../models/due-date.model';
+import { BadgeColour } from '../../models/badge-colour.enum';
 import { DueDateComponent } from './due-date.component';
 
 describe('DueDateComponent', () => {

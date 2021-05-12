@@ -5,9 +5,14 @@ import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { FeatureUser } from '../../models/feature-user';
 import { FeatureToggleService } from './feature-toggle.service';
 
-export const LAUNCHDARKLYKEY = new InjectionToken<string>('LAUNCHDARKLYKEY');
+export function ldKeyDefaultFactory() {
+    return '';
+}
+export const LAUNCHDARKLYKEY = new InjectionToken<string>('LAUNCHDARKLYKEY', { providedIn: 'root', factory: ldKeyDefaultFactory });
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class LaunchDarklyService implements FeatureToggleService {
 
     private readonly client: LDClient.LDClient;
