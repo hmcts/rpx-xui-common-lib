@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "v1.0.1",
+  "version": "1.0.1-tslint-issues",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
