@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {distinctUntilChanged} from 'rxjs/operators';
 
+export abstract class HasLoadingState {
+  public get isLoading(): Observable<boolean> {
+    return;
+  }
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export abstract class HasLoadingState {
-  public abstract get isLoading(): Observable<boolean>;
-}
-
 export class LoadingService implements HasLoadingState {
   private readonly registered = new Map<string, string>();
   private readonly loading = new BehaviorSubject<boolean>(false);
@@ -35,3 +36,4 @@ export class LoadingService implements HasLoadingState {
     return `common-lib-loading-${timestamp}`; // format: [source-library]-[unique incrementing number]
   }
 }
+
