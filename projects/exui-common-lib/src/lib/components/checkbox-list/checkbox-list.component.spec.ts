@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CheckboxListComponent } from './checkbox-list.component';
+
 
 @Component({
   template: `
@@ -33,7 +33,7 @@ describe('CheckboxListComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CheckboxListComponent, WrapperComponent ]
     })

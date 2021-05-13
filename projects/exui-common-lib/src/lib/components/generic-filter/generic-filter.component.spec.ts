@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FilterSetting } from '../../models/filter.model';
 import { FilterService } from '../../services/filter/filter.service';
 import { GenericFilterComponent } from './generic-filter.component';
+
 
 describe('GenericFilterComponent', () => {
 
@@ -14,7 +14,7 @@ describe('GenericFilterComponent', () => {
     'getStream'
   ]);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [GenericFilterComponent],
       providers: [

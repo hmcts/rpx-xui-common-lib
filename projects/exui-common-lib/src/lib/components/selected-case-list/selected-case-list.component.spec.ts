@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SharedCase } from '../../models/case-share.model';
 import { SelectedCaseListComponent } from './selected-case-list.component';
+
 
 describe('SelectedCaseListComponent', () => {
   let component: SelectedCaseListComponent;
@@ -10,7 +10,7 @@ describe('SelectedCaseListComponent', () => {
 
   let fixture: ComponentFixture<SelectedCaseListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [SelectedCaseListComponent]
