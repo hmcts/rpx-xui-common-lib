@@ -37,7 +37,6 @@
     "core-js": "^2.5.4",
     "govuk-frontend": "^3.4.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "node-sass": "^4.0.0",
     "rxjs": "~6.6.7",
     "tslib": "^1.14.1",
     "zone.js": "~0.9.1"
