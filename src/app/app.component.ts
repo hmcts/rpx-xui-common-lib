@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   };
   public contactDetailsData: ContactDetailsDataModel = {
     title: 'Contact Details Component',
-    badgeColour: BadgeColour.BADGE_RED,
+    badgeColour: BadgeColour.RED,
     badgeText: 'PRIVATE BETA',
     email: 'test@justice.gov.uk',
     phone: '1111111',
