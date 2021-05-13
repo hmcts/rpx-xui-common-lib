@@ -89,3 +89,6 @@ List height:
   <button class="spinner-tester__button" (click)="spinnerTester = !spinnerTester">{{spinnerTester ? 'Stop' : 'Start'}} Spinner</button>
   <xuilib-loading-spinner *ngIf="spinnerTester"></xuilib-loading-spinner>
 </div>
+
+<h2>Generic Filter component</h2>
+<xuilib-generic-filter [config]="filterConfig"></xuilib-generic-filter>

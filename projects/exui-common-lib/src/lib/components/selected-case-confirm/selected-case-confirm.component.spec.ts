@@ -37,7 +37,7 @@ describe('SelectedCaseConfirmComponent', () => {
   it('should not show user access block', () => {
     expect(component.showUserAccessBlock()).toBeFalsy();
     fixture.detectChanges();
-    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^="user-access-block"]');
+    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^=\'user-access-block\']');
     expect(userAccessBlock).toBeNull();
   });
 
@@ -61,7 +61,7 @@ describe('SelectedCaseConfirmComponent', () => {
     expect(component.showUserAccessBlock()).toBeTruthy();
     fixture.detectChanges();
 
-    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^="user-access-block"]');
+    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^=\'user-access-block\']');
     expect(userAccessBlock).toBeTruthy();
   });
 

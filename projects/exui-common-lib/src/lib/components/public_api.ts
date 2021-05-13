@@ -7,3 +7,4 @@ export * from './user-details/user-details.component';
 export * from './user-list/user-list.component';
 export * from './due-date/due-date.component';
 export * from './checkbox-list/checkbox-list.component';
+export * from './generic-filter/generic-filter.component';
