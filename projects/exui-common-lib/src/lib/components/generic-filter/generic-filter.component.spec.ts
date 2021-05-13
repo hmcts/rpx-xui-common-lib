@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FilterSetting } from '../../models/filter.model';
-import { FilterService } from '../../services/filter/filter.service';
-import { GenericFilterComponent } from './generic-filter.component';
+import {FilterSetting} from '../../models/filter.model';
+import {FilterService} from '../../services/filter/filter.service';
+import {GenericFilterComponent} from './generic-filter.component';
 
 describe('GenericFilterComponent', () => {
 
@@ -18,10 +18,10 @@ describe('GenericFilterComponent', () => {
     TestBed.configureTestingModule({
       declarations: [GenericFilterComponent],
       providers: [
-        { provide: FilterService, useValue: filterServiceMock }
+        {provide: FilterService, useValue: filterServiceMock}
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -29,39 +29,47 @@ describe('GenericFilterComponent', () => {
     component = fixture.componentInstance;
     component.config = {
       id: 'examples',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
       fields: [{
         name: 'example1',
         options: [
-          { key: 'Fernando Alonso', label: 'Fernando Alonso' },
-          { key: 'Sebastian Vettel', label: 'Sebastian Vettel' },
-          { key: 'Lewis Hamilton', label: 'Lewis Hamilton' },
-          { key: 'Mick Schumacher', label: 'Mick Schumacher' },
-          { key: 'Lando Norris', label: 'Lando Norris' },
+          {key: 'Fernando Alonso', label: 'Fernando Alonso'},
+          {key: 'Sebastian Vettel', label: 'Sebastian Vettel'},
+          {key: 'Lewis Hamilton', label: 'Lewis Hamilton'},
+          {key: 'Mick Schumacher', label: 'Mick Schumacher'},
+          {key: 'Lando Norris', label: 'Lando Norris'},
         ],
+        title: 'Sample title',
+        subTitle: 'Sample subtitle',
         minSelected: 1,
         maxSelected: 1,
         type: 'checkbox'
       }, {
         name: 'example2',
         options: [
-          { key: 'Tinky Winky', label: 'Tinky Winky' },
-          { key: 'Dipsy', label: 'Dipsy' },
-          { key: 'Laa-Laa', label: 'Laa-Laa' },
-          { key: 'Po', label: 'Po' },
-          { key: 'Noo-noo', label: 'Noo-noo' },
+          {key: 'Tinky Winky', label: 'Tinky Winky'},
+          {key: 'Dipsy', label: 'Dipsy'},
+          {key: 'Laa-Laa', label: 'Laa-Laa'},
+          {key: 'Po', label: 'Po'},
+          {key: 'Noo-noo', label: 'Noo-noo'},
         ],
+        title: 'Sample2 title',
+        subTitle: 'Sample2 subtitle',
         minSelected: 1,
         maxSelected: 1,
         type: 'radio'
       }, {
         name: 'example3',
         options: [
-          { key: 'yellow', label: 'Yellow' },
-          { key: 'green', label: 'Green' },
-          { key: 'red', label: 'Red' },
-          { key: 'blue', label: 'Blue' },
-          { key: 'orange', label: 'Orange' },
+          {key: 'yellow', label: 'Yellow'},
+          {key: 'green', label: 'Green'},
+          {key: 'red', label: 'Red'},
+          {key: 'blue', label: 'Blue'},
+          {key: 'orange', label: 'Orange'},
         ],
+        title: 'Sample3 title',
+        subTitle: 'Sample3 subtitle',
         minSelected: 1,
         maxSelected: 1,
         type: 'select'
@@ -89,13 +97,13 @@ describe('GenericFilterComponent', () => {
       id: component.config.id,
       fields: [{
         name: 'example1',
-        value: [ 'Fernando Alonso', 'Lewis Hamilton' ]
+        value: ['Fernando Alonso', 'Lewis Hamilton']
       }, {
         name: 'example2',
-        value: [ 'Tinky Winky' ]
+        value: ['Tinky Winky']
       }, {
         name: 'example3',
-        value: [ 'yellow', 'green', 'red' ]
+        value: ['yellow', 'green', 'red']
       }]
     };
     component.settings = settings;
