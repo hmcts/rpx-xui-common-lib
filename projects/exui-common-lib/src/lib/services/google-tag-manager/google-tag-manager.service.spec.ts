@@ -42,7 +42,7 @@ describe('GoogleTagManagerService', () => {
     });
 
     titleTestBed = TestBed.inject(Title);
-    windowTestBed = TestBed.inject(windowToken);
+    windowTestBed = TestBed.inject<Window>(windowToken);
 
   });
 
@@ -60,7 +60,7 @@ describe('GoogleTagManagerService', () => {
   it('init should call router navigation end and gtag with correct config',
   inject([GoogleTagManagerService], (service: GoogleTagManagerService) => {
     const event = new NavigationEnd(42, '/url', '/redirect-url');
-    TestBed.inject(Router).events.next(event);
+    (TestBed.inject(Router) as any).events.next(event);
     spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
     spyOn((windowTestBed as any).dataLayer, 'push').and.callThrough();
     service.init('testId');
