@@ -164,7 +164,7 @@ export class ExuiCommonLibModule {
 
   constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
 
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<ExuiCommonLibModule> {
     return {
       ngModule: ExuiCommonLibModule,
       providers: [
@@ -185,7 +185,7 @@ export class ExuiCommonLibModule {
     };
   }
 
-  public static forChild(): ModuleWithProviders {
+  public static forChild(): ModuleWithProviders<ExuiCommonLibModule> {
     return {
       ngModule: ExuiCommonLibModule,
       providers: []
