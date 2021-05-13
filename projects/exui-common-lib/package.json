@@ -26,7 +26,11 @@
     }
   ],
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "@ng-idle/core": "^10.0.0-beta.1",
+    "@ng-idle/keepalive": "^10.0.0-beta.1",
+    "govuk-frontend": "^3.11.0",
+    "@hmcts/frontend": "0.0.50-alpha"
   },
   "devDependencies": {
     "ngx-spec": "^2.1.4"
