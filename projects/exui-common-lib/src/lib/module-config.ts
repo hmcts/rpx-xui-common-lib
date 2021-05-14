@@ -6,5 +6,5 @@ export const COMMON_LIB_MODULE_OPTIONS = new InjectionToken<CommonLibraryModuleC
 
 export class CommonLibraryModuleConfig {
     public launchDarklyClientId: string = 'not provided';
-    public featureToggleServiceProvider: Provider = { provide: FeatureToggleService, useClass: LaunchDarklyService }
+    public featureToggleServiceProvider: Provider = { provide: FeatureToggleService, useClass: LaunchDarklyService };
 }
