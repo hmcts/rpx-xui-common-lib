@@ -1,14 +1,14 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CheckboxListComponent } from './checkbox-list.component';
+
 
 @Component({
   template: `
   <xuilib-checkbox-list [options]='options' [preselection]='preselection' [labelFunction]='labelFunction'></xuilib-checkbox-list>`
 })
 class WrapperComponent {
-  @ViewChild(CheckboxListComponent) public appComponentRef: CheckboxListComponent<any>;
+  @ViewChild(CheckboxListComponent, { static: true }) public appComponentRef: CheckboxListComponent<any>;
   @Input() public options: any[];
   @Input() public preselection: any[];
   @Input() public labelFunction: (item: any) => string = defaultLabelFunction;
@@ -33,7 +33,7 @@ describe('CheckboxListComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CheckboxListComponent, WrapperComponent ]
     })

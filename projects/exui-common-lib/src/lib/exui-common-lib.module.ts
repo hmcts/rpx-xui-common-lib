@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Inject, InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
-
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
+import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
@@ -24,10 +24,10 @@ import { ShareCaseComponent } from './components/share-case/share-case.component
 import { TabComponent } from './components/tab/tab.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
 import {
-  TcDisplayHtmlComponent,
+  TcDisplayHtmlComponent
 } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
 import {
-  TcDisplayPlainComponent,
+  TcDisplayPlainComponent
 } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
@@ -42,7 +42,7 @@ import { GovUkErrorMessageComponent } from './gov-ui/components/gov-uk-error-mes
 import { GovUkFieldsetComponent } from './gov-ui/components/gov-uk-fieldset/gov-uk-fieldset.component';
 import { GovUkFileUploadComponent } from './gov-ui/components/gov-uk-file-upload/gov-uk-file-upload.component';
 import {
-  GovUkFormGroupWrapperComponent,
+  GovUkFormGroupWrapperComponent
 } from './gov-ui/components/gov-uk-form-group-wrapper/gov-uk-form-group-wrapper.component';
 import { GovUkInputComponent } from './gov-ui/components/gov-uk-input/gov-uk-input.component';
 import { GovUkLabelComponent } from './gov-ui/components/gov-uk-label/gov-uk-label.component';
@@ -56,7 +56,7 @@ import { HmctsErrorSummaryComponent } from './gov-ui/components/hmcts-error-summ
 import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
 import { HmctsMainWrapperComponent } from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
 import {
-  HmctsPrimaryNavigationComponent,
+  HmctsPrimaryNavigationComponent
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
@@ -71,6 +71,7 @@ import { RoleGuard } from './services/role-guard/role.guard';
 import { RoleService } from './services/role-guard/role.service';
 import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
+
 
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
@@ -104,7 +105,8 @@ export const COMMON_COMPONENTS = [
   CheckboxListComponent,
   ServiceMessageComponent,
   ServiceMessagesComponent,
-  LoadingSpinnerComponent
+  LoadingSpinnerComponent,
+  GenericFilterComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
@@ -162,7 +164,7 @@ export class ExuiCommonLibModule {
 
   constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
 
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<ExuiCommonLibModule> {
     return {
       ngModule: ExuiCommonLibModule,
       providers: [
@@ -183,7 +185,7 @@ export class ExuiCommonLibModule {
     };
   }
 
-  public static forChild(): ModuleWithProviders {
+  public static forChild(): ModuleWithProviders<ExuiCommonLibModule> {
     return {
       ngModule: ExuiCommonLibModule,
       providers: []

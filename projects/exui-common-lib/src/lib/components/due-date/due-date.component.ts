@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
-
-import { BadgeColour, SECONDS_IN_A_DAY } from '../../models/due-date.model';
+import { BadgeColour } from '../../models/badge-colour.model';
+import { SECONDS_IN_A_DAY } from '../../models/due-date.model';
 
 @Component({
   selector: 'xuilib-due-date',
