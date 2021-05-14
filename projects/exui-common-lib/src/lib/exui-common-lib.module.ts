@@ -61,14 +61,7 @@ import {
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { CommonLibraryModuleConfig, COMMON_LIB_MODULE_OPTIONS } from './module-config';
-import { FeatureToggleGuard } from './services/feature-toggle/feature-toggle.guard';
-import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
-import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { LoadingService } from './services/loading/loading.service';
-import { RoleGuard } from './services/role-guard/role.guard';
-import { RoleService } from './services/role-guard/role.service';
-import { windowProvider, windowToken } from './window';
 
 
 const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
