@@ -60,24 +60,18 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { CommonLibraryModuleConfig, COMMON_LIB_MODULE_OPTIONS } from './module-config';
 import { FeatureToggleGuard } from './services/feature-toggle/feature-toggle.guard';
 import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
 import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
 import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { GoogleTagManagerService } from './services/google-tag-manager/google-tag-manager.service';
 import { LoadingService } from './services/loading/loading.service';
-import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { RoleGuard } from './services/role-guard/role.guard';
 import { RoleService } from './services/role-guard/role.service';
-import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
 
 
-export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
-
-export class ExuiCommonLibModuleOptions {
-  public launchDarklyKey?: string;
-}
+const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
@@ -146,14 +140,6 @@ export const GOV_UI_COMPONENTS = [
     MatAutocompleteModule,
     MatTabsModule
   ],
-  providers: [
-    { provide: windowToken, useFactory: windowProvider },
-    { provide: FeatureToggleService, useClass: LaunchDarklyService },
-    FeatureToggleGuard,
-    RoleGuard,
-    RoleService,
-    LoadingService
-  ],
   exports: [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
@@ -162,25 +148,19 @@ export const GOV_UI_COMPONENTS = [
 
 export class ExuiCommonLibModule {
 
-  constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: any) { }
+  constructor(@Optional() @Inject(COMMON_LIB_ROOT_GUARD) public guard: string) { }
 
-  public static forRoot(): ModuleWithProviders<ExuiCommonLibModule> {
+  public static forRoot(options: CommonLibraryModuleConfig): ModuleWithProviders<ExuiCommonLibModule> {
     return {
       ngModule: ExuiCommonLibModule,
       providers: [
-        GoogleAnalyticsService,
-        GoogleTagManagerService,
-        ManageSessionServices,
-        TimeoutNotificationsService,
         {
           provide: COMMON_LIB_ROOT_GUARD,
           useFactory: provideForRootGuard,
-          deps: [[GoogleAnalyticsService, GoogleTagManagerService, new Optional(), new SkipSelf()]]
+          deps: [[GoogleAnalyticsService, new Optional(), new SkipSelf()]]
         },
-        { provide: FeatureToggleService, useClass: LaunchDarklyService },
-        RoleGuard,
-        RoleService,
-        LoadingService
+        { provide: COMMON_LIB_MODULE_OPTIONS, useValue: options },
+        options.featureToggleServiceProvider
       ]
     };
   }
@@ -193,7 +173,7 @@ export class ExuiCommonLibModule {
   }
 }
 
-export function provideForRootGuard(service: GoogleAnalyticsService): any {
+export function provideForRootGuard(service: GoogleAnalyticsService): string {
   if (service) {
     throw new Error(`ExuiCommonLibModule.forRoot() called twice. Lazy loaded modules should use forChild() instead.`);
   }

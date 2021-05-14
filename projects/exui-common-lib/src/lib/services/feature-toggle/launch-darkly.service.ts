@@ -1,21 +1,22 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import * as LDClient from 'launchdarkly-js-client-sdk';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { FeatureUser } from '../../models/feature-user';
+import { CommonLibraryModuleConfig, COMMON_LIB_MODULE_OPTIONS } from '../../module-config';
 import { FeatureToggleService } from './feature-toggle.service';
 
-export const LAUNCHDARKLYKEY = new InjectionToken<string>('LAUNCHDARKLYKEY');
-
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class LaunchDarklyService implements FeatureToggleService {
 
     private readonly client: LDClient.LDClient;
     private readonly ready = new BehaviorSubject<boolean>(false);
     private readonly features: Record<string, BehaviorSubject<any>> = {};
 
-    constructor(@Inject(LAUNCHDARKLYKEY) key: string) {
-        this.client = LDClient.initialize(key, { anonymous: true }, {});
+    constructor(@Inject(COMMON_LIB_MODULE_OPTIONS) options: CommonLibraryModuleConfig) {
+        this.client = LDClient.initialize(options.launchDarklyClientId, { anonymous: true }, {});
         this.client.on('ready', () => { this.ready.next(true); });
     }
 
