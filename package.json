@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.0-module-refactor",
+  "version": "2.0.0-module-refactor.2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
