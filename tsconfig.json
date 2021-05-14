@@ -30,6 +30,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
-    "allowUnusedLabels": false
+    "allowUnusedLabels": false,
+    "angularCompilerOptions": {
+      "enableIvy": false
+    }
   }
 }
