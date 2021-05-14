@@ -6,6 +6,8 @@ export interface FilterConfig {
   id: string;
   fields: FilterFieldConfig[];
   persistence: FilterPersistence;
+  applyButtonText: string;
+  cancelButtonText: string;
 }
 
 export interface FilterFieldConfig {
@@ -16,6 +18,8 @@ export interface FilterFieldConfig {
   minSelectedError?: string;
   maxSelectedError?: string;
   type: FilterFieldType;
+  title?: string;
+  subTitle?: string;
 }
 
 export interface FilterSetting {

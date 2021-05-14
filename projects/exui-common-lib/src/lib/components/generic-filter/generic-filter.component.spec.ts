@@ -29,6 +29,8 @@ describe('GenericFilterComponent', () => {
     component = fixture.componentInstance;
     component.config = {
       id: 'examples',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
       fields: [{
         name: 'example1',
         options: [
@@ -38,6 +40,8 @@ describe('GenericFilterComponent', () => {
           { key: 'Mick Schumacher', label: 'Mick Schumacher' },
           { key: 'Lando Norris', label: 'Lando Norris' },
         ],
+        title: 'Sample title',
+        subTitle: 'Sample subtitle',
         minSelected: 1,
         maxSelected: 1,
         type: 'checkbox'
@@ -50,6 +54,8 @@ describe('GenericFilterComponent', () => {
           { key: 'Po', label: 'Po' },
           { key: 'Noo-noo', label: 'Noo-noo' },
         ],
+        title: 'Sample2 title',
+        subTitle: 'Sample2 subtitle',
         minSelected: 1,
         maxSelected: 1,
         type: 'radio'
@@ -62,6 +68,8 @@ describe('GenericFilterComponent', () => {
           { key: 'blue', label: 'Blue' },
           { key: 'orange', label: 'Orange' },
         ],
+        title: 'Sample3 title',
+        subTitle: 'Sample3 subtitle',
         minSelected: 1,
         maxSelected: 1,
         type: 'select'

@@ -14,9 +14,10 @@ export class GenericFilterComponent implements OnInit {
   @Input() public settings?: FilterSetting;
   private selected: { name: string, value: string[] }[] = [];
 
-  constructor(private readonly filterService: FilterService) { }
+  constructor(private readonly filterService: FilterService) {
+  }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     if (!this.settings) {
       this.getSettings();
     }
@@ -25,11 +26,11 @@ export class GenericFilterComponent implements OnInit {
     }
   }
 
-  public applyFilter() {
+  public applyFilter(): void {
     this.filterService.persist(this.settings, this.config.persistence);
   }
 
-  public cancelFilter() {
+  public cancelFilter(): void {
     this.getSettings();
   }
 
@@ -40,24 +41,25 @@ export class GenericFilterComponent implements OnInit {
     return false;
   }
 
-  public onSelectionChange(item: any) {
-    const fieldName = item.target.name.replace(`${item.target.type}_`, '');
+  public onSelectionChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const fieldName = input.getAttribute('field');
     const match = this.selected.find(x => x.name === fieldName);
     if (match) {
-      if (item.target.type === 'checkbox') {
-        if (item.target.checked) {
-          match.value.push(item.target.value);
+      if (input.type === 'checkbox') {
+        if (input.checked) {
+          match.value.push(input.value);
         } else {
-          const index: number = match.value.indexOf(item.target.value);
+          const index: number = match.value.indexOf(input.value);
           if (index !== -1) {
             match.value.splice(index, 1);
           }
         }
       } else {
-        match.value = [item.target.value];
+        match.value = [input.value];
       }
     } else {
-      this.selected.push({ name: fieldName, value: [item.target.value] });
+      this.selected.push({name: fieldName, value: [input.value]});
     }
     this.settings = {
       id: this.config.id,
@@ -65,7 +67,7 @@ export class GenericFilterComponent implements OnInit {
     };
   }
 
-  private getSettings() {
+  private getSettings(): void {
     this.settings = this.filterService.get(this.config.id);
   }
 }
