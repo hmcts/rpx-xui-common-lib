@@ -14,7 +14,7 @@ describe('FilterService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
-    service = TestBed.get(FilterService);
+    service = TestBed.inject(FilterService);
   });
 
   it('should be created', () => {
