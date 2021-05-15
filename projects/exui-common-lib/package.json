@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.0.1-tslint-issues",
+  "version": "1.0.1-extra-space-Service-banner",
   "peerDependencies": {
     "@angular/common": "^10.2.5",
     "@angular/core": "^10.2.5",
