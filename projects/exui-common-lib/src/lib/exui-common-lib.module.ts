@@ -9,7 +9,6 @@ import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
-import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
@@ -105,8 +104,7 @@ export const COMMON_COMPONENTS = [
   CheckboxListComponent,
   ServiceMessageComponent,
   ServiceMessagesComponent,
-  LoadingSpinnerComponent,
-  GenericFilterComponent
+  LoadingSpinnerComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
