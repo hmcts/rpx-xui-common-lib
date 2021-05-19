@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {DocumentInterruptSource, Idle, } from '@ng-idle/core';
-import {Keepalive} from '@ng-idle/keepalive';
-import {Observable, Subject} from 'rxjs';
+import { DocumentInterruptSource, Idle } from '@ng-idle/core';
+import { Keepalive } from '@ng-idle/keepalive';
+import { Observable, Subject } from 'rxjs';
 import {
   delay,
   distinctUntilChanged,
   map
 } from 'rxjs/operators';
-import {IdleConfigModel} from '../../models/idle-config.model';
+import { IdleConfigModel } from '../../models/idle-config.model';
 
 @Injectable()
 export class ManageSessionServices {

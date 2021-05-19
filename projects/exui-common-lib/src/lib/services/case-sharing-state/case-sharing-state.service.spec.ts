@@ -10,7 +10,7 @@ describe('CaseSharingStateService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
-    service = TestBed.get(CaseSharingStateService);
+    service = TestBed.inject(CaseSharingStateService);
   });
 
   it('should be created', () => {

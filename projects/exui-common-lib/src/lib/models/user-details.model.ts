@@ -1,6 +1,7 @@
 export interface UserDetails {
-  idamId: string;
-  firstName: string;
-  lastName: string;
+  caseRoles?: string;
   email: string;
+  firstName: string;
+  idamId: string;
+  lastName: string;
 }

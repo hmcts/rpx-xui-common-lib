@@ -29,16 +29,9 @@ export class SelectedCaseConfirmComponent implements OnInit {
   }
 
   public showUserAccessBlock(): boolean {
-    if (this.sharedCase.pendingShares) {
-      if (this.sharedCase.pendingShares.length > 0) {
-        return true;
-      }
+    if (this.sharedCase.pendingShares && this.sharedCase.pendingShares.length > 0) {
+      return true;
     }
-    if (this.sharedCase.pendingUnshares) {
-      if (this.sharedCase.pendingUnshares.length > 0) {
-        return true;
-      }
-    }
-    return false;
+    return this.sharedCase.pendingUnshares && this.sharedCase.pendingUnshares.length > 0;
   }
 }

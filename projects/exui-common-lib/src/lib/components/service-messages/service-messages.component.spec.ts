@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { FeatureToggleService } from '../../services/feature-toggle/feature-toggle.service';
 import { ServiceMessagesComponent } from './service-messages.component';
@@ -18,7 +18,7 @@ describe('ServiceMessagesComponent', () => {
     'caseworker-probate|caseworker-withscript': 'Probate and script users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.<script>alert("security alert");</script>*<link rel=\"stylesheet\" href=\"styles.css\">*'
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ServiceMessagesComponent],
