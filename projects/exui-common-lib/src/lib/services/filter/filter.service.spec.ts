@@ -36,6 +36,8 @@ describe('FilterService', () => {
   });
 
   it('getStream', () => {
+    const persistence: FilterPersistence = 'session';
+    service.persist(filterSetting, persistence);
     service.getStream(filterSetting.id).subscribe(response => {
       expect(response).toBeTruthy();
       expect(response).toEqual(filterSetting);
