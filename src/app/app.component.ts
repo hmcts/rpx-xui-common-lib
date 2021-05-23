@@ -107,6 +107,8 @@ export class AppComponent implements OnInit {
       type: 'select'
     }],
     persistence: 'local',
+    applyButtonText: 'apply',
+    cancelButtonText: 'cancel'
   };
 
   constructor(
@@ -185,6 +187,8 @@ export class AppComponent implements OnInit {
   }
 
   // END: Generic Filter Component.
+
+  public spinnerTester: boolean = false;
 
   public ngOnInit() {
     // TODO: gtm key here will give 404 as it doesn't have a container
