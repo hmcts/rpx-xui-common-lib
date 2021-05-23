@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.0.1-cookie-banner",
+  "version": "1.0.1-cookie-banner-combined",
   "peerDependencies": {
     "@angular/common": "^10.2.5",
     "@angular/core": "^10.2.5",
