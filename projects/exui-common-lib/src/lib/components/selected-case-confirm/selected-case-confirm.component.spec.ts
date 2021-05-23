@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
 
@@ -6,7 +6,7 @@ describe('SelectedCaseConfirmComponent', () => {
   let component: SelectedCaseConfirmComponent;
   let fixture: ComponentFixture<SelectedCaseConfirmComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SelectedCaseConfirmComponent ],
       imports: [ RouterTestingModule ]
@@ -37,7 +37,7 @@ describe('SelectedCaseConfirmComponent', () => {
   it('should not show user access block', () => {
     expect(component.showUserAccessBlock()).toBeFalsy();
     fixture.detectChanges();
-    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^="user-access-block"]');
+    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^=\'user-access-block\']');
     expect(userAccessBlock).toBeNull();
   });
 
@@ -61,7 +61,7 @@ describe('SelectedCaseConfirmComponent', () => {
     expect(component.showUserAccessBlock()).toBeTruthy();
     fixture.detectChanges();
 
-    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^="user-access-block"]');
+    const userAccessBlock = fixture.debugElement.nativeElement.querySelector('[id^=\'user-access-block\']');
     expect(userAccessBlock).toBeTruthy();
   });
 

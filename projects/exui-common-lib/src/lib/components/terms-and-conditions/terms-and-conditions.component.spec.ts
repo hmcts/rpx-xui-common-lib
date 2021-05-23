@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TCDocument } from '../../models';
 import { TcDisplayHtmlComponent } from './tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './tc-display/tc-display-plain/tc-display-plain.component';
@@ -14,7 +14,7 @@ describe('TermsAndConditionsComponent', () => {
     mimeType: 'text/plain'
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TermsAndConditionsComponent, TcDisplayPlainComponent, TcDisplayHtmlComponent ]
     })

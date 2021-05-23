@@ -15,11 +15,10 @@ describe('LoadingService', () => {
       ]
     });
 
-    loadingService = TestBed.get(LoadingService);
+    loadingService = TestBed.inject(LoadingService);
   });
 
   it('should return observable of true when a token is registered', () => {
-
     loadingService.register();
     subscription = loadingService.isLoading.subscribe(value => {
       expect(value).toBeTruthy();
