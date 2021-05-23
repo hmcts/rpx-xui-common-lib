@@ -13,5 +13,4 @@ export * from './manage-session/manage-session.services';
 export * from './role-guard/role.guard';
 export * from './role-guard/role.service';
 export * from './timeout-notifications/timeout-notifications.service';
-export * from './loading/loading.service';
 export * from './cookie/cookie.service';
