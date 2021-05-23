@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
@@ -105,7 +106,8 @@ export const COMMON_COMPONENTS = [
   CheckboxListComponent,
   ServiceMessageComponent,
   ServiceMessagesComponent,
-  LoadingSpinnerComponent
+  LoadingSpinnerComponent,
+  CookieBannerComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
