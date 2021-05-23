@@ -111,6 +111,8 @@ export class AppComponent implements OnInit {
     cancelButtonText: 'cancel'
   };
 
+  public spinnerTester: boolean = false;
+
   constructor(
     private readonly googleTagManagerService: GoogleTagManagerService
   ) {
@@ -187,8 +189,6 @@ export class AppComponent implements OnInit {
   }
 
   // END: Generic Filter Component.
-
-  public spinnerTester: boolean = false;
 
   public ngOnInit() {
     // TODO: gtm key here will give 404 as it doesn't have a container
