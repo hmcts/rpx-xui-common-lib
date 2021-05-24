@@ -14,7 +14,7 @@ describe('FilterService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
-    service = TestBed.inject(FilterService);
+    service = TestBed.get(FilterService);
   });
 
   it('should be created', () => {
@@ -36,6 +36,8 @@ describe('FilterService', () => {
   });
 
   it('getStream', () => {
+    const persistence: FilterPersistence = 'session';
+    service.persist(filterSetting, persistence);
     service.getStream(filterSetting.id).subscribe(response => {
       expect(response).toBeTruthy();
       expect(response).toEqual(filterSetting);

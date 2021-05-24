@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BadgeColour, ContactDetailsDataModel, FilterConfig, TCDocument } from 'projects/exui-common-lib/src';
+import { FilterConfig } from 'exui-common-lib/lib/models/filter.model';
+import { BadgeColour, ContactDetailsDataModel, TCDocument } from 'projects/exui-common-lib/src';
 import { GoogleTagManagerService } from 'projects/exui-common-lib/src/lib/services/google-tag-manager/google-tag-manager.service';
 import { Observable, of } from 'rxjs';
 
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
   };
   public contactDetailsData: ContactDetailsDataModel = {
     title: 'Contact Details Component',
-    badgeColour: BadgeColour.RED,
+    badgeColour: BadgeColour.BADGE_RED,
     badgeText: 'PRIVATE BETA',
     email: 'test@justice.gov.uk',
     phone: '1111111',
@@ -107,8 +108,8 @@ export class AppComponent implements OnInit {
       type: 'select'
     }],
     persistence: 'local',
-    applyButtonText: 'apply',
-    cancelButtonText: 'cancel'
+    applyButtonText: 'Apply',
+    cancelButtonText: 'Cancel'
   };
 
   public spinnerTester: boolean = false;
@@ -187,8 +188,6 @@ export class AppComponent implements OnInit {
       this.locations = [...this.locations];
     }
   }
-
-  // END: Generic Filter Component.
 
   public ngOnInit() {
     // TODO: gtm key here will give 404 as it doesn't have a container
