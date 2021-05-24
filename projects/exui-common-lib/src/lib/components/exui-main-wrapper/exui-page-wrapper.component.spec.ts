@@ -1,12 +1,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExuiPageWrapperComponent } from './exui-page-wrapper.component';
 
 describe('ExuiPageWrapperComponent', () => {
   let component: ExuiPageWrapperComponent;
   let fixture: ComponentFixture<ExuiPageWrapperComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ ExuiPageWrapperComponent ]

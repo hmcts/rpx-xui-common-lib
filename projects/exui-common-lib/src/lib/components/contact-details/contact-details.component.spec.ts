@@ -1,13 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BadgeColour } from '../../models/badge-colour.model';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BadgeColour } from '../../models';
 import { ContactDetailsComponent } from './contact-details.component';
 
 describe('ContactDetailsComponent', () => {
   let component: ContactDetailsComponent;
   let fixture: ComponentFixture<ContactDetailsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ ContactDetailsComponent ]
@@ -28,7 +28,7 @@ describe('ContactDetailsComponent', () => {
   it('should display html based on data', () => {
     component.data = {
       title: 'Test Title',
-      badgeColour: BadgeColour.RED,
+      badgeColour: BadgeColour.BADGE_RED,
       badgeText: 'PRIVATE BETA',
       email: 'test@justice.gov.uk',
       phone: '1111111',
@@ -54,7 +54,7 @@ describe('ContactDetailsComponent', () => {
   it('should not display html when data is missing', () => {
     component.data = {
       title: 'Test Title',
-      badgeColour: BadgeColour.RED,
+      badgeColour: BadgeColour.BADGE_RED,
       badgeText: 'PRIVATE BETA',
       openingTimes: 'bla bla bla'
     };

@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserDetailsComponent } from './user-details.component';
 
@@ -7,7 +7,7 @@ describe('UserDetailsComponent', () => {
   let component: UserDetailsComponent;
   let fixture: ComponentFixture<UserDetailsComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -46,7 +46,7 @@ describe('UserDetailsComponent', () => {
     expect(resend).toBeTruthy();
   });
 
-  it('should call reinviteClick when the button clicked', waitForAsync(() => {
+  it('should call reinviteClick when the button clicked', async(() => {
     component.user.resendInvite = true;
     spyOn(component, 'reinviteClick');
     fixture.detectChanges();
@@ -63,7 +63,7 @@ describe('UserDetailsComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('button')).toBeTruthy();
   });
 
-  it('should call suspendUser when the button clicked', waitForAsync(() => {
+  it('should call suspendUser when the button clicked', async(() => {
     component.showSuspendUserButton = true;
     spyOn(component, 'suspendUser');
     fixture.detectChanges();
