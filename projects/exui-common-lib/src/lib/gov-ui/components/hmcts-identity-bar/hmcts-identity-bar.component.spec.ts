@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { HmctsIdentityBarComponent } from './hmcts-identity-bar.component';
 
@@ -7,7 +7,7 @@ describe('HmctsIdentityBarComponent', () => {
   let component: HmctsIdentityBarComponent;
   let fixture: ComponentFixture<HmctsIdentityBarComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ HmctsIdentityBarComponent ]

@@ -20,7 +20,7 @@ export class FeatureToggleGuard implements CanActivate {
      * @param route Automatically provided by Angular
      */
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
-        return combineLatest((route.data.needsFeaturesEnabled as string[]).map(
+        return combineLatest(...(route.data.needsFeaturesEnabled as string[]).map(
                 feature => this.featureToggleService.getValueOnce<boolean>(feature, false)
         )).pipe(
             map(featureStatuses => featureStatuses.every(status => status)),

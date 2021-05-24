@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ExuiCommonLibModule } from 'projects/exui-common-lib/src';
 import { windowToken } from 'projects/exui-common-lib/src/lib/window';
@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 const windowMock: Window = { gtag: () => {}} as any;
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
