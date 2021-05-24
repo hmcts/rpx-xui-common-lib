@@ -107,8 +107,7 @@ export const COMMON_COMPONENTS = [
   ServiceMessageComponent,
   ServiceMessagesComponent,
   LoadingSpinnerComponent,
-  CookieBannerComponent,
-  GenericFilterComponent
+  CookieBannerComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
