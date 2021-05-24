@@ -19,6 +19,7 @@
     "baseUrl": "../../node_modules"
   },
   "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,

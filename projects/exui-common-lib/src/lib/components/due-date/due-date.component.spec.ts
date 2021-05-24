@@ -1,14 +1,14 @@
 import { formatDate } from '@angular/common';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BadgeColour } from '../../models/badge-colour.model';
-import { DueDateComponent } from './due-date.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { BadgeColour } from '../../models/due-date.model';
+import { DueDateComponent } from './due-date.component';
 
 describe('DueDateComponent', () => {
   let component: DueDateComponent;
   let fixture: ComponentFixture<DueDateComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DueDateComponent ]
     })

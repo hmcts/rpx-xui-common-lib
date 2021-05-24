@@ -15,7 +15,7 @@ describe('LoadingService', () => {
       ]
     });
 
-    loadingService = TestBed.inject(LoadingService);
+    loadingService = TestBed.get(LoadingService);
   });
 
   it('should return observable of true when a token is registered', () => {

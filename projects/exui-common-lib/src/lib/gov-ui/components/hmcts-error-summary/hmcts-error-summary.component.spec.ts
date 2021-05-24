@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsErrorSummaryComponent } from './hmcts-error-summary.component';
@@ -8,7 +8,7 @@ describe('HmctsErrorSummaryComponent', () => {
   let component: HmctsErrorSummaryComponent;
   let fixture: ComponentFixture<HmctsErrorSummaryComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ HmctsErrorSummaryComponent ],

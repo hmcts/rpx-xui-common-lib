@@ -41,8 +41,8 @@ describe('GoogleAnalyticsService', () => {
       ]
     });
 
-    titleTestBed = TestBed.inject(Title);
-    windowTestBed = TestBed.inject<Window>(windowToken);
+    titleTestBed = TestBed.get(Title);
+    windowTestBed = TestBed.get(windowToken);
 
   });
 
@@ -59,7 +59,7 @@ describe('GoogleAnalyticsService', () => {
   it('init should call router navigation end and gtag with correct config',
   inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
     const event = new NavigationEnd(42, '/url', '/redirect-url');
-    (TestBed.inject(Router) as any).events.next(event);
+    TestBed.get(Router).events.next(event);
     spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
     spyOn(windowTestBed as any, 'gtag').and.callThrough();
     service.init('testId');

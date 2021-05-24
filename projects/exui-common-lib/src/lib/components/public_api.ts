@@ -2,7 +2,6 @@ export * from './accessibility/accessibility.component';
 export * from './checkbox-list/checkbox-list.component';
 export * from './contact-details/contact-details.component';
 export * from './due-date/due-date.component';
-export * from './exui-main-wrapper/exui-page-wrapper.component';
 export * from './generic-filter/generic-filter.component';
 export * from './hmcts-session-dialog/hmcts-session-dialog.component';
 export * from './invite-user-form/invite-user-form.component';
@@ -22,4 +21,4 @@ export * from './terms-and-conditions/tc-display/tc-display-plain/tc-display-pla
 export * from './terms-and-conditions/terms-and-conditions.component';
 export * from './user-details/user-details.component';
 export * from './user-list/user-list.component';
-export * from './user-select/user-select.component';
+
