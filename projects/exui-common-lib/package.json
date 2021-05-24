@@ -26,6 +26,7 @@
     }
   ],
   "devDependencies": {
-    "ngx-spec": "^2.1.4"
+    "ngx-spec": "^2.1.4",
+    "node-sass": "^4.0.0"
   }
 }
