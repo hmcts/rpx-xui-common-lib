@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CookieService } from '../../services';
+import { CookieService } from '../../services/cookie/cookie.service';
 import { CookieBannerComponent } from './cookie-banner.component';
 
 describe('CookieBannerComponent', () => {

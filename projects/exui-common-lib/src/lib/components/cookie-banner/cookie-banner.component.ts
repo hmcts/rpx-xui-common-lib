@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CookieService } from '../../services';
+import { CookieService } from '../../services/cookie/cookie.service';
 
 @Component({
     selector: 'xuilib-cookie-banner',
