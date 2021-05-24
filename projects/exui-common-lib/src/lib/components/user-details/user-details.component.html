@@ -22,7 +22,8 @@
           <div *ngIf="user.manageOrganisations === 'Yes'">Manage organisations</div>
           <div *ngIf="user.manageUsers === 'Yes'">Manage users</div>
           <div *ngIf="user.manageCases === 'Yes'">Manage cases</div>
-          <div *ngIf="user.roles && user.roles.includes('pui-caa')">Case access administrator</div>
+          <div *ngIf="userHasRole('pui-caa')">Case access administrator</div>
+          <div *ngIf="userHasRole('pui-finance-manager')">Manage fee accounts</div>
         </td>
         <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">Change <span class="govuk-visually-hidden">roles</span></a></td>
     </tr>

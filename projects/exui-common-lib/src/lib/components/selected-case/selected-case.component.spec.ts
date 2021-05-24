@@ -57,15 +57,15 @@ describe('SelectedCaseComponent', () => {
   });
 
   it('should see page elements', () => {
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='case-title']").textContent).toContain('Sarah vs Pete');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='case-id']").textContent).toContain('C111111');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='btn-deselect-case']").textContent).toContain('Deselect case');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='access-info-has-users']").textContent).toContain('Users from your organisation with access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='name-heading']").textContent).toContain('Name');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='email-heading']").textContent).toContain('Email address');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='action-heading']").textContent).toContain('Actions');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='user-full-name']").textContent).toContain('James Priest');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='user-email']").textContent).toContain('james.priest@test.com');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'case-title\']').textContent).toContain('Sarah vs Pete');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'case-id\']').textContent).toContain('C111111');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'btn-deselect-case\']').textContent).toContain('Deselect case');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']').textContent).toContain('Users from your organisation with access to this case.');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'name-heading\']').textContent).toContain('Name');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'email-heading\']').textContent).toContain('Email address');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'action-heading\']').textContent).toContain('Actions');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'user-full-name\']').textContent).toContain('James Priest');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'user-email\']').textContent).toContain('james.priest@test.com');
   });
 
   it('should track by user id', () => {
@@ -481,8 +481,8 @@ describe('SelectedCaseComponent', () => {
     expect(component.showUserHasAccessInfo()).toBeTruthy();
     expect(component.showNoUsersAccessInfo()).toBeFalsy();
     expect(component.showUserAccessTable()).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='access-info-has-users']").textContent).toContain('Users from your organisation with access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='access-info-no-user']")).toBeNull();
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']').textContent).toContain('Users from your organisation with access to this case.');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-no-user\']')).toBeNull();
   });
 
   it('should show "No users currently have access to this case" when no user is assigned to the case', () => {
@@ -497,8 +497,8 @@ describe('SelectedCaseComponent', () => {
     expect(component.showNoUsersAccessInfo()).toBeTruthy();
     expect(component.showUserHasAccessInfo()).toBeFalsy();
     expect(component.showUserAccessTable()).toBeFalsy();
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='access-info-no-user']").textContent).toContain('No users from your organisation currently have access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='access-info-has-users']")).toBeNull();
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-no-user\']').textContent).toContain('No users from your organisation currently have access to this case.');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']')).toBeNull();
   });
 
   it('should show "No users currently have access to this case" when all users are to be removed', () => {
@@ -526,8 +526,8 @@ describe('SelectedCaseComponent', () => {
     expect(component.showNoUsersAccessInfo()).toBeTruthy();
     expect(component.showUserHasAccessInfo()).toBeFalsy();
     expect(component.showUserAccessTable()).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='access-info-no-user']").textContent).toContain('No users from your organisation currently have access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector("[id^='access-info-has-users']")).toBeNull();
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-no-user\']').textContent).toContain('No users from your organisation currently have access to this case.');
+    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']')).toBeNull();
   });
 
   describe('combineAndSortShares', () => {
