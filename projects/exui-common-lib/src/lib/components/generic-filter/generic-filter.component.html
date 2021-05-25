@@ -2,11 +2,13 @@
   <div class="xui-generic-filter" *ngFor="let field of config.fields">
     <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
     <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
+    <p class="govuk-body govuk-error-message" *ngIf="field.displayMinSelectedError">{{field.minSelectedError}}</p>
+    <p class="govuk-body govuk-error-message" *ngIf="field.displayMaxSelectedError">{{field.maxSelectedError}}</p>
     <div class="govuk-body">
       <ng-container *ngIf="field.type === 'checkbox'">
         <div class="govuk-checkboxes govuk-checkboxes--small">
           <div *ngFor="let item of field.options" class="govuk-checkboxes__item">
-            <input type="checkbox" [name]="'checkbox_' + item.key" [id]="'checkbox_' + item.key" [value]="item.key" [checked]="isSelected(field.name,item.key)" (change)="onSelectionChange($event)" class="govuk-checkboxes__input" [attr.field]="field.name"/>
+            <input type="checkbox" [name]="'checkbox_' + item.key" [id]="'checkbox_' + item.key" [value]="item.key" [checked]="isSelected(field.name, item.key)" (change)="onSelectionChange($event)" class="govuk-checkboxes__input" [attr.field]="field.name"/>
             <label [for]="'checkbox_' + item.key" class="govuk-label govuk-checkboxes__label" [attr.field]="field.name">{{item.label}}</label>
           </div>
         </div>

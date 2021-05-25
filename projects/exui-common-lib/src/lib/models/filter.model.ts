@@ -17,6 +17,8 @@ export interface FilterFieldConfig {
   maxSelected: number;
   minSelectedError?: string;
   maxSelectedError?: string;
+  displayMaxSelectedError?: boolean;
+  displayMinSelectedError?: boolean;
   type: FilterFieldType;
   title?: string;
   subTitle?: string;
