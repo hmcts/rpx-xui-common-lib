@@ -12,7 +12,7 @@ import {FilterService} from './../../services/filter/filter.service';
 export class GenericFilterComponent {
   private selected: { name: string, value: string[] }[] = [];
 
-  constructor(private filterService: FilterService) {
+  constructor(private readonly filterService: FilterService) {
   }
 
   // tslint:disable-next-line:variable-name
