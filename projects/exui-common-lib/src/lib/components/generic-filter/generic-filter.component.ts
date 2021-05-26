@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {FilterConfig, FilterSetting} from '../../models';
-import {FilterService} from '../../services';
+import {FilterService} from './../../services/filter/filter.service';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -12,7 +12,7 @@ import {FilterService} from '../../services';
 export class GenericFilterComponent {
   private selected: { name: string, value: string[] }[] = [];
 
-  constructor(private readonly filterService: FilterService) {
+  constructor(private filterService: FilterService) {
   }
 
   // tslint:disable-next-line:variable-name
