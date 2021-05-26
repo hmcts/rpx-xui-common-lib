@@ -16,7 +16,7 @@ export class LaunchDarklyService implements FeatureToggleService {
     private readonly features: Record<string, BehaviorSubject<any>> = {};
     private user: FeatureUser = { anonymous: true };
 
-    constructor(private config: CommonLibraryModuleConfig) {
+    constructor(private readonly config: CommonLibraryModuleConfig) {
         this.config.launchDarklyClientId$.subscribe(clientId => {
             this.ready.next(false);
             this.client = LDClient.initialize(clientId, this.user, {});

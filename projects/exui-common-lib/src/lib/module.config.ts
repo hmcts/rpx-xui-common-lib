@@ -1,21 +1,21 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CommonLibraryModuleConfig {
-    private _launchDarklyClientId: string;
+    private plaunchDarklyClientId: string;
     public get launchDarklyClientId(): string {
-        return this._launchDarklyClientId;
+        return this.plaunchDarklyClientId;
     }
     public set launchDarklyClientId(value: string) {
-        this._launchDarklyClientId = value;
-        this._launchDarklyClientId$.next(value);
+        this.plaunchDarklyClientId = value;
+        this.plaunchDarklyClientId$.next(value);
     }
 
-    private _launchDarklyClientId$ = new BehaviorSubject<string>('');
+    private readonly plaunchDarklyClientId$ = new BehaviorSubject<string>('');
     public get launchDarklyClientId$(): Observable<string> {
-        return this._launchDarklyClientId$.asObservable();
+        return this.plaunchDarklyClientId$.asObservable();
     }
 }
