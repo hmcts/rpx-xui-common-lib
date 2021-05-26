@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FeatureUser } from '../../models/feature-user';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class FeatureToggleService {
     // tslint:disable-next-line: variable-name
     public initialize(_user: FeatureUser): void {

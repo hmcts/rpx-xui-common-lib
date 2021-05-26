@@ -1,27 +1,33 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as LDClient from 'launchdarkly-js-client-sdk';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { FeatureUser } from '../../models/feature-user';
+import { CommonLibraryModuleConfig } from '../../module.config';
 import { FeatureToggleService } from './feature-toggle.service';
 
-export const LAUNCHDARKLYKEY = new InjectionToken<string>('LAUNCHDARKLYKEY');
-
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class LaunchDarklyService implements FeatureToggleService {
 
-    private readonly client: LDClient.LDClient;
+    private client: LDClient.LDClient;
     private readonly ready = new BehaviorSubject<boolean>(false);
     private readonly features: Record<string, BehaviorSubject<any>> = {};
+    private user: FeatureUser = { anonymous: true };
 
-    constructor(@Inject(LAUNCHDARKLYKEY) key: string) {
-        this.client = LDClient.initialize(key, { anonymous: true }, {});
-        this.client.on('ready', () => { this.ready.next(true); });
+    constructor(private config: CommonLibraryModuleConfig) {
+        this.config.launchDarklyClientId$.subscribe(clientId => {
+            this.ready.next(false);
+            this.client = LDClient.initialize(clientId, this.user, {});
+            this.client.on('ready', () => { this.ready.next(true); });
+        });
     }
 
     public initialize(user: FeatureUser = { anonymous: true }): void {
         this.ready.next(false);
-        this.client.identify(user).then(() => this.ready.next(true));
+        this.user = user;
+        this.client.identify(this.user).then(() => this.ready.next(true));
     }
 
     public isEnabled(feature: string): Observable<boolean> {
