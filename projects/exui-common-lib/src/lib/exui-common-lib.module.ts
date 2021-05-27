@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -60,13 +60,7 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
-
-
-export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
-
-export class ExuiCommonLibModuleOptions {
-  public launchDarklyKey?: string;
-}
+import { windowProvider, windowToken } from './window';
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
@@ -135,11 +129,13 @@ export const GOV_UI_COMPONENTS = [
     MatAutocompleteModule,
     MatTabsModule
   ],
+  providers: [
+    { provide: windowToken, useFactory: windowProvider }
+  ],
   exports: [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
   ]
 })
-
 export class ExuiCommonLibModule {
 }
