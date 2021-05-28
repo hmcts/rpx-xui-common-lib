@@ -8,6 +8,7 @@ export interface FilterConfig {
   persistence: FilterPersistence;
   applyButtonText: string;
   cancelButtonText: string;
+  cancelSetting?: FilterSetting;
 }
 
 export interface FilterFieldConfig {

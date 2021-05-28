@@ -55,12 +55,13 @@ export class GenericFilterComponent {
 
   public applyFilter(): void {
     if (!this.checkFieldsConstraints(this.selected)) {
-      this.filterService.persist(this._settings, this.config.persistence);
+      this.filterService.persist(this.settings, this.config.persistence);
     }
   }
 
   public cancelFilter(): void {
-    this.getSettings();
+    this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
+    this.selected = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
   }
 
   public isSelected(id: string, key: string): boolean {
