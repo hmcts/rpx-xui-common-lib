@@ -3,7 +3,6 @@ import * as LDClient from 'launchdarkly-js-client-sdk';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { FeatureUser } from '../../models/feature-user';
-import { CommonLibraryModuleConfig } from '../../module.config';
 import { FeatureToggleService } from './feature-toggle.service';
 
 @Injectable({
@@ -12,22 +11,19 @@ import { FeatureToggleService } from './feature-toggle.service';
 export class LaunchDarklyService implements FeatureToggleService {
 
     private client: LDClient.LDClient;
-    private readonly ready = new BehaviorSubject<boolean>(false);
+    private readonly ready: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private readonly features: Record<string, BehaviorSubject<any>> = {};
     private user: FeatureUser = { anonymous: true };
+    private clientId: string = '';
 
-    constructor(private readonly config: CommonLibraryModuleConfig) {
-        this.config.launchDarklyClientId$.subscribe(clientId => {
-            this.ready.next(false);
-            this.client = LDClient.initialize(clientId, this.user, {});
-            this.client.on('ready', () => { this.ready.next(true); });
-        });
-    }
-
-    public initialize(user: FeatureUser = { anonymous: true }): void {
+    public initialize(user: FeatureUser = { anonymous: true }, clientId: string): void {
         this.ready.next(false);
         this.user = user;
-        this.client.identify(this.user).then(() => this.ready.next(true));
+        this.clientId = clientId;
+        this.client = LDClient.initialize(this.clientId, this.user, {});
+        this.client.on('ready', () => {
+            this.client.identify(this.user).then(() => this.ready.next(true));
+        });
     }
 
     public isEnabled(feature: string): Observable<boolean> {

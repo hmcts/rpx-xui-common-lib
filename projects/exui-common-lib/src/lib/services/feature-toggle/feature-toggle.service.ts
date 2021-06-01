@@ -7,7 +7,7 @@ import { FeatureUser } from '../../models/feature-user';
 })
 export class FeatureToggleService {
     // tslint:disable-next-line: variable-name
-    public initialize(_user: FeatureUser): void {
+    public initialize(_user: FeatureUser, _clientId: string): void {
         throw new Error('Not implemented');
     }
     // tslint:disable-next-line: variable-name
