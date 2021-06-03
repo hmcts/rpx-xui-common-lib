@@ -73,4 +73,12 @@ describe('UserDetailsComponent', () => {
       expect(component.suspendUser).toHaveBeenCalled();
     });
   }));
+
+  it('should verify if user has specific role', () => {
+    component.user.roles = ['pui-finance-manager'];
+    let userHasRole = component.userHasRole('pui-finance-manager');
+    expect(userHasRole).toBeTruthy();
+    userHasRole = component.userHasRole('pui-caa');
+    expect(userHasRole).toBeFalsy();
+  });
 });

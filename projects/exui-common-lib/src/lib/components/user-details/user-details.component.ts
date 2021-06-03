@@ -24,4 +24,11 @@ export class UserDetailsComponent {
     public suspendUser(suspendUser: User): void {
       this.suspendUserEvent.emit(suspendUser);
     }
+
+    public userHasRole(theRole: string): boolean {
+      if (this.user && this.user.roles) {
+        return this.user.roles.includes(theRole);
+      }
+      return false;
+    }
 }

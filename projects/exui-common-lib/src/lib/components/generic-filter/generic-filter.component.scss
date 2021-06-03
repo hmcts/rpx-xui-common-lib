@@ -1,0 +1,13 @@
+.xui-generic-filter {
+  .select-all {
+    margin-bottom: 10px;
+  }
+  .govuk-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+
+    > div {
+      width: 29%
+    }
+  }
+}
