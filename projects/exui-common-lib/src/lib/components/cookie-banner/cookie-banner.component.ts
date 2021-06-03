@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CookieService } from '../../services/cookie/cookie.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { CookieService } from '../../services/cookie/cookie.service';
 export class CookieBannerComponent implements OnInit {
   @Input() public identifier: string;
   @Input() public appName: string;
+  @Output() public notifier = new EventEmitter<any>();
 
   public isCookieBannerVisible: boolean = false;
 
@@ -27,11 +28,24 @@ export class CookieBannerComponent implements OnInit {
 
   public rejectCookie(): void {
     this.cookieService.setCookie(this.identifier, 'false', this.getExpiryDate());
+    this.notifyThirdParties();
     this.setCookieBannerVisibility();
   }
 
   public setCookieBannerVisibility(): void {
     this.isCookieBannerVisible = !this.cookieService.checkCookie(this.identifier);
+
+    if (this.areCookiesRejected()) {
+      this.notifyThirdParties();
+    }
+  }
+
+  public areCookiesRejected(): boolean {
+    return this.cookieService.checkCookie(this.identifier) && this.cookieService.getCookie(this.identifier) === 'false';
+  }
+
+  public notifyThirdParties(): void {
+    this.notifier.emit();
   }
 
   private getExpiryDate(): string {

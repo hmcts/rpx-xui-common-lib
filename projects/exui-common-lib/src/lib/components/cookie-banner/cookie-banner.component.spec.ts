@@ -9,7 +9,7 @@ describe('CookieBannerComponent', () => {
   let cookieService: any;
 
   beforeEach(async(() => {
-    cookieService = jasmine.createSpyObj('CookieService', ['setCookie', 'checkCookie']);
+    cookieService = jasmine.createSpyObj('CookieService', ['setCookie', 'checkCookie', 'getCookie']);
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ CookieBannerComponent ],
@@ -56,6 +56,14 @@ describe('CookieBannerComponent', () => {
           cookieService.checkCookie.and.returnValue(true);
           appComponent.setCookieBannerVisibility();
           expect(appComponent.isCookieBannerVisible).toBeFalsy();
+      });
+
+      it('should notify third parties when cookie is set to false', () => {
+          const notifyThirdPartiesSpy = spyOn(appComponent, 'notifyThirdParties');
+          cookieService.checkCookie.and.returnValue(true);
+          cookieService.getCookie.and.returnValue('false');
+          appComponent.setCookieBannerVisibility();
+          expect(notifyThirdPartiesSpy).toHaveBeenCalled();
       });
   });
 
