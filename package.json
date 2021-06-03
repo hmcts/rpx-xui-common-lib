@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.0.1-cookie-banner-service-component-2",
+  "version": "1.0.1-cookie-banner-notify",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
