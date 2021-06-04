@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { CookieService } from '../../services/cookie/cookie.service';
+import { windowToken } from '../../window';
 
 @Component({
     selector: 'xuilib-cookie-banner',
@@ -9,43 +10,57 @@ import { CookieService } from '../../services/cookie/cookie.service';
 export class CookieBannerComponent implements OnInit {
   @Input() public identifier: string;
   @Input() public appName: string;
-  @Output() public notifier = new EventEmitter<any>();
+  @Output() public rejectionNotifier = new EventEmitter<any>();
+  @Output() public acceptanceNotifier = new EventEmitter<any>();
 
   public isCookieBannerVisible: boolean = false;
+  private readonly window: Window;
 
   constructor(
-    private readonly cookieService: CookieService
-  ) {}
+    private readonly cookieService: CookieService,
+    @Inject(windowToken) window: any,
+  ) {
+    this.window = window as Window;
+  }
 
   public ngOnInit(): void {
-    this.setCookieBannerVisibility();
+    this.setState();
   }
 
   public acceptCookie(): void {
     this.cookieService.setCookie(this.identifier, 'true', this.getExpiryDate());
-    this.setCookieBannerVisibility();
+    this.setState(true);
   }
 
   public rejectCookie(): void {
     this.cookieService.setCookie(this.identifier, 'false', this.getExpiryDate());
-    this.notifyThirdParties();
-    this.setCookieBannerVisibility();
+    this.setState(true);
   }
 
-  public setCookieBannerVisibility(): void {
+  public setState(reload: boolean = false): void {
     this.isCookieBannerVisible = !this.cookieService.checkCookie(this.identifier);
 
-    if (this.areCookiesRejected()) {
-      this.notifyThirdParties();
+    if (this.areCookiesAccepted()) {
+      this.notifyAcceptance();
+    } else {
+      this.notifyRejection();
+    }
+
+    if (reload) { // reload if any of the buttons are pressed
+      this.window.location.reload();
     }
   }
 
-  public areCookiesRejected(): boolean {
-    return this.cookieService.checkCookie(this.identifier) && this.cookieService.getCookie(this.identifier) === 'false';
+  public areCookiesAccepted(): boolean {
+    return this.cookieService.checkCookie(this.identifier) && this.cookieService.getCookie(this.identifier) === 'true';
   }
 
-  public notifyThirdParties(): void {
-    this.notifier.emit();
+  public notifyRejection(): void {
+    this.rejectionNotifier.emit();
+  }
+
+  public notifyAcceptance(): void {
+    this.acceptanceNotifier.emit();
   }
 
   private getExpiryDate(): string {

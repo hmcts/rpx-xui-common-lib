@@ -44,4 +44,12 @@ describe('CookieService', () => {
     cookieService.deleteCookie('user');
     expect(mockDocument.cookie).toBe(`user=; expires=${new Date(0)}`);
   });
+
+  it('should delete a cookie by partial match', () => {
+    mockDocument.cookie = 'user_123=dummy';
+    const result = cookieService.checkCookie('user_123');
+    expect(result).toBeTruthy();
+    cookieService.deleteCookieByPartialMatch('user_');
+    expect(mockDocument.cookie).toBe(`user_123=; expires=${new Date(0)}`);
+  });
 });

@@ -27,6 +27,15 @@ export class CookieService {
     this.document.cookie = `${key}=; expires=${new Date(0)}`;
   }
 
+  public deleteCookieByPartialMatch(key: string): void {
+    this.document.cookie
+      .split('; ')
+      .filter(row => row.startsWith(`${key}`))
+      .forEach(element => {
+        this.deleteCookie(element.split('=')[0]);
+      });
+  }
+
   public checkCookie(key: string): boolean {
     return this.document.cookie.split(';').some(item => item.trim().startsWith(`${key}=`));
   }
