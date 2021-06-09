@@ -4,7 +4,9 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FeatureToggleService } from './feature-toggle.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class FeatureToggleGuard implements CanActivate {
 
     public constructor(

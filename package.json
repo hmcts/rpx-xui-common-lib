@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.0.8-generic-filter",
+  "version": "1.0.9-EUI-3999-and-3740",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
@@ -36,7 +36,6 @@
     "core-js": "^2.5.4",
     "govuk-frontend": "^3.4.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "node-sass": "^4.0.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
@@ -59,9 +58,10 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^4.2.0",
+    "node-sass": "^4.0.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tsickle": ">=0.34.0",
+    "tsickle": "0.38.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"

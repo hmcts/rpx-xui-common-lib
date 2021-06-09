@@ -9,7 +9,9 @@ import {
 } from 'rxjs/operators';
 import {IdleConfigModel} from '../../models/idle-config.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ManageSessionServices {
   private readonly appStateEmitter: Subject<{type: string, countdown?: string; isVisible?: boolean}>;
 
