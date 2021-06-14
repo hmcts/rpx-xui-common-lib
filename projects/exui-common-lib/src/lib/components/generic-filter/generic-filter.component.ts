@@ -22,6 +22,8 @@ export class GenericFilterComponent {
     return this._config;
   }
 
+  public hasErrors = false;
+
   @Input()
   public set config(value: FilterConfig) {
     this._config = {
@@ -55,6 +57,7 @@ export class GenericFilterComponent {
 
   public applyFilter(): void {
     if (!this.checkFieldsConstraints(this.selected)) {
+      this.filterService.givenErrors.next(null);
       this.filterService.persist(this.settings, this.config.persistence);
     }
   }
@@ -62,6 +65,7 @@ export class GenericFilterComponent {
   public cancelFilter(): void {
     this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     this.selected = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
+    this.applyFilter();
   }
 
   public isSelected(id: string, key: string): boolean {
@@ -109,6 +113,7 @@ export class GenericFilterComponent {
 
   private checkFieldsConstraints(selected: { name: string, value: string[] }[]): boolean {
     let hasErrors = false;
+    
     for (const fieldConstraint of this.config.fields) {
       if (fieldConstraint.minSelected > 0 || fieldConstraint.maxSelected > 0) {
         const field = selected.find((f) => f.name === fieldConstraint.name);
@@ -116,6 +121,7 @@ export class GenericFilterComponent {
           // display error for minimum selected
           fieldConstraint.displayMinSelectedError = true;
           hasErrors = true;
+          this.filterService.givenErrors.next(fieldConstraint.minSelectedError);
           continue;
         }
 
@@ -123,6 +129,7 @@ export class GenericFilterComponent {
           // display error for maximum selected
           fieldConstraint.displayMaxSelectedError = true;
           hasErrors = true;
+          this.filterService.givenErrors.next(fieldConstraint.maxSelectedError);
           continue;
         }
 
@@ -130,6 +137,7 @@ export class GenericFilterComponent {
           // display error for minimum selected
           fieldConstraint.displayMinSelectedError = true;
           hasErrors = true;
+          this.filterService.givenErrors.next(fieldConstraint.minSelectedError);
           continue;
         }
         fieldConstraint.displayMinSelectedError = false;
@@ -138,4 +146,5 @@ export class GenericFilterComponent {
     }
     return hasErrors;
   }
+  
 }

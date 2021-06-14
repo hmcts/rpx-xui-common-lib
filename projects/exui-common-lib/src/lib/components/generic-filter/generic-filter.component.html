@@ -1,33 +1,35 @@
 <div class="govuk-form-group">
   <div class="xui-generic-filter" *ngFor="let field of config.fields">
-    <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
-    <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
-    <p class="govuk-body govuk-error-message" *ngIf="field.displayMinSelectedError">{{field.minSelectedError}}</p>
-    <p class="govuk-body govuk-error-message" *ngIf="field.displayMaxSelectedError">{{field.maxSelectedError}}</p>
-    <div class="govuk-body">
-      <ng-container *ngIf="field.type === 'checkbox'">
-        <div class="govuk-checkboxes govuk-checkboxes--small">
-          <div *ngFor="let item of field.options" class="govuk-checkboxes__item">
-            <input type="checkbox" [name]="'checkbox_' + item.key" [id]="'checkbox_' + item.key" [value]="item.key" [checked]="isSelected(field.name, item.key)" (change)="onSelectionChange($event)" class="govuk-checkboxes__input" [attr.field]="field.name"/>
-            <label [for]="'checkbox_' + item.key" class="govuk-label govuk-checkboxes__label" [attr.field]="field.name">{{item.label}}</label>
+    <div class="govuk-form-group" [ngClass]="{'form-group-error': field.displayMinSelectedError || field.displayMaxSelectedError}">
+      <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
+      <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
+      <!-- <p class="govuk-body govuk-error-message" *ngIf="field.displayMinSelectedError">{{field.minSelectedError}}</p>
+      <p class="govuk-body govuk-error-message" *ngIf="field.displayMaxSelectedError">{{field.maxSelectedError}}</p> -->
+      <div class="govuk-body">
+        <ng-container *ngIf="field.type === 'checkbox'">
+          <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div *ngFor="let item of field.options" class="govuk-checkboxes__item">
+              <input type="checkbox" [name]="'checkbox_' + item.key" [id]="'checkbox_' + item.key" [value]="item.key" [checked]="isSelected(field.name, item.key)" (change)="onSelectionChange($event)" class="govuk-checkboxes__input" [attr.field]="field.name"/>
+              <label [for]="'checkbox_' + item.key" class="govuk-label govuk-checkboxes__label" [attr.field]="field.name">{{item.label}}</label>
+            </div>
           </div>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="field.type === 'radio'">
-        <div class="govuk-radios">
-          <div *ngFor="let item of field.options" class="govuk-radios__item">
-            <input type="radio" [name]="'radio_' + field.name" [id]="'radio_' + item.key" [value]="item.key" [checked]="isSelected(field.name,item.key)" (change)="onSelectionChange($event)" class="govuk-radios__input"/>
-            <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
+        </ng-container>
+        <ng-container *ngIf="field.type === 'radio'">
+          <div class="govuk-radios">
+            <div *ngFor="let item of field.options" class="govuk-radios__item">
+              <input type="radio" [name]="'radio_' + field.name" [id]="'radio_' + item.key" [value]="item.key" [checked]="isSelected(field.name,item.key)" (change)="onSelectionChange($event)" class="govuk-radios__input"/>
+              <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
+            </div>
           </div>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="field.type === 'select'">
-        <select class="govuk-select" [name]="field.name" [id]="field.name" (change)="onSelectionChange($event)">
-          <ng-container *ngFor="let item of field.options">
-            <option class="govuk-radios__item" [value]="item.key" [selected]="isSelected(field.name,item.key)">{{item.label}}</option>
-          </ng-container>
-        </select>
-      </ng-container>
+        </ng-container>
+        <ng-container *ngIf="field.type === 'select'">
+          <select class="govuk-select" [name]="field.name" [id]="field.name" (change)="onSelectionChange($event)">
+            <ng-container *ngFor="let item of field.options">
+              <option class="govuk-radios__item" [value]="item.key" [selected]="isSelected(field.name,item.key)">{{item.label}}</option>
+            </ng-container>
+          </select>
+        </ng-container>
+      </div>
     </div>
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
