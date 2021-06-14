@@ -22,8 +22,6 @@ export class GenericFilterComponent {
     return this._config;
   }
 
-  public hasErrors = false;
-
   @Input()
   public set config(value: FilterConfig) {
     this._config = {
@@ -36,6 +34,8 @@ export class GenericFilterComponent {
     };
     this._config = value;
   }
+
+  public hasErrors = false;
 
   // tslint:disable-next-line:variable-name
   private _settings?: FilterSetting;
@@ -113,7 +113,7 @@ export class GenericFilterComponent {
 
   private checkFieldsConstraints(selected: { name: string, value: string[] }[]): boolean {
     let hasErrors = false;
-    
+
     for (const fieldConstraint of this.config.fields) {
       if (fieldConstraint.minSelected > 0 || fieldConstraint.maxSelected > 0) {
         const field = selected.find((f) => f.name === fieldConstraint.name);
@@ -146,5 +146,4 @@ export class GenericFilterComponent {
     }
     return hasErrors;
   }
-  
 }
