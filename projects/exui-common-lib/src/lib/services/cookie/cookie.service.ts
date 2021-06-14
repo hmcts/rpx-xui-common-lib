@@ -24,7 +24,7 @@ export class CookieService {
   }
 
   public deleteCookie(key: string): void {
-    this.document.cookie = `${key}=; expires=${new Date(0)}`;
+    this.document.cookie = `${key}=; path=/; expires=${new Date(0)}`;
   }
 
   public deleteCookieByPartialMatch(key: string): void {
