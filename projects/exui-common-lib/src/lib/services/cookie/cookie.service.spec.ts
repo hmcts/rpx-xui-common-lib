@@ -42,7 +42,7 @@ describe('CookieService', () => {
     const result = cookieService.checkCookie('user');
     expect(result).toBeTruthy();
     cookieService.deleteCookie('user');
-    expect(mockDocument.cookie).toBe(`user=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`);
+    expect(mockDocument.cookie).toBe(`user=; expires=Thu, 01 Jan 1970 00:00:01 GMT; max-age=0`);
   });
 
   it('should delete a cookie by partial match', () => {
@@ -50,6 +50,6 @@ describe('CookieService', () => {
     const result = cookieService.checkCookie('user_123');
     expect(result).toBeTruthy();
     cookieService.deleteCookieByPartialMatch('user_');
-    expect(mockDocument.cookie).toBe(`user_123=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`);
+    expect(mockDocument.cookie).toBe(`user_123=; expires=Thu, 01 Jan 1970 00:00:01 GMT; max-age=0`);
   });
 });

@@ -23,16 +23,18 @@ export class CookieService {
     return cookieValue;
   }
 
-  public deleteCookie(key: string): void {
-    this.document.cookie = `${key}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+  public deleteCookie(key: string, path?: string, domain?: string): void {
+    const pathValue = path ? `; path=${path}` : '';
+    const domainValue = domain ? `; domain=${domain}` : '';
+    this.document.cookie = `${key}=${pathValue}${domainValue}; expires=Thu, 01 Jan 1970 00:00:01 GMT; max-age=0`;
   }
 
-  public deleteCookieByPartialMatch(key: string): void {
+  public deleteCookieByPartialMatch(key: string, path?: string, domain?: string): void {
     this.document.cookie
       .split('; ')
       .filter(row => row.startsWith(`${key}`))
       .forEach(element => {
-        this.deleteCookie(element.split('=')[0]);
+        this.deleteCookie(element.split('=')[0], path, domain);
       });
   }
 
