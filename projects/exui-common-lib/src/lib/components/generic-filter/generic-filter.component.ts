@@ -63,8 +63,9 @@ export class GenericFilterComponent {
   }
 
   public cancelFilter(): void {
-    this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
-    this.selected = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
+    const cancelFields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
+    this._settings.fields = cancelFields;
+    this.selected = cancelFields;
     this.applyFilter();
   }
 
