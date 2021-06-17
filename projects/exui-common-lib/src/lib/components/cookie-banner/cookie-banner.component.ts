@@ -66,7 +66,7 @@ export class CookieBannerComponent implements OnInit {
   private getExpiryDate(): string {
     const now = new Date();
     const time = now.getTime();
-    const expireTime = time + 3600 * 1000 * 24 * 365; // in 365 days
+    const expireTime = time + 31536000000;  //  in 365 days = 3600 * 1000 * 24 * 365
     now.setTime(expireTime);
     return now.toUTCString();
   }

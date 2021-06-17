@@ -39,6 +39,6 @@ export class CookieService {
   }
 
   public checkCookie(key: string): boolean {
-    return this.document.cookie.split(';').some(item => item.trim().startsWith(`${key}=`));
+    return this.document.cookie.split('; ').some(item => item.trim().startsWith(`${key}=`));
   }
 }
