@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -65,13 +65,9 @@ import { CookieService } from './services/cookie/cookie.service';
 import { FeatureToggleGuard } from './services/feature-toggle/feature-toggle.guard';
 import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
 import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
-import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
-import { GoogleTagManagerService } from './services/google-tag-manager/google-tag-manager.service';
 import { LoadingService } from './services/loading/loading.service';
-import { ManageSessionServices } from './services/manage-session/manage-session.services';
 import { RoleGuard } from './services/role-guard/role.guard';
 import { RoleService } from './services/role-guard/role.service';
-import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
 
 
