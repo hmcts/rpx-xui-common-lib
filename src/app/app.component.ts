@@ -112,6 +112,8 @@ export class AppComponent implements OnInit {
     cancelButtonText: 'Cancel'
   };
 
+  public spinnerTester: boolean = false;
+
   constructor(
     private readonly googleTagManagerService: GoogleTagManagerService
   ) {

@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { Subscription } from 'rxjs';
 import { LoadingService } from './loading.service';
 
-
 describe('LoadingService', () => {
   let loadingService: LoadingService;
   let subscription: Subscription;
@@ -34,20 +33,22 @@ describe('LoadingService', () => {
 
   });
 
-  it('should return observable of false when a tokens are unregistered', () => {
-
-    const token1 = loadingService.register();
-    const token2 = loadingService.register();
-    loadingService.unregister(token1);
-    loadingService.unregister(token2);
-    subscription = loadingService.isLoading.subscribe(value => {
-      expect(value).toBeFalsy();
-    });
-
+  it('should return observable of false when all tokens are unregistered', async (done) => {
+    let token1: string;
+    let token2: string;
+    setTimeout(() => token1 = loadingService.register(), 1);
+    setTimeout(() => token2 = loadingService.register(), 1);
+    setTimeout(() => {
+      loadingService.unregister(token1);
+      loadingService.unregister(token2);
+      subscription = loadingService.isLoading.subscribe(value => {
+        expect(value).toBeFalsy();
+        done();
+      });
+    }, 5);
   });
 
-  it('should return observable of true when multiple tokens are registered, yet one is unregistered', () => {
-
+  it('should return observable of true when multiple tokens are registered, yet one is unregistered', async (done) => {
     let index = 0;
     let tokenToRemove: string;
     let interval = setInterval(() => {
@@ -62,11 +63,11 @@ describe('LoadingService', () => {
         interval = undefined;
         subscription = loadingService.isLoading.subscribe(value => {
           expect(value).toBeTruthy();
+          done();
         });
       }
       index++;
     }, 1);
-
   });
 
   afterEach(() => {

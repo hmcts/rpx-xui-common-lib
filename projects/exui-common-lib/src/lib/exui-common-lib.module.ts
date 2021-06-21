@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
 import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
@@ -60,7 +61,25 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { CookieService } from './services/cookie/cookie.service';
+import { FeatureToggleGuard } from './services/feature-toggle/feature-toggle.guard';
+import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
+import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
+import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
+import { GoogleTagManagerService } from './services/google-tag-manager/google-tag-manager.service';
+import { LoadingService } from './services/loading/loading.service';
+import { ManageSessionServices } from './services/manage-session/manage-session.services';
+import { RoleGuard } from './services/role-guard/role.guard';
+import { RoleService } from './services/role-guard/role.service';
+import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 import { windowProvider, windowToken } from './window';
+
+
+export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
+
+export class ExuiCommonLibModuleOptions {
+  public launchDarklyKey?: string;
+}
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
@@ -89,6 +108,7 @@ export const COMMON_COMPONENTS = [
   ServiceMessageComponent,
   ServiceMessagesComponent,
   LoadingSpinnerComponent,
+  CookieBannerComponent,
   GenericFilterComponent
 ];
 
@@ -130,7 +150,13 @@ export const GOV_UI_COMPONENTS = [
     MatTabsModule
   ],
   providers: [
-    { provide: windowToken, useFactory: windowProvider }
+    { provide: windowToken, useFactory: windowProvider },
+    { provide: FeatureToggleService, useClass: LaunchDarklyService },
+    FeatureToggleGuard,
+    RoleGuard,
+    RoleService,
+    LoadingService,
+    CookieService
   ],
   exports: [
     ...COMMON_COMPONENTS,
