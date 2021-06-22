@@ -4,10 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
-import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
+
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
 import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
