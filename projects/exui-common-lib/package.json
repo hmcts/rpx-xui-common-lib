@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.0.9-EUI-3999-and-3740",
+  "version": "1.0.9-EUI-3999-and-3740-3",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
