@@ -11,6 +11,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
+import { FindPersonComponent } from './components/find-person/find-person.component';
 import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
@@ -92,7 +93,8 @@ export const COMMON_COMPONENTS = [
   ServiceMessagesComponent,
   LoadingSpinnerComponent,
   GenericFilterComponent,
-  CookieBannerComponent
+  CookieBannerComponent,
+  FindPersonComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
