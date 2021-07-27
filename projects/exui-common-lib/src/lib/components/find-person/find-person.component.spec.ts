@@ -52,7 +52,7 @@ describe('FindPersonComponent', () => {
       name: 'Person 1',
       email: 'person@email.com',
       domain: 'Both'
-    }
+    };
     spyOn(component.personSelected, 'emit');
     component.onSelectionChange(null);
     expect(component.personSelected.emit).toHaveBeenCalledWith(null);
