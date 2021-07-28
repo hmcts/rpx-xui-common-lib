@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
-import { Person, PersonDomain } from '../../models/person.model';
+import { Person, PersonRole } from '../../models/person.model';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
 @Component({
@@ -15,10 +15,9 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
 export class FindPersonComponent implements OnInit {
   @Output() public personSelected = new EventEmitter<Person>();
   @Input() public title: string;
-  @Input() public givenDomain = PersonDomain.BOTH;
+  @Input() public domain = PersonRole.ALL;
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;
-  public domain: PersonDomain;
   public showAutocomplete: boolean = false;
 
   constructor(private readonly findPersonService: FindAPersonService) {
@@ -34,7 +33,6 @@ export class FindPersonComponent implements OnInit {
     } else {
       this.findPersonGroup.addControl('findPersonControl', this.findPersonControl);
     }
-    this.domain = this.givenDomain;
     this.filteredOptions = this.findPersonControl.valueChanges.pipe(
       startWith(''),
       switchMap(searchTerm => {
