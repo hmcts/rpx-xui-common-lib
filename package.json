@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.0.1-module-fixes.8",
+  "version": "1.0.1-find-person-relocate",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
