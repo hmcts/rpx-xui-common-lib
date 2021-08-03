@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
-
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
