@@ -1,6 +1,6 @@
-import { PersonDomain } from './person.model';
+import { PersonRole } from './person.model';
 
 export interface SearchOptions {
   searchTerm: string;
-  jurisdiction: PersonDomain;
+  jurisdiction: PersonRole;
 }
