@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.3.0",
+  "version": "1.3.0-manage-link-toggle",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

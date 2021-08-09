@@ -37,6 +37,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserSelectComponent } from './components/user-select/user-select.component';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
 import { LetDirective } from './directives/let/let.directive';
+import { ManageLinkToggleDirective } from './directives/manage-link-toggle/manage-link-toggle.directive';
 import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
 import { GovUkCheckboxesComponent } from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
 import { GovUkDateComponent } from './gov-ui/components/gov-uk-date/gov-uk-date.component';
@@ -93,6 +94,7 @@ export const COMMON_COMPONENTS = [
   LoadingSpinnerComponent,
   GenericFilterComponent,
   CookieBannerComponent,
+  ManageLinkToggleDirective,
   FindPersonComponent
 ];
 
