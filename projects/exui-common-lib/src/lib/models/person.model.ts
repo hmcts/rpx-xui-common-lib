@@ -5,8 +5,9 @@ export interface Person {
   domain: string;
 }
 
-export enum PersonDomain {
-  JUDICIAL = 1,
-  CASEWORKER = 2,
-  BOTH = 3
+export enum PersonRole {
+  JUDICIAL = 'Judicial',
+  CASEWORKER = 'Legal Ops',
+  ADMIN = 'Admin',
+  ALL = 'All',
 }
