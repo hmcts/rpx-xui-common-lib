@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
 
-import { BadgeColour, SECONDS_IN_A_DAY } from '../../models/due-date.model';
+import { DateBadgeColour, SECONDS_IN_A_DAY } from '../../models/due-date.model';
 
 @Component({
   selector: 'xuilib-due-date',
@@ -93,7 +93,7 @@ export class DueDateComponent implements OnChanges {
 
     // Is it overdue?
     if (this.daysDiff > 0) {
-      this.pBadge = BadgeColour.RED;
+      this.pBadge = DateBadgeColour.RED;
       const daysLabel = this.daysDiff === 1 ? 'day' : 'days';
       this.pLabel = `+${this.daysDiff} ${daysLabel}`;
       this.pAccessibleLabel = `This task is ${this.daysDiff} ${daysLabel} past its due date`;
@@ -107,11 +107,11 @@ export class DueDateComponent implements OnChanges {
         this.pAccessibleLabel = `This task is due to be completed by ${formatDate(this.dueDate, 'd MMMM y', 'en-GB')}`;
       }
       if (this.daysDiff + this.highUrgencyCutoff > 0) {
-        this.pBadge = BadgeColour.RED;
+        this.pBadge = DateBadgeColour.RED;
       } else if (this.daysDiff + this.mediumUrgencyCutoff > 0) {
-        this.pBadge = BadgeColour.ORANGE;
+        this.pBadge = DateBadgeColour.ORANGE;
       } else {
-        this.pBadge = BadgeColour.GREEN;
+        this.pBadge = DateBadgeColour.GREEN;
       }
     }
   }
