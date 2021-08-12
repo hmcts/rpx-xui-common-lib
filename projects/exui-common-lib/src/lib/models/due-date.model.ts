@@ -1,4 +1,4 @@
-export enum BadgeColour {
+export enum DateBadgeColour {
   RED = 'hmcts-badge--red',
   ORANGE = 'hmcts-badge--orange',
   GREEN = 'hmcts-badge--green',

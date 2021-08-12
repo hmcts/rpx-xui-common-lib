@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BadgeColour } from '../../models/due-date.model';
+import { DateBadgeColour } from '../../models/due-date.model';
 import { DueDateComponent } from './due-date.component';
 
 describe('DueDateComponent', () => {
@@ -60,8 +60,8 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('aria-label')).toBe('This task is due to be completed today');
 
     // Default for TODAY is MEDIUM urgency.
-    expect(component.badge).toBe(BadgeColour.ORANGE);
-    expect(element.getAttribute('class')).toContain(BadgeColour.ORANGE);
+    expect(component.badge).toBe(DateBadgeColour.ORANGE);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.ORANGE);
   });
 
   it('should setup correctly for due date of yesterday', () => {
@@ -78,8 +78,8 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('aria-label')).toBe('This task is 1 day past its due date');
 
     // Overdue so definitely "HIGH" urgency.
-    expect(component.badge).toBe(BadgeColour.RED);
-    expect(element.getAttribute('class')).toContain(BadgeColour.RED);
+    expect(component.badge).toBe(DateBadgeColour.RED);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.RED);
   });
 
   it('should setup correctly for due date of 3 days ago', () => {
@@ -96,8 +96,8 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('aria-label')).toBe('This task is 3 days past its due date');
 
     // Overdue so definitely "HIGH" urgency.
-    expect(component.badge).toBe(BadgeColour.RED);
-    expect(element.getAttribute('class')).toContain(BadgeColour.RED);
+    expect(component.badge).toBe(DateBadgeColour.RED);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.RED);
   });
 
   it('should setup correctly for tomorrow', () => {
@@ -116,8 +116,8 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('aria-label')).toBe(EXPECTED_ACCESSIBLE_LABEL);
 
     // Default for MEDIUM urgency is 2, which means tomorrow is MEDIUM.
-    expect(component.badge).toBe(BadgeColour.ORANGE);
-    expect(element.getAttribute('class')).toContain(BadgeColour.ORANGE);
+    expect(component.badge).toBe(DateBadgeColour.ORANGE);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.ORANGE);
   });
 
   it('should setup correctly for the day after tomorrow', () => {
@@ -136,8 +136,8 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('aria-label')).toBe(EXPECTED_ACCESSIBLE_LABEL);
 
     // Default for MEDIUM urgency is 2, which means the day after tomorrow is LOW.
-    expect(component.badge).toBe(BadgeColour.GREEN);
-    expect(element.getAttribute('class')).toContain(BadgeColour.GREEN);
+    expect(component.badge).toBe(DateBadgeColour.GREEN);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.GREEN);
   });
 
   it('should handle updated highUrgencyCutoff for TODAY', () => {
@@ -150,8 +150,8 @@ describe('DueDateComponent', () => {
 
     // Should make TODAY have a HIGH urgency.
     expect(component.highUrgencyCutoff).toBe(1);
-    expect(component.badge).toBe(BadgeColour.RED);
-    expect(element.getAttribute('class')).toContain(BadgeColour.RED);
+    expect(component.badge).toBe(DateBadgeColour.RED);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.RED);
 
     // Set highUrgencyCutoff back to zero (default).
     component.highUrgencyCutoff = 0;
@@ -160,8 +160,8 @@ describe('DueDateComponent', () => {
 
     // And make sure it's updated again.
     expect(component.highUrgencyCutoff).toBe(0);
-    expect(component.badge).toBe(BadgeColour.ORANGE);
-    expect(element.getAttribute('class')).toContain(BadgeColour.ORANGE);
+    expect(component.badge).toBe(DateBadgeColour.ORANGE);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.ORANGE);
   });
 
   it('should handle updated mediumUrgencyCutoff for the day after tomorrow', () => {
@@ -176,8 +176,8 @@ describe('DueDateComponent', () => {
 
     // Should make the day after tomorrow have a MEDIUM urgency.
     expect(component.mediumUrgencyCutoff).toBe(3);
-    expect(component.badge).toBe(BadgeColour.ORANGE);
-    expect(element.getAttribute('class')).toContain(BadgeColour.ORANGE);
+    expect(component.badge).toBe(DateBadgeColour.ORANGE);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.ORANGE);
 
     // Set highUrgencyCutoff back to 2 (default).
     component.mediumUrgencyCutoff = 2;
@@ -185,8 +185,8 @@ describe('DueDateComponent', () => {
     fixture.detectChanges();
 
     // Should go back to LOW urgency.
-    expect(component.badge).toBe(BadgeColour.GREEN);
-    expect(element.getAttribute('class')).toContain(BadgeColour.GREEN);
+    expect(component.badge).toBe(DateBadgeColour.GREEN);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.GREEN);
   });
 
   it('should handle an update to dueDate', () => {
@@ -202,8 +202,8 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('aria-label')).toBe('This task is due to be completed today');
 
     // Default for TODAY is MEDIUM urgency.
-    expect(component.badge).toBe(BadgeColour.ORANGE);
-    expect(element.getAttribute('class')).toContain(BadgeColour.ORANGE);
+    expect(component.badge).toBe(DateBadgeColour.ORANGE);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.ORANGE);
 
     // Now change the dueDate to make it overdue.
     TODAY.setDate(TODAY.getDate() - 1);
@@ -218,7 +218,7 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('aria-label')).toBe('This task is 1 day past its due date');
 
     // Overdue so definitely "HIGH" urgency.
-    expect(component.badge).toBe(BadgeColour.RED);
-    expect(element.getAttribute('class')).toContain(BadgeColour.RED);
+    expect(component.badge).toBe(DateBadgeColour.RED);
+    expect(element.getAttribute('class')).toContain(DateBadgeColour.RED);
   });
 });
