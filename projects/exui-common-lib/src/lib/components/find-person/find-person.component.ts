@@ -60,7 +60,7 @@ export class FindPersonComponent implements OnInit {
     this.showAutocomplete = !!currentValue && (currentValue.length > this.minSearchCharacters);
   }
 
-  public getDisplayName(selectedPerson: Person) {
+  public getDisplayName(selectedPerson: Person): string {
     if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
       return `${selectedPerson.knownAs}(${selectedPerson.email})`;
     }
