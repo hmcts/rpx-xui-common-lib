@@ -61,6 +61,9 @@ export class FindPersonComponent implements OnInit {
   }
 
   public getDisplayName(selectedPerson: Person) {
+    if(selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
+      return `${selectedPerson.knownAs}(${selectedPerson.email})`;
+    }
     return selectedPerson.email ? `${selectedPerson.name}(${selectedPerson.email})` : selectedPerson.name;
   }
 }
