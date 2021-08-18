@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { of } from 'rxjs';
-import { Person } from '../../models/person.model';
+import { Person, PersonRole } from '../../models/person.model';
 
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { FindPersonComponent } from './find-person.component';
@@ -77,5 +77,48 @@ describe('FindPersonComponent', () => {
     component.ngOnInit();
     expect(component.showSmallTitle).toBeFalsy();
   });
+
+  it('getDisplayName Non Judicial with email', () => {
+    const nonJudicialPerson = {
+      id: 'someId',
+      name: 'First Last',
+      email: 'first.last@email.com',
+      domain: PersonRole.JUDICIAL
+    };
+    const displayName = component.getDisplayName(nonJudicialPerson);
+    expect(displayName).toEqual('First Last(first.last@email.com)');
+  });
+  it('getDisplayName Non Judicial with no email', () => {
+    const nonJudicialPerson = {
+      id: 'someId',
+      name: 'First Last',
+      domain: PersonRole.JUDICIAL
+    };
+    const displayName = component.getDisplayName(nonJudicialPerson);
+    expect(displayName).toEqual('First Last');
+  });
+  it('getDisplayName Judicial', () => {
+    const judicial = {
+      id: 'someId',
+      name: 'First Last',
+      email: 'first.last@email.com',
+      domain: PersonRole.JUDICIAL,
+      knownAs: 'Lead Judge'
+    };
+    const displayName = component.getDisplayName(judicial);
+    expect(displayName).toEqual('Lead Judge(first.last@email.com)');
+  });
+
+  it('getDisplayName Judicial with no KnownAs', () => {
+    const judicial = {
+      id: 'someId',
+      name: 'First Last',
+      email: 'first.last@email.com',
+      domain: PersonRole.JUDICIAL
+    };
+    const displayName = component.getDisplayName(judicial);
+    expect(displayName).toEqual('First Last(first.last@email.com)');
+  });
+
 
 });
