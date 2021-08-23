@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "v1.3.0-judicial-find-person-judicial",
+  "version": "v1.3.0-initialised-filter-settings",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
