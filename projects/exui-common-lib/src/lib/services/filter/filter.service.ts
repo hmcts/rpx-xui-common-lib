@@ -10,7 +10,7 @@ export class FilterService {
   private readonly filterSettings: { [id: string]: FilterSetting } = {};
   private readonly streams: { [id: string]: BehaviorSubject<FilterSetting> } = {};
   public givenErrors: BehaviorSubject<string> = new BehaviorSubject(null);
-  public isInitialSetting: boolean;
+  public isInitialSetting: boolean = false;
 
   constructor() {}
 
