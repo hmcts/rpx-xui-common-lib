@@ -6,7 +6,6 @@
      [ngClass]="{'form-group-error': !findPersonGroup.valid}">
   <fieldset class="govuk-fieldset" aria-describedby="">
     <div id="waste-hint" class="govuk-hint">
-      <h1 *ngIf="showSmallTitle" class="govuk-heading-m">Find the person</h1>
       Type the name of the person and select them.
     </div>
     <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup.errors">
