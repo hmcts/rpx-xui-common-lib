@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { of } from 'rxjs';
-import { Person, PersonRole } from '../../models/person.model';
+import { Person, PersonRole } from '../../models';
 
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { FindPersonComponent } from './find-person.component';
@@ -67,15 +67,6 @@ describe('FindPersonComponent', () => {
     expect(component.showAutocomplete).toBe(false);
     component.updatedVal('caseworker');
     expect(component.showAutocomplete).toBe(true);
-  });
-
-  it('should display a small find person title when boldTitle given', () => {
-    component.boldTitle = 'Replacement title';
-    component.ngOnInit();
-    expect(component.showSmallTitle).toBeTruthy();
-    component.boldTitle = 'Find a person';
-    component.ngOnInit();
-    expect(component.showSmallTitle).toBeFalsy();
   });
 
   it('getDisplayName Non Judicial with email', () => {

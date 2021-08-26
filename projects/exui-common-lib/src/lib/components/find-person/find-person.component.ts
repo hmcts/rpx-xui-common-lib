@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-
-import { Person, PersonRole } from '../../models/person.model';
+import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
 @Component({
@@ -15,12 +14,11 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
 export class FindPersonComponent implements OnInit {
   @Output() public personSelected = new EventEmitter<Person>();
   @Input() public title: string;
-  @Input() public boldTitle = 'Find a person';
+  @Input() public boldTitle = 'Find the person';
   @Input() public domain = PersonRole.ALL;
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;
   public showAutocomplete: boolean = false;
-  public showSmallTitle = false;
 
   constructor(private readonly findPersonService: FindAPersonService) {
   }
@@ -30,7 +28,6 @@ export class FindPersonComponent implements OnInit {
   private readonly minSearchCharacters = 2;
 
   public ngOnInit(): void {
-    this.showSmallTitle = (this.boldTitle !== 'Find a person');
     if (!this.findPersonGroup) {
       this.findPersonGroup = new FormGroup({});
     } else {
