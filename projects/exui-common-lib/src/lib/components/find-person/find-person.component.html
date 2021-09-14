@@ -1,12 +1,12 @@
-<h1 class="govuk-heading-l">
+<h1 class="govuk-heading-l" *ngIf="title && title.length">
   <span class="govuk-caption-l">{{title}}</span>
   {{boldTitle}}
 </h1>
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
      [ngClass]="{'form-group-error': !findPersonGroup.valid}">
   <fieldset class="govuk-fieldset" aria-describedby="">
-    <div id="waste-hint" class="govuk-hint">
-      Type the name of the person and select them.
+    <div id="waste-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
+      {{subTitle}}
     </div>
     <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup.errors">
         <span class="govuk-visually-hidden">Error:</span>You must select a name

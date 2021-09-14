@@ -1,4 +1,4 @@
-export type FilterFieldType = 'checkbox' | 'radio' | 'select';
+export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
@@ -9,6 +9,7 @@ export interface FilterConfig {
   applyButtonText: string;
   cancelButtonText: string;
   cancelSetting?: FilterSetting;
+  enableDisabledButton?: boolean;
 }
 
 export interface FilterFieldConfig {
@@ -20,6 +21,7 @@ export interface FilterFieldConfig {
   maxSelectedError?: string;
   displayMaxSelectedError?: boolean;
   displayMinSelectedError?: boolean;
+  showCondition?: string;
   type: FilterFieldType;
   title?: string;
   subTitle?: string;

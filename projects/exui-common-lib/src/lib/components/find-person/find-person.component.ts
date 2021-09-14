@@ -15,6 +15,7 @@ export class FindPersonComponent implements OnInit {
   @Output() public personSelected = new EventEmitter<Person>();
   @Input() public title: string;
   @Input() public boldTitle = 'Find the person';
+  @Input() public subTitle = 'Type the name of the person and select them.';
   @Input() public domain = PersonRole.ALL;
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;

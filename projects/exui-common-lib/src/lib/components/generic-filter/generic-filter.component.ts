@@ -1,6 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
-import {FilterConfig, FilterSetting} from '../../models';
+import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
+import {maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -9,10 +12,12 @@ import {FilterService} from './../../services/filter/filter.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class GenericFilterComponent {
-  private selected: { name: string, value: string[] }[] = [];
+export class GenericFilterComponent implements OnInit, OnDestroy {
+  public form: FormGroup;
+  public submitted = false;
+  public formSub: Subscription;
 
-  constructor(private readonly filterService: FilterService) {
+  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
 
   // tslint:disable-next-line:variable-name
@@ -35,8 +40,6 @@ export class GenericFilterComponent {
     this._config = value;
   }
 
-  public hasErrors = false;
-
   // tslint:disable-next-line:variable-name
   private _settings?: FilterSetting;
 
@@ -55,96 +58,127 @@ export class GenericFilterComponent {
     this._settings = value;
   }
 
-  public applyFilter(): void {
-    if (!this.checkFieldsConstraints(this.selected)) {
+  public ngOnInit(): void {
+    this.buildForm(this.config, this.settings);
+    this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
+  }
+
+  public ngOnDestroy(): void {
+    if (this.formSub) {
+      this.formSub.unsubscribe();
+    }
+  }
+
+  public hidden(field: FilterFieldConfig, form: FormGroup): boolean {
+    if (!field.showCondition) {
+      return false;
+    }
+    if (typeof field.showCondition === 'string') {
+      const control = form.get(field.name) as FormControl;
+      const [name, value] = field.showCondition.split('=');
+      if (form.value && form.value[name] === value) {
+        control.setValidators(Validators.required);
+        control.updateValueAndValidity();
+        return false;
+      } else {
+        control.clearValidators();
+        control.updateValueAndValidity();
+      }
+    }
+    return true;
+  }
+
+  public applyFilter(form: FormGroup): void {
+    this.submitted = true;
+    form.markAsTouched();
+    if (form.valid) {
+      this._settings = {
+        id: this.config.id,
+        fields: this.getSelectedValues(form.value, this.config)
+      };
       this.filterService.givenErrors.next(null);
       this.filterService.persist(this.settings, this.config.persistence);
+    } else {
+      this.emitFormErrors(form);
     }
   }
 
   public cancelFilter(): void {
-    const cancelFields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
-    this._settings.fields = cancelFields;
-    this.selected = cancelFields;
-    this.applyFilter();
-  }
-
-  public isSelected(id: string, key: string): boolean {
-    if (this.settings) {
-      return this.settings.fields.some(x => x.name === id) && this.settings.fields.some(x => x.value.some(v => v === key));
-    }
-    return false;
-  }
-
-  public onSelectionChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const fieldName = input.getAttribute('field');
-    const match = this.selected.find(x => x.name === fieldName);
-    if (match) {
-      if (input.type === 'checkbox') {
-        if (input.checked) {
-          match.value.push(input.value);
-        } else {
-          const index: number = match.value.indexOf(input.value);
-          if (index !== -1) {
-            match.value.splice(index, 1);
-          }
-        }
-      } else {
-        match.value = [input.value];
-      }
-    } else {
-      this.selected.push({name: fieldName, value: [input.value]});
-    }
-    this._settings = {
-      id: this.config.id,
-      fields: this.selected
-    };
+    this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
+    this.filterService.persist(this.settings, this.config.persistence);
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {
-    const fields = this.filterService.get(this.config.id) ? this.filterService.get(this.config.id).fields : filter.fields;
-    this.selected = fields;
-    filter.fields = fields;
+    filter.fields = this.filterService.get(this.config.id) ? this.filterService.get(this.config.id).fields : filter.fields;
   }
 
   private getSettings(): void {
     this._settings = this.filterService.get(this.config.id);
   }
 
-  private checkFieldsConstraints(selected: { name: string, value: string[] }[]): boolean {
-    let hasErrors = false;
-
-    for (const fieldConstraint of this.config.fields) {
-      if (fieldConstraint.minSelected > 0 || fieldConstraint.maxSelected > 0) {
-        const field = selected.find((f) => f.name === fieldConstraint.name);
-        if (!field) {
-          // display error for minimum selected
-          fieldConstraint.displayMinSelectedError = true;
-          hasErrors = true;
-          this.filterService.givenErrors.next(fieldConstraint.minSelectedError);
-          continue;
+  private buildForm(config: FilterConfig, settings: FilterSetting): void {
+    this.form = this.fb.group({});
+    for (const field of config.fields) {
+      if (field.type === 'checkbox') {
+        const formArray = this.buildCheckBoxFormArray(field, settings);
+        this.form.addControl(field.name, formArray);
+      } else {
+        const validators: ValidatorFn[] = [];
+        if (field.minSelected && field.minSelected > 0) {
+          validators.push(Validators.required);
         }
-
-        if (field.value.length > fieldConstraint.maxSelected) {
-          // display error for maximum selected
-          fieldConstraint.displayMaxSelectedError = true;
-          hasErrors = true;
-          this.filterService.givenErrors.next(fieldConstraint.maxSelectedError);
-          continue;
-        }
-
-        if (field.value.length < fieldConstraint.minSelected) {
-          // display error for minimum selected
-          fieldConstraint.displayMinSelectedError = true;
-          hasErrors = true;
-          this.filterService.givenErrors.next(fieldConstraint.minSelectedError);
-          continue;
-        }
-        fieldConstraint.displayMinSelectedError = false;
-        fieldConstraint.displayMaxSelectedError = false;
+        const control = new FormControl('', validators);
+        this.form.addControl(field.name, control);
       }
     }
-    return hasErrors;
+  }
+
+  private buildCheckBoxFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+    const formArray = this.fb.array([], [
+      minSelectedValidator(field.minSelected),
+      maxSelectedValidator(field.maxSelected)
+    ]);
+    let defaultValues;
+    if (settings && settings.fields) {
+      defaultValues = settings.fields.find((f) => f.name === field.name);
+    }
+    for (const option of field.options) {
+      let checked = false;
+      if (defaultValues && Array.isArray(defaultValues.value)) {
+        checked = !!defaultValues.value.find((value) => value === option.key);
+      }
+      formArray.push(new FormControl(checked));
+    }
+    return formArray;
+  }
+
+  private getSelectedValues(formValues: any, config: FilterConfig): any {
+    return Object.keys(formValues).map((name: string) => {
+      const values = formValues[name];
+      if (Array.isArray(values)) {
+        const field = config.fields.find(f => f.name === name);
+        const realValues = field.options.reduce((acc: string[], option: { key: string, label: string }, index: number) => {
+          if (values[index]) {
+            return [...acc, option.key];
+          }
+          return acc;
+        }, []);
+        return {value: realValues, name};
+      } else {
+        return {value: values, name};
+      }
+    });
+  }
+
+  private emitFormErrors(form: FormGroup): void {
+    for (const field of this.config.fields) {
+      const formGroup = form.get(field.name);
+      if (formGroup && formGroup.errors && formGroup.errors.minLength) {
+        this.filterService.givenErrors.next(field.minSelectedError);
+      }
+      if (formGroup && formGroup.errors && formGroup.errors.maxLength) {
+        this.filterService.givenErrors.next(field.maxSelectedError);
+      }
+    }
   }
 }
