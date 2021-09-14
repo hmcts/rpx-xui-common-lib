@@ -34,7 +34,11 @@
             </div>
           </ng-container>
           <ng-container *ngSwitchCase="'find-person'">
-            <xuilib-find-person subTitle="" (personSelected)="form.get(field.name).patchValue($event?.email)" [findPersonGroup]="form"></xuilib-find-person>
+            <xuilib-find-person subTitle="" (personSelected)="form.get(field.name).patchValue($event?.email)"
+                                [submitted]="submitted"
+                                [findPersonGroup]="form"
+                                [selectedPerson]="form.get(field.name).value"
+            ></xuilib-find-person>
           </ng-container>
         </div>
       </div>
@@ -48,7 +52,11 @@
           id="applyFilter"
           [disabled]="config.enableDisabledButton && form.invalid"
         >{{config.applyButtonText || 'Apply'}}</button>
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" id="cancelFilter" (click)="cancelFilter()">{{ config.cancelButtonText || 'Cancel'}}</button>
+        <button
+          class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"
+          type="button"
+          id="cancelFilter"
+          (click)="cancelFilter()">{{ config.cancelButtonText || 'Cancel'}}</button>
       </div>
     </div>
 </form>

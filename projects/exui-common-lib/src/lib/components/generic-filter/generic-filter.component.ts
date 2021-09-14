@@ -59,6 +59,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    if (!this.settings) {
+      this.getSettings();
+    }
+    this.mergeDefaultFields(this.settings);
     this.buildForm(this.config, this.settings);
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
   }
@@ -104,19 +108,29 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public cancelFilter(): void {
-    this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
+    this.buildForm(this.config, this.settings, true);
+    if (this.config && this.config.cancelSetting) {
+      this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
+    }
     this.filterService.persist(this.settings, this.config.persistence);
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {
-    filter.fields = this.filterService.get(this.config.id) ? this.filterService.get(this.config.id).fields : filter.fields;
+    if (filter) {
+      filter.fields = this.filterService.get(this.config.id) ? this.filterService.get(this.config.id).fields : filter.fields;
+    } else if (this.config && this.config.cancelSetting) {
+      this._settings = {
+        id: this.config.id,
+        fields: JSON.parse(JSON.stringify(this.config.cancelSetting.fields))
+      };
+    }
   }
 
   private getSettings(): void {
     this._settings = this.filterService.get(this.config.id);
   }
 
-  private buildForm(config: FilterConfig, settings: FilterSetting): void {
+  private buildForm(config: FilterConfig, settings: FilterSetting, reset?: boolean): void {
     this.form = this.fb.group({});
     for (const field of config.fields) {
       if (field.type === 'checkbox') {
@@ -127,7 +141,15 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         if (field.minSelected && field.minSelected > 0) {
           validators.push(Validators.required);
         }
-        const control = new FormControl('', validators);
+        let defaultValue: string = '';
+        if (reset && config.cancelSetting) {
+          const cancelField = config.cancelSetting.fields.find((f) => f.name === field.name);
+          defaultValue = cancelField ? cancelField.value[0] : '';
+        } else if (settings && settings.fields) {
+          const lastSavedValue = settings.fields.find((f) => f.name === field.name);
+          defaultValue = lastSavedValue ? lastSavedValue.value as unknown as string : '';
+        }
+        const control = new FormControl(defaultValue, validators);
         this.form.addControl(field.name, control);
       }
     }

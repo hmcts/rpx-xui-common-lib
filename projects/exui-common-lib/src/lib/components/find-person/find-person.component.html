@@ -3,7 +3,7 @@
   {{boldTitle}}
 </h1>
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
-     [ngClass]="{'form-group-error': !findPersonGroup.valid}">
+     [ngClass]="{'form-group-error': !findPersonGroup.valid && submitted}">
   <fieldset class="govuk-fieldset" aria-describedby="">
     <div id="waste-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
       {{subTitle}}

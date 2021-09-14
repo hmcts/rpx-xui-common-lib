@@ -100,9 +100,11 @@ describe('GenericFilterComponent', () => {
 
   it('should submit form values if the form is valid', () => {
 
-    component.form.get('example1').patchValue('Fernando Alonso');
-    component.form.get('example2').patchValue('Tinky Winky');
-    component.form.get('example3').patchValue('yellow');
+    component.form.get('example1').setValue('Fernando Alonso');
+    component.form.get('example2').setValue('Tinky Winky');
+    component.form.get('example3').setValue('yellow');
+
+    fixture.detectChanges();
 
     expect(component.form.valid).toBeTruthy();
   });

@@ -19,6 +19,7 @@ export class FindPersonComponent implements OnInit {
   @Input() public domain = PersonRole.ALL;
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;
+  @Input() public submitted?: boolean = true;
   public showAutocomplete: boolean = false;
 
   constructor(private readonly findPersonService: FindAPersonService) {
