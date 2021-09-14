@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.1-find-person",
+  "version": "1.4.1-display-case-filters",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
