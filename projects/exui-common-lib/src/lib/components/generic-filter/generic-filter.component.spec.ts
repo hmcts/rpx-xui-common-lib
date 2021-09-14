@@ -107,7 +107,7 @@ describe('GenericFilterComponent', () => {
     expect(component.form.valid).toBeTruthy();
   });
 
-  it('should set not state to be invalid', () => {
+  it('should set form state to be invalid', () => {
 
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
