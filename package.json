@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.1-display-case-filters",
+  "version": "1.4.1-display-case-filters-v2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
