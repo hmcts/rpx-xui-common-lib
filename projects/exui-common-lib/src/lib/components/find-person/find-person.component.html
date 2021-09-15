@@ -4,8 +4,8 @@
 </h1>
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
      [ngClass]="{'form-group-error': !findPersonGroup.valid && submitted}">
-  <fieldset class="govuk-fieldset" aria-describedby="">
-    <div id="waste-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
+  <fieldset class="govuk-fieldset" aria-describedby="inputSelectPerson">
+    <div class="govuk-hint" *ngIf="subTitle && subTitle.length">
       {{subTitle}}
     </div>
     <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup.errors">
