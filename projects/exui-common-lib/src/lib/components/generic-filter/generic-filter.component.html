@@ -28,7 +28,13 @@
           <ng-container *ngSwitchCase="'radio'">
             <div class="govuk-radios">
               <div *ngFor="let item of field.options" class="govuk-radios__item">
-                <input type="radio" [formControlName]="field.name" [id]="'radio_' + item.key"  class="govuk-radios__input" [value]="item.key"/>
+                <input type="radio"
+                       [formControlName]="field.name"
+                       [id]="'radio_' + item.key"
+                       [checked]="item.key === form.get(field.name).value"
+                       class="govuk-radios__input"
+                       [value]="item.key"
+                />
                 <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
               </div>
             </div>

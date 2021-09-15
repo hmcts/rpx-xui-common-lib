@@ -147,7 +147,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           defaultValue = cancelField ? cancelField.value[0] : '';
         } else if (settings && settings.fields) {
           const lastSavedValue = settings.fields.find((f) => f.name === field.name);
-          defaultValue = lastSavedValue ? lastSavedValue.value as unknown as string : '';
+          defaultValue = lastSavedValue ? lastSavedValue.value[0] as unknown as string : '';
         }
         const control = new FormControl(defaultValue, validators);
         this.form.addControl(field.name, control);
