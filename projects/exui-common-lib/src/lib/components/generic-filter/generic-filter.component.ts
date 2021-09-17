@@ -160,7 +160,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   private buildForm(config: FilterConfig, settings: FilterSetting, reset?: boolean): void {
+    const findPersonControl = this.form ? this.form.get('findPersonControl') : null;
     this.form = this.fb.group({});
+    if (findPersonControl) {
+      // in order to maintain find person component, control needs to be kept
+      this.form.addControl('findPersonControl', findPersonControl);
+    }
     for (const field of config.fields) {
       if (field.type === 'checkbox') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
