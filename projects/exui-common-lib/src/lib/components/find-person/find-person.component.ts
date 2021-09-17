@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -20,6 +20,7 @@ export class FindPersonComponent implements OnInit {
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;
   @Input() public submitted?: boolean = true;
+  @Input() public disabled?: boolean;
   public showAutocomplete: boolean = false;
 
   constructor(private readonly findPersonService: FindAPersonService) {
@@ -42,6 +43,13 @@ export class FindPersonComponent implements OnInit {
       })
     );
     this.findPersonControl.setValue(this.selectedPerson);
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['domain'] && !changes['domain'].firstChange) {
+      this.findPersonControl.setValue(null);
+      this.selectedPerson = null;
+    }
   }
 
   public filter(searchTerm: string): Observable<Person[]> {

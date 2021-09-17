@@ -16,6 +16,7 @@
            [matAutocomplete]="auto"
            class="govuk-input govuk-!-width-one-third"
            (ngModelChange)="updatedVal($event)"
+           [attr.disabled]="disabled"
            [value]="selectedPerson">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async"

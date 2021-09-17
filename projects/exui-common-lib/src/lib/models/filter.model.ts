@@ -21,7 +21,11 @@ export interface FilterFieldConfig {
   maxSelectedError?: string;
   displayMaxSelectedError?: boolean;
   displayMinSelectedError?: boolean;
+  lineBreakBefore?: boolean;
   showCondition?: string;
+  enableCondition?: string;
+  updatePerson?: boolean;
+  disabledText?: string;
   type: FilterFieldType;
   title?: string;
   subTitle?: string;

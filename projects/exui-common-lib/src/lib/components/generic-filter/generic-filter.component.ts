@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
+import {FilterConfig, FilterFieldConfig, FilterSetting, PersonRole} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
 import {maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
@@ -16,6 +16,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
+  public domain: PersonRole;
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
@@ -92,6 +93,25 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  public disabled(field: FilterFieldConfig, form: FormGroup): boolean {
+    if (!field.enableCondition) {
+      return null;
+    }
+    if (typeof field.enableCondition === 'string') {
+      const control = form.get(field.name) as FormControl;
+      const [name, value] = field.enableCondition.split('=');
+      if (form.value && form.value[name] === value) {
+        control.setValidators(Validators.required);
+        control.updateValueAndValidity();
+        return null;
+      } else {
+        control.clearValidators();
+        control.updateValueAndValidity();
+      }
+    }
+    return true;
+  }
+
   public applyFilter(form: FormGroup): void {
     this.submitted = true;
     form.markAsTouched();
@@ -107,12 +127,21 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
+  // when domain changes ensure that person field is reset
+  public updateSpecificPerson(field: FilterFieldConfig, form: FormGroup): void {
+    if (field.updatePerson) {
+      this.domain = field.updatePerson ? form.get(field.name).value : this.domain;
+      this.form.get('person').setValue(null);
+    }
+  }
+
   public cancelFilter(): void {
     this.buildForm(this.config, this.settings, true);
     if (this.config && this.config.cancelSetting) {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
     this.filterService.persist(this.settings, this.config.persistence);
+    
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {
@@ -187,7 +216,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }, []);
         return {value: realValues, name};
       } else {
-        return {value: values, name};
+        return {value: [values], name};
       }
     });
   }
