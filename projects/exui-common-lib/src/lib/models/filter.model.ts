@@ -24,9 +24,10 @@ export interface FilterFieldConfig {
   lineBreakBefore?: boolean;
   showCondition?: string;
   enableCondition?: string;
-  updatePerson?: boolean;
+  findPersonField?: string;
   disabledText?: string;
   type: FilterFieldType;
+  domain?: string;
   title?: string;
   subTitle?: string;
 }

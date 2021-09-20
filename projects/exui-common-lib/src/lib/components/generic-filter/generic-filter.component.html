@@ -47,7 +47,7 @@
             <xuilib-find-person subTitle="" (personSelected)="form.get(field.name).patchValue($event?.email)"
                                 [submitted]="submitted"
                                 [disabled]="disabled(field, form)"
-                                [domain]="domain"
+                                [domain]="field.domain"
                                 [findPersonGroup]="form"
                                 [selectedPerson]="form.get(field.name).value"
             ></xuilib-find-person>

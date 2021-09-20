@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {FilterConfig, FilterFieldConfig, FilterSetting, PersonRole} from '../../models';
+import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
 import {maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
@@ -16,7 +16,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
-  public domain: PersonRole = PersonRole.ALL;
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
@@ -129,9 +128,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when domain changes ensure that person field is reset
   public updateSpecificPerson(field: FilterFieldConfig, form: FormGroup): void {
-    if (field.updatePerson) {
-      this.domain = field.updatePerson ? form.get(field.name).value : this.domain;
-      this.form.get('person').setValue(null);
+    if (field.findPersonField) {
+      this.config.fields.find((f) => f.name === field.findPersonField).domain = form.get(field.name).value;
+      if (this.form.get(field.findPersonField)) {
+        this.form.get(field.findPersonField).setValue(null);
+      }
     }
   }
 
@@ -185,6 +186,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }
         const control = new FormControl(defaultValue, validators);
         this.form.addControl(field.name, control);
+        // if field updates find person component set the initial domain
+        if (field.findPersonField) {
+          this.updateSpecificPerson(field, this.form);
+        }
       }
     }
   }
