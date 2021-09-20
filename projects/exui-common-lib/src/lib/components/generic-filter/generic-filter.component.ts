@@ -16,7 +16,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
-  public domain: PersonRole;
+  public domain: PersonRole = PersonRole.ALL;
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
