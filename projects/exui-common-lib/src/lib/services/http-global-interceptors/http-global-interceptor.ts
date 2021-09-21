@@ -1,15 +1,10 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';  
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+
 @Injectable()
-export class HttpGlobalInterceptor implements HttpInterceptor {  
+export class HttpGlobalInterceptor implements HttpInterceptor {
   public intercept(
     request: HttpRequest<any>,
     next: HttpHandler
