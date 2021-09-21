@@ -81,12 +81,22 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const control = form.get(field.name) as FormControl;
       const [name, value] = field.showCondition.split('=');
       if (form.value && form.value[name] === value) {
-        control.setValidators(Validators.required);
-        control.updateValueAndValidity();
+        if (field.type === 'find-person') {
+          control.get('email').setValidators(Validators.required);
+          control.get('email').updateValueAndValidity();
+        } else {
+          control.setValidators(Validators.required);
+          control.updateValueAndValidity();
+        }
         return false;
       } else {
-        control.clearValidators();
-        control.updateValueAndValidity();
+        if (field.type === 'find-person') {
+          control.get('email').clearValidators();
+          control.get('email').updateValueAndValidity();
+        } else {
+          control.clearValidators();
+          control.updateValueAndValidity();
+        }
       }
     }
     return true;
@@ -100,16 +110,27 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const control = form.get(field.name) as FormControl;
       const [name, value] = field.enableCondition.split('=');
       if (form.value && form.value[name] === value) {
-        control.setValidators(Validators.required);
-        control.updateValueAndValidity();
+        if (field.type === 'find-person') {
+          control.get('email').setValidators(Validators.required);
+          control.get('email').updateValueAndValidity();
+        } else {
+          control.setValidators(Validators.required);
+          control.updateValueAndValidity();
+        }
         return null;
       } else {
-        control.clearValidators();
-        control.updateValueAndValidity();
+        if (field.type === 'find-person') {
+          control.get('email').clearValidators();
+          control.get('email').updateValueAndValidity();
+        } else {
+          control.clearValidators();
+          control.updateValueAndValidity();
+        }
       }
     }
     return true;
   }
+
 
   public applyFilter(form: FormGroup): void {
     this.submitted = true;
@@ -142,6 +163,15 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
     this.filterService.persist(this.settings, this.config.persistence);
+  }
+
+  public updatePersonControls(values: any, field: FilterFieldConfig): void {
+    const keys = Object.keys(values);
+    for (const key of keys) {
+      if (this.form.get(field.name) && this.form.get(field.name).get(key)) {
+        this.form.get(field.name).get(key).patchValue(values[key]);
+      }
+    }
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {
@@ -183,8 +213,21 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           const lastSavedValue = settings.fields.find((f) => f.name === field.name);
           defaultValue = lastSavedValue ? lastSavedValue.value[0] as unknown as string : '';
         }
-        const control = new FormControl(defaultValue, validators);
-        this.form.addControl(field.name, control);
+        // if field is find-person build a form group;
+        if (field.type === 'find-person') {
+          const formGroup = new FormGroup({
+            domain: new FormControl(''),
+            email: new FormControl(defaultValue.hasOwnProperty('email') ? (defaultValue as any).email : '', validators),
+            id: new FormControl(''),
+            name: new FormControl(''),
+            knownAs: new FormControl(''),
+          });
+          this.form.addControl(field.name, formGroup);
+        } else {
+          const control = new FormControl(defaultValue, validators);
+          this.form.addControl(field.name, control);
+        }
+
         // if field updates find person component set the initial domain
         if (field.findPersonField) {
           this.updateSpecificPerson(field, this.form);

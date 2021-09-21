@@ -42,12 +42,12 @@
           </div>
         </ng-container>
         <ng-container *ngSwitchCase="'find-person'">
-          <xuilib-find-person subTitle="" (personSelected)="form.get(field.name).patchValue($event)"
+          <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
                               [submitted]="submitted"
                               [disabled]="disabled(field, form)"
                               [domain]="field.domain"
                               [findPersonGroup]="form"
-                              [selectedPerson]="form.get(field.name).value"
+                              [selectedPerson]="form.get(field.name)?.value?.email"
           ></xuilib-find-person>
         </ng-container>
       </div>
