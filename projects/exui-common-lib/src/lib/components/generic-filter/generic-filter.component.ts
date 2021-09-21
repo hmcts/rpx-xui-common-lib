@@ -150,9 +150,16 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   // when domain changes ensure that person field is reset
   public updateSpecificPerson(field: FilterFieldConfig, form: FormGroup): void {
     if (field.findPersonField) {
-      this.config.fields.find((f) => f.name === field.findPersonField).domain = form.get(field.name).value;
+      const currentField = this.config.fields.find((f) => f.name === field.findPersonField);
+      if (currentField) {
+        currentField.domain = form.get(field.name).value;
+      }
       if (this.form.get(field.findPersonField)) {
-        this.form.get(field.findPersonField).setValue(null);
+        this.form.get(field.findPersonField).get('domain').setValue(null);
+        this.form.get(field.findPersonField).get('email').setValue(null);
+        this.form.get(field.findPersonField).get('id').setValue(null);
+        this.form.get(field.findPersonField).get('name').setValue(null);
+        this.form.get(field.findPersonField).get('knownAs').setValue(null);
       }
     }
   }
