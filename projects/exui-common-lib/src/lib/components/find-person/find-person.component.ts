@@ -20,7 +20,7 @@ export class FindPersonComponent implements OnInit {
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;
   @Input() public submitted?: boolean = true;
-  @Input() public disabled?: boolean;
+  @Input() public disabled?: boolean = false;
   public showAutocomplete: boolean = false;
 
   constructor(private readonly findPersonService: FindAPersonService) {

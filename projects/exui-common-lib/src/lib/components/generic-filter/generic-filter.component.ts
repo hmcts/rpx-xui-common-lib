@@ -142,7 +142,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
     this.filterService.persist(this.settings, this.config.persistence);
-    
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {
