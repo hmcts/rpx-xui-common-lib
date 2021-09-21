@@ -95,7 +95,7 @@ describe('GenericFilterComponent', () => {
 
     const selectInputParentDiv = form.children[2];
     expect((selectInputParentDiv.querySelector('.govuk-select') as HTMLElement).nodeName).toBe('SELECT');
-    expect((selectInputParentDiv.querySelector('.govuk-select') as HTMLElement).children.length).toBe(5);
+    expect((selectInputParentDiv.querySelector('.govuk-select') as HTMLElement).children.length).toBe(6);
   });
 
   it('should submit form values if the form is valid', () => {
