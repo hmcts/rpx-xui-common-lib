@@ -1,13 +1,13 @@
-import {
+  import {
     HttpHandler,
     HttpRequest,
     HttpEvent,
     HttpInterceptor,
     HttpErrorResponse,
   } from '@angular/common/http';
-  import { Observable, throwError } from 'rxjs';
   import { catchError } from 'rxjs/operators';
   import { Injectable } from '@angular/core';
+  import { Observable, throwError } from 'rxjs';
   
   @Injectable()
   export class HttpGlobalInterceptor implements HttpInterceptor {
@@ -25,7 +25,7 @@ import {
             errorMessage = error.error.message;
           } else {
             // server-side error
-            errorMessage =error.message;
+            errorMessage = error.message;
           }
           return throwError(errorMessage);
         })
