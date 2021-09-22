@@ -1,7 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
+import { FilterFieldConfig } from '../../models';
 import {FilterService} from '../../services/filter/filter.service';
 import {FindPersonComponent} from '../find-person/find-person.component';
 import {GenericFilterComponent} from './generic-filter.component';
@@ -115,6 +116,97 @@ describe('GenericFilterComponent', () => {
     const button: HTMLButtonElement = form.querySelector('button[type="submit"]');
     button.click();
     expect(component.form.invalid).toBeTruthy();
+  });
+
+  describe('component methods that use fields', () => {
+    const condition = 'selectPerson=Specific person';
+    const currentField: FilterFieldConfig = {
+      name: 'person',
+      options: [
+        {
+          key: 'Judicial',
+          label: 'Judicial'
+        },
+        {
+          key: 'Legal Ops',
+          label: 'Legal Ops'
+        },
+        {
+          key: 'Admin',
+          label: 'Admin'
+        }
+      ],
+      minSelected: 1,
+      maxSelected: 1,
+      minSelectedError: 'You must select a role type',
+      maxSelectedError: null,
+      enableCondition: condition,
+      showCondition: condition,
+      findPersonField: 'person',
+      disabledText: 'Select a role type',
+      type: 'select'
+    };
+
+    const personField: FilterFieldConfig = {
+      name: 'person',
+      options: [],
+      minSelected: 0,
+      maxSelected: 0,
+      minSelectedError: 'You must select a person',
+      maxSelectedError: null,
+      enableCondition: condition,
+      showCondition: condition,
+      type: 'find-person'
+    };
+
+    const formGroup = new FormGroup({
+      domain: new FormControl(''),
+      email: new FormControl(''),
+      id: new FormControl(''),
+      name: new FormControl(''),
+      knownAs: new FormControl(''),
+    });
+
+    it('should correctly set field to disabled when condition met', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
+      component.form.addControl('person', formGroup);
+      // check non-person field to see if it will set correctly
+      expect(component.disabled(currentField, component.form)).toBe(true);
+      currentField.enableCondition = null;
+      expect(component.disabled(currentField, component.form)).toBe(null);
+
+      // check the find-person field to see if it will set correctly
+      expect(component.disabled(personField, component.form)).toBe(true);
+      // check when condition met, disabled set to false
+      component.form.get('selectPerson').patchValue('Specific person');
+      expect(component.disabled(personField, component.form)).toBe(null);
+    });
+
+    it('should correctly set field to hidden when condition met', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
+      component.form.addControl('person', formGroup);
+      expect(component.hidden(currentField, component.form)).toBe(true);
+      currentField.showCondition = null;
+      expect(component.hidden(currentField, component.form)).toBe(false);
+
+      expect(component.hidden(personField, component.form)).toBe(true);
+      component.form.get('selectPerson').patchValue('Specific person');
+      expect(component.hidden(personField, component.form)).toBe(false);
+    });
+
+    it('should correctly update domain when dropdown re-selected', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
+      component.form.addControl('person', formGroup);
+      component.form.get('person').get('domain').patchValue('All');
+      component.form.get('person').get('email').patchValue('example');
+      component.updateSpecificPerson(currentField, component.form);
+      expect(component.form.get('person').get('domain').value).toBe(null);
+      expect(component.form.get('person').get('email').value).toBe(null);
+    });
+
   });
 
 });

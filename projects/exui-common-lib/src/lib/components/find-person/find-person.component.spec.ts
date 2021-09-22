@@ -1,3 +1,5 @@
+
+import { SimpleChanges } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
@@ -111,5 +113,19 @@ describe('FindPersonComponent', () => {
     expect(displayName).toEqual('First Last(first.last@email.com)');
   });
 
+  it('can switch domain on changes', () => {
+    const changes: SimpleChanges = {
+      domain: {
+        firstChange: false,
+        previousValue: 'All',
+        currentValue: 'Judicial',
+        isFirstChange: () => false
+      }
+    };
+    component.ngOnChanges(changes);
+    fixture.detectChanges();
+    expect(component.findPersonControl.value).toBe(null);
+    expect(component.selectedPerson).toBe(null);
+  });
 
 });
