@@ -212,19 +212,19 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         if (field.minSelected && field.minSelected > 0) {
           validators.push(Validators.required);
         }
-        let defaultValue: string = '';
+        let defaultValue: any = null;
         if (reset && config.cancelSetting) {
           const cancelField = config.cancelSetting.fields.find((f) => f.name === field.name);
-          defaultValue = cancelField ? cancelField.value[0] : '';
+          defaultValue = cancelField && cancelField.value ? cancelField.value[0] : '';
         } else if (settings && settings.fields) {
           const lastSavedValue = settings.fields.find((f) => f.name === field.name);
-          defaultValue = lastSavedValue ? lastSavedValue.value[0] as unknown as string : '';
+          defaultValue = lastSavedValue && lastSavedValue ? lastSavedValue.value[0] : '';
         }
         // if field is find-person build a form group;
         if (field.type === 'find-person') {
           const formGroup = new FormGroup({
             domain: new FormControl(''),
-            email: new FormControl(defaultValue.hasOwnProperty('email') ? (defaultValue as any).email : '', validators),
+            email: new FormControl(defaultValue && defaultValue.hasOwnProperty('email') ? defaultValue.email : '', validators),
             id: new FormControl(''),
             name: new FormControl(''),
             knownAs: new FormControl(''),
@@ -244,10 +244,15 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   private buildCheckBoxFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
-    const formArray = this.fb.array([], [
-      minSelectedValidator(field.minSelected),
-      maxSelectedValidator(field.maxSelected)
-    ]);
+    const validators = [];
+    if (field && field.minSelected) {
+      validators.push(minSelectedValidator(field.minSelected));
+    }
+
+    if (field && field.maxSelected) {
+      validators.push(maxSelectedValidator(field.maxSelected));
+    }
+    const formArray = this.fb.array([], validators);
     let defaultValues;
     if (settings && settings.fields) {
       defaultValues = settings.fields.find((f) => f.name === field.name);
