@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.4-add-interceptor-for-global-error-handling",
+  "version": "1.4.3-add-interceptor-for-global-error-handling",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
