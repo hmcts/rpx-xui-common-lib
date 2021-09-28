@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -11,13 +11,16 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
   styleUrls: ['./find-person.component.scss'],
 })
 
-export class FindPersonComponent implements OnInit {
+export class FindPersonComponent implements OnInit, OnChanges {
   @Output() public personSelected = new EventEmitter<Person>();
   @Input() public title: string;
   @Input() public boldTitle = 'Find the person';
+  @Input() public subTitle = 'Type the name of the person and select them.';
   @Input() public domain = PersonRole.ALL;
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;
+  @Input() public submitted?: boolean = true;
+  @Input() public disabled?: boolean = false;
   public showAutocomplete: boolean = false;
 
   constructor(private readonly findPersonService: FindAPersonService) {
@@ -40,6 +43,13 @@ export class FindPersonComponent implements OnInit {
       })
     );
     this.findPersonControl.setValue(this.selectedPerson);
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['domain'] && !changes['domain'].firstChange) {
+      this.findPersonControl.setValue(null);
+      this.selectedPerson = null;
+    }
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
