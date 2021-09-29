@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  HttpClientTestingModule,
-  HttpTestingController
+  HttpTestingController,
+  HttpClientTestingModule
 } from '@angular/common/http/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { HttpGlobalInterceptor } from './http-global-interceptor';
 
 const testUrl = '/data';
@@ -19,7 +19,7 @@ describe('HttpGlobalInterceptor', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
-          HttpGlobalInterceptor           
+          HttpGlobalInterceptor
         ],
         imports: [HttpClientTestingModule]
       });
