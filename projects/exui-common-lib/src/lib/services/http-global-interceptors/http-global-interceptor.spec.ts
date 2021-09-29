@@ -1,11 +1,13 @@
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing"
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
+import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { getTestBed, TestBed } from "@angular/core/testing";
+import { throwError } from "rxjs";
 import { HttpGlobalInterceptor } from "./http-global-interceptor";
 
 fdescribe('HttpGlobalInterceptor', () => {
-    let client: HttpClient
-    let controller: HttpTestingController
+    let interceptor: HttpGlobalInterceptor;
+    let httpRequestSpy;
+    let httpHandlerSpy;
   
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -22,14 +24,28 @@ fdescribe('HttpGlobalInterceptor', () => {
         ],
       });
 
-      const injector = getTestBed();
-      client = injector.get(HttpClient);    
-      controller = injector.get(HttpTestingController);
+      const injector = getTestBed();  
+      interceptor = injector.get(HttpGlobalInterceptor);
     });
   
-    it('should throw error in handle', (done) => {
-        expect(client).not.toBeUndefined();
-        expect(controller).not.toBeUndefined();    
-           done();
+    it('should throw error in handle', () => {
+
+      httpRequestSpy = jasmine.createSpyObj('HttpRequest', ['doesNotMatter']);
+      httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
+      httpHandlerSpy.handle.and.returnValue(throwError(
+          {error: 
+              {message: 'test-error'}
+          }
+      ));
+   
+      interceptor.intercept(httpRequestSpy, httpHandlerSpy)
+        .subscribe(
+          err => {     
+            expect(err).toBeDefined();       
+            //   expect(err).toEqual( {error: 
+            //     {message: 'test-error'}
+            // });
+          }
+        );
     });
   });
