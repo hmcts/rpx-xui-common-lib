@@ -1,7 +1,7 @@
-import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpGlobalInterceptor } from './http-global-interceptor';
 import { TestBed } from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 const testUrl = '/data';
 interface Data {
