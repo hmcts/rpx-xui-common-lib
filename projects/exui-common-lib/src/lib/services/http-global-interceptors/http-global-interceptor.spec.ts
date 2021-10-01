@@ -1,17 +1,11 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HttpErrorResponse } from '@angular/common/http';
+import {HttpClientTestingModule } from '@angular/common/http/testing';
 import {TestBed} from '@angular/core/testing';
+import { throwError } from 'rxjs';
 import {HttpGlobalInterceptor} from './http-global-interceptor';
 
-const testUrl = '/data';
-interface Data {
-    name: string;
-}
-
-describe('HttpGlobalInterceptor', () => {
-  describe('intercept', () => {
-    let httpClient: HttpClient;
-    let httpMock: HttpTestingController;
+fdescribe('HttpGlobalInterceptor', () => {
+    let errorInterceptor: HttpGlobalInterceptor;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -21,22 +15,35 @@ describe('HttpGlobalInterceptor', () => {
         imports: [HttpClientTestingModule]
       });
 
-      httpClient = TestBed.get(HttpClient);
-      httpMock = TestBed.get(HttpTestingController);
+      errorInterceptor = new HttpGlobalInterceptor();
     });
 
-    it('When 401, user is automatically logged out and error is rethrow', () => {
-      const emsg = 'deliberate 401 error';
-      httpClient.get<Data>(testUrl).subscribe(
-          () => fail('should have failed with the 401 error'),
-          (error: HttpErrorResponse) => {
-            expect(error.status).toEqual(401, 'status');
-            expect(error.error).toEqual(emsg, 'message');
-          }
-      );
+    it('should auto logout if 401 response returned from api', () => {
+        //arrange
+      
+        // const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
+        // httpHandlerSpy.handle.and.returnValue({
+        //     pipe: () => {
+        //       done();
+        //     // return fakeAsyncResponseWithError({});
+        //     }
+        // });
 
-      const req = httpMock.expectOne(testUrl);
-      req.flush(emsg, { status: 401, statusText: 'Unauthorized' });
+        const response = {
+          status: 404,
+          error: { message: 'not found' }
+        } as HttpErrorResponse;
+
+        const next = {       
+          handle: () => throwError(response)
+        };
+
+        //act
+        errorInterceptor.intercept(null, next).subscribe(
+          result => console.log('good', result), 
+          err => {
+            console.log('ex-log', err);
+            expect(err.message).toEqual('not found');
+          });
     });
-  });
-});
+ });

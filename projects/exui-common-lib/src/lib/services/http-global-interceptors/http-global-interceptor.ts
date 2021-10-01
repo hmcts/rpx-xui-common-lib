@@ -10,6 +10,7 @@ export class HttpGlobalInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+        console.log('log', error);
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
           // client-side error
