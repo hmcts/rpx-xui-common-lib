@@ -1,12 +1,11 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import {HttpClientTestingModule } from '@angular/common/http/testing';
-import {TestBed} from '@angular/core/testing';
+import { HttpErrorResponse, HttpRequest } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 import { throwError } from 'rxjs';
-import {HttpGlobalInterceptor} from './http-global-interceptor';
+import { HttpGlobalInterceptor } from './http-global-interceptor';
 
-fdescribe('HttpGlobalInterceptor', () => {
+describe('HttpGlobalInterceptor', () => {
     let errorInterceptor: HttpGlobalInterceptor;
-
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
@@ -18,32 +17,47 @@ fdescribe('HttpGlobalInterceptor', () => {
       errorInterceptor = new HttpGlobalInterceptor();
     });
 
-    it('should auto logout if 401 response returned from api', () => {
-        //arrange
-      
-        // const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
-        // httpHandlerSpy.handle.and.returnValue({
-        //     pipe: () => {
-        //       done();
-        //     // return fakeAsyncResponseWithError({});
-        //     }
-        // });
+    describe('Error test', () => {
+      it('should call assignErrorMessage with the error raised', () => {
+          spyOn(errorInterceptor, 'assignErrorMessage');
+          const mock404Error = {
+            status: 404,
+            error: { message: 'not found' }
+          };
 
-        const response = {
-          status: 404,
-          error: { message: 'not found' }
+          const next = {
+            handle: () =>  throwError(mock404Error)
+          };
+
+          const handleError$ = errorInterceptor.intercept(new HttpRequest('GET', ''), next);
+
+          handleError$.subscribe((res) => {
+              console.log(res);
+          }, () => {
+             expect(errorInterceptor.assignErrorMessage).toHaveBeenCalledWith(mock404Error);
+          });
+      });
+
+      it('Should return value off error message server side error', () => {
+        const serverErrorMessage = 'serverSide Error';
+        const mockError = {
+          message: serverErrorMessage
         } as HttpErrorResponse;
 
-        const next = {       
-          handle: () => throwError(response)
-        };
+        const result = errorInterceptor.assignErrorMessage(mockError);
+        expect(result).toEqual(serverErrorMessage);
+      });
 
-        //act
-        errorInterceptor.intercept(null, next).subscribe(
-          result => console.log('good', result), 
-          err => {
-            console.log('ex-log', err);
-            expect(err.message).toEqual('not found');
-          });
+      it('Should return value off error message client side error', () => {
+        const clientErrorMessage = 'clientSide Error';
+        const eventEvent = { message: clientErrorMessage } as ErrorEvent;
+
+        const mockError: HttpErrorResponse = {
+          error: eventEvent as ErrorEvent
+        } as HttpErrorResponse;
+
+        const result = errorInterceptor.assignErrorMessage(mockError);
+        expect(result).toEqual(clientErrorMessage);
+      });
     });
  });
