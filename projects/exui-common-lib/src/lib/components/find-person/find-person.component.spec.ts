@@ -15,7 +15,7 @@ describe('FindPersonComponent', () => {
   let mockFindAPersonService: any;
 
   beforeEach(() => {
-    mockFindAPersonService = jasmine.createSpyObj('FindAPersonService', ['find']);
+    mockFindAPersonService = jasmine.createSpyObj('FindAPersonService', ['find', 'getSpecificCaseworkers']);
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -43,9 +43,11 @@ describe('FindPersonComponent', () => {
 
   it('input element changes triggers search', () => {
     mockFindAPersonService.find.and.returnValue(of([]));
+    mockFindAPersonService.getSpecificCaseworkers.and.returnValue(of([]));
     component.findPersonControl.setValue('test');
     fixture.detectChanges();
     expect(mockFindAPersonService.find).toHaveBeenCalled();
+    expect(mockFindAPersonService.getSpecificCaseworkers).toHaveBeenCalled();
   });
 
   it('selection change emits change with person', () => {
@@ -53,13 +55,13 @@ describe('FindPersonComponent', () => {
       id: 'p1',
       name: 'Person 1',
       email: 'person@email.com',
-      domain: 'Both'
+      domain: PersonRole.JUDICIAL
     };
     spyOn(component.personSelected, 'emit');
     component.onSelectionChange(null);
     expect(component.personSelected.emit).toHaveBeenCalledWith(null);
     component.onSelectionChange(mockPerson);
-    expect(component.personSelected.emit).toHaveBeenCalledWith(null);
+    expect(component.personSelected.emit).toHaveBeenCalledWith(mockPerson);
   });
 
   it('should set auto complete boolean correctly', () => {
@@ -126,6 +128,32 @@ describe('FindPersonComponent', () => {
     fixture.detectChanges();
     expect(component.findPersonControl.value).toBe(null);
     expect(component.selectedPerson).toBe(null);
+  });
+
+  it('can filter through both judicial and caseworkers', () => {
+    const mockPersonOne = {
+      id: 'p1',
+      name: 'First Last',
+      email: 'first.last@email.com',
+      domain: PersonRole.JUDICIAL
+    };
+    const mockPersonTwo: Person = {
+      id: 'p2',
+      name: 'Second Last',
+      email: 'person@email.com',
+      domain: PersonRole.CASEWORKER
+    };
+    const mockPersonThree: Person = {
+      id: 'p3',
+      name: 'Third Last',
+      email: 'person@email.com',
+      domain: PersonRole.ADMIN
+    };
+    mockFindAPersonService.find.and.returnValue(of([mockPersonOne]));
+    mockFindAPersonService.getSpecificCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
+    fixture.detectChanges();
+    component.filter('ast').subscribe(result => expect(result).toEqual([mockPersonOne, mockPersonTwo, mockPersonThree]));
+    component.filter('').subscribe(result => expect(result).toBe(null));
   });
 
 });

@@ -8,7 +8,7 @@
     <div id="sub-title-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
       {{subTitle}}
     </div>
-    <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup.errors">
+    <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup && findPersonGroup.errors">
         <span class="govuk-visually-hidden">Error:</span>You must select a name
     </span>
     <input id="inputSelectPerson" type="text" aria-label="select a person" matInput
