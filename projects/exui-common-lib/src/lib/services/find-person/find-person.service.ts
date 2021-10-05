@@ -16,14 +16,14 @@ export class FindAPersonService {
     return this.http.post<Person[]>('/workallocation2/findPerson', { searchOptions });
   }
 
-  public getSpecificCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {
+  public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {
     return this.http.get<any[]>('/workallocation2/caseworker').pipe(map(caseworkers => {
-      const people = this.changeToPeople(caseworkers);
-      return people.filter(person => person.name.toLowerCase().includes(searchOptions.searchTerm.toLowerCase()));
+      const people = this.mapCaseworkers(caseworkers);
+      return people.filter(person => person && person.name && person.name.toLowerCase().includes(searchOptions.searchTerm.toLowerCase()));
     }));
   }
 
-  public changeToPeople(caseworkers: any[]): Person[] {
+  public mapCaseworkers(caseworkers: any[]): Person[] {
     const people: Person[] = [];
     caseworkers.forEach((caseworker) => {
       const thisPerson: Person = {

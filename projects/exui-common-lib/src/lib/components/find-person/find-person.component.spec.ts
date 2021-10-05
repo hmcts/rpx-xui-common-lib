@@ -15,7 +15,7 @@ describe('FindPersonComponent', () => {
   let mockFindAPersonService: any;
 
   beforeEach(() => {
-    mockFindAPersonService = jasmine.createSpyObj('FindAPersonService', ['find', 'getSpecificCaseworkers']);
+    mockFindAPersonService = jasmine.createSpyObj('FindAPersonService', ['find', 'findCaseworkers']);
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -43,11 +43,11 @@ describe('FindPersonComponent', () => {
 
   it('input element changes triggers search', () => {
     mockFindAPersonService.find.and.returnValue(of([]));
-    mockFindAPersonService.getSpecificCaseworkers.and.returnValue(of([]));
+    mockFindAPersonService.findCaseworkers.and.returnValue(of([]));
     component.findPersonControl.setValue('test');
     fixture.detectChanges();
     expect(mockFindAPersonService.find).toHaveBeenCalled();
-    expect(mockFindAPersonService.getSpecificCaseworkers).toHaveBeenCalled();
+    expect(mockFindAPersonService.findCaseworkers).toHaveBeenCalled();
   });
 
   it('selection change emits change with person', () => {
@@ -150,7 +150,7 @@ describe('FindPersonComponent', () => {
       domain: PersonRole.ADMIN
     };
     mockFindAPersonService.find.and.returnValue(of([mockPersonOne]));
-    mockFindAPersonService.getSpecificCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
+    mockFindAPersonService.findCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
     fixture.detectChanges();
     component.filter('ast').subscribe(result => expect(result).toEqual([mockPersonOne, mockPersonTwo, mockPersonThree]));
     component.filter('').subscribe(result => expect(result).toBe(null));

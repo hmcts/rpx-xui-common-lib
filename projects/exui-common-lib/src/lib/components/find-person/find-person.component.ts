@@ -54,7 +54,7 @@ export class FindPersonComponent implements OnInit, OnChanges {
 
   public filter(searchTerm: string): Observable<Person[]> {
     const findJudicialPeople = this.findPersonService.find({searchTerm, jurisdiction: this.domain});
-    const findCaseworkersOrAdmins = this.findPersonService.getSpecificCaseworkers({searchTerm, jurisdiction: this.domain});
+    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, jurisdiction: this.domain});
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {

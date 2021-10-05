@@ -22,7 +22,7 @@ describe('FindAPersonService', () => {
     mockHttpService.get.and.returnValue(of());
     const service = new FindAPersonService(mockHttpService);
     const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.CASEWORKER };
-    service.getSpecificCaseworkers(searchOptions);
+    service.findCaseworkers(searchOptions);
     expect(mockHttpService.get).toHaveBeenCalledWith('/workallocation2/caseworker');
   });
 
@@ -69,6 +69,6 @@ describe('FindAPersonService', () => {
     ];
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     const service = new FindAPersonService(mockHttpService);
-    expect(service.changeToPeople(caseworkers)).toEqual(people);
+    expect(service.mapCaseworkers(caseworkers)).toEqual(people);
   });
 });
