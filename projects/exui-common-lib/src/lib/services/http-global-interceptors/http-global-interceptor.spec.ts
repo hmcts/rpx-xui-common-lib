@@ -26,15 +26,15 @@ describe('HttpGlobalInterceptor', () => {
         };
 
         const next = {
-          handle: () =>  throwError(mock404Error)
+          handle: () => throwError(mock404Error)
         };
 
         const handleError$ = errorInterceptor.intercept(new HttpRequest('GET', ''), next);
 
         handleError$.subscribe((res) => {
-            console.log(res);
+          console.log(res);
         }, () => {
-            expect(errorInterceptor.assignErrorMessage).toHaveBeenCalledWith(mock404Error);
+          expect(errorInterceptor.assignErrorMessage).toHaveBeenCalledWith(mock404Error);
         });
       });
 
