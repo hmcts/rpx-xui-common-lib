@@ -19,23 +19,23 @@ describe('HttpGlobalInterceptor', () => {
 
     describe('Error test', () => {
       it('should call assignErrorMessage with the error raised', () => {
-          spyOn(errorInterceptor, 'assignErrorMessage');
-          const mock404Error = {
-            status: 404,
-            error: { message: 'not found' }
-          };
+        spyOn(errorInterceptor, 'assignErrorMessage');
+        const mock404Error = {
+          status: 404,
+          error: { message: 'not found' }
+        };
 
-          const next = {
-            handle: () =>  throwError(mock404Error)
-          };
+        const next = {
+          handle: () =>  throwError(mock404Error)
+        };
 
-          const handleError$ = errorInterceptor.intercept(new HttpRequest('GET', ''), next);
+        const handleError$ = errorInterceptor.intercept(new HttpRequest('GET', ''), next);
 
-          handleError$.subscribe((res) => {
-              console.log(res);
-          }, () => {
-             expect(errorInterceptor.assignErrorMessage).toHaveBeenCalledWith(mock404Error);
-          });
+        handleError$.subscribe((res) => {
+            console.log(res);
+        }, () => {
+            expect(errorInterceptor.assignErrorMessage).toHaveBeenCalledWith(mock404Error);
+        });
       });
 
       it('Should return value off error message server side error', () => {
