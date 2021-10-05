@@ -6,6 +6,14 @@ export interface Person {
   knownAs?: string;
 }
 
+export interface Caseworker {
+  idamId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  knownAs?: string;
+}
+
 export enum PersonRole {
   JUDICIAL = 'Judicial',
   CASEWORKER = 'Legal Ops',

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Person, PersonRole } from '../../models/person.model';
+import { Caseworker, Person, PersonRole } from '../../models/person.model';
 import { SearchOptions } from '../../models/search-options.model';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class FindAPersonService {
     }));
   }
 
-  public mapCaseworkers(caseworkers: any[]): Person[] {
+  public mapCaseworkers(caseworkers: Caseworker[]): Person[] {
     const people: Person[] = [];
     caseworkers.forEach((caseworker) => {
       const thisPerson: Person = {
