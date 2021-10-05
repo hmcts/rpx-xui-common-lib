@@ -1,13 +1,18 @@
 .spinner-container {
     position: fixed;
-    top: 30%;
+    top: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 99;
 
     .spinner-inner-container {
         padding: 72px;
+        width: 560px;
         background-color: #fff;
+
+        p {
+            text-align: center;
+        }
 
         .spinner {
             border: 10px solid #dddddd;
