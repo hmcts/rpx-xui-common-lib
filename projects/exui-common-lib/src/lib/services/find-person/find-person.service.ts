@@ -1,26 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { Caseworker, Person, PersonRole } from '../../models/person.model';
 import { SearchOptions } from '../../models/search-options.model';
+import { SessionStorageService } from '../session-storage/session-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FindAPersonService {
-  constructor(private readonly http: HttpClient) { }
+
+  public static caseworkersKey: string = 'caseworkers';
+
+  constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) { }
 
   public find(searchOptions: SearchOptions): Observable<Person[]> {
     return this.http.post<Person[]>('/workallocation2/findPerson', { searchOptions });
   }
 
   public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {
-    return this.http.get<any[]>('/workallocation2/caseworker').pipe(map(caseworkers => {
-      const people = this.mapCaseworkers(caseworkers);
-      return people.filter(person => person && person.name && person.name.toLowerCase().includes(searchOptions.searchTerm.toLowerCase()));
-    }));
+    if (!this.sessionStorageService.getItem(FindAPersonService.caseworkersKey)) {
+      this.http.get<Caseworker[]>('/workallocation2/caseworker').pipe(
+        tap(caseworkerList => this.sessionStorageService.setItem(FindAPersonService.caseworkersKey, JSON.stringify(caseworkerList)))
+      );
+    }
+    const caseworkers = JSON.parse(this.sessionStorageService.getItem(FindAPersonService.caseworkersKey));
+    const people = this.mapCaseworkers(caseworkers);
+    return of(people.filter(person => person && person.name && person.name.toLowerCase().includes(searchOptions.searchTerm.toLowerCase())));
   }
 
   public mapCaseworkers(caseworkers: Caseworker[]): Person[] {

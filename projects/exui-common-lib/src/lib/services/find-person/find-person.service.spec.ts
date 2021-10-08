@@ -5,22 +5,46 @@ import { FindAPersonService } from './find-person.service';
 describe('FindAPersonService', () => {
   it('should be Truthy', () => {
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
-    const service = new FindAPersonService(mockHttpService);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     expect(service).toBeTruthy();
   });
 
   it('find search', () => {
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
-    const service = new FindAPersonService(mockHttpService);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.JUDICIAL };
     service.find(searchOptions);
     expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation2/findPerson', { searchOptions });
   });
 
   it('find specific caseworkers', () => {
+    const caseworkers = `[
+      {
+        "idamId": "123",
+        "firstName": "Test",
+        "lastName": "One",
+        "email": "TestOne@test.com"
+      },
+      {
+        "idamId": "124",
+        "firstName": "Test",
+        "lastName": "Two",
+        "email": "TestTwo@test.com"
+      },
+      {
+        "idamId": "125",
+        "firstName": "Test",
+        "lastName": "Three",
+        "email": "TestThree@test.com"
+      }
+    ]`;
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     mockHttpService.get.and.returnValue(of());
-    const service = new FindAPersonService(mockHttpService);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    mockSessionStorageService.getItem.and.returnValues(undefined, caseworkers);
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.CASEWORKER };
     service.findCaseworkers(searchOptions);
     expect(mockHttpService.get).toHaveBeenCalledWith('/workallocation2/caseworker');
@@ -68,7 +92,8 @@ describe('FindAPersonService', () => {
       }
     ];
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
-    const service = new FindAPersonService(mockHttpService);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     expect(service.mapCaseworkers(caseworkers)).toEqual(people);
   });
 });
