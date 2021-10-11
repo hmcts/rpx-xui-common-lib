@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterConfig } from 'exui-common-lib/lib/models/filter.model';
-import { BadgeColour, ContactDetailsDataModel, TCDocument } from 'projects/exui-common-lib/src';
+import { BadgeColour, ContactDetailsDataModel, FilterConfig, TCDocument } from 'projects/exui-common-lib/src';
 import { GoogleTagManagerService } from 'projects/exui-common-lib/src/lib/services/google-tag-manager/google-tag-manager.service';
 import { Observable, of } from 'rxjs';
 
