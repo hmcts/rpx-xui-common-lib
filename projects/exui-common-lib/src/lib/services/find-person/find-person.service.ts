@@ -27,8 +27,9 @@ export class FindAPersonService {
       );
     }
     const caseworkers = JSON.parse(this.sessionStorageService.getItem(FindAPersonService.caseworkersKey));
-    const people = this.mapCaseworkers(caseworkers);
-    return of(people.filter(person => person && person.name && person.name.toLowerCase().includes(searchOptions.searchTerm.toLowerCase())));
+    const people = caseworkers ? this.mapCaseworkers(caseworkers) : [];
+    const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
+    return of(people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm)));
   }
 
   public mapCaseworkers(caseworkers: Caseworker[]): Person[] {
