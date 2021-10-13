@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { startWith, switchMap } from 'rxjs/operators';
+import { Observable, of, zip } from 'rxjs';
+import { map, startWith, switchMap } from 'rxjs/operators';
 import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
@@ -53,8 +53,24 @@ export class FindPersonComponent implements OnInit, OnChanges {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
+    const findJudicialPeople = this.findPersonService.find({searchTerm, jurisdiction: this.domain});
+    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, jurisdiction: this.domain});
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
-      return this.findPersonService.find({searchTerm, jurisdiction: this.domain});
+      switch (this.domain) {
+        case PersonRole.JUDICIAL: {
+          return findJudicialPeople;
+        }
+        case PersonRole.ALL: {
+          return zip(findJudicialPeople, findCaseworkersOrAdmins).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
+        }
+        case PersonRole.CASEWORKER:
+        case PersonRole.ADMIN: {
+          return findCaseworkersOrAdmins;
+        }
+        default: {
+          return of();
+        }
+      }
     }
     return of();
   }
