@@ -1,10 +1,6 @@
-<div class="loading-spinner__overlay" [ngStyle]="{'z-index': zIndex}">
-  <div class="loading-spinner__box" [ngStyle]="{'z-index': zIndex + 1}">
-    <div class="loading-spinner__fan">
-      <ng-container *ngFor="let i of [].constructor(12)">
-        <div></div>
-      </ng-container>
+<div class="spinner-container">
+    <div class="spinner-inner-container">
+        <p>{{loadingText}}</p>
+        <div class="spinner" style="margin: auto;"></div>
     </div>
-    <p>{{loadingText}}</p>
-  </div>
 </div>
