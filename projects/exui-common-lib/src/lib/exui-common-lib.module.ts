@@ -16,6 +16,7 @@ import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/h
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+
 import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
@@ -35,6 +36,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserSelectComponent } from './components/user-select/user-select.component';
+import { PaginationModule } from './components/pagination';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
 import { LetDirective } from './directives/let/let.directive';
 import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
@@ -131,7 +133,8 @@ export const GOV_UI_COMPONENTS = [
     ReactiveFormsModule,
     RouterModule.forChild([]),
     MatAutocompleteModule,
-    MatTabsModule
+    MatTabsModule,
+    PaginationModule
   ],
   providers: [
     { provide: windowToken, useFactory: windowProvider }
