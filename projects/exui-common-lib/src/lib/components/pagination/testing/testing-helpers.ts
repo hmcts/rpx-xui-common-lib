@@ -1,6 +1,6 @@
 import { Component, DebugElement, Type } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { PaginationControlsDirective, PaginationInstance } from 'ngx-pagination';
 
 /**
@@ -35,10 +35,8 @@ export function getControlsDirective(fixture: ComponentFixture<ComponentTestComp
  *
  * If includeAll is set to true, the boundary links will also be included.
  */
-export function getPageLinkItems(fixture: ComponentFixture<any>,
-  selector = 'ccd-pagination li',
-  includeAll = false): string[] {
-  let all = fixture.debugElement.queryAll(By.css(selector))
+export function getPageLinkItems(fixture: ComponentFixture<any>, selector = 'xuilib-pagination li', includeAll = false): string[] {
+  const all = fixture.debugElement.queryAll(By.css(selector))
     .filter(el => (el.nativeElement as HTMLLIElement).classList.contains('small-screen') === false)
     .map((el: DebugElement) => el.nativeElement.innerText);
 
@@ -46,7 +44,7 @@ export function getPageLinkItems(fixture: ComponentFixture<any>,
     return all;
   } else {
     return all.filter(str => {
-      return str.match(/\d*\,?\.?\d+|\.\.\./)
+      return str.match(/\d*\,?\.?\d+|\.\.\./);
     })
       .map(str => str.match(/\d*\,?\.?\d+|\.\.\./)[0]);
   }
@@ -71,28 +69,31 @@ export function overrideTemplate<T>(component: Type<T>, templateString: string):
     <ul>
         <li *ngFor="let item of collection | paginate: config" class="list-item">{{ item }}</li>
     </ul>
-    <ccd-pagination [id]="config.id"
+    <xuilib-pagination [id]="config.id"
                     (pageChange)="pageChanged($event)"
                     (pageBoundsCorrection)="pageChangedBoundsCorrection($event)"
                     [maxSize]="maxSize"
                     [autoHide]="autoHide">
-    </ccd-pagination>`
+    </xuilib-pagination>`
 })
 export class ComponentTestComponent {
-  maxSize = 9;
-  directionLinks = true;
-  autoHide = true;
-  responsive = false;
-  collection: string[] = [];
-  config: PaginationInstance = {
+  public maxSize = 9;
+  public directionLinks = true;
+  public autoHide = true;
+  public responsive = false;
+  public collection: string[] = [];
+  public config: PaginationInstance = {
     id: 'test',
     itemsPerPage: 10,
     currentPage: 1
   };
-  pageChanged() { }
-  pageChangedBoundsCorrection() { }
+  public pageChanged() { }
+  public pageChangedBoundsCorrection() { }
 
   constructor() {
-    this.collection = Array.from(new Array(100), (x, i) => `item ${i + 1}`);
+    this.collection = Array.from(new Array(100), (x, i) => {
+      console.log(x);
+      return `item ${i + 1}`;
+    });
   }
 }
