@@ -121,7 +121,7 @@ describe('FindAPersonService', () => {
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     expect(service.mapCaseworkers(caseworkers, RoleCategory.ALL)).toEqual(people);
-    expect(service.mapCaseworkers(caseworkers, RoleCategory.CASEWORKER)).toEqual(people.slice(0,3));
-    expect(service.mapCaseworkers(caseworkers, RoleCategory.ADMIN)).toEqual(people.slice(3,4));
+    expect(service.mapCaseworkers(caseworkers, RoleCategory.CASEWORKER)).toEqual(people.slice(0, 3));
+    expect(service.mapCaseworkers(caseworkers, RoleCategory.ADMIN)).toEqual(people.slice(3, 4));
   });
 });
