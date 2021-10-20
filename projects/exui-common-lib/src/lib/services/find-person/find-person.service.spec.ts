@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { Person, PersonRole } from '../../models/person.model';
+import { Person, PersonRole, RoleCategory } from '../../models/person.model';
 import { FindAPersonService } from './find-person.service';
 
 describe('FindAPersonService', () => {
@@ -25,19 +25,29 @@ describe('FindAPersonService', () => {
         "idamId": "123",
         "firstName": "Test",
         "lastName": "One",
-        "email": "TestOne@test.com"
+        "email": "TestOne@test.com",
+        "roleCategory": "LEGAL_OPERATIONS"
       },
       {
         "idamId": "124",
         "firstName": "Test",
         "lastName": "Two",
-        "email": "TestTwo@test.com"
+        "email": "TestTwo@test.com",
+        "roleCategory": "LEGAL_OPERATIONS"
       },
       {
         "idamId": "125",
         "firstName": "Test",
         "lastName": "Three",
-        "email": "TestThree@test.com"
+        "email": "TestThree@test.com",
+        "roleCategory": "LEGAL_OPERATIONS"
+      },
+      {
+        "idamId": "126",
+        "firstName": "Test",
+        "lastName": "Four",
+        "email": "TestFour@test.com",
+        "roleCategory": "ADMIN"
       }
     ]`;
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
@@ -56,19 +66,29 @@ describe('FindAPersonService', () => {
         idamId: '123',
         firstName: 'Test',
         lastName: 'One',
-        email: 'TestOne@test.com'
+        email: 'TestOne@test.com',
+        roleCategory: 'LEGAL_OPERATIONS'
       },
       {
         idamId: '124',
         firstName: 'Test',
         lastName: 'Two',
-        email: 'TestTwo@test.com'
+        email: 'TestTwo@test.com',
+        roleCategory: 'LEGAL_OPERATIONS'
       },
       {
         idamId: '125',
         firstName: 'Test',
         lastName: 'Three',
-        email: 'TestThree@test.com'
+        email: 'TestThree@test.com',
+        roleCategory: 'LEGAL_OPERATIONS'
+      },
+      {
+        idamId: '126',
+        firstName: 'Test',
+        lastName: 'Four',
+        email: 'TestFour@test.com',
+        roleCategory: 'ADMIN'
       }
     ];
     const people: Person[] = [
@@ -89,11 +109,19 @@ describe('FindAPersonService', () => {
         name: 'Test Three',
         email: 'TestThree@test.com',
         domain: PersonRole.CASEWORKER
+      },
+      {
+        id: '126',
+        name: 'Test Four',
+        email: 'TestFour@test.com',
+        domain: PersonRole.ADMIN
       }
     ];
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
-    expect(service.mapCaseworkers(caseworkers)).toEqual(people);
+    expect(service.mapCaseworkers(caseworkers, RoleCategory.ALL)).toEqual(people);
+    expect(service.mapCaseworkers(caseworkers, RoleCategory.CASEWORKER)).toEqual(people.slice(0,3));
+    expect(service.mapCaseworkers(caseworkers, RoleCategory.ADMIN)).toEqual(people.slice(3,4));
   });
 });

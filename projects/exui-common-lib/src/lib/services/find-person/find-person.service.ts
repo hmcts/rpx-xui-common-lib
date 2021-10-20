@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { Caseworker, Person, PersonRole } from '../../models/person.model';
+import { Caseworker, Person, PersonRole, RoleCategory } from '../../models/person.model';
 import { SearchOptions } from '../../models/search-options.model';
 import { SessionStorageService } from '../session-storage/session-storage.service';
 
@@ -27,22 +27,28 @@ export class FindAPersonService {
       );
     }
     const caseworkers = JSON.parse(this.sessionStorageService.getItem(FindAPersonService.caseworkersKey));
-    const people = caseworkers ? this.mapCaseworkers(caseworkers) : [];
+    let roleCategory = RoleCategory.ALL;
+    if (!(searchOptions.jurisdiction === PersonRole.ALL)) {
+      roleCategory = searchOptions.jurisdiction === PersonRole.CASEWORKER ? RoleCategory.CASEWORKER : RoleCategory.ADMIN;
+    }
+    const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     return of(people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm)));
   }
 
-  public mapCaseworkers(caseworkers: Caseworker[]): Person[] {
+  public mapCaseworkers(caseworkers: Caseworker[], roleCategory: string): Person[] {
     const people: Person[] = [];
     caseworkers.forEach((caseworker) => {
       const thisPerson: Person = {
         email: caseworker.email,
         name: `${caseworker.firstName} ${caseworker.lastName}`,
         id: caseworker.idamId,
-        domain: PersonRole.CASEWORKER,
+        domain: caseworker.roleCategory === RoleCategory.CASEWORKER ? PersonRole.CASEWORKER : PersonRole.ADMIN,
         // knownAs can be added if required
       };
-      people.push(thisPerson);
+      if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL) {
+        people.push(thisPerson);
+      }
     });
     return people;
   }
