@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody class="govuk-table__body">
-        <tr class="govuk-table__row" data-selector="table-row" *ngFor="let u of users">
+        <tr class="govuk-table__row" data-selector="table-row" *ngFor="let u of users | paginate: { itemsPerPage: pagination?.page_size, currentPage: pagination?.page_number, totalItems: users.length }">
             <td class="govuk-table__cell" data-selector="table-cell">
               <a class="govuk-link" [attr.title]="u.routerLinkTitle" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
             </td>
@@ -16,3 +16,4 @@
         </tr>
     </tbody>
 </table>
+<xuilib-pagination (pageChange)="onPaginationHandler($event)"></xuilib-pagination>

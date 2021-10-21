@@ -7,7 +7,7 @@
     "@angular/material": "^7.2.0",
     "@angular/cdk": "^7.2.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^5.1.1"
   },
   "publishConfig": {
     "access": "public"
