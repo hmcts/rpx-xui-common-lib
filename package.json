@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.5-gov-uk-date-extensions",
+  "version": "1.4.6-release-test",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
