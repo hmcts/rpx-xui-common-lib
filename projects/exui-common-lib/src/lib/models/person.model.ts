@@ -12,6 +12,7 @@ export interface Caseworker {
   lastName: string;
   email: string;
   knownAs?: string;
+  roleCategory: string;
 }
 
 export enum PersonRole {
@@ -19,4 +20,13 @@ export enum PersonRole {
   CASEWORKER = 'Legal Ops',
   ADMIN = 'Admin',
   ALL = 'All',
+}
+
+// Note: RoleCategory could replace PersonRole possibly
+// However a lot of webapp logic is based on current PersonRole understanding
+export enum RoleCategory {
+  JUDICIAL = 'JUDICIAL',
+  CASEWORKER = 'LEGAL_OPERATIONS',
+  ADMIN = 'ADMIN',
+  ALL = 'ALL'
 }
