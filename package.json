@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.6-lee-test",
+  "version": "1.4.6-lee-test-25th-october-2021",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
