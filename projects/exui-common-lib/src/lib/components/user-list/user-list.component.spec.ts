@@ -1,7 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PaginationModule } from '../pagination/pagination.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from '../pagination/pagination.component';
 import { UserListComponent } from './user-list.component';
 
 describe('UserListComponent', () => {
@@ -10,9 +11,12 @@ describe('UserListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, PaginationModule],
+      imports: [
+        RouterTestingModule,
+        NgxPaginationModule,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserListComponent ]
+      declarations: [ UserListComponent, PaginationComponent ]
     })
     .compileComponents();
   }));

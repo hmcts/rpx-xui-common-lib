@@ -4,9 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FeatureToggleService } from './feature-toggle.service';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class FeatureToggleGuard implements CanActivate {
 
     public constructor(
@@ -21,7 +19,7 @@ export class FeatureToggleGuard implements CanActivate {
      * - featureDisabledRedirect: the URL to redirect to when the this route is not accessible due to disabled features
      * @param route Automatically provided by Angular
      */
-    public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
+     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
         return combineLatest(...(route.data.needsFeaturesEnabled as string[]).map(
                 feature => this.featureToggleService.getValueOnce<boolean>(feature, false)
         )).pipe(

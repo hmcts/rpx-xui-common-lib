@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.6-add-pagination-component-r2",
+  "version": "1.4.6-add-pagination-component-r3",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
