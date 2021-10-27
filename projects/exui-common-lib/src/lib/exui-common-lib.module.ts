@@ -151,7 +151,6 @@ export const GOV_UI_COMPONENTS = [
     MatAutocompleteModule,
     MatTabsModule,
     NgxPaginationModule
-    // PaginationModule
   ],
   providers: [
     { provide: windowToken, useFactory: windowProvider },
