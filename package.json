@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.5-find-person-legal-ops",
+  "version": "1.4.7-format-date-and-text-input",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
