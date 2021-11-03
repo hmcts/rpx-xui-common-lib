@@ -1,11 +1,13 @@
-.date-input-container {
-  margin-bottom: 30px !important;
+.govuk-form-group
 
-  .govuk-date-input {
-    .govuk-date-input__item {
-      .govuk-form-group {
-        margin-bottom: 0;
+  .date-input-container {
+    margin-bottom: 30px;
+
+    .govuk-date-input {
+      .govuk-date-input__item {
+        .govuk-form-group {
+          margin-bottom: 0;
+        }
       }
     }
-  }
 }
