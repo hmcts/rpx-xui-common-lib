@@ -7,7 +7,7 @@
   {{config.hint}}
 </span>
 
-<xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage" *ngIf="errorMessage"></xuilib-gov-uk-error-message>
+<xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
 
 <input class="govuk-input"
        [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
