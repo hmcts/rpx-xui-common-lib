@@ -14,7 +14,7 @@ export interface FilterConfig {
 
 export interface FilterFieldConfig {
   name: string;
-  options: { key: string, label: string }[];
+  options: { key: string, label: string, selectAll?: true }[];
   minSelected: number;
   maxSelected: number;
   minSelectedError?: string;

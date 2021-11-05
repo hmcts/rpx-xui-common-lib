@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
@@ -19,7 +19,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
-
   // tslint:disable-next-line:variable-name
   private _config: FilterConfig;
 
@@ -131,7 +130,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return true;
   }
 
-
   public applyFilter(form: FormGroup): void {
     this.submitted = true;
     form.markAsTouched();
@@ -170,6 +168,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
     this.filterService.persist(this.settings, this.config.persistence);
+    this.filterService.givenErrors.next(null);
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
@@ -179,6 +178,38 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         this.form.get(field.name).get(key).patchValue(values[key]);
       }
     }
+  }
+
+  public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
+    const isChecked = event.target.checked;
+    const formArray: FormArray = form.get(field.name) as FormArray;
+    if (!item.selectAll) {
+      const allChecked = formArray.controls.every((control: AbstractControl) => control.value === true);
+      let index: number = null;
+      const hasSelectAllOption = field.options.find((option, i) => {
+        if (option.hasOwnProperty('selectAll')) {
+          index = i;
+          return true;
+        }
+        return false;
+      });
+
+      if (!allChecked && hasSelectAllOption && !isChecked) {
+        formArray.controls.forEach((control: AbstractControl, i: number) => {
+          if (index === i) {
+            control.patchValue(false);
+          }
+        });
+      }
+      return;
+    }
+    formArray.controls.forEach((control: AbstractControl) => {
+      if (isChecked) {
+        control.patchValue(true);
+      } else {
+        control.patchValue(false);
+      }
+    });
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {

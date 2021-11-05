@@ -6,6 +6,12 @@
          [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.minLength || form.get(field.name).errors?.maxLength)}">
       <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
       <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
+      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && form.get(field.name).errors?.minLength">
+        <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
+      </span>
+      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
+        <span class="govuk-visually-hidden">Error:</span> {{field.maxSelectedError}}
+      </span>
       <div class="govuk-body" [ngSwitch]="field.type">
         <ng-container *ngSwitchCase="'select'">
           <select class="govuk-select" (change)="updateSpecificPerson(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
@@ -14,15 +20,20 @@
           </select>
         </ng-container>
         <ng-container *ngSwitchCase="'checkbox'">
-          <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name">
+          <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
             <div *ngFor="let item of field.options; let i = index" class="govuk-checkboxes__item">
               <input type="checkbox" class="govuk-checkboxes__input"
                      [attr.disabled]="disabled(field, form)"
                      [formControlName]="i"
+                     (change)="toggleSelectAll($event, form, item, field)"
                      [value]="item.key" [id]="'checkbox_' + item.key"
                      [name]="'checkbox_' + item.key"
               />
-              <label [for]="'checkbox_' + item.key" class="govuk-label govuk-checkboxes__label">{{item.label}}</label>
+              <label
+                [for]="'checkbox_' + item.key"
+                class="govuk-label govuk-checkboxes__label"
+                [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
+              >{{item.label}}</label>
             </div>
           </div>
         </ng-container>
