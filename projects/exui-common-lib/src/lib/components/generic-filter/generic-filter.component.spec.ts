@@ -207,10 +207,7 @@ describe('GenericFilterComponent', () => {
       expect(component.form.get('person').get('email').value).toBe(null);
     });
   });
-
-
 });
-
 
 describe('Select all checkboxes', () => {
 
