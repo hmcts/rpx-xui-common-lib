@@ -120,7 +120,7 @@ describe('GenericFilterComponent', () => {
 
   describe('component methods that use fields', () => {
     const condition = 'selectPerson=Specific person';
-    const currentField: FilterFieldConfig = {
+    const selectField: FilterFieldConfig = {
       name: 'person',
       options: [
         {
@@ -145,6 +145,32 @@ describe('GenericFilterComponent', () => {
       findPersonField: 'person',
       disabledText: 'Select a role type',
       type: 'select'
+    };
+
+    const radioField: FilterFieldConfig = {
+      name: 'selectPerson',
+      options: [
+        {
+          key: 'All',
+          label: 'All'
+        },
+        {
+          key: 'None / Available tasks',
+          label: 'None / Available tasks'
+        },
+        {
+          key: 'Specific person',
+          label: 'Specific person'
+        }
+      ],
+      minSelected: 1,
+      maxSelected: 1,
+      minSelectedError: 'You must select a person',
+      maxSelectedError: null,
+      lineBreakBefore: true,
+      findPersonField: 'person',
+      title: 'Person',
+      type: 'radio'
     };
 
     const personField: FilterFieldConfig = {
@@ -172,9 +198,9 @@ describe('GenericFilterComponent', () => {
       component.form.addControl('selectPerson', new FormControl());
       component.form.addControl('person', formGroup);
       // check non-person field to see if it will set correctly
-      expect(component.disabled(currentField, component.form)).toBe(true);
-      currentField.enableCondition = null;
-      expect(component.disabled(currentField, component.form)).toBe(null);
+      expect(component.disabled(selectField, component.form)).toBe(true);
+      selectField.enableCondition = null;
+      expect(component.disabled(selectField, component.form)).toBe(null);
 
       // check the find-person field to see if it will set correctly
       expect(component.disabled(personField, component.form)).toBe(true);
@@ -187,9 +213,9 @@ describe('GenericFilterComponent', () => {
       component.form = new FormGroup({});
       component.form.addControl('selectPerson', new FormControl());
       component.form.addControl('person', formGroup);
-      expect(component.hidden(currentField, component.form)).toBe(true);
-      currentField.showCondition = null;
-      expect(component.hidden(currentField, component.form)).toBe(false);
+      expect(component.hidden(selectField, component.form)).toBe(true);
+      selectField.showCondition = null;
+      expect(component.hidden(selectField, component.form)).toBe(false);
 
       expect(component.hidden(personField, component.form)).toBe(true);
       component.form.get('selectPerson').patchValue('Specific person');
@@ -202,9 +228,38 @@ describe('GenericFilterComponent', () => {
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
-      component.updateSpecificPerson(currentField, component.form);
+      component.selectChanged(selectField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
+    });
+
+    it('should correctly remove person when radio button changed', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
+      component.form.addControl('findPersonControl', new FormControl());
+      component.form.addControl('person', formGroup);
+      component.form.get('person').get('domain').patchValue('All');
+      component.form.get('person').get('email').patchValue('example');
+      component.radiosChanged(radioField);
+      expect(component.form.get('person').get('domain').value).toBe(null);
+      expect(component.form.get('person').get('email').value).toBe(null);
+    });
+
+    it('should correctly remove person field when method called', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
+      component.form.addControl('person', formGroup);
+      component.form.get('person').get('domain').patchValue('All');
+      component.form.get('person').get('email').patchValue('example');
+      component.form.get('person').get('id').patchValue('123');
+      component.form.get('person').get('name').patchValue('Test');
+      component.form.get('person').get('knownAs').patchValue('testing123');
+      component.removePersonField(radioField);
+      expect(component.form.get('person').get('domain').value).toBe(null);
+      expect(component.form.get('person').get('email').value).toBe(null);
+      expect(component.form.get('person').get('id').value).toBe(null);
+      expect(component.form.get('person').get('name').value).toBe(null);
+      expect(component.form.get('person').get('knownAs').value).toBe(null);
     });
 
   });
