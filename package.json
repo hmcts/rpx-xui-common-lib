@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.7-format-date-and-text-input",
+  "version": "1.4.7-remove-person-on-radio-select",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
