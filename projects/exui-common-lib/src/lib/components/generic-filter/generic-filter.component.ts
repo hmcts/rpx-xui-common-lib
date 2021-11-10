@@ -19,6 +19,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
+
   // tslint:disable-next-line:variable-name
   private _config: FilterConfig;
 
@@ -184,7 +185,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const isChecked = event.target.checked;
     const formArray: FormArray = form.get(field.name) as FormArray;
     if (!item.selectAll) {
-      const allChecked = formArray.controls.every((control: AbstractControl) => control.value === true);
+      const allChecked = formArray.controls.every((control: AbstractControl) => control.value);
       let index: number = null;
       const hasSelectAllOption = field.options.find((option, i) => {
         if (option.hasOwnProperty('selectAll')) {
@@ -193,13 +194,19 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }
         return false;
       });
+      // tslint:disable-next-line:variable-name
+      const isAllCheckedExcludingTheSelectAllOption = formArray.controls.filter((_control: AbstractControl, i: number) => i !== index)
+        .every((control: AbstractControl) => control.value);
 
       if (!allChecked && hasSelectAllOption && !isChecked) {
         formArray.controls.forEach((control: AbstractControl, i: number) => {
           if (index === i) {
             control.patchValue(false);
+            return;
           }
         });
+      } else if (!allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
+        formArray.controls[index].patchValue(true);
       }
       return;
     }
