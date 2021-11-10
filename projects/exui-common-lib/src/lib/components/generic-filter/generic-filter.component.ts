@@ -205,7 +205,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
             return;
           }
         });
-      } else if (!allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
+      } else if (hasSelectAllOption && !allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
         formArray.controls[index].patchValue(true);
       }
       return;
