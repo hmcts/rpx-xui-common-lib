@@ -77,9 +77,6 @@ import { TimeoutNotificationsService } from './services/timeout-notifications/ti
 import { windowProvider, windowToken } from './window';
 export const COMMON_LIB_ROOT_GUARD = new InjectionToken<void>('COMMON_LIB_ROOT_GUARD');
 
-export class ExuiCommonLibModuleOptions {
-  public launchDarklyKey?: string;
-}
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
