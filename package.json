@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.7-format-date-and-text-input",
+  "version": "1.4.7-add-pagination-component",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
@@ -36,6 +36,7 @@
     "core-js": "^2.5.4",
     "govuk-frontend": "^3.4.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
+    "ngx-pagination": "^3.2.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of, zip } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
-import { Person, PersonRole } from '../../models';
+import { Person, PersonRole } from '../../models/person.model';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
 @Component({

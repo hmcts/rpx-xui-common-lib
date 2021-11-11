@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
+import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models/filter.model';
 import {FilterService} from './../../services/filter/filter.service';
 import {maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
