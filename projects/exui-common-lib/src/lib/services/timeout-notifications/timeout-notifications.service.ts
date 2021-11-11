@@ -22,8 +22,8 @@ import { TimeoutNotificationConfig } from '../../models/timeout-notification.mod
  * @see README.md for implementation details and code, on how to implement the Timeout Notification
  * Service within your application.
  */
- @Injectable({
-  providedIn: 'root'
+@Injectable({
+ providedIn: 'root'
 })
 export class TimeoutNotificationsService {
 
