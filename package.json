@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.9-update-spinner",
+  "version": "1.4.8-update-spinner",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
