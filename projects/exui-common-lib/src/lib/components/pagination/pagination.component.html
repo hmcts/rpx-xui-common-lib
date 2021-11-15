@@ -1,0 +1,22 @@
+<nav class="moj-pagination" id="pagination-label">
+
+  <p class="govuk-visually-hidden" aria-labelledby="pagination-label">Pagination navigation</p>
+
+  <ul class="moj-pagination__list">
+    <li class="moj-pagination__item  moj-pagination__item--prev">
+      <a *ngIf="firstRecord > 1; else noPrevious" class="moj-pagination__link" (click)="onPrevious()" href="javascript:void(0)">
+        Previous page
+      </a>
+      <ng-template #noPrevious>
+        <span class="moj-pagination__link">Previous page</span>
+      </ng-template>
+    </li>
+
+    <li class="moj-pagination__item  moj-pagination__item--next">
+      <a *ngIf="moreItems; else noNext" class="moj-pagination__link" (click)="onNext()" href="javascript:void(0)">Next page</a>
+      <ng-template #noNext>
+        <span class="moj-pagination__link">Next page</span>
+      </ng-template>
+    </li>
+  </ul>
+</nav>
