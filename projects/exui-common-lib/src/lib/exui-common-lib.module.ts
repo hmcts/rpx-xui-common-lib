@@ -63,6 +63,7 @@ import {
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { windowProvider, windowToken } from './window';
+import { SearchLocationComponent } from './components/search-location/search-location.component';
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
@@ -93,7 +94,8 @@ export const COMMON_COMPONENTS = [
   LoadingSpinnerComponent,
   GenericFilterComponent,
   CookieBannerComponent,
-  FindPersonComponent
+  FindPersonComponent,
+  SearchLocationComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
