@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
@@ -133,14 +134,16 @@ export const GOV_UI_COMPONENTS = [
     ReactiveFormsModule,
     RouterModule.forChild([]),
     MatAutocompleteModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: windowToken, useFactory: windowProvider }
   ],
   exports: [
     ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS
+    ...GOV_UI_COMPONENTS,
+    PaginatePipe
   ]
 })
 export class ExuiCommonLibModule {

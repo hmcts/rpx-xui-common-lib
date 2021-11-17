@@ -1,3 +1,11 @@
+<div class="pagination-top" *ngIf="getTotalResults(users) > pagination.page_size" attr.aria-label="{{ getTotalResults(users) }} results have been found" role="status">
+    <span class="text-16" id="search-result-summary__text">Showing 
+      <span class="govuk-!-font-weight-bold">{{ getFirstResult(users) }}</span>
+      to
+      <span class="govuk-!-font-weight-bold">{{ getLastResult(users) }}</span>
+      of
+      <span class="govuk-!-font-weight-bold">{{ getTotalResults(users) }}</span> results</span>
+</div>
 <table class="govuk-table">
     <thead clas="govuk-table__head">
         <tr class="govuk-table__row">
@@ -7,7 +15,7 @@
         </tr>
     </thead>
     <tbody class="govuk-table__body">
-        <tr class="govuk-table__row" data-selector="table-row" *ngFor="let u of users">
+        <tr class="govuk-table__row" data-selector="table-row" *ngFor="let u of users | paginate: { itemsPerPage: pagination?.page_size, currentPage: pagination?.page_number, totalItems: users.length }">
             <td class="govuk-table__cell" data-selector="table-cell">
               <a class="govuk-link" [attr.title]="u.routerLinkTitle" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
             </td>
@@ -16,3 +24,6 @@
         </tr>
     </tbody>
 </table>
+<xuilib-pagination *ngIf="getTotalResults(users) > pagination.page_size" [moreItems]="moreResultsToGo" [firstRecord]="pagination.page_number"
+    (previousPage)="getPreviousResultsPage()" (nextPage)="getNextResultsPage()">
+</xuilib-pagination>
