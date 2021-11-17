@@ -44,7 +44,7 @@ export class SearchLocationComponent implements OnInit {
   public filter(term: string) {
      this.getLocations(term).pipe(
         mergeMap((apiData: LocationModel[]) => this.selectedLocations$.pipe(
-        map((selectedLocations) => apiData.filter(apiLocation => !selectedLocations.map(location => location.court_venue_id).includes(apiLocation.court_venue_id)))
+        map((selectedLocations) => apiData.filter(apiLocation => !selectedLocations.map(selectedLocation => selectedLocation.court_venue_id).includes(apiLocation.court_venue_id)))
       ))
     ).subscribe(locations => {
         this.locations$ = of(locations);
@@ -68,7 +68,7 @@ export class SearchLocationComponent implements OnInit {
 
   public addSelection() {
     if (this.selectedLocation) {
-      this.selectedLocations$.subscribe(location => {
+      this.selectedLocations$.subscribe(selectedLocation => {
           location.push(this.selectedLocation);
           this.selectedLocation = null;
           this.locations$ = of([]);
@@ -79,9 +79,9 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public removeSelection(location: LocationModel) {
-    this.selectedLocations$.subscribe(location => {
-      const index = location.findIndex(d => d.court_venue_id === location.court_venue_id);
-      location.splice(index, 1);
+    this.selectedLocations$.subscribe(selectedLocation => {
+      const index = selectedLocation.findIndex(d => d.court_venue_id === selectedLocation.court_venue_id);
+      selectedLocation.splice(index, 1);
     });
   }
 
