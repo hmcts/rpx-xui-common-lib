@@ -19,7 +19,6 @@ export class UserListComponent {
         page_number: 1,
         page_size: 25
       };
-      this.users.length
     }
 
     public onUserClick(user: User) {
@@ -33,7 +32,7 @@ export class UserListComponent {
         this.moreResultsToGo = true;
       }
     }
-  
+
     public getNextResultsPage(): void {
       const maxPages = Math.ceil(this.users.length / this.pagination.page_size);
       if (this.pagination.page_number < maxPages) {
