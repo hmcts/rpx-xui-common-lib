@@ -37,10 +37,7 @@
     </div>
     <ul  *ngIf="selectedLocations$ && (selectedLocations$ | async).length" class="hmcts-filter-tags selection-container">
         <li class="location-selection"  *ngFor="let selection of selectedLocations$ | async">
-            <a class="hmcts-filter__tag" (click)="removeSelection(selection)" href="javascript:void(0)">
-                <span class="govuk-visually-hidden">
-                    Remove this filter
-                </span>
+            <a class="hmcts-filter__tag" (click)="removeSelection(selection)" href="javascript:void(0)">           
                 {{ selection.court_name }}
             </a>
         </li>
