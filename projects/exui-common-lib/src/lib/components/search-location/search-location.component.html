@@ -11,9 +11,9 @@
                             [formControl]="findLocationForm.controls.findLocationControl"
                             [matAutocomplete]="auto"
                             aria-expanded="false" 
-                            aria-owns="location-picker__listbox" 
+                            aria-owns="input-selected-location__listbox" 
                             aria-autocomplete="both" 
-                            aria-describedby="location-picker__assistiveHint" 
+                            aria-describedby="input-selected-location__assistiveHint" 
                             autocomplete="off" 
                             class="autocomplete__input autocomplete__input--default search-box"
                             [attr.disabled]="disabled"
@@ -34,7 +34,7 @@
             Add location
         </a>
     </div>
-    <ul  *ngIf="selectedLocations$ && (selectedLocations$ | async).length" class="hmcts-filter-tags selection-container">
+    <ul  *ngIf="(selectedLocations$ | async)?.length" class="hmcts-filter-tags selection-container">
         <li class="location-selection"  *ngFor="let selection of selectedLocations$ | async">
             <a class="hmcts-filter__tag" (click)="removeSelection(selection)" href="javascript:void(0)">           
                 {{ selection.court_name }}

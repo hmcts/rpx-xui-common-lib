@@ -319,7 +319,7 @@ fdescribe('SearchLocationComponent', () => {
     component.addSelection();
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const selectedLoctions = fixture.debugElement.queryAll(By.css('.location-selection')); 
+      const selectedLoctions = fixture.debugElement.queryAll(By.css('.location-selection'));
       const button =  fixture.debugElement.query(By.css('.remove-loation-button'));
       button.nativeElement.dispatchEvent(new Event('click'));
       fixture.detectChanges();

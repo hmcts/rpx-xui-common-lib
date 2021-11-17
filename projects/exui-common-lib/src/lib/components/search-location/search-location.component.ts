@@ -69,7 +69,7 @@ export class SearchLocationComponent implements OnInit {
   public addSelection() {
     if (this.selectedLocation) {
       this.selectedLocations$.subscribe(selectedLocation => {
-          location.push(this.selectedLocation);
+          selectedLocation.push(this.selectedLocation);
           this.selectedLocation = null;
           this.locations$ = of([]);
       });
@@ -80,7 +80,7 @@ export class SearchLocationComponent implements OnInit {
 
   public removeSelection(location: LocationModel) {
     this.selectedLocations$.subscribe(selectedLocation => {
-      const index = selectedLocation.findIndex(d => d.court_venue_id === selectedLocation.court_venue_id);
+      const index = selectedLocation.findIndex(d => d.court_venue_id === location.court_venue_id);
       selectedLocation.splice(index, 1);
     });
   }
