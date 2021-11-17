@@ -1,6 +1,6 @@
 <div class="govuk-form-group">
     <div class="location-picker-custom">
-        <label class="govuk-body" for="input-selected-location">
+        <label id="input-selected-location-label" class="govuk-body" for="input-selected-location">
             Search for a location by name
         </label>
         <br>
@@ -13,7 +13,7 @@
                             aria-expanded="false" 
                             aria-owns="input-selected-location__listbox" 
                             aria-autocomplete="both" 
-                            aria-describedby="input-selected-location__assistiveHint" 
+                            aria-describedby="input-selected-location-label" 
                             autocomplete="off" 
                             class="autocomplete__input autocomplete__input--default search-box"
                             [attr.disabled]="disabled"
