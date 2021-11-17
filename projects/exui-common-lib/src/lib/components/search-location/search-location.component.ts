@@ -23,7 +23,7 @@ export class SearchLocationComponent implements OnInit {
   public selectedLocation: LocationModel;
   public showAutocomplete = false;
 
-  private readonly minSearchCharacters = 2;
+  private readonly minSearchCharacters = 3;
 
   constructor(private readonly locationService: LocationService, fb: FormBuilder) {
     this.findLocationForm =  fb.group({
@@ -52,7 +52,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public search(currentValue: string) {
-    this.showAutocomplete = !!currentValue && (currentValue.length > this.minSearchCharacters);
+    this.showAutocomplete = !!currentValue && (currentValue.length >= this.minSearchCharacters);
     if (this.showAutocomplete) {
       this.filter(currentValue);
     }
