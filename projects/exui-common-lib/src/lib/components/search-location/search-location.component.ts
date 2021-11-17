@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { LocationModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 
@@ -18,11 +18,10 @@ export class SearchLocationComponent implements OnInit {
   @Input() public selectedLocations$: Observable<LocationModel[]>;
   @Input() public submitted?: boolean = true;
   @Input() public findLocationForm: FormGroup;
-  
+
   public locations$: Observable<LocationModel[]>;
   public selectedLocation: LocationModel;
   public showAutocomplete = false;
-  public searchTerm: string = '';
 
   private readonly minSearchCharacters = 2;
 
@@ -34,42 +33,29 @@ export class SearchLocationComponent implements OnInit {
     this.selectedLocations$ = of([]);
   }
 
-  public ngOnInit(): void {   
+  public ngOnInit(): void {
     this.locations$ = this.getLocations('');
+
+    this.findLocationForm.controls.findLocationControl.valueChanges.subscribe(value => {
+      this.search(value);
+    });
   }
 
-  public filter(term: string): any {
-    this.selectedLocations$.subscribe(selectedLocations => {
-      console.log('selectedlocation', selectedLocations);     
-      this.locations$ = this.getLocations(term).pipe( map(apiData => {
-          console.log('api', apiData);
-          return apiData.filter(apiLocation => !selectedLocations.includes(apiLocation))
-      }))
+  public filter(term: string) {
+     this.getLocations(term).pipe(
+        mergeMap((apiData: LocationModel[]) => this.selectedLocations$.pipe(
+        map((selectedLocations) => apiData.filter(apiLocation => !selectedLocations.map(x => x.court_venue_id).includes(apiLocation.court_venue_id)))
+      ))
+    ).subscribe(locations => {
+        this.locations$ = of(locations);
     });
-
-
-    // const a$ = combineLatest([
-    //   this.getLocations(term),
-    //   this.selectedLocations$,
-    // ]);
-    
-    // this.locations$ = a$.pipe(
-    //   map(results => {
-    //     console.log('selectedLocations', results[1]);
-    //     console.log('api', results[0]);
-    //     return results[1].length ?
-    //           results[0].filter(apiLocation => results[1].filter(selectedLocation => selectedLocation.court_venue_id !==  apiLocation.court_venue_id).length): 
-    //           results[0];
-    //   }), take(10)
-    // );
   }
 
   public search(currentValue: string) {
     this.showAutocomplete = !!currentValue && (currentValue.length > this.minSearchCharacters);
-
-    // if (this.showAutocomplete) {
+    if (this.showAutocomplete) {
       this.filter(currentValue);
-    // }
+    }
   }
 
   public onSelectionChange(selection?: LocationModel) {
@@ -85,6 +71,7 @@ export class SearchLocationComponent implements OnInit {
       this.selectedLocations$.subscribe(x => {
           x.push(this.selectedLocation);
           this.selectedLocation = null;
+          this.locations$ = of([]);
       });
     }
 
@@ -93,7 +80,7 @@ export class SearchLocationComponent implements OnInit {
 
   public removeSelection(location: LocationModel) {
     this.selectedLocations$.subscribe(x => {
-      let index = x.findIndex(d => d.court_venue_id === location.court_venue_id);
+      const index = x.findIndex(d => d.court_venue_id === location.court_venue_id);
       x.splice(index, 1);
     });
   }

@@ -16,6 +16,7 @@ import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/h
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { SearchLocationComponent } from './components/search-location/search-location.component';
 import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
@@ -63,7 +64,6 @@ import {
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { windowProvider, windowToken } from './window';
-import { SearchLocationComponent } from './components/search-location/search-location.component';
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
