@@ -14,7 +14,7 @@
       </span>
       <div class="govuk-body" [ngSwitch]="field.type">
         <ng-container *ngSwitchCase="'select'">
-          <select class="govuk-select" (change)="updateSpecificPerson(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
+          <select class="govuk-select" (change)="selectChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
             <option disabled selected hidden value="">{{field.disabledText}}</option>
             <option class="govuk-radios__item" *ngFor="let item of field.options" [value]="item.key">{{item.label}}</option>
           </select>
@@ -47,6 +47,7 @@
                      [checked]="item.key === form.get(field.name).value"
                      class="govuk-radios__input"
                      [value]="item.key"
+                     (change)="radiosChanged(field)"
               />
               <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
             </div>

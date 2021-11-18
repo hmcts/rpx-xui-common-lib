@@ -147,19 +147,30 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   // when domain changes ensure that person field is reset
-  public updateSpecificPerson(field: FilterFieldConfig, form: FormGroup): void {
+  public selectChanged(field: FilterFieldConfig, form: FormGroup): void {
     if (field.findPersonField) {
       const currentField = this.config.fields.find((f) => f.name === field.findPersonField);
       if (currentField) {
         currentField.domain = form.get(field.name).value;
       }
-      if (this.form.get(field.findPersonField)) {
-        this.form.get(field.findPersonField).get('domain').setValue(null);
-        this.form.get(field.findPersonField).get('email').setValue(null);
-        this.form.get(field.findPersonField).get('id').setValue(null);
-        this.form.get(field.findPersonField).get('name').setValue(null);
-        this.form.get(field.findPersonField).get('knownAs').setValue(null);
-      }
+      this.removePersonField(field);
+    }
+  }
+
+  public radiosChanged(field: FilterFieldConfig): void {
+    if (field.findPersonField) {
+      this.form.get('findPersonControl').setValue(null);
+      this.removePersonField(field);
+    }
+  }
+
+  public removePersonField(field: FilterFieldConfig): void {
+    if (this.form.get(field.findPersonField)) {
+      this.form.get(field.findPersonField).get('domain').setValue(null);
+      this.form.get(field.findPersonField).get('email').setValue(null);
+      this.form.get(field.findPersonField).get('id').setValue(null);
+      this.form.get(field.findPersonField).get('name').setValue(null);
+      this.form.get(field.findPersonField).get('knownAs').setValue(null);
     }
   }
 
@@ -275,7 +286,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
         // if field updates find person component set the initial domain
         if (field.findPersonField) {
-          this.updateSpecificPerson(field, this.form);
+          this.selectChanged(field, this.form);
         }
       }
     }
