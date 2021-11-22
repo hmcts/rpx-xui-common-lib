@@ -23,7 +23,7 @@
                         autocomplete="off" 
                         class="autocomplete__input autocomplete__input--default search-box"
                         [attr.disabled]="disabled"
-                        [value]="selectedLocation?.court_name"
+                        [value]="selectedLocation?.site_name"
                         id="input-selected-location">
                     <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #auto="matAutocomplete">
                         <mat-option *ngFor="let location of locations$ | async"
