@@ -8,7 +8,7 @@ import { LocationModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
-describe('SearchLocationComponent', () => {
+fdescribe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
@@ -244,6 +244,46 @@ describe('SearchLocationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show hint', () => {
+    const hint = 'test hint';
+    component.hint = hint;
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const hintElement = fixture.debugElement.query(By.css('#location-hint'));
+      expect(hintElement.nativeElement).toBeDefined();
+      expect(hintElement.nativeElement.innerText).toEqual(hint);
+    });
+  });
+
+  it('should show input disabled', () => {
+    component.disabled = true;
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const inputElement = fixture.debugElement.query(By.css('#input-selected-location'));
+      expect(inputElement.nativeElement.disabled).toBeTruthy();
+    });
+  });
+
+  it('should not show Add Location button', () => {
+    component.multiSelect = false;
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const addLocationButtons = fixture.debugElement.queryAll(By.css('.add-location-button'));
+      expect(addLocationButtons.length).toEqual(0);
+    });
+  });
+
+  it('should show title', () => {
+    const title = 'title test';
+    component.title = title;
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      const titleElement = fixture.debugElement.query(By.css('#location-title'));
+      expect(titleElement).toBeDefined();
+      expect(titleElement.nativeElement.innerText).toEqual(title);
+    });
   });
 
   it('should call filter when input is more than 2 characters', async () => {

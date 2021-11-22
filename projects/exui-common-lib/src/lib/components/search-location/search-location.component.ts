@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { debounceTime, map, mergeMap } from 'rxjs/operators';
 import { LocationModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 
@@ -17,17 +17,22 @@ export class SearchLocationComponent implements OnInit {
   @Input() public disabled?: boolean = null;
   @Input() public selectedLocations$: Observable<LocationModel[]>;
   @Input() public submitted?: boolean = true;
-  @Input() public findLocationForm: FormGroup;
+  @Input() public control: AbstractControl;
+  @Input() public title: string;
+  @Input() public hint: string;
+  @Input() public multiSelect: boolean = true;
 
+  public findLocationForm: FormGroup;
   public locations$: Observable<LocationModel[]>;
   public selectedLocation: LocationModel;
-  public showAutocomplete = false;
+  public showAutocomplete: boolean = false;
 
   private readonly minSearchCharacters = 3;
 
   constructor(private readonly locationService: LocationService, fb: FormBuilder) {
     this.findLocationForm =  fb.group({
       findLocationControl: [null],
+      locationSelected: [null]
     });
 
     this.selectedLocations$ = of([]);
@@ -35,6 +40,10 @@ export class SearchLocationComponent implements OnInit {
 
   public ngOnInit(): void {
     this.locations$ = this.getLocations('');
+
+    if (this.control) {
+       this.findLocationForm.controls.locationSelected =  this.control;
+    }
 
     this.findLocationForm.controls.findLocationControl.valueChanges.subscribe(value => {
       this.search(value);
@@ -44,7 +53,8 @@ export class SearchLocationComponent implements OnInit {
   public filter(term: string) {
      this.getLocations(term).pipe(
         mergeMap((apiData: LocationModel[]) => this.selectedLocations$.pipe(
-        map((selectedLocations) => apiData.filter(apiLocation => !selectedLocations.map(selectedLocation => selectedLocation.court_venue_id).includes(apiLocation.court_venue_id)))
+        map((selectedLocations) => apiData.filter(apiLocation => !selectedLocations.map(selectedLocation => selectedLocation.court_venue_id).includes(apiLocation.court_venue_id))),
+        debounceTime(500)
       ))
     ).subscribe(locations => {
         this.locations$ = of(locations);
@@ -60,6 +70,7 @@ export class SearchLocationComponent implements OnInit {
 
   public onSelectionChange(selection?: LocationModel) {
     this.selectedLocation = selection;
+    this.findLocationForm.controls.locationSelected.setValue(selection);
   }
 
   public getLocations(term: string): Observable<LocationModel[]> {

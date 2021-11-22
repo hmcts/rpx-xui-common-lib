@@ -1,4 +1,10 @@
 <div class="govuk-form-group">
+    <h1 id="location-title" class="govuk-heading-l">
+        {{ title}}      
+    </h1>
+    <div id="location-hint" class="govuk-hint govuk-!-margin-bottom-7">
+        {{ hint }}
+    </div>
     <div class="location-picker-custom">
         <label id="input-selected-location-label" class="govuk-body" for="input-selected-location">
             Search for a location by name
@@ -7,34 +13,39 @@
         <div class="auto-complete-container">
             <div>
                 <div class="autocomplete__wrapper">                
-                        <input 
-                            [formControl]="findLocationForm.controls.findLocationControl"
-                            [matAutocomplete]="auto"
-                            aria-expanded="false" 
-                            aria-owns="input-selected-location__listbox" 
-                            aria-autocomplete="both" 
-                            aria-describedby="input-selected-location-label" 
-                            autocomplete="off" 
-                            class="autocomplete__input autocomplete__input--default search-box"
-                            [attr.disabled]="disabled"
-                            [value]="selectedLocation?.court_name"
-                            id="input-selected-location">
-                        <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #auto="matAutocomplete">
-                            <mat-option *ngFor="let location of locations$ | async"
-                                        [value]="getDisplayName(location)"
-                                        (onSelectionChange)="onSelectionChange(location)"
-                                        [ngClass]="{'hide-autocomplete': !showAutocomplete}">
-                                {{ getDisplayName(location) }}
-                            </mat-option>
-                        </mat-autocomplete>
+                    <input 
+                        [formControl]="findLocationForm.controls.findLocationControl"
+                        [matAutocomplete]="auto"
+                        aria-expanded="false" 
+                        aria-owns="input-selected-location__listbox" 
+                        aria-autocomplete="both" 
+                        aria-describedby="input-selected-location-label" 
+                        autocomplete="off" 
+                        class="autocomplete__input autocomplete__input--default search-box"
+                        [attr.disabled]="disabled"
+                        [value]="selectedLocation?.court_name"
+                        id="input-selected-location">
+                    <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let location of locations$ | async"
+                                    [value]="getDisplayName(location)"
+                                    (onSelectionChange)="onSelectionChange(location)"
+                                    [ngClass]="{'hide-autocomplete': !showAutocomplete}">
+                            {{ getDisplayName(location) }}
+                        </mat-option>
+                    </mat-autocomplete>
                 </div>
             </div>
         </div>
-        <a href="javascript:void(0)" (click)="addSelection()" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        <a  *ngIf = "multiSelect"        
+            href="javascript:void(0)" 
+            (click)="addSelection()" 
+            [attr.disabled]="disabled" 
+            class="govuk-button govuk-button--secondary add-location-button" 
+            data-module="govuk-button">
             Add location
         </a>
     </div>
-    <ul  *ngIf="(selectedLocations$ | async)?.length" class="hmcts-filter-tags selection-container">
+    <ul  *ngIf="(selectedLocations$ | async)?.length && multiSelect" class="hmcts-filter-tags selection-container">
         <li class="location-selection"  *ngFor="let selection of selectedLocations$ | async">
             <a class="hmcts-filter__tag" (click)="removeSelection(selection)" href="javascript:void(0)">           
                 {{ selection.court_name }}
