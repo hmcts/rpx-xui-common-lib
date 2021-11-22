@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
-import { FilterFieldConfig } from '../../models';
+import {FilterFieldConfig} from '../../models';
 import {FilterService} from '../../services/filter/filter.service';
 import {FindPersonComponent} from '../find-person/find-person.component';
 import {GenericFilterComponent} from './generic-filter.component';
@@ -261,7 +261,87 @@ describe('GenericFilterComponent', () => {
       expect(component.form.get('person').get('name').value).toBe(null);
       expect(component.form.get('person').get('knownAs').value).toBe(null);
     });
+  });
+});
 
+describe('Select all checkboxes', () => {
+
+  let component: GenericFilterComponent;
+  let fixture: ComponentFixture<GenericFilterComponent>;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      declarations: [GenericFilterComponent, FindPersonComponent],
+      providers: [FilterService]
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+    component.config = {
+      id: 'examples',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
+      fields: [
+        {
+          name: 'example1',
+          options: [
+            {key: 'All', label: 'Select All', selectAll: true},
+            {key: 'Fernando Alonso', label: 'Fernando Alonso'},
+            {key: 'Sebastian Vettel', label: 'Sebastian Vettel'},
+            {key: 'Lewis Hamilton', label: 'Lewis Hamilton'},
+            {key: 'Mick Schumacher', label: 'Mick Schumacher'},
+            {key: 'Lando Norris', label: 'Lando Norris'},
+          ],
+          title: 'Sample title',
+          subTitle: 'Sample subtitle',
+          minSelected: 1,
+          maxSelected: 1,
+          type: 'checkbox'
+        }
+      ],
+      persistence: 'session',
+    };
+    fixture.detectChanges();
+  });
+  it('should select all checkboxes', () => {
+
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const checkboxes = form.querySelector('.govuk-checkboxes') as HTMLElement;
+    const selectAllInput = checkboxes.querySelector('.govuk-checkboxes__item input') as unknown as HTMLElement;
+    selectAllInput.click();
+    fixture.detectChanges();
+
+    for (const element of Array.from(checkboxes.children)) {
+      const input = element.querySelector('input') as HTMLInputElement;
+      expect(input.checked).toBe(true);
+    }
+  });
+
+  it('should unselect all checkboxes', () => {
+
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const checkboxes = form.querySelector('.govuk-checkboxes') as HTMLElement;
+    const selectAllInput = checkboxes.querySelector('.govuk-checkboxes__item input') as unknown as HTMLElement;
+    selectAllInput.click();
+    fixture.detectChanges();
+
+    for (const element of Array.from(checkboxes.children)) {
+      const input = element.querySelector('input') as HTMLInputElement;
+      expect(input.checked).toBe(true);
+    }
+
+    selectAllInput.click();
+    fixture.detectChanges();
+
+    for (const element of Array.from(checkboxes.children)) {
+      const input = element.querySelector('input') as HTMLInputElement;
+      expect(input.checked).toBe(false);
+    }
   });
 
 });
