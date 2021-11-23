@@ -14,7 +14,7 @@ import { LocationService } from '../../services/locations/location.service';
 export class SearchLocationComponent implements OnInit {
   @Input() public serviceId: string = '';
   @Input() public locationType: string = '';
-  @Input() public disabled?: boolean = null;
+  @Input() public disabled: boolean = false;
   @Input() public selectedLocations$: Observable<LocationModel[]>;
   @Input() public submitted?: boolean = true;
   @Input() public control: AbstractControl;
