@@ -22,7 +22,7 @@
                         aria-describedby="input-selected-location-label" 
                         autocomplete="off" 
                         class="autocomplete__input autocomplete__input--default search-box"
-                        [attr.disabled]="disabled"
+                        [attr.disabled]="!disabled ? null : disabled"
                         [value]="selectedLocation?.court_name"
                         id="input-selected-location">
                     <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #auto="matAutocomplete">
