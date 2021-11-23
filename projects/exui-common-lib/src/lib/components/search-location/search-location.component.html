@@ -17,7 +17,7 @@
                         [formControl]="findLocationForm.controls.findLocationControl"
                         [matAutocomplete]="auto"
                         aria-expanded="false" 
-                        aria-owns="input-selected-location__listbox" 
+                        aria-owns="input-selected-location__listbox"
                         aria-autocomplete="both" 
                         aria-describedby="input-selected-location-label" 
                         autocomplete="off" 
@@ -39,7 +39,7 @@
         <a  *ngIf = "multiSelect"        
             href="javascript:void(0)" 
             (click)="addSelection()" 
-            [attr.disabled]="disabled" 
+            [attr.disabled]="!disabled ? null : disabled"
             class="govuk-button govuk-button--secondary add-location-button" 
             data-module="govuk-button">
             Add location
