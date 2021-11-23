@@ -86,6 +86,6 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getDisplayName(selectedLocation: LocationModel): string {
-    return selectedLocation.site_name;
+    return selectedLocation.court_name;
   }
 }
