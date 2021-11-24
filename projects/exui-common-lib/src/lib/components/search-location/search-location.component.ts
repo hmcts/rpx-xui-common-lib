@@ -12,7 +12,7 @@ import { LocationService } from '../../services/locations/location.service';
 })
 
 export class SearchLocationComponent implements OnInit {
-  @Input() public serviceId: string = '';
+  @Input() public serviceIds: string = '';
   @Input() public locationType: string = '';
   @Input() public disabled?: boolean = null;
   @Input() public selectedLocations$: Observable<LocationModel[]>;
@@ -63,7 +63,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getLocations(term: string): Observable<LocationModel[]> {
-    return this.locationService.getAllLocations(this.serviceId, this.locationType, term);
+    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
   }
 
   public addSelection() {
