@@ -4,7 +4,7 @@ import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { LocationModel } from '../../models/location.model';
+import { LocationByEPIMSModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
@@ -274,7 +274,6 @@ describe('SearchLocationComponent', () => {
 
   it('should display selection in selection list', async (done) => {
     const location = {
-      court_venue_id: '100',
       epims_id: '219164',
       is_hearing_location: 'Y',
       is_case_management_location: 'Y',
@@ -283,12 +282,10 @@ describe('SearchLocationComponent', () => {
       court_status: 'Open',
       region_id: '9',
       region: 'Scotland',
-      court_type_id: '17',
-      court_type: 'Employment Tribunal',
       open_for_public: 'Yes',
       court_address: 'AB1, 48 HUNTLY STREET, ABERDEEN',
       postcode: 'AB11 6LT'
-    } as LocationModel;
+    } as LocationByEPIMSModel;
     component.selectedLocation = location;
     component.addSelection();
     fixture.detectChanges();
@@ -299,7 +296,6 @@ describe('SearchLocationComponent', () => {
 
   it('should remove selection in selection list', async () => {
     const location = {
-      court_venue_id: '100',
       epims_id: '219164',
       is_hearing_location: 'Y',
       is_case_management_location: 'Y',
@@ -308,12 +304,10 @@ describe('SearchLocationComponent', () => {
       court_status: 'Open',
       region_id: '9',
       region: 'Scotland',
-      court_type_id: '17',
-      court_type: 'Employment Tribunal',
       open_for_public: 'Yes',
       court_address: 'AB1, 48 HUNTLY STREET, ABERDEEN',
       postcode: 'AB11 6LT'
-    } as LocationModel;
+    } as LocationByEPIMSModel;
 
     component.selectedLocation = location;
     component.addSelection();
