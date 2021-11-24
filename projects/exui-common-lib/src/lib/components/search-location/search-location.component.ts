@@ -12,7 +12,9 @@ import { LocationService } from '../../services/locations/location.service';
 })
 
 export class SearchLocationComponent implements OnInit {
+  // i.e. serviceIds = SSCS or serviceIds = SSCS,IA,EMPLOYMENT etc.
   @Input() public serviceIds: string = '';
+  // i.e. locationType = optional or hearing or case_management
   @Input() public locationType: string = '';
   @Input() public disabled?: boolean = null;
   @Input() public selectedLocations$: Observable<LocationModel[]>;
