@@ -16,7 +16,7 @@ export class LocationService {
    * @param serviceIds: SSCS | SSCS,IA split with ','
    * @param locationType: optional | hearing | case_management
    * @param searchTerm: any search term for postcode | site name | venue name |court name | court address etc.
-   * @return Observable<LocationModel[]>: Array of locationModel in Observable
+   * @return Observable<LocationByEPIMSModel[]>: Array of locationModel in Observable
    */
   public getAllLocations(serviceIds: string, locationType: string, searchTerm: string): Observable<LocationByEPIMSModel[]> {
     return this.http.get<LocationByEPIMSModel[]>(`api/locations/getLocations?serviceIds=${serviceIds}&locationType=${locationType}&searchTerm=${searchTerm}`);
