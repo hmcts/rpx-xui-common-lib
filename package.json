@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.15-search-location-seperation",
+  "version": "1.4.16-search-location-seperation",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
