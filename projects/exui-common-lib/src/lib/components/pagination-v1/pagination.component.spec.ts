@@ -34,7 +34,7 @@ describe('PaginationV1Component:', () => {
                <li *ngFor="let item of collection | paginate: {id: 'test1', itemsPerPage: 10, currentPage: p1 }"
                    class="list-item">{{ item }}</li>
             </ul>
-            <xuilib-pagination id="test1"></xuilib-pagination>
+            <xuilib-pagination-v1 id="test1"></xuilib-pagination-v1>
             <ul class="list2">
                <li *ngFor="let item of collection | paginate: {id: 'test2', itemsPerPage: 10, currentPage: p2 }"
                    class="list-item">{{ item }}</li>
