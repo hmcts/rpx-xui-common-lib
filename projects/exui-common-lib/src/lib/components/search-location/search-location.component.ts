@@ -14,12 +14,12 @@ import { LocationService } from '../../services/locations/location.service';
 export class SearchLocationComponent implements OnInit {
   @Input() public serviceIds: string = '';
   @Input() public locationType: string = '';
-  @Input() public disabled: boolean = false;
+  @Input() public disabled: boolean = null;
   @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public submitted?: boolean = true;
   @Input() public control: AbstractControl;
 
-  public findLocationForm: FormGroup;
+  public findLocationFormGroup: FormGroup;
   public showAutocomplete: boolean = false;
   public locations$: Observable<LocationByEPIMSModel[]>;
   public selectedLocation: LocationByEPIMSModel;
@@ -28,27 +28,27 @@ export class SearchLocationComponent implements OnInit {
   public keyUpSubject$: Subject<string> = new Subject();
 
   constructor(private readonly locationService: LocationService, fb: FormBuilder) {
-    this.findLocationForm = fb.group({
-      findLocationControl: [null],
-      locationSelected: [null]
+    this.findLocationFormGroup = fb.group({
+      findLocationFormControl: [null],
+      locationSelectedFormControl: [null]
     });
 
     this.selectedLocations$ = of([]);
   }
 
   public ngOnInit(): void {
-    this.locations$ = this.getLocations('');
+    this.locations$ = of([]);
 
     if (this.control) {
-      if (this.findLocationForm && this.findLocationForm.controls) {
-        this.findLocationForm.controls.locationSelected =  this.control;
+      if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
+        this.findLocationFormGroup.controls.locationSelectedFormControl =  this.control;
       }
     }
 
     this.keyUpSubject$.pipe(debounceTime(500)).subscribe(searchValue => this.search(searchValue as string));
   }
 
-  public onKeyUp(event: any) {
+  public onKeyUp(event: any): void {
     this.keyUpSubject$.next(event.target.value);
   }
 
@@ -63,7 +63,7 @@ export class SearchLocationComponent implements OnInit {
     ) : of([]);
   }
 
-  public filter(term: string) {
+  public filter(term: string): void {
     this.getLocations(term).pipe(
         mergeMap((apiData: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
         map((selectedLocations) => apiData.filter(
@@ -75,11 +75,11 @@ export class SearchLocationComponent implements OnInit {
     });
   }
 
-  public onSelectionChange(selection?: LocationByEPIMSModel) {
-    this.findLocationForm.controls.locationSelected.setValue(selection);
+  public onSelectionChange(selection?: LocationByEPIMSModel): void {
+    this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(selection);
   }
 
-  public search(currentValue: string) {
+  public search(currentValue: string): void {
     this.showAutocomplete = !!currentValue && (currentValue.length >= this.minSearchCharacters);
     if (this.showAutocomplete) {
       this.filter(currentValue);
@@ -94,8 +94,8 @@ export class SearchLocationComponent implements OnInit {
     return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
   }
 
-  public getControlCourtNameValue() {
-    return this.findLocationForm && this.findLocationForm.controls && this.findLocationForm.controls.locationSelected.value ?
-    (this.findLocationForm.controls.locationSelected.value as LocationByEPIMSModel).court_name : '';
+  public getControlCourtNameValue(): string {
+    return this.findLocationFormGroup && this.findLocationFormGroup.controls && this.findLocationFormGroup.controls.locationSelectedFormControl.value ?
+    (this.findLocationFormGroup.controls.locationSelectedFormControl.value as LocationByEPIMSModel).court_name : '';
   }
 }
