@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
-import { LocationModel } from '../../models/location.model';
-import { LocationService } from '../../services/locations/location.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Observable, of} from 'rxjs';
+import {map, mergeMap} from 'rxjs/operators';
+import {LocationByEPIMSModel} from '../../models/location.model';
+import {LocationService} from '../../services/locations/location.service';
 
 @Component({
   selector: 'exui-search-location',
@@ -12,21 +12,23 @@ import { LocationService } from '../../services/locations/location.service';
 })
 
 export class SearchLocationComponent implements OnInit {
-  @Input() public serviceId: string = '';
+  // i.e. serviceIds = SSCS or serviceIds = SSCS,IA,EMPLOYMENT etc.
+  @Input() public serviceIds: string = '';
+  // i.e. locationType = optional or hearing or case_management
   @Input() public locationType: string = '';
   @Input() public disabled?: boolean = null;
-  @Input() public selectedLocations$: Observable<LocationModel[]>;
+  @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public submitted?: boolean = true;
   @Input() public findLocationForm: FormGroup;
 
-  public locations$: Observable<LocationModel[]>;
-  public selectedLocation: LocationModel;
+  public locations$: Observable<LocationByEPIMSModel[]>;
+  public selectedLocation: LocationByEPIMSModel;
   public showAutocomplete = false;
 
   private readonly minSearchCharacters = 3;
 
   constructor(private readonly locationService: LocationService, fb: FormBuilder) {
-    this.findLocationForm =  fb.group({
+    this.findLocationForm = fb.group({
       findLocationControl: [null],
     });
 
@@ -42,12 +44,14 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public filter(term: string) {
-     this.getLocations(term).pipe(
-        mergeMap((apiData: LocationModel[]) => this.selectedLocations$.pipe(
-        map((selectedLocations) => apiData.filter(apiLocation => !selectedLocations.map(selectedLocation => selectedLocation.court_venue_id).includes(apiLocation.court_venue_id)))
+    this.getLocations(term).pipe(
+      mergeMap((apiData: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
+        map((selectedLocations) =>
+          apiData.filter(apiLocation =>
+            !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(apiLocation.epims_id)))
       ))
     ).subscribe(locations => {
-        this.locations$ = of(locations);
+      this.locations$ = of(locations);
     });
   }
 
@@ -58,34 +62,34 @@ export class SearchLocationComponent implements OnInit {
     }
   }
 
-  public onSelectionChange(selection?: LocationModel) {
+  public onSelectionChange(selection?: LocationByEPIMSModel) {
     this.selectedLocation = selection;
   }
 
-  public getLocations(term: string): Observable<LocationModel[]> {
-    return this.locationService.getAllLocations(this.serviceId, this.locationType, term);
+  public getLocations(term: string): Observable<LocationByEPIMSModel[]> {
+    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
   }
 
   public addSelection() {
     if (this.selectedLocation) {
       this.selectedLocations$.subscribe(selectedLocations => {
-          selectedLocations.push(this.selectedLocation);
-          this.selectedLocation = null;
-          this.locations$ = of([]);
+        selectedLocations.push(this.selectedLocation);
+        this.selectedLocation = null;
+        this.locations$ = of([]);
       });
     }
 
     this.selectedLocation = undefined;
   }
 
-  public removeSelection(location: LocationModel) {
+  public removeSelection(location: LocationByEPIMSModel) {
     this.selectedLocations$.subscribe(selectedLocations => {
-      const index = selectedLocations.findIndex(selectedLocation => selectedLocation.court_venue_id === location.court_venue_id);
+      const index = selectedLocations.findIndex(selectedLocation => selectedLocation.epims_id === location.epims_id);
       selectedLocations.splice(index, 1);
     });
   }
 
-  public getDisplayName(selectedLocation: LocationModel): string {
+  public getDisplayName(selectedLocation: LocationByEPIMSModel): string {
     return selectedLocation.court_name;
   }
 }
