@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { PaginationComponent } from '../pagination/pagination.component';
+import { PaginationV1Component } from '../pagination-v1/pagination.component';
 import { UserListComponent } from './user-list.component';
 
 describe('UserListComponent', () => {
@@ -13,7 +13,7 @@ describe('UserListComponent', () => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, NgxPaginationModule ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserListComponent, PaginationComponent ]
+      declarations: [ UserListComponent, PaginationV1Component ]
     })
     .compileComponents();
   }));

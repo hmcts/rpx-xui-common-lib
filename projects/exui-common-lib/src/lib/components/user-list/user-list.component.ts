@@ -25,21 +25,8 @@ export class UserListComponent {
       this.userClick.emit(user);
     }
 
-    public getPreviousResultsPage(): void {
-      if (this.pagination.page_number > 1) {
-        this.pagination.page_number = this.pagination.page_number - 1;
-      } else {
-        this.moreResultsToGo = true;
-      }
-    }
-
-    public getNextResultsPage(): void {
-      const maxPages = Math.ceil(this.users.length / this.pagination.page_size);
-      if (this.pagination.page_number < maxPages) {
-        this.pagination.page_number = this.pagination.page_number + 1;
-      } else {
-        this.moreResultsToGo = false;
-      }
+    public onPaginationHandler(pageNumber: number): void {
+      this.pagination.page_number = pageNumber;
     }
 
     public getFirstResult(rows: User[]): number {

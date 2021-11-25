@@ -24,6 +24,4 @@
         </tr>
     </tbody>
 </table>
-<xuilib-pagination *ngIf="getTotalResults(users) > pagination.page_size" [moreItems]="moreResultsToGo" [firstRecord]="pagination.page_number"
-    (previousPage)="getPreviousResultsPage()" (nextPage)="getNextResultsPage()">
-</xuilib-pagination>
+<xuilib-pagination-v1 *ngIf="getTotalResults(users) > pagination.page_size" (pageChange)="onPaginationHandler($event)"></xuilib-pagination-v1>

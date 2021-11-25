@@ -18,6 +18,7 @@ import { InviteUserFormComponent } from './components/invite-user-form/invite-us
 import { InviteUserPermissionComponent } from './components/invite-user-permissions/invite-user-permission.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { PaginationV1Component } from './components/pagination-v1/pagination.component';
 import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
@@ -96,7 +97,8 @@ export const COMMON_COMPONENTS = [
   GenericFilterComponent,
   CookieBannerComponent,
   FindPersonComponent,
-  PaginationComponent
+  PaginationComponent,
+  PaginationV1Component
 ];
 
 export const GOV_UI_COMPONENTS = [
