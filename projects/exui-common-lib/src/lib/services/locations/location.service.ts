@@ -10,7 +10,7 @@ export class LocationService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getAllLocations(service: string, locationType: string, searchTerm: string): Observable<LocationModel[]> {
-    return this.http.get<LocationModel[]>(`api/locations/getLocations?service=${service}&locationType=${locationType}&searchTerm=${searchTerm}`);
+  public getAllLocations(serviceIds: string, locationType: string, searchTerm: string): Observable<LocationModel[]> {
+    return this.http.get<LocationModel[]>(`api/locations/getLocations?service=${serviceIds}&locationType=${locationType}&searchTerm=${searchTerm}`);
   }
 }

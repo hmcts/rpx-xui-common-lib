@@ -12,7 +12,7 @@ import { LocationService } from '../../services/locations/location.service';
 })
 
 export class SearchLocationComponent implements OnInit {
-  @Input() public serviceId: string = '';
+  @Input() public serviceIds: string = '';
   @Input() public locationType: string = '';
   @Input() public disabled: boolean = false;
   @Input() public selectedLocations$: Observable<LocationModel[]>;
@@ -53,15 +53,14 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public get locationSource$(): Observable<LocationModel[]> {
-    return this.locations$.pipe(
-      mergeMap((locations: LocationModel[]) => this.selectedLocations$.pipe
-        (
+    return this.locations$ ? this.locations$.pipe(
+      mergeMap((locations: LocationModel[]) => this.selectedLocations$.pipe(
           map((selectedLocations) => locations.filter(
                 location => !selectedLocations.map(selectedLocation => selectedLocation.court_venue_id).includes(location.court_venue_id)
           )),       
         )
       )
-    );
+    ): of([]);
   }
 
   public filter(term: string) {
@@ -90,7 +89,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getLocations(term: string): Observable<LocationModel[]> {
-    return this.locationService.getAllLocations(this.serviceId, this.locationType, term);
+    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
   }
 
   public getControlCourtNameValue() {

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
-import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 fdescribe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
@@ -26,12 +26,7 @@ fdescribe('SearchLocationComponent', () => {
       providers: [{ provide: LocationService, useValue: searchFilterServiceMock }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SearchLocationComponent);
-    component = fixture.componentInstance;
-    const locationService = TestBed.get(LocationService);
-    spyOn(component.subject, 'next');
-
-    locationService.getAllLocations.and.returnValue(of([
+    const LOCATION_RESULTS = [
       {
         court_venue_id: '100',
         epims_id: '219164',
@@ -236,7 +231,17 @@ fdescribe('SearchLocationComponent', () => {
         court_address: 'MARCUS SQUARE',
         postcode: 'TN23 1YB'
       }
-    ]));
+    ];
+
+    fixture = TestBed.createComponent(SearchLocationComponent);
+    component = fixture.componentInstance;
+    const locationService = TestBed.get(LocationService);
+    spyOn(component.keyUpSubject$, 'next');
+    spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
+    spyOn(component.locationSource$, 'pipe').and.returnValue(of(LOCATION_RESULTS));
+    spyOn(component, 'getLocations').and.callThrough();
+
+    locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
 
     fixture.detectChanges();
   }));
@@ -245,32 +250,35 @@ fdescribe('SearchLocationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call filter when input is more than 2 characters', async (done) => {
+  it('should create', () => {
+    expect(component.getLocations).toHaveBeenCalled();
+  });
+
+  it('should call filter when input is more than 2 characters', async () => {
     const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
     selectedLoction.nativeElement.value = 'MARCUS';
     selectedLoction.nativeElement.dispatchEvent(new Event('keyup'));
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      component.subject.subscribe(() => {
-        expect(component.subject.next).toHaveBeenCalled();
-        done();
+      component.keyUpSubject$.subscribe(() => {
+        expect(component.keyUpSubject$.next).toHaveBeenCalled();
       });     
     });
   });
 
-  // it('should not filter in input characters are less then three', async (done) => {
-  //   component.locations$.subscribe(x => {
-  //     expect(x.length).toBeGreaterThan(1);
-  //     done();
-  //   });
+  it('should not filter in input characters are less then three', async (done) => {
+    component.locations$.subscribe(x => {
+      expect(x.length).toBeGreaterThan(1);
+      done();
+    });
 
-  //   const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
-  //   selectedLoction.nativeElement.value = 'te';
-  //   selectedLoction.nativeElement.dispatchEvent(new Event('input'));
-  //   fixture.whenStable().then(() => {
-  //     fixture.detectChanges();
-  //     expect(component.filter).not.toHaveBeenCalled();
-  //   });
-  // });
+    const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
+    selectedLoction.nativeElement.value = 'te';
+    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.filter).not.toHaveBeenCalled();
+    });
+  });
 });
