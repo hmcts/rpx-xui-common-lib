@@ -2,10 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
-
-import { LocationService } from '../../services/locations/location.service';
 import { LocationByEPIMSModel } from '../../models/location.model';
-
+import { LocationService } from '../../services/locations/location.service';
 
 @Component({
   selector: 'exui-search-location',
@@ -17,18 +15,14 @@ export class SearchLocationComponent implements OnInit {
   @Input() public serviceIds: string = '';
   @Input() public locationType: string = '';
   @Input() public disabled: boolean = false;
-  // i.e. serviceIds = SSCS or serviceIds = SSCS,IA,EMPLOYMENT etc.
-  // i.e. locationType = optional or hearing or case_management
   @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public submitted?: boolean = true;
   @Input() public control: AbstractControl;
-  
+
   public findLocationForm: FormGroup;
   public showAutocomplete: boolean = false;
-
   public locations$: Observable<LocationByEPIMSModel[]>;
   public selectedLocation: LocationByEPIMSModel;
-
 
   private readonly minSearchCharacters = 3;
   public keyUpSubject$: Subject<string> = new Subject();
@@ -38,8 +32,8 @@ export class SearchLocationComponent implements OnInit {
       findLocationControl: [null],
       locationSelected: [null]
     });
-    
-    this.selectedLocations$ = of([]);   
+
+    this.selectedLocations$ = of([]);
   }
 
   public ngOnInit(): void {
@@ -51,10 +45,10 @@ export class SearchLocationComponent implements OnInit {
       }
     }
 
-    this.keyUpSubject$.pipe(debounceTime(500)).subscribe(searchValue => this.search(searchValue as string)); 
+    this.keyUpSubject$.pipe(debounceTime(500)).subscribe(searchValue => this.search(searchValue as string));
   }
 
-  onKeyUp(event: any){
+  public onKeyUp(event: any) {
     this.keyUpSubject$.next(event.target.value);
   }
 
@@ -63,10 +57,10 @@ export class SearchLocationComponent implements OnInit {
       mergeMap((locations: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
           map((selectedLocations) => locations.filter(
             location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id)
-          )),       
+          )),
         )
       )
-    ): of([]);
+    ) : of([]);
   }
 
   public filter(term: string) {
@@ -102,6 +96,6 @@ export class SearchLocationComponent implements OnInit {
 
   public getControlCourtNameValue() {
     return this.findLocationForm && this.findLocationForm.controls && this.findLocationForm.controls.locationSelected.value ?
-    (this.findLocationForm.controls.locationSelected.value as LocationByEPIMSModel).court_name: '';
+    (this.findLocationForm.controls.locationSelected.value as LocationByEPIMSModel).court_name : '';
   }
 }

@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
-import { of } from 'rxjs';
-import { By } from '@angular/platform-browser';
 
-fdescribe('SearchLocationComponent', () => {
+describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
@@ -263,7 +263,7 @@ fdescribe('SearchLocationComponent', () => {
       fixture.detectChanges();
       component.keyUpSubject$.subscribe(() => {
         expect(component.keyUpSubject$.next).toHaveBeenCalled();
-      });     
+      });
     });
   });
 
