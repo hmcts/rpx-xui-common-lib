@@ -12,12 +12,12 @@ import { LocationService } from '../../services/locations/location.service';
 })
 
 export class SearchLocationComponent implements OnInit {
-  @Input() public serviceIds: string = '';
-  @Input() public locationType: string = '';
-  @Input() public disabled: boolean = null;
-  @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
-  @Input() public submitted?: boolean = true;
   @Input() public control: AbstractControl;
+  @Input() public disabled: boolean = null;
+  @Input() public locationType: string = '';
+  @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
+  @Input() public serviceIds: string = '';
+  @Input() public submitted?: boolean = true;
 
   public findLocationFormGroup: FormGroup;
   public showAutocomplete: boolean = false;
