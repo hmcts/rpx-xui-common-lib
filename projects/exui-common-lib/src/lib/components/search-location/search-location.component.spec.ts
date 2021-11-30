@@ -4,7 +4,6 @@ import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { LocationByEPIMSModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
@@ -27,12 +26,7 @@ describe('SearchLocationComponent', () => {
       providers: [{ provide: LocationService, useValue: searchFilterServiceMock }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SearchLocationComponent);
-    component = fixture.componentInstance;
-    const locationService = TestBed.get(LocationService);
-    spyOn(component, 'filter');
-
-    locationService.getAllLocations.and.returnValue(of([
+    const LOCATION_RESULTS = [
       {
         court_venue_id: '100',
         epims_id: '219164',
@@ -237,7 +231,17 @@ describe('SearchLocationComponent', () => {
         court_address: 'MARCUS SQUARE',
         postcode: 'TN23 1YB'
       }
-    ]));
+    ];
+
+    fixture = TestBed.createComponent(SearchLocationComponent);
+    component = fixture.componentInstance;
+    const locationService = TestBed.get(LocationService);
+    spyOn(component.keyUpSubject$, 'next');
+    spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
+    spyOn(component.locationSource$, 'pipe').and.returnValue(of(LOCATION_RESULTS));
+    spyOn(component, 'getLocations').and.callThrough();
+
+    locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
 
     fixture.detectChanges();
   }));
@@ -246,14 +250,20 @@ describe('SearchLocationComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should create', () => {
+    expect(component.getLocations).toHaveBeenCalled();
+  });
+
   it('should call filter when input is more than 2 characters', async () => {
     const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
     selectedLoction.nativeElement.value = 'MARCUS';
-    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
+    selectedLoction.nativeElement.dispatchEvent(new Event('keyup'));
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.filter).toHaveBeenCalled();
+      component.keyUpSubject$.subscribe(() => {
+        expect(component.keyUpSubject$.next).toHaveBeenCalled();
+      });
     });
   });
 
@@ -269,57 +279,6 @@ describe('SearchLocationComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.filter).not.toHaveBeenCalled();
-    });
-  });
-
-  it('should display selection in selection list', async (done) => {
-    const location = {
-      epims_id: '219164',
-      is_hearing_location: 'Y',
-      is_case_management_location: 'Y',
-      site_name: 'Aberdeen Tribunal Hearing Centre',
-      court_name: 'ABERDEEN TRIBUNAL HEARING CENTRE',
-      court_status: 'Open',
-      region_id: '9',
-      region: 'Scotland',
-      open_for_public: 'Yes',
-      court_address: 'AB1, 48 HUNTLY STREET, ABERDEEN',
-      postcode: 'AB11 6LT'
-    } as LocationByEPIMSModel;
-    component.selectedLocation = location;
-    component.addSelection();
-    fixture.detectChanges();
-    done();
-    const selectedLoctions = fixture.debugElement.queryAll(By.css('.location-selection'));
-    expect(selectedLoctions.length).toBeGreaterThan(0);
-  });
-
-  it('should remove selection in selection list', async () => {
-    const location = {
-      epims_id: '219164',
-      is_hearing_location: 'Y',
-      is_case_management_location: 'Y',
-      site_name: 'Aberdeen Tribunal Hearing Centre',
-      court_name: 'ABERDEEN TRIBUNAL HEARING CENTRE',
-      court_status: 'Open',
-      region_id: '9',
-      region: 'Scotland',
-      open_for_public: 'Yes',
-      court_address: 'AB1, 48 HUNTLY STREET, ABERDEEN',
-      postcode: 'AB11 6LT'
-    } as LocationByEPIMSModel;
-
-    component.selectedLocation = location;
-    component.addSelection();
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      const selectedLoctions = fixture.debugElement.queryAll(By.css('.location-selection'));
-      const button =  fixture.debugElement.query(By.css('.remove-loation-button'));
-      button.nativeElement.dispatchEvent(new Event('click'));
-      fixture.detectChanges();
-      const selectedLoctionsAfterClick = fixture.debugElement.queryAll(By.css('.location-selection'));
-      expect(selectedLoctions.length).toBeGreaterThan(0);
-      expect(selectedLoctionsAfterClick.length).toEqual(0);
     });
   });
 });
