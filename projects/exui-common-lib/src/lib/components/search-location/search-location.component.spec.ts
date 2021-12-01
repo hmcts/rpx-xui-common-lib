@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
-fdescribe('SearchLocationComponent', () => {
+describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
