@@ -21,7 +21,8 @@ export class SearchLocationComponent implements OnInit {
 
   public findLocationFormGroup: FormGroup;
   public showAutocomplete: boolean = false;
-  public locations$: Observable<LocationByEPIMSModel[]>;
+  @Input() public locations$: Observable<LocationByEPIMSModel[]>;
+
   public selectedLocation: LocationByEPIMSModel;
 
   private readonly minSearchCharacters = 3;
