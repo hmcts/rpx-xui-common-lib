@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
-describe('SearchLocationComponent', () => {
+fdescribe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
@@ -279,6 +279,25 @@ describe('SearchLocationComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.filter).not.toHaveBeenCalled();
+    });
+  });
+
+  it('should reset form control and set to pristine when empty value is given', async (done) => {
+    component.locations$.subscribe(x => {
+      expect(x.length).toBeGreaterThan(1);
+      done();
+    });
+
+    const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
+    selectedLoction.nativeElement.value = '';
+    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      component.keyUpSubject$.subscribe(() => {
+        console.log('location value', component.findLocationFormGroup.controls.locationSelectedFormControl.value);
+        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.value).toEqual('');
+        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.pristine).toBeTruthy();
+      });
     });
   });
 });

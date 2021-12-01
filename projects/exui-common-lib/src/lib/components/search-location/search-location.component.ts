@@ -82,6 +82,12 @@ export class SearchLocationComponent implements OnInit {
 
   public search(currentValue: string): void {
     this.showAutocomplete = !!currentValue && (currentValue.length >= this.minSearchCharacters);
+
+    if (!currentValue || !currentValue.length) {
+      this.findLocationFormGroup.controls.locationSelectedFormControl.markAsPristine();
+      this.findLocationFormGroup.controls.locationSelectedFormControl.reset();
+    }
+
     if (this.showAutocomplete) {
       this.filter(currentValue);
     }

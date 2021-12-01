@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.22-search-location-selection-accessibility",
+  "version": "1.4.22-search-location-selection-accessibility-pristine",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
