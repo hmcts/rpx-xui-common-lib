@@ -18,10 +18,10 @@ export class SearchLocationComponent implements OnInit {
   @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
+  @Input() public locations$: Observable<LocationByEPIMSModel[]>;
 
   public findLocationFormGroup: FormGroup;
   public showAutocomplete: boolean = false;
-  public locations$: Observable<LocationByEPIMSModel[]>;
   public selectedLocation: LocationByEPIMSModel;
 
   private readonly minSearchCharacters = 3;
@@ -37,7 +37,9 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.locations$ = of([]);
+    if (this.locations$) {
+      this.locations$ = of([]);
+    }
 
     if (this.control) {
       if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
