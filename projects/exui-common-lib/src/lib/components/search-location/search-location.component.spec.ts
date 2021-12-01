@@ -294,7 +294,6 @@ describe('SearchLocationComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       component.keyUpSubject$.subscribe(() => {
-        console.log('location value', component.findLocationFormGroup.controls.locationSelectedFormControl.value);
         expect(component.findLocationFormGroup.controls.locationSelectedFormControl.value).toEqual('');
         expect(component.findLocationFormGroup.controls.locationSelectedFormControl.pristine).toBeTruthy();
       });
