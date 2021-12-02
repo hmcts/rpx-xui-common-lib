@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
-describe('SearchLocationComponent', () => {
+fdescribe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
@@ -255,7 +255,7 @@ describe('SearchLocationComponent', () => {
   });
 
   it('should call filter when input is more than 2 characters', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
+    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = 'MARCUS';
     selectedLoction.nativeElement.dispatchEvent(new Event('keyup'));
 
@@ -273,7 +273,7 @@ describe('SearchLocationComponent', () => {
       done();
     });
 
-    const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
+    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = 'te';
     selectedLoction.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {
@@ -288,7 +288,7 @@ describe('SearchLocationComponent', () => {
       done();
     });
 
-    const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
+    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = '';
     selectedLoction.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {

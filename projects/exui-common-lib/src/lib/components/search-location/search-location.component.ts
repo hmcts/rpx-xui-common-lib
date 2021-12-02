@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
@@ -18,6 +18,8 @@ export class SearchLocationComponent implements OnInit {
   @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
+  @ViewChild('inputSelectedLocation', {read: ElementRef}) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
+
 
   public findLocationFormGroup: FormGroup;
   public showAutocomplete: boolean = false;

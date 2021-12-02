@@ -99,7 +99,7 @@
 .autocomplete__hint,
 .autocomplete__input,
 .autocomplete__option {
-  font-size: 16px;
+  font-size: 13px;
   line-height: 1.25;
 }
 .autocomplete__hint,
@@ -110,7 +110,7 @@
   .autocomplete__hint,
   .autocomplete__input,
   .autocomplete__option {
-    font-size: 19px;
+    font-size: 13px;
     line-height: 1.31579;
   }
 }
@@ -137,7 +137,7 @@
   margin-right: 4px;
 }
 
-#input-selected-location {
+.autocomplete__input {
   line-height: 24px;
   font-size: 13px;
 }
