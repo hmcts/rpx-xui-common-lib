@@ -34,6 +34,7 @@ export interface FilterFieldConfig {
 
 export interface FilterSetting {
   id: string;
+  reset?: boolean;
   fields: { name: string, value: string[] }[];
 }
 

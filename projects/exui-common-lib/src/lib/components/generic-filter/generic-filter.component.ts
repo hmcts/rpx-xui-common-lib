@@ -140,7 +140,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         fields: this.getSelectedValues(form.value, this.config)
       };
       this.filterService.givenErrors.next(null);
-      this.filterService.persist(this.settings, this.config.persistence);
+      const settings = {...this.settings, reset: false};
+      this.filterService.persist(settings, this.config.persistence);
     } else {
       this.emitFormErrors(form);
     }
@@ -179,7 +180,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (this.config && this.config.cancelSetting) {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
-    this.filterService.persist(this.settings, this.config.persistence);
+    const settings = {...this.settings, reset: true};
+    this.filterService.persist(settings, this.config.persistence);
     this.filterService.givenErrors.next(null);
   }
 
