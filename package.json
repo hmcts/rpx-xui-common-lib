@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "v1.4.20-reset-button",
+  "version": "1.4.27-no-courtname-fontsize",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

@@ -255,7 +255,7 @@ describe('SearchLocationComponent', () => {
   });
 
   it('should call filter when input is more than 2 characters', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
+    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = 'MARCUS';
     selectedLoction.nativeElement.dispatchEvent(new Event('keyup'));
 
@@ -273,12 +273,30 @@ describe('SearchLocationComponent', () => {
       done();
     });
 
-    const selectedLoction = fixture.debugElement.query(By.css('#input-selected-location'));
+    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = 'te';
     selectedLoction.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.filter).not.toHaveBeenCalled();
+    });
+  });
+
+  it('should reset form control and set to pristine when empty value is given', async (done) => {
+    component.locations$.subscribe(x => {
+      expect(x.length).toBeGreaterThan(1);
+      done();
+    });
+
+    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
+    selectedLoction.nativeElement.value = '';
+    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      component.keyUpSubject$.subscribe(() => {
+        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.value).toEqual('');
+        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.pristine).toBeTruthy();
+      });
     });
   });
 });
