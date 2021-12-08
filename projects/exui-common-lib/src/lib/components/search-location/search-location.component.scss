@@ -132,12 +132,12 @@
 }
 
 .auto-complete-container {
-  width: 50%; 
+  min-width: 550px; 
   display: inline-block; 
   margin-right: 4px;
 }
-
+  
 .autocomplete__input {
   line-height: 24px;
-  font-size: 13px;
+  font-size: 19px;
 }

@@ -59,7 +59,7 @@ export class SearchLocationComponent implements OnInit {
     return this.locations$ ? this.locations$.pipe(
       mergeMap((locations: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
           map((selectedLocations) => locations.filter(
-            location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id)
+            location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
           )),
         )
       )
@@ -96,7 +96,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getDisplayName(selectedLocation: LocationByEPIMSModel): string {
-    return selectedLocation.court_name;
+    return  selectedLocation.court_name;
   }
 
   public getLocations(term: string): Observable<LocationByEPIMSModel[]> {

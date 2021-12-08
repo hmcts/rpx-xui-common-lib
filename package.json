@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.25-search-location-selection-getfocus-fontsize",
+  "version": "1.4.27-no-courtname-fontsize",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
