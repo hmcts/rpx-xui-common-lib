@@ -22,7 +22,7 @@ export class SearchLocationComponent implements OnInit {
 
 
   public findLocationFormGroup: FormGroup;
-  public showAutocomplete: boolean = false;
+  @Input() public showAutocomplete: boolean = false;
   @Input() public locations$: Observable<LocationByEPIMSModel[]>;
 
   public selectedLocation: LocationByEPIMSModel;
