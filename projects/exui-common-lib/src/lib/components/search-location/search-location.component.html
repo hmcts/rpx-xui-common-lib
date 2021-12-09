@@ -1,8 +1,9 @@
 <div class="auto-complete-container">
   <div class="autocomplete__wrapper">                
-    <input                             
+    <input                  
       [formControl]="findLocationFormGroup.controls.findLocationFormControl"
       [matAutocomplete]="auto"
+      (focus)="onFocus()"
       (keyup)="onKeyUp($event)"
       aria-expanded="false" 
       aria-owns="input-selected-location__listbox" 

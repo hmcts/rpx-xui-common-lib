@@ -18,15 +18,12 @@ export class SearchLocationComponent implements OnInit {
   @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
-  @ViewChild('inputSelectedLocation', {read: ElementRef}) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
-
-
-  public findLocationFormGroup: FormGroup;
   @Input() public showAutocomplete: boolean = false;
   @Input() public locations$: Observable<LocationByEPIMSModel[]>;
+  @ViewChild('inputSelectedLocation', {read: ElementRef}) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
 
+  public findLocationFormGroup: FormGroup;
   public selectedLocation: LocationByEPIMSModel;
-
   private readonly minSearchCharacters = 3;
   public keyUpSubject$: Subject<string> = new Subject();
 
@@ -41,14 +38,31 @@ export class SearchLocationComponent implements OnInit {
 
   public ngOnInit(): void {
     this.locations$ = of([]);
-
     if (this.control) {
       if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
         this.findLocationFormGroup.controls.locationSelectedFormControl =  this.control;
+
+        this.findLocationFormGroup.controls.locationSelectedFormControl.valueChanges.subscribe((value) => {
+          if (!value) {
+            console.log('reset form control');
+            this.findLocationFormGroup.controls.findLocationFormControl.setValue('');
+          }
+        });
       }
     }
 
     this.keyUpSubject$.pipe(debounceTime(500)).subscribe(searchValue => this.search(searchValue as string));
+  }
+
+  public onFocus() {
+    if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
+      const value = this.findLocationFormGroup.controls.findLocationFormControl.value ? this.findLocationFormGroup.controls.findLocationFormControl.value : '';
+      if (!value) {
+        this.showAutocomplete = false;
+      }
+
+      this.search(value);
+    }
   }
 
   public onKeyUp(event: any): void {
