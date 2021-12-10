@@ -50,7 +50,7 @@ describe('GovUkDateComponent', () => {
     expect(fieldsetElement.properties.config.hint).toEqual('This is a hint');
   });
 
-  it('should validation pass for valid date', () => {
+  it('should pass validation for a valid date', () => {
     const dateValidator = component.DateValidator();
     component.formGroup = new FormGroup({
       id_day: new FormControl('', dateValidator),
@@ -65,7 +65,7 @@ describe('GovUkDateComponent', () => {
     expect(component.formGroup.status).toBe('VALID');
   });
 
-  it('should validation not pass for invalid date', () => {
+  it('should not pass validation for an invalid date', () => {
     const dateValidator = component.DateValidator();
     component.formGroup = new FormGroup({
       id_day: new FormControl('', dateValidator),
