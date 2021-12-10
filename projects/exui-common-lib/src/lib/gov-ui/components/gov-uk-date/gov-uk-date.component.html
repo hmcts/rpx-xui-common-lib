@@ -1,4 +1,4 @@
-<div class="govuk-form-group" [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}" [formGroup]="formGroup">
+<div #form="ngForm" class="govuk-form-group" [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}" [formGroup]="formGroup">
   <div class="date-input-container">
     <xuilib-gov-uk-fieldset
       [config]="{
@@ -13,7 +13,6 @@
         *ngIf="errorMessage"
         [errorMessage]="errorMessage">
       </xuilib-gov-uk-error-message>
-TEST101
       <div class="govuk-date-input" [id]="config.id+'-date'">
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
