@@ -31,20 +31,26 @@ export class GovUkDateComponent implements OnInit, AfterViewInit {
 
   private x: any;
   private month: any;
+  private day: any;
+  private year: any;
 
   public ngOnInit(): void {
     this.x = this.config.id + '_text';
+    this.day = this.config.id + '_day';
     this.month = this.config.id + '_month';
-
-
-
-    let form: FormGroup = new FormGroup({});
-    form.addControl(this.x, new FormControl('', Validators.required));
-    form.addControl(this.month, new FormControl('', this.DateValidator101));
+    this.year = this.config.id + '_year';
 
 
     const dateValidator101 = this.DateValidator101();
-    this.formGroup.get(this.month).setValidators(dateValidator101);
+    let form: FormGroup = new FormGroup({});
+    form.addControl(this.x, new FormControl('', Validators.required));
+   // form.addControl(this.month, new FormControl('', dateValidator101));
+
+
+
+   this.formGroup.get(this.day).setValidators(dateValidator101);
+  //  this.formGroup.get(this.month).setValidators(dateValidator101);
+  //  this.formGroup.get(this.year).setValidators(dateValidator101);
 
 
 
@@ -71,14 +77,18 @@ export class GovUkDateComponent implements OnInit, AfterViewInit {
       //this.resetValidationErrorMessages();
       //this.formGroup.updateValueAndValidity();
       //this.formGroup.get(this.month).updateValueAndValidity();
-debugger;
+
       if (!this.formGroup.valid) {
-        if (!this.formGroup.get(this, this.month).valid
-          || !this.formGroup.get(this, this.x).valid
-        ) {
+
+
+
+
+
+        //this.getFormStatus.emit({ isInvalid: true, messages: [a+'-'+b+'-'+c] });
+        if (!this.formGroup.get(this, this.day).valid) {
          // this.dateValidationErrors.push({ controlId: DateFormControl.BOOKING_START_DAY, documentHRef: this.configStart.id, errorMessage: BookingDateFormErrorMessage.BOOKING_START_DATE_FAILED });
          // this.startDateErrorMessage = { isInvalid: true, messages: [BookingDateFormErrorMessage.BOOKING_START_DATE_FAILED] };
-         this.getFormStatus.emit({ isInvalid: true, messages: ['start date month failed'] })
+         this.getFormStatus.emit({ isInvalid: true, messages: ['validation_failed'] })
         }
       }else{
         this.getFormStatus.emit(res + "    " + this.form.value[this.month]);
@@ -88,12 +98,44 @@ debugger;
       })
   }
 
+  private isValidDate(d:any, month: number) {
+    const dateCheck = d instanceof Date && !isNaN(d.getTime() );
+    const leapYearCheck = d.getMonth() == month;
+    return dateCheck && leapYearCheck;
+  }
+
   @Input() public DateValidator101(): ValidatorFn {
 
 
 
 
     let res = (): ValidationErrors | null => {
+
+
+//debugger;
+      const day =this.formGroup.get(this.day).value;
+      const month =this.formGroup.get(this.month).value - 1;
+      const year =this.formGroup.get(this.year).value;
+
+      const isValid =this.isValidDate(new Date(year, month, day), month);
+
+//debugger;
+      if (!isValid) {
+        return { isValid: false, errorType: 'ERROR_119' };
+      }
+      else {
+        return;
+      }
+
+
+      // if (this.formGroup.get(this.month).value == 2) {
+      //   return { isValid: false, errorType: 'ERROR_119' };
+      // }
+      // else {
+      //   return;
+      // }
+
+
       // const x= formGroup;
       // if(x==null)
       // {
@@ -101,12 +143,13 @@ debugger;
       // }
       // return { isValid: false, errorType: 'ERROR_119' };
 
-      if (this.form && this.form.value[this.month] == 2) {
-        return { isValid: false, errorType: 'ERROR_119' };
-      }
-      else {
-        return;
-      }
+
+      // if (this.form && this.form.value[this.month] == 2) {
+      //   return { isValid: false, errorType: 'ERROR_119' };
+      // }
+      // else {
+      //   return;
+      // }
 
     };
     return res;
