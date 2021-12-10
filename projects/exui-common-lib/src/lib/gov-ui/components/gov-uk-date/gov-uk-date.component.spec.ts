@@ -65,7 +65,7 @@ describe('GovUkDateComponent', () => {
     expect(component.formGroup.status).toBe('VALID');
   });
 
-  it('should validation pass for invalid date', () => {
+  it('should validation not pass for invalid date', () => {
     const dateValidator = component.DateValidator();
     component.formGroup = new FormGroup({
       id_day: new FormControl('', dateValidator),

@@ -16,7 +16,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 @Component({
   selector: 'xuilib-gov-uk-date',
   templateUrl: './gov-uk-date.component.html',
-  styleUrls: ['./gov-uk-date.component.scss'],
+  styleUrls: ['./gov-uk-date.component.scss']
 })
 export class GovUkDateComponent implements OnInit {
   constructor() {}
