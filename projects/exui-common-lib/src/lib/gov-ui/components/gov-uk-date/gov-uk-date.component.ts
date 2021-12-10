@@ -1,10 +1,9 @@
 import {
   Component,
   Input,
-  OnInit,
-  ViewChild,
+  OnInit
 } from '@angular/core';
-import { NgForm, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { ValidationErrors, ValidatorFn } from '@angular/forms';
 import { ErrorMessagesModel } from '../../models/error-messages-model';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
@@ -20,7 +19,6 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 })
 export class GovUkDateComponent implements OnInit {
   constructor() {}
-  @ViewChild('form') public form: NgForm;
   @Input() public config: GovUiConfigModel;
   @Input() public errorMessage: ErrorMessagesModel;
   @Input() public formGroup: any;
@@ -37,7 +35,7 @@ export class GovUkDateComponent implements OnInit {
     this.formGroup.get(this.day).setValidators(dateValidator);
   }
 
-  private isValidDate(d: any, month: number) {
+  private isValidDate(d: any, month: number): boolean {
     const dateCheck = d instanceof Date && !isNaN(d.getTime());
     const leapYearCheck = d.getMonth() === month;
     return dateCheck && leapYearCheck;
@@ -49,11 +47,7 @@ export class GovUkDateComponent implements OnInit {
       const month = this.formGroup.get(this.month).value - 1;
       const year = this.formGroup.get(this.year).value;
       const isValid = this.isValidDate(new Date(year, month, day), month);
-      if (!isValid) {
-        return { isValid: false, errorType: 'DATE_VALIDATION_FAILED' };
-      } else {
-        return;
-      }
+      return !isValid ? { dateComponent: true } : null;
     };
     return res;
   }
