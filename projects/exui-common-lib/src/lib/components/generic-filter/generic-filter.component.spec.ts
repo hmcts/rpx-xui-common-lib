@@ -2,8 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
+import {of} from 'rxjs';
 import {FilterFieldConfig} from '../../models';
-import {FilterService} from '../../services/filter/filter.service';
+import {FilterService} from '../../services';
 import {FindPersonComponent} from '../find-person/find-person.component';
 import {GenericFilterComponent} from './generic-filter.component';
 
@@ -11,22 +12,39 @@ describe('GenericFilterComponent', () => {
 
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
+  const mockFilterService: any = {
+    getStream: () => of(null),
+    get: jasmine.createSpy(),
+    persist: jasmine.createSpy(),
+    givenErrors: {
+      subscribe: jasmine.createSpy(),
+      next: (value: any) => value,
+      unsubscribe: (value: any) => value,
+    }
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [GenericFilterComponent, FindPersonComponent],
-      providers: [FilterService]
+      providers: [{
+        provide: FilterService, useValue: mockFilterService
+      }]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    mockFilterService.get.and.returnValue(null);
     fixture = TestBed.createComponent(GenericFilterComponent);
     component = fixture.componentInstance;
     component.config = {
       id: 'examples',
       applyButtonText: 'apply',
       cancelButtonText: 'cancel',
+      cancelSetting: {
+        id: 'examples',
+        fields: [{ name: 'example1', value: ['Fernando Alonso'] }]
+      },
       fields: [
         {
           name: 'example1',
@@ -100,13 +118,54 @@ describe('GenericFilterComponent', () => {
   });
 
   it('should submit form values if the form is valid', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const button: HTMLButtonElement = form.querySelector('button[type="submit"]');
     component.form.get('example1').patchValue([true]);
     component.form.get('example2').patchValue('Tinky Winky');
     component.form.get('example3').patchValue('yellow');
-
     fixture.detectChanges();
+    button.click();
 
+    const result = {
+      id: 'examples',
+      fields: [
+        {
+          name: 'example1',
+          value: ['Fernando Alonso'],
+        },
+        {
+          name: 'example2',
+          value: ['Tinky Winky'],
+        },
+        {
+          name: 'example3',
+          value: ['yellow'],
+        },
+      ],
+      reset: false,
+    };
     expect(component.form.valid).toBeTruthy();
+    expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
+  });
+
+  it('should reset the form', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const button: HTMLButtonElement = form.querySelector('#cancelFilter');
+    fixture.detectChanges();
+    button.click();
+    const result = {
+      id: 'examples',
+      fields: [
+        {
+          name: 'example1',
+          value: ['Fernando Alonso'],
+        },
+      ],
+      reset: true,
+    };
+    expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
   });
 
   it('should set form state to be invalid', () => {

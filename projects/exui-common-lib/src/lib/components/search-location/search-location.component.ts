@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
@@ -18,10 +18,13 @@ export class SearchLocationComponent implements OnInit {
   @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
+  @ViewChild('inputSelectedLocation', {read: ElementRef}) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
+
 
   public findLocationFormGroup: FormGroup;
   public showAutocomplete: boolean = false;
-  public locations$: Observable<LocationByEPIMSModel[]>;
+  @Input() public locations$: Observable<LocationByEPIMSModel[]>;
+
   public selectedLocation: LocationByEPIMSModel;
 
   private readonly minSearchCharacters = 3;
@@ -56,7 +59,7 @@ export class SearchLocationComponent implements OnInit {
     return this.locations$ ? this.locations$.pipe(
       mergeMap((locations: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
           map((selectedLocations) => locations.filter(
-            location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id)
+            location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
           )),
         )
       )
@@ -81,13 +84,19 @@ export class SearchLocationComponent implements OnInit {
 
   public search(currentValue: string): void {
     this.showAutocomplete = !!currentValue && (currentValue.length >= this.minSearchCharacters);
+
+    if (!currentValue || !currentValue.length) {
+      this.findLocationFormGroup.controls.locationSelectedFormControl.markAsPristine();
+      this.findLocationFormGroup.controls.locationSelectedFormControl.reset();
+    }
+
     if (this.showAutocomplete) {
       this.filter(currentValue);
     }
   }
 
   public getDisplayName(selectedLocation: LocationByEPIMSModel): string {
-    return selectedLocation.court_name;
+    return  selectedLocation.court_name;
   }
 
   public getLocations(term: string): Observable<LocationByEPIMSModel[]> {
