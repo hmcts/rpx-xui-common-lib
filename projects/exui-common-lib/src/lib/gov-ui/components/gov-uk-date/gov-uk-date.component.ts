@@ -22,6 +22,7 @@ export class GovUkDateComponent implements OnInit {
   @Input() public config: GovUiConfigModel;
   @Input() public errorMessage: ErrorMessagesModel;
   @Input() public formGroup: any;
+  @Input() public isOptional: boolean = false;
 
   public month: any;
   public day: any;
@@ -35,20 +36,36 @@ export class GovUkDateComponent implements OnInit {
     this.formGroup.get(this.day).setValidators(dateValidator);
   }
 
-  private isValidDate(d: any, month: number): boolean {
-    const dateCheck = d instanceof Date && !isNaN(d.getTime());
-    const leapYearCheck = d.getMonth() === month;
-    return dateCheck && leapYearCheck;
+  private isValidDate(d: Date, month: number, year: number): boolean {
+    const dateCheck = !isNaN(d.getTime());
+    // Month mismatch occurs if the provided day or month are invalid, or either is omitted. **Note:** This is insufficient for
+    // checking date validity when the year is omitted because it defaults to 1900 - an extra check is required
+    const monthMatch = d.getMonth() === month;
+    const yearMatch = d.getFullYear() === year;
+    return dateCheck && monthMatch && yearMatch;
+  }
+
+  private isEmpty(value: any) {
+    // Note: Intentional use of == to check for null or undefined
+    /* eslint-disable eqeqeq */
+    /* tslint:disable:triple-equals */
+    // NaN and < 0 checks required for month field
+    return value == null || value === '' || isNaN(value) || value < 0;
+    /* eslint-enable eqeqeq */
+    /* tslint:enable:triple-equals */
   }
 
   public DateValidator(): ValidatorFn {
-    const res = (): ValidationErrors | null => {
+    return (): ValidationErrors | null => {
       const day = this.formGroup.get(this.day).value;
       const month = this.formGroup.get(this.month).value - 1;
       const year = this.formGroup.get(this.year).value;
-      const isValid = this.isValidDate(new Date(year, month, day), month);
-      return !isValid ? { dateComponent: true } : null;
+      // Validation should pass if the date field is optional and day, month, and year are all empty
+      if (this.isOptional && this.isEmpty(day) && this.isEmpty(month) && this.isEmpty(year)) {
+        return null;
+      }
+      // + to coerce year to a number
+      return !this.isValidDate(new Date(year, month, day), month, +year) ? { dateComponent: true } : null;
     };
-    return res;
   }
 }
