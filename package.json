@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.27-no-courtname-fontsize",
+  "version": "1.5.1-location-search-booking",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
