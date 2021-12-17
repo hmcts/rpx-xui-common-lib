@@ -20,7 +20,6 @@ describe('FindAPersonService', () => {
         email: 'email@email.com',
         active: true,
         roles: ['pui-case-manager']
-      
     };
     mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
