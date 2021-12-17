@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.5.0-hearing-rc1",
+  "version": "1.5.1-location-search-booking",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
