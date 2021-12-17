@@ -13,14 +13,25 @@ import { SessionStorageService } from '../session-storage/session-storage.servic
 export class FindAPersonService {
 
   public static caseworkersKey: string = 'caseworkers';
+  public userId: string;
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) { }
 
   public find(searchOptions: SearchOptions): Observable<Person[]> {
-    return this.http.post<Person[]>('/workallocation2/findPerson', { searchOptions });
+    const userInfoStr = this.sessionStorageService.getItem('userDetails');
+    if (userInfoStr) {
+      const userInfo = JSON.parse(userInfoStr);
+      this.userId = userInfo.id ? userInfo.id : userInfo.uid;
+    }
+    return this.http.post<Person[]>('/workallocation2/findPerson', { searchOptions, userId: this.userId });
   }
 
   public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {
+    const userInfoStr = this.sessionStorageService.getItem('userDetails');
+    if (userInfoStr) {
+      const userInfo = JSON.parse(userInfoStr);
+      this.userId = userInfo.id ? userInfo.id : userInfo.uid;
+    }
     if (!this.sessionStorageService.getItem(FindAPersonService.caseworkersKey)) {
       this.http.get<Caseworker[]>('/workallocation2/caseworker').pipe(
         tap(caseworkerList => this.sessionStorageService.setItem(FindAPersonService.caseworkersKey, JSON.stringify(caseworkerList)))
@@ -33,7 +44,8 @@ export class FindAPersonService {
     }
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
-    return of(people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm)));
+    const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
+    return searchOptions.userIncluded ? of(finalPeopleList) : of(finalPeopleList.filter(person => person && person.id !== this.userId));
   }
 
   public mapCaseworkers(caseworkers: Caseworker[], roleCategory: string): Person[] {

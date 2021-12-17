@@ -20,6 +20,9 @@ describe('FindAPersonService', () => {
   });
 
   it('find specific caseworkers', () => {
+    const userDetails = `{
+      "id": "125"
+    }`
     const caseworkers = `[
       {
         "idamId": "123",
@@ -53,7 +56,8 @@ describe('FindAPersonService', () => {
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     mockHttpService.get.and.returnValue(of());
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
-    mockSessionStorageService.getItem.and.returnValues(undefined, caseworkers);
+    mockSessionStorageService.getItem.and.returnValues(userDetails, undefined, caseworkers);
+
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.CASEWORKER };
     service.findCaseworkers(searchOptions);
