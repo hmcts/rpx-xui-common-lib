@@ -22,7 +22,7 @@ describe('FindAPersonService', () => {
   it('find specific caseworkers', () => {
     const userDetails = `{
       "id": "125"
-    }`
+    }`;
     const caseworkers = `[
       {
         "idamId": "123",
