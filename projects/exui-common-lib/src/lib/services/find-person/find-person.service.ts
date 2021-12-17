@@ -19,7 +19,7 @@ export class FindAPersonService {
 
   public find(searchOptions: SearchOptions): Observable<Person[]> {
     const userInfoStr = this.sessionStorageService.getItem('userDetails');
-    if (userInfoStr) {
+    if (userInfoStr && !searchOptions.userIncluded) {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }

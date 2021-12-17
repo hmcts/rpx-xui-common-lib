@@ -13,16 +13,31 @@ describe('FindAPersonService', () => {
   it('find search', () => {
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    const userDetails = {
+        id: '1234',
+        forename: 'foreName',
+        surname: 'surName',
+        email: 'email@email.com',
+        active: true,
+        roles: ['pui-case-manager']
+      
+    };
+    mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
-    const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.JUDICIAL };
+    const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.JUDICIAL, userIncluded: false };
     service.find(searchOptions);
-    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation2/findPerson', { searchOptions });
+    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation2/findPerson', { searchOptions, userId: '1234' });
   });
 
   it('find specific caseworkers', () => {
-    const userDetails = `{
-      "id": "125"
-    }`;
+    const userDetails = {
+        id: '125',
+        forename: 'foreName',
+        surname: 'surName',
+        email: 'email@email.com',
+        active: true,
+        roles: ['pui-case-manager']
+    };
     const caseworkers = `[
       {
         "idamId": "123",
@@ -56,7 +71,7 @@ describe('FindAPersonService', () => {
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     mockHttpService.get.and.returnValue(of());
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
-    mockSessionStorageService.getItem.and.returnValues(userDetails, undefined, caseworkers);
+    mockSessionStorageService.getItem.and.returnValues(JSON.stringify(userDetails), undefined, caseworkers);
 
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.CASEWORKER };
