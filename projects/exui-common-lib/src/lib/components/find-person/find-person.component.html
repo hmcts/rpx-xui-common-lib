@@ -23,10 +23,10 @@
       <mat-option *ngFor="let option of filteredOptions | async"
                   [value]="getDisplayName(option)"
                   (onSelectionChange)="onSelectionChange(option)"
-                  [ngClass]="{'hide-autocomplete': !showAutocomplete}">
+                  [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
         {{getDisplayName(option)}}
       </mat-option>
-      <mat-option *ngIf="isNoResultsShown && !(filteredOptions | async)?.length && showAutocomplete">{{ 'No results found' }}</mat-option>
+      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !(filteredOptions | async)?.length && showAutocomplete">{{ 'No results found' }}</mat-option>
     </mat-autocomplete>
   </fieldset>
 </div>
