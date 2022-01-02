@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of, zip } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
@@ -25,7 +25,9 @@ export class FindPersonComponent implements OnInit, OnChanges {
   @Input() public placeholderContent: string = '';
   @Input() public isNoResultsShown: boolean = false;
   @Input() public showUpdatedColor: boolean = false;
+  @Input() public selectedPersons: Person[] = [];
   public showAutocomplete: boolean = false;
+  public currentInputValue: string = '';
 
   constructor(private readonly findPersonService: FindAPersonService) {
   }
@@ -54,15 +56,21 @@ export class FindPersonComponent implements OnInit, OnChanges {
       this.findPersonControl.setValue(null);
       this.selectedPerson = null;
     }
+    if (changes['selectedPerson'] && changes['selectedPerson'].currentValue.length === 0) {
+      this.currentInputValue = '';
+    }
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialPeople = this.findPersonService.find({searchTerm, jurisdiction: this.domain});
-    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, jurisdiction: this.domain});
+    const findJudicialPeople = this.findPersonService.find({ searchTerm, jurisdiction: this.domain });
+    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({ searchTerm, jurisdiction: this.domain });
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
-          return findJudicialPeople;
+          return findJudicialPeople.pipe(map(persons => {
+              const ids: string[] = this.selectedPersons.map(({ id }) => id);
+              return persons.filter(({ id }) => !ids.includes(id));
+            }));
         }
         case PersonRole.ALL: {
           return zip(findJudicialPeople, findCaseworkersOrAdmins).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
@@ -84,6 +92,7 @@ export class FindPersonComponent implements OnInit, OnChanges {
   }
 
   public updatedVal(currentValue: string) {
+    this.currentInputValue = currentValue;
     this.showAutocomplete = !!currentValue && (currentValue.length > this.minSearchCharacters);
   }
 
