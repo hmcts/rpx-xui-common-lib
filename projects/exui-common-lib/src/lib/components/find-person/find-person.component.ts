@@ -26,8 +26,10 @@ export class FindPersonComponent implements OnInit, OnChanges {
   @Input() public isNoResultsShown: boolean = false;
   @Input() public showUpdatedColor: boolean = false;
   @Input() public selectedPersons: Person[] = [];
+  public isPersonSelectionCompleted: boolean = false;
   public showAutocomplete: boolean = false;
   public currentInputValue: string = '';
+  public choosenPerson: Person = {} as Person;
 
   constructor(private readonly findPersonService: FindAPersonService) {
   }
@@ -58,6 +60,7 @@ export class FindPersonComponent implements OnInit, OnChanges {
     }
     if (changes['selectedPerson'] && changes['selectedPerson'].currentValue === '') {
       this.currentInputValue = '';
+      this.isPersonSelectionCompleted = false;
     }
   }
 
@@ -68,9 +71,9 @@ export class FindPersonComponent implements OnInit, OnChanges {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
           return findJudicialPeople.pipe(map(persons => {
-              const ids: string[] = this.selectedPersons.map(({ id }) => id);
-              return persons.filter(({ id }) => !ids.includes(id));
-            }));
+            const ids: string[] = this.selectedPersons.map(({ id }) => id);
+            return persons.filter(({ id }) => !ids.includes(id));
+          }));
         }
         case PersonRole.ALL: {
           return zip(findJudicialPeople, findCaseworkersOrAdmins).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
@@ -88,12 +91,15 @@ export class FindPersonComponent implements OnInit, OnChanges {
   }
 
   public onSelectionChange(selectedPerson?: Person) {
+    this.isPersonSelectionCompleted = true;
+    this.choosenPerson = selectedPerson;
     this.personSelected.emit(selectedPerson);
   }
 
   public updatedVal(currentValue: string) {
     this.currentInputValue = currentValue;
     this.showAutocomplete = !!currentValue && (currentValue.length > this.minSearchCharacters);
+    this.isPersonSelectionCompleted = (this.getDisplayName(this.choosenPerson) === currentValue) ? true : false;
   }
 
   public getDisplayName(selectedPerson: Person): string {

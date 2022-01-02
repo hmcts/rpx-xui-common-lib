@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.5.4-judge-selection",
+  "version": "1.5.5-judge-selection",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
