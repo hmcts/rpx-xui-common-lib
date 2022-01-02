@@ -56,7 +56,7 @@ export class FindPersonComponent implements OnInit, OnChanges {
       this.findPersonControl.setValue(null);
       this.selectedPerson = null;
     }
-    if (changes['selectedPerson'] && changes['selectedPerson'].currentValue.length === 0) {
+    if (changes['selectedPerson'] && changes['selectedPerson'].currentValue === '') {
       this.currentInputValue = '';
     }
   }
