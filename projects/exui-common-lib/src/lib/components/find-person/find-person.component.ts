@@ -26,6 +26,8 @@ export class FindPersonComponent implements OnInit, OnChanges {
   @Input() public isNoResultsShown: boolean = false;
   @Input() public showUpdatedColor: boolean = false;
   @Input() public selectedPersons: Person[] = [];
+  @Input() public errorMessage: string = 'You must select a name';
+  @Input() public idValue: string = '';
   public isPersonSelectionCompleted: boolean = false;
   public showAutocomplete: boolean = false;
   public currentInputValue: string = '';

@@ -9,9 +9,9 @@
       {{subTitle}}
     </div>
     <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup && findPersonGroup.errors">
-        <span class="govuk-visually-hidden">Error:</span>You must select a name
+        <span class="govuk-visually-hidden">Error:</span>{{findPersonGroup.errors.error ? findPersonGroup.errors.error : errorMessage}}
     </span>
-    <input id="inputSelectPerson" type="text" aria-label="select a person" matInput
+    <input id="inputSelectPerson{{idValue}}" type="text" aria-label="select a person" matInput
            formControlName="findPersonControl"
            [matAutocomplete]="auto"
            class="govuk-input govuk-!-width-one-third"
