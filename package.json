@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.5.4-autocomplete-error",
+  "version": "1.5.5-autocomplete-error",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
