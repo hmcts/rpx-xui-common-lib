@@ -22,6 +22,9 @@ export class FindPersonComponent implements OnInit, OnChanges {
   @Input() public submitted?: boolean = true;
   @Input() public disabled?: boolean = null;
   @Input() public userIncluded?: boolean = false;
+  @Input() public placeholderContent: string = '';
+  @Input() public isNoResultsShown: boolean = false;
+  @Input() public showUpdatedColor: boolean = false;
   public showAutocomplete: boolean = false;
 
   constructor(private readonly findPersonService: FindAPersonService) {
