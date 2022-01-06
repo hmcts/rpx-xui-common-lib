@@ -49,6 +49,18 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public onSelectedUser(user: UserDetails) {
+    if (user.email) {
+      user.email = user.email.trim();
+    }
+    if (user.firstName) {
+      user.firstName = user.firstName.trim();
+    }
+    if (user.lastName) {
+      user.lastName = user.lastName.trim();
+    }
+    if (user.idamId) {
+      user.idamId = user.idamId.trim();
+    }
     this.selectedUser = user;
   }
 
