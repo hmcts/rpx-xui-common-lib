@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
@@ -9,14 +9,14 @@ import { LocationService } from '../../services/locations/location.service';
   templateUrl: './search-location.component.html',
   styleUrls: ['./search-location.component.scss']
 })
-export class SearchLocationComponent implements OnInit {
+export class SearchLocationComponent implements OnInit, AfterContentInit {
   @Input() public control: AbstractControl;
   @Input() public disabled: boolean = null;
   @Input() public locationType: string = '';
   @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
-  @ViewChild('inputSelectedLocation', {read: ElementRef}) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
+  @ViewChild('inputSelectedLocation', { read: ElementRef }) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
   public findLocationFormGroup: FormGroup;
   @Input() public showAutocomplete: boolean = false;
   @Input() public locations$: Observable<LocationByEPIMSModel[]>;
@@ -24,6 +24,7 @@ export class SearchLocationComponent implements OnInit {
   public selectedLocation: LocationByEPIMSModel;
   private readonly minSearchCharacters = 3;
   public keyUpSubject$: Subject<string> = new Subject();
+  public readyAfterContent: boolean = false;
   constructor(private readonly locationService: LocationService, fb: FormBuilder) {
     this.findLocationFormGroup = fb.group({
       findLocationFormControl: [null],
@@ -31,11 +32,14 @@ export class SearchLocationComponent implements OnInit {
     });
     this.selectedLocations$ = of([]);
   }
+  public ngAfterContentInit(): void {
+    this.readyAfterContent = true;
+  }
   public ngOnInit(): void {
     this.locations$ = of([]);
     if (this.control) {
       if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
-        this.findLocationFormGroup.controls.locationSelectedFormControl =  this.control;
+        this.findLocationFormGroup.controls.locationSelectedFormControl = this.control;
       }
     }
     this.keyUpSubject$.pipe(debounceTime(500)).subscribe(searchValue => this.search(searchValue as string));
@@ -49,16 +53,16 @@ export class SearchLocationComponent implements OnInit {
   public get locationSource$(): Observable<LocationByEPIMSModel[]> {
     return this.locations$ ? this.locations$.pipe(
       mergeMap((locations: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
-          map((selectedLocations) => locations.filter(
-            location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
-          )),
-        )
+        map((selectedLocations) => locations.filter(
+          location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
+        )),
+      )
       )
     ) : of([]);
   }
   public filter(term: string): void {
     this.getLocations(term).pipe(
-        mergeMap((apiData: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
+      mergeMap((apiData: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
         map((selectedLocations) => apiData.filter(
           apiLocation => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(apiLocation.epims_id)
         )),
@@ -88,13 +92,13 @@ export class SearchLocationComponent implements OnInit {
     }
   }
   public getDisplayName(selectedLocation: LocationByEPIMSModel): string {
-    return  selectedLocation.court_name;
+    return selectedLocation.court_name;
   }
   public getLocations(term: string): Observable<LocationByEPIMSModel[]> {
     return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
   }
   public getControlCourtNameValue(): string {
     return this.findLocationFormGroup && this.findLocationFormGroup.controls && this.findLocationFormGroup.controls.locationSelectedFormControl.value ?
-    (this.findLocationFormGroup.controls.locationSelectedFormControl.value as LocationByEPIMSModel).court_name : '';
+      (this.findLocationFormGroup.controls.locationSelectedFormControl.value as LocationByEPIMSModel).court_name : '';
   }
 }
