@@ -1,4 +1,4 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -11,12 +11,12 @@ describe('GovUkDateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
-      schemas: [NO_ERRORS_SCHEMA],
+      imports: [ FormsModule, ReactiveFormsModule ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ GovUkDateComponent ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
-    ]
+      ]
     })
     .compileComponents();
   }));
@@ -24,8 +24,8 @@ describe('GovUkDateComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GovUkDateComponent);
     component = fixture.componentInstance;
-    component.formGroup = formBuilder.group({ day: null, month: null, year: null});
-    component.config = { id: 'id'};
+    component.formGroup = formBuilder.group({id_day: null, id_month: null, id_year: null});
+    component.config = {id: 'id', label: 'Date field', hint: 'This is a hint'};
     component.errorMessage = {isInvalid: false, messages: ['Error']};
     fixture.detectChanges();
   });
@@ -34,7 +34,7 @@ describe('GovUkDateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have input for  day, month and year element', () => {
+  it('should have input for day, month and year elements', () => {
     const day = fixture.debugElement.query(By.css('#id'));
     expect(day).toBeTruthy();
     const month = fixture.debugElement.query(By.css('#id-month'));
@@ -43,4 +43,10 @@ describe('GovUkDateComponent', () => {
     expect(year).toBeTruthy();
   });
 
+  it('should set the label and hint text correctly', () => {
+    // Check that the correct config parameters have been passed to the fieldset element
+    const fieldsetElement = fixture.debugElement.query(By.css('xuilib-gov-uk-fieldset'));
+    expect(fieldsetElement.properties.config.legend).toEqual('Date field');
+    expect(fieldsetElement.properties.config.hint).toEqual('This is a hint');
+  });
 });

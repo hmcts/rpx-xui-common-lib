@@ -1,15 +1,14 @@
-<h1 class="govuk-heading-l">
+<h1 class="govuk-heading-l" *ngIf="title && title.length">
   <span class="govuk-caption-l">{{title}}</span>
   {{boldTitle}}
 </h1>
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
-     [ngClass]="{'form-group-error': !findPersonGroup.valid}">
-  <fieldset class="govuk-fieldset" aria-describedby="">
-    <div id="waste-hint" class="govuk-hint">
-      <h1 *ngIf="showSmallTitle" class="govuk-heading-m">Find the person</h1>
-      Type the name of the person and select them.
+     [ngClass]="{'form-group-error': !findPersonGroup.valid && submitted}">
+  <fieldset class="govuk-fieldset" aria-describedby="sub-title-hint">
+    <div id="sub-title-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
+      {{subTitle}}
     </div>
-    <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup.errors">
+    <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup && findPersonGroup.errors">
         <span class="govuk-visually-hidden">Error:</span>You must select a name
     </span>
     <input id="inputSelectPerson" type="text" aria-label="select a person" matInput
@@ -17,6 +16,7 @@
            [matAutocomplete]="auto"
            class="govuk-input govuk-!-width-one-third"
            (ngModelChange)="updatedVal($event)"
+           [attr.disabled]="disabled"
            [value]="selectedPerson">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async"
