@@ -19,7 +19,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
   @ViewChild('inputSelectedLocation', { read: ElementRef }) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
   public findLocationFormGroup: FormGroup;
   @Input() public showAutocomplete: boolean = false;
-  @Input() public displayedLocation: LocationByEPIMSModel[];
+  @Input() public displayedLocations: LocationByEPIMSModel[];
   @Output() public locationChanged = new EventEmitter<LocationByEPIMSModel>();
   public selectedLocation: LocationByEPIMSModel;
   private readonly minSearchCharacters = 3;
@@ -36,7 +36,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
     this.readyAfterContent = true;
   }
   public ngOnInit(): void {
-    this.displayedLocation = [];
+    this.displayedLocations = [];
     if (this.control) {
       if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
         this.findLocationFormGroup.controls.locationSelectedFormControl = this.control;
@@ -50,8 +50,8 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
   public onKeyUp(event: any): void {
     this.keyUpSubject$.next(event.target.value);
   }
-  public get displayedLocationDuplicationFiltered(): LocationByEPIMSModel[] {
-    return this.displayedLocation.filter(
+  public get displayedLocationsDuplicationFiltered(): LocationByEPIMSModel[] {
+    return this.displayedLocations.filter(
       location => !this.selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
     );
   }
@@ -61,13 +61,13 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
         const apiFilter = apiData.filter(
           apiLocation => !this.selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(apiLocation.epims_id)
         );
-        this.displayedLocation = apiFilter;
+        this.displayedLocations = apiFilter;
         return apiFilter;
       })
     ).subscribe(location => {
       if (term === location.court_name) {
         this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(location);
-        this.displayedLocation = [];
+        this.displayedLocations = [];
         this.locationChanged.emit(location);
         this.showAutocomplete = false;
       }
