@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
-fdescribe('SearchLocationComponent', () => {
+describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
@@ -238,7 +238,7 @@ fdescribe('SearchLocationComponent', () => {
     const locationService = TestBed.get(LocationService);
     spyOn(component.keyUpSubject$, 'next');
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
-    component.locationsDisplayedInDrop = LOCATION_RESULTS;
+    component.displayedLocation = LOCATION_RESULTS;
     spyOn(component, 'getLocations').and.callThrough();
 
     locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
@@ -268,7 +268,7 @@ fdescribe('SearchLocationComponent', () => {
   });
 
   it('should not filter in input characters are less then three', async () => {
-    expect(component.locationsDisplayedInDrop.length).toBeGreaterThan(1);
+    expect(component.displayedLocation.length).toBeGreaterThan(1);
 
     const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = 'te';
