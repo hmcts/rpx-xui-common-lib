@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
@@ -131,7 +131,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return true;
   }
 
-
   public applyFilter(form: FormGroup): void {
     this.submitted = true;
     form.markAsTouched();
@@ -141,7 +140,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         fields: this.getSelectedValues(form.value, this.config)
       };
       this.filterService.givenErrors.next(null);
-      this.filterService.persist(this.settings, this.config.persistence);
+      const settings = {...this.settings, reset: false};
+      this.filterService.persist(settings, this.config.persistence);
     } else {
       this.emitFormErrors(form);
     }
@@ -180,7 +180,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (this.config && this.config.cancelSetting) {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
-    this.filterService.persist(this.settings, this.config.persistence);
+    const settings = {...this.settings, reset: true};
+    this.filterService.persist(settings, this.config.persistence);
+    this.filterService.givenErrors.next(null);
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
@@ -190,6 +192,44 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         this.form.get(field.name).get(key).patchValue(values[key]);
       }
     }
+  }
+
+  public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
+    const isChecked = event.target.checked;
+    const formArray: FormArray = form.get(field.name) as FormArray;
+    if (!item.selectAll) {
+      const allChecked = formArray.controls.every((control: AbstractControl) => control.value);
+      let index: number = null;
+      const hasSelectAllOption = field.options.find((option, i) => {
+        if (option.hasOwnProperty('selectAll')) {
+          index = i;
+          return true;
+        }
+        return false;
+      });
+      // tslint:disable-next-line:variable-name
+      const isAllCheckedExcludingTheSelectAllOption = formArray.controls.filter((_control: AbstractControl, i: number) => i !== index)
+        .every((control: AbstractControl) => control.value);
+
+      if (!allChecked && hasSelectAllOption && !isChecked) {
+        formArray.controls.forEach((control: AbstractControl, i: number) => {
+          if (index === i) {
+            control.patchValue(false);
+            return;
+          }
+        });
+      } else if (hasSelectAllOption && !allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
+        formArray.controls[index].patchValue(true);
+      }
+      return;
+    }
+    formArray.controls.forEach((control: AbstractControl) => {
+      if (isChecked) {
+        control.patchValue(true);
+      } else {
+        control.patchValue(false);
+      }
+    });
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {
