@@ -24,4 +24,13 @@ describe('LoadingSpinnerComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should display loading text', () => {
+    expect(fixture.debugElement.nativeElement.querySelector('div.spinner-inner-container p').textContent).toContain('Loading');
+  });
+
+  it('should display overriden loading text', () => {
+    component.loadingText = 'Loading instead of Searching';
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelector('div.spinner-inner-container p').textContent).toContain('Loading instead of Searching');
+  });
 });
