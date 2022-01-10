@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.6.4-refactoring-search-location",
+  "version":  "1.6.1-refactoring-search-location-rename-variable",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
