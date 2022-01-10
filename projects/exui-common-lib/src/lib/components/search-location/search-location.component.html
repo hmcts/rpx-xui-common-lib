@@ -10,13 +10,13 @@
       [value]="getControlCourtNameValue()"
       #inputSelectedLocation>
     <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
-      <mat-option *ngFor="let location of locationSource$ | async"
+      <mat-option *ngFor="let location of locationsDisplayedInDropDuplicationFiltered"
       [value]="getDisplayName(location)"
       (onSelectionChange)="onSelectionChange(location)"
       [ngClass]="{'hide-autocomplete': !showAutocomplete}">
       {{ getDisplayName(location) }}
       </mat-option>
-      <mat-option *ngIf="!(locationSource$ | async)?.length && showAutocomplete">{{ 'No results found' }}</mat-option>
+      <mat-option *ngIf="!locationsDisplayedInDropDuplicationFiltered?.length && showAutocomplete">{{ 'No results found' }}</mat-option>
     </mat-autocomplete>
   </div>
 </div>

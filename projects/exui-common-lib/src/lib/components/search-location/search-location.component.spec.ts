@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
-describe('SearchLocationComponent', () => {
+fdescribe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
@@ -106,7 +106,7 @@ describe('SearchLocationComponent', () => {
         open_for_public: 'Yes',
         court_address: 'TREFECHAN test5',
         postcode: 'SY23 1AS '
-        },
+      },
       {
         court_venue_id: '105',
         epims_id: '827534',
@@ -238,7 +238,7 @@ describe('SearchLocationComponent', () => {
     const locationService = TestBed.get(LocationService);
     spyOn(component.keyUpSubject$, 'next');
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
-    spyOn(component.locationSource$, 'pipe').and.returnValue(of(LOCATION_RESULTS));
+    component.locationsDisplayedInDrop = LOCATION_RESULTS;
     spyOn(component, 'getLocations').and.callThrough();
 
     locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
@@ -267,11 +267,8 @@ describe('SearchLocationComponent', () => {
     });
   });
 
-  it('should not filter in input characters are less then three', async (done) => {
-    component.locations$.subscribe(x => {
-      expect(x.length).toBeGreaterThan(1);
-      done();
-    });
+  it('should not filter in input characters are less then three', async () => {
+    expect(component.locationsDisplayedInDrop.length).toBeGreaterThan(1);
 
     const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = 'te';
@@ -282,12 +279,7 @@ describe('SearchLocationComponent', () => {
     });
   });
 
-  it('should reset form control and set to pristine when empty value is given', async (done) => {
-    component.locations$.subscribe(x => {
-      expect(x.length).toBeGreaterThan(1);
-      done();
-    });
-
+  it('should reset form control and set to pristine when empty value is given', async () => {
     const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = '';
     selectedLoction.nativeElement.dispatchEvent(new Event('input'));
