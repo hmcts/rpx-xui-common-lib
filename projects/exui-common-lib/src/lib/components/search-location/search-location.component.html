@@ -1,19 +1,15 @@
 <div class="auto-complete-container">
-  <div class="autocomplete__wrapper">
+  <div *ngIf="readyAfterContent" class="autocomplete__wrapper">
     <input
       [formControl]="findLocationFormGroup.controls.findLocationFormControl"
-      [matAutocomplete]="auto"
+      [matAutocomplete]="autoSearchLocation"
       (keydown)="onKeyDown()"
       (keyup)="onKeyUp($event)"
-      aria-expanded="false"
-      aria-owns="input-selected-location__listbox"
-      aria-autocomplete="both"
-      autocomplete="off"
       class="autocomplete__input autocomplete__input--default search-box"
       [attr.disabled]="!disabled ? null: disabled"
       [value]="getControlCourtNameValue()"
       #inputSelectedLocation>
-    <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #auto="matAutocomplete">
+    <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
       <mat-option *ngFor="let location of locationSource$ | async"
       [value]="getDisplayName(location)"
       (onSelectionChange)="onSelectionChange(location)"
