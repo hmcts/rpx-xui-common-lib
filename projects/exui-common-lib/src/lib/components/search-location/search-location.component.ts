@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { Observable, of, Subject } from 'rxjs';
-import { debounceTime, map, mergeMap } from 'rxjs/operators';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, mergeMap } from 'rxjs/operators';
 import { LocationByEPIMSModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 @Component({
@@ -13,13 +13,13 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
   @Input() public control: AbstractControl;
   @Input() public disabled: boolean = null;
   @Input() public locationType: string = '';
-  @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
+  @Input() public selectedLocations: LocationByEPIMSModel[];
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
   @ViewChild('inputSelectedLocation', { read: ElementRef }) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
   public findLocationFormGroup: FormGroup;
   @Input() public showAutocomplete: boolean = false;
-  @Input() public locations$: Observable<LocationByEPIMSModel[]>;
+  @Input() public displayedLocations: LocationByEPIMSModel[];
   @Output() public locationChanged = new EventEmitter<LocationByEPIMSModel>();
   public selectedLocation: LocationByEPIMSModel;
   private readonly minSearchCharacters = 3;
@@ -30,13 +30,13 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
       findLocationFormControl: [null],
       locationSelectedFormControl: [null]
     });
-    this.selectedLocations$ = of([]);
+    this.selectedLocations = [];
   }
   public ngAfterContentInit(): void {
     this.readyAfterContent = true;
   }
   public ngOnInit(): void {
-    this.locations$ = of([]);
+    this.displayedLocations = [];
     if (this.control) {
       if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
         this.findLocationFormGroup.controls.locationSelectedFormControl = this.control;
@@ -50,35 +50,35 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
   public onKeyUp(event: any): void {
     this.keyUpSubject$.next(event.target.value);
   }
-  public get locationSource$(): Observable<LocationByEPIMSModel[]> {
-    return this.locations$ ? this.locations$.pipe(
-      mergeMap((locations: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
-        map((selectedLocations) => locations.filter(
-          location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
-        )),
-      )
-      )
-    ) : of([]);
+  public get displayedLocationsDuplicationFiltered(): LocationByEPIMSModel[] {
+    return this.displayedLocations.filter(
+      location => !this.selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
+    );
   }
   public filter(term: string): void {
     this.getLocations(term).pipe(
-      mergeMap((apiData: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
-        map((selectedLocations) => apiData.filter(
-          apiLocation => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(apiLocation.epims_id)
-        )),
-      ))
-    ).subscribe(locations => {
-      this.locations$ = of(locations);
-      if (locations.length === 1 && term === locations[0].court_name) {
-        this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(locations[0]);
-        this.locations$ = of([]);
-        this.locationChanged.emit(locations[0]);
+      mergeMap((apiData: LocationByEPIMSModel[]) => {
+        const apiFilter = apiData.filter(
+          apiLocation => !this.selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(apiLocation.epims_id)
+        );
+        this.displayedLocations = apiFilter;
+        return apiFilter;
+      })
+    ).subscribe(location => {
+      if (term === location.court_name) {
+        this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(location);
+        this.displayedLocations = [];
+        this.locationChanged.emit(location);
         this.showAutocomplete = false;
       }
     });
   }
   public onSelectionChange(selection?: LocationByEPIMSModel): void {
-    this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(selection);
+    if (this.findLocationFormGroup.controls.findLocationFormControl instanceof FormArray) {
+      (this.findLocationFormGroup.controls.locationSelectedFormControl as FormArray).push(new FormControl(selection.epims_id));
+    } else {
+      this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(selection);
+    }
     this.locationChanged.emit(selection);
   }
   public search(currentValue: string): void {
