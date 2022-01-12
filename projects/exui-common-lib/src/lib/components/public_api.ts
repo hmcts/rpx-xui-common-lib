@@ -24,3 +24,4 @@ export * from './user-list/user-list.component';
 export * from './cookie-banner/cookie-banner.component';
 export * from './search-location/search-location.component';
 export * from './pagination/pagination.component';
+export * from './find-location/find-location.component';

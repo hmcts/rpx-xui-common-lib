@@ -5,7 +5,10 @@ import {By} from '@angular/platform-browser';
 import {of} from 'rxjs';
 import {FilterFieldConfig} from '../../models';
 import {FilterService} from '../../services';
+import {LocationService} from '../../services/locations/location.service';
+import {FindLocationComponent} from '../find-location/find-location.component';
 import {FindPersonComponent} from '../find-person/find-person.component';
+import {SearchLocationComponent} from '../search-location/search-location.component';
 import {GenericFilterComponent} from './generic-filter.component';
 
 describe('GenericFilterComponent', () => {
@@ -22,13 +25,15 @@ describe('GenericFilterComponent', () => {
       unsubscribe: (value: any) => value,
     }
   };
+  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent],
-      providers: [{
-        provide: FilterService, useValue: mockFilterService
-      }]
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      providers: [
+        {provide: FilterService, useValue: mockFilterService},
+        {provide: LocationService, useValue: searchFilterServiceMock}
+      ]
     })
       .compileComponents();
   }));
@@ -43,7 +48,7 @@ describe('GenericFilterComponent', () => {
       cancelButtonText: 'cancel',
       cancelSetting: {
         id: 'examples',
-        fields: [{ name: 'example1', value: ['Fernando Alonso'] }]
+        fields: [{name: 'example1', value: ['Fernando Alonso']}]
       },
       fields: [
         {
@@ -324,14 +329,17 @@ describe('GenericFilterComponent', () => {
 });
 
 describe('Select all checkboxes', () => {
-
+  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent],
-      providers: [FilterService]
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      providers: [
+        FilterService,
+        {provide: LocationService, useValue: searchFilterServiceMock}
+      ]
     })
       .compileComponents();
   }));
@@ -401,6 +409,53 @@ describe('Select all checkboxes', () => {
       const input = element.querySelector('input') as HTMLInputElement;
       expect(input.checked).toBe(false);
     }
+  });
+
+});
+
+describe('Find location filter config', () => {
+  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  let component: GenericFilterComponent;
+  let fixture: ComponentFixture<GenericFilterComponent>;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      providers: [
+        FilterService,
+        {provide: LocationService, useValue: searchFilterServiceMock}
+      ]
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+    component.config = {
+      id: 'examples',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
+      fields: [
+        {
+          name: 'location',
+          options: [],
+          title: 'Sample title',
+          subTitle: 'Sample subtitle',
+          minSelected: 1,
+          maxSelected: 1,
+          type: 'find-location'
+        }
+      ],
+      persistence: 'session',
+    };
+    fixture.detectChanges();
+  });
+  it('should display find-location filter', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const findLocationFormGroup = form.querySelector('xuilib-find-location') as HTMLElement;
+    expect(findLocationFormGroup).toBeTruthy();
   });
 
 });

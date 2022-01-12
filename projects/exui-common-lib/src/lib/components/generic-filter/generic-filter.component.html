@@ -3,6 +3,7 @@
     <hr *ngIf="field.lineBreakBefore" class="govuk-section-break govuk-section-break--visible elevated-break">
     <div class="govuk-form-group xui-generic-filter"
          [hidden]="hidden(field, form)"
+         [id]="field.name"
          [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.minLength || form.get(field.name).errors?.maxLength)}">
       <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
       <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
@@ -62,6 +63,9 @@
                               [selectedPerson]="form.get(field.name)?.value?.email"
                               [userIncluded]="false"
           ></xuilib-find-person>
+        </ng-container>
+        <ng-container *ngSwitchCase="'find-location'">
+          <xuilib-find-location [form]="form" [selectedLocations]="form.get(field.name)?.value" [submitted]="submitted" [field]="field"></xuilib-find-location>
         </ng-container>
       </div>
     </div>
