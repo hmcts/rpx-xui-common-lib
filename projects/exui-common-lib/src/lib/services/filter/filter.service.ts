@@ -12,6 +12,9 @@ export class FilterService {
   private readonly filterSettings: { [id: string]: FilterSetting } = {};
   private readonly streams: { [id: string]: BehaviorSubject<FilterSetting> } = {};
 
+  constructor() {
+  }
+
   public persist(setting: FilterSetting, persistence: FilterPersistence): void {
     switch (persistence) {
       case 'local':
