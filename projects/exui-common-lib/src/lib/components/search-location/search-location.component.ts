@@ -25,6 +25,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
   private readonly minSearchCharacters = 3;
   public keyUpSubject$: Subject<string> = new Subject();
   public readyAfterContent: boolean = false;
+  public searchInProgress: boolean = false;
   constructor(private readonly locationService: LocationService, fb: FormBuilder) {
     this.findLocationFormGroup = fb.group({
       findLocationFormControl: [null],
@@ -48,7 +49,11 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
     this.locationChanged.emit();
   }
   public onKeyUp(event: any): void {
+    this.showAutocomplete = false;
     this.keyUpSubject$.next(event.target.value);
+  }
+  public onFocus() {
+    this.showAutocomplete = false;
   }
   public get displayedLocationsDuplicationFiltered(): LocationByEPIMSModel[] {
     return this.displayedLocations.filter(
@@ -62,6 +67,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
           apiLocation => !this.selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(apiLocation.epims_id)
         );
         this.displayedLocations = apiFilter;
+        this.searchInProgress = false;
         return apiFilter;
       })
     ).subscribe(location => {
@@ -71,6 +77,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
         this.locationChanged.emit(location);
         this.showAutocomplete = false;
       }
+      this.searchInProgress = false;
     });
   }
   public onSelectionChange(selection?: LocationByEPIMSModel): void {
@@ -82,6 +89,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
     this.locationChanged.emit(selection);
   }
   public search(currentValue: string): void {
+    this.searchInProgress = true;
     this.showAutocomplete = !!currentValue && (currentValue.length >= this.minSearchCharacters);
     if (!currentValue || !currentValue.length) {
       this.findLocationFormGroup.controls.locationSelectedFormControl.markAsPristine();
@@ -89,6 +97,8 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
     }
     if (this.showAutocomplete) {
       this.filter(currentValue);
+    } else {
+      this.searchInProgress = false;
     }
   }
   public getDisplayName(selectedLocation: LocationByEPIMSModel): string {

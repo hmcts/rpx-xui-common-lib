@@ -240,6 +240,7 @@ describe('SearchLocationComponent', () => {
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
     component.displayedLocations = LOCATION_RESULTS;
     spyOn(component, 'getLocations').and.callThrough();
+    spyOn(component, 'onFocus').and.callThrough();
 
     locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
 
@@ -252,6 +253,16 @@ describe('SearchLocationComponent', () => {
 
   it('should create', () => {
     expect(component.getLocations).toHaveBeenCalled();
+  });
+
+  it('should call onFocus when input has focus', async () => {
+    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
+    selectedLoction.nativeElement.dispatchEvent(new Event('focus'));
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.onFocus).toHaveBeenCalled();
+    });
   });
 
   it('should call filter when input is more than 2 characters', async () => {
