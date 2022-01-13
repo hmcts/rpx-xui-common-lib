@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {FilterFieldConfig} from '../../models';
 import {LocationByEPIMSModel} from '../../models/location.model';
+import {getCheckBoxesValues} from '../generic-filter/generic-filter-utils';
 
 @Component({
   selector: 'xuilib-find-location',
@@ -9,19 +10,28 @@ import {LocationByEPIMSModel} from '../../models/location.model';
   styleUrls: ['./find-location.component.scss']
 })
 export class FindLocationComponent implements OnInit {
-  @Input() public serviceIds: string = 'SSCS,IA';
-
   @Input() public selectedLocations: LocationByEPIMSModel[] = [];
-
   @Input() public submitted: boolean = true;
-
   @Input() public form: FormGroup;
-
   @Input() public field: FilterFieldConfig;
-
+  @Input() public fields: FilterFieldConfig[];
   public locations: LocationByEPIMSModel[] = [];
-
   public locationsForm = new FormArray([]);
+  public serviceIds: string = 'SSCS,IA';
+  private pServices: string[] = [];
+
+  public get services(): string[] {
+    return this.pServices;
+  }
+
+  @Input()
+  public set services(value: string[]) {
+    this.pServices = value;
+    const field = this.fields.find(f => f.name === this.field.findPersonField);
+    if (field) {
+      this.serviceIds = getCheckBoxesValues(field.options, value).filter(x => x !== 'services_all').join(',');
+    }
+  }
 
   private static initForm(selectedLocations: LocationByEPIMSModel[], formArray: FormArray): FormArray {
     for (const location of selectedLocations) {

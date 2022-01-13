@@ -3,7 +3,7 @@ import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validat
 import {Subscription} from 'rxjs';
 import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
-import {maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import {getCheckBoxesValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -347,13 +347,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         if (field.type === 'find-location') {
           return {value: values, name};
         } else {
-          const realValues = field.options.reduce((acc: string[], option: { key: string, label: string }, index: number) => {
-            if (values[index]) {
-              return [...acc, option.key];
-            }
-            return acc;
-          }, []);
-          return {value: realValues, name};
+          return {value: getCheckBoxesValues(field.options, values), name};
         }
       } else {
         return {value: [values], name};

@@ -65,7 +65,13 @@
           ></xuilib-find-person>
         </ng-container>
         <ng-container *ngSwitchCase="'find-location'">
-          <xuilib-find-location [form]="form" [selectedLocations]="form.get(field.name)?.value" [submitted]="submitted" [field]="field"></xuilib-find-location>
+          <xuilib-find-location [form]="form"
+                                [fields]="config.fields"
+                                [selectedLocations]="form.get(field.name)?.value"
+                                [submitted]="submitted"
+                                [services]="form.get(field.findPersonField)?.value"
+                                [field]="field"
+          ></xuilib-find-location>
         </ng-container>
       </div>
     </div>
