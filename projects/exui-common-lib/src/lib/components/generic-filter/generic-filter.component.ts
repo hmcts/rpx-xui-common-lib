@@ -267,7 +267,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.form.addControl('findPersonControl', findPersonControl);
     }
     for (const field of config.fields) {
-      if (field.type === 'checkbox') {
+      if (field.type === 'checkbox' || field.type === 'checkbox-large') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else if (field.type === 'find-location') {
