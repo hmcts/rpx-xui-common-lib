@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
+import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
-import {maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import {getCheckBoxesValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -56,6 +56,18 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.mergeDefaultFields(value);
     }
     this._settings = value;
+  }
+
+  private static addFormValidators(field: FilterFieldConfig): Validators {
+    const validators = [];
+    if (field && field.minSelected) {
+      validators.push(minSelectedValidator(field.minSelected));
+    }
+
+    if (field && field.maxSelected) {
+      validators.push(maxSelectedValidator(field.maxSelected));
+    }
+    return validators;
   }
 
   public ngOnInit(): void {
@@ -255,8 +267,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.form.addControl('findPersonControl', findPersonControl);
     }
     for (const field of config.fields) {
-      if (field.type === 'checkbox') {
+      if (field.type === 'checkbox' || field.type === 'checkbox-large') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
+        this.form.addControl(field.name, formArray);
+      } else if (field.type === 'find-location') {
+        const formArray = this.buildFindLocationFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else {
         const validators: ValidatorFn[] = [];
@@ -295,14 +310,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   private buildCheckBoxFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
-    const validators = [];
-    if (field && field.minSelected) {
-      validators.push(minSelectedValidator(field.minSelected));
-    }
-
-    if (field && field.maxSelected) {
-      validators.push(maxSelectedValidator(field.maxSelected));
-    }
+    const validators = GenericFilterComponent.addFormValidators(field);
     const formArray = this.fb.array([], validators);
     let defaultValues;
     if (settings && settings.fields) {
@@ -318,18 +326,29 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return formArray;
   }
 
+  private buildFindLocationFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+    const validators = GenericFilterComponent.addFormValidators(field);
+    const formArray = this.fb.array([], validators);
+    let defaultValues: { name: string; value: any[] };
+    if (settings && settings.fields) {
+      defaultValues = settings.fields.find((f) => f.name === field.name);
+      for (const defaultValue of defaultValues.value) {
+        formArray.push(new FormControl(defaultValue));
+      }
+    }
+    return formArray;
+  }
+
   private getSelectedValues(formValues: any, config: FilterConfig): any {
     return Object.keys(formValues).map((name: string) => {
       const values = formValues[name];
       if (Array.isArray(values)) {
         const field = config.fields.find(f => f.name === name);
-        const realValues = field.options.reduce((acc: string[], option: { key: string, label: string }, index: number) => {
-          if (values[index]) {
-            return [...acc, option.key];
-          }
-          return acc;
-        }, []);
-        return {value: realValues, name};
+        if (field.type === 'find-location') {
+          return {value: values, name};
+        } else {
+          return {value: getCheckBoxesValues(field.options, values), name};
+        }
       } else {
         return {value: [values], name};
       }
@@ -337,14 +356,18 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   private emitFormErrors(form: FormGroup): void {
+    const errors: FilterError[] = [];
     for (const field of this.config.fields) {
       const formGroup = form.get(field.name);
       if (formGroup && formGroup.errors && formGroup.errors.minLength) {
-        this.filterService.givenErrors.next(field.minSelectedError);
+        errors.push({name: field.name, error: field.minSelectedError});
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxLength) {
-        this.filterService.givenErrors.next(field.maxSelectedError);
+        errors.push({name: field.name, error: field.minSelectedError});
       }
+    }
+    if (errors.length) {
+      this.filterService.givenErrors.next(errors);
     }
   }
 }

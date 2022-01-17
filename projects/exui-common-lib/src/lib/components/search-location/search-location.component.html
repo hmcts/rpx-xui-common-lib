@@ -4,20 +4,18 @@
       [formControl]="findLocationFormGroup.controls.findLocationFormControl"
       [matAutocomplete]="autoSearchLocation"
       (keydown)="onKeyDown()"
-      (keyup)="onKeyUp($event)"
-      (focus)="onFocus()"
       class="autocomplete__input autocomplete__input--default search-box"
       [attr.disabled]="!disabled ? null: disabled"
-      [value]="getControlCourtNameValue()"
-      #inputSelectedLocation>
+      [value]="getControlCourtNameValue()">
     <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
-      <mat-option *ngFor="let location of displayedLocationsDuplicationFiltered"
-      [value]="getDisplayName(location)"
-      (onSelectionChange)="onSelectionChange(location)"
-      [ngClass]="{'hide-autocomplete': !showAutocomplete}">
-      {{ getDisplayName(location) }}
+      <mat-option *ngFor="let location of locations"
+                  [value]="location.court_name"
+                  (onSelectionChange)="onSelectionChange(location)">
+        {{ location.court_name }}
       </mat-option>
-      <mat-option *ngIf="!displayedLocationsDuplicationFiltered?.length && showAutocomplete && !searchInProgress">{{ 'No results found' }}</mat-option>
+      <mat-option *ngIf="!locations.length && showAutocomplete && term.length >= this.minSearchCharacters">No results found</mat-option>
     </mat-autocomplete>
   </div>
 </div>
+
+
