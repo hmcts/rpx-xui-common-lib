@@ -44,17 +44,19 @@ export class FindLocationComponent implements OnInit {
     this.locationsForm = FindLocationComponent.initForm(this.selectedLocations, this.locationsForm);
   }
 
-  public addSelection(): void {
-    const locationsForm: FormArray = this.locationsForm;
-    this.selectedLocations = this.locationsForm.value as LocationByEPIMSModel[];
-    const formArray: FormArray = this.form.get(this.field.name) as FormArray;
-    const lastSavedValue = this.selectedLocations[this.selectedLocations.length - 1];
-    FindLocationComponent.initForm([lastSavedValue], formArray);
-    locationsForm.at(this.selectedLocations.length - 1).setValue(null);
+  public addLocation(): void {
+    if (this.locations && this.locations.length) {
+      const locationsForm: FormArray = this.locationsForm;
+      this.selectedLocations = this.locationsForm.value as LocationByEPIMSModel[];
+      const formArray: FormArray = this.form.get(this.field.name) as FormArray;
+      const lastSavedValue = this.selectedLocations[this.selectedLocations.length - 1];
+      FindLocationComponent.initForm([lastSavedValue], formArray);
+      locationsForm.at(this.selectedLocations.length - 1).setValue(null);
+    }
     this.locations = [];
   }
 
-  public removeSelection(location: LocationByEPIMSModel): void {
+  public removeLocation(location: LocationByEPIMSModel): void {
     if (location.epims_id) {
       this.selectedLocations = this.selectedLocations.filter(selectedLocation => selectedLocation.epims_id !== location.epims_id);
       const formArray = this.form.get(this.field.name) as FormArray;
@@ -62,6 +64,12 @@ export class FindLocationComponent implements OnInit {
       if (index > -1) {
         formArray.removeAt(index);
       }
+    }
+  }
+
+  public onLocationSelected(location: LocationByEPIMSModel): void {
+    if (location && location.epims_id) {
+      this.locations = [...this.locations, location];
     }
   }
 }
