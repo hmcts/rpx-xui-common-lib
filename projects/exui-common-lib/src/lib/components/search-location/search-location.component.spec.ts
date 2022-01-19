@@ -236,11 +236,8 @@ describe('SearchLocationComponent', () => {
     fixture = TestBed.createComponent(SearchLocationComponent);
     component = fixture.componentInstance;
     const locationService = TestBed.get(LocationService);
-    spyOn(component.keyUpSubject$, 'next');
-    spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
-    component.displayedLocations = LOCATION_RESULTS;
+    component.locations = LOCATION_RESULTS;
     spyOn(component, 'getLocations').and.callThrough();
-    spyOn(component, 'onFocus').and.callThrough();
 
     locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
 
@@ -251,39 +248,21 @@ describe('SearchLocationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component.getLocations).toHaveBeenCalled();
-  });
-
-  it('should call onFocus when input has focus', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.dispatchEvent(new Event('focus'));
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(component.onFocus).toHaveBeenCalled();
-    });
-  });
-
-  it('should call filter when input is more than 2 characters', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = 'MARCUS';
-    selectedLoction.nativeElement.dispatchEvent(new Event('keyup'));
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.keyUpSubject$.next).toHaveBeenCalled();
-      });
+  it('should call filter when input is more than 3 characters', async () => {
+    const selectedLocation = fixture.debugElement.query(By.css('.autocomplete__input'));
+    selectedLocation.nativeElement.value = 'MARCUS';
+    selectedLocation.nativeElement.dispatchEvent(new Event('keyup'));
+    component.findLocationFormGroup.controls.findLocationFormControl.valueChanges.subscribe(value => {
+      expect(value).toBe('MARCUS');
     });
   });
 
   it('should not filter in input characters are less then three', async () => {
-    expect(component.displayedLocations.length).toBeGreaterThan(1);
+    expect(component.locations.length).toBeGreaterThan(1);
 
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = 'te';
-    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
+    const selectedLocation = fixture.debugElement.query(By.css('.autocomplete__input'));
+    selectedLocation.nativeElement.value = 'te';
+    selectedLocation.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.filter).not.toHaveBeenCalled();
@@ -291,15 +270,11 @@ describe('SearchLocationComponent', () => {
   });
 
   it('should reset form control and set to pristine when empty value is given', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = '';
-    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.value).toEqual('');
-        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.pristine).toBeTruthy();
-      });
+    const selectedLocation = fixture.debugElement.query(By.css('.autocomplete__input'));
+    selectedLocation.nativeElement.value = '';
+    selectedLocation.nativeElement.dispatchEvent(new Event('input'));
+    component.findLocationFormGroup.controls.findLocationFormControl.valueChanges.subscribe(value => {
+      expect(value).toBe('');
     });
   });
 });

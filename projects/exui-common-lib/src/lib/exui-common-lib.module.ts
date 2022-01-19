@@ -10,6 +10,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
+import { FindLocationComponent } from './components/find-location/find-location.component';
 import { FindPersonComponent } from './components/find-person/find-person.component';
 import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
@@ -96,6 +97,7 @@ export const COMMON_COMPONENTS = [
   GenericFilterComponent,
   CookieBannerComponent,
   FindPersonComponent,
+  FindLocationComponent,
   SearchLocationComponent,
   PaginationComponent
 ];
