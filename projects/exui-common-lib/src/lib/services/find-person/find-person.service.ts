@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers } from '../../gov-ui/util/session-storage/session-storage-utils';
 
-import { Caseworker, Person, PersonRole, RoleCategory } from '../../models/person.model';
+import { Caseworker, CaseworkersByService, Person, PersonRole, RoleCategory } from '../../models/person.model';
 import { SearchOptions } from '../../models/search-options.model';
 import { SessionStorageService } from '../session-storage/session-storage.service';
 
@@ -32,20 +33,39 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    if (!this.sessionStorageService.getItem(FindAPersonService.caseworkersKey)) {
-      this.http.get<Caseworker[]>('/workallocation2/caseworker').pipe(
-        tap(caseworkerList => this.sessionStorageService.setItem(FindAPersonService.caseworkersKey, JSON.stringify(caseworkerList)))
-      );
+    const fullServices = searchOptions.services;
+    const storedServices = [];
+    const newServices: string[] = [];
+    const storedCaseworkersByService: CaseworkersByService[] = [];
+    fullServices.forEach(serviceId => {
+      const serviceKey = getSessionStorageKeyForServiceId(serviceId);
+      if (this.sessionStorageService.getItem(serviceKey)) {
+        storedServices.push(serviceId);
+        storedCaseworkersByService.push({service: serviceId, caseworkers: JSON.parse(this.sessionStorageService.getItem(serviceKey))});
+      } else {
+        newServices.push(serviceId);
+      }
+    });
+    // if all services are stored then return the stored caseworkers by service
+    if (storedServices.length === fullServices.length) {
+      const storedCaseworkers = getAllCaseworkersFromServices(storedCaseworkersByService);
+      return of(this.searchInCaseworkers(storedCaseworkers, searchOptions));
     }
-    const caseworkers = JSON.parse(this.sessionStorageService.getItem(FindAPersonService.caseworkersKey));
-    let roleCategory = RoleCategory.ALL;
-    if (!(searchOptions.jurisdiction === PersonRole.ALL)) {
-      roleCategory = searchOptions.jurisdiction === PersonRole.CASEWORKER ? RoleCategory.CASEWORKER : RoleCategory.ADMIN;
-    }
-    const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
-    const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
-    const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
-    return searchOptions.userIncluded ? of(finalPeopleList) : of(finalPeopleList.filter(person => person && person.id !== this.userId));
+    // all serviceIds passed in as node layer getting used anyway and caseworkers also stored there
+    return this.http.post<CaseworkersByService[]>('/workallocation2/retrieveCaseWorkersForServices', {fullServices}).pipe(
+      tap(caseworkersByService => {
+        caseworkersByService.forEach(caseworkerListByService => {
+          // for any new service, ensure that they are then stored in the session
+          if (newServices.includes(caseworkerListByService.service)) {
+            setCaseworkers(caseworkerListByService.service, caseworkerListByService.caseworkers, this.sessionStorageService);
+          }
+        });
+      }),
+      map(caseworkersByService => {
+        const givenCaseworkers = getAllCaseworkersFromServices(caseworkersByService);
+        return this.searchInCaseworkers(givenCaseworkers, searchOptions);
+      })
+    );
   }
 
   public mapCaseworkers(caseworkers: Caseworker[], roleCategory: string): Person[] {
@@ -63,6 +83,17 @@ export class FindAPersonService {
       }
     });
     return people;
+  }
+
+  public searchInCaseworkers(caseworkers: Caseworker[], searchOptions: SearchOptions): Person[] {
+    let roleCategory = RoleCategory.ALL;
+    if (!(searchOptions.userRole === PersonRole.ALL)) {
+      roleCategory = searchOptions.userRole === PersonRole.CASEWORKER ? RoleCategory.CASEWORKER : RoleCategory.ADMIN;
+    }
+    const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
+    const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
+    const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
+    return searchOptions.userIncluded ? finalPeopleList : finalPeopleList.filter(person => person && person.id !== this.userId);
   }
 }
 

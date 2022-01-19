@@ -149,6 +149,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when domain changes ensure that person field is reset
   public selectChanged(field: FilterFieldConfig, form: FormGroup): void {
+    // TODO - Do similar with jurisdiction/service for caseworkers by services
     if (field.findPersonField) {
       const currentField = this.config.fields.find((f) => f.name === field.findPersonField);
       if (currentField) {
