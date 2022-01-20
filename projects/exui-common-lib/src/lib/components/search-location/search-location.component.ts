@@ -20,7 +20,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
   @Input() public findLocationFormGroup: FormGroup;
   @Input() public showAutocomplete: boolean = false;
   @Input() public locations: LocationByEPIMSModel[] = [];
-  @Output() public locationChanged = new EventEmitter<LocationByEPIMSModel>();
+  @Output() public locationSelected = new EventEmitter<LocationByEPIMSModel>();
   public term: string = '';
   public readyAfterContent: boolean = false;
   public readonly minSearchCharacters = 3;
@@ -57,7 +57,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
   }
 
   public onKeyDown(): void {
-    this.locationChanged.emit();
+    this.locationSelected.emit();
   }
 
   public filter(term: string): void {
@@ -74,7 +74,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
       this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(selection);
     }
     this.showAutocomplete = false;
-    this.locationChanged.emit(selection);
+    this.locationSelected.emit(selection);
     this.locations = [];
   }
 
@@ -94,7 +94,7 @@ export class SearchLocationComponent implements OnInit, AfterContentInit {
       if (locations.length === 1 && this.term === locations[0].court_name) {
         if (this.findLocationFormGroup.controls.locationSelectedFormControl instanceof FormGroup) {
           this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(locations[0]);
-          this.locationChanged.emit(locations[0]);
+          this.locationSelected.emit(locations[0]);
           this.showAutocomplete = false;
           return;
         }

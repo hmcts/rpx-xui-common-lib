@@ -4,6 +4,7 @@
       <label id="input-selected-location-label">Search for a location by name</label>
     </div>
     <exui-search-location class="search-location"
+                          (locationSelected)="onLocationSelected($event)"
                           [selectedLocations]="selectedLocations"
                           [control]="locationsForm"
                           [locations]="locations"
@@ -11,13 +12,13 @@
                           [disabled]=false
                           [serviceIds]="serviceIds"
                           [locationType]="'case-management'"></exui-search-location>
-    <a href="javascript:void(0)" (click)="addSelection()" class="govuk-button" data-module="govuk-button">
+    <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button" data-module="govuk-button">
       Add location
     </a>
   </div>
   <ul *ngIf="selectedLocations.length" class="hmcts-filter-tags selection-container">
     <li class="location-selection"  *ngFor="let selection of selectedLocations">
-      <a class="hmcts-filter__tag" (click)="removeSelection(selection)" href="javascript:void(0)">
+      <a class="hmcts-filter__tag" (click)="removeLocation(selection)" href="javascript:void(0)">
         {{ selection.court_name }}
       </a>
     </li>
