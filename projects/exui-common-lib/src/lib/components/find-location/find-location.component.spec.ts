@@ -47,6 +47,7 @@ describe('FindLocationComponent', () => {
       minSelected: 1,
       maxSelected: null
     };
+    component.locations = [LOCATION];
     component.form = new FormGroup({
       location: new FormArray([]),
     });
