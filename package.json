@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.6.0-rc1",
+  "version": "1.6.3-find-person-styling",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
