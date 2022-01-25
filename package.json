@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version":  "1.6.1-adding-location-filter-bugfix",
+  "version":  "1.6.1-staff-by-service-2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

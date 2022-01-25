@@ -28,6 +28,7 @@ export class FindPersonComponent implements OnInit, OnChanges {
   @Input() public selectedPersons: Person[] = [];
   @Input() public errorMessage: string = 'You must select a name';
   @Input() public idValue: string = '';
+  @Input() public services: string[] = ['IA'];
   public isPersonSelectionCompleted: boolean = false;
   public showAutocomplete: boolean = false;
   public currentInputValue: string = '';
@@ -67,8 +68,8 @@ export class FindPersonComponent implements OnInit, OnChanges {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialPeople = this.findPersonService.find({ searchTerm, jurisdiction: this.domain });
-    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({ searchTerm, jurisdiction: this.domain });
+    const findJudicialPeople = this.findPersonService.find({ searchTerm, userRole: this.domain, services: this.services});
+    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({ searchTerm, userRole: this.domain, services: this.services });
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {

@@ -23,7 +23,7 @@ describe('FindAPersonService', () => {
     };
     mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
-    const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.JUDICIAL, userIncluded: false };
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false };
     service.find(searchOptions);
     expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation2/findPerson', { searchOptions, userId: '1234' });
   });
@@ -68,14 +68,14 @@ describe('FindAPersonService', () => {
       }
     ]`;
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
-    mockHttpService.get.and.returnValue(of());
+    mockHttpService.post.and.returnValue(of());
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
     mockSessionStorageService.getItem.and.returnValues(JSON.stringify(userDetails), undefined, caseworkers);
 
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
-    const searchOptions = { searchTerm: 'term', jurisdiction: PersonRole.CASEWORKER };
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.CASEWORKER };
     service.findCaseworkers(searchOptions);
-    expect(mockHttpService.get).toHaveBeenCalledWith('/workallocation2/caseworker');
+    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation2/retrieveCaseWorkersForServices', {fullServices: ['IA']});
   });
 
   it('should change caseworkers to people', () => {
