@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers } from '../../gov-ui/util/session-storage/session-storage-utils';
 
-import { Caseworker, CaseworkersByService, Person, PersonRole, RoleCategory } from '../../models/person.model';
-import { SearchOptions } from '../../models/search-options.model';
+import { Caseworker, CaseworkersByService, Person, PersonRole, RoleCategory } from '../../models';
+import { SearchOptions } from '../../models';
 import { SessionStorageService } from '../session-storage/session-storage.service';
 
 @Injectable({

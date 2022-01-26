@@ -3,7 +3,7 @@ import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validat
 import {Subscription} from 'rxjs';
 import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
-import {getCheckBoxesValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -196,6 +196,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const settings = {...this.settings, reset: true};
     this.filterService.persist(settings, this.config.persistence);
     this.filterService.givenErrors.next(null);
+    this.submitted = false;
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
@@ -333,8 +334,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     let defaultValues: { name: string; value: any[] };
     if (settings && settings.fields) {
       defaultValues = settings.fields.find((f) => f.name === field.name);
-      for (const defaultValue of defaultValues.value) {
-        formArray.push(new FormControl(defaultValue));
+      if (defaultValues) {
+        for (const defaultValue of defaultValues.value) {
+          formArray.push(new FormControl(defaultValue));
+        }
       }
     }
     return formArray;
@@ -348,7 +351,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         if (field.type === 'find-location') {
           return {value: values, name};
         } else {
-          return {value: getCheckBoxesValues(field.options, values), name};
+          return {value: getValues(field.options, values), name};
         }
       } else {
         return {value: [values], name};
