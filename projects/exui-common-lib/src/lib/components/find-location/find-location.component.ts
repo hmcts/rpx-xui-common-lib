@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {FilterFieldConfig} from '../../models';
 import {LocationByEPIMSModel} from '../../models/location.model';
@@ -10,7 +10,7 @@ import {SearchLocationComponent} from '../search-location/search-location.compon
   templateUrl: './find-location.component.html',
   styleUrls: ['./find-location.component.scss']
 })
-export class FindLocationComponent implements OnInit {
+export class FindLocationComponent {
   @Input() public selectedLocations: LocationByEPIMSModel[] = [];
   @Input() public submitted: boolean = true;
   @Input() public enableAddLocationButton: boolean = true;
@@ -53,9 +53,6 @@ export class FindLocationComponent implements OnInit {
         this.serviceIds = getValues(field.options, value).filter(x => x !== 'services_all').join(',');
       }
     }
-  }
-
-  public ngOnInit(): void {
   }
 
   public addLocation(): void {
@@ -106,6 +103,4 @@ export class FindLocationComponent implements OnInit {
       formArray.push(new FormControl(location));
     }
   }
-
-
 }
