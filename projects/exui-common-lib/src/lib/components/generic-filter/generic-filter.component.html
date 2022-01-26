@@ -103,7 +103,7 @@
         id="applyFilter"
         [disabled]="config.enableDisabledButton && form.invalid"
       >{{config.applyButtonText || 'Apply'}}</button>
-      <button
+      <button *ngIf="config.showCancelFilterButton"
         class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"
         type="button"
         id="cancelFilter"
