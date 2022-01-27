@@ -160,19 +160,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   // when domain changes ensure that person field is reset
-  public selectChanged(field: FilterFieldConfig, form: FormGroup): void {
+  public fieldChanged(field: FilterFieldConfig, form: FormGroup): void {
     // TODO - Do similar with jurisdiction/service for caseworkers by services
     if (field.changeResetFields && field.changeResetFields.length) {
       for (const resetField of field.changeResetFields) {
         this.resetField(resetField, form);
       }
-    }
-  }
-
-  public radiosChanged(field: FilterFieldConfig): void {
-    if (field.findPersonField) {
-      this.form.get('findPersonControl').setValue(null);
-      this.resetPersonField(field);
     }
   }
 
@@ -234,19 +227,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     });
   }
 
-  private resetPersonField(field: FilterFieldConfig): void {
-    if (this.form.get(field.findPersonField)) {
-      const currentField = this.config.fields.find((f) => f.name === field.findPersonField);
-      if (currentField) {
-        currentField.domain = this.form.get(field.name).value;
-      }
-      this.form.get(field.findPersonField).get('domain').setValue(null);
-      this.form.get(field.findPersonField).get('email').setValue(null);
-      this.form.get(field.findPersonField).get('id').setValue(null);
-      this.form.get(field.findPersonField).get('name').setValue(null);
-      this.form.get(field.findPersonField).get('knownAs').setValue(null);
-    }
-  }
 
   private resetField(resetField: string, form: FormGroup): void {
     const control = form.get(resetField);
@@ -258,12 +238,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     } else if (control instanceof FormGroup) {
       const keys = Object.keys(control.value);
       for (const key of keys) {
-        this.resetField(key, form);
+        this.resetField(key, control);
       }
     } else if (control instanceof FormControl) {
       const value = defaultValue && defaultValue.value && defaultValue.value.length ? defaultValue.value[0] : null;
-      const field = this.config.fields.find((f) => f.name === resetField);
-      this.resetPersonField(field);
       control.setValue(value);
     }
   }
@@ -327,7 +305,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
         // if field updates find person component set the initial domain
         if (field.findPersonField) {
-          this.selectChanged(field, this.form);
+          this.fieldChanged(field, this.form);
         }
       }
     }
