@@ -305,7 +305,7 @@ describe('GenericFilterComponent', () => {
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
-      component.radiosChanged(radioField);
+      component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
     });
