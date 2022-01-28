@@ -1,22 +1,22 @@
 <div class="location-picker-custom">
   <div class="search-location">
     <div>
-      <label id="input-selected-location-label">Search for a location by name</label>
+      <label id="input-selected-location-label" *ngIf="title">{{title}}</label>
     </div>
     <exui-search-location class="search-location"
-                          (locationSelected)="onLocationSelected($event)"
-                          [selectedLocations]="selectedLocations"
-                          [control]="locationsForm"
                           [locations]="locations"
+                          [selectedLocations]="selectedLocations"
+                          [singleMode]="field.maxSelected === 1"
                           [delay]="300"
-                          [disabled]=false
+                          [disabled]="disabled"
                           [serviceIds]="serviceIds"
+                          (locationSelected)="onLocationSelected($event)"
                           [locationType]="'case-management'"></exui-search-location>
-    <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button" data-module="govuk-button">
+    <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button" data-module="govuk-button" *ngIf="enableAddLocationButton">
       Add location
     </a>
   </div>
-  <ul *ngIf="selectedLocations.length" class="hmcts-filter-tags selection-container">
+  <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection"  *ngFor="let selection of selectedLocations">
       <a class="hmcts-filter__tag" (click)="removeLocation(selection)" href="javascript:void(0)">
         {{ selection.court_name }}

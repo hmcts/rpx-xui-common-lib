@@ -153,7 +153,7 @@ describe('FindPersonComponent', () => {
     mockFindAPersonService.findCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
     fixture.detectChanges();
     component.filter('ast').subscribe(result => expect(result).toEqual([mockPersonOne, mockPersonTwo, mockPersonThree]));
-    component.filter('').subscribe(result => expect(result).toBe(null));
+    component.filter('').subscribe(result => expect(result.length).toBe(0));
   });
 
 });

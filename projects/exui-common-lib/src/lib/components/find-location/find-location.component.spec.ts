@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {LocationService} from '../../services/locations/location.service';
 import {SearchLocationComponent} from '../search-location/search-location.component';
@@ -64,18 +64,16 @@ describe('FindLocationComponent', () => {
   });
 
   it('should add location to the selected location list', () => {
-    component.locationsForm.push(new FormControl(LOCATION));
-    const button = fixture.nativeElement.querySelector('.govuk-button');
-    button.click();
+    component.tempSelectedLocation = LOCATION;
+    component.addLocation();
     fixture.detectChanges();
     const selectedLocation = fixture.nativeElement.querySelector('.hmcts-filter__tag');
     expect(selectedLocation.textContent.trim()).toEqual(LOCATION.court_name);
   });
 
   it('should remove locations from the selected list', () => {
-    component.locationsForm.push(new FormControl(LOCATION));
-    const button = fixture.nativeElement.querySelector('.govuk-button');
-    button.click();
+    component.tempSelectedLocation = LOCATION;
+    component.addLocation();
     fixture.detectChanges();
     const selectedLocation = fixture.nativeElement.querySelector('.hmcts-filter__tag');
     expect(selectedLocation.textContent.trim()).toEqual(LOCATION.court_name);
@@ -84,5 +82,4 @@ describe('FindLocationComponent', () => {
     const selectedLocationAfterRemove = fixture.nativeElement.querySelector('.hmcts-filter__tag');
     expect(selectedLocationAfterRemove).toBeNull();
   });
-
 });

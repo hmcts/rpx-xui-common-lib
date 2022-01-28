@@ -249,10 +249,10 @@ describe('SearchLocationComponent', () => {
   });
 
   it('should call filter when input is more than 3 characters', async () => {
-    const selectedLocation = fixture.debugElement.query(By.css('.autocomplete__input'));
+    const selectedLocation = fixture.debugElement.query(By.css('.govuk-input'));
     selectedLocation.nativeElement.value = 'MARCUS';
     selectedLocation.nativeElement.dispatchEvent(new Event('keyup'));
-    component.findLocationFormGroup.controls.findLocationFormControl.valueChanges.subscribe(value => {
+    component.form.controls.searchTerm.valueChanges.subscribe(value => {
       expect(value).toBe('MARCUS');
     });
   });
@@ -260,7 +260,7 @@ describe('SearchLocationComponent', () => {
   it('should not filter in input characters are less then three', async () => {
     expect(component.locations.length).toBeGreaterThan(1);
 
-    const selectedLocation = fixture.debugElement.query(By.css('.autocomplete__input'));
+    const selectedLocation = fixture.debugElement.query(By.css('.govuk-input'));
     selectedLocation.nativeElement.value = 'te';
     selectedLocation.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {
@@ -270,10 +270,10 @@ describe('SearchLocationComponent', () => {
   });
 
   it('should reset form control and set to pristine when empty value is given', async () => {
-    const selectedLocation = fixture.debugElement.query(By.css('.autocomplete__input'));
+    const selectedLocation = fixture.debugElement.query(By.css('.govuk-input'));
     selectedLocation.nativeElement.value = '';
     selectedLocation.nativeElement.dispatchEvent(new Event('input'));
-    component.findLocationFormGroup.controls.findLocationFormControl.valueChanges.subscribe(value => {
+    component.form.controls.searchTerm.valueChanges.subscribe(value => {
       expect(value).toBe('');
     });
   });
