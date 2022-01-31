@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTabsModule } from '@angular/material';
+import {MatInputModule, MatTabsModule} from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
@@ -131,14 +131,15 @@ export const GOV_UI_COMPONENTS = [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild([]),
-    MatAutocompleteModule,
-    MatTabsModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forChild([]),
+        MatAutocompleteModule,
+        MatTabsModule,
+        MatInputModule
+    ],
   providers: [
     { provide: windowToken, useFactory: windowProvider }
   ],

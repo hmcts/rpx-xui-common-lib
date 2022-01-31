@@ -1,12 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers } from '../../gov-ui/util/session-storage/session-storage-utils';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
+import {getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers} from '../../gov-ui/util/session-storage/session-storage-utils';
 
-import { Caseworker, CaseworkersByService, Person, PersonRole, RoleCategory } from '../../models/person.model';
-import { SearchOptions } from '../../models/search-options.model';
-import { SessionStorageService } from '../session-storage/session-storage.service';
+import {Caseworker, CaseworkersByService, Person, PersonRole, RoleCategory, SearchOptions} from '../../models';
+import {SessionStorageService} from '../session-storage/session-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,8 @@ export class FindAPersonService {
   public static caseworkersKey: string = 'caseworkers';
   public userId: string;
 
-  constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) { }
+  constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
+  }
 
   public find(searchOptions: SearchOptions): Observable<Person[]> {
     const userInfoStr = this.sessionStorageService.getItem('userDetails');
@@ -24,7 +24,7 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    return this.http.post<Person[]>('/workallocation2/findPerson', { searchOptions, userId: this.userId });
+    return this.http.post<Person[]>('/workallocation2/findPerson', {searchOptions, userId: this.userId});
   }
 
   public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {

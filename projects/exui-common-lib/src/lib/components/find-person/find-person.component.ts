@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, of, zip } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
-import { Person, PersonRole } from '../../models';
-import { FindAPersonService } from '../../services/find-person/find-person.service';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Observable, of, zip} from 'rxjs';
+import {catchError, filter, map, startWith, switchMap, tap} from 'rxjs/operators';
+import {Person, PersonRole} from '../../models';
+import {FindAPersonService} from '../../services/find-person/find-person.service';
 
 @Component({
   selector: 'xuilib-find-person',
@@ -19,11 +19,11 @@ export class FindPersonComponent implements OnInit, OnChanges {
   @Input() public domain = PersonRole.ALL;
   @Input() public findPersonGroup: FormGroup;
   @Input() public selectedPerson: string;
-  @Input() public submitted?: boolean = true;
-  @Input() public disabled?: boolean = null;
+  @Input() public submitted: boolean = true;
+  @Input() public disabled: boolean = null;
   @Input() public userIncluded?: boolean = false;
   @Input() public placeholderContent: string = '';
-  @Input() public isNoResultsShown: boolean = false;
+  @Input() public isNoResultsShown: boolean = true;
   @Input() public showUpdatedColor: boolean = false;
   @Input() public selectedPersons: Person[] = [];
   @Input() public errorMessage: string = 'You must select a name';
@@ -32,14 +32,13 @@ export class FindPersonComponent implements OnInit, OnChanges {
   public isPersonSelectionCompleted: boolean = false;
   public showAutocomplete: boolean = false;
   public currentInputValue: string = '';
-  public choosenPerson: Person = {} as Person;
+  public chosenPerson: Person = null;
+  public findPersonControl = new FormControl('');
+  public filteredOptions: Person[] = [];
+  public readonly minSearchCharacters = 2;
 
-  constructor(private readonly findPersonService: FindAPersonService) {
+  constructor(private readonly findPersonService: FindAPersonService, private readonly cd: ChangeDetectorRef) {
   }
-
-  public findPersonControl = new FormControl();
-  public filteredOptions: Observable<Person[]>;
-  private readonly minSearchCharacters = 2;
 
   public ngOnInit(): void {
     if (!this.findPersonGroup) {
@@ -47,12 +46,19 @@ export class FindPersonComponent implements OnInit, OnChanges {
     } else {
       this.findPersonGroup.addControl('findPersonControl', this.findPersonControl);
     }
-    this.filteredOptions = this.findPersonControl.valueChanges.pipe(
+    this.findPersonControl.valueChanges.pipe(
       startWith(''),
-      switchMap(searchTerm => {
-        return this.filter(searchTerm || '');
-      })
-    );
+      tap(() => this.showAutocomplete = false),
+      tap(() => this.filteredOptions = []),
+      filter(searchTerm => searchTerm && searchTerm.length > this.minSearchCharacters),
+      switchMap(searchTerm => this.filter(searchTerm).pipe(
+        tap(() => this.showAutocomplete = true),
+        catchError(() => this.filteredOptions = []),
+      ))
+    ).subscribe((people: Person[]) => {
+      this.filteredOptions = people;
+      this.cd.detectChanges();
+    });
     this.findPersonControl.setValue(this.selectedPerson);
   }
 
@@ -68,14 +74,14 @@ export class FindPersonComponent implements OnInit, OnChanges {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialPeople = this.findPersonService.find({ searchTerm, userRole: this.domain, services: this.services});
-    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({ searchTerm, userRole: this.domain, services: this.services });
+    const findJudicialPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services});
+    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: this.services});
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
           return findJudicialPeople.pipe(map(persons => {
-            const ids: string[] = this.selectedPersons.map(({ id }) => id);
-            return persons.filter(({ id }) => !ids.includes(id));
+            const ids: string[] = this.selectedPersons.map(({id}) => id);
+            return persons.filter(({id}) => !ids.includes(id));
           }));
         }
         case PersonRole.ALL: {
@@ -86,26 +92,30 @@ export class FindPersonComponent implements OnInit, OnChanges {
           return findCaseworkersOrAdmins;
         }
         default: {
-          return of();
+          return of([]);
         }
       }
     }
-    return of();
+    return of([]);
   }
 
-  public onSelectionChange(selectedPerson?: Person) {
+  public onSelectionChange(selectedPerson: Person) {
     this.isPersonSelectionCompleted = true;
-    this.choosenPerson = selectedPerson;
+    this.chosenPerson = selectedPerson;
     this.personSelected.emit(selectedPerson);
+    this.findPersonControl.setValue('');
   }
 
   public updatedVal(currentValue: string) {
     this.currentInputValue = currentValue;
     this.showAutocomplete = !!currentValue && (currentValue.length > this.minSearchCharacters);
-    this.isPersonSelectionCompleted = (this.getDisplayName(this.choosenPerson) === currentValue) ? true : false;
+    this.isPersonSelectionCompleted = this.getDisplayName(this.chosenPerson) === currentValue;
   }
 
   public getDisplayName(selectedPerson: Person): string {
+    if (!selectedPerson) {
+      return '';
+    }
     if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
       return `${selectedPerson.knownAs}(${selectedPerson.email})`;
     }

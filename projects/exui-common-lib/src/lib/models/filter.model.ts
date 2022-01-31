@@ -27,7 +27,11 @@ export interface FilterFieldConfig {
   lineBreakBefore?: boolean;
   showCondition?: string;
   enableCondition?: string;
+  enableAddLocationButton?: boolean;
+  changeResetFields?: string[];
   findPersonField?: string;
+  findLocationField?: string;
+  domainField?: string;
   disabledText?: string;
   type: FilterFieldType;
   domain?: PersonRole;

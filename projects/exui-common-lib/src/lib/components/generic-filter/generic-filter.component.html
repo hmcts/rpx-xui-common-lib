@@ -15,7 +15,7 @@
       </span>
       <div class="govuk-body" [ngSwitch]="field.type">
         <ng-container *ngSwitchCase="'select'">
-          <select class="govuk-select" (change)="selectChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
+          <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
             <option disabled selected hidden value="">{{field.disabledText}}</option>
             <option class="govuk-radios__item" *ngFor="let item of field.options" [value]="item.key">{{item.label}}</option>
           </select>
@@ -66,7 +66,7 @@
                      [checked]="item.key === form.get(field.name).value"
                      class="govuk-radios__input"
                      [value]="item.key"
-                     (change)="radiosChanged(field)"
+                     (change)="fieldChanged(field, form)"
               />
               <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
             </div>
@@ -75,19 +75,22 @@
         <ng-container *ngSwitchCase="'find-person'">
           <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
                               [submitted]="submitted"
-                              [disabled]="disabled(field, form)"
-                              [domain]="field.domain"
+                              [domain]="form.get(field.domainField)?.value"
                               [findPersonGroup]="form"
                               [selectedPerson]="form.get(field.name)?.value?.email"
+                              [disabled]="disabled(field, form)"
                               [userIncluded]="false"
           ></xuilib-find-person>
         </ng-container>
         <ng-container *ngSwitchCase="'find-location'">
           <xuilib-find-location [form]="form"
                                 [fields]="config.fields"
+                                [title]="field.title"
+                                [enableAddLocationButton]="field.enableAddLocationButton"
+                                [disabled]="disabled(field, form)"
                                 [selectedLocations]="form.get(field.name)?.value"
                                 [submitted]="submitted"
-                                [services]="form.get(field.findPersonField)?.value"
+                                [services]="form.get(field.findLocationField)?.value"
                                 [field]="field"
           ></xuilib-find-location>
         </ng-container>
