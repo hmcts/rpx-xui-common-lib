@@ -12,6 +12,7 @@ export interface FilterConfig {
   cancelButtonText: string;
   cancelSetting?: FilterSetting;
   enableDisabledButton?: boolean;
+  showCancelFilterButton?: boolean;
 }
 
 export interface FilterFieldConfig {

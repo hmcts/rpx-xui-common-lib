@@ -97,6 +97,7 @@ describe('GenericFilterComponent', () => {
           type: 'select'
         }],
       persistence: 'session',
+      showCancelFilterButton: true
     };
     fixture.detectChanges();
   });
@@ -180,6 +181,12 @@ describe('GenericFilterComponent', () => {
     const button: HTMLButtonElement = form.querySelector('button[type="submit"]');
     button.click();
     expect(component.form.invalid).toBeTruthy();
+  });
+
+  it('should display cancel filter button', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    expect(form.querySelector('button[id="cancelFilter"]')).toBeDefined();
   });
 
   describe('component methods that use fields', () => {
@@ -374,6 +381,7 @@ describe('Select all checkboxes', () => {
         }
       ],
       persistence: 'session',
+      showCancelFilterButton: true
     };
     fixture.detectChanges();
   });
@@ -452,6 +460,7 @@ describe('Find location filter config', () => {
         }
       ],
       persistence: 'session',
+      showCancelFilterButton: true
     };
     fixture.detectChanges();
   });
