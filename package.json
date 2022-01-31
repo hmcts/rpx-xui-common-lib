@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version":  "1.6.7-generic-filter-show-cancel-button",
+  "version":  "1.6.7-clear-selected-locations-on-change",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

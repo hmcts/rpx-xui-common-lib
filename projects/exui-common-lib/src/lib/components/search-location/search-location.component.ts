@@ -22,6 +22,7 @@ export class SearchLocationComponent implements OnInit {
   @Input() public showAutocomplete: boolean = false;
   @Input() public locations: LocationByEPIMSModel[] = [];
   @Output() public locationSelected = new EventEmitter<LocationByEPIMSModel>();
+  @Output() public locationInputChanged: EventEmitter<string> = new EventEmitter<string>();
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pSelectedLocations: any[] = [];
@@ -76,6 +77,7 @@ export class SearchLocationComponent implements OnInit {
   public search(): void {
     this.form.controls.searchTerm.valueChanges
       .pipe(
+        tap((term) => this.locationInputChanged.next(term)),
         tap(() => this.locations = []),
         tap((term) => this.term = term),
         filter(term => !!term && term.length >= this.minSearchCharacters),
