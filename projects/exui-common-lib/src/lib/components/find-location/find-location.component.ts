@@ -78,7 +78,7 @@ export class FindLocationComponent {
 
   public onInputChanged(term: string): void {
     // if the filter is in single mode clear the selected locations
-    if (term && this.field.maxSelected === 1) {
+    if (typeof term === 'string' && this.field.maxSelected === 1) {
         this.removeSelectedValues();
     }
   }
