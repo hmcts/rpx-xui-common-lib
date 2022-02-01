@@ -76,6 +76,13 @@ export class FindLocationComponent {
     }
   }
 
+  public onInputChanged(term: string): void {
+    // if the filter is in single mode clear the selected locations
+    if (typeof term === 'string' && this.field.maxSelected === 1) {
+        this.removeSelectedValues();
+    }
+  }
+
   public onLocationSelected(location: LocationByEPIMSModel): void {
     if (this.field.maxSelected === 1) {
       this.removeSelectedValues();
