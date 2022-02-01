@@ -75,10 +75,10 @@
         <ng-container *ngSwitchCase="'find-person'">
           <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
                               [submitted]="submitted"
+                              [disabled]="disabled(field, form)"
                               [domain]="form.get(field.domainField)?.value"
                               [findPersonGroup]="form"
                               [selectedPerson]="form.get(field.name)?.value?.email"
-                              [disabled]="disabled(field, form)"
                               [userIncluded]="false"
           ></xuilib-find-person>
         </ng-container>
