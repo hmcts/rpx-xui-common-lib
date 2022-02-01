@@ -1,7 +1,7 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {FilterFieldConfig} from '../../models';
-import {LocationByEPIMSModel} from '../../models/location.model';
+import {LocationByEPIMMSModel} from '../../models/location.model';
 import {getValues} from '../generic-filter/generic-filter-utils';
 import {SearchLocationComponent} from '../search-location/search-location.component';
 
@@ -11,15 +11,15 @@ import {SearchLocationComponent} from '../search-location/search-location.compon
   styleUrls: ['./find-location.component.scss']
 })
 export class FindLocationComponent {
-  @Input() public selectedLocations: LocationByEPIMSModel[] = [];
+  @Input() public selectedLocations: LocationByEPIMMSModel[] = [];
   @Input() public submitted: boolean = true;
   @Input() public enableAddLocationButton: boolean = true;
   @Input() public form: FormGroup;
   @Input() public field: FilterFieldConfig;
   @Input() public fields: FilterFieldConfig[];
   @Input() public title = 'Search for a location by name';
-  public locations: LocationByEPIMSModel[] = [];
-  public tempSelectedLocation: LocationByEPIMSModel = null;
+  public locations: LocationByEPIMMSModel[] = [];
+  public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
   @ViewChild(SearchLocationComponent) public searchLocationComponent: SearchLocationComponent;
   private pServices: string[] = [];
@@ -65,11 +65,11 @@ export class FindLocationComponent {
     }
   }
 
-  public removeLocation(location: LocationByEPIMSModel): void {
-    if (location.epims_id) {
-      this.selectedLocations = this.selectedLocations.filter(selectedLocation => selectedLocation.epims_id !== location.epims_id);
+  public removeLocation(location: LocationByEPIMMSModel): void {
+    if (location.epimms_id) {
+      this.selectedLocations = this.selectedLocations.filter(selectedLocation => selectedLocation.epimms_id !== location.epimms_id);
       const formArray = this.form.get(this.field.name) as FormArray;
-      const index = (formArray.value as LocationByEPIMSModel[]).findIndex(selectedLocation => selectedLocation.epims_id === location.epims_id);
+      const index = (formArray.value as LocationByEPIMMSModel[]).findIndex(selectedLocation => selectedLocation.epimms_id === location.epimms_id);
       if (index > -1) {
         formArray.removeAt(index);
       }
@@ -83,13 +83,13 @@ export class FindLocationComponent {
     }
   }
 
-  public onLocationSelected(location: LocationByEPIMSModel): void {
+  public onLocationSelected(location: LocationByEPIMMSModel): void {
     if (this.field.maxSelected === 1) {
       this.removeSelectedValues();
       this.addSelectedLocationsToForm([location]);
     } else {
-      if (!this.selectedLocations.find(x => x.epims_id === location.epims_id)) {
-        if (location.epims_id) {
+      if (!this.selectedLocations.find(x => x.epimms_id === location.epimms_id)) {
+        if (location.epimms_id) {
           this.tempSelectedLocation = location;
         }
       }
@@ -104,7 +104,7 @@ export class FindLocationComponent {
     this.selectedLocations = [];
   }
 
-  private addSelectedLocationsToForm(locations: LocationByEPIMSModel[]): void {
+  private addSelectedLocationsToForm(locations: LocationByEPIMMSModel[]): void {
     const formArray = this.form.get(this.field.name) as FormArray;
     for (const location of locations) {
       formArray.push(new FormControl(location));

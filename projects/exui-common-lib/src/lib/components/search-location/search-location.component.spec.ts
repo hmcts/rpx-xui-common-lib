@@ -29,7 +29,7 @@ describe('SearchLocationComponent', () => {
     const LOCATION_RESULTS = [
       {
         court_venue_id: '100',
-        epims_id: '219164',
+        epimms_id: '219164',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberdeen Tribunal Hearing Centre',
@@ -45,7 +45,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '101',
-        epims_id: '219164',
+        epimms_id: '219164',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberdeen Tribunal Hearing Centre',
@@ -61,7 +61,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '102',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -77,7 +77,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '103',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -93,7 +93,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '104',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -109,7 +109,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '105',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -125,7 +125,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '106',
-        epims_id: '450049',
+        epimms_id: '450049',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aldershot Justice Centre',
@@ -143,7 +143,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '107',
-        epims_id: '450049',
+        epimms_id: '450049',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aldershot Justice Centre',
@@ -161,7 +161,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '108',
-        epims_id: '450049',
+        epimms_id: '450049',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aldershot Justice Centre',
@@ -179,7 +179,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '109',
-        epims_id: '271588',
+        epimms_id: '271588',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Amersham Law Courts',
@@ -197,7 +197,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '110',
-        epims_id: '239985',
+        epimms_id: '239985',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Ashford Tribunal Hearing Centre',
@@ -215,7 +215,7 @@ describe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '111',
-        epims_id: '239985',
+        epimms_id: '239985',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Ashford Tribunal Hearing Centre',
