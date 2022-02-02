@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Observable, of, zip, Subscription} from 'rxjs';
+import {Observable, of, Subscription, zip} from 'rxjs';
 import {catchError, debounceTime, filter, map, startWith, switchMap, tap} from 'rxjs/operators';
 import {Person, PersonRole} from '../../models';
 import {FindAPersonService} from '../../services/find-person/find-person.service';
