@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, of, Subscription, zip} from 'rxjs';
-import {catchError, debounceTime, filter, map, startWith, switchMap, tap} from 'rxjs/operators';
+import {catchError, debounceTime, filter, map, switchMap, tap} from 'rxjs/operators';
 import {Person, PersonRole} from '../../models';
 import {FindAPersonService} from '../../services/find-person/find-person.service';
 
@@ -30,7 +30,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   @Input() public services: string[] = ['IA'];
   @Input() public disabled: boolean = null;
   public showAutocomplete: boolean = false;
-  public findPersonControl = new FormControl('');
+  public findPersonControl: FormControl;
   public filteredOptions: Person[] = [];
   public readonly minSearchCharacters = 2;
   private sub: Subscription;
@@ -45,15 +45,15 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.findPersonControl = new FormControl(this.selectedPerson);
     this.findPersonGroup.addControl('findPersonControl', this.findPersonControl);
     this.sub = this.findPersonControl.valueChanges.pipe(
-      startWith(''),
-      debounceTime(300),
       tap(() => this.showAutocomplete = false),
       tap(() => this.filteredOptions = []),
-      tap((term) => typeof term === 'string' ? this.personSelected.emit(null) : void 0),
-      filter(searchTerm => searchTerm && searchTerm.length > this.minSearchCharacters),
-      switchMap(searchTerm => this.filter(searchTerm).pipe(
+      debounceTime(300),
+      tap((searchTerm) => typeof searchTerm === 'string' ? this.personSelected.emit(null) : void 0),
+      filter((searchTerm: string) => searchTerm && searchTerm.length > this.minSearchCharacters),
+      switchMap((searchTerm: string) => this.filter(searchTerm).pipe(
         tap(() => this.showAutocomplete = true),
         catchError(() => this.filteredOptions = []),
       ))
@@ -61,7 +61,6 @@ export class FindPersonComponent implements OnInit, OnDestroy {
       this.filteredOptions = people;
       this.cd.detectChanges();
     });
-    this.findPersonControl.setValue(this.selectedPerson);
   }
 
   public filter(searchTerm: string): Observable<Person[]> {

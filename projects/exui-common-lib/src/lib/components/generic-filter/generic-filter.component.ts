@@ -181,6 +181,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
+    console.log('updatePersonControls', values, field);
     let keys;
     if (!values) {
       keys = Object.keys(this.form.get(field.name).value);
