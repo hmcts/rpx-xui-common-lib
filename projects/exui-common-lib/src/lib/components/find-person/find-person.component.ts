@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Observable, of, zip} from 'rxjs';
+import {Observable, of, zip, Subscription} from 'rxjs';
 import {catchError, debounceTime, filter, map, startWith, switchMap, tap} from 'rxjs/operators';
 import {Person, PersonRole} from '../../models';
 import {FindAPersonService} from '../../services/find-person/find-person.service';
@@ -11,7 +11,7 @@ import {FindAPersonService} from '../../services/find-person/find-person.service
   styleUrls: ['./find-person.component.scss'],
 })
 
-export class FindPersonComponent implements OnInit {
+export class FindPersonComponent implements OnInit, OnDestroy {
   @Output() public personSelected = new EventEmitter<Person>();
   @Input() public title: string;
   @Input() public boldTitle = 'Find the person';
@@ -33,13 +33,20 @@ export class FindPersonComponent implements OnInit {
   public findPersonControl = new FormControl('');
   public filteredOptions: Person[] = [];
   public readonly minSearchCharacters = 2;
+  private sub: Subscription;
 
   constructor(private readonly findPersonService: FindAPersonService, private readonly cd: ChangeDetectorRef) {
   }
 
+  public ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
+
   public ngOnInit(): void {
     this.findPersonGroup.addControl('findPersonControl', this.findPersonControl);
-    this.findPersonControl.valueChanges.pipe(
+    this.sub = this.findPersonControl.valueChanges.pipe(
       startWith(''),
       debounceTime(300),
       tap(() => this.showAutocomplete = false),
