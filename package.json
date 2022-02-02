@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version":  "1.6.7-epims-to-epimms",
+  "version":  "1.6.7-location-integration",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

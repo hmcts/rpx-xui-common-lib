@@ -20,7 +20,7 @@
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection"  *ngFor="let selection of selectedLocations">
       <a class="hmcts-filter__tag" (click)="removeLocation(selection)" href="javascript:void(0)">
-        {{ selection.court_name }}
+        {{ selection.venue_name }}
       </a>
     </li>
   </ul>
