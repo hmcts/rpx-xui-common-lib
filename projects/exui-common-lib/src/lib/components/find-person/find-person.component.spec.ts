@@ -1,13 +1,11 @@
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
+import {of} from 'rxjs';
+import {Person, PersonRole} from '../../models';
 
-import { SimpleChanges } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
-import { of } from 'rxjs';
-import { Person, PersonRole } from '../../models';
-
-import { FindAPersonService } from '../../services/find-person/find-person.service';
-import { FindPersonComponent } from './find-person.component';
+import {FindAPersonService} from '../../services/find-person/find-person.service';
+import {FindPersonComponent} from './find-person.component';
 
 describe('FindPersonComponent', () => {
   let component: FindPersonComponent;
@@ -26,7 +24,7 @@ describe('FindPersonComponent', () => {
         FindPersonComponent
       ],
       providers: [
-        { provide: FindAPersonService, useValue: mockFindAPersonService }
+        {provide: FindAPersonService, useValue: mockFindAPersonService}
       ]
     }).compileComponents();
     fixture = TestBed.createComponent(FindPersonComponent);
@@ -46,8 +44,10 @@ describe('FindPersonComponent', () => {
     mockFindAPersonService.findCaseworkers.and.returnValue(of([]));
     component.findPersonControl.setValue('test');
     fixture.detectChanges();
-    expect(mockFindAPersonService.find).toHaveBeenCalled();
-    expect(mockFindAPersonService.findCaseworkers).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(mockFindAPersonService.find).toHaveBeenCalled();
+      expect(mockFindAPersonService.findCaseworkers).toHaveBeenCalled();
+    }, 500);
   });
 
   it('selection change emits change with person', () => {
@@ -62,15 +62,6 @@ describe('FindPersonComponent', () => {
     expect(component.personSelected.emit).toHaveBeenCalledWith(null);
     component.onSelectionChange(mockPerson);
     expect(component.personSelected.emit).toHaveBeenCalledWith(mockPerson);
-  });
-
-  it('should set auto complete boolean correctly', () => {
-    component.updatedVal(undefined);
-    expect(component.showAutocomplete).toBe(false);
-    component.updatedVal('lf');
-    expect(component.showAutocomplete).toBe(false);
-    component.updatedVal('caseworker');
-    expect(component.showAutocomplete).toBe(true);
   });
 
   it('getDisplayName Non Judicial with email', () => {
@@ -115,20 +106,6 @@ describe('FindPersonComponent', () => {
     expect(displayName).toEqual('First Last(first.last@email.com)');
   });
 
-  it('can switch domain on changes', () => {
-    const changes: SimpleChanges = {
-      domain: {
-        firstChange: false,
-        previousValue: 'All',
-        currentValue: 'Judicial',
-        isFirstChange: () => false
-      }
-    };
-    component.ngOnChanges(changes);
-    fixture.detectChanges();
-    expect(component.findPersonControl.value).toBe(null);
-    expect(component.selectedPerson).toBe(null);
-  });
 
   it('can filter through both judicial and caseworkers', () => {
     const mockPersonOne = {
@@ -151,7 +128,6 @@ describe('FindPersonComponent', () => {
     };
     mockFindAPersonService.find.and.returnValue(of([mockPersonOne]));
     mockFindAPersonService.findCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
-    fixture.detectChanges();
     component.filter('ast').subscribe(result => expect(result).toEqual([mockPersonOne, mockPersonTwo, mockPersonThree]));
     component.filter('').subscribe(result => expect(result.length).toBe(0));
   });

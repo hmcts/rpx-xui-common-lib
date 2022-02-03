@@ -181,10 +181,17 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
-    const keys = Object.keys(values);
+    console.log('updatePersonControls', values, field);
+    let keys;
+    if (!values) {
+      keys = Object.keys(this.form.get(field.name).value);
+    } else {
+      keys = Object.keys(values);
+    }
     for (const key of keys) {
       if (this.form.get(field.name) && this.form.get(field.name).get(key)) {
-        this.form.get(field.name).get(key).patchValue(values[key]);
+        const value = values && values[key] ? values[key] : null;
+        this.form.get(field.name).get(key).patchValue(value);
       }
     }
   }
@@ -226,7 +233,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 
   private resetField(resetField: string, form: FormGroup): void {
     const control = form.get(resetField);
