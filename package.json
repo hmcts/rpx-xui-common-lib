@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version":  "1.6.7-find-person-bug-fix-v4",
+  "version":  "1.6.7-find-person-bug-fix-v5",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
