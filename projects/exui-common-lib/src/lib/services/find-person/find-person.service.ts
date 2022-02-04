@@ -14,6 +14,7 @@ export class FindAPersonService {
 
   public static caseworkersKey: string = 'caseworkers';
   public userId: string;
+  public assignedUser: string;
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
   }
@@ -24,7 +25,8 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    return this.http.post<Person[]>('/workallocation2/findPerson', {searchOptions, userId: this.userId});
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    return this.http.post<Person[]>('/workallocation2/findPerson', {searchOptions, userId: this.userId, assignedUser: this.assignedUser});
   }
 
   public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {
@@ -33,6 +35,7 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
     const fullServices = searchOptions.services;
     const storedServices = [];
     const newServices: string[] = [];
@@ -93,7 +96,8 @@ export class FindAPersonService {
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
-    return searchOptions.userIncluded ? finalPeopleList : finalPeopleList.filter(person => person && person.id !== this.userId);
+    return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
+     : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
   }
 }
 

@@ -21,6 +21,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   @Input() public selectedPerson: string;
   @Input() public submitted: boolean = true;
   @Input() public userIncluded?: boolean = false;
+  @Input() public assignedUser?: string;
   @Input() public placeholderContent: string = '';
   @Input() public isNoResultsShown: boolean = true;
   @Input() public showUpdatedColor: boolean = false;
@@ -64,8 +65,8 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services});
-    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: this.services});
+    const findJudicialPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
+    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
