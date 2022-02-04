@@ -23,9 +23,9 @@ describe('FindAPersonService', () => {
     };
     mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
-    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false };
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false, assignedUser: '1234' };
     service.find(searchOptions);
-    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation2/findPerson', { searchOptions, userId: '1234' });
+    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation2/findPerson', { searchOptions, userId: '1234', assignedUser: '1234' });
   });
 
   it('find specific caseworkers', () => {

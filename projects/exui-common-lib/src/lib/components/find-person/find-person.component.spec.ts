@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {of} from 'rxjs';
@@ -35,11 +35,15 @@ describe('FindPersonComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    component.ngOnDestroy();
+  })
+
   it('is Truthy', () => {
     expect(component).toBeTruthy();
   });
 
-  it('input element changes triggers search', () => {
+  it('input element changes triggers search', async(() => {
     mockFindAPersonService.find.and.returnValue(of([]));
     mockFindAPersonService.findCaseworkers.and.returnValue(of([]));
     component.findPersonControl.setValue('test');
@@ -48,7 +52,7 @@ describe('FindPersonComponent', () => {
       expect(mockFindAPersonService.find).toHaveBeenCalled();
       expect(mockFindAPersonService.findCaseworkers).toHaveBeenCalled();
     }, 500);
-  });
+  }));
 
   it('selection change emits change with person', () => {
     const mockPerson: Person = {
