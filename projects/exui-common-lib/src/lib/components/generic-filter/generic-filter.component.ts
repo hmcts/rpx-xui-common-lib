@@ -3,7 +3,7 @@ import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validat
 import {Subscription} from 'rxjs';
 import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
-import {getCheckBoxesValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -160,30 +160,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   // when domain changes ensure that person field is reset
-  public selectChanged(field: FilterFieldConfig, form: FormGroup): void {
-    if (field.findPersonField) {
-      const currentField = this.config.fields.find((f) => f.name === field.findPersonField);
-      if (currentField) {
-        currentField.domain = form.get(field.name).value;
+  public fieldChanged(field: FilterFieldConfig, form: FormGroup): void {
+    // TODO - Do similar with jurisdiction/service for caseworkers by services
+    if (field.changeResetFields && field.changeResetFields.length) {
+      for (const resetField of field.changeResetFields) {
+        this.resetField(resetField, form);
       }
-      this.removePersonField(field);
-    }
-  }
-
-  public radiosChanged(field: FilterFieldConfig): void {
-    if (field.findPersonField) {
-      this.form.get('findPersonControl').setValue(null);
-      this.removePersonField(field);
-    }
-  }
-
-  public removePersonField(field: FilterFieldConfig): void {
-    if (this.form.get(field.findPersonField)) {
-      this.form.get(field.findPersonField).get('domain').setValue(null);
-      this.form.get(field.findPersonField).get('email').setValue(null);
-      this.form.get(field.findPersonField).get('id').setValue(null);
-      this.form.get(field.findPersonField).get('name').setValue(null);
-      this.form.get(field.findPersonField).get('knownAs').setValue(null);
     }
   }
 
@@ -195,13 +177,21 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const settings = {...this.settings, reset: true};
     this.filterService.persist(settings, this.config.persistence);
     this.filterService.givenErrors.next(null);
+    this.submitted = false;
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
-    const keys = Object.keys(values);
+    console.log('updatePersonControls', values, field);
+    let keys;
+    if (!values) {
+      keys = Object.keys(this.form.get(field.name).value);
+    } else {
+      keys = Object.keys(values);
+    }
     for (const key of keys) {
       if (this.form.get(field.name) && this.form.get(field.name).get(key)) {
-        this.form.get(field.name).get(key).patchValue(values[key]);
+        const value = values && values[key] ? values[key] : null;
+        this.form.get(field.name).get(key).patchValue(value);
       }
     }
   }
@@ -242,6 +232,24 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         control.patchValue(false);
       }
     });
+  }
+
+  private resetField(resetField: string, form: FormGroup): void {
+    const control = form.get(resetField);
+    const defaultValue: { name: string, value: any[] } = this.config.cancelSetting.fields.find((f) => f.name === resetField);
+    if (control instanceof FormArray) {
+      for (let i = 0; i < control.length; i++) {
+        control.removeAt(i);
+      }
+    } else if (control instanceof FormGroup) {
+      const keys = Object.keys(control.value);
+      for (const key of keys) {
+        this.resetField(key, control);
+      }
+    } else if (control instanceof FormControl) {
+      const value = defaultValue && defaultValue.value && defaultValue.value.length ? defaultValue.value[0] : null;
+      control.setValue(value);
+    }
   }
 
   private mergeDefaultFields(filter: FilterSetting): void {
@@ -303,7 +311,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
         // if field updates find person component set the initial domain
         if (field.findPersonField) {
-          this.selectChanged(field, this.form);
+          this.fieldChanged(field, this.form);
         }
       }
     }
@@ -332,8 +340,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     let defaultValues: { name: string; value: any[] };
     if (settings && settings.fields) {
       defaultValues = settings.fields.find((f) => f.name === field.name);
-      for (const defaultValue of defaultValues.value) {
-        formArray.push(new FormControl(defaultValue));
+      if (defaultValues) {
+        for (const defaultValue of defaultValues.value) {
+          formArray.push(new FormControl(defaultValue));
+        }
       }
     }
     return formArray;
@@ -347,7 +357,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         if (field.type === 'find-location') {
           return {value: values, name};
         } else {
-          return {value: getCheckBoxesValues(field.options, values), name};
+          return {value: getValues(field.options, values), name};
         }
       } else {
         return {value: [values], name};

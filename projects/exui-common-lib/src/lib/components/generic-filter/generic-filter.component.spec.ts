@@ -97,6 +97,7 @@ describe('GenericFilterComponent', () => {
           type: 'select'
         }],
       persistence: 'session',
+      showCancelFilterButton: true
     };
     fixture.detectChanges();
   });
@@ -182,6 +183,12 @@ describe('GenericFilterComponent', () => {
     expect(component.form.invalid).toBeTruthy();
   });
 
+  it('should display cancel filter button', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    expect(form.querySelector('button[id="cancelFilter"]')).toBeDefined();
+  });
+
   describe('component methods that use fields', () => {
     const condition = 'selectPerson=Specific person';
     const selectField: FilterFieldConfig = {
@@ -232,6 +239,7 @@ describe('GenericFilterComponent', () => {
       minSelectedError: 'You must select a person',
       maxSelectedError: null,
       lineBreakBefore: true,
+      changeResetFields: ['person'],
       findPersonField: 'person',
       title: 'Person',
       type: 'radio'
@@ -288,11 +296,11 @@ describe('GenericFilterComponent', () => {
 
     it('should correctly update domain when dropdown re-selected', () => {
       component.form = new FormGroup({});
-      component.form.addControl('selectPerson', new FormControl());
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
-      component.selectChanged(selectField, component.form);
+      component.form.addControl('selectPerson', new FormControl('All'));
+      component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
     });
@@ -304,21 +312,24 @@ describe('GenericFilterComponent', () => {
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
-      component.radiosChanged(radioField);
+      component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
     });
 
     it('should correctly remove person field when method called', () => {
       component.form = new FormGroup({});
-      component.form.addControl('selectPerson', new FormControl());
+
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
       component.form.get('person').get('id').patchValue('123');
       component.form.get('person').get('name').patchValue('Test');
       component.form.get('person').get('knownAs').patchValue('testing123');
-      component.removePersonField(radioField);
+
+      component.form.addControl('selectPerson', new FormControl('All'));
+      component.form.get('selectPerson').patchValue('All');
+      component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
       expect(component.form.get('person').get('id').value).toBe(null);
@@ -370,6 +381,7 @@ describe('Select all checkboxes', () => {
         }
       ],
       persistence: 'session',
+      showCancelFilterButton: true
     };
     fixture.detectChanges();
   });
@@ -448,6 +460,7 @@ describe('Find location filter config', () => {
         }
       ],
       persistence: 'session',
+      showCancelFilterButton: true
     };
     fixture.detectChanges();
   });

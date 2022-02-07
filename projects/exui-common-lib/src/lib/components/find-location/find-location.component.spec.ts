@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {LocationService} from '../../services/locations/location.service';
 import {SearchLocationComponent} from '../search-location/search-location.component';
@@ -13,7 +13,7 @@ describe('FindLocationComponent', () => {
 
   const LOCATION = {
     court_venue_id: '100',
-    epims_id: '219164',
+    epimms_id: '219164',
     is_hearing_location: 'Y',
     is_case_management_location: 'Y',
     site_name: 'Aberdeen Tribunal Hearing Centre',
@@ -23,6 +23,7 @@ describe('FindLocationComponent', () => {
     region: 'Scotland',
     court_type_id: '17',
     court_type: 'Employment Tribunal',
+    venue_name: 'Aberdeen',
     open_for_public: 'Yes',
     court_address: 'AB1, 48 HUNTLY STREET, ABERDEEN test1',
     postcode: 'AB11 6LT'
@@ -64,25 +65,22 @@ describe('FindLocationComponent', () => {
   });
 
   it('should add location to the selected location list', () => {
-    component.locationsForm.push(new FormControl(LOCATION));
-    const button = fixture.nativeElement.querySelector('.govuk-button');
-    button.click();
+    component.tempSelectedLocation = LOCATION;
+    component.addLocation();
     fixture.detectChanges();
     const selectedLocation = fixture.nativeElement.querySelector('.hmcts-filter__tag');
-    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.court_name);
+    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.venue_name);
   });
 
   it('should remove locations from the selected list', () => {
-    component.locationsForm.push(new FormControl(LOCATION));
-    const button = fixture.nativeElement.querySelector('.govuk-button');
-    button.click();
+    component.tempSelectedLocation = LOCATION;
+    component.addLocation();
     fixture.detectChanges();
     const selectedLocation = fixture.nativeElement.querySelector('.hmcts-filter__tag');
-    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.court_name);
+    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.venue_name);
     selectedLocation.click();
     fixture.detectChanges();
     const selectedLocationAfterRemove = fixture.nativeElement.querySelector('.hmcts-filter__tag');
     expect(selectedLocationAfterRemove).toBeNull();
   });
-
 });

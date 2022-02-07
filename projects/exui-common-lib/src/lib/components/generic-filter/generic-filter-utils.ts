@@ -14,7 +14,7 @@ export function maxSelectedValidator<T>(max: number): ValidatorFn {
   };
 }
 
-export function getCheckBoxesValues(options: { key: string, label: string, selectAll?: true }[], values: any): any[] {
+export function getValues(options: { key: string, label: string, selectAll?: true }[], values: any[]): any[] {
   return options.reduce((acc: string[], option: { key: string, label: string }, index: number) => {
     if (values[index]) {
       return [...acc, option.key];

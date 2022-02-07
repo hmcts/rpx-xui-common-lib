@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, of, zip } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
-import { Person, PersonRole } from '../../models';
-import { FindAPersonService } from '../../services/find-person/find-person.service';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Observable, of, Subscription, zip} from 'rxjs';
+import {catchError, debounceTime, filter, map, switchMap, tap} from 'rxjs/operators';
+import {Person, PersonRole} from '../../models';
+import {FindAPersonService} from '../../services/find-person/find-person.service';
 
 @Component({
   selector: 'xuilib-find-person',
@@ -11,70 +11,67 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
   styleUrls: ['./find-person.component.scss'],
 })
 
-export class FindPersonComponent implements OnInit, OnChanges {
+export class FindPersonComponent implements OnInit, OnDestroy {
   @Output() public personSelected = new EventEmitter<Person>();
   @Input() public title: string;
   @Input() public boldTitle = 'Find the person';
   @Input() public subTitle = 'Type the name of the person and select them.';
   @Input() public domain = PersonRole.ALL;
-  @Input() public findPersonGroup: FormGroup;
+  @Input() public findPersonGroup: FormGroup = new FormGroup({});
   @Input() public selectedPerson: string;
-  @Input() public submitted?: boolean = true;
-  @Input() public disabled?: boolean = null;
+  @Input() public submitted: boolean = true;
   @Input() public userIncluded?: boolean = false;
   @Input() public placeholderContent: string = '';
-  @Input() public isNoResultsShown: boolean = false;
+  @Input() public isNoResultsShown: boolean = true;
   @Input() public showUpdatedColor: boolean = false;
   @Input() public selectedPersons: Person[] = [];
   @Input() public errorMessage: string = 'You must select a name';
   @Input() public idValue: string = '';
-  public isPersonSelectionCompleted: boolean = false;
+  @Input() public services: string[] = ['IA'];
+  @Input() public disabled: boolean = null;
   public showAutocomplete: boolean = false;
-  public currentInputValue: string = '';
-  public choosenPerson: Person = {} as Person;
+  public findPersonControl: FormControl;
+  public filteredOptions: Person[] = [];
+  public readonly minSearchCharacters = 2;
+  private sub: Subscription;
 
-  constructor(private readonly findPersonService: FindAPersonService) {
+  constructor(private readonly findPersonService: FindAPersonService, private readonly cd: ChangeDetectorRef) {
   }
 
-  public findPersonControl = new FormControl();
-  public filteredOptions: Observable<Person[]>;
-  private readonly minSearchCharacters = 2;
+  public ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
 
   public ngOnInit(): void {
-    if (!this.findPersonGroup) {
-      this.findPersonGroup = new FormGroup({});
-    } else {
-      this.findPersonGroup.addControl('findPersonControl', this.findPersonControl);
-    }
-    this.filteredOptions = this.findPersonControl.valueChanges.pipe(
-      startWith(''),
-      switchMap(searchTerm => {
-        return this.filter(searchTerm || '');
-      })
-    );
-    this.findPersonControl.setValue(this.selectedPerson);
-  }
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['domain'] && !changes['domain'].firstChange) {
-      this.findPersonControl.setValue(null);
-      this.selectedPerson = null;
-    }
-    if (changes['selectedPerson'] && changes['selectedPerson'].currentValue === '') {
-      this.currentInputValue = '';
-      this.isPersonSelectionCompleted = false;
-    }
+    this.findPersonControl = new FormControl(this.selectedPerson);
+    this.findPersonGroup.addControl('findPersonControl', this.findPersonControl);
+    this.sub = this.findPersonControl.valueChanges.pipe(
+      tap(() => this.showAutocomplete = false),
+      tap(() => this.filteredOptions = []),
+      debounceTime(300),
+      tap((searchTerm) => typeof searchTerm === 'string' ? this.personSelected.emit(null) : void 0),
+      filter((searchTerm: string) => searchTerm && searchTerm.length > this.minSearchCharacters),
+      switchMap((searchTerm: string) => this.filter(searchTerm).pipe(
+        tap(() => this.showAutocomplete = true),
+        catchError(() => this.filteredOptions = []),
+      ))
+    ).subscribe((people: Person[]) => {
+      this.filteredOptions = people;
+      this.cd.detectChanges();
+    });
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialPeople = this.findPersonService.find({ searchTerm, jurisdiction: this.domain });
-    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({ searchTerm, jurisdiction: this.domain });
+    const findJudicialPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services});
+    const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: this.services});
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
           return findJudicialPeople.pipe(map(persons => {
-            const ids: string[] = this.selectedPersons.map(({ id }) => id);
-            return persons.filter(({ id }) => !ids.includes(id));
+            const ids: string[] = this.selectedPersons.map(({id}) => id);
+            return persons.filter(({id}) => !ids.includes(id));
           }));
         }
         case PersonRole.ALL: {
@@ -85,26 +82,22 @@ export class FindPersonComponent implements OnInit, OnChanges {
           return findCaseworkersOrAdmins;
         }
         default: {
-          return of();
+          return of([]);
         }
       }
     }
-    return of();
+    return of([]);
   }
 
-  public onSelectionChange(selectedPerson?: Person) {
-    this.isPersonSelectionCompleted = true;
-    this.choosenPerson = selectedPerson;
+  public onSelectionChange(selectedPerson: Person): void {
     this.personSelected.emit(selectedPerson);
-  }
-
-  public updatedVal(currentValue: string) {
-    this.currentInputValue = currentValue;
-    this.showAutocomplete = !!currentValue && (currentValue.length > this.minSearchCharacters);
-    this.isPersonSelectionCompleted = (this.getDisplayName(this.choosenPerson) === currentValue) ? true : false;
+    this.findPersonControl.setValue(this.getDisplayName(selectedPerson), {emitEvent: false, onlySelf: true});
   }
 
   public getDisplayName(selectedPerson: Person): string {
+    if (!selectedPerson) {
+      return '';
+    }
     if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
       return `${selectedPerson.knownAs} (${selectedPerson.email})`;
     }
