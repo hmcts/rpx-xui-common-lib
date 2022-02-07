@@ -37,7 +37,7 @@ describe('FindPersonComponent', () => {
 
   afterEach(() => {
     component.ngOnDestroy();
-  })
+  });
 
   it('is Truthy', () => {
     expect(component).toBeTruthy();
