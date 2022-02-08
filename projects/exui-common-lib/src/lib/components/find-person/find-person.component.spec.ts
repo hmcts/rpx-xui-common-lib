@@ -72,7 +72,7 @@ describe('FindPersonComponent', () => {
       domain: PersonRole.JUDICIAL
     };
     const displayName = component.getDisplayName(nonJudicialPerson);
-    expect(displayName).toEqual('First Last(first.last@email.com)');
+    expect(displayName).toEqual('First Last (first.last@email.com)');
   });
   it('getDisplayName Non Judicial with no email', () => {
     const nonJudicialPerson = {
@@ -92,7 +92,7 @@ describe('FindPersonComponent', () => {
       knownAs: 'Lead Judge'
     };
     const displayName = component.getDisplayName(judicial);
-    expect(displayName).toEqual('Lead Judge(first.last@email.com)');
+    expect(displayName).toEqual('Lead Judge (first.last@email.com)');
   });
 
   it('getDisplayName Judicial with no KnownAs', () => {
@@ -103,7 +103,7 @@ describe('FindPersonComponent', () => {
       domain: PersonRole.JUDICIAL
     };
     const displayName = component.getDisplayName(judicial);
-    expect(displayName).toEqual('First Last(first.last@email.com)');
+    expect(displayName).toEqual('First Last (first.last@email.com)');
   });
 
 
