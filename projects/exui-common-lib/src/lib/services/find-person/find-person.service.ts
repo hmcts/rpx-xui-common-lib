@@ -26,7 +26,8 @@ export class FindAPersonService {
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
     this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
-    return this.http.post<Person[]>('/workallocation2/findPerson', {searchOptions, userId: this.userId, assignedUser: this.assignedUser});
+    return this.http.post<Person[]>('/workallocation2/findPerson', {searchOptions})
+      .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser, this.userId].includes(judge.id)))));
   }
 
   public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {
