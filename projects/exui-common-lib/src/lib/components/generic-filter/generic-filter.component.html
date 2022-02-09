@@ -85,7 +85,7 @@
         <ng-container *ngSwitchCase="'find-location'">
           <xuilib-find-location [form]="form"
                                 [fields]="config.fields"
-                                [title]="field.title"
+                                [locationTitle]="field.locationTitle"
                                 [enableAddLocationButton]="field.enableAddLocationButton"
                                 [disabled]="disabled(field, form)"
                                 [selectedLocations]="form.get(field.name)?.value"

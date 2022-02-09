@@ -17,7 +17,7 @@ export class FindLocationComponent {
   @Input() public form: FormGroup;
   @Input() public field: FilterFieldConfig;
   @Input() public fields: FilterFieldConfig[];
-  @Input() public title = 'Search for a location by name';
+  @Input() public locationTitle = 'Search for a location by name';
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
