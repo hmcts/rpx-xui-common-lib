@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.4.8-paging",
+  "version": "1.7.0-rc1",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
