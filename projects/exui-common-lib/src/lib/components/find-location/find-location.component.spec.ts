@@ -69,7 +69,7 @@ describe('FindLocationComponent', () => {
     component.addLocation();
     fixture.detectChanges();
     const selectedLocation = fixture.nativeElement.querySelector('.hmcts-filter__tag');
-    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.venue_name);
+    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.site_name);
   });
 
   it('should remove locations from the selected list', () => {
@@ -77,7 +77,7 @@ describe('FindLocationComponent', () => {
     component.addLocation();
     fixture.detectChanges();
     const selectedLocation = fixture.nativeElement.querySelector('.hmcts-filter__tag');
-    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.venue_name);
+    expect(selectedLocation.textContent.trim()).toEqual(LOCATION.site_name);
     selectedLocation.click();
     fixture.detectChanges();
     const selectedLocationAfterRemove = fixture.nativeElement.querySelector('.hmcts-filter__tag');

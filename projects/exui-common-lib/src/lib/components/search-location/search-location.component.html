@@ -7,7 +7,7 @@
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
     <mat-option *ngFor="let location of locations"
                 (onSelectionChange)="onSelectionChange(location)">
-      {{ location.venue_name }}
+      {{ location.site_name }}
     </mat-option>
     <mat-option *ngIf="!locations.length && showAutocomplete && term && term.length >= this.minSearchCharacters">No results found</mat-option>
   </mat-autocomplete>
