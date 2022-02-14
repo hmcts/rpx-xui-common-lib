@@ -20,7 +20,7 @@ export class FindLocationComponent {
   @Input() public locationTitle = 'Search for a location by name';
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
-  public serviceIds: string = 'SSCS,IA';
+  public serviceIds: string = 'IA';
   @ViewChild(SearchLocationComponent) public searchLocationComponent: SearchLocationComponent;
   private pServices: string[] = [];
   private pDisabled: boolean = false;
