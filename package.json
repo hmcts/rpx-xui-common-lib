@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version":  "1.6.5-flickering-search-location-rename-variable",
+  "version":  "1.6.6-hearings-part2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
