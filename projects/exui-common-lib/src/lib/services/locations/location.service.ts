@@ -19,6 +19,9 @@ export class LocationService {
    * @return Observable<LocationByEPIMMSModel[]>: Array of locationModel in Observable
    */
   public getAllLocations(serviceIds: string, locationType: string, searchTerm: string): Observable<LocationByEPIMMSModel[]> {
+    if (locationType === 'hearing') {
+      return this.http.get<LocationByEPIMMSModel[]>(`api/prd/location/getLocations?serviceIds=${serviceIds}&locationType=${locationType}&searchTerm=${searchTerm}`);
+    }
     return this.http.get<LocationByEPIMMSModel[]>(`api/locations/getLocations?serviceIds=${serviceIds}&locationType=${locationType}&searchTerm=${searchTerm}`);
   }
 }
