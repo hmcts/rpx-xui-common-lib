@@ -26,7 +26,7 @@
                   [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
         {{getDisplayName(option)}}
       </mat-option>
-      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && currentInputValue && currentInputValue.length && !(filteredOptions | async)?.length && showAutocomplete">{{ 'No results found' }}</mat-option>
+      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && currentInputValue && currentInputValue.length && showAutocomplete && !isPersonSelectionCompleted">{{ 'No results found' }}</mat-option>
     </mat-autocomplete>
   </fieldset>
 </div>

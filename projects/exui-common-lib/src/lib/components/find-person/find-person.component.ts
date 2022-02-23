@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of, zip } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
+import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
@@ -47,9 +47,10 @@ export class FindPersonComponent implements OnInit, OnChanges {
       this.findPersonGroup.addControl('findPersonControl', this.findPersonControl);
     }
     this.filteredOptions = this.findPersonControl.valueChanges.pipe(
+      debounceTime(500),
       startWith(''),
       switchMap(searchTerm => {
-        return this.filter(searchTerm || '');
+        return this.filter(this.isPersonSelectionCompleted ? '' : searchTerm || '');
       })
     );
     this.findPersonControl.setValue(this.selectedPerson);
@@ -74,7 +75,9 @@ export class FindPersonComponent implements OnInit, OnChanges {
         case PersonRole.JUDICIAL: {
           return findJudicialPeople.pipe(map(persons => {
             const ids: string[] = this.selectedPersons.map(({ id }) => id);
-            return persons.filter(({ id }) => !ids.includes(id));
+            const personsList: Person[] = persons.filter(({ id }) => !ids.includes(id));
+            this.currentInputValue = personsList.length ? '' : this.currentInputValue;
+            return personsList;
           }));
         }
         case PersonRole.ALL: {
@@ -94,6 +97,7 @@ export class FindPersonComponent implements OnInit, OnChanges {
 
   public onSelectionChange(selectedPerson?: Person) {
     this.isPersonSelectionCompleted = true;
+    this.currentInputValue = '';
     this.choosenPerson = selectedPerson;
     this.personSelected.emit(selectedPerson);
   }
