@@ -3,31 +3,54 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import {By} from '@angular/platform-browser';
-import { FilterFieldConfig } from '../../models';
-import {FilterService} from '../../services/filter/filter.service';
+import {of} from 'rxjs';
+import {FilterFieldConfig} from '../../models';
+import {FilterService} from '../../services';
+import {LocationService} from '../../services/locations/location.service';
+import {FindLocationComponent} from '../find-location/find-location.component';
 import {FindPersonComponent} from '../find-person/find-person.component';
+import {SearchLocationComponent} from '../search-location/search-location.component';
 import {GenericFilterComponent} from './generic-filter.component';
 
 describe('GenericFilterComponent', () => {
 
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
+  const mockFilterService: any = {
+    getStream: () => of(null),
+    get: jasmine.createSpy(),
+    persist: jasmine.createSpy(),
+    givenErrors: {
+      subscribe: jasmine.createSpy(),
+      next: (value: any) => value,
+      unsubscribe: (value: any) => value,
+    }
+  };
+  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent],
-      providers: [FilterService]
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      providers: [
+        {provide: FilterService, useValue: mockFilterService},
+        {provide: LocationService, useValue: searchFilterServiceMock}
+      ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
+    mockFilterService.get.and.returnValue(null);
     fixture = TestBed.createComponent(GenericFilterComponent);
     component = fixture.componentInstance;
     component.config = {
       id: 'examples',
       applyButtonText: 'apply',
       cancelButtonText: 'cancel',
+      cancelSetting: {
+        id: 'examples',
+        fields: [{name: 'example1', value: ['Fernando Alonso']}]
+      },
       fields: [
         {
           name: 'example1',
@@ -75,6 +98,7 @@ describe('GenericFilterComponent', () => {
           type: 'select'
         }],
       persistence: 'session',
+      showCancelFilterButton: true
     };
     fixture.detectChanges();
   });
@@ -101,13 +125,54 @@ describe('GenericFilterComponent', () => {
   });
 
   it('should submit form values if the form is valid', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const button: HTMLButtonElement = form.querySelector('button[type="submit"]');
     component.form.get('example1').patchValue([true]);
     component.form.get('example2').patchValue('Tinky Winky');
     component.form.get('example3').patchValue('yellow');
-
     fixture.detectChanges();
+    button.click();
 
+    const result = {
+      id: 'examples',
+      fields: [
+        {
+          name: 'example1',
+          value: ['Fernando Alonso'],
+        },
+        {
+          name: 'example2',
+          value: ['Tinky Winky'],
+        },
+        {
+          name: 'example3',
+          value: ['yellow'],
+        },
+      ],
+      reset: false,
+    };
     expect(component.form.valid).toBeTruthy();
+    expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
+  });
+
+  it('should reset the form', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const button: HTMLButtonElement = form.querySelector('#cancelFilter');
+    fixture.detectChanges();
+    button.click();
+    const result = {
+      id: 'examples',
+      fields: [
+        {
+          name: 'example1',
+          value: ['Fernando Alonso'],
+        },
+      ],
+      reset: true,
+    };
+    expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
   });
 
   it('should set form state to be invalid', () => {
@@ -117,6 +182,12 @@ describe('GenericFilterComponent', () => {
     const button: HTMLButtonElement = form.querySelector('button[type="submit"]');
     button.click();
     expect(component.form.invalid).toBeTruthy();
+  });
+
+  it('should display cancel filter button', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    expect(form.querySelector('button[id="cancelFilter"]')).toBeDefined();
   });
 
   describe('component methods that use fields', () => {
@@ -169,6 +240,7 @@ describe('GenericFilterComponent', () => {
       minSelectedError: 'You must select a person',
       maxSelectedError: null,
       lineBreakBefore: true,
+      changeResetFields: ['person'],
       findPersonField: 'person',
       title: 'Person',
       type: 'radio'
@@ -225,11 +297,11 @@ describe('GenericFilterComponent', () => {
 
     it('should correctly update domain when dropdown re-selected', () => {
       component.form = new FormGroup({});
-      component.form.addControl('selectPerson', new FormControl());
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
-      component.selectChanged(selectField, component.form);
+      component.form.addControl('selectPerson', new FormControl('All'));
+      component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
     });
@@ -241,28 +313,163 @@ describe('GenericFilterComponent', () => {
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
-      component.radiosChanged(radioField);
+      component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
     });
 
     it('should correctly remove person field when method called', () => {
       component.form = new FormGroup({});
-      component.form.addControl('selectPerson', new FormControl());
+
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
       component.form.get('person').get('id').patchValue('123');
       component.form.get('person').get('name').patchValue('Test');
       component.form.get('person').get('knownAs').patchValue('testing123');
-      component.removePersonField(radioField);
+
+      component.form.addControl('selectPerson', new FormControl('All'));
+      component.form.get('selectPerson').patchValue('All');
+      component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
       expect(component.form.get('person').get('id').value).toBe(null);
       expect(component.form.get('person').get('name').value).toBe(null);
       expect(component.form.get('person').get('knownAs').value).toBe(null);
     });
+  });
+});
 
+describe('Select all checkboxes', () => {
+  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  let component: GenericFilterComponent;
+  let fixture: ComponentFixture<GenericFilterComponent>;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      providers: [
+        FilterService,
+        {provide: LocationService, useValue: searchFilterServiceMock}
+      ]
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+    component.config = {
+      id: 'examples',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
+      fields: [
+        {
+          name: 'example1',
+          options: [
+            {key: 'All', label: 'Select All', selectAll: true},
+            {key: 'Fernando Alonso', label: 'Fernando Alonso'},
+            {key: 'Sebastian Vettel', label: 'Sebastian Vettel'},
+            {key: 'Lewis Hamilton', label: 'Lewis Hamilton'},
+            {key: 'Mick Schumacher', label: 'Mick Schumacher'},
+            {key: 'Lando Norris', label: 'Lando Norris'},
+          ],
+          title: 'Sample title',
+          subTitle: 'Sample subtitle',
+          minSelected: 1,
+          maxSelected: 1,
+          type: 'checkbox'
+        }
+      ],
+      persistence: 'session',
+      showCancelFilterButton: true
+    };
+    fixture.detectChanges();
+  });
+  it('should select all checkboxes', () => {
+
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const checkboxes = form.querySelector('.govuk-checkboxes') as HTMLElement;
+    const selectAllInput = checkboxes.querySelector('.govuk-checkboxes__item input') as unknown as HTMLElement;
+    selectAllInput.click();
+    fixture.detectChanges();
+
+    for (const element of Array.from(checkboxes.children)) {
+      const input = element.querySelector('input') as HTMLInputElement;
+      expect(input.checked).toBe(true);
+    }
+  });
+
+  it('should unselect all checkboxes', () => {
+
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const checkboxes = form.querySelector('.govuk-checkboxes') as HTMLElement;
+    const selectAllInput = checkboxes.querySelector('.govuk-checkboxes__item input') as unknown as HTMLElement;
+    selectAllInput.click();
+    fixture.detectChanges();
+
+    for (const element of Array.from(checkboxes.children)) {
+      const input = element.querySelector('input') as HTMLInputElement;
+      expect(input.checked).toBe(true);
+    }
+
+    selectAllInput.click();
+    fixture.detectChanges();
+
+    for (const element of Array.from(checkboxes.children)) {
+      const input = element.querySelector('input') as HTMLInputElement;
+      expect(input.checked).toBe(false);
+    }
+  });
+
+});
+
+describe('Find location filter config', () => {
+  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  let component: GenericFilterComponent;
+  let fixture: ComponentFixture<GenericFilterComponent>;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      providers: [
+        FilterService,
+        {provide: LocationService, useValue: searchFilterServiceMock}
+      ]
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+    component.config = {
+      id: 'examples',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
+      fields: [
+        {
+          name: 'location',
+          options: [],
+          title: 'Sample title',
+          subTitle: 'Sample subtitle',
+          minSelected: 1,
+          maxSelected: 1,
+          type: 'find-location'
+        }
+      ],
+      persistence: 'session',
+      showCancelFilterButton: true
+    };
+    fixture.detectChanges();
+  });
+  it('should display find-location filter', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const findLocationFormGroup = form.querySelector('xuilib-find-location') as HTMLElement;
+    expect(findLocationFormGroup).toBeTruthy();
   });
 
 });

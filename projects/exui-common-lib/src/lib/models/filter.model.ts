@@ -1,4 +1,6 @@
-export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person';
+import {PersonRole} from './person.model';
+
+export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
@@ -10,11 +12,12 @@ export interface FilterConfig {
   cancelButtonText: string;
   cancelSetting?: FilterSetting;
   enableDisabledButton?: boolean;
+  showCancelFilterButton?: boolean;
 }
 
 export interface FilterFieldConfig {
   name: string;
-  options: { key: string, label: string }[];
+  options: { key: string, label: string, selectAll?: true }[];
   minSelected: number;
   maxSelected: number;
   minSelectedError?: string;
@@ -24,17 +27,22 @@ export interface FilterFieldConfig {
   lineBreakBefore?: boolean;
   showCondition?: string;
   enableCondition?: string;
+  enableAddLocationButton?: boolean;
+  changeResetFields?: string[];
   findPersonField?: string;
+  findLocationField?: string;
+  domainField?: string;
   disabledText?: string;
   type: FilterFieldType;
-  domain?: string;
+  domain?: PersonRole;
   title?: string;
   subTitle?: string;
 }
 
 export interface FilterSetting {
   id: string;
-  fields: { name: string, value: string[] }[];
+  reset?: boolean;
+  fields: { name: string, value: any[] }[];
 }
 
 export class RadioFilterFieldConfig implements FilterFieldConfig {
@@ -43,4 +51,9 @@ export class RadioFilterFieldConfig implements FilterFieldConfig {
   public minSelected: 1;
   public maxSelected: 1;
   public type: 'radio';
+}
+
+export interface FilterError {
+  name: string;
+  error: string;
 }
