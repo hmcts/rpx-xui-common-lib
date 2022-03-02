@@ -37,6 +37,7 @@ export interface FilterFieldConfig {
   domain?: PersonRole;
   title?: string;
   subTitle?: string;
+  locationTitle?: string;
 }
 
 export interface FilterSetting {

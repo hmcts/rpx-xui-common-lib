@@ -57,7 +57,7 @@ export class SearchLocationComponent implements OnInit {
   public ngOnInit(): void {
     if (this.singleMode && this.selectedLocations.length > 0) {
       const location = this.selectedLocations[0];
-      this.form.controls.searchTerm.patchValue(location.venue_name, {emitEvent: false, onlySelf: true});
+      this.form.controls.searchTerm.patchValue(location.site_name, {emitEvent: false, onlySelf: true});
     }
     this.search();
   }
@@ -70,7 +70,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public onSelectionChange(location: LocationByEPIMMSModel): void {
-    this.form.controls.searchTerm.patchValue(location.venue_name, {emitEvent: false, onlySelf: true});
+    this.form.controls.searchTerm.patchValue(location.site_name, {emitEvent: false, onlySelf: true});
     this.locationSelected.emit(location);
   }
 
@@ -87,7 +87,7 @@ export class SearchLocationComponent implements OnInit {
       ).subscribe(locations => {
       this.locations = locations;
       this.cd.markForCheck();
-      if (locations.length === 1 && this.term === locations[0].venue_name && !this.singleMode) {
+      if (locations.length === 1 && this.term === locations[0].site_name && !this.singleMode) {
         this.locationSelected.emit(locations[0]);
         this.showAutocomplete = false;
         return;
@@ -109,7 +109,7 @@ export class SearchLocationComponent implements OnInit {
       return locations;
     }
     return locations.filter(
-      location => !this.selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(location.epimms_id) && location.venue_name
+      location => !this.selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(location.epimms_id) && location.site_name
     );
   }
 }
