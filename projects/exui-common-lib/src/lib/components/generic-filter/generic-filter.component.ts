@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {FilterConfig, FilterFieldConfig, FilterSetting} from '../../models';
+import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
 import {FilterService} from './../../services/filter/filter.service';
-import {maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -56,6 +56,18 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.mergeDefaultFields(value);
     }
     this._settings = value;
+  }
+
+  private static addFormValidators(field: FilterFieldConfig): Validators {
+    const validators = [];
+    if (field && field.minSelected) {
+      validators.push(minSelectedValidator(field.minSelected));
+    }
+
+    if (field && field.maxSelected) {
+      validators.push(maxSelectedValidator(field.maxSelected));
+    }
+    return validators;
   }
 
   public ngOnInit(): void {
@@ -131,7 +143,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return true;
   }
 
-
   public applyFilter(form: FormGroup): void {
     this.submitted = true;
     form.markAsTouched();
@@ -141,37 +152,20 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         fields: this.getSelectedValues(form.value, this.config)
       };
       this.filterService.givenErrors.next(null);
-      this.filterService.persist(this.settings, this.config.persistence);
+      const settings = {...this.settings, reset: false};
+      this.filterService.persist(settings, this.config.persistence);
     } else {
       this.emitFormErrors(form);
     }
   }
 
   // when domain changes ensure that person field is reset
-  public selectChanged(field: FilterFieldConfig, form: FormGroup): void {
-    if (field.findPersonField) {
-      const currentField = this.config.fields.find((f) => f.name === field.findPersonField);
-      if (currentField) {
-        currentField.domain = form.get(field.name).value;
+  public fieldChanged(field: FilterFieldConfig, form: FormGroup): void {
+    // TODO - Do similar with jurisdiction/service for caseworkers by services
+    if (field.changeResetFields && field.changeResetFields.length) {
+      for (const resetField of field.changeResetFields) {
+        this.resetField(resetField, form);
       }
-      this.removePersonField(field);
-    }
-  }
-
-  public radiosChanged(field: FilterFieldConfig): void {
-    if (field.findPersonField) {
-      this.form.get('findPersonControl').setValue(null);
-      this.removePersonField(field);
-    }
-  }
-
-  public removePersonField(field: FilterFieldConfig): void {
-    if (this.form.get(field.findPersonField)) {
-      this.form.get(field.findPersonField).get('domain').setValue(null);
-      this.form.get(field.findPersonField).get('email').setValue(null);
-      this.form.get(field.findPersonField).get('id').setValue(null);
-      this.form.get(field.findPersonField).get('name').setValue(null);
-      this.form.get(field.findPersonField).get('knownAs').setValue(null);
     }
   }
 
@@ -180,15 +174,80 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (this.config && this.config.cancelSetting) {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
-    this.filterService.persist(this.settings, this.config.persistence);
+    const settings = {...this.settings, reset: true};
+    this.filterService.persist(settings, this.config.persistence);
+    this.filterService.givenErrors.next(null);
+    this.submitted = false;
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
-    const keys = Object.keys(values);
+    let keys;
+    if (!values) {
+      keys = Object.keys(this.form.get(field.name).value);
+    } else {
+      keys = Object.keys(values);
+    }
     for (const key of keys) {
       if (this.form.get(field.name) && this.form.get(field.name).get(key)) {
-        this.form.get(field.name).get(key).patchValue(values[key]);
+        const value = values && values[key] ? values[key] : null;
+        this.form.get(field.name).get(key).patchValue(value);
       }
+    }
+  }
+
+  public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
+    const isChecked = event.target.checked;
+    const formArray: FormArray = form.get(field.name) as FormArray;
+    if (!item.selectAll) {
+      const allChecked = formArray.controls.every((control: AbstractControl) => control.value);
+      let index: number = null;
+      const hasSelectAllOption = field.options.find((option, i) => {
+        if (option.hasOwnProperty('selectAll')) {
+          index = i;
+          return true;
+        }
+        return false;
+      });
+      // tslint:disable-next-line:variable-name
+      const isAllCheckedExcludingTheSelectAllOption = formArray.controls.filter((_control: AbstractControl, i: number) => i !== index)
+        .every((control: AbstractControl) => control.value);
+
+      if (!allChecked && hasSelectAllOption && !isChecked) {
+        formArray.controls.forEach((control: AbstractControl, i: number) => {
+          if (index === i) {
+            control.patchValue(false);
+            return;
+          }
+        });
+      } else if (hasSelectAllOption && !allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
+        formArray.controls[index].patchValue(true);
+      }
+      return;
+    }
+    formArray.controls.forEach((control: AbstractControl) => {
+      if (isChecked) {
+        control.patchValue(true);
+      } else {
+        control.patchValue(false);
+      }
+    });
+  }
+
+  private resetField(resetField: string, form: FormGroup): void {
+    const control = form.get(resetField);
+    const defaultValue: { name: string, value: any[] } = this.config.cancelSetting.fields.find((f) => f.name === resetField);
+    if (control instanceof FormArray) {
+      for (let i = 0; i < control.length; i++) {
+        control.removeAt(i);
+      }
+    } else if (control instanceof FormGroup) {
+      const keys = Object.keys(control.value);
+      for (const key of keys) {
+        this.resetField(key, control);
+      }
+    } else if (control instanceof FormControl) {
+      const value = defaultValue && defaultValue.value && defaultValue.value.length ? defaultValue.value[0] : null;
+      control.setValue(value);
     }
   }
 
@@ -215,8 +274,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.form.addControl('findPersonControl', findPersonControl);
     }
     for (const field of config.fields) {
-      if (field.type === 'checkbox') {
+      if (field.type === 'checkbox' || field.type === 'checkbox-large') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
+        this.form.addControl(field.name, formArray);
+      } else if (field.type === 'find-location') {
+        const formArray = this.buildFindLocationFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else {
         const validators: ValidatorFn[] = [];
@@ -248,21 +310,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
         // if field updates find person component set the initial domain
         if (field.findPersonField) {
-          this.selectChanged(field, this.form);
+          this.fieldChanged(field, this.form);
         }
       }
     }
   }
 
   private buildCheckBoxFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
-    const validators = [];
-    if (field && field.minSelected) {
-      validators.push(minSelectedValidator(field.minSelected));
-    }
-
-    if (field && field.maxSelected) {
-      validators.push(maxSelectedValidator(field.maxSelected));
-    }
+    const validators = GenericFilterComponent.addFormValidators(field);
     const formArray = this.fb.array([], validators);
     let defaultValues;
     if (settings && settings.fields) {
@@ -278,18 +333,31 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return formArray;
   }
 
+  private buildFindLocationFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+    const validators = GenericFilterComponent.addFormValidators(field);
+    const formArray = this.fb.array([], validators);
+    let defaultValues: { name: string; value: any[] };
+    if (settings && settings.fields) {
+      defaultValues = settings.fields.find((f) => f.name === field.name);
+      if (defaultValues) {
+        for (const defaultValue of defaultValues.value) {
+          formArray.push(new FormControl(defaultValue));
+        }
+      }
+    }
+    return formArray;
+  }
+
   private getSelectedValues(formValues: any, config: FilterConfig): any {
     return Object.keys(formValues).map((name: string) => {
       const values = formValues[name];
       if (Array.isArray(values)) {
         const field = config.fields.find(f => f.name === name);
-        const realValues = field.options.reduce((acc: string[], option: { key: string, label: string }, index: number) => {
-          if (values[index]) {
-            return [...acc, option.key];
-          }
-          return acc;
-        }, []);
-        return {value: realValues, name};
+        if (field.type === 'find-location') {
+          return {value: values, name};
+        } else {
+          return {value: getValues(field.options, values), name};
+        }
       } else {
         return {value: [values], name};
       }
@@ -297,14 +365,18 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   private emitFormErrors(form: FormGroup): void {
+    const errors: FilterError[] = [];
     for (const field of this.config.fields) {
       const formGroup = form.get(field.name);
       if (formGroup && formGroup.errors && formGroup.errors.minLength) {
-        this.filterService.givenErrors.next(field.minSelectedError);
+        errors.push({name: field.name, error: field.minSelectedError});
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxLength) {
-        this.filterService.givenErrors.next(field.maxSelectedError);
+        errors.push({name: field.name, error: field.minSelectedError});
       }
+    }
+    if (errors.length) {
+      this.filterService.givenErrors.next(errors);
     }
   }
 }

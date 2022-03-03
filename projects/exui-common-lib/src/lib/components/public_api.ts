@@ -22,3 +22,6 @@ export * from './terms-and-conditions/terms-and-conditions.component';
 export * from './user-details/user-details.component';
 export * from './user-list/user-list.component';
 export * from './cookie-banner/cookie-banner.component';
+export * from './find-location/find-location.component';
+export * from './search-location/search-location.component';
+export * from './pagination/pagination.component';

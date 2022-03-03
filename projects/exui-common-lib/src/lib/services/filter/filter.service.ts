@@ -1,18 +1,16 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { FilterPersistence, FilterSetting } from '../../models';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {FilterError, FilterPersistence, FilterSetting} from '../../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
 
+  public givenErrors: BehaviorSubject<FilterError[]> = new BehaviorSubject(null);
+  public isInitialSetting: boolean = false;
   private readonly filterSettings: { [id: string]: FilterSetting } = {};
   private readonly streams: { [id: string]: BehaviorSubject<FilterSetting> } = {};
-  public givenErrors: BehaviorSubject<string> = new BehaviorSubject(null);
-  public isInitialSetting: boolean = false;
-
-  constructor() {}
 
   public persist(setting: FilterSetting, persistence: FilterPersistence): void {
     switch (persistence) {
@@ -30,14 +28,14 @@ export class FilterService {
   }
 
   public get(id: string): FilterSetting | null {
-    if (localStorage.getItem(id)) {
-      return JSON.parse(window.localStorage.getItem(id));
+    if (this.filterSettings[id]) {
+      return this.filterSettings[id];
     }
     if (sessionStorage.getItem(id)) {
       return JSON.parse(window.sessionStorage.getItem(id));
     }
-    if (this.filterSettings[id]) {
-      return this.filterSettings[id];
+    if (localStorage.getItem(id)) {
+      return JSON.parse(window.localStorage.getItem(id));
     }
     return null;
   }
