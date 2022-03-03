@@ -315,6 +315,9 @@ describe('GenericFilterComponent', () => {
       component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
+      expect(component.form.get('person').get('id').value).toBe(null);
+      expect(component.form.get('person').get('name').value).toBe(null);
+      expect(component.form.get('person').get('knownAs').value).toBe(null);
     });
 
     it('should correctly remove person field when method called', () => {
