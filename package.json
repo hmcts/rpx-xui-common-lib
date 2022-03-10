@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version":  "1.6.7-location-filter-improvements-3",
+  "version":  "1.6.7-radio-selection-change",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
