@@ -140,7 +140,13 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }
       }
     }
-    return true;
+    // find-location is special case where need to reset textbox (by existing disabling functionality)
+    // field.disable referred to component itself
+    if (field.type === 'find-location') {
+      return true;
+    }
+    // Note: field.disable decides whether to actually disable or not
+    return field.disable ? field.disable : null;
   }
 
   public applyFilter(form: FormGroup): void {
@@ -169,6 +175,16 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
+  // when user enters input change radio button
+  public inputChanged(field: FilterFieldConfig): void {
+    if (field.radioSelectionChange) {
+      if (typeof field.radioSelectionChange === 'string') {
+        const [name, value] = field.enableCondition.split('=');
+        this.form.get(name).patchValue(value);
+      }
+    }
+  }
+
   public cancelFilter(): void {
     this.buildForm(this.config, this.settings, true);
     if (this.config && this.config.cancelSetting) {
@@ -181,7 +197,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
-    console.log('updatePersonControls', values, field);
     let keys;
     if (!values) {
       keys = Object.keys(this.form.get(field.name).value);

@@ -136,4 +136,10 @@ describe('FindPersonComponent', () => {
     component.filter('').subscribe(result => expect(result.length).toBe(0));
   });
 
+  it('should emit an event when search person emits an event to the component', () => {
+    spyOn(component.personFieldChanged, 'emit');
+    component.onInput();
+    expect(component.personFieldChanged.emit).toHaveBeenCalled();
+  });
+
 });
