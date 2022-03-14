@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule, MatTabsModule} from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
+import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
@@ -60,6 +61,7 @@ import { HmctsBannerComponent } from './gov-ui/components/hmcts-banner/hmcts-ban
 import { HmctsErrorSummaryComponent } from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
 import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
 import { HmctsMainWrapperComponent } from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
+import { HmctsPaginationComponent } from './gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import {
   HmctsPrimaryNavigationComponent
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
@@ -104,6 +106,7 @@ export const COMMON_COMPONENTS = [
 
 export const GOV_UI_COMPONENTS = [
   HmctsIdentityBarComponent,
+  HmctsPaginationComponent,
   HmctsSubNavigationComponent,
   HmctsPrimaryNavigationComponent,
   HmctsErrorSummaryComponent,
@@ -138,14 +141,16 @@ export const GOV_UI_COMPONENTS = [
         RouterModule.forChild([]),
         MatAutocompleteModule,
         MatTabsModule,
-        MatInputModule
+        MatInputModule,
+        NgxPaginationModule
     ],
   providers: [
     { provide: windowToken, useFactory: windowProvider }
   ],
   exports: [
     ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS
+    ...GOV_UI_COMPONENTS,
+    PaginatePipe
   ]
 })
 export class ExuiCommonLibModule {
