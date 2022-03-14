@@ -19,7 +19,7 @@ export class FindLocationComponent {
   @Input() public field: FilterFieldConfig;
   @Input() public fields: FilterFieldConfig[];
   @Input() public locationTitle = 'Search for a location by name';
-  @Input() public disableInputField: boolean = false;
+  @Input() public disableInputField = false;
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
@@ -37,11 +37,7 @@ export class FindLocationComponent {
       this.searchLocationComponent.resetSearchTerm();
       this.removeSelectedValues();
     }
-    if (this.disableInputField === true) {
-      this.pDisabled = true;
-    } else {
-      this.pDisabled = null;
-    }
+    this.pDisabled = this.disableInputField === true ? true : null;
   }
 
   public get services(): string[] {

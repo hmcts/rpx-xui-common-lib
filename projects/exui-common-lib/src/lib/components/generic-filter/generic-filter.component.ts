@@ -177,11 +177,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when user enters input change radio button
   public inputChanged(field: FilterFieldConfig): void {
-    if (field.radioSelectionChange) {
-      if (typeof field.radioSelectionChange === 'string') {
-        const [name, value] = field.enableCondition.split('=');
-        this.form.get(name).patchValue(value);
-      }
+    if (field.radioSelectionChange && typeof field.radioSelectionChange === 'string') {
+      const [name, value] = field.enableCondition.split('=');
+      this.form.get(name).patchValue(value);
     }
   }
 
