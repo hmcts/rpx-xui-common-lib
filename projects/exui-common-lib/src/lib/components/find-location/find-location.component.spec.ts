@@ -83,4 +83,10 @@ describe('FindLocationComponent', () => {
     const selectedLocationAfterRemove = fixture.nativeElement.querySelector('.hmcts-filter__tag');
     expect(selectedLocationAfterRemove).toBeNull();
   });
+
+  it('should emit an event when search location emits an event to the component', () => {
+    spyOn(component.locationFieldChanged, 'emit');
+    component.onSearchInputChanged();
+    expect(component.locationFieldChanged.emit).toHaveBeenCalled();
+  });
 });

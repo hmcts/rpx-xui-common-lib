@@ -23,6 +23,7 @@ export class SearchLocationComponent implements OnInit {
   @Input() public locations: LocationByEPIMMSModel[] = [];
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationInputChanged: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pSelectedLocations: any[] = [];
@@ -94,6 +95,10 @@ export class SearchLocationComponent implements OnInit {
       }
       this.showAutocomplete = true;
     });
+  }
+
+  public onInput(): void {
+    this.searchLocationChanged.emit();
   }
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
