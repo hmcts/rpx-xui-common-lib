@@ -11,7 +11,7 @@ import {SearchVenueComponent} from './search-venue.component';
 describe('SearchVenueComponent', () => {
   let component: SearchVenueComponent;
   let fixture: ComponentFixture<SearchVenueComponent>;
-  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations', 'searchLocations']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -204,10 +204,10 @@ describe('SearchVenueComponent', () => {
     spyOn(component.keyUpSubject$, 'next');
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
     component.displayedLocations = LOCATION_RESULTS;
-    spyOn(component, 'getLocations').and.callThrough();
+    spyOn(component, 'searchLocations').and.callThrough();
     spyOn(component, 'onFocus').and.callThrough();
 
-    locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
+    locationService.searchLocations.and.returnValue(of(LOCATION_RESULTS));
 
     fixture.detectChanges();
   }));
@@ -217,7 +217,7 @@ describe('SearchVenueComponent', () => {
   });
 
   it('should create', () => {
-    expect(component.getLocations).toHaveBeenCalled();
+    expect(component.searchLocations).toHaveBeenCalled();
   });
 
   it('should call onFocus when input has focus', async () => {

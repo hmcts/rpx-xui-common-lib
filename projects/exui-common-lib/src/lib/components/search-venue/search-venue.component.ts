@@ -70,7 +70,7 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
   }
 
   public filter(term: string): void {
-    this.getLocations(term).pipe(
+    this.searchLocations(term).pipe(
       mergeMap((apiData: LocationByEPIMMSModel[]) => {
         const apiFilter = apiData.filter(
           apiLocation => !this.selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(apiLocation.epimms_id)
@@ -117,7 +117,7 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
     return selectedLocation.court_name;
   }
 
-  public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
+  public searchLocations(term: string): Observable<LocationByEPIMMSModel[]> {
     return this.locationService.searchLocations(this.serviceIds, this.locationType, term);
   }
 
