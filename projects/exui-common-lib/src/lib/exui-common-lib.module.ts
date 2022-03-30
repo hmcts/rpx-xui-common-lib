@@ -18,6 +18,7 @@ import {InviteUserFormComponent} from './components/invite-user-form/invite-user
 import {InviteUserPermissionComponent} from './components/invite-user-permissions/invite-user-permission.component';
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
 import {PaginationComponent} from './components/pagination/pagination.component';
+import { SearchJudicialsComponent } from './components/search-judicials/search-judicials.component';
 import {SearchLocationComponent} from './components/search-location/search-location.component';
 import {SearchVenueComponent} from './components/search-venue/search-venue.component';
 import {SelectedCaseConfirmComponent} from './components/selected-case-confirm/selected-case-confirm.component';
@@ -98,6 +99,7 @@ export const COMMON_COMPONENTS = [
   GenericFilterComponent,
   CookieBannerComponent,
   FindPersonComponent,
+  SearchJudicialsComponent,
   FindLocationComponent,
   SearchLocationComponent,
   SearchVenueComponent,

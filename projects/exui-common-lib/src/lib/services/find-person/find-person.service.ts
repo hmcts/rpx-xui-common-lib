@@ -1,11 +1,11 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
-import {getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers} from '../../gov-ui/util/session-storage/session-storage-utils';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers } from '../../gov-ui/util/session-storage/session-storage-utils';
 
-import {Caseworker, CaseworkersByService, Person, PersonRole, RoleCategory, SearchOptions} from '../../models';
-import {SessionStorageService} from '../session-storage/session-storage.service';
+import { Caseworker, CaseworkersByService, JudicialUserModel, Person, PersonRole, RoleCategory, SearchOptions } from '../../models';
+import { SessionStorageService } from '../session-storage/session-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class FindAPersonService {
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
     this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
-    return this.http.post<Person[]>('/workallocation2/findPerson', {searchOptions})
+    return this.http.post<Person[]>('/workallocation2/findPerson', { searchOptions })
       .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser, this.userId].includes(judge.id)))));
   }
 
@@ -45,7 +45,7 @@ export class FindAPersonService {
       const serviceKey = getSessionStorageKeyForServiceId(serviceId);
       if (this.sessionStorageService.getItem(serviceKey)) {
         storedServices.push(serviceId);
-        storedCaseworkersByService.push({service: serviceId, caseworkers: JSON.parse(this.sessionStorageService.getItem(serviceKey))});
+        storedCaseworkersByService.push({ service: serviceId, caseworkers: JSON.parse(this.sessionStorageService.getItem(serviceKey)) });
       } else {
         newServices.push(serviceId);
       }
@@ -56,7 +56,7 @@ export class FindAPersonService {
       return of(this.searchInCaseworkers(storedCaseworkers, searchOptions));
     }
     // all serviceIds passed in as node layer getting used anyway and caseworkers also stored there
-    return this.http.post<CaseworkersByService[]>('/workallocation2/retrieveCaseWorkersForServices', {fullServices}).pipe(
+    return this.http.post<CaseworkersByService[]>('/workallocation2/retrieveCaseWorkersForServices', { fullServices }).pipe(
       tap(caseworkersByService => {
         caseworkersByService.forEach(caseworkerListByService => {
           // for any new service, ensure that they are then stored in the session
@@ -98,7 +98,12 @@ export class FindAPersonService {
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
     return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-     : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+      : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+  }
+
+  public searchJudicial(value: string): Observable<JudicialUserModel[]> {
+    return this.http.post<JudicialUserModel[]>('api/prd/judicial/getJudicialUsersSearch',
+      { searchString: value });
   }
 }
 
