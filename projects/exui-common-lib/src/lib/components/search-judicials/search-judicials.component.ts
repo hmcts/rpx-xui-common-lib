@@ -40,6 +40,7 @@ export class SearchJudicialsComponent implements OnInit {
     if (this.control) {
       if (this.formGroup && this.formGroup.controls) {
         this.formGroup.controls.selectedFormControl = this.control;
+        this.formGroup.controls.formControl.setValue(this.getControlValueDisplayText());
       }
     }
     this.keyUpSubject$.pipe(debounceTime(500)).subscribe(searchValue => this.search(searchValue as string));
