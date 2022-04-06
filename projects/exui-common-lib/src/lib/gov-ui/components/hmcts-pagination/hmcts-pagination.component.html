@@ -8,9 +8,6 @@
       <li class="hmcts-pagination__item  hmcts-pagination__item--prev" [class.disabled]="p.isFirstPage()">
         <a [routerLink]="" class="hmcts-pagination__link" *ngIf="1 < p.getCurrent()" (keyup.enter)="p.previous()"
           (click)="p.previous()">Previous <span class="govuk-visually-hidden">set of pages</span></a>
-        <span *ngIf="p.isFirstPage()">
-          Previous <span class="govuk-visually-hidden">set of pages</span>
-        </span>
       </li>
 
       <ng-container *ngIf="showPageNumbers">
@@ -30,9 +27,6 @@
       <li class="hmcts-pagination__item  hmcts-pagination__item--next" [class.disabled]="p.isLastPage()">
         <a [routerLink]="" class="hmcts-pagination__link" *ngIf="!p.isLastPage()" (keyup.enter)="p.next()"
           (click)="p.next()">Next<span class="govuk-visually-hidden"> page</span></a>
-        <span *ngIf="p.isLastPage()">
-          Next <span class="govuk-visually-hidden">page</span>
-        </span>
       </li>
 
     </ul>
