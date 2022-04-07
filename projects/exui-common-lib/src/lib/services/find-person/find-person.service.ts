@@ -101,9 +101,9 @@ export class FindAPersonService {
       : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
   }
 
-  public searchJudicial(value: string): Observable<JudicialUserModel[]> {
+  public searchJudicialUsers(searchString: string, serviceId: string): Observable<JudicialUserModel[]> {
     return this.http.post<JudicialUserModel[]>('api/prd/judicial/getJudicialUsersSearch',
-      { searchString: value });
+      { searchString, serviceId });
   }
 }
 

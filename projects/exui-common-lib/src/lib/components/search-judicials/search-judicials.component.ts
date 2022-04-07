@@ -22,6 +22,7 @@ export class SearchJudicialsComponent implements OnInit {
   @Output() public judicialChanged = new EventEmitter<JudicialUserModel>();
   @Input() public idValue: string = '';
   @Input() public errorMessage: string = 'You must select a name';
+  @Input() public serviceId: string = '';
   @ViewChild('inputSelection', { read: ElementRef }) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
   public selectedJudicial: JudicialUserModel;
   private readonly minSearchCharacters = 3;
@@ -66,7 +67,7 @@ export class SearchJudicialsComponent implements OnInit {
   }
 
   public filter(term: string): void {
-    this.searchJudicials(term).pipe(
+    this.searchJudicialUsers(term, this.serviceId).pipe(
       mergeMap((apiData: JudicialUserModel[]) => {
         const apiFilter = apiData.filter(
           apiJudicial => !this.selectedJudicials.map(selectedJudicial => selectedJudicial.sidam_id).includes(apiJudicial.sidam_id)
@@ -114,8 +115,8 @@ export class SearchJudicialsComponent implements OnInit {
     return `${selectedJudicial.known_as} (${selectedJudicial.email_id})`;
   }
 
-  public searchJudicials(term: string): Observable<JudicialUserModel[]> {
-    return this.judicialService.searchJudicial(term);
+  public searchJudicialUsers(term: string, serviceId: string): Observable<JudicialUserModel[]> {
+    return this.judicialService.searchJudicialUsers(term, serviceId);
   }
 
   public getControlValueDisplayText(): string {
