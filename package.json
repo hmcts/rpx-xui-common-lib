@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.6.12-hearing-part2",
+  "version": "1.6.13-search-judicial-v2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

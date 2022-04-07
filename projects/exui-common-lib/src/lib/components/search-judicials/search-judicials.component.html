@@ -1,0 +1,16 @@
+<div class="govuk-form-group">
+  <input id="inputSelectPerson{{idValue}}" [placeholder]="placeholderContent" [formControl]="formGroup.controls.formControl"
+    [matAutocomplete]="autoComplete" (keydown)="onKeyDown()" (keyup)="onKeyUp($event)" (focus)="onFocus()"
+    class="govuk-input" [attr.disabled]="!disabled ? null: disabled" [value]="getControlValueDisplayText()"
+    #inputSelection>
+  <mat-autocomplete autoActiveFirstOption #autoComplete="matAutocomplete">
+    <mat-option *ngFor="let judicial of displayedJudicialsDuplicationFiltered" class="select-option"
+      [value]="getDisplayName(judicial)" (onSelectionChange)="onSelectionChange(judicial)"
+      [ngClass]="{'hide-autocomplete': !showAutocomplete}">
+      {{ getDisplayName(judicial) }}
+    </mat-option>
+    <mat-option class="select-option"
+      *ngIf="!displayedJudicialsDuplicationFiltered?.length && showAutocomplete && !searchInProgress">
+      {{ 'No results found' }}</mat-option>
+  </mat-autocomplete>
+</div>
