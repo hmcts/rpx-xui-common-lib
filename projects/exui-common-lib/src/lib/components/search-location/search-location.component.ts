@@ -1,124 +1,115 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { Observable, of, Subject } from 'rxjs';
-import { debounceTime, map, mergeMap } from 'rxjs/operators';
-import { LocationByEPIMSModel } from '../../models/location.model';
-import { LocationService } from '../../services/locations/location.service';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {debounceTime, filter, map, mergeMap, tap} from 'rxjs/operators';
+import {LocationByEPIMMSModel} from '../../models/location.model';
+import {LocationService} from '../../services/locations/location.service';
 
 @Component({
   selector: 'exui-search-location',
   templateUrl: './search-location.component.html',
   styleUrls: ['./search-location.component.scss']
 })
-
 export class SearchLocationComponent implements OnInit {
   @Input() public control: AbstractControl;
   @Input() public disabled: boolean = null;
+  @Input() public singleMode: boolean = false;
   @Input() public locationType: string = '';
-  @Input() public selectedLocations$: Observable<LocationByEPIMSModel[]>;
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
+  @Input() public delay?: number = 500;
+  @Input() public form: FormGroup;
   @Input() public showAutocomplete: boolean = false;
-  @Input() public locations$: Observable<LocationByEPIMSModel[]>;
-  @ViewChild('inputSelectedLocation', {read: ElementRef}) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
+  @Input() public locations: LocationByEPIMMSModel[] = [];
+  @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
+  @Output() public locationInputChanged: EventEmitter<string> = new EventEmitter<string>();
+  public readonly minSearchCharacters = 3;
+  public term: string = '';
+  private pSelectedLocations: any[] = [];
+  private pReset: boolean = true;
 
-  public findLocationFormGroup: FormGroup;
-  public selectedLocation: LocationByEPIMSModel;
-  private readonly minSearchCharacters = 3;
-  public keyUpSubject$: Subject<string> = new Subject();
-
-  constructor(private readonly locationService: LocationService, fb: FormBuilder) {
-    this.findLocationFormGroup = fb.group({
-      findLocationFormControl: [null],
-      locationSelectedFormControl: [null]
+  constructor(private readonly locationService: LocationService, private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
+    this.form = this.fb.group({
+      searchTerm: ['']
     });
+  }
 
-    this.selectedLocations$ = of([]);
+  public get reset(): boolean {
+    return this.pReset;
+  }
+
+  @Input()
+  public set reset(value: boolean) {
+    this.pReset = value;
+    this.resetSearchTerm();
+  }
+
+  public get selectedLocations(): any[] {
+    return this.pSelectedLocations;
+  }
+
+  @Input()
+  public set selectedLocations(value: any[]) {
+    this.pSelectedLocations = value;
+
   }
 
   public ngOnInit(): void {
-    this.locations$ = of([]);
-    if (this.control) {
-      if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
-        this.findLocationFormGroup.controls.locationSelectedFormControl =  this.control;
-
-        this.findLocationFormGroup.controls.locationSelectedFormControl.valueChanges.subscribe((value) => {
-          if (!value) {
-            console.log('reset form control');
-            this.findLocationFormGroup.controls.findLocationFormControl.setValue('');
-          }
-        });
-      }
+    if (this.singleMode && this.selectedLocations.length > 0) {
+      const location = this.selectedLocations[0];
+      this.form.controls.searchTerm.patchValue(location.site_name, {emitEvent: false, onlySelf: true});
     }
-
-    this.keyUpSubject$.pipe(debounceTime(500)).subscribe(searchValue => this.search(searchValue as string));
-  }
-
-  public onFocus() {
-    if (this.findLocationFormGroup && this.findLocationFormGroup.controls) {
-      const value = this.findLocationFormGroup.controls.findLocationFormControl.value ? this.findLocationFormGroup.controls.findLocationFormControl.value : '';
-      if (!value) {
-        this.showAutocomplete = false;
-      }
-
-      this.search(value);
-    }
-  }
-
-  public onKeyUp(event: any): void {
-    this.keyUpSubject$.next(event.target.value);
-  }
-
-  public get locationSource$(): Observable<LocationByEPIMSModel[]> {
-    return this.locations$ ? this.locations$.pipe(
-      mergeMap((locations: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
-          map((selectedLocations) => locations.filter(
-            location => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(location.epims_id) && location.court_name
-          )),
-        )
-      )
-    ) : of([]);
+    this.search();
   }
 
   public filter(term: string): void {
     this.getLocations(term).pipe(
-        mergeMap((apiData: LocationByEPIMSModel[]) => this.selectedLocations$.pipe(
-        map((selectedLocations) => apiData.filter(
-          apiLocation => !selectedLocations.map(selectedLocation => selectedLocation.epims_id).includes(apiLocation.epims_id)
-        )),
-      ))
-    ).subscribe(locations => {
-      this.locations$ = of(locations);
+      map((locations) => this.removeSelectedLocations(locations)
+      )
+    );
+  }
+
+  public onSelectionChange(location: LocationByEPIMMSModel): void {
+    this.form.controls.searchTerm.patchValue(location.site_name, {emitEvent: false, onlySelf: true});
+    this.locationSelected.emit(location);
+  }
+
+  public search(): void {
+    this.form.controls.searchTerm.valueChanges
+      .pipe(
+        tap((term) => this.locationInputChanged.next(term)),
+        tap(() => this.locations = []),
+        tap((term) => this.term = term),
+        filter(term => !!term && term.length >= this.minSearchCharacters),
+        debounceTime(this.delay),
+        mergeMap(value => this.getLocations(value)),
+        map((locations) => this.removeSelectedLocations(locations))
+      ).subscribe(locations => {
+      this.locations = locations;
+      this.cd.markForCheck();
+      if (locations.length === 1 && this.term === locations[0].site_name && !this.singleMode) {
+        this.locationSelected.emit(locations[0]);
+        this.showAutocomplete = false;
+        return;
+      }
+      this.showAutocomplete = true;
     });
   }
 
-  public onSelectionChange(selection?: LocationByEPIMSModel): void {
-    this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(selection);
-  }
-
-  public search(currentValue: string): void {
-    this.showAutocomplete = !!currentValue && (currentValue.length >= this.minSearchCharacters);
-
-    if (!currentValue || !currentValue.length) {
-      this.findLocationFormGroup.controls.locationSelectedFormControl.markAsPristine();
-      this.findLocationFormGroup.controls.locationSelectedFormControl.reset();
-    }
-
-    if (this.showAutocomplete) {
-      this.filter(currentValue);
-    }
-  }
-
-  public getDisplayName(selectedLocation: LocationByEPIMSModel): string {
-    return  selectedLocation.court_name;
-  }
-
-  public getLocations(term: string): Observable<LocationByEPIMSModel[]> {
+  public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
     return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
   }
 
-  public getControlCourtNameValue(): string {
-    return this.findLocationFormGroup && this.findLocationFormGroup.controls && this.findLocationFormGroup.controls.locationSelectedFormControl.value ?
-    (this.findLocationFormGroup.controls.locationSelectedFormControl.value as LocationByEPIMSModel).court_name : '';
+  public resetSearchTerm(): void {
+    this.form.controls.searchTerm.patchValue('', {emitEvent: false, onlySelf: true});
+  }
+
+  private removeSelectedLocations(locations: LocationByEPIMMSModel[]): LocationByEPIMMSModel[] {
+    if (this.singleMode) {
+      return locations;
+    }
+    return locations.filter(
+      location => !this.selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(location.epimms_id) && location.site_name
+    );
   }
 }

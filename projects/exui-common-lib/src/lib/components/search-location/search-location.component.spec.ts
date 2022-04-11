@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
 
-fdescribe('SearchLocationComponent', () => {
+describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
@@ -29,7 +29,7 @@ fdescribe('SearchLocationComponent', () => {
     const LOCATION_RESULTS = [
       {
         court_venue_id: '100',
-        epims_id: '219164',
+        epimms_id: '219164',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberdeen Tribunal Hearing Centre',
@@ -39,13 +39,14 @@ fdescribe('SearchLocationComponent', () => {
         region: 'Scotland',
         court_type_id: '17',
         court_type: 'Employment Tribunal',
+        venue_name: 'Aberdeen',
         open_for_public: 'Yes',
         court_address: 'AB1, 48 HUNTLY STREET, ABERDEEN test1',
         postcode: 'AB11 6LT'
       },
       {
         court_venue_id: '101',
-        epims_id: '219164',
+        epimms_id: '219164',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberdeen Tribunal Hearing Centre',
@@ -55,13 +56,14 @@ fdescribe('SearchLocationComponent', () => {
         region: 'Scotland',
         court_type_id: '31',
         court_type: 'Social Security and Child Support Tribunal',
+        venue_name: 'Aberdeen',
         open_for_public: 'Yes',
         court_address: 'AB1, 48 HUNTLY STREET, ABERDEEN test2',
         postcode: 'AB11 6LT'
       },
       {
         court_venue_id: '102',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -71,13 +73,14 @@ fdescribe('SearchLocationComponent', () => {
         region: 'Wales',
         court_type_id: '25',
         court_type: 'Magistrates Court',
+        venue_name: 'Aberystwyth',
         open_for_public: 'Yes',
         court_address: 'TREFECHAN test3',
         postcode: 'SY23 1AS '
       },
       {
         court_venue_id: '103',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -87,13 +90,14 @@ fdescribe('SearchLocationComponent', () => {
         region: 'Wales',
         court_type_id: '10',
         court_type: 'County Court',
+        venue_name: 'Aberystwyth',
         open_for_public: 'Yes',
         court_address: 'TREFECHAN test4',
         postcode: 'SY23 1AS '
       },
       {
         court_venue_id: '104',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -103,13 +107,14 @@ fdescribe('SearchLocationComponent', () => {
         region: 'Wales',
         court_type_id: '18',
         court_type: 'Family Court',
+        venue_name: 'Aberystwyth',
         open_for_public: 'Yes',
         court_address: 'TREFECHAN test5',
         postcode: 'SY23 1AS '
-        },
+      },
       {
         court_venue_id: '105',
-        epims_id: '827534',
+        epimms_id: '827534',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aberystwyth Justice Centre',
@@ -119,13 +124,14 @@ fdescribe('SearchLocationComponent', () => {
         region: 'Wales',
         court_type_id: '31',
         court_type: 'Social Security and Child Support Tribunal',
+        venue_name: 'Aberystwyth',
         open_for_public: 'Yes',
         court_address: 'TREFECHAN test6',
         postcode: 'SY23 1AS '
       },
       {
         court_venue_id: '106',
-        epims_id: '450049',
+        epimms_id: '450049',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aldershot Justice Centre',
@@ -135,6 +141,7 @@ fdescribe('SearchLocationComponent', () => {
         region: 'South West',
         court_type_id: '25',
         court_type: 'Magistrates Court',
+        venue_name: 'Aldershot',
         cluster_id: '9',
         cluster_name: 'Hampshire, Wiltshire, IOW',
         open_for_public: 'Yes',
@@ -143,7 +150,7 @@ fdescribe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '107',
-        epims_id: '450049',
+        epimms_id: '450049',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aldershot Justice Centre',
@@ -153,6 +160,7 @@ fdescribe('SearchLocationComponent', () => {
         region: 'South West',
         court_type_id: '10',
         court_type: 'County Court',
+        venue_name: 'Aldershot',
         cluster_id: '9',
         cluster_name: 'Hampshire, Wiltshire, IOW',
         open_for_public: 'Yes',
@@ -161,7 +169,7 @@ fdescribe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '108',
-        epims_id: '450049',
+        epimms_id: '450049',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Aldershot Justice Centre',
@@ -171,6 +179,7 @@ fdescribe('SearchLocationComponent', () => {
         region: 'South West',
         court_type_id: '31',
         court_type: 'Social Security and Child Support Tribunal',
+        venue_name: 'Aldershot',
         cluster_id: '9',
         cluster_name: 'Hampshire, Wiltshire, IOW',
         open_for_public: 'Yes',
@@ -179,7 +188,7 @@ fdescribe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '109',
-        epims_id: '271588',
+        epimms_id: '271588',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Amersham Law Courts',
@@ -189,6 +198,7 @@ fdescribe('SearchLocationComponent', () => {
         region: 'South East',
         court_type_id: '15',
         court_type: 'Crown Court',
+        venue_name: 'Amersham',
         cluster_id: '17',
         cluster_name: 'Thames Valley',
         open_for_public: 'Yes',
@@ -197,7 +207,7 @@ fdescribe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '110',
-        epims_id: '239985',
+        epimms_id: '239985',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Ashford Tribunal Hearing Centre',
@@ -207,6 +217,7 @@ fdescribe('SearchLocationComponent', () => {
         region: 'South East',
         court_type_id: '17',
         court_type: 'Employment Tribunal',
+        venue_name: 'Ashford',
         cluster_id: '11',
         cluster_name: 'Kent',
         open_for_public: 'Yes',
@@ -215,7 +226,7 @@ fdescribe('SearchLocationComponent', () => {
       },
       {
         court_venue_id: '111',
-        epims_id: '239985',
+        epimms_id: '239985',
         is_hearing_location: 'Y',
         is_case_management_location: 'Y',
         site_name: 'Ashford Tribunal Hearing Centre',
@@ -225,6 +236,7 @@ fdescribe('SearchLocationComponent', () => {
         region: 'South East',
         court_type_id: '31',
         court_type: 'Social Security and Child Support Tribunal',
+        venue_name: 'Ashford',
         cluster_id: '11',
         cluster_name: 'Kent',
         open_for_public: 'Yes',
@@ -236,9 +248,7 @@ fdescribe('SearchLocationComponent', () => {
     fixture = TestBed.createComponent(SearchLocationComponent);
     component = fixture.componentInstance;
     const locationService = TestBed.get(LocationService);
-    spyOn(component.keyUpSubject$, 'next');
-    spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
-    spyOn(component.locationSource$, 'pipe').and.returnValue(of(LOCATION_RESULTS));
+    component.locations = LOCATION_RESULTS;
     spyOn(component, 'getLocations').and.callThrough();
 
     locationService.getAllLocations.and.returnValue(of(LOCATION_RESULTS));
@@ -250,53 +260,33 @@ fdescribe('SearchLocationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component.getLocations).toHaveBeenCalled();
-  });
-
-  it('should call filter when input is more than 2 characters', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = 'MARCUS';
-    selectedLoction.nativeElement.dispatchEvent(new Event('keyup'));
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.keyUpSubject$.next).toHaveBeenCalled();
-      });
+  it('should call filter when input is more than 3 characters', async () => {
+    const selectedLocation = fixture.debugElement.query(By.css('.govuk-input'));
+    selectedLocation.nativeElement.value = 'MARCUS';
+    selectedLocation.nativeElement.dispatchEvent(new Event('keyup'));
+    component.form.controls.searchTerm.valueChanges.subscribe(value => {
+      expect(value).toBe('MARCUS');
     });
   });
 
-  it('should not filter in input characters are less then three', async (done) => {
-    component.locations$.subscribe(x => {
-      expect(x.length).toBeGreaterThan(1);
-      done();
-    });
+  it('should not filter in input characters are less then three', async () => {
+    expect(component.locations.length).toBeGreaterThan(1);
 
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = 'te';
-    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
+    const selectedLocation = fixture.debugElement.query(By.css('.govuk-input'));
+    selectedLocation.nativeElement.value = 'te';
+    selectedLocation.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.filter).not.toHaveBeenCalled();
     });
   });
 
-  it('should reset form control and set to pristine when empty value is given', async (done) => {
-    component.locations$.subscribe(x => {
-      expect(x.length).toBeGreaterThan(1);
-      done();
-    });
-
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = '';
-    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.value).toEqual('');
-        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.pristine).toBeTruthy();
-      });
+  it('should reset form control and set to pristine when empty value is given', async () => {
+    const selectedLocation = fixture.debugElement.query(By.css('.govuk-input'));
+    selectedLocation.nativeElement.value = '';
+    selectedLocation.nativeElement.dispatchEvent(new Event('input'));
+    component.form.controls.searchTerm.valueChanges.subscribe(value => {
+      expect(value).toBe('');
     });
   });
 });

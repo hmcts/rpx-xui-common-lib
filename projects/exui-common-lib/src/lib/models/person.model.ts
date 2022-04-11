@@ -6,6 +6,11 @@ export interface Person {
   knownAs?: string;
 }
 
+export interface CaseworkersByService {
+  service: string;
+  caseworkers: Caseworker[];
+}
+
 export interface Caseworker {
   idamId: string;
   firstName: string;

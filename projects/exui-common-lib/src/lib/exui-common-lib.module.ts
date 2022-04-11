@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTabsModule } from '@angular/material';
+import {MatInputModule, MatTabsModule} from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
@@ -10,6 +10,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 import { CookieBannerComponent } from './components/cookie-banner/cookie-banner.component';
 import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
+import { FindLocationComponent } from './components/find-location/find-location.component';
 import { FindPersonComponent } from './components/find-person/find-person.component';
 import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
@@ -96,6 +97,7 @@ export const COMMON_COMPONENTS = [
   GenericFilterComponent,
   CookieBannerComponent,
   FindPersonComponent,
+  FindLocationComponent,
   SearchLocationComponent,
   PaginationComponent
 ];
@@ -129,14 +131,15 @@ export const GOV_UI_COMPONENTS = [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild([]),
-    MatAutocompleteModule,
-    MatTabsModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forChild([]),
+        MatAutocompleteModule,
+        MatTabsModule,
+        MatInputModule
+    ],
   providers: [
     { provide: windowToken, useFactory: windowProvider }
   ],
