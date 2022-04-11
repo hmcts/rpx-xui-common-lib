@@ -62,22 +62,22 @@ export class SearchJudicialsComponent implements OnInit {
 
   public get displayedJudicialsDuplicationFiltered(): JudicialUserModel[] {
     return this.displayedJudicials.filter(
-      judicial => !this.selectedJudicials.map(selectedJudicial => selectedJudicial.sidam_id).includes(judicial.sidam_id)
+      judicial => !this.selectedJudicials.map(selectedJudicial => selectedJudicial.idamId).includes(judicial.idamId)
     );
   }
 
   public filter(term: string): void {
-    this.searchJudicialUsers(term, this.serviceId).pipe(
+    this.searchJudicials(term, this.serviceId).pipe(
       mergeMap((apiData: JudicialUserModel[]) => {
         const apiFilter = apiData.filter(
-          apiJudicial => !this.selectedJudicials.map(selectedJudicial => selectedJudicial.sidam_id).includes(apiJudicial.sidam_id)
+          apiJudicial => !this.selectedJudicials.map(selectedJudicial => selectedJudicial.idamId).includes(apiJudicial.idamId)
         );
         this.displayedJudicials = apiFilter;
         this.searchInProgress = false;
         return apiFilter;
       })
     ).subscribe(judicial => {
-      if (term === judicial.known_as) {
+      if (term === judicial.knownAs) {
         this.formGroup.controls.selectedFormControl.setValue(judicial);
         this.displayedJudicials = [];
         this.judicialChanged.emit(judicial);
@@ -89,7 +89,7 @@ export class SearchJudicialsComponent implements OnInit {
 
   public onSelectionChange(selection?: JudicialUserModel): void {
     if (this.formGroup.controls.formControl instanceof FormArray) {
-      (this.formGroup.controls.selectedFormControl as FormArray).push(new FormControl(selection.sidam_id));
+      (this.formGroup.controls.selectedFormControl as FormArray).push(new FormControl(selection.idamId));
     } else {
       this.formGroup.controls.selectedFormControl.setValue(selection);
     }
@@ -112,11 +112,11 @@ export class SearchJudicialsComponent implements OnInit {
   }
 
   public getDisplayName(selectedJudicial: JudicialUserModel): string {
-    return `${selectedJudicial.known_as} (${selectedJudicial.email_id})`;
+    return `${selectedJudicial.knownAs} (${selectedJudicial.emailId})`;
   }
 
-  public searchJudicialUsers(term: string, serviceId: string): Observable<JudicialUserModel[]> {
-    return this.judicialService.searchJudicialUsers(term, serviceId);
+  public searchJudicials(term: string, serviceId: string): Observable<JudicialUserModel[]> {
+    return this.judicialService.searchJudicial(term, serviceId);
   }
 
   public getControlValueDisplayText(): string {

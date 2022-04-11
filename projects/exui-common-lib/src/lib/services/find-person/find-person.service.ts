@@ -1,11 +1,22 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers } from '../../gov-ui/util/session-storage/session-storage-utils';
-
-import { Caseworker, CaseworkersByService, JudicialUserModel, Person, PersonRole, RoleCategory, SearchOptions } from '../../models';
-import { SessionStorageService } from '../session-storage/session-storage.service';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
+import {
+  getAllCaseworkersFromServices,
+  getSessionStorageKeyForServiceId,
+  setCaseworkers
+} from '../../gov-ui/util/session-storage/session-storage-utils';
+import {
+  Caseworker,
+  CaseworkersByService,
+  JudicialUserModel,
+  Person,
+  PersonRole,
+  RoleCategory,
+  SearchOptions
+} from '../../models';
+import {SessionStorageService} from '../session-storage/session-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -101,9 +112,9 @@ export class FindAPersonService {
       : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
   }
 
-  public searchJudicialUsers(searchString: string, serviceId: string): Observable<JudicialUserModel[]> {
+  public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
     return this.http.post<JudicialUserModel[]>('api/prd/judicial/getJudicialUsersSearch',
-      { searchString, serviceId });
+      { searchString: value, serviceCode: serviceId });
   }
 }
 

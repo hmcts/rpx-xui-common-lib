@@ -29,14 +29,16 @@ describe('SearchJudicialsComponent', () => {
 
     const JUDICIAL_RESULTS: JudicialUserModel[] = [
       {
-        sidam_id: '38eb0c5e-29c7-453e-b92d-f2029aaed6c1',
-        object_id: '38eb0c5e-29c7-453e-b92d-f2029aaed6c1',
-        known_as: 'Hearing Judge',
+        emailId: 'jacky.collins@judicial.com',
+        fullName: 'Jacky Collins',
+        idamId: '38eb0c5e-29c7-453e-b92d-f2029aaed6c1',
+        isJudge: null,
+        isMagistrate: null,
+        isPanelMember: null,
+        knownAs: 'Hearing Judge',
+        personalCode: 'P100001',
         surname: 'Jacky',
-        personal_code: 'P100001',
-        full_name: 'Jacky Collins',
-        post_nominals: '',
-        email_id: 'jacky.collins@judicial.com'
+        title: 'Mr',
       }
     ];
 
