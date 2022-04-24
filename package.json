@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.6.14-hearing-integration",
+  "version": "1.6.15-hearing-judge-name-display",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

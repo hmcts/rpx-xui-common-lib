@@ -54,6 +54,11 @@ export class SearchJudicialsComponent implements OnInit {
   public onKeyUp(event: any): void {
     this.showAutocomplete = false;
     this.keyUpSubject$.next(event.target.value);
+    if (event.target.value !== this.getControlValueDisplayText()) {
+      this.formGroup.controls.selectedFormControl.markAsTouched();
+    } else {
+      this.formGroup.controls.selectedFormControl.markAsUntouched();
+    }
   }
 
   public onFocus() {
@@ -88,9 +93,13 @@ export class SearchJudicialsComponent implements OnInit {
   }
 
   public onSelectionChange(selection?: JudicialUserModel): void {
-    if (this.formGroup.controls.formControl instanceof FormArray) {
+    if (selection === null) {
+      this.formGroup.controls.selectedFormControl.markAsTouched();
+      return;
+    } else if (this.formGroup.controls.formControl instanceof FormArray) {
       (this.formGroup.controls.selectedFormControl as FormArray).push(new FormControl(selection.idamId));
     } else {
+      this.formGroup.controls.selectedFormControl.markAsUntouched();
       this.formGroup.controls.selectedFormControl.setValue(selection);
     }
     this.judicialChanged.emit(selection);

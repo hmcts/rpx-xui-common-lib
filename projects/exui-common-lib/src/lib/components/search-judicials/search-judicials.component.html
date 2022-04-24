@@ -9,7 +9,7 @@
       [ngClass]="{'hide-autocomplete': !showAutocomplete}">
       {{ getDisplayName(judicial) }}
     </mat-option>
-    <mat-option class="select-option"
+    <mat-option class="select-option" (onSelectionChange)="onSelectionChange(null)"
       *ngIf="!displayedJudicialsDuplicationFiltered?.length && showAutocomplete && !searchInProgress">
       {{ 'No results found' }}</mat-option>
   </mat-autocomplete>
