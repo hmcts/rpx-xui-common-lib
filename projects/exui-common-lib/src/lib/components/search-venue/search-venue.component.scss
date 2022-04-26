@@ -7,8 +7,8 @@
   -webkit-box-sizing: border-box;
   margin-bottom: 0;
   width: 100%;
-}
-.autocomplete__input {
+  line-height: 24px;
+  font-size: 19px;
   background-color: transparent;
   position: relative;
 }
@@ -135,9 +135,4 @@
   min-width: 550px;
   display: inline-block;
   margin-right: 4px;
-}
-
-.autocomplete__input {
-  line-height: 24px;
-  font-size: 19px;
 }
