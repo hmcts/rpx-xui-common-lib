@@ -353,7 +353,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     let defaultValues: { name: string; value: any[] };
     if (settings && settings.fields) {
       defaultValues = settings.fields.find((f) => f.name === field.name);
-      if (defaultValues) {
+      if (defaultValues && defaultValues.value && defaultValues.value.length > 0) {
         for (const defaultValue of defaultValues.value) {
           formArray.push(new FormControl(defaultValue));
         }
