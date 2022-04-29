@@ -26,7 +26,7 @@ export class ShareCaseComponent implements OnInit {
 
   private selectedUser: UserDetails;
 
-  @ViewChild(UserSelectComponent)
+  @ViewChild(UserSelectComponent, { static: true })
   private readonly userSelect: UserSelectComponent;
 
   constructor(private readonly stateService: CaseSharingStateService) { }
