@@ -32,5 +32,8 @@
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true
   }
 }
