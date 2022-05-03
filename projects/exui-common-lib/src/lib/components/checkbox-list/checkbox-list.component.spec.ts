@@ -1,22 +1,5 @@
-import { Component, Input, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CheckboxListComponent } from './checkbox-list.component';
-
-@Component({
-  template: `
-  <xuilib-checkbox-list [options]='options' [preselection]='preselection' [labelFunction]='labelFunction'></xuilib-checkbox-list>`
-})
-class WrapperComponent {
-  @ViewChild(CheckboxListComponent) public appComponentRef: CheckboxListComponent<any>;
-  @Input() public options: any[];
-  @Input() public preselection: any[];
-  @Input() public labelFunction: (item: any) => string = defaultLabelFunction;
-}
-
-function defaultLabelFunction(item: any): string {
-  return item;
-}
 
 // example of a label function to mock
 function firstExampleLabelFunction(item: any): string {
@@ -30,20 +13,21 @@ function secondExampleLabelFunction(item: any): string {
 
 describe('CheckboxListComponent', () => {
   let component: CheckboxListComponent<any>;
-  let wrapper: WrapperComponent;
-  let fixture: ComponentFixture<WrapperComponent>;
+  // let wrapper: WrapperComponent;
+  let fixture: ComponentFixture<CheckboxListComponent<any>>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxListComponent, WrapperComponent ]
+      declarations: [ CheckboxListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WrapperComponent);
-    wrapper = fixture.componentInstance;
-    component = wrapper.appComponentRef;
+    fixture = TestBed.createComponent(CheckboxListComponent);
+    // wrapper = fixture.componentInstance;
+    // component = wrapper.appComponentRef;
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -55,6 +39,7 @@ describe('CheckboxListComponent', () => {
     // set the checkbox detais with preselections and expect all selected to be false
     component.options = ['firstOption', 'secondOption', 'thirdOption'];
     component.preselection = ['firstOption', 'secondOption'];
+    component.labelFunction = firstExampleLabelFunction;
     component.ngOnChanges();
     fixture.detectChanges();
     expect(component.allSelected).toBeFalsy();
@@ -119,6 +104,7 @@ describe('CheckboxListComponent', () => {
     // set the options and preselection for testing
     component.options = ['firstOption', 'secondOption', 'thirdOption'];
     component.preselection = ['firstOption', 'secondOption'];
+    component.labelFunction = firstExampleLabelFunction;
     component.ngOnChanges();
     fixture.detectChanges();
 
@@ -268,8 +254,8 @@ describe('CheckboxListComponent', () => {
 
   it('should not display if the options are removed', () => {
     // set the options and labelFunction
-    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = firstExampleLabelFunction;
+    component.options = ['firstOption', 'secondOption', 'thirdOption'];
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // get one of the checkboxes and confirm it is available
@@ -277,7 +263,7 @@ describe('CheckboxListComponent', () => {
     let checkbox = element.querySelector('input');
     expect(checkbox).not.toBe(null);
 
-    wrapper.options = undefined;
+    component.options = undefined;
     fixture.detectChanges();
 
     // Make sure there are no checkboxes.
@@ -288,8 +274,8 @@ describe('CheckboxListComponent', () => {
 
   it('should allow hiding and re-rendering depending on options and the label function', () => {
     // set the options and labelFunction
-    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = firstExampleLabelFunction;
+    component.options = ['firstOption', 'secondOption', 'thirdOption'];
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // get one of the checkboxes and confirm it is available
@@ -298,7 +284,7 @@ describe('CheckboxListComponent', () => {
     expect(checkbox).not.toBe(null);
 
     // remove wrapper options
-    wrapper.options = undefined;
+    component.options = undefined;
     fixture.detectChanges();
 
     // Make sure there are no checkboxes.
@@ -306,8 +292,8 @@ describe('CheckboxListComponent', () => {
     expect(checkbox).toBe(null);
 
     // add the options and remove the labelFunction
-    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = undefined;
+    component.options = ['firstOption', 'secondOption', 'thirdOption'];
+    component.labelFunction = undefined;
     fixture.detectChanges();
 
     // Make sure there are no checkboxes.
@@ -315,7 +301,7 @@ describe('CheckboxListComponent', () => {
     expect(checkbox).toBe(null);
 
     // remove the options
-    wrapper.options = undefined;
+    component.options = undefined;
     fixture.detectChanges();
 
     // Make sure there are no checkboxes.
@@ -323,8 +309,8 @@ describe('CheckboxListComponent', () => {
     expect(checkbox).toBe(null);
 
     // set the options and labelFunction
-    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = firstExampleLabelFunction;
+    component.options = ['firstOption', 'secondOption', 'thirdOption'];
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // Make sure there are checkboxes.
@@ -337,8 +323,8 @@ describe('CheckboxListComponent', () => {
     spyOn(component.selectionChange, 'emit');
 
     // set the options for testing
-    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = firstExampleLabelFunction;
+    component.options = ['firstOption', 'secondOption', 'thirdOption'];
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // dispatch the change event
@@ -365,8 +351,8 @@ describe('CheckboxListComponent', () => {
     spyOn(component.selectionChange, 'emit');
 
     // set the options for testing
-    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = firstExampleLabelFunction;
+    component.options = ['firstOption', 'secondOption', 'thirdOption'];
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // dispatch a change event
@@ -414,8 +400,8 @@ describe('CheckboxListComponent', () => {
     spyOn(component.selectionChange, 'emit');
 
     // set the options for testing
-    wrapper.options = ['firstOption', 'secondOption', 'thirdOption'];
-    wrapper.labelFunction = firstExampleLabelFunction;
+    component.options = ['firstOption', 'secondOption', 'thirdOption'];
+    component.labelFunction = firstExampleLabelFunction;
     fixture.detectChanges();
 
     // verify that the label function works as expected
@@ -425,7 +411,7 @@ describe('CheckboxListComponent', () => {
     expect(element.querySelectorAll('label')[3].textContent).toContain('THIRDOPTION');
 
     // verify that the second label function works as expected
-    wrapper.labelFunction = secondExampleLabelFunction;
+    component.labelFunction = secondExampleLabelFunction;
     fixture.detectChanges();
     expect(element.querySelectorAll('label')[1].textContent).toContain('firstoption');
     expect(element.querySelectorAll('label')[2].textContent).toContain('secondoption');
