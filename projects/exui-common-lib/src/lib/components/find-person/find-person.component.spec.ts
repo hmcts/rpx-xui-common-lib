@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {of} from 'rxjs';
@@ -35,11 +35,15 @@ describe('FindPersonComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    component.ngOnDestroy();
+  });
+
   it('is Truthy', () => {
     expect(component).toBeTruthy();
   });
 
-  it('input element changes triggers search', () => {
+  it('input element changes triggers search', async(() => {
     mockFindAPersonService.find.and.returnValue(of([]));
     mockFindAPersonService.findCaseworkers.and.returnValue(of([]));
     component.findPersonControl.setValue('test');
@@ -48,7 +52,7 @@ describe('FindPersonComponent', () => {
       expect(mockFindAPersonService.find).toHaveBeenCalled();
       expect(mockFindAPersonService.findCaseworkers).toHaveBeenCalled();
     }, 500);
-  });
+  }));
 
   it('selection change emits change with person', () => {
     const mockPerson: Person = {
@@ -130,6 +134,12 @@ describe('FindPersonComponent', () => {
     mockFindAPersonService.findCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
     component.filter('ast').subscribe(result => expect(result).toEqual([mockPersonOne, mockPersonTwo, mockPersonThree]));
     component.filter('').subscribe(result => expect(result.length).toBe(0));
+  });
+
+  it('should emit an event when search person emits an event to the component', () => {
+    spyOn(component.personFieldChanged, 'emit');
+    component.onInput();
+    expect(component.personFieldChanged.emit).toHaveBeenCalled();
   });
 
 });

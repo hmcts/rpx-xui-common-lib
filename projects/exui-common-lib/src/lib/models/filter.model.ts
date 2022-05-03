@@ -32,11 +32,14 @@ export interface FilterFieldConfig {
   findPersonField?: string;
   findLocationField?: string;
   domainField?: string;
+  disable?: boolean;
   disabledText?: string;
   type: FilterFieldType;
   domain?: PersonRole;
   title?: string;
   subTitle?: string;
+  locationTitle?: string;
+  radioSelectionChange?: string;
 }
 
 export interface FilterSetting {

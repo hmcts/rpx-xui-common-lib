@@ -2,9 +2,20 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
-import {getAllCaseworkersFromServices, getSessionStorageKeyForServiceId, setCaseworkers} from '../../gov-ui/util/session-storage/session-storage-utils';
-
-import {Caseworker, CaseworkersByService, Person, PersonRole, RoleCategory, SearchOptions} from '../../models';
+import {
+  getAllCaseworkersFromServices,
+  getSessionStorageKeyForServiceId,
+  setCaseworkers
+} from '../../gov-ui/util/session-storage/session-storage-utils';
+import {
+  Caseworker,
+  CaseworkersByService,
+  JudicialUserModel,
+  Person,
+  PersonRole,
+  RoleCategory,
+  SearchOptions
+} from '../../models';
 import {SessionStorageService} from '../session-storage/session-storage.service';
 
 @Injectable({
@@ -14,6 +25,7 @@ export class FindAPersonService {
 
   public static caseworkersKey: string = 'caseworkers';
   public userId: string;
+  public assignedUser: string;
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
   }
@@ -24,7 +36,9 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    return this.http.post<Person[]>('/workallocation2/findPerson', {searchOptions, userId: this.userId});
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    return this.http.post<Person[]>('/workallocation2/findPerson', { searchOptions })
+      .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser, this.userId].includes(judge.id)))));
   }
 
   public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {
@@ -33,6 +47,7 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
     const fullServices = searchOptions.services;
     const storedServices = [];
     const newServices: string[] = [];
@@ -41,7 +56,7 @@ export class FindAPersonService {
       const serviceKey = getSessionStorageKeyForServiceId(serviceId);
       if (this.sessionStorageService.getItem(serviceKey)) {
         storedServices.push(serviceId);
-        storedCaseworkersByService.push({service: serviceId, caseworkers: JSON.parse(this.sessionStorageService.getItem(serviceKey))});
+        storedCaseworkersByService.push({ service: serviceId, caseworkers: JSON.parse(this.sessionStorageService.getItem(serviceKey)) });
       } else {
         newServices.push(serviceId);
       }
@@ -52,7 +67,7 @@ export class FindAPersonService {
       return of(this.searchInCaseworkers(storedCaseworkers, searchOptions));
     }
     // all serviceIds passed in as node layer getting used anyway and caseworkers also stored there
-    return this.http.post<CaseworkersByService[]>('/workallocation2/retrieveCaseWorkersForServices', {fullServices}).pipe(
+    return this.http.post<CaseworkersByService[]>('/workallocation2/retrieveCaseWorkersForServices', { fullServices }).pipe(
       tap(caseworkersByService => {
         caseworkersByService.forEach(caseworkerListByService => {
           // for any new service, ensure that they are then stored in the session
@@ -93,7 +108,13 @@ export class FindAPersonService {
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
-    return searchOptions.userIncluded ? finalPeopleList : finalPeopleList.filter(person => person && person.id !== this.userId);
+    return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
+      : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+  }
+
+  public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
+    return this.http.post<JudicialUserModel[]>('api/prd/judicial/getJudicialUsersSearch',
+      { searchString: value, serviceCode: serviceId });
   }
 }
 

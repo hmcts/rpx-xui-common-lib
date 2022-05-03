@@ -23,6 +23,7 @@ export class SearchLocationComponent implements OnInit {
   @Input() public locations: LocationByEPIMMSModel[] = [];
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationInputChanged: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pSelectedLocations: any[] = [];
@@ -57,7 +58,7 @@ export class SearchLocationComponent implements OnInit {
   public ngOnInit(): void {
     if (this.singleMode && this.selectedLocations.length > 0) {
       const location = this.selectedLocations[0];
-      this.form.controls.searchTerm.patchValue(location.venue_name, {emitEvent: false, onlySelf: true});
+      this.form.controls.searchTerm.patchValue(location.site_name, {emitEvent: false, onlySelf: true});
     }
     this.search();
   }
@@ -70,7 +71,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public onSelectionChange(location: LocationByEPIMMSModel): void {
-    this.form.controls.searchTerm.patchValue(location.venue_name, {emitEvent: false, onlySelf: true});
+    this.form.controls.searchTerm.patchValue(location.site_name, {emitEvent: false, onlySelf: true});
     this.locationSelected.emit(location);
   }
 
@@ -87,13 +88,17 @@ export class SearchLocationComponent implements OnInit {
       ).subscribe(locations => {
       this.locations = locations;
       this.cd.markForCheck();
-      if (locations.length === 1 && this.term === locations[0].venue_name && !this.singleMode) {
+      if (locations.length === 1 && this.term === locations[0].site_name && !this.singleMode) {
         this.locationSelected.emit(locations[0]);
         this.showAutocomplete = false;
         return;
       }
       this.showAutocomplete = true;
     });
+  }
+
+  public onInput(): void {
+    this.searchLocationChanged.emit();
   }
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
@@ -109,7 +114,7 @@ export class SearchLocationComponent implements OnInit {
       return locations;
     }
     return locations.filter(
-      location => !this.selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(location.epimms_id) && location.venue_name
+      location => !this.selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(location.epimms_id) && location.site_name
     );
   }
 }
