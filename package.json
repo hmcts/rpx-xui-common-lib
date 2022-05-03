@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.0-check-booking-location-values",
+  "version": "1.7.0-find-person-styling",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
