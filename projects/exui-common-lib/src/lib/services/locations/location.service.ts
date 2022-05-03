@@ -21,4 +21,15 @@ export class LocationService {
   public getAllLocations(serviceIds: string, locationType: string, searchTerm: string): Observable<LocationByEPIMMSModel[]> {
     return this.http.get<LocationByEPIMMSModel[]>(`api/locations/getLocations?serviceIds=${serviceIds}&locationType=${locationType}&searchTerm=${searchTerm}`);
   }
+
+  /**
+   * @description searchLocations from service Ids/location type/search term
+   * @param serviceIds: BBA3 | BBA3,BFA1 split with ','
+   * @param locationType: optional | hearing | case_management
+   * @param searchTerm: any search term for postcode | site name | venue name |court name | court address etc.
+   * @return Observable<LocationByEPIMMSModel[]>: Array of locationModel in Observable
+   */
+  public searchLocations(serviceIds: string, locationType: string, searchTerm: string): Observable<LocationByEPIMMSModel[]> {
+      return this.http.get<LocationByEPIMMSModel[]>(`api/prd/location/getLocations?serviceIds=${serviceIds}&locationType=${locationType}&searchTerm=${searchTerm}`);
+  }
 }
