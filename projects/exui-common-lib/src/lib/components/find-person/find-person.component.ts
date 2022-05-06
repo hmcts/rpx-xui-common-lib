@@ -72,7 +72,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
         case PersonRole.JUDICIAL: {
           return findJudicialPeople.pipe(map(persons => {
             const ids: string[] = this.selectedPersons.map(({id}) => id);
-            return persons.filter(({id}) => !ids.includes(id));
+            return persons.filter(({ id }) => !ids.includes(id));
           }));
         }
         case PersonRole.ALL: {
