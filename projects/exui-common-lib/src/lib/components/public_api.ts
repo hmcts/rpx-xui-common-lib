@@ -13,6 +13,8 @@ export * from './invite-user-permissions/invite-user-permission.component';
 export * from './loading-spinner/loading-spinner.component';
 export * from './pagination/pagination.component';
 export * from './search-location/search-location.component';
+export * from './search-venue/search-venue.component';
+export * from './search-judicials/search-judicials.component';
 export * from './selected-case-confirm/selected-case-confirm.component';
 export * from './selected-case-list/selected-case-list.component';
 export * from './selected-case/selected-case.component';
