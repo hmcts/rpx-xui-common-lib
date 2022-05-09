@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -63,6 +64,7 @@ import {HmctsBannerComponent} from './gov-ui/components/hmcts-banner/hmcts-banne
 import {HmctsErrorSummaryComponent} from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
 import {HmctsIdentityBarComponent} from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
 import {HmctsMainWrapperComponent} from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
+import {HmctsPaginationComponent} from './gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import {
   HmctsPrimaryNavigationComponent
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
@@ -111,6 +113,7 @@ export const GOV_UI_COMPONENTS = [
   HmctsIdentityBarComponent,
   HmctsSubNavigationComponent,
   HmctsPrimaryNavigationComponent,
+  HmctsPaginationComponent,
   HmctsErrorSummaryComponent,
   HmctsMainWrapperComponent,
   HmctsBannerComponent,
@@ -143,7 +146,8 @@ export const GOV_UI_COMPONENTS = [
     RouterModule.forChild([]),
     MatAutocompleteModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: windowToken, useFactory: windowProvider}
