@@ -6,7 +6,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "build:library": "ng build exui-common-lib",
+    "build:library": "ng build exui-common-lib --prod",
     "package": "cat dist/rpx-xui-common-lib/{runtime,polyfills,scripts,main}.js | gzip > elements.js.gz",
     "start": "ng serve -o",
     "start:no-open": "ng serve",
