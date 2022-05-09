@@ -14,6 +14,7 @@ export * from './gov-uk-table/gov-uk-table.component';
 export * from './gov-uk-textarea/gov-uk-textarea.component';
 export * from './hmcts-banner/hmcts-banner.component';
 export * from './hmcts-error-summary/hmcts-error-summary.component';
+export * from './hmcts-pagination/hmcts-pagination.component';
 export * from './hmcts-identity-bar/hmcts-identity-bar.component';
 export * from './hmcts-main-wrapper/hmcts-main-wrapper.component';
 export * from './hmcts-primary-navigation/hmcts-primary-navigation.component';
