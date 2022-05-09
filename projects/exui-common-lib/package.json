@@ -2,10 +2,10 @@
   "name": "@hmcts/rpx-xui-common-lib",
   "version": "1.7.0-find-person-styling",
   "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0",
-    "@angular/material": "^8.2.0",
-    "@angular/cdk": "^8.2.0",
+    "@angular/common": "^9.1.0",
+    "@angular/core": "^9.1.0",
+    "@angular/material": "^9.1.0",
+    "@angular/cdk": "^9.1.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
     "ngx-pagination": "^3.2.1"
   },
