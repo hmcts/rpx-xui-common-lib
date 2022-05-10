@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'xuilib-hmcts-pagination',
   templateUrl: './hmcts-pagination.component.html',
   styleUrls: ['./hmcts-pagination.component.scss']
 })
-export class HmctsPaginationComponent {
+export class HmctsPaginationComponent implements OnInit {
 
   @Input() public id: string;
   @Input() public maxSize: number = 7;
@@ -15,4 +15,8 @@ export class HmctsPaginationComponent {
   @Output() public pageChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() public pageBoundsCorrection: EventEmitter<number> = new EventEmitter<number>();
 
+  ngOnInit(): void {
+    console.log('HmctsPaginationComponent');
+    console.log(this);
+  }
 }
