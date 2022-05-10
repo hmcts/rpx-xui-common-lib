@@ -15,7 +15,7 @@ export class HmctsPaginationComponent implements OnInit {
   @Output() public pageChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() public pageBoundsCorrection: EventEmitter<number> = new EventEmitter<number>();
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     console.log('HmctsPaginationComponent');
     console.log(this);
   }

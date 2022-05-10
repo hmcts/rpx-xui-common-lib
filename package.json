@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.0-angular-upgrade-9-rc.9",
+  "version": "1.8.0-angular-upgrade-9-rc.10",
   "engines": {
     "node": ">=12.20.0"
   },
