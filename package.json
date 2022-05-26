@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.0-unassigned-cases-pagination",
+  "version": "1.7.3-unassigned-cases-pagination",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
