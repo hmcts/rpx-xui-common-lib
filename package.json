@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.0-find-person-styling",
+  "version": "1.7.3-user-list-performance-pagination",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
