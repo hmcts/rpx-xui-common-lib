@@ -13,6 +13,7 @@ import {FindAPersonService} from '../../services/find-person/find-person.service
 
 export class FindPersonComponent implements OnInit, OnDestroy {
   @Output() public personSelected = new EventEmitter<Person>();
+  @Output() public personFieldChanged = new EventEmitter<void>();
   @Input() public title: string;
   @Input() public boldTitle = 'Find the person';
   @Input() public subTitle = 'Type the name of the person and select them.';
@@ -100,8 +101,12 @@ export class FindPersonComponent implements OnInit, OnDestroy {
       return '';
     }
     if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
-      return `${selectedPerson.knownAs}(${selectedPerson.email})`;
+      return `${selectedPerson.knownAs} (${selectedPerson.email})`;
     }
-    return selectedPerson.email ? `${selectedPerson.name}(${selectedPerson.email})` : selectedPerson.name;
+    return selectedPerson.email ? `${selectedPerson.name} (${selectedPerson.email})` : selectedPerson.name;
+  }
+
+  public onInput(): void {
+    this.personFieldChanged.emit();
   }
 }

@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule, MatTabsModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {RouterModule} from '@angular/router';
+import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
 import {AccessibilityComponent} from './components/accessibility/accessibility.component';
 import {CheckboxListComponent} from './components/checkbox-list/checkbox-list.component';
 import {ContactDetailsComponent} from './components/contact-details/contact-details.component';
@@ -18,7 +19,7 @@ import {InviteUserFormComponent} from './components/invite-user-form/invite-user
 import {InviteUserPermissionComponent} from './components/invite-user-permissions/invite-user-permission.component';
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
 import {PaginationComponent} from './components/pagination/pagination.component';
-import { SearchJudicialsComponent } from './components/search-judicials/search-judicials.component';
+import {SearchJudicialsComponent} from './components/search-judicials/search-judicials.component';
 import {SearchLocationComponent} from './components/search-location/search-location.component';
 import {SearchVenueComponent} from './components/search-venue/search-venue.component';
 import {SelectedCaseConfirmComponent} from './components/selected-case-confirm/selected-case-confirm.component';
@@ -62,6 +63,7 @@ import {HmctsBannerComponent} from './gov-ui/components/hmcts-banner/hmcts-banne
 import {HmctsErrorSummaryComponent} from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
 import {HmctsIdentityBarComponent} from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
 import {HmctsMainWrapperComponent} from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
+import {HmctsPaginationComponent} from './gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import {
   HmctsPrimaryNavigationComponent
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
@@ -108,6 +110,7 @@ export const COMMON_COMPONENTS = [
 
 export const GOV_UI_COMPONENTS = [
   HmctsIdentityBarComponent,
+  HmctsPaginationComponent,
   HmctsSubNavigationComponent,
   HmctsPrimaryNavigationComponent,
   HmctsErrorSummaryComponent,
@@ -142,14 +145,16 @@ export const GOV_UI_COMPONENTS = [
     RouterModule.forChild([]),
     MatAutocompleteModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: windowToken, useFactory: windowProvider}
   ],
   exports: [
     ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS
+    ...GOV_UI_COMPONENTS,
+    PaginatePipe
   ]
 })
 export class ExuiCommonLibModule {
