@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
@@ -30,12 +30,13 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "@hmcts/frontend": "0.0.41-alpha",
+    "@hmcts/frontend": "0.0.50-alpha",
     "@ng-idle/core": "^8.0.0-beta.4",
     "@ng-idle/keepalive": "^8.0.0-beta.4",
     "core-js": "^2.5.4",
-    "govuk-frontend": "^3.4.0",
+    "govuk-frontend": "4.0.1",
     "launchdarkly-js-client-sdk": "^2.15.2",
+    "ngx-pagination": "^3.2.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

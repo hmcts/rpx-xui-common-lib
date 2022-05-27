@@ -215,7 +215,8 @@ describe('GenericFilterComponent', () => {
       showCondition: condition,
       findPersonField: 'person',
       disabledText: 'Select a role type',
-      type: 'select'
+      type: 'select',
+      disable: true
     };
 
     const radioField: FilterFieldConfig = {
@@ -254,7 +255,9 @@ describe('GenericFilterComponent', () => {
       maxSelectedError: null,
       enableCondition: condition,
       showCondition: condition,
-      type: 'find-person'
+      type: 'find-person',
+      disable: false,
+      radioSelectionChange: condition
     };
 
     const formGroup = new FormGroup({
@@ -275,7 +278,7 @@ describe('GenericFilterComponent', () => {
       expect(component.disabled(selectField, component.form)).toBe(null);
 
       // check the find-person field to see if it will set correctly
-      expect(component.disabled(personField, component.form)).toBe(true);
+      expect(component.disabled(personField, component.form)).toBe(null);
       // check when condition met, disabled set to false
       component.form.get('selectPerson').patchValue('Specific person');
       expect(component.disabled(personField, component.form)).toBe(null);
@@ -318,6 +321,14 @@ describe('GenericFilterComponent', () => {
       expect(component.form.get('person').get('id').value).toBe(null);
       expect(component.form.get('person').get('name').value).toBe(null);
       expect(component.form.get('person').get('knownAs').value).toBe(null);
+    });
+
+    it('should correctly update value when radio button changed', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
+      component.form.get('selectPerson').patchValue('All');
+      component.inputChanged(personField);
+      expect(component.form.get('selectPerson').value).toBe('Specific person');
     });
 
     it('should correctly remove person field when method called', () => {

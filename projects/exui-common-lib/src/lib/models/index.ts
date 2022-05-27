@@ -3,6 +3,7 @@ export * from './contact-details.model';
 export * from './due-date.model';
 export * from './feature-user';
 export * from './idle-config.model';
+export * from './pagination.model';
 export * from './person.model';
 export * from './public_api';
 export * from './search-options.model';

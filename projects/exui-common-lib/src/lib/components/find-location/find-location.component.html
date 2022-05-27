@@ -12,6 +12,7 @@
                           [serviceIds]="serviceIds"
                           (locationInputChanged)="onInputChanged($event)"
                           (locationSelected)="onLocationSelected($event)"
+                          (searchLocationChanged)="onSearchInputChanged()"
                           [locationType]="'case-management'"></exui-search-location>
     <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button" data-module="govuk-button" *ngIf="enableAddLocationButton">
       Add location

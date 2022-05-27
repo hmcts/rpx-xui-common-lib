@@ -289,4 +289,10 @@ describe('SearchLocationComponent', () => {
       expect(value).toBe('');
     });
   });
+
+  it('should emit an event when search location emits an event to the component', () => {
+    spyOn(component.searchLocationChanged, 'emit');
+    component.onInput();
+    expect(component.searchLocationChanged.emit).toHaveBeenCalled();
+  });
 });
