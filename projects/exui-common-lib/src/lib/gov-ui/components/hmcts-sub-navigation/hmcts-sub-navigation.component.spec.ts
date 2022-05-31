@@ -23,7 +23,7 @@ describe('HmctsSubNavigationComponent', () => {
     fixture = TestBed.createComponent(HmctsSubNavigationComponent);
     component = fixture.componentInstance;
     component.label = 'label';
-    component.items = [{text: 'text', href: 'href', active: true}];
+    component.items = [{text: 'text', href: 'href', active: true, total: 100}];
     fixture.detectChanges();
   });
 
