@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {debounceTime, filter, map, mergeMap, tap} from 'rxjs/operators';
 import {LocationByEPIMMSModel} from '../../models/location.model';
 import {LocationService} from '../../services/locations/location.service';
+import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 
 @Component({
   selector: 'exui-search-location',
@@ -29,7 +30,7 @@ export class SearchLocationComponent implements OnInit {
   private pSelectedLocations: any[] = [];
   private pReset: boolean = true;
 
-  constructor(private readonly locationService: LocationService, private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
+  constructor(private readonly locationService: LocationService, private readonly sessionStorageService: SessionStorageService, private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
     this.form = this.fb.group({
       searchTerm: ['']
     });
@@ -102,7 +103,8 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
-    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
+    const userLocations = JSON.parse(this.sessionStorageService.getItem('userLocations'));
+    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term, userLocations);
   }
 
   public resetSearchTerm(): void {
