@@ -76,7 +76,7 @@ describe('FindPersonComponent', () => {
       domain: PersonRole.JUDICIAL
     };
     const displayName = component.getDisplayName(nonJudicialPerson);
-    expect(displayName).toEqual('First Last(first.last@email.com)');
+    expect(displayName).toEqual('First Last (first.last@email.com)');
   });
   it('getDisplayName Non Judicial with no email', () => {
     const nonJudicialPerson = {
@@ -96,7 +96,7 @@ describe('FindPersonComponent', () => {
       knownAs: 'Lead Judge'
     };
     const displayName = component.getDisplayName(judicial);
-    expect(displayName).toEqual('Lead Judge(first.last@email.com)');
+    expect(displayName).toEqual('Lead Judge (first.last@email.com)');
   });
 
   it('getDisplayName Judicial with no KnownAs', () => {
@@ -107,7 +107,7 @@ describe('FindPersonComponent', () => {
       domain: PersonRole.JUDICIAL
     };
     const displayName = component.getDisplayName(judicial);
-    expect(displayName).toEqual('First Last(first.last@email.com)');
+    expect(displayName).toEqual('First Last (first.last@email.com)');
   });
 
 
@@ -134,6 +134,12 @@ describe('FindPersonComponent', () => {
     mockFindAPersonService.findCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
     component.filter('ast').subscribe(result => expect(result).toEqual([mockPersonOne, mockPersonTwo, mockPersonThree]));
     component.filter('').subscribe(result => expect(result.length).toBe(0));
+  });
+
+  it('should emit an event when search person emits an event to the component', () => {
+    spyOn(component.personFieldChanged, 'emit');
+    component.onInput();
+    expect(component.personFieldChanged.emit).toHaveBeenCalled();
   });
 
 });

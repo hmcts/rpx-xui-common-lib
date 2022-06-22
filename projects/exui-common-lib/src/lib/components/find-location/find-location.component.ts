@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {FilterFieldConfig} from '../../models';
 import {LocationByEPIMMSModel} from '../../models/location.model';
@@ -11,6 +11,7 @@ import {SearchLocationComponent} from '../search-location/search-location.compon
   styleUrls: ['./find-location.component.scss']
 })
 export class FindLocationComponent {
+  @Output() public locationFieldChanged = new EventEmitter<void>();
   @Input() public selectedLocations: LocationByEPIMMSModel[] = [];
   @Input() public submitted: boolean = true;
   @Input() public enableAddLocationButton: boolean = true;
@@ -18,6 +19,7 @@ export class FindLocationComponent {
   @Input() public field: FilterFieldConfig;
   @Input() public fields: FilterFieldConfig[];
   @Input() public locationTitle = 'Search for a location by name';
+  @Input() public disableInputField = false;
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
@@ -35,7 +37,7 @@ export class FindLocationComponent {
       this.searchLocationComponent.resetSearchTerm();
       this.removeSelectedValues();
     }
-    this.pDisabled = value;
+    this.pDisabled = this.disableInputField === true ? true : null;
   }
 
   public get services(): string[] {
@@ -81,6 +83,10 @@ export class FindLocationComponent {
     if (typeof term === 'string' && this.field.maxSelected === 1) {
         this.removeSelectedValues();
     }
+  }
+
+  public onSearchInputChanged(): void {
+    this.locationFieldChanged.emit();
   }
 
   public onLocationSelected(location: LocationByEPIMMSModel): void {

@@ -16,7 +16,8 @@
            [matAutocomplete]="auto"
            class="govuk-input govuk-!-width-one-third"
            [placeholder]="placeholderContent"
-           [attr.disabled]="disabled">
+           [attr.disabled]="disabled"
+           (input)="onInput()">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectionChange($event.option.value)">
       <mat-option *ngFor="let option of filteredOptions"
                   [value]="option"

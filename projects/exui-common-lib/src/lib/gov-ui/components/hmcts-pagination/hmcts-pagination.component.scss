@@ -1,0 +1,5 @@
+// have to add this in addition to the HMCTS Guidelines - it appears text-align:justify
+// does not work (perhaps it is in cases where we put the pagination inside a tabbed component?)
+.hmcts-pagination__results {
+  float: right;
+}
