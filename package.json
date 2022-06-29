@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.6",
+  "version": "1.7.11-accessibility-statement-change",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
