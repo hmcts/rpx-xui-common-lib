@@ -1,0 +1,16 @@
+<div class="auto-complete-container">
+  <input
+    id="inputTaskNameSearch"
+    (input)="onInput()"
+    [formControl]="form.controls.searchTerm"
+    [matAutocomplete]="autoSearchTaskName"
+    class="govuk-input"
+    [attr.disabled]="disabled">
+  <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchTaskName="matAutocomplete">
+    <mat-option *ngFor="let taskName of taskNames"
+                (onSelectionChange)="onSelectionChange(taskName)">
+      {{ taskName.taskName }}
+    </mat-option>
+    <mat-option *ngIf="!taskNames.length && showAutocomplete && term && term.length >= this.minSearchCharacters">No results found</mat-option>
+  </mat-autocomplete>
+</div>

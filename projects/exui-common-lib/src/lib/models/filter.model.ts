@@ -1,6 +1,6 @@
 import {PersonRole} from './person.model';
 
-export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large';
+export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'find-task-name' | 'checkbox-large';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 

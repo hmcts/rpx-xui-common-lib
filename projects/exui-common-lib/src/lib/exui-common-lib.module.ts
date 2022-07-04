@@ -5,6 +5,7 @@ import {MatInputModule, MatTabsModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {RouterModule} from '@angular/router';
 import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
+import { SearchTaskNameComponent } from './components/search-task-name/search-task-name.component';
 import {AccessibilityComponent} from './components/accessibility/accessibility.component';
 import {CheckboxListComponent} from './components/checkbox-list/checkbox-list.component';
 import {ContactDetailsComponent} from './components/contact-details/contact-details.component';
@@ -13,6 +14,7 @@ import {DueDateComponent} from './components/due-date/due-date.component';
 import {ExuiPageWrapperComponent} from './components/exui-main-wrapper/exui-page-wrapper.component';
 import {FindLocationComponent} from './components/find-location/find-location.component';
 import {FindPersonComponent} from './components/find-person/find-person.component';
+import { FindTaskNameComponent } from './components/find-task-name/find-task-name.component';
 import {GenericFilterComponent} from './components/generic-filter/generic-filter.component';
 import {HmctsSessionDialogComponent} from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import {InviteUserFormComponent} from './components/invite-user-form/invite-user-form.component';
@@ -103,7 +105,9 @@ export const COMMON_COMPONENTS = [
   FindPersonComponent,
   SearchJudicialsComponent,
   FindLocationComponent,
+  FindTaskNameComponent,
   SearchLocationComponent,
+  SearchTaskNameComponent,
   SearchVenueComponent,
   PaginationComponent
 ];
