@@ -18,6 +18,7 @@ import {HmctsSessionDialogComponent} from './components/hmcts-session-dialog/hmc
 import {InviteUserFormComponent} from './components/invite-user-form/invite-user-form.component';
 import {InviteUserPermissionComponent} from './components/invite-user-permissions/invite-user-permission.component';
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
+import { PaginationV1Component } from './components/pagination-v1/pagination.component';
 import {PaginationComponent} from './components/pagination/pagination.component';
 import {SearchJudicialsComponent} from './components/search-judicials/search-judicials.component';
 import {SearchLocationComponent} from './components/search-location/search-location.component';
@@ -105,7 +106,8 @@ export const COMMON_COMPONENTS = [
   FindLocationComponent,
   SearchLocationComponent,
   SearchVenueComponent,
-  PaginationComponent
+  PaginationComponent,
+  PaginationV1Component
 ];
 
 export const GOV_UI_COMPONENTS = [
