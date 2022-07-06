@@ -11,12 +11,9 @@ export class TaskNameService {
   }
 
   /**
-   * @param searchTerm: any search term for task name.
-   * @return Observable<LocationByEPIMMSModel[]>: Array of taskName in Observable
+   * @return Observable<any[]>: Array of taskName in Observable
    */
-  public getTaskName(searchTerm: string): Observable<any[]> {
-    console.log(searchTerm);
-
+  public getTaskName(): Observable<any[]> {
     return this.http.get<any[]>(`/workallocation2/taskNames`);
   }
 }

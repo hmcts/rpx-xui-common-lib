@@ -24,7 +24,7 @@ export class SearchTaskNameComponent implements OnInit {
   @Output() public taskNameSelected = new EventEmitter<TaskNameModel>();
   @Output() public taskNameInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchTaskNameChanged: EventEmitter<void> = new EventEmitter<void>();
-  public readonly minSearchCharacters = 3;
+  public readonly minSearchCharacters = 1;
   public term: string = '';
   private pSelectedTaskNames: any[] = [];
   private pReset: boolean = true;
@@ -63,8 +63,8 @@ export class SearchTaskNameComponent implements OnInit {
     this.search();
   }
 
-  public filter(term: string): void {
-    this.getTaskName(term).pipe(
+  public filter(): void {
+    this.getTaskName().pipe(
       map((taskName) => this.removeSelectedTaskNames(taskName)
       )
     );
@@ -83,10 +83,13 @@ export class SearchTaskNameComponent implements OnInit {
         tap((term) => this.term = term),
         filter(term => !!term && term.length >= this.minSearchCharacters),
         debounceTime(this.delay),
-        mergeMap(value => this.getTaskName(value)),
+        mergeMap(() => this.getTaskName()),
         map((taskNames) => this.removeSelectedTaskNames(taskNames))
       ).subscribe(taskNames => {
       this.taskNames = taskNames;
+      if (this.term) {
+        this.taskNames = this.taskNames.filter((t) => t.taskName.toLocaleLowerCase().includes(this.term.toLocaleLowerCase()));
+      }
       this.cd.markForCheck();
       if (taskNames.length === 1 && this.term === taskNames[0].taskName && !this.singleMode) {
         this.taskNameSelected.emit(taskNames[0]);
@@ -101,8 +104,8 @@ export class SearchTaskNameComponent implements OnInit {
     this.searchTaskNameChanged.emit();
   }
 
-  public getTaskName(term: string): Observable<any[]> {
-    return this.taskNameService.getTaskName(term);
+  public getTaskName(): Observable<any[]> {
+      return this.taskNameService.getTaskName();  
   }
 
   public resetSearchTerm(): void {
