@@ -1,3 +1,4 @@
+import { BookingCheckType } from './location.model';
 import {PersonRole} from './person.model';
 
 export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large';
@@ -40,6 +41,7 @@ export interface FilterFieldConfig {
   subTitle?: string;
   locationTitle?: string;
   radioSelectionChange?: string;
+  bookingCheckType?: BookingCheckType;
 }
 
 export interface FilterSetting {

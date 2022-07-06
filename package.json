@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.10-filter-non-base-location",
+  "version": "1.7.10-booking-check-type",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

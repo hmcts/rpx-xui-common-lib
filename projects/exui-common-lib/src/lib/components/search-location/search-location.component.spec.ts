@@ -4,13 +4,16 @@ import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { BookingCheckType } from '../../models';
 import { LocationService } from '../../services/locations/location.service';
+import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 import { SearchLocationComponent } from './search-location.component';
 
 describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
-  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  const locationServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  const sessionServiceMock = jasmine.createSpyObj('SessionStorageService', ['getItem']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,7 +26,8 @@ describe('SearchLocationComponent', () => {
       declarations: [
         SearchLocationComponent
       ],
-      providers: [{ provide: LocationService, useValue: searchFilterServiceMock }],
+      providers: [{ provide: LocationService, useValue: locationServiceMock },
+                  { provide: SessionStorageService, useValue: sessionServiceMock}],
     }).compileComponents();
 
     const LOCATION_RESULTS = [
@@ -294,5 +298,21 @@ describe('SearchLocationComponent', () => {
     spyOn(component.searchLocationChanged, 'emit');
     component.onInput();
     expect(component.searchLocationChanged.emit).toHaveBeenCalled();
+  });
+
+  it('should call get locations with the correct parameters', () => {
+    component.serviceIds = 'IA,SSCS';
+    component.bookingCheck = BookingCheckType.NO_CHECK;
+    component.getLocations('exampleString');
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined, undefined);
+    component.serviceIds = 'IA,CIVIL';
+    component.bookingCheck = BookingCheckType.BOOKINGS_AND_BASE;
+    sessionServiceMock.getItem.and.returnValues(`[["IA"], []]`, `["12345"]`);
+    component.getLocations('exampleString2');
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [['IA'], []], ['12345']);
+    component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
+    sessionServiceMock.getItem.and.returnValues(`[["SSCS"], []]`, `["SSCS", "IA"]`);
+    component.getLocations('exampleString2');
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith(['SSCS', 'IA'], '', 'exampleString2', [['SSCS'], []], undefined);
   });
 });

@@ -48,3 +48,16 @@ export interface LocationByEPIMMSModel {
   is_case_management_location: string;
   is_hearing_location: string;
 }
+
+export interface LocationsByService {
+  service?: string;
+  serviceCode?: string;
+  bookable?: boolean;
+  locations: Location[];
+}
+
+export enum BookingCheckType {
+  NO_CHECK = 'NO_CHECK',
+  BOOKINGS_AND_BASE = 'BOOKINGS_AND_BASE',
+  POSSIBLE_BOOKINGS = 'POSSIBLE_BOOKINGS',
+}
