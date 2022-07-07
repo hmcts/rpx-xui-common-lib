@@ -105,7 +105,7 @@ export class SearchTaskNameComponent implements OnInit {
   }
 
   public getTaskName(): Observable<any[]> {
-      return this.taskNameService.getTaskName();  
+      return this.taskNameService.getTaskName();
   }
 
   public resetSearchTerm(): void {
