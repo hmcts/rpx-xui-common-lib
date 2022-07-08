@@ -1,28 +1,30 @@
-<div class="location-picker-custom">
-  <div class="search-location">
-    <div>
-      <label id="input-selected-location-label" *ngIf="taskNameTitle">{{taskNameTitle}}</label>
+<h1 class="govuk-heading-l" *ngIf="title && title.length">
+  <span class="govuk-caption-l">{{title}}</span>
+  {{boldTitle}}
+</h1>
+<div class="govuk-form-group" [formGroup]="findTaskNameGroup"
+     [ngClass]="{'form-group-error': findTaskNameGroup.get('findTaskNameControl').invalid && submitted}">
+  <fieldset class="govuk-fieldset" aria-describedby="sub-title-hint">
+    <div id="sub-title-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
+      {{subTitle}}
     </div>
-    <exui-search-task-name class="search-location"
-                          [taskNames]="taskNames"
-                          [selectedTaskNames]="selectedTaskNames"
-                          [singleMode]="field.maxSelected === 1"
-                          [delay]="300"
-                          [disabled]="disabled"
-                          [serviceIds]="serviceIds"
-                          (taskNameInputChanged)="onInputChanged($event)"
-                          (taskNameSelected)="onTaskNameSelected($event)"
-                          (searchTaskNameChanged)="onSearchInputChanged()"
-                          [taskNameType]="'case-management'"></exui-search-task-name>
-    <a href="javascript:void(0)" (click)="addTaskName()" class="govuk-button" data-module="govuk-button" *ngIf="enableAddTaskNameButton">
-      Add Task Name
-    </a>
-  </div>
-  <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
-    <li class="location-selection"  *ngFor="let selection of selectedTaskNames">
-      <a class="hmcts-filter__tag" (click)="removeTaskName(selection)" href="javascript:void(0)">
-        {{ selection.taskName }}
-      </a>
-    </li>
-  </ul>
+    <span id="validation-error" class="govuk-error-message" *ngIf="findTaskNameGroup && findTaskNameGroup.errors">
+        <span class="govuk-visually-hidden">Error:</span>{{findTaskNameGroup.errors.error ? findTaskNameGroup.errors.error : errorMessage}}
+    </span>
+    <input id="inputSelectTaskName{{idValue}}" type="text" aria-label="select a task name"
+           formControlName="findTaskNameControl"
+           [matAutocomplete]="auto"
+           class="govuk-input govuk-!-width-one-third"
+           [placeholder]="placeholderContent"
+           [attr.disabled]="disabled"
+           (input)="onInput()">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectionChange($event.option.value)">
+      <mat-option *ngFor="let option of filteredOptions"
+                  [value]="option"
+                  [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
+                  {{ option.taskName }}
+      </mat-option>
+      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !filteredOptions.length && showAutocomplete">No results found</mat-option>
+    </mat-autocomplete>
+  </fieldset>
 </div>

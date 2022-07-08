@@ -28,9 +28,11 @@ export interface FilterFieldConfig {
   showCondition?: string;
   enableCondition?: string;
   enableAddLocationButton?: boolean;
+  enableAddTaskNameButton?: boolean;
   changeResetFields?: string[];
   findPersonField?: string;
   findLocationField?: string;
+  findTaskNameField?: string;
   domainField?: string;
   disable?: boolean;
   disabledText?: string;

@@ -22,7 +22,6 @@ import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spin
 import {PaginationComponent} from './components/pagination/pagination.component';
 import {SearchJudicialsComponent} from './components/search-judicials/search-judicials.component';
 import {SearchLocationComponent} from './components/search-location/search-location.component';
-import {SearchTaskNameComponent} from './components/search-task-name/search-task-name.component';
 import {SearchVenueComponent} from './components/search-venue/search-venue.component';
 import {SelectedCaseConfirmComponent} from './components/selected-case-confirm/selected-case-confirm.component';
 import {SelectedCaseListComponent} from './components/selected-case-list/selected-case-list.component';
@@ -107,7 +106,6 @@ export const COMMON_COMPONENTS = [
   FindLocationComponent,
   FindTaskNameComponent,
   SearchLocationComponent,
-  SearchTaskNameComponent,
   SearchVenueComponent,
   PaginationComponent
 ];

@@ -1,121 +1,126 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {FilterFieldConfig} from '../../models';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Observable, Subscription} from 'rxjs';
+import {debounceTime, filter, mergeMap, tap} from 'rxjs/operators';
+import {PersonRole} from '../../models';
 import { TaskNameModel } from '../../models/task-name.model';
-import {getValues} from '../generic-filter/generic-filter-utils';
-import { SearchTaskNameComponent } from '../search-task-name/search-task-name.component';
+import { TaskNameService } from '../../services/task-name/task-name.service';
 
 @Component({
   selector: 'xuilib-find-task-name',
   templateUrl: './find-task-name.component.html',
-  styleUrls: ['./find-task-name.component.scss']
+  styleUrls: ['./find-task-name.component.scss'],
 })
 
-export class FindTaskNameComponent {
+export class FindTaskNameComponent implements OnInit, OnDestroy {
+  @Output() public taskNameSelected = new EventEmitter<string>();
   @Output() public taskNameFieldChanged = new EventEmitter<void>();
-  @Input() public selectedTaskNames: TaskNameModel[] = [];
+  @Input() public title: string;
+  @Input() public boldTitle = 'Find the task name';
+  @Input() public subTitle = 'Type the name of the task name and select them.';
+  @Input() public domain = PersonRole.ALL;
+  @Input() public findTaskNameGroup: FormGroup = new FormGroup({});
+  @Input() public selectedTaskName: string;
   @Input() public submitted: boolean = true;
-  @Input() public enableAddTaskNameButton: boolean = true;
-  @Input() public form: FormGroup;
-  @Input() public field: FilterFieldConfig;
-  @Input() public fields: FilterFieldConfig[];
-  @Input() public taskNameTitle = 'Search for a task by name';
-  @Input() public disableInputField = false;
-  public taskNames: TaskNameModel[] = [];
-  public tempSelectedTaskName: TaskNameModel = null;
-  public serviceIds: string = 'SSCS,IA';
-  @ViewChild(SearchTaskNameComponent) public searchTaskNameComponent: SearchTaskNameComponent;
-  private pServices: string[] = [];
-  private pDisabled: boolean = false;
+  @Input() public userIncluded?: boolean = false;
+  @Input() public assignedUser?: string;
+  @Input() public placeholderContent: string = '';
+  @Input() public isNoResultsShown: boolean = true;
+  @Input() public showUpdatedColor: boolean = false;
+  @Input() public selectedTaskNames: TaskNameModel[] = [];
+  @Input() public errorMessage: string = 'You must select a name';
+  @Input() public idValue: string = '';
+  @Input() public services: string[] = ['IA'];
+  @Input() public disabled: boolean = null;
+  public showAutocomplete: boolean = false;
+  public findTaskNameControl: FormControl;
+  public filteredOptions: TaskNameModel[] = [];
+  public readonly minSearchCharacters = 1;
+  private sub: Subscription;
+  public searchTerm: string = '';
 
-  public get disabled(): boolean {
-    return this.pDisabled;
+  constructor(private readonly cd: ChangeDetectorRef, private readonly taskService: TaskNameService) {
   }
 
-  @Input()
-  public set disabled(value: boolean) {
-    if (value) {
-      this.searchTaskNameComponent.resetSearchTerm();
-      this.removeSelectedValues();
+  public ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
     }
-    this.pDisabled = this.disableInputField === true ? true : null;
   }
 
-  public get services(): string[] {
-    return this.pServices;
-  }
-
-  @Input()
-  public set services(value: string[]) {
-    this.pServices = value;
-    const field = this.fields.find(f => f.name === this.field.findLocationField);
-    if (field) {
-      if (typeof value === 'string') {
-        this.serviceIds = value;
-      } else {
-        this.serviceIds = getValues(field.options, value).filter(x => x !== 'services_all').join(',');
+  public ngOnInit(): void {
+    this.findTaskNameControl = new FormControl(this.selectedTaskName);
+    this.findTaskNameGroup.addControl('findTaskNameControl', this.findTaskNameControl);
+    this.sub = this.findTaskNameControl.valueChanges
+    .pipe(
+      tap(() => this.showAutocomplete = false),
+      tap(() => this.filteredOptions = []),
+      tap((term) => this.searchTerm = term),
+      debounceTime(300),
+      // tap((searchTerm) => typeof searchTerm === 'string' ? this.taskNameSelected.emit(null) : void 0),
+      filter((searchTerm: string) => searchTerm && searchTerm.length >= this.minSearchCharacters),
+      mergeMap(() => this.getTaskName()),
+    ).subscribe((task: TaskNameModel[]) => {
+      this.filteredOptions = task;
+      if (this.searchTerm) {
+        this.filteredOptions = this.filteredOptions.filter((t) => t.taskName.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase()));
       }
+      this.cd.detectChanges();
+    });
+  }
+
+  public getTaskName(): Observable<any[]> {
+    return this.taskService.getTaskName();
+}
+
+  // public filter(searchTerm: string): Observable<Person[]> {
+  //   console.log("**filter**");
+  //   const findJudicialPeople = this.taskService.getTaskName();
+
+  //   // const findJudicialPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
+  //   const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
+  //   if (searchTerm && searchTerm.length > this.minSearchCharacters) {
+  //     switch (this.domain) {
+  //       case PersonRole.JUDICIAL: {
+  //         return findJudicialPeople.pipe(map(persons => {
+  //           const ids: string[] = this.selectedTaskNames.map(({id}) => id);
+  //           return persons.filter(({ id }) => !ids.includes(id));
+  //         }));
+  //       }
+  //       case PersonRole.ALL: {
+  //         return zip(findJudicialPeople, findCaseworkersOrAdmins).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
+  //       }
+  //       case PersonRole.CASEWORKER:
+  //       case PersonRole.ADMIN: {
+  //         return findCaseworkersOrAdmins;
+  //       }
+  //       default: {
+  //         return of([]);
+  //       }
+  //     }
+  //   }
+  //   return of([]);
+  // }
+
+  public onSelectionChange(selectedTaskName: TaskNameModel): void {
+    if (selectedTaskName && selectedTaskName.taskName) {
+      const taskName = selectedTaskName.taskName;
+      this.taskNameSelected.emit(taskName);
+      this.findTaskNameControl.setValue(taskName);
     }
   }
 
-  public addTaskName(): void {
-    if (this.tempSelectedTaskName) {
-      this.selectedTaskNames = [...this.selectedTaskNames, this.tempSelectedTaskName];
-      this.addSelectedTaskNamesToForm([this.tempSelectedTaskName]);
-      this.tempSelectedTaskName = null;
-      this.taskNames = [];
-      this.searchTaskNameComponent.resetSearchTerm();
-    }
-  }
+  // public getDisplayName(selectedPerson: Person): string {
+  //   if (!selectedPerson) {
+  //     return '';
+  //   }
+  //   if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
+  //     return `${selectedPerson.knownAs} (${selectedPerson.email})`;
+  //   }
+  //   return selectedPerson.email ? `${selectedPerson.name} (${selectedPerson.email})` : selectedPerson.name;
+  // }
 
-  public removeTaskName(taskName: TaskNameModel): void {
-    if (taskName.taskName) {
-      this.selectedTaskNames = this.selectedTaskNames.filter(selectedTaskName => selectedTaskName.taskName !== taskName.taskName);
-      const formArray = this.form.get(this.field.name) as FormArray;
-      const index = (formArray.value as TaskNameModel[]).findIndex(selectedTaskName => selectedTaskName.taskName === taskName.taskName);
-      if (index > -1) {
-        formArray.removeAt(index);
-      }
-    }
-  }
-
-  public onInputChanged(term: string): void {
-    // if the filter is in single mode clear the selected taskNames
-    if (typeof term === 'string' && this.field.maxSelected === 1) {
-        this.removeSelectedValues();
-    }
-  }
-
-  public onSearchInputChanged(): void {
+  public onInput(): void {
     this.taskNameFieldChanged.emit();
   }
-
-  public onTaskNameSelected(taskName: any): void {
-    if (this.field.maxSelected === 1) {
-      this.removeSelectedValues();
-      this.addSelectedTaskNamesToForm([taskName]);
-    } else {
-      if (!this.selectedTaskNames.find(x => x.taskName === taskName.taskName)) {
-        if (taskName.taskName) {
-          this.tempSelectedTaskName = taskName;
-        }
-      }
-    }
-  }
-
-  private removeSelectedValues(): void {
-    const formArray = this.form.get(this.field.name) as FormArray;
-    for (let i = 0; i < formArray.length; i++) {
-      formArray.removeAt(i);
-    }
-    this.selectedTaskNames = [];
-  }
-
-  private addSelectedTaskNamesToForm(taskNames: any[]): void {
-    const formArray = this.form.get(this.field.name) as FormArray;
-    for (const taskName of taskNames) {
-      formArray.push(new FormControl(taskName));
-    }
-  }
-
 }

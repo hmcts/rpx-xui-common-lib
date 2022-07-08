@@ -8,6 +8,7 @@ import {FilterService} from '../../services';
 import {LocationService} from '../../services/locations/location.service';
 import {FindLocationComponent} from '../find-location/find-location.component';
 import {FindPersonComponent} from '../find-person/find-person.component';
+import { FindTaskNameComponent } from '../find-task-name/find-task-name.component';
 import {SearchLocationComponent} from '../search-location/search-location.component';
 import {GenericFilterComponent} from './generic-filter.component';
 
@@ -29,7 +30,7 @@ describe('GenericFilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindTaskNameComponent],
       providers: [
         {provide: FilterService, useValue: mockFilterService},
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -360,7 +361,7 @@ describe('Select all checkboxes', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindTaskNameComponent],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -446,7 +447,7 @@ describe('Find location filter config', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindTaskNameComponent],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}

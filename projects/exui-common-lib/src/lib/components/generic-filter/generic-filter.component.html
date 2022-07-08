@@ -98,18 +98,15 @@
           ></xuilib-find-location>
         </ng-container>
         <ng-container *ngSwitchCase="'find-task-name'">
-          <xuilib-find-task-name (taskNameFieldChanged)="inputChanged(field)"
-          [form]="form"
-          [fields]="config.fields"
-          [taskNameTitle]="field.locationTitle"
-          [enableAddTaskNameButton]="field.enableAddLocationButton"
-          [disabled]="disabled(field, form)"
-          [disableInputField]="field.disable"
-          [selectedTaskNames]="form.get(field.name)?.value"
-          [submitted]="submitted"
-          [services]="form.get(field.findLocationField)?.value"
-          [field]="field">
-          </xuilib-find-task-name>
+          <xuilib-find-task-name subTitle="" (taskNameSelected)="updateTaskNameControls($event, field)"
+                              (taskNameFieldChanged)="inputChanged(field)"
+                              [submitted]="submitted"
+                              [disabled]="disabled(field, form)"
+                              [domain]="form.get(field.domainField)?.value"
+                              [findTaskNameGroup]="form"
+                              [selectedTaskName]="form.get(field.name)?.value?.email"
+                              [userIncluded]="false"
+          ></xuilib-find-task-name>
         </ng-container>
       </div>
     </div>
