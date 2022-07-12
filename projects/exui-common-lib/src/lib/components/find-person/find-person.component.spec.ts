@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {of} from 'rxjs';
@@ -43,7 +43,7 @@ describe('FindPersonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('input element changes triggers search', async(() => {
+  it('input element changes triggers search', waitForAsync(() => {
     mockFindAPersonService.find.and.returnValue(of([]));
     mockFindAPersonService.findCaseworkers.and.returnValue(of([]));
     component.findPersonControl.setValue('test');
