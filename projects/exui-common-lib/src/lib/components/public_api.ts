@@ -25,3 +25,8 @@ export * from './cookie-banner/cookie-banner.component';
 export * from './find-location/find-location.component';
 export * from './search-location/search-location.component';
 export * from './pagination/pagination.component';
+export * from './search-venue/search-venue.component';
+export * from './search-judicials/search-judicials.component';
+export * from './find-person/find-person.component';
+export * from './user-select/user-select.component';
+export * from './exui-main-wrapper/exui-page-wrapper.component';
