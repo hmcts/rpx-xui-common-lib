@@ -57,7 +57,13 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
       tap(() => this.filteredOptions = []),
       tap((term) => this.searchTerm = term),
       debounceTime(300),
-      // tap((searchTerm) => typeof searchTerm === 'string' ? this.taskNameSelected.emit(null) : void 0),
+      tap((searchTerm) => {
+        if(!searchTerm) {
+          this.taskNameSelected.emit('');
+        }
+        return searchTerm
+      }),
+      // tap((searchTerm) => typeof searchTerm === 'string' ? this.taskNameSelected.emit('null') : void 0),
       filter((searchTerm: string) => searchTerm && searchTerm.length >= this.minSearchCharacters),
       mergeMap(() => this.getTaskName()),
     ).subscribe((task: TaskNameModel[]) => {
