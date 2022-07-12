@@ -5,6 +5,12 @@
   ],
   "rules": {
     "arrow-parens": false,
+    "align": {
+      "options": [
+        "parameters",
+        "statements"
+      ]
+    },
     "directive-selector": false,
     "component-selector": false,
     "deprecation": {
@@ -40,11 +46,17 @@
       "timeEnd",
       "trace"
     ],
+    "eofline": true,
     "no-empty": false,
+    "import-spacing": true,
+    "indent": {
+      "options": [
+        "spaces"
+      ]
+    },
     "no-non-null-assertion": true,
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
-    "no-use-before-declare": true,
     "no-var-requires": false,
     "no-string-literal": false,
     "object-literal-key-quotes": [
@@ -85,11 +97,48 @@
     "switch-default": true,
     "triple-equals": true,
     "prefer-readonly": true,
+    "space-before-function-paren": {
+      "options": {
+        "anonymous": "never",
+        "asyncArrow": "always",
+        "constructor": "never",
+        "method": "never",
+        "named": "never"
+      }
+    },
     "array-type": [true, "array"],
     "arrow-return-shorthand": true,
     "class-name": true,
+    "typedef-whitespace": {
+      "options": [
+        {
+          "call-signature": "nospace",
+          "index-signature": "nospace",
+          "parameter": "nospace",
+          "property-declaration": "nospace",
+          "variable-declaration": "nospace"
+        },
+        {
+          "call-signature": "onespace",
+          "index-signature": "onespace",
+          "parameter": "onespace",
+          "property-declaration": "onespace",
+          "variable-declaration": "onespace"
+        }
+      ]
+    },
     "prefer-method-signature": true,
     "prefer-template": true,
-    "semicolon": true
+    "semicolon": true,
+    "whitespace": {
+      "options": [
+        "check-branch",
+        "check-decl",
+        "check-operator",
+        "check-separator",
+        "check-type",
+        "check-typecast"
+      ]
+    }
   }
 }

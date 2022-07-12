@@ -26,6 +26,9 @@
       "email": "ronald.mansveld@hmcts.net"
     }
   ],
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "devDependencies": {
     "ngx-spec": "^2.1.4",
     "node-sass": "^4.0.0"
