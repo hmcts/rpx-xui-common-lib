@@ -1075,19 +1075,19 @@
     merge-source-map "^1.1.0"
     schema-utils "^2.6.4"
 
-"@ng-idle/core@^8.0.0-beta.4":
-  version "8.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@ng-idle/core/-/core-8.0.0-beta.4.tgz#c856bb2dd3c8407321380faac8c5692a5728fd0d"
-  integrity sha512-bI/tt7F5+z/w6b6SzNPc0+9rJ1knWgLzQweLd6xUQ7HHFrHsmBlJYUGiSv0cYUY+2RZAmIDbevwUDKLWmdE55w==
+"@ng-idle/core@^11.1.0":
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/@ng-idle/core/-/core-11.1.0.tgz#b97e998d5693d554e6f327cee08cdd787910b6a6"
+  integrity sha512-/hf3LDFz3UCTe2H6r1bq6Kn6mo5B5mxaU5XVqcDfE4Vdlx9evTqBXyl0VpWbuzZbohVCfWq31mEjbxg9lbY4bw==
   dependencies:
-    tslib "^1.9.0"
+    tslib "^2.0.0"
 
-"@ng-idle/keepalive@^8.0.0-beta.4":
-  version "8.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@ng-idle/keepalive/-/keepalive-8.0.0-beta.4.tgz#db385ad8833a9c42d1d8301531c47a68515a3089"
-  integrity sha512-yj7Y0pu2C7LhcjTcBE9DK5mFPFVHDj3vIVPTDzK3dN+51WoDQMrELl7BMuvzmTViat7mjsSP+00EwFvg6+FDEQ==
+"@ng-idle/keepalive@^11.1.0":
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/@ng-idle/keepalive/-/keepalive-11.0.3.tgz#0868480f58e9017b9d3d7f7699a16e259d66d5d2"
+  integrity sha512-etnPYnDua/uaFQebDHfC40iBb22KwPVkbt24/9IJBH9A4TGZa6zBrb+8DoRiRJm8I/WBuXdCDeaWzVHElfc9pg==
   dependencies:
-    tslib "^1.9.0"
+    tslib "^2.0.0"
 
 "@ngtools/webpack@9.1.15":
   version "9.1.15"
