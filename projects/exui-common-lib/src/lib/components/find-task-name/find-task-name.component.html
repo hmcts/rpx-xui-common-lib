@@ -3,7 +3,7 @@
   {{boldTitle}}
 </h1>
 <div class="govuk-form-group" [formGroup]="findTaskNameGroup"
-     [ngClass]="{'form-group-error': findTaskNameGroup.get('findTaskNameControl').invalid && submitted}">
+     [ngClass]="{'form-group-error': findTaskNameGroup.get('findTaskNameControl')?.invalid && submitted}">
   <fieldset class="govuk-fieldset" aria-describedby="sub-title-hint">
     <div id="sub-title-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
       {{subTitle}}
@@ -22,7 +22,7 @@
       <mat-option *ngFor="let option of filteredOptions"
                   [value]="option"
                   [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
-                  {{ option.taskName }}
+                  {{ option }}
       </mat-option>
       <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !filteredOptions.length && showAutocomplete">No results found</mat-option>
     </mat-autocomplete>

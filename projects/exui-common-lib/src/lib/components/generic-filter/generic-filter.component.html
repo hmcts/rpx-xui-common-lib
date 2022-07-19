@@ -104,7 +104,7 @@
                               [disabled]="disabled(field, form)"
                               [domain]="form.get(field.domainField)?.value"
                               [findTaskNameGroup]="form"
-                              [selectedTaskName]="form.get(field.name)?.value?.email"
+                              [selectedTaskName]="form.get(field.name).value.taskName"
                               [userIncluded]="false"
           ></xuilib-find-task-name>
         </ng-container>
