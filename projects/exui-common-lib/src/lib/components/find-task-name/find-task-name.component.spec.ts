@@ -1,8 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
-import {of} from 'rxjs';
-import { TaskNameModel } from '../../models/task-name.model';
 import { TaskNameService } from '../../services/task-name/task-name.service';
 
 import {FindTaskNameComponent} from './find-task-name.component';
@@ -31,6 +29,7 @@ describe('FindTaskNameComponent', () => {
 
     component = fixture.componentInstance;
     component.findTaskNameGroup = new FormGroup({});
+    component.findTaskNameControl = new FormControl();
     component.findTaskNameGroup.addControl('findTaskNameControl', new FormControl());
     fixture.detectChanges();
   });
@@ -43,30 +42,15 @@ describe('FindTaskNameComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('input element changes triggers search', async(() => {
-    const mockTaskName: TaskNameModel = {
-      taskName: 'Review Hearing bundle',
-      taskId: 1912,
-    };
-
-    mockTaskService.getTaskName.and.returnValue(of([mockTaskName]));
-    component.findTaskNameControl.setValue('test');
-    fixture.detectChanges();
-    setTimeout(() => {
-      expect(mockTaskService.getTaskName).toHaveBeenCalled();
-    }, 500);
-  }));
 
   it('selection change emits change with task name', () => {
-    const mockTaskName: TaskNameModel = {
-      taskName: 'Review Hearing bundle',
-      taskId: 1912,
-    };
+    const mockTaskName = 'Review Hearing bundle';
+
     spyOn(component.taskNameSelected, 'emit');
     component.onSelectionChange(null);
     expect(component.taskNameSelected.emit).not.toHaveBeenCalledWith(null);
     component.onSelectionChange(mockTaskName);
-    expect(component.taskNameSelected.emit).toHaveBeenCalledWith(mockTaskName.taskName);
+    expect(component.taskNameSelected.emit).toHaveBeenCalledWith(mockTaskName);
   });
 
   it('should emit an event when search task name emits an event to the component', () => {

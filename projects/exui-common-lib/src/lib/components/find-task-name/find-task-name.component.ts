@@ -79,9 +79,7 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
     return this.taskService.getTaskName();
   }
 
-
-
-  public onSelectionChange(selectedTaskName: TaskNameModel): void {
+  public onSelectionChange(selectedTaskName: string): void {
     if (selectedTaskName) {
       this.taskNameSelected.emit(selectedTaskName);
       this.findTaskNameControl.setValue(selectedTaskName);
