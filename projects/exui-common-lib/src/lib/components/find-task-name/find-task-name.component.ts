@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {debounceTime, filter, mergeMap, tap} from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { TaskNameService } from '../../services/task-name/task-name.service';
   styleUrls: ['./find-task-name.component.scss'],
 })
 
-export class FindTaskNameComponent implements OnDestroy {
+export class FindTaskNameComponent implements OnChanges, OnDestroy {
   @Output() public taskNameSelected = new EventEmitter<any>();
   @Output() public taskNameFieldChanged = new EventEmitter<void>();
   @Input() public title: string;
@@ -49,9 +49,6 @@ export class FindTaskNameComponent implements OnDestroy {
   }
 
   public ngOnChanges(): void {
-    console.log("findTask - ngOnInit");
-    console.log(this.selectedTaskName);
-
     this.findTaskNameControl = new FormControl(this.selectedTaskName);
     this.findTaskNameGroup.addControl('findTaskNameControl', this.findTaskNameControl);
     this.sub = this.findTaskNameControl.valueChanges
@@ -69,8 +66,8 @@ export class FindTaskNameComponent implements OnDestroy {
       // tap((searchTerm) => typeof searchTerm === 'string' ? this.taskNameSelected.emit('null') : void 0),
       filter((searchTerm: string) => searchTerm && searchTerm.length >= this.minSearchCharacters),
       mergeMap(() => this.getTaskName()),
-    ).subscribe((task: TaskNameModel[]) => {
-      this.filteredOptions = task.map(task => task.taskName);
+    ).subscribe((taskNameModel: TaskNameModel[]) => {
+      this.filteredOptions = taskNameModel.map(task => task.taskName);
       if (this.searchTerm) {
         this.filteredOptions = this.filteredOptions.filter((taskName) => taskName.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase())).map(taskName => taskName);
       }
