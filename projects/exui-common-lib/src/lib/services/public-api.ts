@@ -1,6 +1,7 @@
 /*
  * Public API Surface of exui-common-lib
  */
+export * from './case-sharing-state/case-sharing-state.service';
 export * from './feature-toggle/feature-toggle.guard';
 export * from './feature-toggle/feature-toggle.service';
 export * from './feature-toggle/launch-darkly.service';
@@ -12,4 +13,7 @@ export * from './role-guard/role.guard';
 export * from './role-guard/role.service';
 export * from './cookie/cookie.service';
 export * from './loading/loading.service';
+export * from './locations/location.service';
 export * from './filter/filter.service';
+export * from './find-person/find-person.service';
+export * from './session-storage/session-storage.service';
