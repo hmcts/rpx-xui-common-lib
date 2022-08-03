@@ -236,15 +236,20 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       } else if (hasSelectAllOption && !allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
         formArray.controls[index].patchValue(true);
       }
-      return;
+    } else {
+      formArray.controls.forEach((control: AbstractControl) => {
+        if (isChecked) {
+          control.patchValue(true);
+        } else {
+          control.patchValue(false);
+        }
+      });
     }
-    formArray.controls.forEach((control: AbstractControl) => {
-      if (isChecked) {
-        control.patchValue(true);
-      } else {
-        control.patchValue(false);
+    if (field.changeResetFields && field.changeResetFields.length) {
+      for (const resetField of field.changeResetFields) {
+        this.resetField(resetField, form);
       }
-    });
+    }
   }
 
   private resetField(resetField: string, form: FormGroup): void {
