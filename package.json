@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.0-angular-upgrade-11",
+  "version": "2.1.1-angular-upgrade-11",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
