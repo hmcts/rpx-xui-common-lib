@@ -69,7 +69,6 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import {HmctsSubNavigationComponent} from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import {RemoveHostDirective} from './gov-ui/directives/remove-host.directive';
-import { CaseSharingStateService, CookieService, FilterService, FindAPersonService, GoogleAnalyticsService, GoogleTagManagerService, LaunchDarklyService, LoadingService, LocationService, ManageSessionServices, SessionStorageService, TimeoutNotificationsService } from './services';
 import {windowProvider, windowToken} from './window';
 
 export const COMMON_COMPONENTS = [
@@ -134,21 +133,6 @@ export const GOV_UI_COMPONENTS = [
   RemoveHostDirective
 ];
 
-export const COMMON_SERVICES = [
-  CaseSharingStateService,
-  CookieService,
-  LaunchDarklyService,
-  FilterService,
-  FindAPersonService,
-  GoogleAnalyticsService,
-  GoogleTagManagerService,
-  LoadingService,
-  LocationService,
-  ManageSessionServices,
-  SessionStorageService,
-  TimeoutNotificationsService
-];
-
 @NgModule({
   declarations: [
     ...COMMON_COMPONENTS,
@@ -165,7 +149,6 @@ export const COMMON_SERVICES = [
     NgxPaginationModule
   ],
   providers: [
-    ...COMMON_SERVICES,
     {provide: windowToken, useFactory: windowProvider}
   ],
   exports: [
