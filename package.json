@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.12-welsh-release-part1",
+  "version": "1.7.14-welsh-release-part1",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
