@@ -3,23 +3,23 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on {{appName}}</h2>
+        <h2 class="govuk-cookie-banner__heading govuk-heading-m">{{'Cookies on' | rpxTranslate}} {{appName}}</h2>
 
         <div class="govuk-cookie-banner__content">
-          <p>We use some essential cookies to make this service work.</p>
-          <p>We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+          <p>{{'We use some essential cookies to make this service work.' | rpxTranslate}}</p>
+          <p>{{'We’d also like to use analytics cookies so we can understand how you use the service and make improvements.' | rpxTranslate}}</p>
         </div>
       </div>
     </div>
 
     <div class="govuk-button-group">
       <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button" (click)="acceptCookie()">
-        Accept analytics cookies
+        {{'Accept analytics cookies' | rpxTranslate}}
       </button>
       <button value="reject" type="button" name="cookies" class="govuk-button" data-module="govuk-button" (click)="rejectCookie()">
-        Reject analytics cookies
+        {{'Reject analytics cookies' | rpxTranslate}}
       </button>
-      <a class="govuk-link" routerLink="/cookies">View cookies</a>
+      <a class="govuk-link" routerLink="/cookies">{{'View cookies' | rpxTranslate}}</a>
     </div>
   </div>
 </div>
