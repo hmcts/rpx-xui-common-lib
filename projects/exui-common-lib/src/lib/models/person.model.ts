@@ -37,7 +37,7 @@ export enum PersonRole {
   JUDICIAL = 'Judicial',
   CASEWORKER = 'Legal Ops',
   ADMIN = 'Admin',
-  CTSC = 'CTSC',
+  CTSC = 'CTSC User',
   ALL = 'All',
 }
 
