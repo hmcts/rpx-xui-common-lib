@@ -2,12 +2,12 @@
   (pageBoundsCorrection)="pageBoundsCorrection.emit($event)">
 
   <nav class="hmcts-pagination" id="pagination-label">
-    <p class="govuk-visually-hidden" aria-labelledby="pagination-label">Pagination navigation</p>
+    <p class="govuk-visually-hidden" aria-labelledby="pagination-label">{{'Pagination navigation' | rpxTranslate}}</p>
     <ul class="hmcts-pagination__list" *ngIf="!(p.pages.length <= 1)">
 
       <li class="hmcts-pagination__item  hmcts-pagination__item--prev" [class.disabled]="p.isFirstPage()">
         <a [routerLink]="" class="hmcts-pagination__link" *ngIf="1 < p.getCurrent()" (keyup.enter)="p.previous()"
-          (click)="p.previous()">Previous <span class="govuk-visually-hidden">set of pages</span></a>
+          (click)="p.previous()">{{'Previous' | rpxTranslate}} <span class="govuk-visually-hidden">{{'set of pages' | rpxTranslate}}</span></a>
       </li>
 
       <ng-container *ngIf="showPageNumbers">
@@ -15,7 +15,7 @@
           [class.hmcts-pagination__item--dots]="page.label === '...'" *ngFor="let page of p.pages">
           <a class="hmcts-pagination__link" [routerLink]="" (keyup.enter)="p.setCurrent(page.value)"
             (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
-            <span class="govuk-visually-hidden">page </span>
+            <span class="govuk-visually-hidden">{{'page' | rpxTranslate}} </span>
             <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
           </a>
           <ng-container *ngIf="p.getCurrent() === page.value">
@@ -26,13 +26,13 @@
 
       <li class="hmcts-pagination__item  hmcts-pagination__item--next" [class.disabled]="p.isLastPage()">
         <a [routerLink]="" class="hmcts-pagination__link" *ngIf="!p.isLastPage()" (keyup.enter)="p.next()"
-          (click)="p.next()">Next<span class="govuk-visually-hidden"> page</span></a>
+          (click)="p.next()">{{'Next' | rpxTranslate}}<span class="govuk-visually-hidden"> {{'page' | rpxTranslate}}</span></a>
       </li>
 
     </ul>
-    <p class="hmcts-pagination__results" *ngIf="showResultCount">Showing <b>{{(p.getCurrent() * pageSize) - pageSize + 1}}</b>
+    <p class="hmcts-pagination__results" *ngIf="showResultCount">{{'Showing' | rpxTranslate}} <b>{{(p.getCurrent() * pageSize) - pageSize + 1}}</b>
       to <b>{{ p.getCurrent() * pageSize > p.getTotalItems() ? p.getTotalItems() : p.getCurrent() *
-        pageSize}}</b> of <b>{{p.getTotalItems()}}</b> results</p>
+        pageSize}}</b> {{'of' | rpxTranslate}} <b>{{p.getTotalItems()}}</b> {{'results' | rpxTranslate}}</p>
   </nav>
 
 </pagination-template>
