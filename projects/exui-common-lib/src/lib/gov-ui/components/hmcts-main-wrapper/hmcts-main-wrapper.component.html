@@ -1,4 +1,4 @@
-<a *ngIf="hasBackLink" [routerLink]="backLink" (click)="onGoBack()" class="govuk-back-link">Back</a>
+<a *ngIf="hasBackLink" [routerLink]="backLink" (click)="onGoBack()" class="govuk-back-link">{{'Back'  | rpxTranslate}}</a>
 <main id="content" role="main" class="govuk-main-wrapper">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -9,7 +9,7 @@
         [showWarningMessage]="showWarningMessage">
       </xuilib-hmcts-error-summary>
       <xuilib-hmcts-banner *ngIf="bannerData" [message]="bannerData.message" [type]="bannerData.type"></xuilib-hmcts-banner>
-      <h1 *ngIf="title" class="govuk-heading-xl">{{title}}</h1>
+      <h1 *ngIf="title" class="govuk-heading-xl">{{title | rpxTranslate}}</h1>
       <ng-content></ng-content>
     </div>
     <div class="govuk-grid-column-one-third" *ngIf="actionButtons?.length > 0">
@@ -20,7 +20,7 @@
           role="button"
           draggable="false"
           class="govuk-button {{ actionButton.class }}"
-        >{{ actionButton.name }}</a>
+        >{{ actionButton.name | rpxTranslate }}</a>
       </div>
     </div>
   </div>
