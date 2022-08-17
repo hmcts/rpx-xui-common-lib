@@ -44,9 +44,11 @@
   <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint">
     {{'No cases to display.' | rpxTranslate}}
   </div>
-
 </div>
 
 <div id="share-case-nav">
-  <button class="govuk-button" [disabled]="isDisabledContinue()" title="{{'Continue' | rpxTranslate}}" [routerLink]="confirmLink">{{'Continue' | rpxTranslate}}</button>
+  <button class="govuk-button" [disabled]="isDisabledContinue()"
+          [title]="'Continue' | rpxTranslate" [routerLink]="confirmLink">
+    {{'Continue' | rpxTranslate}}
+  </button>
 </div>
