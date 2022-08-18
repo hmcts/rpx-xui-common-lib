@@ -1,17 +1,20 @@
 <div id="{{buildElementId('govuk-accordion__section')}}" class="govuk-accordion__section">
   <div class="govuk-grid-row govuk-case-header">
     <div class="govuk-grid-column-three-quarters">
-      <h3 id="{{buildElementId('case-title')}}" class="govuk-case-title">{{ sharedCase.caseTitle }}</h3>
-      <h1 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
+      <h3 id="{{buildElementId('case-title')}}" class="govuk-case-title">{{ sharedCase.caseTitle | rpxTranslate }}</h3>
+      <h1 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId | rpxTranslate }}</h1>
     </div>
     <div class="govuk-grid-column-twenty-percent">
-      <button id="{{buildElementId('btn-deselect-case')}}" class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" title="Deselect case">Deselect case</button>
+      <button id="{{buildElementId('btn-deselect-case')}}"
+              class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" [title]="'Deselect case' | rpxTranslate">
+        {{'Deselect case' | rpxTranslate}}
+      </button>
     </div>
     <div class="govuk-accordion__section-header govuk-grid-column-five-percent">
       <div class="govuk-accordion__section-heading">
         <button type="button" id="{{buildElementId('accordion-with-summary-sections-heading')}}"
               aria-controls="accordion-with-summary-sections-content-1" class="govuk-accordion__section-button"
-              aria-describedby="accordion-with-summary-sections-summary-1" aria-expanded="false" title="Expand or Collapse">
+              aria-describedby="accordion-with-summary-sections-summary-1" aria-expanded="false" [title]="'Expand or Collapse' | rpxTranslate">
         <span class="govuk-accordion__icon" aria-hidden="true"></span></button>
       </div>
     </div>
@@ -19,17 +22,21 @@
   <div id="{{buildElementId('accordion-with-summary-sections-content')}}" class="govuk-accordion__section-content"
        aria-labelledby="buildElementId('accordion-with-summary-sections-heading')" >
     <div class="govuk-grid-row" *ngIf="showNoUsersAccessInfo()">
-      <span id="{{buildElementId('access-info-no-user')}}" class="govuk-div-align-left">No users from your organisation currently have access to this case.</span>
+      <span id="{{buildElementId('access-info-no-user')}}" class="govuk-div-align-left">
+        {{'No users from your organisation currently have access to this case.' | rpxTranslate}}
+      </span>
     </div>
     <div class="govuk-grid-row" *ngIf="showUserHasAccessInfo()">
-      <span id="{{buildElementId('access-info-has-users')}}" class="govuk-div-align-left">Users from your organisation with access to this case.</span>
+      <span id="{{buildElementId('access-info-has-users')}}" class="govuk-div-align-left">
+        {{'Users from your organisation with access to this case.' | rpxTranslate}}
+      </span>
     </div>
     <table class="govuk-table" *ngIf="showUserAccessTable()">
       <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <th id="{{buildElementId('name-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">Name</th>
-        <th id="{{buildElementId('email-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">Email address</th>
-        <th id="{{buildElementId('action-heading')}}" class="govuk-table__header govuk-table-column-actions" scope="col">Actions</th>
+        <th id="{{buildElementId('name-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">{{'Name' | rpxTranslate}}</th>
+        <th id="{{buildElementId('email-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">{{'Email address' | rpxTranslate}}</th>
+        <th id="{{buildElementId('action-heading')}}" class="govuk-table__header govuk-table-column-actions" scope="col">{{'Actions' | rpxTranslate}}</th>
         <th id="{{buildElementId('label-heading')}}" class="govuk-table__header govuk-table-column-label" scope="col">&nbsp;&nbsp;</th>
       </tr>
       </thead>
@@ -38,12 +45,12 @@
           <td id="user-full-name-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
           <td id="user-email-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.email }}</td>
           <td class="govuk-table__cell">
-            <a *ngIf="canRemove(sharedCase.caseId, user) | async" (click)="onRemove(user, sharedCase)" href="javascript:void(0);">Remove <span class="govuk-visually-hidden">{{ user.firstName + ' ' + user.lastName }} from case</span></a>
-            <a *ngIf="canCancel(sharedCase.caseId, user) | async" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">Cancel <span class="govuk-visually-hidden">adding {{ user.firstName + ' ' + user.lastName }} to case</span></a>
+            <a *ngIf="canRemove(sharedCase.caseId, user) | async" (click)="onRemove(user, sharedCase)" href="javascript:void(0);">{{'Remove' | rpxTranslate}} <span class="govuk-visually-hidden">{{ user.firstName + ' ' + user.lastName }} {{'from case' | rpxTranslate}}</span></a>
+            <a *ngIf="canCancel(sharedCase.caseId, user) | async" (click)="onCancel(user, sharedCase)" href="javascript:void(0);">{{'Cancel' | rpxTranslate}} <span class="govuk-visually-hidden">{{'adding' | rpxTranslate}} {{ user.firstName + ' ' + user.lastName }} {{'to case' | rpxTranslate}}</span></a>
           </td>
           <td class="govuk-table__cell">
-            <span *ngIf="isToBeRemoved(sharedCase.caseId, user) | async" class="hmcts-badge hmcts-badge--red">To be removed</span>
-            <span *ngIf="isToBeAdded(sharedCase.caseId, user) | async" class="hmcts-badge">To be added</span>
+            <span *ngIf="isToBeRemoved(sharedCase.caseId, user) | async" class="hmcts-badge hmcts-badge--red">{{'To be removed' | rpxTranslate}}</span>
+            <span *ngIf="isToBeAdded(sharedCase.caseId, user) | async" class="hmcts-badge">{{'To be added' | rpxTranslate}}</span>
           </td>
         </tr>
       </tbody>
