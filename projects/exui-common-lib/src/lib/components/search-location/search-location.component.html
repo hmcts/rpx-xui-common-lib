@@ -11,6 +11,6 @@
                 (onSelectionChange)="onSelectionChange(location)">
       {{ location.site_name }}
     </mat-option>
-    <mat-option *ngIf="!locations.length && showAutocomplete && term && term.length >= this.minSearchCharacters">No results found</mat-option>
+    <mat-option *ngIf="!locations.length && showAutocomplete && term && term.length >= this.minSearchCharacters">{{'No results found' | rpxTranslate}}</mat-option>
   </mat-autocomplete>
 </div>

@@ -1,8 +1,8 @@
 <div id="{{buildElementId('govuk-accordion__section')}}" class="govuk-accordion__section">
   <div class="govuk-grid-row govuk-case-header">
     <div class="govuk-grid-column-three-quarters">
-      <h3 id="{{buildElementId('case-title')}}" class="govuk-case-title">{{ sharedCase.caseTitle }}</h3>
-      <h1 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
+      <h3 id="{{buildElementId('case-title')}}" class="govuk-case-title">{{ sharedCase.caseTitle | rpxTranslate }}</h3>
+      <h1 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId | rpxTranslate }}</h1>
     </div>
     <div class="govuk-grid-column-twenty-percent">
       <button id="{{buildElementId('btn-deselect-case')}}"
