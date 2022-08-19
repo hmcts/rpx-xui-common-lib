@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 
 import { PaginationComponent } from './pagination.component';
 
@@ -9,7 +10,13 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      declarations: [ PaginationComponent ],
+      imports: [
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationService, RpxTranslationConfig
+      ]
     })
     .compileComponents();
   }));

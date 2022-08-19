@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
@@ -19,11 +20,16 @@ describe('SearchLocationComponent', () => {
         RouterTestingModule.withRoutes([]),
         MatAutocompleteModule,
         MatOptionModule,
+        RpxTranslationModule.forChild()
       ],
       declarations: [
         SearchLocationComponent
       ],
-      providers: [{ provide: LocationService, useValue: searchFilterServiceMock }],
+      providers: [
+        RpxTranslationService,
+        RpxTranslationConfig,
+        { provide: LocationService, useValue: searchFilterServiceMock }
+      ],
     }).compileComponents();
 
     const LOCATION_RESULTS = [

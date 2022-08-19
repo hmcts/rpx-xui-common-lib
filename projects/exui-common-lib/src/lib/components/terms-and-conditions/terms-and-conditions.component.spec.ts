@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { TCDocument } from '../../models';
 import { TcDisplayHtmlComponent } from './tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './tc-display/tc-display-plain/tc-display-plain.component';
@@ -16,7 +17,9 @@ describe('TermsAndConditionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TermsAndConditionsComponent, TcDisplayPlainComponent, TcDisplayHtmlComponent ]
+      declarations: [ TermsAndConditionsComponent, TcDisplayPlainComponent, TcDisplayHtmlComponent ],
+      imports: [RpxTranslationModule.forChild()],
+      providers: [ RpxTranslationConfig, RpxTranslationService]
     })
     .compileComponents();
   }));

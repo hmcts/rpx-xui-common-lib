@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsPrimaryNavigationComponent } from './hmcts-primary-navigation.component';
 
 describe('HmctsPrimaryNavigationComponent', () => {
@@ -11,7 +12,12 @@ describe('HmctsPrimaryNavigationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HmctsPrimaryNavigationComponent ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationConfig,
+        RpxTranslationService
       ]
     })
     .compileComponents();

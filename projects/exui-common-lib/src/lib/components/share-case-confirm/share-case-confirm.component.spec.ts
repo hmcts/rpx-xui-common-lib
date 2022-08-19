@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { ShareCaseConfirmComponent } from './share-case-confirm.component';
@@ -14,7 +15,10 @@ describe('ShareCaseConfirmComponent', () => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ ShareCaseConfirmComponent ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, RpxTranslationModule.forChild()],
+      providers: [
+        RpxTranslationConfig, RpxTranslationService
+      ]
     })
     .compileComponents();
   }));

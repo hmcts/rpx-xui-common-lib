@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsPaginationComponent } from '../../gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import { UserListComponent } from './user-list.component';
 
@@ -11,7 +12,8 @@ describe('UserListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, NgxPaginationModule],
+      imports: [RouterTestingModule, NgxPaginationModule, RpxTranslationModule.forChild()],
+      providers: [RpxTranslationConfig, RpxTranslationService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ UserListComponent, HmctsPaginationComponent],
     })

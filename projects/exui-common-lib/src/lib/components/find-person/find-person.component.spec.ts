@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import {of} from 'rxjs';
 import {Person, PersonRole} from '../../models';
 
@@ -18,12 +19,14 @@ describe('FindPersonComponent', () => {
       imports: [
         ReactiveFormsModule,
         MatAutocompleteModule,
-        MatOptionModule
+        MatOptionModule,
+        RpxTranslationModule.forChild()
       ],
       declarations: [
         FindPersonComponent
       ],
       providers: [
+        RpxTranslationService, RpxTranslationConfig,
         {provide: FindAPersonService, useValue: mockFindAPersonService}
       ]
     }).compileComponents();

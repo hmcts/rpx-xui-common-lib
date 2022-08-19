@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsIdentityBarComponent } from './hmcts-identity-bar.component';
 
 describe('HmctsIdentityBarComponent', () => {
@@ -10,7 +11,14 @@ describe('HmctsIdentityBarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsIdentityBarComponent ]
+      declarations: [ HmctsIdentityBarComponent ],
+      imports: [
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationConfig,
+        RpxTranslationService
+      ]
     })
     .compileComponents();
   }));

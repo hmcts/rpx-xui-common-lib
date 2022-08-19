@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsSessionDialogComponent } from './hmcts-session-dialog.component';
 
 describe('HMCTS Dialog Component', () => {
@@ -9,7 +10,13 @@ describe('HMCTS Dialog Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsSessionDialogComponent ]
+      declarations: [ HmctsSessionDialogComponent ],
+      imports: [
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationService, RpxTranslationConfig
+      ]
     })
       .compileComponents();
   }));

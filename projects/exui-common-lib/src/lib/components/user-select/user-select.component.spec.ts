@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
 
@@ -32,7 +33,8 @@ describe('UserSelectComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ UserSelectComponent ],
-      imports: [ MatAutocompleteModule, ReactiveFormsModule ]
+      imports: [ MatAutocompleteModule, ReactiveFormsModule, RpxTranslationModule.forChild() ],
+      providers: [RpxTranslationConfig, RpxTranslationService],
     })
     .compileComponents();
   }));
