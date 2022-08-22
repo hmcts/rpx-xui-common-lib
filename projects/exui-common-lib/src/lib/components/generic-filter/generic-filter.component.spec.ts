@@ -481,7 +481,7 @@ describe('Find location filter config', () => {
     };
     fixture.detectChanges();
   });
-  xit('should display find-location filter', () => {
+  it('should display find-location filter', () => {
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
     const findLocationFormGroup = form.querySelector('xuilib-find-location') as HTMLElement;

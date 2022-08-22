@@ -196,7 +196,7 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('class')).toContain(DateBadgeColour.GREEN);
   });
 
-  xit('should handle an update to dueDate', () => {
+  it('should handle an update to dueDate', () => {
     expect(fixture.debugElement.nativeElement.querySelector('.due-date')).toBeNull();
     const TODAY: Date = new Date();
     component.dueDate = TODAY;

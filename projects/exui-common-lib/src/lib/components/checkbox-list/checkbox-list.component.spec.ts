@@ -416,7 +416,7 @@ describe('CheckboxListComponent', () => {
     expect(component.selectionChange.emit).toHaveBeenCalledWith(['secondOption']);
   });
 
-  xit('should use a label function to display edited text',  () => {
+  it('should use a label function to display edited text',  () => {
     // mock the emitter
     spyOn(component.selectionChange, 'emit');
 

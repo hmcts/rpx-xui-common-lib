@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
+import { RpxTranslationConfig, RpxTranslationService, RpxTranslationModule } from 'rpx-xui-translation';
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
 describe('LoadingSpinnerComponent', () => {
@@ -35,7 +35,7 @@ describe('LoadingSpinnerComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('div.spinner-inner-container p').textContent).toContain('Loading');
   });
 
-  xit('should display overriden loading text', () => {
+  it('should display overriden loading text', () => {
     component.loadingText = 'Loading instead of Searching';
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('div.spinner-inner-container p').textContent).toContain('Loading instead of Searching');

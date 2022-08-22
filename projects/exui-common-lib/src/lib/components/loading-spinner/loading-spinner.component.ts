@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'xuilib-loading-spinner',
@@ -7,6 +7,14 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 
-export class LoadingSpinnerComponent {
+export class LoadingSpinnerComponent implements AfterContentChecked {
   @Input() public loadingText: string = 'Loading';
+
+  constructor(private readonly ref: ChangeDetectorRef) {}
+
+  // checks the data projected into the component
+  public ngAfterContentChecked() {
+    this.ref.detectChanges();
+  }
+
 }
