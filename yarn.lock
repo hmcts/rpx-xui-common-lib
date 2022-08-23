@@ -6340,10 +6340,10 @@ rollup@^0.67.0:
     "@types/estree" "0.0.39"
     "@types/node" "*"
 
-rpx-xui-translation@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/rpx-xui-translation/-/rpx-xui-translation-0.1.0.tgz#5f551fdb4df7a31dd62661e919b97455cfda2cf6"
-  integrity sha512-bZCOKw5xkpmIXkD7AIsENQZd0sIailLy+AAXCktbyvl/SPrXN0BuqerRdiWaQtTN9/V+sKqKAWfoL45ak9Up3g==
+rpx-xui-translation@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/rpx-xui-translation/-/rpx-xui-translation-0.1.1.tgz#aa02639806f641737d9d2d43915adc3c93888ff4"
+  integrity sha512-F+/K0u+1+jnUK+9SnkPpBFWwYU9p4YtXgTlokcqwUlKEyStuVzi8ctb78shK3Et2ic1OY1I3GrF9Fb4Zj56Frg==
   dependencies:
     dexie "^3.2.2"
     luxon "^2.4.0"
