@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
+import { RpxTranslationModule } from 'rpx-xui-translation';
 import {of} from 'rxjs';
 import {FilterFieldConfig} from '../../models';
 import {FilterService} from '../../services';
@@ -29,10 +29,19 @@ describe('GenericFilterComponent', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, RpxTranslationModule.forChild()],
+      imports: [ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatOptionModule,
+        RpxTranslationModule.forRoot({
+          baseUrl: '',
+          debounceTimeMs: 300,
+          validity: {
+            days: 1
+          },
+          testMode: true
+        })],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
       providers: [
-        RpxTranslationService, RpxTranslationConfig,
         {provide: FilterService, useValue: mockFilterService},
         {provide: LocationService, useValue: searchFilterServiceMock}
       ]
@@ -361,10 +370,19 @@ describe('Select all checkboxes', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, RpxTranslationModule.forChild()],
+      imports: [ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatOptionModule,
+        RpxTranslationModule.forRoot({
+          baseUrl: '',
+          debounceTimeMs: 300,
+          validity: {
+            days: 1
+          },
+          testMode: true
+        })],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
       providers: [
-        RpxTranslationConfig, RpxTranslationService,
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
       ]
@@ -448,7 +466,18 @@ describe('Find location filter config', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      imports: [ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatOptionModule,
+        RpxTranslationModule.forRoot({
+          baseUrl: '',
+          debounceTimeMs: 300,
+          validity: {
+            days: 1
+          },
+          testMode: true
+        })
+      ],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
       providers: [
         FilterService,
