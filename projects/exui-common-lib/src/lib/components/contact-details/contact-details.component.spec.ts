@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { BadgeColour } from '../../models';
 import { ContactDetailsComponent } from './contact-details.component';
 
@@ -10,7 +11,13 @@ describe('ContactDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ ContactDetailsComponent ]
+      declarations: [ ContactDetailsComponent ],
+      imports: [
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationService, RpxTranslationConfig
+      ]
     })
     .compileComponents();
   }));

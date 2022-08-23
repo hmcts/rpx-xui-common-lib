@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import {LocationService} from '../../services/locations/location.service';
 import {SearchLocationComponent} from '../search-location/search-location.component';
 
@@ -31,9 +32,9 @@ describe('FindLocationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, RpxTranslationModule.forChild()],
       declarations: [FindLocationComponent, SearchLocationComponent],
-      providers: [{provide: LocationService, useValue: searchFilterServiceMock}],
+      providers: [RpxTranslationService, RpxTranslationConfig, {provide: LocationService, useValue: searchFilterServiceMock}],
     })
       .compileComponents();
   }));

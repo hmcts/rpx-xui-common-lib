@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 
 import { CheckboxListComponent } from './checkbox-list.component';
 
@@ -35,7 +36,13 @@ describe('CheckboxListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxListComponent, WrapperComponent ]
+      declarations: [ CheckboxListComponent, WrapperComponent ],
+      imports: [
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationService, RpxTranslationConfig
+      ]
     })
     .compileComponents();
   }));

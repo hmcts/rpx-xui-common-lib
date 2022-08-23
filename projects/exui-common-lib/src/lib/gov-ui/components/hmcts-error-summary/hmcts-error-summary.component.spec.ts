@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsErrorSummaryComponent } from './hmcts-error-summary.component';
 
 describe('HmctsErrorSummaryComponent', () => {
@@ -13,7 +14,12 @@ describe('HmctsErrorSummaryComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ HmctsErrorSummaryComponent ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationConfig,
+        RpxTranslationService
       ]
     })
     .compileComponents();

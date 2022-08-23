@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { of } from 'rxjs';
 import { JudicialUserModel } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
@@ -20,11 +21,15 @@ describe('SearchJudicialsComponent', () => {
         RouterTestingModule.withRoutes([]),
         MatAutocompleteModule,
         MatOptionModule,
+        RpxTranslationModule.forChild()
       ],
       declarations: [
         SearchJudicialsComponent
       ],
-      providers: [{ provide: FindAPersonService, useValue: searchFilterServiceMock }],
+      providers: [
+        RpxTranslationService, RpxTranslationConfig,
+        { provide: FindAPersonService, useValue: searchFilterServiceMock }
+      ],
     }).compileComponents();
 
     const JUDICIAL_RESULTS: JudicialUserModel[] = [

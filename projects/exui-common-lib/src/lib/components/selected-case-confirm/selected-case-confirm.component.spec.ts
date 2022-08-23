@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
 
 describe('SelectedCaseConfirmComponent', () => {
@@ -9,7 +10,13 @@ describe('SelectedCaseConfirmComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SelectedCaseConfirmComponent ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule,
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationConfig,
+        RpxTranslationService
+      ]
     })
     .compileComponents();
   }));

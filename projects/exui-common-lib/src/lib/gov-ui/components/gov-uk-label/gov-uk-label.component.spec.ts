@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkLabelComponent } from './gov-uk-label.component';
 
 describe('GovUkLabelComponent', () => {
@@ -9,8 +10,12 @@ describe('GovUkLabelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [ GovUkLabelComponent ]
+      imports: [FormsModule, RpxTranslationModule.forChild()],
+      declarations: [ GovUkLabelComponent ],
+      providers: [
+        RpxTranslationConfig,
+        RpxTranslationService
+      ]
     })
     .compileComponents();
   }));

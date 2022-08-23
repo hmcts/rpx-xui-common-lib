@@ -2,6 +2,7 @@ import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkTextareaComponent } from './gov-uk-textarea.component';
 
 describe('GovUkSelectComponent', () => {
@@ -11,10 +12,12 @@ describe('GovUkSelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, RpxTranslationModule.forChild()],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ GovUkTextareaComponent ],
       providers: [
+        RpxTranslationConfig,
+        RpxTranslationService,
         { provide: FormBuilder, useValue: formBuilder }
     ]
     })

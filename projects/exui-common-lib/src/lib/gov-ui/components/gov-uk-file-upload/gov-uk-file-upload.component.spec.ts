@@ -2,6 +2,7 @@ import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkFileUploadComponent } from './gov-uk-file-upload.component';
 
 describe('GovUkFileUploadComponent', () => {
@@ -11,10 +12,11 @@ describe('GovUkFileUploadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, RpxTranslationModule.forChild()],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ GovUkFileUploadComponent ],
       providers: [
+        RpxTranslationConfig, RpxTranslationService,
         { provide: FormBuilder, useValue: formBuilder }
     ]
     })

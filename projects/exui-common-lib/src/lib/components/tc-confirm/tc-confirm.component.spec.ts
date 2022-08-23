@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { TcConfirmComponent } from './tc-confirm.component';
 
 
@@ -10,7 +11,10 @@ describe('TcConfirmComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TcConfirmComponent],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule, RpxTranslationModule.forChild()],
+      providers: [
+        RpxTranslationConfig, RpxTranslationService
+      ]
     })
       .compileComponents();
   }));

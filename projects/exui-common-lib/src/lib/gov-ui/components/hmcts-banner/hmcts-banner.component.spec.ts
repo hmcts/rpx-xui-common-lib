@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsBannerComponent } from './hmcts-banner.component';
 
 describe('HmctsBannerComponent', () => {
@@ -10,7 +11,12 @@ describe('HmctsBannerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HmctsBannerComponent ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationConfig,
+        RpxTranslationService
       ]
     })
     .compileComponents();

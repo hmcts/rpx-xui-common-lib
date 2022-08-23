@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovukTableComponent } from './gov-uk-table.component';
 
 describe('GovukTableComponent', () => {
@@ -10,7 +11,12 @@ describe('GovukTableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ GovukTableComponent ],
       imports: [
-        RouterModule
+        RouterModule,
+        RpxTranslationModule.forChild()
+      ],
+      providers: [
+        RpxTranslationConfig,
+        RpxTranslationService,
       ]
     })
     .compileComponents();
