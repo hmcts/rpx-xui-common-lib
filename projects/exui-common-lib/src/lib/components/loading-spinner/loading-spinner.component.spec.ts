@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationService, RpxTranslationModule } from 'rpx-xui-translation';
+import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
 describe('LoadingSpinnerComponent', () => {
