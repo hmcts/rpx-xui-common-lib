@@ -70,10 +70,25 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import {HmctsSubNavigationComponent} from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import {RemoveHostDirective} from './gov-ui/directives/remove-host.directive';
-import { CaseSharingStateService, CookieService, FilterService, FindAPersonService, GoogleAnalyticsService, GoogleTagManagerService, LaunchDarklyService, LoadingService, LocationService, ManageSessionServices, SessionStorageService, TimeoutNotificationsService } from './services';
+import { CaseSharingStateService } from './services/case-sharing-state/case-sharing-state.service';
+import { CookieService } from './services/cookie/cookie.service';
+import { FeatureToggleService } from './services/feature-toggle/feature-toggle.service';
+import { LaunchDarklyService } from './services/feature-toggle/launch-darkly.service';
+import { FilterService } from './services/filter/filter.service';
+import { FindAPersonService } from './services/find-person/find-person.service';
+import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
+import { GoogleTagManagerService } from './services/google-tag-manager/google-tag-manager.service';
+import { LoadingService } from './services/loading/loading.service';
+import { LocationService } from './services/locations/location.service';
+import { ManageSessionServices } from './services/manage-session/manage-session.services';
+
+import { RoleService } from './services/role-guard/role.service';
+import { SessionStorageService } from './services/session-storage/session-storage.service';
+import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
+
 import {windowProvider, windowToken} from './window';
 
-export const COMMON_COMPONENTS = [
+const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
   TermsAndConditionsComponent,
   TcDisplayHtmlComponent,
@@ -110,7 +125,7 @@ export const COMMON_COMPONENTS = [
   PaginationComponent
 ];
 
-export const GOV_UI_COMPONENTS = [
+const GOV_UI_COMPONENTS = [
   HmctsIdentityBarComponent,
   HmctsPaginationComponent,
   HmctsSubNavigationComponent,
@@ -135,18 +150,20 @@ export const GOV_UI_COMPONENTS = [
   RemoveHostDirective
 ];
 
-export const COMMON_SERVICES = [
+const COMMON_SERVICES = [
   CaseSharingStateService,
   CookieService,
   LaunchDarklyService,
   FilterService,
   FindAPersonService,
+  FeatureToggleService,
   GoogleAnalyticsService,
   GoogleTagManagerService,
   LoadingService,
   LocationService,
   ManageSessionServices,
   SessionStorageService,
+  RoleService,
   TimeoutNotificationsService
 ];
 
@@ -172,7 +189,7 @@ export const COMMON_SERVICES = [
   exports: [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS,
-    PaginatePipe
+    PaginatePipe,
   ]
 })
 export class ExuiCommonLibModule {
