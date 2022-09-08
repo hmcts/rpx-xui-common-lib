@@ -2,7 +2,7 @@
   <input
     id="inputLocationSearch"
     (input)="onInput()"
-    formControl="form.controls.searchTerm"
+    [formControl]="form.controls.searchTerm"
     [matAutocomplete]="autoSearchLocation"
     class="govuk-input"
     [attr.disabled]="disabled">
