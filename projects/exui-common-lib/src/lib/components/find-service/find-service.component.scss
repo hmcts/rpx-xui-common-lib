@@ -1,3 +1,13 @@
 #add-service {
     background-color: #dddddd;
 }
+
+.search-service {
+  &__input-container {
+    display: flex;
+  }
+
+  &__input {
+    flex: 1 0 auto;
+  }
+}

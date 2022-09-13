@@ -1,7 +1,10 @@
 .contain-classes {
   .elevated-break {
-    position: relative;
-    top: -10px;
+    margin-bottom: 20px;
+
+    @media (min-width: 40.0625em) {
+      margin-bottom: 30px;
+    }
   }
   .xui-generic-filter {
     .select-all {
@@ -9,6 +12,7 @@
     }
     .govuk-checkboxes {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
 
       > div {
@@ -16,5 +20,9 @@
         flex-shrink: 0;
       }
     }
+  }
+
+  .govuk-select {
+    width: 100%;
   }
 }
