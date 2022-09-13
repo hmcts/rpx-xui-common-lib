@@ -1,5 +1,5 @@
 <div class="service-picker-custom">
-    <div class="search-service">
+  <div class="search-service">
       <div class="govuk-body">
         <label id="input-selected-service-label" *ngIf="serviceTitle">{{serviceTitle}}</label>
       </div>
@@ -15,11 +15,11 @@
         </a>
       </div>
     </div>
-    <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
+  <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
       <li class="service-selection"  *ngFor="let selection of selectedServices">
         <a class="hmcts-filter__tag" href="javascript:void(0)">
           {{ selection.name }}
         </a>
       </li>
-    </ul>
-  </div>
+  </ul>
+</div>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FilterFieldConfig } from '../../models';
 
 @Component({
@@ -17,6 +17,12 @@ export class FindServiceComponent  {
     @Input() public disabled: any;
     @Input() public enableAddServiceButton: boolean = true;
     @Input() public disableInputField = false;
+
+    constructor(private fb: FormBuilder) {
+      this.form = this.fb.group({
+        searchTerm: ['']
+      });
+    }
 
     public addService() {
       // Todo

@@ -2,7 +2,7 @@
   <input
     id="inputServiceSearch"
     (input)="onInput()"
-    [formControl]="form?.controls.searchTerm"
+    [formControl]="form?.controls?.searchTerm"
     [matAutocomplete]="autoSearchService"
     class="govuk-input"
     [attr.disabled]="disabled">
