@@ -10,7 +10,7 @@ export type Roles = Role[];
     providedIn: 'root'
   })
 export class RoleService {
-    private pRoles = new BehaviorSubject<Roles>(null);
+    private readonly pRoles = new BehaviorSubject<Roles>(null);
     public roles$ = this.pRoles.asObservable().pipe(skipWhile(item => item === null));
 
     public set roles(roles: Roles) {
