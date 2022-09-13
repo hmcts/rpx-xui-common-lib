@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { RoleService } from './role.service';
 
 export enum RoleMatching {
@@ -17,14 +19,18 @@ export class RoleGuard implements CanActivate {
         private readonly router: Router
     ) {}
 
-    public canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
-        const roles = (route.data.needsRole as string[]);
-        const check = (roleRegEx: string) => {
+    public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
+      return this.roleService.roles$.pipe(
+        map(roles => {
+          const canActivateRoles = (route.data.needsRole as string[]);
+          const check = (roleRegEx: string) => {
             const regex = new RegExp(roleRegEx);
-            return this.roleService.roles.some(role => regex.test(role));
-        };
-        const match = route.data.roleMatching === RoleMatching.ALL ? roles.every(check) : roles.some(check);
+            return roles.some(role => regex.test(role));
+          };
+          const match = route.data.roleMatching === RoleMatching.ALL ? canActivateRoles.every(check) : canActivateRoles.some(check);
 
-        return match || this.router.parseUrl(route.data.noRoleMatchRedirect as string);
+          return match || this.router.parseUrl(route.data.noRoleMatchRedirect as string);
+        })
+      );
     }
 }
