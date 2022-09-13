@@ -18,7 +18,7 @@ export class FindServiceComponent  {
     @Input() public enableAddServiceButton: boolean = true;
     @Input() public disableInputField = false;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private readonly fb: FormBuilder) {
       this.form = this.fb.group({
         searchTerm: ['']
       });
