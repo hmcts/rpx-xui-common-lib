@@ -65,23 +65,6 @@ export class ShareCaseComponent implements OnInit {
     return this.selectedUser === null || this.shareCases.length === 0;
   }
 
-  public isDisabledContinue(): boolean {
-    let isDisabled: boolean = true;
-    this.shareCases$.subscribe(shareCases => {
-      for (const caseState of shareCases) {
-        if (caseState.pendingShares && caseState.pendingShares.length > 0) {
-          isDisabled = false;
-          break;
-        }
-        if (caseState.pendingUnshares && caseState.pendingUnshares.length > 0) {
-          isDisabled = false;
-          break;
-        }
-      }
-    });
-    return isDisabled;
-  }
-
   public onDeselect(sharedCase: SharedCase): void {
     if (sharedCase !== null) {
       const updated = [];
