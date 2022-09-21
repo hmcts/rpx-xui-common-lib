@@ -1,6 +1,13 @@
+<xuilib-hmcts-error-summary
+  [errorMessages]="validationErrors"
+  [header]="'There is a problem'"
+></xuilib-hmcts-error-summary>
+<h1 *ngIf="title" class="govuk-heading-xl govuk-!-margin-top-2">
+  <span *ngIf="fnTitle" class="govuk-caption-xl">{{fnTitle}}</span>
+  {{title}}
+</h1>
 <div id="add-user">
   <div class="govuk-form-group">
-    <xuilib-hmcts-error-summary [errorMessages]="validationErrors" [header]="'There is a problem'"></xuilib-hmcts-error-summary>
     <label class="govuk-label govuk-!-font-weight-bold" for="add-user-input">{{addUserLabel}}</label>
     <span id="add-user-hint" class="govuk-hint">
       Search by name or email address. You can share access with as many people as you need.

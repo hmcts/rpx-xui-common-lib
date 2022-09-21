@@ -22,6 +22,8 @@ export class ShareCaseComponent implements OnInit {
   @Input() public confirmLink: string = '';
   @Input() public addUserLabel: string;
   @Input() public showRemoveUsers: boolean = false;
+  @Input() public fnTitle: string = '';
+  @Input() public title: string = '';
 
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<any>();
