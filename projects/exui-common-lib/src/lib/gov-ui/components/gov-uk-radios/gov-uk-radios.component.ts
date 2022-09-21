@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ErrorMessagesModel } from '../../models';
-import {CheckboxesModel} from '../../models/checkboxes-model';
+import { RadioButtonsModel } from '../../models/radio-buttons.model';
 /*
 * Radios component - state less
 * Responsible for displaying a list of gov-uk-radio components
@@ -15,7 +15,7 @@ import {CheckboxesModel} from '../../models/checkboxes-model';
 
 export class GovUkRadiosComponent {
 
-  @Input() public options: CheckboxesModel;
+  @Input() public options: RadioButtonsModel;
   @Input() public errors: ErrorMessagesModel;
 
 }
