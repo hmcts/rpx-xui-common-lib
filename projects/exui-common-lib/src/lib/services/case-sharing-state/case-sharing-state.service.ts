@@ -135,11 +135,13 @@ export class CaseSharingStateService {
   }
 
   public removeCase(caseId: string): void {
-    for (let i = 0, l = this.caseState.length; i < l; i++) {
-      if (this.caseState[i].caseId === caseId) {
-        this.caseState.splice(i, 1);
-        this.subject.next(this.caseState);
-        return;
+    if (this.caseState.length > 1) {
+      for (let i = 0, l = this.caseState.length; i < l; i++) {
+        if (this.caseState[i].caseId === caseId) {
+          this.caseState.splice(i, 1);
+          this.subject.next(this.caseState);
+          return;
+        }
       }
     }
   }

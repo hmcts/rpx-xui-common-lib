@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SharedCase } from '../../models/case-share.model';
+import { SharedCase, SharedCaseErrorMessages } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { UserSelectComponent } from '../user-select/user-select.component';
@@ -31,6 +31,9 @@ export class ShareCaseComponent implements OnInit {
   @ViewChild(UserSelectComponent)
   private readonly userSelect: UserSelectComponent;
 
+  public validationErrors: { id: string, message: string }[] = [];
+  public shareCaseErrorMessage = '';
+
   constructor(private readonly stateService: CaseSharingStateService) { }
 
   public ngOnInit() {
@@ -42,8 +45,15 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public onUnselect(c: SharedCase): void {
-    this.unselect.emit(c);
-    this.stateService.removeCase(c.caseId);
+    this.validationErrors = [];
+    if (this.stateService.getCases().length === 1) {
+      this.validationErrors.push({ id: 'cases', message: SharedCaseErrorMessages.OneCaseMustBeSelected });
+      this.shareCaseErrorMessage = SharedCaseErrorMessages.OneCaseMustBeSelected;
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    } else {
+      this.unselect.emit(c);
+      this.stateService.removeCase(c.caseId);
+    }
   }
 
   public onSynchronizeStore(event: any): void {
