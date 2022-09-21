@@ -17,10 +17,9 @@ export class GovUkSelectComponent {
   @Input() public group: FormGroup;
   @Input() public config: GovUiConfigModel;
   // {hint: string; name: string; id: string,  isPageHeading: boolean, classes: string };
-  @Input() public items: {label: string, value: string; id: string;}[];
+  @Input() public items: { label: string, value: string; id: string; }[];
 
   public setDescribedBy(): string {
     return HtmlTemplatesHelper.setDescribedBy(this.errorMessage, this.config);
   }
-
 }
