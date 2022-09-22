@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.18-caa-case-share-ui-changes-4",
+  "version": "1.7.18-caa-case-share-ui-changes-5",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
