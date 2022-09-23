@@ -67,6 +67,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (field && field.maxSelected) {
       validators.push(maxSelectedValidator(field.maxSelected));
     }
+
     return validators;
   }
 
@@ -303,7 +304,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         const validators: ValidatorFn[] = [];
         if (field.minSelected && field.minSelected > 0) {
           validators.push(Validators.required);
+
+          if (field.type === 'text-input') {
+            validators.push(Validators.minLength(field.minSelected));
+          }
         }
+
         let defaultValue: any = null;
         if (reset && config.cancelSetting) {
           const cancelField = config.cancelSetting.fields.find((f) => f.name === field.name);
@@ -387,7 +393,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const errors: FilterError[] = [];
     for (const field of this.config.fields) {
       const formGroup = form.get(field.name);
-      if (formGroup && formGroup.errors && formGroup.errors.minLength) {
+      if (formGroup && formGroup.errors && formGroup.errors.minlength) {
         errors.push({name: field.name, error: field.minSelectedError});
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxLength) {
