@@ -4,10 +4,10 @@
     <div class="govuk-form-group xui-generic-filter"
          [hidden]="hidden(field, form)"
          [id]="field.name"
-         [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.minLength || form.get(field.name).errors?.maxLength)}">
+         [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.maxLength)}">
       <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
       <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
-      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && form.get(field.name).errors?.minLength">
+      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && form.get(field.name).errors?.minlength">
         <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
       </span>
       <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
@@ -105,9 +105,17 @@
                                 [enableAddServiceButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
                                 [disableInputField]="field.disable"
-                                [selectedServices]="form.get(field.name)?.value"                                
+                                [selectedServices]="form.get(field.name)?.value"
                                 [field]="field"
           ></xuilib-find-service>
+        </ng-container>
+        <ng-container *ngSwitchCase="'text-input'">
+          <input class="govuk-input" type="text"
+                 [formControlName]="field.name"
+                 [id]="field.name"
+                 [attr.disabled]="disabled(field, form)"
+                 (change)="fieldChanged(field, form)"
+          />
         </ng-container>
       </div>
     </div>
