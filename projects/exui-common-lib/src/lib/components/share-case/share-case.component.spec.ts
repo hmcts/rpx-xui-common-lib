@@ -1,8 +1,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { SharedCase } from '../../models/case-share.model';
+import { SharedCase, SharedCaseErrorMessages } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { ShareCaseComponent } from './share-case.component';
@@ -11,18 +12,14 @@ describe('ShareCaseComponent', () => {
   let component: ShareCaseComponent;
   let fixture: ComponentFixture<ShareCaseComponent>;
   let sharedCases: SharedCase[] = [];
-  const stateServiceMock = jasmine.createSpyObj('CaseSharingStateService', [
-    'getCases', 'setCases', 'removeCase', 'requestShare'
-  ]);
+  let stateService: CaseSharingStateService;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ ShareCaseComponent ],
-      imports: [ RouterTestingModule ],
-      providers: [
-        { provide: CaseSharingStateService, useValue: stateServiceMock }
-      ]
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
@@ -34,6 +31,8 @@ describe('ShareCaseComponent', () => {
     component.shareCases$ = of(sharedCases);
     // Deliberately omitted fixture.detectChanges() here because this will trigger the component's ngOnInit() before
     // the showRemoveUsers input value has been set, causing a false failure
+    stateService = TestBed.get(CaseSharingStateService);
+    router = TestBed.get(Router);
   });
 
   it('should create', () => {
@@ -83,6 +82,86 @@ describe('ShareCaseComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('#noCaseDisplay').textContent).toContain('No cases to display.');
   });
 
+  it('should not allow to continue where there are no shared cases', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: []
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    component.setContinueAllowed();
+    expect(component.continueAllowed).toBe(false);
+  });
+
+  it('should not allow to continue', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }]
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    component.setContinueAllowed();
+    expect(component.continueAllowed).toBe(false);
+  });
+
+  it('should allow to continue when removing a user', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }],
+      pendingUnshares: [
+        {
+          idamId: 'u777777',
+          firstName: 'Nick',
+          lastName: 'Rodrigues',
+          email: 'nick.rodrigues@lambbrooks.com'
+        }]
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    component.setContinueAllowed();
+    expect(component.continueAllowed).toBe(true);
+  });
+
+  it('should allow to continue when adding a user', () => {
+    sharedCases = [{
+      caseId: '9417373995765133',
+      caseTitle: 'Sam Green Vs Williams Lee',
+      sharedWith: [
+        {
+          idamId: 'u666666',
+          firstName: 'Kate',
+          lastName: 'Grant',
+          email: 'kate.grant@lambbrooks.com'
+        }],
+      pendingShares: [
+        {
+          idamId: 'u888888',
+          firstName: 'Joel',
+          lastName: 'Molloy',
+          email: 'joel.molloy@lambbrooks.com'
+        }]
+    }];
+    component.shareCases$ = of(sharedCases);
+    fixture.detectChanges();
+    component.setContinueAllowed();
+    expect(component.continueAllowed).toBe(true);
+  });
+
   it('should be able to add user', () => {
     sharedCases = [{
       caseId: '9417373995765133',
@@ -116,6 +195,8 @@ describe('ShareCaseComponent', () => {
     component.addUser();
     fixture.detectChanges();
     expect(addButton.disabled).toBeTruthy();
+    component.setContinueAllowed();
+    expect(component.continueAllowed).toBe(true);
   });
 
   it('should enable Add button when selected user', () => {
@@ -171,11 +252,43 @@ describe('ShareCaseComponent', () => {
       { caseId: 'C111111', caseTitle: 'James vs Jane' },
       { caseId: 'C222222', caseTitle: 'Smith vs Lorraine' }
     ];
-    stateServiceMock.getCases.and.returnValue(of(sharedCases));
+    spyOn(stateService, 'getCases').and.returnValue(of(sharedCases));
     component.onUnselect(sharedCase);
-    expect(stateServiceMock.getCases).toHaveBeenCalled();
+    expect(stateService.getCases).toHaveBeenCalled();
     expect(component.validationErrors.length).toEqual(0);
-    expect(component.shareCaseErrorMessage).toEqual('');
+    expect(component.shareCaseErrorMessage).toBeUndefined();
+  });
+
+  it('should set an error message if not allowed to continue', () => {
+    spyOn(component, 'setContinueAllowed').and.callFake(() => {
+      component.continueAllowed = false;
+    });
+    spyOn(component, 'onContinue').and.callThrough();
+    spyOn(router, 'navigate');
+    const continueButton = fixture.nativeElement.querySelector('#btn-continue');
+    continueButton.click();
+    expect(component.onContinue).toHaveBeenCalled();
+    expect(component.validationErrors[0]).toEqual({
+      id: 'cases',
+      message: SharedCaseErrorMessages.NoChangesRequested
+    });
+    expect(component.shareCaseErrorMessage).toEqual({
+      isInvalid: true,
+      messages: [SharedCaseErrorMessages.NoChangesRequested]
+    });
+    expect(router.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should navigate to the confirmation page if allowed to continue', () => {
+    spyOn(component, 'setContinueAllowed').and.callFake(() => {
+      component.continueAllowed = true;
+    });
+    spyOn(component, 'onContinue').and.callThrough();
+    spyOn(router, 'navigate');
+    const continueButton = fixture.nativeElement.querySelector('#btn-continue');
+    continueButton.click();
+    expect(component.onContinue).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith([component.confirmLink]);
   });
 
   afterEach(() => {

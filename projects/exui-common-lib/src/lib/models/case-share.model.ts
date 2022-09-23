@@ -11,5 +11,6 @@ export interface SharedCase {
 }
 
 export enum SharedCaseErrorMessages {
-  OneCaseMustBeSelected = 'At least one case must be selected'
+  OneCaseMustBeSelected = 'At least one case must be selected',
+  NoChangesRequested = 'You have not requested any changes to case sharing'
 }
