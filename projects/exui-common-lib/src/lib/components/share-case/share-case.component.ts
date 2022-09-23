@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SharedCase } from '../../models/case-share.model';
+import { SharedCase, SharedCaseErrorMessages } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { UserSelectComponent } from '../user-select/user-select.component';
@@ -22,6 +22,8 @@ export class ShareCaseComponent implements OnInit {
   @Input() public confirmLink: string = '';
   @Input() public addUserLabel: string;
   @Input() public showRemoveUsers: boolean = false;
+  @Input() public fnTitle: string = '';
+  @Input() public title: string = '';
 
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<any>();
@@ -30,6 +32,9 @@ export class ShareCaseComponent implements OnInit {
 
   @ViewChild(UserSelectComponent)
   private readonly userSelect: UserSelectComponent;
+
+  public validationErrors: { id: string, message: string }[] = [];
+  public shareCaseErrorMessage = '';
 
   constructor(private readonly stateService: CaseSharingStateService) { }
 
@@ -42,8 +47,15 @@ export class ShareCaseComponent implements OnInit {
   }
 
   public onUnselect(c: SharedCase): void {
-    this.unselect.emit(c);
-    this.stateService.removeCase(c.caseId);
+    this.validationErrors = [];
+    if (this.stateService.getCases().length === 1) {
+      this.validationErrors.push({ id: 'cases', message: SharedCaseErrorMessages.OneCaseMustBeSelected });
+      this.shareCaseErrorMessage = SharedCaseErrorMessages.OneCaseMustBeSelected;
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    } else {
+      this.unselect.emit(c);
+      this.stateService.removeCase(c.caseId);
+    }
   }
 
   public onSynchronizeStore(event: any): void {
@@ -63,23 +75,6 @@ export class ShareCaseComponent implements OnInit {
 
   public isDisabledAdd() {
     return this.selectedUser === null || this.shareCases.length === 0;
-  }
-
-  public isDisabledContinue(): boolean {
-    let isDisabled: boolean = true;
-    this.shareCases$.subscribe(shareCases => {
-      for (const caseState of shareCases) {
-        if (caseState.pendingShares && caseState.pendingShares.length > 0) {
-          isDisabled = false;
-          break;
-        }
-        if (caseState.pendingUnshares && caseState.pendingUnshares.length > 0) {
-          isDisabled = false;
-          break;
-        }
-      }
-    });
-    return isDisabled;
   }
 
   public onDeselect(sharedCase: SharedCase): void {

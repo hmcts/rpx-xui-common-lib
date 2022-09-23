@@ -4,18 +4,25 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
+import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { ShareCaseComponent } from './share-case.component';
 
 describe('ShareCaseComponent', () => {
   let component: ShareCaseComponent;
   let fixture: ComponentFixture<ShareCaseComponent>;
   let sharedCases: SharedCase[] = [];
+  const stateServiceMock = jasmine.createSpyObj('CaseSharingStateService', [
+    'getCases', 'setCases', 'removeCase', 'requestShare'
+  ]);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ ShareCaseComponent ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule ],
+      providers: [
+        { provide: CaseSharingStateService, useValue: stateServiceMock }
+      ]
     })
     .compileComponents();
   }));
@@ -76,82 +83,6 @@ describe('ShareCaseComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('#noCaseDisplay').textContent).toContain('No cases to display.');
   });
 
-  it('should disable continue button where there is not shared cases', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: []
-    }];
-    component.shareCases$ = of(sharedCases);
-    fixture.detectChanges();
-    expect(component.isDisabledContinue()).toBeTruthy();
-  });
-
-  it('should disable continue button', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'u666666',
-          firstName: 'Kate',
-          lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
-        }]
-    }];
-    component.shareCases$ = of(sharedCases);
-    fixture.detectChanges();
-    expect(component.isDisabledContinue()).toBeTruthy();
-  });
-
-  it('should enable continue button when remove user', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'u666666',
-          firstName: 'Kate',
-          lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
-        }],
-      pendingUnshares: [
-        {
-          idamId: 'u777777',
-          firstName: 'Nick',
-          lastName: 'Rodrigues',
-          email: 'nick.rodrigues@lambbrooks.com'
-        }]
-    }];
-    component.shareCases$ = of(sharedCases);
-    fixture.detectChanges();
-    expect(component.isDisabledContinue()).toBeFalsy();
-  });
-
-  it('should enable continue button when added user', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'u666666',
-          firstName: 'Kate',
-          lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
-        }],
-      pendingShares: [
-        {
-          idamId: 'u888888',
-          firstName: 'Joel',
-          lastName: 'Molloy',
-          email: 'joel.molloy@lambbrooks.com'
-        }]
-    }];
-    component.shareCases$ = of(sharedCases);
-    fixture.detectChanges();
-    expect(component.isDisabledContinue()).toBeFalsy();
-  });
-
   it('should be able to add user', () => {
     sharedCases = [{
       caseId: '9417373995765133',
@@ -179,11 +110,12 @@ describe('ShareCaseComponent', () => {
       email: 'jamespus.priestpus@test.com'
     };
 
+    const addButton = fixture.nativeElement.querySelector('#btn-add-user');
     component.onSelectedUser(user);
     component.shareCases$ = of(sharedCases);
     component.addUser();
     fixture.detectChanges();
-    expect(component.isDisabledContinue()).toBeFalsy();
+    expect(addButton.disabled).toBeTruthy();
   });
 
   it('should enable Add button when selected user', () => {
@@ -229,6 +161,21 @@ describe('ShareCaseComponent', () => {
     component.addUser();
     fixture.detectChanges();
     expect(addButton.disabled).toBeTruthy();
+  });
+
+  it('should onUnselect not display validation errors when more than one case exists after deselecting a case', () => {
+    const sharedCase: SharedCase = {
+      caseId: 'C123', caseTitle: 'Smith vs Dahl'
+    };
+    sharedCases = [
+      { caseId: 'C111111', caseTitle: 'James vs Jane' },
+      { caseId: 'C222222', caseTitle: 'Smith vs Lorraine' }
+    ];
+    stateServiceMock.getCases.and.returnValue(of(sharedCases));
+    component.onUnselect(sharedCase);
+    expect(stateServiceMock.getCases).toHaveBeenCalled();
+    expect(component.validationErrors.length).toEqual(0);
+    expect(component.shareCaseErrorMessage).toEqual('');
   });
 
   afterEach(() => {
