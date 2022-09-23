@@ -68,10 +68,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       validators.push(maxSelectedValidator(field.maxSelected));
     }
 
-    // if (field && field.minLength) {
-    //   validators.push(Validators.minLength(field.minLength));
-    // }
-
     return validators;
   }
 
@@ -164,8 +160,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       };
       this.filterService.givenErrors.next(null);
       const settings = {...this.settings, reset: false};
-      console.log('form is valid');
-      console.log(settings);
       this.filterService.persist(settings, this.config.persistence);
     } else {
       this.emitFormErrors(form);
@@ -310,10 +304,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         const validators: ValidatorFn[] = [];
         if (field.minSelected && field.minSelected > 0) {
           validators.push(Validators.required);
-
-          if (field.type === 'text-input') {
-            validators.push(Validators.minLength(field.minSelected));
-          }
         }
 
         let defaultValue: any = null;
