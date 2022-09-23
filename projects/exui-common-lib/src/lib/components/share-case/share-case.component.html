@@ -55,12 +55,10 @@
   </div>
 </div>
 
-<div id="cases" [ngClass]="{'govuk-form-group--error': shareCaseErrorMessage.length > 0}">
-  <p class="govuk-error-message" *ngIf="validationErrors.length > 0">
-    <span class="govuk-visually-hidden">Error:</span>{{shareCaseErrorMessage}}
-  </p>
+<div id="cases" [ngClass]="{'govuk-form-group--error': shareCaseErrorMessage.messages && shareCaseErrorMessage.messages.length > 0}">
   <h3 id="title-selected-cases" class="govuk-heading-m">Selected cases</h3>
-  <div *ngIf="shareCases && shareCases.length > 0"  class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+  <xuilib-gov-uk-error-message [config]="selectedCasesErrorMessageConfig" [errorMessage]="shareCaseErrorMessage"></xuilib-gov-uk-error-message>
+  <div *ngIf="shareCases && shareCases.length > 0" class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
     <xuilib-selected-case-list
       [shareCases$]="shareCases$"
       [removeUserFromCaseToggleOn]="removeUserFromCaseToggleOn"
@@ -70,13 +68,14 @@
     </xuilib-selected-case-list>
   </div>
 
-  <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint">
+  <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint"
+    [ngClass]="{'govuk-form-group--error': shareCaseErrorMessage.messages && shareCaseErrorMessage.messages.length > 0}">
     No cases to display.
   </div>
 
 </div>
 
 <div id="share-case-nav" class="govuk-button-group">
-  <button class="govuk-button" data-module="govuk-button" title="Continue" [routerLink]="confirmLink">Continue</button>
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button" title="Cancel">Cancel</button>
+  <button id="btn-continue" class="govuk-button" data-module="govuk-button" (click)="onContinue()" title="Continue">Continue</button>
+  <button id="btn-cancel" class="govuk-button govuk-button--secondary" data-module="govuk-button" title="Cancel" [routerLink]="cancelLink">Cancel</button>
 </div>
