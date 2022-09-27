@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.18-caa-case-share-ui-changes-6",
+  "version": "1.7.22",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
