@@ -393,7 +393,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const errors: FilterError[] = [];
     for (const field of this.config.fields) {
       const formGroup = form.get(field.name);
-      if (formGroup && formGroup.errors && formGroup.errors.minlength) {
+      if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
         errors.push({name: field.name, error: field.minSelectedError});
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxLength) {
