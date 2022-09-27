@@ -9,3 +9,8 @@ export interface SharedCase {
   pendingShares?: UserDetails[];
   pendingUnshares?: UserDetails[];
 }
+
+export enum SharedCaseErrorMessages {
+  OneCaseMustBeSelected = 'At least one case must be selected',
+  NoChangesRequested = 'You have not requested any changes to case sharing'
+}

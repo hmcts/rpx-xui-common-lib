@@ -93,15 +93,36 @@ describe('CaseSharingStateService', () => {
   });
 
 
-  it('should remove a case', () => {
-    sharedCases  = [{
-      caseId: '9417373995765133',
-      sharedWith: [],
-      caseTitle: 'Sam Green Vs Williams Lee'
-    }];
+  it('should remove a case when multiple shared cases exists', () => {
+    sharedCases  = [
+      {
+        caseId: '9417373995765133',
+        sharedWith: [],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      },
+      {
+        caseId: '7898764567832340',
+        sharedWith: [],
+        caseTitle: 'James vs Jane'
+      }
+    ];
 
     service.setCases(sharedCases);
     service.removeCase('9417373995765133');
-    expect(service.getCases().length === 0).toBeTruthy();
+    expect(service.getCases().length).toEqual(1);
+  });
+
+  it('should not remove a case when only one shared case exists', () => {
+    sharedCases  = [
+      {
+        caseId: '9417373995765133',
+        sharedWith: [],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      }
+    ];
+
+    service.setCases(sharedCases);
+    service.removeCase('9417373995765133');
+    expect(service.getCases().length).toEqual(1);
   });
 });

@@ -42,10 +42,6 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
     }
   }
 
-  public onUnselect(): void {
-    this.unselect.emit(this.sharedCase);
-  }
-
   public onDeselect(c: SharedCase): void {
     this.unselect.emit(c);
   }
