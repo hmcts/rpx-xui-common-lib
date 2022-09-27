@@ -4,7 +4,7 @@
     <div class="govuk-form-group xui-generic-filter"
          [hidden]="hidden(field, form)"
          [id]="field.name"
-         [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.maxLength)}">
+         [ngClass]="{'form-group-error': submitted && ((form.get(field.name).errors?.minlength || form.get(field.name).errors?.required) || form.get(field.name).errors?.maxLength)}">
       <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
       <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
       <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.required)">
