@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.22",
+  "version": "1.7.22-share-case-web-component-bulk-removal-of-users",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
