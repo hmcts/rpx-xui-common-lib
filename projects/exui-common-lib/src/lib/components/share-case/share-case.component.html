@@ -44,12 +44,13 @@
     </span>
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <select class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
-          <option value="{{user}}" *ngFor="let user of users">{{user.email}}</option>
+        <select [(ngModel)]="selectedUserToRemove" class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
+          <option [ngValue]="null" selected>Select a person</option>
+          <option *ngFor="let user of assignedUsers" [ngValue]="user">{{user.firstName}} {{user.lastName}} - {{user.email}}</option>
         </select>
       </div>
       <div class="govuk-grid-column-one-thirds">
-        <button id="btn-remove-user" class="govuk-button govuk-button--secondary" title="Remove user from selected cases">Remove</button>
+        <button id="btn-remove-user" (click)="removeUser()" class="govuk-button govuk-button--secondary" title="Remove user from selected cases">Remove</button>
       </div>
     </div>
   </div>

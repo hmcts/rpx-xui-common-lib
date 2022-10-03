@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ErrorMessagesModel, GovUiConfigModel } from '../../gov-ui/models';
 import { SharedCase, SharedCaseErrorMessages } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
@@ -17,6 +18,8 @@ export class ShareCaseComponent implements OnInit {
   public shareCases: SharedCase[] = []; // cases selected for sharing
   public selectedCasesErrorMessageConfig: GovUiConfigModel;
   public continueAllowed = false;
+  public assignedUsers: UserDetails[];
+  public selectedUserToRemove: UserDetails = null;
 
   @Input() public removeUserFromCaseToggleOn: boolean = false;
 
@@ -45,17 +48,22 @@ export class ShareCaseComponent implements OnInit {
               private readonly router: Router) { }
 
   public ngOnInit() {
-    this.shareCases$.subscribe(shareCases => {
-      this.shareCases = shareCases;
-      this.stateService.setCases(shareCases);
-      // Set the config to be used by the xuilib-gov-uk-error-message component, in particular the element ID to
-      // which the error message is associated
-      if (shareCases) {
-        this.selectedCasesErrorMessageConfig = {
-          id: shareCases.length > 0 ? 'cases' : 'noCaseDisplay'
-        };
-      }
-    });
+    this.shareCases$
+      .pipe(tap(sharedCases => {
+        // Update the list of users assigned to at least one case
+        this.getAssignedUsers(sharedCases.filter(sharedCase => sharedCase.sharedWith && sharedCase.sharedWith.length > 0));
+      }))
+      .subscribe(shareCases => {
+        this.shareCases = shareCases;
+        this.stateService.setCases(shareCases);
+        // Set the config to be used by the xuilib-gov-uk-error-message component, in particular the element ID to
+        // which the error message is associated
+        if (shareCases) {
+          this.selectedCasesErrorMessageConfig = {
+            id: shareCases.length > 0 ? 'cases' : 'noCaseDisplay'
+          };
+        }
+      });
     this.shareCases$ = this.stateService.state;
     this.shareCaseErrorMessage = { isInvalid: false, messages: [] };
   }
@@ -85,6 +93,15 @@ export class ShareCaseComponent implements OnInit {
     this.selectedUser = null;
     if (this.userSelect) { this.userSelect.clear(); }
     this.synchronizeStore.emit(newSharedCases);
+    // Update the list of assigned users (which includes pending users)
+    this.getAssignedUsers(newSharedCases);
+  }
+
+  public removeUser() {
+    if (this.selectedUserToRemove) {
+      const newSharedCases = this.stateService.requestUnshare(this.selectedUserToRemove);
+      this.synchronizeStore.emit(newSharedCases);
+    }
   }
 
   public isDisabledAdd() {
@@ -140,5 +157,30 @@ export class ShareCaseComponent implements OnInit {
     if (this.continueAllowed) {
       this.router.navigate([this.confirmLink]);
     }
+  }
+
+  /**
+   * Gets a unique list of all users that have been assigned, or are pending assigment to, at least one case
+   * @param sharedCases The list of shared cases from which to get users these are shared with, or are to be shared with
+   */
+  public getAssignedUsers(sharedCases: SharedCase[]): void {
+    const users: UserDetails[] = [];
+    sharedCases.forEach(sharedCase => {
+      if (sharedCase.sharedWith) {
+        sharedCase.sharedWith.forEach(user => {
+          if (!users.some(existingUser => user.idamId === existingUser.idamId)) {
+            users.push(user);
+          }
+        });
+      }
+      if (sharedCase.pendingShares) {
+        sharedCase.pendingShares.forEach(user => {
+          if (!users.some(existingUser => user.idamId === existingUser.idamId)) {
+            users.push(user);
+          }
+        });
+      }
+    });
+    this.assignedUsers = users;
   }
 }

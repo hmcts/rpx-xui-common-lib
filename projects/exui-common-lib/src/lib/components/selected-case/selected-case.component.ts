@@ -105,7 +105,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   }
 
   public onRemove(user: UserDetails, sharedCase: SharedCase): void {
-    this.stateService.requestUnshare(sharedCase.caseId, user);
+    this.stateService.requestUnshare(user, sharedCase.caseId);
     this.synchronizeStore.emit(this.shareCases);
   }
 
