@@ -77,7 +77,7 @@ export class SearchJudicialsComponent implements OnInit {
         return apiFilter;
       })
     ).subscribe(judicial => {
-      if (term === judicial.knownAs) {
+      if (term === judicial.fullName) {
         this.formGroup.controls.selectedFormControl.setValue(judicial);
         this.displayedJudicials = [];
         this.judicialChanged.emit(judicial);
