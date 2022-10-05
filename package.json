@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.1-update-joh-name-to-full-name",
+  "version": "1.8.2-update-joh-name-to-full-name",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
