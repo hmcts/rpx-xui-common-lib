@@ -1,0 +1,15 @@
+<div class="auto-complete-container">
+  <input
+    id="inputServiceSearch"
+    (input)="onInput()"
+    [formControl]="form?.controls.searchTerm"
+    [matAutocomplete]="autoSearchService"
+    class="govuk-input"
+    [attr.disabled]="disabled">
+  <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchService="matAutocomplete">
+    <mat-option *ngFor="let service of services" (onSelectionChange)="onSelectionChange()">
+      {{ service.name }}
+    </mat-option>
+    <mat-option *ngIf="!services?.length && showAutocomplete && term && term.length >= this.minSearchCharacters">No results found</mat-option>
+  </mat-autocomplete>
+</div>
