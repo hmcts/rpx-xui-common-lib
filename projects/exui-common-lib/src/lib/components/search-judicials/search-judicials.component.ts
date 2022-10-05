@@ -112,7 +112,7 @@ export class SearchJudicialsComponent implements OnInit {
   }
 
   public getDisplayName(selectedJudicial: JudicialUserModel): string {
-    return `${selectedJudicial.knownAs} (${selectedJudicial.emailId})`;
+    return `${selectedJudicial.fullName} (${selectedJudicial.emailId})`;
   }
 
   public searchJudicials(term: string, serviceId: string): Observable<JudicialUserModel[]> {
