@@ -439,6 +439,104 @@ describe('ShareCaseComponent', () => {
     expect(component.getAssignedUsers).toHaveBeenCalledWith(sharedCases);
   });
 
+  it('should set an error message if there is at least one case that would become unassigned', () => {
+    const user1: UserDetails = {
+      idamId : 'aaaa1111-aaaa-1111',
+      firstName: 'User',
+      lastName: 'One',
+      email: 'user.one@test.com'
+    };
+    const user2: UserDetails = {
+      idamId : 'aaaa2222-aaaa-2222',
+      firstName: 'User',
+      lastName: 'Two',
+      email: 'user.two@test.com'
+    };
+    sharedCases = [
+      {
+        caseId: '1111111111111111',
+        sharedWith: [user1],
+        pendingUnshares: [user1],
+        pendingShares: [user2],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      },
+      {
+        caseId: '2222222222222222',
+        sharedWith: [user1],
+        pendingUnshares: [user1],
+        pendingShares: [],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      }
+    ];
+    component.shareCases = sharedCases;
+    spyOn(component, 'setContinueAllowed').and.callFake(() => {
+      component.continueAllowed = true;
+    });
+    spyOn(component, 'onContinue').and.callThrough();
+    spyOn(component, 'hasCasesLeftUnassigned').and.callThrough();
+    spyOn(router, 'navigate');
+    const continueButton = fixture.nativeElement.querySelector('#btn-continue');
+    continueButton.click();
+    expect(component.onContinue).toHaveBeenCalled();
+    expect(component.hasCasesLeftUnassigned).toHaveBeenCalledWith(sharedCases);
+    const casesLeftUnassigned = component.hasCasesLeftUnassigned(sharedCases);
+    expect(casesLeftUnassigned).toBe(true);
+    expect(component.validationErrors[0]).toEqual({
+      id: 'cases',
+      message: SharedCaseErrorMessages.OnePersonMustBeAssigned
+    });
+    expect(component.shareCaseErrorMessage).toEqual({
+      isInvalid: true,
+      messages: [SharedCaseErrorMessages.OnePersonMustBeAssigned]
+    });
+    expect(router.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should navigate to the confirmation page if there are no cases that would become unassigned', () => {
+    const user1: UserDetails = {
+      idamId : 'aaaa1111-aaaa-1111',
+      firstName: 'User',
+      lastName: 'One',
+      email: 'user.one@test.com'
+    };
+    const user2: UserDetails = {
+      idamId : 'aaaa2222-aaaa-2222',
+      firstName: 'User',
+      lastName: 'Two',
+      email: 'user.two@test.com'
+    };
+    sharedCases = [
+      {
+        caseId: '1111111111111111',
+        sharedWith: [user1],
+        pendingUnshares: [user1],
+        pendingShares: [user2],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      },
+      {
+        caseId: '2222222222222222',
+        sharedWith: [user1, user2],
+        pendingUnshares: [user1],
+        pendingShares: [],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      }
+    ];
+    component.shareCases = sharedCases;
+    spyOn(component, 'setContinueAllowed').and.callFake(() => {
+      component.continueAllowed = true;
+    });
+    spyOn(component, 'onContinue').and.callThrough();
+    spyOn(component, 'hasCasesLeftUnassigned').and.callThrough();
+    spyOn(router, 'navigate');
+    const continueButton = fixture.nativeElement.querySelector('#btn-continue');
+    continueButton.click();
+    expect(component.onContinue).toHaveBeenCalled();
+    expect(component.hasCasesLeftUnassigned).toHaveBeenCalledWith(sharedCases);
+    const casesLeftUnassigned = component.hasCasesLeftUnassigned(sharedCases);
+    expect(casesLeftUnassigned).toBe(false);
+    expect(router.navigate).toHaveBeenCalledWith([component.confirmLink]);
+  });
+
   afterEach(() => {
     sharedCases = [];
   });

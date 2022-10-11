@@ -155,7 +155,17 @@ export class ShareCaseComponent implements OnInit {
     }
     // Navigate to confirmation page only if allowed to continue
     if (this.continueAllowed) {
-      this.router.navigate([this.confirmLink]);
+      // Check that no case is left unassigned; a user can be removed only if there is another current user, or if at
+      // least one user is to be added. Prevent navigation to confirmation page if there is at least one case left in
+      // an unassigned state
+      if (this.hasCasesLeftUnassigned(this.shareCases)) {
+        this.validationErrors = [];
+        this.validationErrors.push({ id: 'cases', message: SharedCaseErrorMessages.OnePersonMustBeAssigned });
+        this.shareCaseErrorMessage = { isInvalid: true, messages: [SharedCaseErrorMessages.OnePersonMustBeAssigned] };
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      } else {
+        this.router.navigate([this.confirmLink]);
+      }
     }
   }
 
@@ -182,5 +192,19 @@ export class ShareCaseComponent implements OnInit {
       }
     });
     this.assignedUsers = users;
+  }
+
+  /**
+   * Checks if any shared cases have been left unassigned. This occurs if a shared case has a number of pending
+   * unshares equal to the number of current shares, and there are no pending shares.
+   * @param sharedCases The array of shared cases to check
+   * @returns `true` if at least one case has the condition described above; `false` otherwise
+   */
+  public hasCasesLeftUnassigned(sharedCases: SharedCase[]): boolean {
+    return sharedCases.some(sharedCase => {
+      return sharedCase.pendingUnshares && sharedCase.sharedWith &&
+        sharedCase.pendingUnshares.length === sharedCase.sharedWith.length &&
+        (!sharedCase.pendingShares || sharedCase.pendingShares.length === 0);
+    });
   }
 }
