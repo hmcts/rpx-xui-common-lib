@@ -1,7 +1,7 @@
 import { BookingCheckType } from './location.model';
 import { PersonRole } from './person.model';
 
-export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input';
+export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
@@ -25,6 +25,7 @@ export interface FilterFieldConfig {
   maxSelectedError?: string;
   displayMaxSelectedError?: boolean;
   displayMinSelectedError?: boolean;
+  emailError?: string;
   lineBreakBefore?: boolean;
   showCondition?: string;
   enableCondition?: string;
@@ -38,10 +39,12 @@ export interface FilterFieldConfig {
   type: FilterFieldType;
   domain?: PersonRole;
   title?: string;
+  titleClasses?: string;
   subTitle?: string;
   locationTitle?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
+  maxWidth480px?: boolean;
 }
 
 export interface FilterSetting {

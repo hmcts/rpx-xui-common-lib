@@ -60,11 +60,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   private static addFormValidators(field: FilterFieldConfig): Validators {
     const validators = [];
-    if (field && field.minSelected) {
+    if (field && field.minSelected > 0) {
       validators.push(minSelectedValidator(field.minSelected));
     }
 
-    if (field && field.maxSelected) {
+    if (field && field.maxSelected > 0) {
       validators.push(maxSelectedValidator(field.maxSelected));
     }
 
@@ -308,6 +308,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           if (field.type === 'text-input') {
             validators.push(Validators.minLength(field.minSelected));
           }
+
+          if (field.type === 'email-input') {
+            validators.push(Validators.email);
+          }
         }
 
         let defaultValue: any = null;
@@ -328,7 +332,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
             knownAs: new FormControl(''),
           });
           this.form.addControl(field.name, formGroup);
-        } else {
+        } else if (field.type !== 'group-title') {
           const control = new FormControl(defaultValue, validators);
           this.form.addControl(field.name, control);
         }
@@ -390,7 +394,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   private emitFormErrors(form: FormGroup): void {
-    const errors: FilterError[] = [];
+    let errors: FilterError[] = [];
     for (const field of this.config.fields) {
       const formGroup = form.get(field.name);
       if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
@@ -400,6 +404,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         errors.push({name: field.name, error: field.minSelectedError});
       }
     }
+
+    // remove duplicates
+    errors = errors.filter( (filterError, i, arr) => {
+      return errors.indexOf(arr.find(item => item.name === filterError.name)) === i;
+    });
+
     if (errors.length) {
       this.filterService.givenErrors.next(errors);
     }
