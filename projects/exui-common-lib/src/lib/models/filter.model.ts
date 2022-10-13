@@ -5,6 +5,12 @@ export type FilterFieldType = 'checkbox' | 'radio' | 'select' | 'find-person' | 
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
+export interface FilterConfigOption {
+  key: string, 
+  label: string, 
+  selectAll?: boolean;
+}
+
 export interface FilterConfig {
   id: string;
   fields: FilterFieldConfig[];
@@ -18,7 +24,7 @@ export interface FilterConfig {
 
 export interface FilterFieldConfig {
   name: string;
-  options: { key: string, label: string, selectAll?: true }[];
+  options: FilterConfigOption[];
   minSelected: number;
   maxSelected: number;
   minSelectedError?: string;
