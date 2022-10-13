@@ -71,6 +71,7 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { windowProvider, windowToken } from './window';
 
 export const COMMON_COMPONENTS = [
@@ -137,10 +138,15 @@ export const GOV_UI_COMPONENTS = [
   RemoveHostDirective
 ];
 
+const pipes = [
+  CapitalizePipe
+];
+
 @NgModule({
   declarations: [
     ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS
+    ...GOV_UI_COMPONENTS,
+    ...pipes
   ],
   imports: [
     CommonModule,
@@ -158,7 +164,8 @@ export const GOV_UI_COMPONENTS = [
   exports: [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS,
-    PaginatePipe
+    PaginatePipe,
+    ...pipes
   ]
 })
 export class ExuiCommonLibModule {
