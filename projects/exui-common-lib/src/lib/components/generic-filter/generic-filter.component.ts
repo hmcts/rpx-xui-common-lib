@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
@@ -13,6 +13,7 @@ import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-f
   encapsulation: ViewEncapsulation.None
 })
 export class GenericFilterComponent implements OnInit, OnDestroy {
+  @Output() public onError: EventEmitter<void> = new EventEmitter<void>();
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
@@ -297,8 +298,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (field.type === 'checkbox' || field.type === 'checkbox-large') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
         this.form.addControl(field.name, formArray);
-      } else if (field.type === 'find-location') {
-        const formArray = this.buildFindLocationFormArray(field, settings);
+      } else if (field.type === 'find-location' || field.type === 'find-service') {
+        const formArray = this.buildFindLocationAndServiceFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else {
         const validators: ValidatorFn[] = [];
@@ -358,7 +359,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return formArray;
   }
 
-  private buildFindLocationFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+  private buildFindLocationAndServiceFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
     const validators = GenericFilterComponent.addFormValidators(field);
     const formArray = this.fb.array([], validators);
     let defaultValues: { name: string; value: any[] };
@@ -403,5 +404,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (errors.length) {
       this.filterService.givenErrors.next(errors);
     }
+  }
+
+  public setError(): void {
+    this.onError.emit();
   }
 }
