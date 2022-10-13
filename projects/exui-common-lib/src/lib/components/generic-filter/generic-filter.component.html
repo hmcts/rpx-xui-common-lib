@@ -1,127 +1,152 @@
 <form [formGroup]="form" (ngSubmit)="applyFilter(form)">
   <div class="contain-classes" *ngFor="let field of config.fields">
-    <hr *ngIf="field.lineBreakBefore" class="govuk-section-break govuk-section-break--visible elevated-break">
-    <div class="govuk-form-group xui-generic-filter"
-         [hidden]="hidden(field, form)"
-         [id]="field.name"
-         [ngClass]="{'form-group-error': submitted && ((form.get(field.name).errors?.minlength || form.get(field.name).errors?.required) || form.get(field.name).errors?.maxLength)}">
-      <h3 *ngIf="field.title" class="govuk-heading-s">{{field.title}}</h3>
-      <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
-      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.required)">
+    <hr *ngIf="field.lineBreakBefore" class="govuk-section-break elevated-break">
+    <ng-container [ngSwitch]="field.type">
+      <ng-container *ngSwitchCase="'group-title'">
+        <div [class]="field.titleClasses ? field.titleClasses: 'govuk-label govuk-label--m govuk-!-margin-bottom-4'">
+          {{ field.name }}
+        </div>
+    </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <div class="govuk-form-group xui-generic-filter"
+             [hidden]="hidden(field, form)"
+             [id]="field.name"
+             [ngClass]="{'form-group-error': submitted && ((form.get(field.name).errors?.minlength || form.get(field.name).errors?.required) || form.get(field.name).errors?.maxLength || form.get(field.name).errors?.email)}">
+          <h3 *ngIf="field.title" [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'">{{field.title}}</h3>
+          <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
+
+          <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.required)">
         <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
       </span>
-      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
+
+          <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
         <span class="govuk-visually-hidden">Error:</span> {{field.maxSelectedError}}
       </span>
-      <div class="govuk-body" [ngSwitch]="field.type">
-        <ng-container *ngSwitchCase="'select'">
-          <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
-            <option disabled selected hidden value="">{{field.disabledText}}</option>
-            <option class="govuk-radios__item" *ngFor="let item of field.options" [value]="item.key">{{item.label}}</option>
-          </select>
-        </ng-container>
-        <ng-container *ngSwitchCase="'checkbox'">
-          <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
-            <div *ngFor="let item of field.options; let i = index" class="govuk-checkboxes__item">
-              <input type="checkbox" class="govuk-checkboxes__input"
-                     [attr.disabled]="disabled(field, form)"
-                     [formControlName]="i"
-                     (change)="toggleSelectAll($event, form, item, field)"
-                     [value]="item.key" [id]="'checkbox_' + item.key"
-                     [name]="'checkbox_' + item.key"
-              />
-              <label
-                [for]="'checkbox_' + item.key"
-                class="govuk-label govuk-checkboxes__label"
-                [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
-              >{{item.label}}</label>
-            </div>
-          </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'checkbox-large'">
-          <div class="govuk-checkboxes" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
-            <div *ngFor="let item of field.options; let i = index" class="govuk-checkboxes__item">
-              <input type="checkbox" class="govuk-checkboxes__input"
-                     [attr.disabled]="disabled(field, form)"
-                     [formControlName]="i"
-                     (change)="toggleSelectAll($event, form, item, field)"
-                     [value]="item.key" [id]="'checkbox_' + item.key"
-                     [name]="'checkbox_' + item.key"
-              />
-              <label
-                [for]="'checkbox_' + item.key"
-                class="govuk-label govuk-checkboxes__label"
-                [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
-              >{{item.label}}</label>
-            </div>
-          </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'radio'">
-          <div class="govuk-radios">
-            <div *ngFor="let item of field.options" class="govuk-radios__item">
-              <input type="radio"
+
+          <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.emailError && submitted && form.get(field.name).errors?.email">
+        <span class="govuk-visually-hidden">Error:</span> {{field.emailError}}
+      </span>
+
+          <div class="govuk-body"  [class.govuk-body--maxWidth480px]="field.maxWidth480px" [ngSwitch]="field.type">
+            <ng-container *ngSwitchCase="'select'">
+              <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
+                <option disabled selected hidden value="">{{field.disabledText}}</option>
+                <option class="govuk-radios__item" *ngFor="let item of field.options" [value]="item.key">{{item.label}}</option>
+              </select>
+            </ng-container>
+            <ng-container *ngSwitchCase="'checkbox'">
+              <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+                <div *ngFor="let item of field.options; let i = index" class="govuk-checkboxes__item">
+                  <input type="checkbox" class="govuk-checkboxes__input"
+                         [attr.disabled]="disabled(field, form)"
+                         [formControlName]="i"
+                         (change)="toggleSelectAll($event, form, item, field)"
+                         [value]="item.key" [id]="'checkbox_' + item.key"
+                         [name]="'checkbox_' + item.key"
+                  />
+                  <label
+                    [for]="'checkbox_' + item.key"
+                    class="govuk-label govuk-checkboxes__label"
+                    [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
+                  >{{item.label}}</label>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'checkbox-large'">
+              <div class="govuk-checkboxes" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+                <div *ngFor="let item of field.options; let i = index" class="govuk-checkboxes__item">
+                  <input type="checkbox" class="govuk-checkboxes__input"
+                         [attr.disabled]="disabled(field, form)"
+                         [formControlName]="i"
+                         (change)="toggleSelectAll($event, form, item, field)"
+                         [value]="item.key" [id]="'checkbox_' + item.key"
+                         [name]="'checkbox_' + item.key"
+                  />
+                  <label
+                    [for]="'checkbox_' + item.key"
+                    class="govuk-label govuk-checkboxes__label"
+                    [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
+                  >{{item.label}}</label>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'radio'">
+              <div class="govuk-radios">
+                <div *ngFor="let item of field.options" class="govuk-radios__item">
+                  <input type="radio"
+                         [formControlName]="field.name"
+                         [id]="'radio_' + item.key"
+                         [attr.disabled]="disabled(field, form)"
+                         [checked]="item.key === form.get(field.name).value"
+                         class="govuk-radios__input"
+                         [value]="item.key"
+                         (change)="fieldChanged(field, form)"
+                  />
+                  <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'find-person'">
+              <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
+                                  (personFieldChanged)="inputChanged(field)"
+                                  [submitted]="submitted"
+                                  [disabled]="disabled(field, form)"
+                                  [domain]="form.get(field.domainField)?.value"
+                                  [findPersonGroup]="form"
+                                  [selectedPerson]="form.get(field.name)?.value?.email"
+                                  [userIncluded]="false"
+              ></xuilib-find-person>
+            </ng-container>
+            <ng-container *ngSwitchCase="'find-location'">
+              <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
+                                    [form]="form"
+                                    [fields]="config.fields"
+                                    [locationTitle]="field.locationTitle"
+                                    [enableAddLocationButton]="field.enableAddButton"
+                                    [disabled]="disabled(field, form)"
+                                    [disableInputField]="field.disable"
+                                    [selectedLocations]="form.get(field.name)?.value"
+                                    [submitted]="submitted"
+                                    [services]="form.get(field.findLocationField)?.value"
+                                    [field]="field"
+              ></xuilib-find-location>
+            </ng-container>
+            <ng-container *ngSwitchCase="'find-service'">
+              <xuilib-find-service (serviceFieldChanged)="inputChanged(field)"
+                                   (onError)= "setError()"
+                                    [form]="form"
+                                    [title]="field.title"
+                                    [enableAddServiceButton]="field.enableAddButton"
+                                    [disabled]="disabled(field, form)"
+                                    [selectedServices]="form.get(field.name)?.value"
+                                    [services]="field.options"
+                                    [field]="field"
+              ></xuilib-find-service>
+            </ng-container>
+            <ng-container *ngSwitchCase="'text-input'">
+              <input class="govuk-input" type="text"
                      [formControlName]="field.name"
-                     [id]="'radio_' + item.key"
+                     [id]="field.name"
                      [attr.disabled]="disabled(field, form)"
-                     [checked]="item.key === form.get(field.name).value"
-                     class="govuk-radios__input"
-                     [value]="item.key"
                      (change)="fieldChanged(field, form)"
               />
-              <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
-            </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'email-input'">
+              <input class="govuk-input" type="email"
+                     [formControlName]="field.name"
+                     [id]="field.name"
+                     [attr.disabled]="disabled(field, form)"
+                     (change)="fieldChanged(field, form)"
+              />
+            </ng-container>
           </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'find-person'">
-          <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
-                              (personFieldChanged)="inputChanged(field)"
-                              [submitted]="submitted"
-                              [disabled]="disabled(field, form)"
-                              [domain]="form.get(field.domainField)?.value"
-                              [findPersonGroup]="form"
-                              [selectedPerson]="form.get(field.name)?.value?.email"
-                              [userIncluded]="false"
-          ></xuilib-find-person>
-        </ng-container>
-        <ng-container *ngSwitchCase="'find-location'">
-          <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
-                                [form]="form"
-                                [fields]="config.fields"
-                                [locationTitle]="field.locationTitle"
-                                [enableAddLocationButton]="field.enableAddButton"
-                                [disabled]="disabled(field, form)"
-                                [disableInputField]="field.disable"
-                                [selectedLocations]="form.get(field.name)?.value"
-                                [submitted]="submitted"
-                                [services]="form.get(field.findLocationField)?.value"
-                                [field]="field"
-          ></xuilib-find-location>
-        </ng-container>
-        
-        <ng-container *ngSwitchCase="'find-service'">
-          <xuilib-find-service (serviceFieldChanged)="inputChanged(field)"
-                               (onError)= "setError()"
-                                [form]="form"
-                                [title]="field.title"
-                                [enableAddServiceButton]="field.enableAddButton"
-                                [disabled]="disabled(field, form)"
-                                [selectedServices]="form.get(field.name)?.value"
-                                [services]="field.options"
-                                [field]="field"
-          ></xuilib-find-service>
-        </ng-container>
-        <ng-container *ngSwitchCase="'text-input'">
-          <input class="govuk-input" type="text"
-                 [formControlName]="field.name"
-                 [id]="field.name"
-                 [attr.disabled]="disabled(field, form)"
-                 (change)="fieldChanged(field, form)"
-          />
-        </ng-container>
-      </div>
-    </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
   </div>
-  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
+  <hr class="govuk-section-break govuk-section-break--m"/>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <button

@@ -47,6 +47,17 @@ export class FilterService {
     return this.streams[id].asObservable();
   }
 
+  public clearStream(id: string) {
+    if (window.sessionStorage.getItem(id)) {
+      window.sessionStorage.removeItem(id);
+    }
+    if (window.localStorage.getItem(id)) {
+      window.localStorage.removeItem(id);
+    }
+    this.givenErrors.next(null);
+    delete this.streams[id];
+  }
+
   private persistLocal(setting: FilterSetting): void {
     window.localStorage.setItem(setting.id, JSON.stringify(setting));
   }
