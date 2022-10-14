@@ -14,6 +14,7 @@ import { DueDateComponent } from './components/due-date/due-date.component';
 import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-page-wrapper.component';
 import { FindLocationComponent } from './components/find-location/find-location.component';
 import { FindPersonComponent } from './components/find-person/find-person.component';
+import { FindServiceComponent } from './components/find-service/find-service.component';
 import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
@@ -32,7 +33,6 @@ import { ShareCaseConfirmComponent } from './components/share-case-confirm/share
 import { ShareCaseComponent } from './components/share-case/share-case.component';
 import { TabComponent } from './components/tab/tab.component';
 import { TcConfirmComponent } from './components/tc-confirm/tc-confirm.component';
-import { FindServiceComponent } from './components/find-service/find-service.component';
 import {
   TcDisplayHtmlComponent
 } from './components/terms-and-conditions/tc-display/tc-display-html/tc-display-html.component';
@@ -85,10 +85,10 @@ import { RoleService } from './services/role-guard/role.service';
 import { SessionStorageService } from './services/session-storage/session-storage.service';
 import { TimeoutNotificationsService } from './services/timeout-notifications/timeout-notifications.service';
 
-import { windowProvider, windowToken } from './window';
+import { SearchServiceComponent } from './components/search-service/search-service.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
-import { SearchServiceComponent } from './components/search-service/search-service.component';
+import { windowProvider, windowToken } from './window';
 
 const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
