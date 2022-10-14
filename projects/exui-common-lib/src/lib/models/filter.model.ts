@@ -16,9 +16,15 @@ export interface FilterConfig {
   showCancelFilterButton?: boolean;
 }
 
+export interface FilterFieldOption {
+  key: string;
+  label: string;
+  selectAll?: true;
+}
+
 export interface FilterFieldConfig {
   name: string;
-  options: { key: string, label: string, selectAll?: true }[];
+  options: FilterFieldOption[];
   minSelected: number;
   maxSelected: number;
   minSelectedError?: string;
@@ -45,6 +51,7 @@ export interface FilterFieldConfig {
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
   maxWidth480px?: boolean;
+  maxRows?: number;
 }
 
 export interface FilterSetting {

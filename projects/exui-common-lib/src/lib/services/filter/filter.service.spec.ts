@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { FilterPersistence, FilterSetting } from '../../models/filter.model';
+import { FilterPersistence, FilterSetting } from '../../models';
 import { FilterService } from './filter.service';
 
 describe('FilterService', () => {
@@ -11,6 +11,7 @@ describe('FilterService', () => {
     }]
   };
   let service: FilterService;
+
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
@@ -44,4 +45,17 @@ describe('FilterService', () => {
     });
   });
 
+  it('should check if session persistence and call deleteItem if exists and calling clearSessionAndLocalPersistence', () => {
+    const persistence: FilterPersistence = 'session';
+    service.persist(filterSetting, persistence);
+    service.clearSessionAndLocalPersistance(filterSetting.id);
+    expect(sessionStorage.getItem(filterSetting.id)).toBeNull();
+  });
+
+  it('should delete localStorage persistence if exists and calling clearSessionAndLocalPersistence', () => {
+    const persistence: FilterPersistence = 'session';
+    service.persist(filterSetting, persistence);
+    service.clearSessionAndLocalPersistance(filterSetting.id);
+    expect(localStorage.getItem(filterSetting.id)).toBeNull();
+  });
 });

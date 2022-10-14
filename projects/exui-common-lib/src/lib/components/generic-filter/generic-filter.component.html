@@ -4,7 +4,7 @@
     <ng-container [ngSwitch]="field.type">
       <ng-container *ngSwitchCase="'group-title'">
         <div [class]="field.titleClasses ? field.titleClasses: 'govuk-label govuk-label--m govuk-!-margin-bottom-4'">
-          {{ field.name }}
+          {{ field.name | capitalize }}
         </div>
     </ng-container>
 
@@ -13,20 +13,31 @@
              [hidden]="hidden(field, form)"
              [id]="field.name"
              [ngClass]="{'form-group-error': submitted && ((form.get(field.name).errors?.minlength || form.get(field.name).errors?.required) || form.get(field.name).errors?.maxLength || form.get(field.name).errors?.email)}">
-          <h3 *ngIf="field.title" [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'">{{field.title}}</h3>
+
+          <div *ngIf="field.title" class="xui-generic-filter__field-title">
+            <h3 [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'" style="margin-bottom: 0!important">
+              {{field.title | capitalize}}
+            </h3>
+
+            <div *ngIf="field?.minSelected === 0" class="govuk-!-margin-left-2">(optional)</div>
+          </div>
+
           <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
 
-          <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.required)">
-        <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
-      </span>
+          <span [id]="field.name + '-error'" class="govuk-error-message"
+            *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.required)">
+            <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
+          </span>
 
-          <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
-        <span class="govuk-visually-hidden">Error:</span> {{field.maxSelectedError}}
-      </span>
+          <span [id]="field.name + '-error'" class="govuk-error-message"
+            *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
+            <span class="govuk-visually-hidden">Error:</span> {{field.maxSelectedError}}
+          </span>
 
-          <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.emailError && submitted && form.get(field.name).errors?.email">
-        <span class="govuk-visually-hidden">Error:</span> {{field.emailError}}
-      </span>
+          <span [id]="field.name + '-error'" class="govuk-error-message"
+                *ngIf="field.emailError && submitted && form.get(field.name).errors?.email">
+            <span class="govuk-visually-hidden">Error:</span> {{field.emailError}}
+          </span>
 
           <div class="govuk-body"  [class.govuk-body--maxWidth480px]="field.maxWidth480px" [ngSwitch]="field.type">
             <ng-container *ngSwitchCase="'select'">

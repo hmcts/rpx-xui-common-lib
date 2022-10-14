@@ -27,10 +27,15 @@
         flex-shrink: 0;
       }
     }
+
+    &__field-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
   }
 
   .govuk-select {
     width: 100%;
   }
-
 }
