@@ -78,10 +78,6 @@ describe('SelectedCaseComponent', () => {
     expect(component.trackByUserId(user)).toEqual('U111111');
   });
 
-  it('should unselect', () => {
-    expect(component.onUnselect).toBeDefined();
-  });
-
   it('should deselect', () => {
     expect(component.onDeselect).toBeDefined();
   });

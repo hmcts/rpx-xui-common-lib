@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {LocationByEPIMMSModel} from '../../models/location.model';
+import {LocationByEPIMMSModel, LocationsByService} from '../../models/location.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class LocationService {
    * @param searchTerm: any search term for postcode | site name | venue name |court name | court address etc.
    * @return Observable<LocationByEPIMMSModel[]>: Array of locationModel in Observable
    */
-  public getAllLocations(serviceIds: string, locationType: string, searchTerm: string): Observable<LocationByEPIMMSModel[]> {
-    return this.http.get<LocationByEPIMMSModel[]>(`api/locations/getLocations?serviceIds=${serviceIds}&locationType=${locationType}&searchTerm=${searchTerm}`);
+  public getAllLocations(serviceIds: string, locationType: string, searchTerm: string, userLocations: LocationsByService[], bookingLocations: string[]): Observable<LocationByEPIMMSModel[]> {
+    return this.http.post<LocationByEPIMMSModel[]>(`api/locations/getLocations`, {serviceIds, locationType, searchTerm, userLocations, bookingLocations});
   }
 
   /**
