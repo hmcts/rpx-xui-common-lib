@@ -18,7 +18,7 @@ export class FindServiceComponent implements OnInit {
   @Input() public disabled: boolean = false;
 
   @Output() public serviceFieldChanged = new EventEmitter<void>();
-  @Output() public onError = new EventEmitter<void>();
+  @Output() public error = new EventEmitter<void>();
 
   public tempSelectedService: FilterConfigOption = null;
 
@@ -34,7 +34,7 @@ export class FindServiceComponent implements OnInit {
     }
     this.selectedServices = [...this.selectedServices, this.tempSelectedService];
     this.addSelectedServicesToForm([this.tempSelectedService]);
-    this.services = this.services.filter(s=>s.key !== this.tempSelectedService.key);
+    this.services = this.services.filter(s => s.key !== this.tempSelectedService.key);
     this.tempSelectedService = null;
   }
 
@@ -45,7 +45,7 @@ export class FindServiceComponent implements OnInit {
       const index = (formArray.value).findIndex((selectedService: FilterConfigOption) => selectedService.key === service.key);
       if (index > -1) {
         formArray.removeAt(index);
-        this.services.splice(index,0,service);
+        this.services.splice(index, 0, service);
         this.SortAnOptions();
       }
     }
@@ -92,6 +92,6 @@ export class FindServiceComponent implements OnInit {
 
   private setServiceError() {
     this.form.get(this.field.name).markAsDirty();
-    this.onError.emit();
+    this.error.emit();
   }
 }

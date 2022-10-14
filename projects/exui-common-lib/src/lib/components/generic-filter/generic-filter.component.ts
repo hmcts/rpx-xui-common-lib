@@ -13,7 +13,7 @@ import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-f
   encapsulation: ViewEncapsulation.None
 })
 export class GenericFilterComponent implements OnInit, OnDestroy {
-  @Output() public onError: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public error: EventEmitter<void> = new EventEmitter<void>();
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
@@ -417,6 +417,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public setError(): void {
-    this.onError.emit();
+    this.error.emit();
   }
 }

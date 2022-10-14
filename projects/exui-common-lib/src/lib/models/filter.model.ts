@@ -6,8 +6,8 @@ export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
 export interface FilterConfigOption {
-  key: string, 
-  label: string, 
+  key: string;
+  label: string;
   selectAll?: boolean;
 }
 

@@ -7,7 +7,7 @@ import { FindServiceComponent } from './find-service.component';
 describe('FindServiceComponent', () => {
   let component: FindServiceComponent;
   let fixture: ComponentFixture<FindServiceComponent>;
-  let service = {
+  const service = {
     key: '01',
     label: '01-label',
   };
@@ -33,7 +33,7 @@ describe('FindServiceComponent', () => {
     component.form = new FormGroup({
       services: new FormArray([]),
     });
-    let services = [ {
+    const services = [ {
       key: '01',
       label: '01-label',
     },
@@ -45,7 +45,7 @@ describe('FindServiceComponent', () => {
       key: null,
       label: '02-label',
     },
-  ]
+  ];
     component.services = services;
     fixture.detectChanges();
   });
@@ -83,8 +83,8 @@ describe('FindServiceComponent', () => {
     component.selectedServices = component.services;
     spyOn<any>(component, 'SortAnOptions');
     const formArray = component.form.get(component.field.name) as FormArray;
-    for (const service of component.services) {
-      formArray.push(new FormControl(service));
+    for (const s of component.services) {
+      formArray.push(new FormControl(s));
     }
     component.removeService(service);
     expect(component.selectedServices.length).toEqual(2);
@@ -93,7 +93,7 @@ describe('FindServiceComponent', () => {
 
 
   it(`onServiceSelected method should set the value of 'tempSelectedService' to null, if passed service is undefined or null`, () => {
-    component.tempSelectedService = service; 
+    component.tempSelectedService = service;
     component.onServiceSelected(null);
     expect(component.tempSelectedService).toEqual(null);
   });
@@ -101,7 +101,7 @@ describe('FindServiceComponent', () => {
   it('onServiceSelected method should call the removeSelectedValues, if field has maxSelected is equal to 1', () => {
     spyOn<any>(component, 'removeSelectedValues');
     component.field.maxSelected = 1;
-   
+
     component.onServiceSelected(service);
     expect((component as any).removeSelectedValues).toHaveBeenCalled();
   });
@@ -121,14 +121,14 @@ describe('FindServiceComponent', () => {
   it('addSelectedServicesToForm method should add element ino the the form array', () => {
     component.selectedServices = component.services;
     (component as any).addSelectedServicesToForm(component.services);
-    const formArray = component.form.get(component.field.name) as FormArray
+    const formArray = component.form.get(component.field.name) as FormArray;
     expect(formArray.value).toEqual(component.services);
   });
 
-  it('should emit an event of onError', () => {
-    spyOn(component.onError, 'emit');
+  it('should emit an event of error', () => {
+    spyOn(component.error, 'emit');
     (component as any).setServiceError();
-    expect(component.onError.emit).toHaveBeenCalled();
+    expect(component.error.emit).toHaveBeenCalled();
   });
 
   it('should sort an options', () => {
