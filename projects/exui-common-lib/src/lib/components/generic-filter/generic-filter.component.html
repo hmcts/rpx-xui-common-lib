@@ -114,7 +114,6 @@
             </ng-container>
             <ng-container *ngSwitchCase="'find-service'">
               <xuilib-find-service (serviceFieldChanged)="inputChanged(field)"
-                                   (error)= "setError()"
                                     [form]="form"
                                     [title]="field.title"
                                     [enableAddServiceButton]="field.enableAddButton"
