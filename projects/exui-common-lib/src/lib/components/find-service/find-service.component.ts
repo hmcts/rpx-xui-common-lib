@@ -10,7 +10,7 @@ import { FilterConfigOption, FilterFieldConfig } from '../../models';
 export class FindServiceComponent implements OnInit {
   @Input() public field: FilterFieldConfig;
   @Input() public fields: FilterFieldConfig[];
-  @Input() public serviceTitle = 'Choose a service';
+  @Input() public serviceTitle: string;
   @Input() public form: FormGroup;
   @Input() public services: FilterConfigOption[] = [];
   @Input() public selectedServices: FilterConfigOption[] = [];
@@ -18,7 +18,6 @@ export class FindServiceComponent implements OnInit {
   @Input() public disabled: boolean = false;
 
   @Output() public serviceFieldChanged = new EventEmitter<void>();
-  @Output() public error = new EventEmitter<void>();
 
   public tempSelectedService: FilterConfigOption = null;
 
@@ -29,7 +28,6 @@ export class FindServiceComponent implements OnInit {
 
   public addService(): void {
     if (this.tempSelectedService === null) {
-      this.setServiceError();
       return;
     }
     this.selectedServices = [...this.selectedServices, this.tempSelectedService];
@@ -90,8 +88,5 @@ export class FindServiceComponent implements OnInit {
     });
   }
 
-  private setServiceError() {
-    this.form.get(this.field.name).markAsDirty();
-    this.error.emit();
-  }
+
 }

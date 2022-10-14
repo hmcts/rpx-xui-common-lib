@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { FindServiceComponent } from './find-service.component';
 
@@ -14,7 +13,7 @@ describe('FindServiceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, FormsModule],
+      imports: [ReactiveFormsModule, FormsModule],
       declarations: [FindServiceComponent, SearchServiceComponent],
       providers: [],
     }).compileComponents();
@@ -125,12 +124,6 @@ describe('FindServiceComponent', () => {
     expect(formArray.value).toEqual(component.services);
   });
 
-  it('should emit an event of error', () => {
-    spyOn(component.error, 'emit');
-    (component as any).setServiceError();
-    expect(component.error.emit).toHaveBeenCalled();
-  });
-
   it('should sort an options', () => {
     (component as any).SortAnOptions();
     expect(component.services).toEqual([
@@ -148,12 +141,4 @@ describe('FindServiceComponent', () => {
       }
     ]);
   });
-
-  it('should call the setServiceError, in case tempSelectedService is null', () => {
-    component.tempSelectedService = null;
-    spyOn<any>(component, 'setServiceError');
-    component.addService();
-    expect((component as any).setServiceError).toHaveBeenCalled();
-  });
-
  });
