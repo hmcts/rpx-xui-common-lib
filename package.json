@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.47-text-input-capitalize",
+  "version": "1.7.47-text-input-capitalize-error",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
