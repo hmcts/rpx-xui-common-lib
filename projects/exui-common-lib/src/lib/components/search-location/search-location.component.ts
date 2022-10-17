@@ -5,7 +5,7 @@ import {debounceTime, filter, map, mergeMap, tap} from 'rxjs/operators';
 
 import {BookingCheckType, LocationByEPIMMSModel} from '../../models';
 import {LocationService} from '../../services/locations/location.service';
-import { SessionStorageService } from '../../services/session-storage/session-storage.service';
+import { SessionStorageService } from '../../services/storage/session-storage/session-storage.service';
 
 @Component({
   selector: 'exui-search-location',

@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { BookingCheckType } from '../../models';
 import { LocationService } from '../../services/locations/location.service';
-import { SessionStorageService } from '../../services/session-storage/session-storage.service';
+import { SessionStorageService } from '../../services/storage/session-storage/session-storage.service';
 import { SearchLocationComponent } from './search-location.component';
 
 describe('SearchLocationComponent', () => {

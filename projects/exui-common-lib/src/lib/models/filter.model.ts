@@ -22,6 +22,12 @@ export interface FilterConfig {
   showCancelFilterButton?: boolean;
 }
 
+export interface FilterFieldOption {
+  key: string;
+  label: string;
+  selectAll?: true;
+}
+
 export interface FilterFieldConfig {
   name: string;
   options: FilterConfigOption[];
@@ -51,6 +57,7 @@ export interface FilterFieldConfig {
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
   maxWidth480px?: boolean;
+  maxRows?: number;
 }
 
 export interface FilterSetting {

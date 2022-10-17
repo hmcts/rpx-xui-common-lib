@@ -4,6 +4,7 @@ import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FilterFieldConfig } from '../../models';
+import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 import { FilterService } from '../../services';
 import { LocationService } from '../../services/locations/location.service';
 import { FindLocationComponent } from '../find-location/find-location.component';
@@ -32,7 +33,15 @@ describe('GenericFilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
+      declarations: [
+        GenericFilterComponent,
+        FindPersonComponent,
+        FindLocationComponent,
+        SearchLocationComponent,
+        FindServiceComponent,
+        SearchServiceComponent,
+        CapitalizePipe
+      ],
       providers: [
         {provide: FilterService, useValue: mockFilterService},
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -363,10 +372,18 @@ describe('Select all checkboxes', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
+      declarations: [
+        GenericFilterComponent,
+        FindPersonComponent,
+        FindLocationComponent,
+        SearchLocationComponent,
+        FindServiceComponent,
+        SearchServiceComponent,
+        CapitalizePipe
+      ],
       providers: [
         FilterService,
-        {provide: LocationService, useValue: searchFilterServiceMock}
+        { provide: LocationService, useValue: searchFilterServiceMock }
       ]
     })
       .compileComponents();
@@ -449,7 +466,15 @@ describe('Find location filter config', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
+      declarations: [
+        GenericFilterComponent,
+        FindPersonComponent,
+        FindLocationComponent,
+        SearchLocationComponent,
+        FindServiceComponent,
+        SearchServiceComponent,
+        CapitalizePipe
+      ],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
