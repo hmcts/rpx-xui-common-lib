@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
-import {FilterService} from '../../services';
-import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { FilterConfig, FilterError, FilterFieldConfig, FilterSetting } from '../../models';
+import { FilterService } from '../../services';
+import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
