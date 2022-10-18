@@ -1,30 +1,92 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { FilterFieldConfig } from '../../models';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FilterConfigOption, FilterFieldConfig } from '../../models';
 
 @Component({
   selector: 'xuilib-find-service',
   templateUrl: './find-service.component.html',
   styleUrls: ['./find-service.component.scss']
 })
-export class FindServiceComponent  {
-    @Input() public field: FilterFieldConfig;
-    @Input() public fields: FilterFieldConfig[];
-    @Input() public serviceTitle = 'Search for a service by name';
-    @Input() public form: FormGroup;
-    @Input() public services: any;
-    @Input() public selectedServices: any;
-    @Input() public disabled: any;
-    @Input() public enableAddServiceButton: boolean = true;
-    @Input() public disableInputField = false;
+export class FindServiceComponent implements OnInit {
+  @Input() public field: FilterFieldConfig;
+  @Input() public fields: FilterFieldConfig[];
+  @Input() public serviceTitle: string;
+  @Input() public form: FormGroup;
+  @Input() public services: FilterConfigOption[] = [];
+  @Input() public selectedServices: FilterConfigOption[] = [];
+  @Input() public enableAddServiceButton: boolean = true;
+  @Input() public disabled: boolean = false;
 
-    constructor(private readonly fb: FormBuilder) {
-      this.form = this.fb.group({
-        searchTerm: ['']
-      });
-    }
+  @Output() public serviceFieldChanged = new EventEmitter<void>();
 
-    public addService() {
-      // Todo
+  public tempSelectedService: FilterConfigOption = null;
+
+  public ngOnInit(): void {
+    this.selectedServices = this.selectedServices !== null ? this.selectedServices.filter((service: FilterConfigOption) => service.key) : [];
+    this.SortAnOptions();
+  }
+
+  public addService(): void {
+    if (this.tempSelectedService === null) {
+      return;
     }
+    this.selectedServices = [...this.selectedServices, this.tempSelectedService];
+    this.addSelectedServicesToForm([this.tempSelectedService]);
+    this.services = this.services.filter(s => s.key !== this.tempSelectedService.key);
+    this.tempSelectedService = null;
+  }
+
+  public removeService(service: FilterConfigOption): void {
+    if (service.key) {
+      this.selectedServices = this.selectedServices !== null ? this.selectedServices.filter((selectedService: FilterConfigOption) => selectedService.key !== service.key) : [];
+      const formArray = this.form.get(this.field.name) as FormArray;
+      const index = (formArray.value).findIndex((selectedService: FilterConfigOption) => selectedService.key === service.key);
+      if (index > -1) {
+        formArray.removeAt(index);
+        this.services.splice(index, 0, service);
+        this.SortAnOptions();
+      }
+    }
+  }
+
+  public onServiceSelected(service: FilterConfigOption): void {
+    if (!service) {
+      this.tempSelectedService = null;
+      return;
+    }
+    if (this.field.maxSelected === 1) {
+      this.removeSelectedValues();
+      this.addSelectedServicesToForm([service]);
+    } else {
+      if (!this.selectedServices.find(s => s.key === service.key)) {
+        if (service.key) {
+          this.tempSelectedService = service;
+        }
+      }
+    }
+  }
+
+  private removeSelectedValues(): void {
+    const formArray = this.form.get(this.field.name) as FormArray;
+    for (let i = 0; i < formArray.length; i++) {
+      formArray.removeAt(i);
+    }
+    this.selectedServices = [];
+  }
+
+  private addSelectedServicesToForm(services: FilterConfigOption[]): void {
+    const formArray = this.form.get(this.field.name) as FormArray;
+    for (const service of services) {
+      formArray.push(new FormControl(service));
+    }
+  }
+
+
+  private SortAnOptions(): FilterConfigOption[] {
+    return this.services.sort((a, b) => {
+      return a.label.toLowerCase() > b.label.toLowerCase() ? 1 : (b.label.toLowerCase() > a.label.toLowerCase() ? -1 : 0);
+    });
+  }
+
+
 }

@@ -297,8 +297,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (field.type === 'checkbox' || field.type === 'checkbox-large') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
         this.form.addControl(field.name, formArray);
-      } else if (field.type === 'find-location') {
-        const formArray = this.buildFindLocationFormArray(field, settings);
+      } else if (field.type === 'find-location' || field.type === 'find-service') {
+        const formArray = this.buildFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else {
         const validators: ValidatorFn[] = [];
@@ -362,7 +362,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return formArray;
   }
 
-  private buildFindLocationFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+  private buildFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
     const validators = GenericFilterComponent.addFormValidators(field);
     const formArray = this.fb.array([], validators);
     let defaultValues: { name: string; value: any[] };
