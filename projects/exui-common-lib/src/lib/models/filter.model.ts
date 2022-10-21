@@ -53,8 +53,8 @@ export interface FilterFieldConfig {
   domain?: PersonRole;
   title?: string;
   titleClasses?: string;
+  titleHint?: string;
   subTitle?: string;
-  showOptionalText?: string;
   locationTitle?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
