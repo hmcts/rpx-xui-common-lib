@@ -19,7 +19,9 @@
               {{field.title | capitalize}}
             </h3>
 
-            <div *ngIf="field?.minSelected === 0" class="govuk-!-margin-left-2">(optional)</div>
+            <div *ngIf="field?.minSelected === 0 && field?.showOptionalText" class="govuk-!-margin-left-2">
+              (optional)
+            </div>
           </div>
 
           <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>

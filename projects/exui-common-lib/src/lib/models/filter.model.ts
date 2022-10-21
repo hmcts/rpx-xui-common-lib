@@ -54,6 +54,7 @@ export interface FilterFieldConfig {
   title?: string;
   titleClasses?: string;
   subTitle?: string;
+  showOptionalText?: string;
   locationTitle?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
