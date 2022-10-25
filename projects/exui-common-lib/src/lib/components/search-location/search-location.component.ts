@@ -115,8 +115,7 @@ export class SearchLocationComponent implements OnInit {
       userLocations = JSON.parse(this.sessionStorageService.getItem('userLocations'));
       bookingLocations = JSON.parse(this.sessionStorageService.getItem('bookingLocations'));
     } else if (this.bookingCheck === BookingCheckType.POSSIBLE_BOOKINGS) {
-      userLocations = JSON.parse(this.sessionStorageService.getItem('userLocations'));
-      this.serviceIds = JSON.parse(this.sessionStorageService.getItem('bookableServices'));
+      this.serviceIds = this.serviceIds && this.serviceIds.length ? this.serviceIds ? JSON.parse(this.sessionStorageService.getItem('bookableServices'));
     }
     return this.locationService.getAllLocations(this.serviceIds, this.locationType, term, userLocations, bookingLocations);
   }
