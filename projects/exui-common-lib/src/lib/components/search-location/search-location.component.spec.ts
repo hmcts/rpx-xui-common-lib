@@ -313,6 +313,6 @@ describe('SearchLocationComponent', () => {
     component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
     sessionServiceMock.getItem.and.returnValues(`[["SSCS"], []]`, `["SSCS", "IA"]`);
     component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith(['SSCS', 'IA'], '', 'exampleString2', [['SSCS'], []], undefined);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [['IA'], []], ['12345']);
   });
 });
