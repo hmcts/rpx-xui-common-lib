@@ -193,6 +193,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.filterService.persist(settings, this.config.persistence);
     this.filterService.givenErrors.next(null);
     this.submitted = false;
+
+    if (this.config.cancelButtonCallback) {
+      this.config.cancelButtonCallback();
+    }
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {

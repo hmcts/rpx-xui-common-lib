@@ -16,7 +16,6 @@ import { GenericFilterComponent } from './generic-filter.component';
 
 
 describe('GenericFilterComponent', () => {
-
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
   const mockFilterService: any = {
@@ -199,6 +198,17 @@ describe('GenericFilterComponent', () => {
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
     expect(form.querySelector('button[id="cancelFilter"]')).toBeDefined();
+  });
+
+  it('should call callback if cancelButtonCallback exists', () => {
+    component.config.cancelButtonCallback = jasmine.createSpy().and.stub();
+
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const cancelButton = form.querySelector('button[id="cancelFilter"]') as HTMLElement;
+    cancelButton.click();
+
+    expect(component.config.cancelButtonCallback).toHaveBeenCalled();
   });
 
   describe('component methods that use fields', () => {

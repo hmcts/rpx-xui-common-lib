@@ -16,10 +16,11 @@ export interface FilterConfig {
   fields: FilterFieldConfig[];
   persistence: FilterPersistence;
   applyButtonText: string;
+  enableDisabledButton?: boolean;
   cancelButtonText: string;
   cancelSetting?: FilterSetting;
-  enableDisabledButton?: boolean;
   showCancelFilterButton?: boolean;
+  cancelButtonCallback?(): void;
 }
 
 export interface FilterFieldOption {
@@ -52,6 +53,7 @@ export interface FilterFieldConfig {
   domain?: PersonRole;
   title?: string;
   titleClasses?: string;
+  titleHint?: string;
   subTitle?: string;
   locationTitle?: string;
   radioSelectionChange?: string;
