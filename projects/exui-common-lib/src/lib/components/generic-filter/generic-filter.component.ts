@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FilterConfig, FilterError, FilterFieldConfig, FilterSetting } from '../../models';
+import { FilterConfig, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
 import { FilterService } from './../../services/filter/filter.service';
 import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
@@ -16,6 +16,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
+  public filteredSkillsByServices: GroupOptions[];
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
@@ -78,6 +79,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.mergeDefaultFields(this.settings);
     this.buildForm(this.config, this.settings);
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
+    this.filterSkillsByServices(null);
   }
 
   public ngOnDestroy(): void {
@@ -178,6 +180,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when user enters input change radio button
   public inputChanged(field: FilterFieldConfig): void {
+    if (field.name == 'user-services') {      
+      const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
+      this.filterSkillsByServices(selectedServices);
+    }
     if (field.radioSelectionChange && typeof field.radioSelectionChange === 'string') {
       const [name, value] = field.enableCondition.split('=');
       this.form.get(name).patchValue(value);
@@ -418,4 +424,54 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.filterService.givenErrors.next(errors);
     }
   }
+
+  public filterSkillsByServices(services: string[]) {
+    this.filteredSkillsByServices = [];
+    const userSkillsField = this.config.fields.find(f => f.name === 'user-skills');
+    if (userSkillsField) {
+      const userSkills = userSkillsField.groupOptions;
+      if (!services || services.length === 0) {
+        this.filteredSkillsByServices = userSkills; 
+      } else {
+        services.forEach(s => {
+          const groupOption = userSkills.find(u => u.group === s);
+          if (groupOption) {
+            this.filteredSkillsByServices.push(groupOption);
+          }
+        });
+      }
+    }   
+    this.filteredSkillsByServices = this.sortGroupOptions(this.filteredSkillsByServices);
+  }
+
+  private getSelectedValuesForFields(formValues: any, field: FilterFieldConfig): string[] {
+    let selectedValues: string[] = [];  
+    Object.keys(formValues).map((name: string) => {
+      const values = formValues[name].value;
+      if (name === field.name) {    
+        values.forEach((v: any) => {
+          selectedValues.push(v.key)
+        });
+      }
+    });
+    return selectedValues;
+  }
+
+  private sortGroupOptions(groupOptions: GroupOptions[]): GroupOptions[] {
+    const sortedResults: GroupOptions[] = [];
+    const groups = groupOptions.map(go => go.group);
+    groups.sort().forEach(g => {
+      const options = groupOptions.find((go: any) => go.group === g).options;
+      const sortedOptions = options.sort((a, b) => {
+        return a.label.toLowerCase() > b.label.toLowerCase() ? 1 : (b.label.toLowerCase() > a.label.toLowerCase() ? -1 : 0);
+      });
+      const result = {
+        group : g,
+        options: sortedOptions
+      }
+      sortedResults.push(result);
+    });
+    return sortedResults;
+  }
+  
 }
