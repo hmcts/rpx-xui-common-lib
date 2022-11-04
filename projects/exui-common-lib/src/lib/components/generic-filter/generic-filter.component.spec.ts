@@ -2,8 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
+import { GroupOptions } from 'exui-common-lib/public-api';
 import { of } from 'rxjs';
-import { FilterFieldConfig } from '../../models';
+import { FilterConfig, FilterFieldConfig } from '../../models';
 import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 import { FilterService } from '../../services';
 import { LocationService } from '../../services/locations/location.service';
@@ -521,6 +522,110 @@ describe('Find location filter config', () => {
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
     const findLocationFormGroup = form.querySelector('xuilib-find-location') as HTMLElement;
     expect(findLocationFormGroup).toBeTruthy();
+  });
+
+
+  describe('group-select dropdown', () => {
+    const groupOptions: GroupOptions[] =  [
+      {
+        group: 'servieA',
+        options: [
+          {key: 'serviceA-key1', label: 'Key1'},
+          {key: 'serviceA-key3', label: 'Key3'},
+          {key: 'serviceA-key2', label: 'Key2'}
+        ]
+      },
+      {
+        group: 'servieC',
+        options: [
+          {key: 'serviceC-key3', label: 'Key3'},
+          {key: 'serviceC-key2', label: 'Key2'},
+          {key: 'serviceC-key1', label: 'Key1'}
+        ]
+      },
+      {
+        group: 'servieB',
+        options: [
+          {key: 'serviceB-key2', label: 'Key2'},
+          {key: 'serviceB-key1', label: 'Key1'},
+          {key: 'serviceB-key3', label: 'Key3'}
+        ]
+      }
+    ];
+
+    const sortedGroupOptions: GroupOptions[] =  [
+      {
+        group: 'servieA',
+        options: [
+          {key: 'serviceA-key1', label: 'Key1'},
+          {key: 'serviceA-key2', label: 'Key2'},
+          {key: 'serviceA-key3', label: 'Key3'}
+        ]
+      },
+      {
+        group: 'servieB',
+        options: [
+          {key: 'serviceB-key1', label: 'Key1'},
+          {key: 'serviceB-key2', label: 'Key2'},
+          {key: 'serviceB-key3', label: 'Key3'}
+        ]
+      },
+      {
+        group: 'servieC',
+        options: [
+          {key: 'serviceC-key1', label: 'Key1'},
+          {key: 'serviceC-key2', label: 'Key2'},
+          {key: 'serviceC-key3', label: 'Key3'}
+        ]
+      }
+    ];
+
+    const selectField: FilterFieldConfig = {
+      name: 'user-skills',
+      title: 'Skills',
+      options: [],
+      groupOptions,
+      minSelected: 0,
+      maxSelected: 0,
+      type: 'group-select',
+      lineBreakBefore: true,
+      disabledText: 'All'
+    };
+
+    const filterConfig: FilterConfig = {
+      id: 'staff-advanced-filters',
+      fields: [selectField],
+      persistence: 'session',
+      applyButtonText: 'Search',
+      cancelButtonText: '',
+      enableDisabledButton: false,
+      showCancelFilterButton: false
+    };
+
+    it('should display group-dropdown', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('group-dropdown', new FormControl());
+      expect(component).toBeTruthy();
+      expect(component.filterSkillsByServices(null, filterConfig)).toEqual(sortedGroupOptions);
+    });
+
+    describe('filterSkillsByServices', () => {
+      it('should return all skills sorted alphabetically, if no service is passed', () => {
+        const actualValues = component.filterSkillsByServices(null, filterConfig);
+        expect(actualValues).toEqual(sortedGroupOptions);
+      });
+
+      it('should return filtered skills sorted alphabetically, if service is passed', () => {
+        const actualValues = component.filterSkillsByServices(['servieA'], filterConfig);
+        expect(actualValues).toEqual([sortedGroupOptions[0]]);
+      });
+
+      it('should return filtered skills sorted alphabetically, if service is passed', () => {
+        const actualValues = component.filterSkillsByServices(['servieA', 'servieB'], filterConfig);
+        expect(actualValues).toEqual([sortedGroupOptions[0], sortedGroupOptions[1]]);
+      });
+    });
+
   });
 
 });
