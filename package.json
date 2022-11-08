@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.47-generic-filter-title-hint",
+  "version": "1.7.47-group-option-dropdown",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

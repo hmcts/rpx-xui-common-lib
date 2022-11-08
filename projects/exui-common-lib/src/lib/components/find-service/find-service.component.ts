@@ -34,6 +34,7 @@ export class FindServiceComponent implements OnInit {
     this.addSelectedServicesToForm([this.tempSelectedService]);
     this.services = this.services.filter(s => s.key !== this.tempSelectedService.key);
     this.tempSelectedService = null;
+    this.serviceFieldChanged.emit();
   }
 
   public removeService(service: FilterConfigOption): void {
@@ -46,6 +47,7 @@ export class FindServiceComponent implements OnInit {
         this.services.splice(index, 0, service);
         this.SortAnOptions();
       }
+      this.serviceFieldChanged.emit();
     }
   }
 
