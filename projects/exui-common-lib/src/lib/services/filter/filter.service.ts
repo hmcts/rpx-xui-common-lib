@@ -49,6 +49,8 @@ export class FilterService {
   public clearSessionAndLocalPersistance(id: string) {
     sessionStorage.removeItem(id);
     localStorage.removeItem(id);
+    this.filterSettings[id] = null;
+    this.streams[id].next(null);
   }
 
   private persistLocal(setting: FilterSetting): void {
