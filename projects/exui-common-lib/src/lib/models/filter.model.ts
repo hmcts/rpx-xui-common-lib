@@ -61,6 +61,7 @@ export interface FilterFieldConfig {
   maxWidth480px?: boolean;
   maxRows?: number;
   groupOptions?: GroupOptions[];
+  maxlength?: number;
 }
 
 export interface GroupOptions {
