@@ -410,8 +410,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
         errors.push({name: field.name, error: field.minSelectedError});
       }
-      if (formGroup && formGroup.errors && formGroup.errors.maxLength) {
-        errors.push({name: field.name, error: field.minSelectedError});
+      if (formGroup && formGroup.errors && formGroup.errors.maxlength) {
+        errors.push({name: field.name, error: field.maxSelectedError});
       }
     }
 
