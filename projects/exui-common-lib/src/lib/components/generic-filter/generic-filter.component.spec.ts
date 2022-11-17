@@ -2,9 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
-import { GroupOptions } from 'exui-common-lib/public-api';
+
 import { of } from 'rxjs';
-import { FilterConfig, FilterFieldConfig } from '../../models';
+import { FilterConfig, FilterFieldConfig, GroupOptions } from '../../models';
 import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 import { FilterService } from '../../services';
 import { LocationService } from '../../services/locations/location.service';
