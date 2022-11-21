@@ -49,6 +49,7 @@ describe('SelectedCaseComponent', () => {
         }
       }
     });
+    component.caseCount = 2;
     fixture.detectChanges();
   });
 
@@ -76,10 +77,6 @@ describe('SelectedCaseComponent', () => {
         email: 'james.priest@test.com'
     };
     expect(component.trackByUserId(user)).toEqual('U111111');
-  });
-
-  it('should unselect', () => {
-    expect(component.onUnselect).toBeDefined();
   });
 
   it('should deselect', () => {
