@@ -29,6 +29,7 @@ export interface FilterFieldConfig {
   showCondition?: string;
   enableCondition?: string;
   enableAddButton?: boolean;
+  enableAddLocationButton?: boolean;
   changeResetFields?: string[];
   findPersonField?: string;
   findLocationField?: string;
