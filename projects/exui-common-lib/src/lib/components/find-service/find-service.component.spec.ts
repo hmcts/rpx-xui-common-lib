@@ -11,6 +11,11 @@ describe('FindServiceComponent', () => {
     label: '01-label',
   };
 
+  const allServiceOption = {
+    key: 'all',
+    label: 'All'
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
@@ -91,10 +96,10 @@ describe('FindServiceComponent', () => {
   });
 
 
-  it(`onServiceSelected method should set the value of 'tempSelectedService' to null, if passed service is undefined or null`, () => {
+  it(`onServiceSelected method should set the value of 'tempSelectedService' to default (All) option, if passed service is undefined or null`, () => {
     component.tempSelectedService = service;
     component.onServiceSelected(null);
-    expect(component.tempSelectedService).toEqual(null);
+    expect(component.tempSelectedService).toEqual(allServiceOption);
   });
 
   it('onServiceSelected method should call the removeSelectedValues, if field has maxSelected is equal to 1', () => {
@@ -141,4 +146,35 @@ describe('FindServiceComponent', () => {
       }
     ]);
   });
+
+  it('if user selects "All" option, it should remove all the existing selected options', () => {
+    component.tempSelectedService = allServiceOption;
+    component.selectedServices = component.services;
+    component.addService();
+    expect(component.selectedServices.length).toEqual(1);
+  });
+
+  it('if user selects other option, it should remove "All" from the selected options', () => {
+    component.tempSelectedService = {
+      key: '01',
+      label: '01-label',
+    };
+    component.selectedServices = [];
+    component.selectedServices.push(allServiceOption);
+    component.addService();
+    expect(component.selectedServices.length).toEqual(1);
+    expect(component.selectedServices[0]).toEqual({
+      key: '01',
+      label: '01-label',
+    });
+  });
+
+  it('if user already selected "All" option, it should not select it again', () => {
+    component.tempSelectedService = allServiceOption;
+    component.selectedServices = [];
+    component.selectedServices.push(allServiceOption);
+    component.addService();
+    expect(component.selectedServices.length).toEqual(1);
+  });
+
  });
