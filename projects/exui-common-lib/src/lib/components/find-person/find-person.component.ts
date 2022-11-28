@@ -66,18 +66,19 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
+    const findJudicialOrCTSCPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
     const findCaseworkersOrAdmins = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
+        case PersonRole.CTSC:
         case PersonRole.JUDICIAL: {
-          return findJudicialPeople.pipe(map(persons => {
+          return findJudicialOrCTSCPeople.pipe(map(persons => {
             const ids: string[] = this.selectedPersons.map(({id}) => id);
             return persons.filter(({ id }) => !ids.includes(id));
           }));
         }
         case PersonRole.ALL: {
-          return zip(findJudicialPeople, findCaseworkersOrAdmins).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
+          return zip(findJudicialOrCTSCPeople, findCaseworkersOrAdmins).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
         }
         case PersonRole.CASEWORKER:
         case PersonRole.ADMIN: {
