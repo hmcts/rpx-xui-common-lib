@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
-import {FilterService} from './../../services/filter/filter.service';
-import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { FilterConfig, FilterError, FilterFieldConfig, FilterSetting } from '../../models';
+import { FilterService } from './../../services/filter/filter.service';
+import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -315,11 +315,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         // if field is find-person build a form group;
         if (field.type === 'find-person') {
           const formGroup = new FormGroup({
-            domain: new FormControl(''),
+            domain: new FormControl(defaultValue && defaultValue.hasOwnProperty('domain') ? defaultValue.domain : ''),
             email: new FormControl(defaultValue && defaultValue.hasOwnProperty('email') ? defaultValue.email : '', validators),
-            id: new FormControl(''),
-            name: new FormControl(''),
-            knownAs: new FormControl(''),
+            id: new FormControl(defaultValue && defaultValue.hasOwnProperty('id') ? defaultValue.id : ''),
+            name: new FormControl(defaultValue && defaultValue.hasOwnProperty('name') ? defaultValue.name : ''),
+            knownAs: new FormControl(defaultValue && defaultValue.hasOwnProperty('knownAs') ? defaultValue.knownAs : ''),
           });
           this.form.addControl(field.name, formGroup);
         } else {
