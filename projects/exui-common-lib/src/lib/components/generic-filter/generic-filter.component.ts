@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FilterConfig, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
+import { FilterConfig, FilterConfigOption, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
 import { FilterService } from './../../services/filter/filter.service';
 import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
@@ -17,6 +17,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public submitted = false;
   public formSub: Subscription;
   public filteredSkillsByServices: GroupOptions[];
+  public filteredSkillsByServicesCheckbox: FilterConfigOption[];
+  public previousSelectedNestedCheckbox: string[] = [];
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
@@ -80,6 +82,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.buildForm(this.config, this.settings);
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
     this.filterSkillsByServices(null, this.config);
+    const services = this.config.fields.find(field => field.name === 'user-services');
+    if (services) {
+      this.startFilterSkillsByServices(this.form, services);
+    }
   }
 
   public ngOnDestroy(): void {
@@ -220,6 +226,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
+  public checkBoxChecked(field: any, i: number) {
+    return (this.form.get(field.name) as FormArray)['controls'][i]['value'];
+  }
+
   public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
     const isChecked = event.target.checked;
     const formArray: FormArray = form.get(field.name) as FormArray;
@@ -261,6 +271,32 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         this.resetField(resetField, form);
       }
     }
+    if (field.name === 'user-services') {
+      this.startFilterSkillsByServices(form, field);
+    } else if (field.name === 'user-skills') {
+      if (isChecked) {
+        const selectedIndex = field.options.findIndex(option => option.key === event.target.value);
+        const selectedCheckbox = this.form.get('user-skills').value;
+        selectedCheckbox[selectedIndex] = true;
+        this.form.get('user-skills').setValue(selectedCheckbox);
+        this.previousSelectedNestedCheckbox.push(event.target.value);
+      } else {
+        const index = this.previousSelectedNestedCheckbox.indexOf(event.target.value);
+        if (index !== -1) {
+          this.previousSelectedNestedCheckbox.splice(index, 1);
+        }
+      }
+    }
+  }
+
+  private startFilterSkillsByServices(form: FormGroup, field: FilterFieldConfig) {
+    const servicesArray: string[] = [];
+    form.value[field.name].map((service: boolean, index: number) => {
+      if (service) {
+        servicesArray.push(field.options[index].key);
+      }
+    });
+    this.filterSkillsByServices(servicesArray, this.config);
   }
 
   private resetField(resetField: string, form: FormGroup): void {
@@ -304,7 +340,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.form.addControl('findPersonControl', findPersonControl);
     }
     for (const field of config.fields) {
-      if (field.type === 'checkbox' || field.type === 'checkbox-large') {
+      if (field.type === 'checkbox' || field.type === 'checkbox-large' || field.type === 'nested-checkbox') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else if (field.type === 'find-location' || field.type === 'find-service') {
@@ -425,20 +461,49 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public filterSkillsByServices(services: string[], config: FilterConfig): GroupOptions[] {
+  public filterSkillsByServices(services: string[], config: FilterConfig) {
     this.filteredSkillsByServices = [];
-    const userSkillsField = config.fields.find(f => f.name === 'user-skills');
-    if (userSkillsField) {
-      const userSkills = userSkillsField.groupOptions;
+    this.filteredSkillsByServicesCheckbox = [];
+    const userSkillsSelectField = config.fields.find(f => f.name === 'user-skills' && f.type === 'group-select');
+    const userSkillsCheckboxField = config.fields.find(f => f.name === 'user-skills' && f.type === 'nested-checkbox');
+
+    if (userSkillsSelectField) {
+      const userSkills = userSkillsSelectField.groupOptions;
       if (!services || services.length === 0) {
         this.filteredSkillsByServices = userSkills;
       } else {
         services.forEach(s => {
-          const groupOption = userSkills.find(u => u.group === s);
+          const groupOption = userSkills.find(u => u.group.toLowerCase() === s.toLowerCase());
           if (groupOption) {
             this.filteredSkillsByServices.push(groupOption);
           }
         });
+      }
+    } else if (userSkillsCheckboxField) {
+      const userSkills = userSkillsCheckboxField.groupOptions;
+      if (!services || services.length === 0) {
+        this.filteredSkillsByServices = userSkills;
+      } else {
+        services.forEach(s => {
+          const groupOption = userSkills.find(u => u.group.toLowerCase() === s.toLowerCase());
+          if (groupOption) {
+            this.filteredSkillsByServices.push(groupOption);
+          }
+        });
+        this.filteredSkillsByServicesCheckbox = this.filteredSkillsByServices.map(skill => {
+          return skill.options;
+        }).reduce((a, b) => {
+          return a.concat(b);
+        }, []);
+        userSkillsCheckboxField.options = [];
+        userSkillsCheckboxField.options = this.filteredSkillsByServicesCheckbox;
+
+        (this.form.get('user-skills') as FormArray)['controls'] = this.filteredSkillsByServicesCheckbox.map(() => new FormControl());
+        this.form.get('user-skills').setValue(this.filteredSkillsByServicesCheckbox.map(skill => {
+          return this.previousSelectedNestedCheckbox.includes(skill.key);
+        }));
+
+        return this.filteredSkillsByServicesCheckbox;
       }
     }
     this.filteredSkillsByServices = this.sortGroupOptions(this.filteredSkillsByServices);

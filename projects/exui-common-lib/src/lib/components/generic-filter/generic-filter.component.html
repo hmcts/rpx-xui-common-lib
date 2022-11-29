@@ -52,7 +52,7 @@
               <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
                 <option selected value="">{{field.disabledText}}</option>
                 <optgroup *ngFor = 'let grp of filteredSkillsByServices' label="{{grp.group | titlecase}}">
-                  <option *ngFor = 'let item of grp.options' [value]="item.key">{{item.label}}</option> 
+                  <option *ngFor = 'let item of grp.options' [value]="item.key">{{item.label}}</option>
                 </optgroup>
               </select>
             </ng-container>
@@ -62,6 +62,25 @@
                   <input type="checkbox" class="govuk-checkboxes__input"
                          [attr.disabled]="disabled(field, form)"
                          [formControlName]="i"
+                         (change)="toggleSelectAll($event, form, item, field)"
+                         [value]="item.key" [id]="'checkbox_' + item.key"
+                         [name]="'checkbox_' + item.key"
+                  />
+                  <label
+                    [for]="'checkbox_' + item.key"
+                    class="govuk-label govuk-checkboxes__label"
+                    [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
+                  >{{item.label}}</label>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'nested-checkbox'">
+              <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+                <div *ngFor="let item of filteredSkillsByServicesCheckbox; let i = index" class="govuk-checkboxes__item">
+                  <input type="checkbox" class="govuk-checkboxes__input"
+                         [attr.disabled]="disabled(field, form)"
+                         [formControlName]="i"
+                         [checked]="checkBoxChecked(field, i)"
                          (change)="toggleSelectAll($event, form, item, field)"
                          [value]="item.key" [id]="'checkbox_' + item.key"
                          [name]="'checkbox_' + item.key"
