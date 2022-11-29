@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.48-filter-skills-on-service",
+  "version": "1.8.5-filter-skills-on-service",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
