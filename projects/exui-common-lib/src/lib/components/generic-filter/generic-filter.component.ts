@@ -499,9 +499,25 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         userSkillsCheckboxField.options = this.filteredSkillsByServicesCheckbox;
 
         (this.form.get('user-skills') as FormArray)['controls'] = this.filteredSkillsByServicesCheckbox.map(() => new FormControl());
-        this.form.get('user-skills').setValue(this.filteredSkillsByServicesCheckbox.map(skill => {
-          return this.previousSelectedNestedCheckbox.includes(skill.key);
-        }));
+
+
+          this.form.get('user-skills').setValue(this.filteredSkillsByServicesCheckbox.map(skill => {
+            let selected = false;
+            if(this.settings && this.settings.fields) {
+              if(this.previousSelectedNestedCheckbox.length > 0) {
+                selected = this.previousSelectedNestedCheckbox.includes(skill.key)
+              }
+              let isSelectedUserSkill: number;
+              const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
+              if(selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
+                isSelectedUserSkill = selectedUserSkills.value.findIndex(val => val === skill.key);
+                selected = isSelectedUserSkill !== -1;
+              }
+              return selected;
+            }
+          }));
+
+
 
         return this.filteredSkillsByServicesCheckbox;
       }

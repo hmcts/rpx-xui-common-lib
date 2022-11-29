@@ -80,7 +80,6 @@
                   <input type="checkbox" class="govuk-checkboxes__input"
                          [attr.disabled]="disabled(field, form)"
                          [formControlName]="i"
-                         [checked]="checkBoxChecked(field, i)"
                          (change)="toggleSelectAll($event, form, item, field)"
                          [value]="item.key" [id]="'checkbox_' + item.key"
                          [name]="'checkbox_' + item.key"
