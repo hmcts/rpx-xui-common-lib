@@ -62,6 +62,7 @@ export interface FilterFieldConfig {
   maxRows?: number;
   groupOptions?: GroupOptions[];
   maxlength?: number;
+  defaultOption?: FilterConfigOption;
 }
 
 export interface GroupOptions {
