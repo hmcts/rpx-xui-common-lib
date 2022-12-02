@@ -21,6 +21,7 @@ export interface FilterConfig {
   cancelSetting?: FilterSetting;
   showCancelFilterButton?: boolean;
   cancelButtonCallback?(): void;
+  applyButtonCallback?(): void;
 }
 
 export interface FilterFieldOption {

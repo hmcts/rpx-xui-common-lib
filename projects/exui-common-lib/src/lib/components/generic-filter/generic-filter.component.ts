@@ -166,6 +166,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     } else {
       this.emitFormErrors(form);
     }
+
+    if (this._config.applyButtonCallback) {
+      this._config.applyButtonCallback();
+    }
   }
 
   // when domain changes ensure that person field is reset
