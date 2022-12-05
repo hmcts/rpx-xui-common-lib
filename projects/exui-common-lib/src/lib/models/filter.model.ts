@@ -42,6 +42,7 @@ export interface FilterFieldConfig {
   locationTitle?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
+  userIncluded?: boolean;
 }
 
 export interface FilterSetting {
