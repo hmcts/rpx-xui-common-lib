@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.20-ctsc-role-change",
+  "version": "1.7.20-ctsc-role-change-fix",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
