@@ -70,6 +70,7 @@ export interface FilterFieldConfig {
 export interface GroupOptions {
   group: string;
   options: FilterFieldOption[];
+  placeholderContent?: string;
 }
 
 export interface FilterSetting {
