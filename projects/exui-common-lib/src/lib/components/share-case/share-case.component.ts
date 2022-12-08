@@ -20,6 +20,8 @@ export class ShareCaseComponent implements OnInit {
   @Input() public users: UserDetails[] = []; // users of this organisation the cases can be shared with
 
   @Input() public confirmLink: string = '';
+  @Input() public addUserLabel: string;
+  @Input() public showRemoveUsers: boolean = false;
 
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<any>();

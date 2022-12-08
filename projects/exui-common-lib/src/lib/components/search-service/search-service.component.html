@@ -1,0 +1,9 @@
+<div class="govuk-form-group">
+  <select id="serviceSearch__select" class="govuk-select" name="serviceSearch__select"
+    (change)="onSelectionChanged($event.target.value)">
+    <option [value]="null">All</option>
+    <option *ngFor="let service of services" [value]="service.key">
+      {{ service.label }}
+    </option>
+  </select>
+</div>

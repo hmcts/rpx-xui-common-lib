@@ -25,7 +25,8 @@ describe('ShareCaseComponent', () => {
     component = fixture.componentInstance;
     sharedCases = [];
     component.shareCases$ = of(sharedCases);
-    fixture.detectChanges();
+    // Deliberately omitted fixture.detectChanges() here because this will trigger the component's ngOnInit() before
+    // the showRemoveUsers input value has been set, causing a false failure
   });
 
   it('should create', () => {
@@ -33,13 +34,34 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see page elements', () => {
-    expect(fixture.debugElement.nativeElement.querySelector('#add-user-hint').textContent).toContain('Search by name or email address. You can only add people from your organisation individually - but you can add as many as you like.');
+    expect(fixture.debugElement.nativeElement.querySelector('#add-user-hint').textContent).toContain('Search by name or email address. You can share access with as many people as you need.');
     expect(fixture.debugElement.nativeElement.querySelector('#btn-add-user').textContent).toContain('Add');
-    expect(fixture.debugElement.nativeElement.querySelector('#content-why-can-not-find-email').textContent).toContain('Can’t find an email address?');
-    expect(fixture.debugElement.nativeElement.querySelector('#content-reason-can-not-find-email').textContent).toContain('If you can’t find your colleague’s email address, they will need to complete their registration. Contact your administrator for help.');
+    expect(fixture.debugElement.nativeElement.querySelector('#content-why-can-not-find-email').textContent).toContain('Can\'t find an email address?');
+    expect(fixture.debugElement.nativeElement.querySelector('#content-reason-can-not-find-email').textContent).toContain('If you can\'t find your colleague\'s email address, they will need to complete their registration. Contact your administrator for help.');
+    // Elements for removing a user should not be shown
+    expect(fixture.debugElement.nativeElement.querySelectorAll('.govuk-label').item(1)).toBeNull();
+    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-hint')).toBeNull();
+    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-input')).toBeNull();
+    expect(fixture.debugElement.nativeElement.querySelector('#btn-remove-user')).toBeNull();
+  });
+
+  it('should display additional page elements for removing a user', () => {
+    component.showRemoveUsers = true;
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelectorAll('.govuk-label').item(1).textContent).toContain('Remove a person from all cases');
+    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-hint').textContent).toContain('Select a person to remove them from all selected cases.');
+    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-input')).toBeTruthy();
+    expect(fixture.debugElement.nativeElement.querySelector('#btn-remove-user').textContent).toContain('Remove');
+  });
+
+  it('should set the "Add user" label according to the input provided', () => {
+    component.addUserLabel = 'Test label';
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelectorAll('.govuk-label').item(0).textContent).toContain('Test label');
   });
 
   it('should see case list', () => {
+    fixture.detectChanges();
     component.shareCases = [{
       caseId: 'C111111',
       caseTitle: 'James vs Jane'
@@ -165,6 +187,7 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should enable Add button when selected user', () => {
+    fixture.detectChanges();
     const user: UserDetails = {
       idamId: 'pus111111',
       firstName: 'JamesPUS',

@@ -11,4 +11,6 @@ export interface GovUiConfigModel {
   type?: string;
   isPageHeading?: boolean;
   rows?: number;
+  fullWidth?: boolean;
+  optional?: boolean;
 }

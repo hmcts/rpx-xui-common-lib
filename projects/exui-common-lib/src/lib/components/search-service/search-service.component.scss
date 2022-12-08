@@ -105,9 +105,9 @@
 }
 
 .auto-complete-container {
+  width: calc(100% - 4px);
   display: inline-block;
   margin-right: 4px;
-  width: calc(100% - 4px);
 }
 
 .autocomplete__input {

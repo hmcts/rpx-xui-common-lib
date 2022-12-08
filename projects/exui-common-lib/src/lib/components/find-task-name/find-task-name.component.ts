@@ -50,6 +50,9 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
 
   public ngOnChanges(): void {
     this.findTaskNameControl = new FormControl(this.selectedTaskName);
+    console.log(this.findTaskNameControl);
+    console.log(this.selectedTaskName);
+
     this.findTaskNameGroup.addControl('findTaskNameControl', this.findTaskNameControl);
     this.sub = this.findTaskNameControl.valueChanges
     .pipe(
@@ -71,6 +74,8 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
       if (this.searchTerm) {
         this.filteredOptions = this.filteredOptions.filter((taskName) => taskName.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase())).map(taskName => taskName);
       }
+      console.log(this.filteredOptions);
+
       this.cd.detectChanges();
     });
   }

@@ -13,6 +13,7 @@ import {DueDateComponent} from './components/due-date/due-date.component';
 import {ExuiPageWrapperComponent} from './components/exui-main-wrapper/exui-page-wrapper.component';
 import {FindLocationComponent} from './components/find-location/find-location.component';
 import {FindPersonComponent} from './components/find-person/find-person.component';
+import { FindServiceComponent } from './components/find-service/find-service.component';
 import {FindTaskNameComponent} from './components/find-task-name/find-task-name.component';
 import {GenericFilterComponent} from './components/generic-filter/generic-filter.component';
 import {HmctsSessionDialogComponent} from './components/hmcts-session-dialog/hmcts-session-dialog.component';
@@ -22,6 +23,7 @@ import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spin
 import {PaginationComponent} from './components/pagination/pagination.component';
 import {SearchJudicialsComponent} from './components/search-judicials/search-judicials.component';
 import {SearchLocationComponent} from './components/search-location/search-location.component';
+import { SearchServiceComponent } from './components/search-service/search-service.component';
 import {SearchVenueComponent} from './components/search-venue/search-venue.component';
 import {SelectedCaseConfirmComponent} from './components/selected-case-confirm/selected-case-confirm.component';
 import {SelectedCaseListComponent} from './components/selected-case-list/selected-case-list.component';
@@ -38,39 +40,40 @@ import {
 import {
   TcDisplayPlainComponent
 } from './components/terms-and-conditions/tc-display/tc-display-plain/tc-display-plain.component';
-import {TermsAndConditionsComponent} from './components/terms-and-conditions/terms-and-conditions.component';
-import {UserDetailsComponent} from './components/user-details/user-details.component';
-import {UserListComponent} from './components/user-list/user-list.component';
-import {UserSelectComponent} from './components/user-select/user-select.component';
-import {FeatureToggleDirective} from './directives/feature-toggle/feature-toggle.directive';
-import {LetDirective} from './directives/let/let.directive';
-import {GovUkCheckboxComponent} from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
-import {GovUkCheckboxesComponent} from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
-import {GovUkDateComponent} from './gov-ui/components/gov-uk-date/gov-uk-date.component';
-import {GovUkErrorMessageComponent} from './gov-ui/components/gov-uk-error-message/gov-uk-error-message.component';
-import {GovUkFieldsetComponent} from './gov-ui/components/gov-uk-fieldset/gov-uk-fieldset.component';
-import {GovUkFileUploadComponent} from './gov-ui/components/gov-uk-file-upload/gov-uk-file-upload.component';
+import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserSelectComponent } from './components/user-select/user-select.component';
+import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
+import { LetDirective } from './directives/let/let.directive';
+import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
+import { GovUkCheckboxesComponent } from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
+import { GovUkDateComponent } from './gov-ui/components/gov-uk-date/gov-uk-date.component';
+import { GovUkErrorMessageComponent } from './gov-ui/components/gov-uk-error-message/gov-uk-error-message.component';
+import { GovUkFieldsetComponent } from './gov-ui/components/gov-uk-fieldset/gov-uk-fieldset.component';
+import { GovUkFileUploadComponent } from './gov-ui/components/gov-uk-file-upload/gov-uk-file-upload.component';
 import {
   GovUkFormGroupWrapperComponent
 } from './gov-ui/components/gov-uk-form-group-wrapper/gov-uk-form-group-wrapper.component';
-import {GovUkInputComponent} from './gov-ui/components/gov-uk-input/gov-uk-input.component';
-import {GovUkLabelComponent} from './gov-ui/components/gov-uk-label/gov-uk-label.component';
-import {GovUkRadioComponent} from './gov-ui/components/gov-uk-radio/gov-uk-radio.component';
-import {GovUkRadiosComponent} from './gov-ui/components/gov-uk-radios/gov-uk-radios.component';
-import {GovUkSelectComponent} from './gov-ui/components/gov-uk-select/gov-uk-select.component';
-import {GovukTableComponent} from './gov-ui/components/gov-uk-table/gov-uk-table.component';
-import {GovUkTextareaComponent} from './gov-ui/components/gov-uk-textarea/gov-uk-textarea.component';
-import {HmctsBannerComponent} from './gov-ui/components/hmcts-banner/hmcts-banner.component';
-import {HmctsErrorSummaryComponent} from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
-import {HmctsIdentityBarComponent} from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
-import {HmctsMainWrapperComponent} from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
-import {HmctsPaginationComponent} from './gov-ui/components/hmcts-pagination/hmcts-pagination.component';
+import { GovUkInputComponent } from './gov-ui/components/gov-uk-input/gov-uk-input.component';
+import { GovUkLabelComponent } from './gov-ui/components/gov-uk-label/gov-uk-label.component';
+import { GovUkRadioComponent } from './gov-ui/components/gov-uk-radio/gov-uk-radio.component';
+import { GovUkRadiosComponent } from './gov-ui/components/gov-uk-radios/gov-uk-radios.component';
+import { GovUkSelectComponent } from './gov-ui/components/gov-uk-select/gov-uk-select.component';
+import { GovukTableComponent } from './gov-ui/components/gov-uk-table/gov-uk-table.component';
+import { GovUkTextareaComponent } from './gov-ui/components/gov-uk-textarea/gov-uk-textarea.component';
+import { HmctsBannerComponent } from './gov-ui/components/hmcts-banner/hmcts-banner.component';
+import { HmctsErrorSummaryComponent } from './gov-ui/components/hmcts-error-summary/hmcts-error-summary.component';
+import { HmctsIdentityBarComponent } from './gov-ui/components/hmcts-identity-bar/hmcts-identity-bar.component';
+import { HmctsMainWrapperComponent } from './gov-ui/components/hmcts-main-wrapper/hmcts-main-wrapper.component';
+import { HmctsPaginationComponent } from './gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import {
   HmctsPrimaryNavigationComponent
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
-import {HmctsSubNavigationComponent} from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
-import {RemoveHostDirective} from './gov-ui/directives/remove-host.directive';
-import {windowProvider, windowToken} from './window';
+import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
+import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { windowProvider, windowToken } from './window';
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
@@ -106,6 +109,8 @@ export const COMMON_COMPONENTS = [
   FindLocationComponent,
   FindTaskNameComponent,
   SearchLocationComponent,
+  FindServiceComponent,
+  SearchServiceComponent,
   SearchVenueComponent,
   PaginationComponent
 ];
@@ -135,10 +140,15 @@ export const GOV_UI_COMPONENTS = [
   RemoveHostDirective
 ];
 
+const pipes = [
+  CapitalizePipe
+];
+
 @NgModule({
   declarations: [
     ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS
+    ...GOV_UI_COMPONENTS,
+    ...pipes
   ],
   imports: [
     CommonModule,
@@ -156,7 +166,8 @@ export const GOV_UI_COMPONENTS = [
   exports: [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS,
-    PaginatePipe
+    PaginatePipe,
+    ...pipes
   ]
 })
 export class ExuiCommonLibModule {

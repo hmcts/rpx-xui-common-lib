@@ -3,7 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {of} from 'rxjs';
-import {FilterFieldConfig} from '../../models';
+import { FilterConfig, FilterFieldConfig, GroupOptions } from '../../models';
 import {FilterService} from '../../services';
 import {LocationService} from '../../services/locations/location.service';
 import {FindLocationComponent} from '../find-location/find-location.component';
@@ -11,9 +11,12 @@ import {FindPersonComponent} from '../find-person/find-person.component';
 import { FindTaskNameComponent } from '../find-task-name/find-task-name.component';
 import {SearchLocationComponent} from '../search-location/search-location.component';
 import {GenericFilterComponent} from './generic-filter.component';
+import { CapitalizePipe } from '../../pipes/capitalize.pipe';
+import { FindServiceComponent } from '../find-service/find-service.component';
+import { SearchServiceComponent } from '../search-service/search-service.component';
+
 
 describe('GenericFilterComponent', () => {
-
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
   const mockFilterService: any = {
@@ -30,7 +33,19 @@ describe('GenericFilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+<<<<<<< HEAD
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindTaskNameComponent],
+=======
+      declarations: [
+        GenericFilterComponent,
+        FindPersonComponent,
+        FindLocationComponent,
+        SearchLocationComponent,
+        FindServiceComponent,
+        SearchServiceComponent,
+        CapitalizePipe
+      ],
+>>>>>>> 0d70e1954bc530f2a218b269c578702b096f7cda
       providers: [
         {provide: FilterService, useValue: mockFilterService},
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -188,6 +203,17 @@ describe('GenericFilterComponent', () => {
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
     expect(form.querySelector('button[id="cancelFilter"]')).toBeDefined();
+  });
+
+  it('should call callback if cancelButtonCallback exists', () => {
+    component.config.cancelButtonCallback = jasmine.createSpy().and.stub();
+
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const cancelButton = form.querySelector('button[id="cancelFilter"]') as HTMLElement;
+    cancelButton.click();
+
+    expect(component.config.cancelButtonCallback).toHaveBeenCalled();
   });
 
   describe('component methods that use fields', () => {
@@ -361,10 +387,19 @@ describe('Select all checkboxes', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindTaskNameComponent],
+      declarations: [
+        GenericFilterComponent,
+        FindPersonComponent,
+        FindLocationComponent,
+        SearchLocationComponent,
+        FindTaskNameComponent,
+        FindServiceComponent,
+        SearchServiceComponent,
+        CapitalizePipe
+      ],
       providers: [
         FilterService,
-        {provide: LocationService, useValue: searchFilterServiceMock}
+        { provide: LocationService, useValue: searchFilterServiceMock }
       ]
     })
       .compileComponents();
@@ -447,7 +482,16 @@ describe('Find location filter config', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindTaskNameComponent],
+      declarations: [
+        GenericFilterComponent,
+        FindPersonComponent,
+        FindLocationComponent,
+        SearchLocationComponent,
+        FindTaskNameComponent,
+        FindServiceComponent,
+        SearchServiceComponent,
+        CapitalizePipe
+      ],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -484,6 +528,110 @@ describe('Find location filter config', () => {
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
     const findLocationFormGroup = form.querySelector('xuilib-find-location') as HTMLElement;
     expect(findLocationFormGroup).toBeTruthy();
+  });
+
+
+  describe('group-select dropdown', () => {
+    const groupOptions: GroupOptions[] =  [
+      {
+        group: 'servieA',
+        options: [
+          {key: 'serviceA-key1', label: 'Key1'},
+          {key: 'serviceA-key3', label: 'Key3'},
+          {key: 'serviceA-key2', label: 'Key2'}
+        ]
+      },
+      {
+        group: 'servieC',
+        options: [
+          {key: 'serviceC-key3', label: 'Key3'},
+          {key: 'serviceC-key2', label: 'Key2'},
+          {key: 'serviceC-key1', label: 'Key1'}
+        ]
+      },
+      {
+        group: 'servieB',
+        options: [
+          {key: 'serviceB-key2', label: 'Key2'},
+          {key: 'serviceB-key1', label: 'Key1'},
+          {key: 'serviceB-key3', label: 'Key3'}
+        ]
+      }
+    ];
+
+    const sortedGroupOptions: GroupOptions[] =  [
+      {
+        group: 'servieA',
+        options: [
+          {key: 'serviceA-key1', label: 'Key1'},
+          {key: 'serviceA-key2', label: 'Key2'},
+          {key: 'serviceA-key3', label: 'Key3'}
+        ]
+      },
+      {
+        group: 'servieB',
+        options: [
+          {key: 'serviceB-key1', label: 'Key1'},
+          {key: 'serviceB-key2', label: 'Key2'},
+          {key: 'serviceB-key3', label: 'Key3'}
+        ]
+      },
+      {
+        group: 'servieC',
+        options: [
+          {key: 'serviceC-key1', label: 'Key1'},
+          {key: 'serviceC-key2', label: 'Key2'},
+          {key: 'serviceC-key3', label: 'Key3'}
+        ]
+      }
+    ];
+
+    const selectField: FilterFieldConfig = {
+      name: 'user-skills',
+      title: 'Skills',
+      options: [],
+      groupOptions,
+      minSelected: 0,
+      maxSelected: 0,
+      type: 'group-select',
+      lineBreakBefore: true,
+      disabledText: 'All'
+    };
+
+    const filterConfig: FilterConfig = {
+      id: 'staff-advanced-filters',
+      fields: [selectField],
+      persistence: 'session',
+      applyButtonText: 'Search',
+      cancelButtonText: '',
+      enableDisabledButton: false,
+      showCancelFilterButton: false
+    };
+
+    it('should display group-dropdown', () => {
+      component.form = new FormGroup({});
+      component.form.addControl('group-dropdown', new FormControl());
+      expect(component).toBeTruthy();
+      expect(component.filterSkillsByServices(null, filterConfig)).toEqual(sortedGroupOptions);
+    });
+
+    describe('filterSkillsByServices', () => {
+      it('should return all skills sorted alphabetically, if no service is passed', () => {
+        const actualValues = component.filterSkillsByServices(null, filterConfig);
+        expect(actualValues).toEqual(sortedGroupOptions);
+      });
+
+      it('should return filtered skills sorted alphabetically, if service is passed', () => {
+        const actualValues = component.filterSkillsByServices(['servieA'], filterConfig);
+        expect(actualValues).toEqual([sortedGroupOptions[0]]);
+      });
+
+      it('should return filtered skills sorted alphabetically, if service is passed', () => {
+        const actualValues = component.filterSkillsByServices(['servieA', 'servieB'], filterConfig);
+        expect(actualValues).toEqual([sortedGroupOptions[0], sortedGroupOptions[1]]);
+      });
+    });
+
   });
 
 });

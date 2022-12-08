@@ -1,32 +1,50 @@
 <div id="add-user">
-  <label class="govuk-label govuk-!-font-weight-bold" for="add-user-input">Enter email address</label>
-  <span id="add-user-hint" class="govuk-hint">
-    Search by name or email address. You can only add people from your organisation individually - but you can add as many as you like.
-  </span>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <xuilib-user-select
-        id="add-user-input"
-        aria-describedby="add-user-hint"
-        [users]="users"
-        (selected)="onSelectedUser($event)">
-      </xuilib-user-select>
+  <div class="govuk-form-group">
+    <label class="govuk-label govuk-!-font-weight-bold" for="add-user-input">{{addUserLabel}}</label>
+    <span id="add-user-hint" class="govuk-hint">
+      Search by name or email address. You can share access with as many people as you need.
+    </span>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <xuilib-user-select
+          id="add-user-input"
+          aria-describedby="add-user-hint"
+          [users]="users"
+          (selected)="onSelectedUser($event)">
+        </xuilib-user-select>
+      </div>
+      <div class="govuk-grid-column-one-thirds">
+        <button id="btn-add-user" (click)="addUser()" class="govuk-button govuk-button--secondary" [disabled]="isDisabledAdd()" title="Add user to selected cases">Add</button>
+      </div>
     </div>
-    <div class="govuk-grid-column-one-thirds">
-      <button id="btn-add-user" (click)="addUser()" class="govuk-button" [disabled]="isDisabledAdd()" title="Add user to the case">Add</button>
+    <details id="add-user-help" class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+      <span id="content-why-can-not-find-email" class="govuk-details__summary-text">
+        Can't find an email address?
+      </span>
+      </summary>
+      <div id="content-reason-can-not-find-email" class="govuk-details__text">
+        If you can't find your colleague's email address, they will need to complete their registration. Contact your
+        administrator for help.
+      </div>
+    </details>
+  </div>
+  <div class="govuk-form-group" *ngIf="showRemoveUsers">
+    <label class="govuk-label govuk-!-font-weight-bold" for="remove-user-input">Remove a person from all cases</label>
+    <span id="remove-user-hint" class="govuk-hint">
+      Select a person to remove them from all selected cases.
+    </span>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <select class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
+          <option value="{{user}}" *ngFor="let user of users">{{user.email}}</option>
+        </select>
+      </div>
+      <div class="govuk-grid-column-one-thirds">
+        <button id="btn-remove-user" class="govuk-button govuk-button--secondary" title="Remove user from selected cases">Remove</button>
+      </div>
     </div>
   </div>
-  <details id="add-user-help" class="govuk-details" data-module="govuk-details">
-    <summary class="govuk-details__summary">
-    <span id="content-why-can-not-find-email" class="govuk-details__summary-text">
-      Can’t find an email address?
-    </span>
-    </summary>
-    <div id="content-reason-can-not-find-email" class="govuk-details__text">
-      If you can’t find your colleague’s email address, they will need to complete their registration. Contact your
-      administrator for help.
-    </div>
-  </details>
 </div>
 
 <div id="cases">
@@ -47,6 +65,7 @@
 
 </div>
 
-<div id="share-case-nav">
-  <button class="govuk-button" [disabled]="isDisabledContinue()" title="Continue" [routerLink]="confirmLink">Continue</button>
+<div id="share-case-nav" class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button" [disabled]="isDisabledContinue()" title="Continue" [routerLink]="confirmLink">Continue</button>
+  <button class="govuk-button govuk-button--secondary" data-module="govuk-button" title="Cancel">Cancel</button>
 </div>

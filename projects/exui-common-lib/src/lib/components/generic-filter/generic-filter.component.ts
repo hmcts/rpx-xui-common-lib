@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
-import {FilterService} from './../../services/filter/filter.service';
-import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-filter-utils';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { FilterConfig, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
+import { FilterService } from './../../services/filter/filter.service';
+import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
 @Component({
   selector: 'xuilib-generic-filter',
@@ -16,6 +16,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
+  public filteredSkillsByServices: GroupOptions[];
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
@@ -60,13 +61,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   private static addFormValidators(field: FilterFieldConfig): Validators {
     const validators = [];
-    if (field && field.minSelected) {
+    if (field && field.minSelected > 0) {
       validators.push(minSelectedValidator(field.minSelected));
     }
 
-    if (field && field.maxSelected) {
+    if (field && field.maxSelected > 0) {
       validators.push(maxSelectedValidator(field.maxSelected));
     }
+
     return validators;
   }
 
@@ -77,6 +79,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.mergeDefaultFields(this.settings);
     this.buildForm(this.config, this.settings);
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
+    this.filterSkillsByServices(null, this.config);
   }
 
   public ngOnDestroy(): void {
@@ -177,6 +180,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when user enters input change radio button
   public inputChanged(field: FilterFieldConfig): void {
+    if (field.name === 'user-services') {
+      const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
+      this.filterSkillsByServices(selectedServices, this.config);
+    }
     if (field.radioSelectionChange && typeof field.radioSelectionChange === 'string') {
       const [name, value] = field.enableCondition.split('=');
       this.form.get(name).patchValue(value);
@@ -192,6 +199,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.filterService.persist(settings, this.config.persistence);
     this.filterService.givenErrors.next(null);
     this.submitted = false;
+
+    if (this.config.cancelButtonCallback) {
+      this.config.cancelButtonCallback();
+    }
   }
 
   public updatePersonControls(values: any, field: FilterFieldConfig): void {
@@ -252,15 +263,20 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       } else if (hasSelectAllOption && !allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
         formArray.controls[index].patchValue(true);
       }
-      return;
+    } else {
+      formArray.controls.forEach((control: AbstractControl) => {
+        if (isChecked) {
+          control.patchValue(true);
+        } else {
+          control.patchValue(false);
+        }
+      });
     }
-    formArray.controls.forEach((control: AbstractControl) => {
-      if (isChecked) {
-        control.patchValue(true);
-      } else {
-        control.patchValue(false);
+    if (field.changeResetFields && field.changeResetFields.length) {
+      for (const resetField of field.changeResetFields) {
+        this.resetField(resetField, form);
       }
-    });
+    }
   }
 
   private resetField(resetField: string, form: FormGroup): void {
@@ -307,14 +323,23 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (field.type === 'checkbox' || field.type === 'checkbox-large') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
         this.form.addControl(field.name, formArray);
-      } else if (field.type === 'find-location') {
-        const formArray = this.buildFindLocationFormArray(field, settings);
+      } else if (field.type === 'find-location' || field.type === 'find-service') {
+        const formArray = this.buildFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else {
         const validators: ValidatorFn[] = [];
         if (field.minSelected && field.minSelected > 0) {
           validators.push(Validators.required);
+
+          if (field.type === 'text-input') {
+            validators.push(Validators.minLength(field.minSelected));
+          }
+
+          if (field.type === 'email-input') {
+            validators.push(Validators.email);
+          }
         }
+
         let defaultValue: any = null;
         if (reset && config.cancelSetting) {
           const cancelField = config.cancelSetting.fields.find((f) => f.name === field.name);
@@ -333,7 +358,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
             knownAs: new FormControl(''),
           });
           this.form.addControl(field.name, formGroup);
-        } else {
+        } else if (field.type !== 'group-title') {
           const control = new FormControl(defaultValue, validators);
           this.form.addControl(field.name, control);
         }
@@ -363,7 +388,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return formArray;
   }
 
-  private buildFindLocationFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+  private buildFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
     const validators = GenericFilterComponent.addFormValidators(field);
     const formArray = this.fb.array([], validators);
     let defaultValues: { name: string; value: any[] };
@@ -395,18 +420,74 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   private emitFormErrors(form: FormGroup): void {
-    const errors: FilterError[] = [];
+    let errors: FilterError[] = [];
     for (const field of this.config.fields) {
       const formGroup = form.get(field.name);
-      if (formGroup && formGroup.errors && formGroup.errors.minLength) {
+      if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
         errors.push({name: field.name, error: field.minSelectedError});
       }
-      if (formGroup && formGroup.errors && formGroup.errors.maxLength) {
-        errors.push({name: field.name, error: field.minSelectedError});
+      if (formGroup && formGroup.errors && formGroup.errors.maxlength) {
+        errors.push({name: field.name, error: field.maxSelectedError});
       }
     }
+
+    // remove duplicates
+    errors = errors.filter( (filterError, i, arr) => {
+      return errors.indexOf(arr.find(item => item.name === filterError.name)) === i;
+    });
+
     if (errors.length) {
       this.filterService.givenErrors.next(errors);
     }
+  }
+
+  public filterSkillsByServices(services: string[], config: FilterConfig): GroupOptions[] {
+    this.filteredSkillsByServices = [];
+    const userSkillsField = config.fields.find(f => f.name === 'user-skills');
+    if (userSkillsField) {
+      const userSkills = userSkillsField.groupOptions;
+      if (!services || services.length === 0) {
+        this.filteredSkillsByServices = userSkills;
+      } else {
+        services.forEach(s => {
+          const groupOption = userSkills.find(u => u.group === s);
+          if (groupOption) {
+            this.filteredSkillsByServices.push(groupOption);
+          }
+        });
+      }
+    }
+    this.filteredSkillsByServices = this.sortGroupOptions(this.filteredSkillsByServices);
+    return this.filteredSkillsByServices;
+  }
+
+  private getSelectedValuesForFields(formValues: any, field: FilterFieldConfig): string[] {
+    const selectedValues: string[] = [];
+    Object.keys(formValues).map((name: string) => {
+      const values = formValues[name].value;
+      if (name === field.name) {
+        values.forEach((v: any) => {
+          selectedValues.push(v.key);
+        });
+      }
+    });
+    return selectedValues;
+  }
+
+  private sortGroupOptions(groupOptions: GroupOptions[]): GroupOptions[] {
+    const sortedResults: GroupOptions[] = [];
+    const groups = groupOptions.map(go => go.group);
+    groups.sort().forEach(g => {
+      const options = groupOptions.find((go: any) => go.group === g).options;
+      const sortedOptions = options.sort((a, b) => {
+        return a.label.toLowerCase() > b.label.toLowerCase() ? 1 : (b.label.toLowerCase() > a.label.toLowerCase() ? -1 : 0);
+      });
+      const result = {
+        group : g,
+        options: sortedOptions
+      };
+      sortedResults.push(result);
+    });
+    return sortedResults;
   }
 }

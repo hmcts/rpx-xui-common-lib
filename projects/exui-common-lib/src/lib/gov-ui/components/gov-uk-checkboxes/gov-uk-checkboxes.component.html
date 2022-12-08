@@ -1,11 +1,29 @@
-<xuilib-gov-uk-form-group-wrapper
-[error]="errors"
-[config]="options.config"
-[group]="options.key">
-<div class="govuk-checkboxes">
-  <xuilib-gov-checkbox *ngFor="let item of options.items"
-    [group]="item.group"
-    [config]="item.config">
-  </xuilib-gov-checkbox>
+<div class="govuk-form-group gov-uk-input" [formGroup]="group"
+     [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
+
+  <xuilib-gov-label [config]="config"></xuilib-gov-label>
+
+  <span *ngIf="config.hint" [id]="config.id +'-hint'" class="govuk-hint">
+    {{config.hint}}
+  </span>
+
+  <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
+
+  <div class="govuk-checkboxes govuk-checkboxes--small govuk-checkboxes-multi-column" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes-multi-column__single" *ngFor="let columnItems of columns">
+      <div class="govuk-checkboxes__item" *ngFor="let item of columnItems">
+        <input type="checkbox" class="govuk-checkboxes__input"
+               [id]="item.id" [name]="item.id" [checked]="isChecked(item.value)" [value]="item.value"
+               [attr.aria-describedby]="setDescribedBy()"
+               (change)="onChecked($event.target.checked, item.value)"
+        >
+        <label class="govuk-label govuk-checkboxes__label" [for]="item.id">
+          {{ item.label }}
+        </label>
+        <div *ngIf="item.hint" class="govuk-hint govuk-checkboxes__hint">
+          {{ item.hint }}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</xuilib-gov-uk-form-group-wrapper>
