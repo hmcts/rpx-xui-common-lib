@@ -1,7 +1,7 @@
 import { BookingCheckType } from './location.model';
 import { PersonRole } from './person.model';
 
-export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select';
+export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select' | 'find-task-name';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
@@ -42,10 +42,13 @@ export interface FilterFieldConfig {
   lineBreakBefore?: boolean;
   showCondition?: string;
   enableCondition?: string;
+  enableAddLocationButton?: boolean;
+  enableAddTaskNameButton?: boolean;
   enableAddButton?: boolean;
   changeResetFields?: string[];
   findPersonField?: string;
   findLocationField?: string;
+  findTaskNameField?: string;
   domainField?: string;
   disable?: boolean;
   disabledText?: string;
