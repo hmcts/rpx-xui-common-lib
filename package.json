@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.48-task-name-filter",
+  "version": "1.7.48-task-name-filter-v2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
