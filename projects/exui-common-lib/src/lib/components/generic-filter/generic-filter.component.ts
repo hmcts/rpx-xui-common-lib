@@ -220,6 +220,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
+  public updateTaskNameControls(values: string, field: FilterFieldConfig): void {
+    this.form.get(field.name).patchValue(values);
+  }
+
   public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
     const isChecked = event.target.checked;
     const formArray: FormArray = form.get(field.name) as FormArray;
