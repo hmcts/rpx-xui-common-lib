@@ -166,6 +166,32 @@
           </div>
         </div>
       </ng-container>
+      <ng-container *ngSwitchCase="'find-person'">
+      <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
+                          (personFieldChanged)="inputChanged(field)"
+                          [submitted]="submitted"
+                          [disabled]="disabled(field, form)"
+                          [domain]="form.get(field.domainField)?.value"
+                          [findPersonGroup]="form"
+                          [selectedPerson]="form.get(field.name)?.value?.email"
+                          [userIncluded]="false"
+                          [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
+      ></xuilib-find-person>
+    </ng-container>
+    <ng-container *ngSwitchCase="'find-location'">
+      <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
+                            [form]="form"
+                            [fields]="config.fields"
+                            [locationTitle]="field.locationTitle"
+                            [enableAddLocationButton]="field.enableAddLocationButton"
+                            [disabled]="disabled(field, form)"
+                            [disableInputField]="field.disable"
+                            [selectedLocations]="form.get(field.name)?.value"
+                            [submitted]="submitted"
+                            [services]="form.get(field.findLocationField)?.value"
+                            [field]="field"
+      ></xuilib-find-location>
+    </ng-container>
     </ng-container>
   </div>
   <hr class="govuk-section-break govuk-section-break--m"/>
