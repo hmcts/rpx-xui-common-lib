@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BannerDataModel } from '../../models/banner-data-model';
+import { HmctsBannerInfo } from '../hmcts-banner/hmcts-banner-info.interface';
 /*
 * Main Content wrapper
 * Responsible for:
@@ -14,12 +14,12 @@ import { BannerDataModel } from '../../models/banner-data-model';
   templateUrl: './hmcts-main-wrapper.component.html'
 })
 export class HmctsMainWrapperComponent implements OnInit {
-  public bannerData: BannerDataModel;
+  public bannerData: HmctsBannerInfo;
 
   @Input() public backLink: string;
   @Input() public title: string;
   @Input() public summaryErrors: {header: string; isFromValid: boolean; items: { id: string; message: any; }[]};
-  @Input() public set banner(value: BannerDataModel) {
+  @Input() public set banner(value: HmctsBannerInfo) {
     this.bannerData = value;
   }
   @Input() public actionButtons: {name: string, class: string, action(): {}}[];
