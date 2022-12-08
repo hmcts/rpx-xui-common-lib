@@ -220,19 +220,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public updateTaskNameControls(values: any, field: FilterFieldConfig): void {
-    // let keys;
-    // if (!values) {
-    //   keys = Object.keys(this.form.get(field.name).value);
-    // } else {
-    //   keys = Object.keys(values);
-    // }
-    // for (const key of keys) {
-    //   if (this.form.get(field.name) && this.form.get(field.name).get(key)) {
-    //     const value = values && values[key] ? values[key] : null;
-    //     this.form.get(field.name).get(key).patchValue(value);
-    //   }
-    // }
+  public updateTaskNameControls(values: string, field: FilterFieldConfig): void {
     this.form.get(field.name).patchValue(values);
   }
 

@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { TaskNameModel } from '../../models/task-name.model';
 import { SessionStorageService } from '../storage/session-storage/session-storage.service';
 
 @Injectable({
@@ -16,12 +17,12 @@ export class TaskNameService {
   /**
    * @return Observable<any[]>: Array of taskName in Observable
    */
-  public getTaskName(): Observable<any[]> {
+  public getTaskName(): Observable<TaskNameModel[]> {
     if (this.sessionStorageService.getItem(TaskNameService.taskNamesKey)) {
       const taskNames = JSON.parse(this.sessionStorageService.getItem(TaskNameService.taskNamesKey));
-      return of(taskNames as any[]);
+      return of(taskNames as TaskNameModel[]);
     }
-    return this.http.get<any[]>(`/workallocation/taskNames`).pipe(
+    return this.http.get<TaskNameModel[]>(`/workallocation/taskNames`).pipe(
       tap(taskNames => this.sessionStorageService.setItem(TaskNameService.taskNamesKey, JSON.stringify(taskNames)))
     );
   }

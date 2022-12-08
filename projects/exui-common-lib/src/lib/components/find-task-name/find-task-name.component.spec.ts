@@ -8,7 +8,7 @@ import {FindTaskNameComponent} from './find-task-name.component';
 describe('FindTaskNameComponent', () => {
   let component: FindTaskNameComponent;
   let fixture: ComponentFixture<FindTaskNameComponent>;
-  let mockTaskService: any;
+  let mockTaskService: TaskNameService;
 
   beforeEach(() => {
     mockTaskService = jasmine.createSpyObj('TaskNameService', ['getTaskName']);

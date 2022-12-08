@@ -13,7 +13,7 @@ import { TaskNameService } from '../../services/task-name/task-name.service';
 })
 
 export class FindTaskNameComponent implements OnChanges, OnDestroy {
-  @Output() public taskNameSelected = new EventEmitter<any>();
+  @Output() public taskNameSelected = new EventEmitter<string>();
   @Output() public taskNameFieldChanged = new EventEmitter<void>();
   @Input() public title: string;
   @Input() public boldTitle = 'Find the task name';
@@ -50,9 +50,6 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
 
   public ngOnChanges(): void {
     this.findTaskNameControl = new FormControl(this.selectedTaskName);
-    console.log(this.findTaskNameControl);
-    console.log(this.selectedTaskName);
-
     this.findTaskNameGroup.addControl('findTaskNameControl', this.findTaskNameControl);
     this.sub = this.findTaskNameControl.valueChanges
     .pipe(
@@ -74,13 +71,11 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
       if (this.searchTerm) {
         this.filteredOptions = this.filteredOptions.filter((taskName) => taskName.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase())).map(taskName => taskName);
       }
-      console.log(this.filteredOptions);
-
       this.cd.detectChanges();
     });
   }
 
-  public getTaskName(): Observable<any[]> {
+  public getTaskName(): Observable<TaskNameModel[]> {
     return this.taskService.getTaskName();
   }
 
