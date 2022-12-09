@@ -37,12 +37,14 @@
             <ng-container *ngSwitchCase="'select'">
               <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
                 <option disabled selected hidden value="">{{field.disabledText}}</option>
+                <option *ngIf="field.defaultOption" [attr.selected]="true" [value]="field.defaultOption.key">{{field.defaultOption.label}}</option>
                 <option class="govuk-radios__item" *ngFor="let item of field.options" [value]="item.key">{{item.label}}</option>
               </select>
             </ng-container>
             <ng-container *ngSwitchCase="'group-select'">
               <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
-                <option selected value="">{{field.disabledText}}</option>
+                <option disabled selected hidden value="">{{field.disabledText}}</option>
+                <option *ngIf="field.defaultOption" selected [value]="field.defaultOption.key">{{field.defaultOption.label}}</option>
                 <optgroup *ngFor = 'let grp of filteredSkillsByServices' label="{{grp.group | titlecase}}">
                   <option *ngFor = 'let item of grp.options' [value]="item.key">{{item.label}}</option>
                 </optgroup>
