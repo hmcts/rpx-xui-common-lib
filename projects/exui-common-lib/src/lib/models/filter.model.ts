@@ -61,6 +61,7 @@ export interface FilterFieldConfig {
   locationTitle?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
+  placeholderContent?: string;
   maxWidth480px?: boolean;
   maxRows?: number;
   groupOptions?: GroupOptions[];
