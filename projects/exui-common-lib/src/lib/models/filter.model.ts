@@ -65,11 +65,13 @@ export interface FilterFieldConfig {
   maxRows?: number;
   groupOptions?: GroupOptions[];
   maxlength?: number;
+  defaultOption?: FilterConfigOption;
 }
 
 export interface GroupOptions {
   group: string;
   options: FilterFieldOption[];
+  placeholderContent?: string;
 }
 
 export interface FilterSetting {
