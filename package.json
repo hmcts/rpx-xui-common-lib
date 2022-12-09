@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.19-fix-find-person-issue1",
+  "version": "update-from-r3.5-to-4-v",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
