@@ -8,6 +8,7 @@
     "start": "ng serve -o",
     "start:no-open": "ng serve",
     "build": "ng build exui-common-lib",
+    "build:dev": "ng build --watch exui-common-lib",
     "test": "ng test exui-common-lib",
     "lint": "ng lint",
     "e2e": "ng e2e"

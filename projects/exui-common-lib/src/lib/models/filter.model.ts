@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { BookingCheckType } from './location.model';
 import { PersonRole } from './person.model';
 
-export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select';
+export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select' | 'find-task-name';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
@@ -45,10 +45,13 @@ export interface FilterFieldConfig {
   lineBreakBefore?: boolean;
   showCondition?: string;
   enableCondition?: string;
+  enableAddLocationButton?: boolean;
+  enableAddTaskNameButton?: boolean;
   enableAddButton?: boolean;
   changeResetFields?: string[];
   findPersonField?: string;
   findLocationField?: string;
+  findTaskNameField?: string;
   domainField?: string;
   disable?: boolean;
   disabledText?: string;
@@ -61,15 +64,18 @@ export interface FilterFieldConfig {
   locationTitle?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
+  placeholderContent?: string;
   maxWidth480px?: boolean;
   maxRows?: number;
   groupOptions?: GroupOptions[];
   maxlength?: number;
+  defaultOption?: FilterConfigOption;
 }
 
 export interface GroupOptions {
   group: string;
   options: FilterFieldOption[];
+  placeholderContent?: string;
 }
 
 export interface FilterSetting {
