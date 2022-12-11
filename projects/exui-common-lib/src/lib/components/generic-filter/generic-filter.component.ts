@@ -78,6 +78,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
     this.mergeDefaultFields(this.settings);
     this.buildForm(this.config, this.settings);
+
+    if (this._config.copyFields) {
+      this.form = this._config.copyFields(this.form);
+    }
+
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
     this.filterSkillsByServices(null, this.config);
   }

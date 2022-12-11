@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { BookingCheckType } from './location.model';
 import { PersonRole } from './person.model';
 
@@ -22,6 +23,7 @@ export interface FilterConfig {
   showCancelFilterButton?: boolean;
   cancelButtonCallback?(): void;
   applyButtonCallback?(): void;
+  copyFields?(form: FormGroup): FormGroup;
 }
 
 export interface FilterFieldOption {
