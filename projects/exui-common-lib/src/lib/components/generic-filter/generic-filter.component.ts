@@ -396,7 +396,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const values = formValues[name];
       if (Array.isArray(values)) {
         const field = config.fields.find(f => f.name === name);
-        if (field.type === 'find-location') {
+        if (field.type === 'find-location' || field.type === 'find-service') {
           return {value: values, name};
         } else {
           return {value: getValues(field.options, values), name};
