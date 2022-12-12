@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.47-improved-hmcts-banner",
+  "version": "1.7.47-improved-hmcts-banner-v2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
