@@ -1,3 +1,4 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
@@ -6,6 +7,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from './search-location.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
@@ -21,9 +29,12 @@ describe('SearchLocationComponent', () => {
         MatOptionModule,
       ],
       declarations: [
-        SearchLocationComponent
+        SearchLocationComponent,
+        RpxTranslationMockPipe
       ],
-      providers: [{ provide: LocationService, useValue: searchFilterServiceMock }],
+      providers: [
+        { provide: LocationService, useValue: searchFilterServiceMock }
+      ],
     }).compileComponents();
 
     const LOCATION_RESULTS = [

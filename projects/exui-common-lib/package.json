@@ -1,13 +1,14 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.4-rc1",
+  "version": "1.7.18-welsh-release-mock-pipe",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
     "@angular/material": "^7.2.0",
     "@angular/cdk": "^7.2.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^3.2.1",
+    "rpx-xui-translation": "^0.1.1"
   },
   "publishConfig": {
     "access": "public"

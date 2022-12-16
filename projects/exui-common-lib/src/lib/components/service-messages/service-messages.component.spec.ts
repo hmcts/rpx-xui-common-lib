@@ -1,8 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { FeatureToggleService } from '../../services/feature-toggle/feature-toggle.service';
 import { ServiceMessagesComponent } from './service-messages.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('ServiceMessagesComponent', () => {
   let component: ServiceMessagesComponent;
@@ -21,7 +28,7 @@ describe('ServiceMessagesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ServiceMessagesComponent],
+      declarations: [ServiceMessagesComponent, RpxTranslationMockPipe],
       providers: [
         {
           provide: FeatureToggleService,
@@ -45,19 +52,15 @@ describe('ServiceMessagesComponent', () => {
   });
 
   describe('getServiceMessages()', () => {
-
     it('should get the service messages and filter according to roles', () => {
       component.getServiceMessages();
       expect(component.filteredMessages.size).toBe(5);
     });
   });
 
-  describe('hideMessage()', () => {
-
-    it('should add an item to the hidden message list', () => {
-      const testRole = 'test-message-1';
-      component.hideMessage(testRole);
-      expect((component.hiddenBanners).length).toBe(1);
-    });
+  it('should add an item to the hidden message list', () => {
+    const testRole = 'test-message-1';
+    component.hideMessage(testRole);
+    expect((component.hiddenBanners).length).toBe(1);
   });
 });

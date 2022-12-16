@@ -1,6 +1,13 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoadingSpinnerComponent } from './loading-spinner.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('LoadingSpinnerComponent', () => {
   let component: LoadingSpinnerComponent;
@@ -9,7 +16,9 @@ describe('LoadingSpinnerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ LoadingSpinnerComponent ]
+      declarations: [ LoadingSpinnerComponent, RpxTranslationMockPipe ],
+      imports: [],
+      providers: []
     })
     .compileComponents();
   }));

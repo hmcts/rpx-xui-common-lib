@@ -1,7 +1,14 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TcConfirmComponent } from './tc-confirm.component';
 
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('TcConfirmComponent', () => {
   let component: TcConfirmComponent;
@@ -9,8 +16,9 @@ describe('TcConfirmComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TcConfirmComponent],
-      imports: [RouterTestingModule]
+      declarations: [TcConfirmComponent, RpxTranslationMockPipe],
+      imports: [RouterTestingModule],
+      providers: []
     })
       .compileComponents();
   }));

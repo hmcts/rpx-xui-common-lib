@@ -1,6 +1,14 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsBannerComponent } from './hmcts-banner.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HmctsBannerComponent', () => {
   let component: HmctsBannerComponent;
@@ -8,9 +16,11 @@ describe('HmctsBannerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HmctsBannerComponent ],
+      declarations: [ HmctsBannerComponent, RpxTranslationMockPipe ],
       imports: [
         RouterTestingModule
+      ],
+      providers: [
       ]
     })
     .compileComponents();

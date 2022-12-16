@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.4-rc1",
+  "version": "1.7.18-welsh-release-mock-pipe",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
@@ -37,6 +37,7 @@
     "govuk-frontend": "4.0.1",
     "launchdarkly-js-client-sdk": "^2.15.2",
     "ngx-pagination": "^3.2.1",
+    "rpx-xui-translation": "^0.1.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

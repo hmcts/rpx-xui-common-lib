@@ -1,45 +1,45 @@
 <div class="govuk-warning-text" *ngIf="warningTitle && warningTitle !== ''">
 <span class="govuk-warning-text__icon">!</span>
 <strong class="govuk-warning-text__text">
-    {{ warningTitle }}
+    {{ warningTitle | rpxTranslate}}
 </strong>
 </div>
 <table class="govuk-table" *ngIf="user">
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-        <th class="govuk-table__header" scope="row">Name</th>
-        <td class="govuk-table__cell">{{user.fullName}}</td>
+        <th class="govuk-table__header" scope="row">{{'Name' | rpxTranslate}}</th>
+        <td class="govuk-table__cell">{{user.fullName | rpxTranslate}}</td>
         <td class="govuk-table__cell"></td>
     </tr>
     <tr class="govuk-table__row">
-        <th class="govuk-table__header" scope="row">Email address</th>
+        <th class="govuk-table__header" scope="row">{{'Email address' | rpxTranslate}}</th>
         <td class="govuk-table__cell">{{user.email}}</td>
         <td class="govuk-table__cell"></td>
     </tr>
     <tr class="govuk-table__row" *ngIf="!user.resendInvite">
-        <th class="govuk-table__header" scope="row">Permissions</th>
+        <th class="govuk-table__header" scope="row">{{'Permissions' | rpxTranslate}}</th>
         <td class="govuk-table__cell">
-          <div *ngIf="user.manageOrganisations === 'Yes'">Manage organisations</div>
-          <div *ngIf="user.manageUsers === 'Yes'">Manage users</div>
-          <div *ngIf="user.manageCases === 'Yes'">Manage cases</div>
-          <div *ngIf="userHasRole('pui-caa')">Case access administrator</div>
-          <div *ngIf="userHasRole('pui-finance-manager')">Manage fee accounts</div>
+          <div *ngIf="user.manageOrganisations === 'Yes'">{{'Manage organisations' | rpxTranslate}}</div>
+          <div *ngIf="user.manageUsers === 'Yes'">{{'Manage users' | rpxTranslate}}</div>
+          <div *ngIf="user.manageCases === 'Yes'">{{'Manage cases' | rpxTranslate}}</div>
+          <div *ngIf="userHasRole('pui-caa')">{{'Case access administrator' | rpxTranslate}}</div>
+          <div *ngIf="userHasRole('pui-finance-manager')">{{'Manage fee accounts' | rpxTranslate}}</div>
         </td>
-        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">Change <span class="govuk-visually-hidden">roles</span></a></td>
+        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></td>
     </tr>
   </tbody>
 </table>
 <button *ngIf="showSuspendUserButton" class="govuk-button govuk-button--warning" (click)="suspendUser(user)">
-  Suspend account
+  {{'Suspend account' | rpxTranslate}}
 </button>
 <div *ngIf="user && user.resendInvite">
   <div class="govuk-inset-text">
-    <p>This user has already been invited but has not activated their account.</p>
-    <p>If you resend an invitation, they'll receive an email from HM Courts and Tribunals to finish setting up their account.</p>
-    <p>You can't invite the same user more than once an hour.</p>
+    <p>{{'This user has already been invited but has not activated their account.' | rpxTranslate}}</p>
+    <p>{{'If you resend an invitation, they\'ll receive an email from HM Courts and Tribunals to finish setting up their account.' | rpxTranslate}}</p>
+    <p>{{'You can\'t invite the same user more than once an hour.' | rpxTranslate}}</p>
   </div>
   <a role="button" draggable="false" class="govuk-button" (click)="reinviteClick(user)" id="resend-invite-button">
-      Resend invitation
+      {{'Resend invitation' | rpxTranslate}}
   </a>
 </div>
-<p class="govuk-body" *ngIf="showHelpLink && suspendHelpLink"><a [routerLink]="suspendHelpLink" target="_blank">Get help</a> to reactivate this account.</p>
+<p class="govuk-body" *ngIf="showHelpLink && suspendHelpLink"><a [routerLink]="suspendHelpLink" target="_blank">{{'Get help' | rpxTranslate}}</a> {{'to reactivate this account.' | rpxTranslate}}</p>

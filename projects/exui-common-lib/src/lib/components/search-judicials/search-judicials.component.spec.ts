@@ -1,3 +1,4 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
@@ -7,6 +8,13 @@ import { of } from 'rxjs';
 import { JudicialUserModel } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { SearchJudicialsComponent } from './search-judicials.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('SearchJudicialsComponent', () => {
   let component: SearchJudicialsComponent;
@@ -19,12 +27,15 @@ describe('SearchJudicialsComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule.withRoutes([]),
         MatAutocompleteModule,
-        MatOptionModule,
+        MatOptionModule
       ],
       declarations: [
-        SearchJudicialsComponent
+        SearchJudicialsComponent,
+        RpxTranslationMockPipe
       ],
-      providers: [{ provide: FindAPersonService, useValue: searchFilterServiceMock }],
+      providers: [
+        { provide: FindAPersonService, useValue: searchFilterServiceMock }
+      ],
     }).compileComponents();
 
     const JUDICIAL_RESULTS: JudicialUserModel[] = [

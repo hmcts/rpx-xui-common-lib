@@ -5,6 +5,7 @@ import {MatInputModule, MatTabsModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {RouterModule} from '@angular/router';
 import {NgxPaginationModule, PaginatePipe} from 'ngx-pagination';
+import {RpxTranslationModule} from 'rpx-xui-translation';
 import {AccessibilityComponent} from './components/accessibility/accessibility.component';
 import {CheckboxListComponent} from './components/checkbox-list/checkbox-list.component';
 import {ContactDetailsComponent} from './components/contact-details/contact-details.component';
@@ -146,7 +147,8 @@ export const GOV_UI_COMPONENTS = [
     MatAutocompleteModule,
     MatTabsModule,
     MatInputModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    RpxTranslationModule.forChild()
   ],
   providers: [
     {provide: windowToken, useFactory: windowProvider}

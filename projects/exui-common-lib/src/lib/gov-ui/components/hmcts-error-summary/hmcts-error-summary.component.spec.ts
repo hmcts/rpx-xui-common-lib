@@ -1,8 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsErrorSummaryComponent } from './hmcts-error-summary.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HmctsErrorSummaryComponent', () => {
   let component: HmctsErrorSummaryComponent;
@@ -11,9 +18,11 @@ describe('HmctsErrorSummaryComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsErrorSummaryComponent ],
+      declarations: [ HmctsErrorSummaryComponent, RpxTranslationMockPipe ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+      ],
+      providers: [
       ]
     })
     .compileComponents();

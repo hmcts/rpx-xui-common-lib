@@ -2,11 +2,11 @@
 [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
 <xuilib-gov-label [config]="config"></xuilib-gov-label>
 <span *ngIf="config.hint" [id]="config.id +'-hint'" class="govuk-hint">
- {{config.hint}}
+ {{config.hint | rpxTranslate}}
 </span>
 <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
 
 <select class="govuk-select" [id]="config.id" [name]="config.id" [formControlName]="config.id" [attr.aria-describedby]='setDescribedBy()'>
-<option value="{{item.value}}" *ngFor="let item of items">{{item.label}}</option>
+<option value="{{item.value}}" *ngFor="let item of items">{{item.label | rpxTranslate}}</option>
 </select>
 </div>

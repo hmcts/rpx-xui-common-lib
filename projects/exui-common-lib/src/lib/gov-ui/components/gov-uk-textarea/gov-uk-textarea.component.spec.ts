@@ -1,8 +1,15 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkTextareaComponent } from './gov-uk-textarea.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovUkSelectComponent', () => {
   let component: GovUkTextareaComponent;
@@ -13,7 +20,7 @@ describe('GovUkSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkTextareaComponent ],
+      declarations: [ GovUkTextareaComponent, RpxTranslationMockPipe ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
