@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.18-welsh-release-mock-pipe",
+  "version": "1.7.18-welsh-release-mockpipe",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
