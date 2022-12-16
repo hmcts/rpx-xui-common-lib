@@ -1,9 +1,15 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkFieldsetComponent } from './gov-uk-fieldset.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovUkFieldsetComponent', () => {
   let component: GovUkFieldsetComponent;
@@ -12,11 +18,10 @@ describe('GovUkFieldsetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, RpxTranslationModule.forChild()],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [  GovUkFieldsetComponent ],
+      imports: [ FormsModule, ReactiveFormsModule ],
+      schemas: [ NO_ERRORS_SCHEMA ],
+      declarations: [ GovUkFieldsetComponent, RpxTranslationMockPipe ],
       providers: [
-        RpxTranslationConfig, RpxTranslationService,
         { provide: FormBuilder, useValue: formBuilder }
     ]
     })

@@ -1,9 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsSubNavigationComponent } from './hmcts-sub-navigation.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HmctsSubNavigationComponent', () => {
   let component: HmctsSubNavigationComponent;
@@ -12,14 +18,11 @@ describe('HmctsSubNavigationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsSubNavigationComponent ],
+      declarations: [ HmctsSubNavigationComponent, RpxTranslationMockPipe ],
       imports: [
-        RouterTestingModule, RpxTranslationModule.forChild()
+        RouterTestingModule
       ],
-      providers: [
-        RpxTranslationConfig,
-        RpxTranslationService
-      ]
+      providers: []
     })
     .compileComponents();
   }));

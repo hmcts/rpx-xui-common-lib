@@ -1,9 +1,16 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('UserSelectComponent', () => {
   let component: UserSelectComponent;
@@ -32,9 +39,9 @@ describe('UserSelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserSelectComponent ],
-      imports: [ MatAutocompleteModule, ReactiveFormsModule, RpxTranslationModule.forChild() ],
-      providers: [RpxTranslationConfig, RpxTranslationService],
+      declarations: [ UserSelectComponent, RpxTranslationMockPipe ],
+      imports: [ MatAutocompleteModule, ReactiveFormsModule ],
+      providers: [],
     })
     .compileComponents();
   }));

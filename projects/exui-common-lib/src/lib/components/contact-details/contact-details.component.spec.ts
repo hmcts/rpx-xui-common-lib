@@ -1,8 +1,14 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { BadgeColour } from '../../models';
 import { ContactDetailsComponent } from './contact-details.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('ContactDetailsComponent', () => {
   let component: ContactDetailsComponent;
@@ -11,13 +17,9 @@ describe('ContactDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ ContactDetailsComponent ],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
-      providers: [
-        RpxTranslationService, RpxTranslationConfig
-      ]
+      declarations: [ ContactDetailsComponent, RpxTranslationMockPipe ],
+      imports: [],
+      providers: []
     })
     .compileComponents();
   }));

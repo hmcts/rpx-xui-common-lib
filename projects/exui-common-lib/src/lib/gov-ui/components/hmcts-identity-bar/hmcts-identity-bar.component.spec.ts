@@ -1,8 +1,14 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsIdentityBarComponent } from './hmcts-identity-bar.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HmctsIdentityBarComponent', () => {
   let component: HmctsIdentityBarComponent;
@@ -11,13 +17,8 @@ describe('HmctsIdentityBarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsIdentityBarComponent ],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
+      declarations: [ HmctsIdentityBarComponent, RpxTranslationMockPipe ],
       providers: [
-        RpxTranslationConfig,
-        RpxTranslationService
       ]
     })
     .compileComponents();

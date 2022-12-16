@@ -1,7 +1,13 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { AccessibilityComponent } from './accessibility.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('AccessibilityComponent', () => {
   let component: AccessibilityComponent;
@@ -10,13 +16,9 @@ describe('AccessibilityComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ AccessibilityComponent ],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
-      providers: [
-        RpxTranslationService, RpxTranslationConfig
-      ]
+      declarations: [ AccessibilityComponent, RpxTranslationMockPipe ],
+      imports: [],
+      providers: []
     })
     .compileComponents();
   }));

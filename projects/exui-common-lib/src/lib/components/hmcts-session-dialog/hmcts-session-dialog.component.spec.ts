@@ -1,7 +1,13 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsSessionDialogComponent } from './hmcts-session-dialog.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HMCTS Dialog Component', () => {
   let component: HmctsSessionDialogComponent;
@@ -10,13 +16,9 @@ describe('HMCTS Dialog Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsSessionDialogComponent ],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
-      providers: [
-        RpxTranslationService, RpxTranslationConfig
-      ]
+      declarations: [ HmctsSessionDialogComponent, RpxTranslationMockPipe ],
+      imports: [],
+      providers: []
     })
       .compileComponents();
   }));

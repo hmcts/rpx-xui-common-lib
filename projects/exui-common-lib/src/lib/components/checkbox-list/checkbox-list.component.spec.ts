@@ -1,8 +1,14 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, Pipe, PipeTransform, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
-
 import { CheckboxListComponent } from './checkbox-list.component';
+
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 @Component({
   template: `
@@ -36,13 +42,9 @@ describe('CheckboxListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxListComponent, WrapperComponent ],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
-      providers: [
-        RpxTranslationService, RpxTranslationConfig
-      ]
+      declarations: [ CheckboxListComponent, WrapperComponent, RpxTranslationMockPipe ],
+      imports: [],
+      providers: []
     })
     .compileComponents();
   }));

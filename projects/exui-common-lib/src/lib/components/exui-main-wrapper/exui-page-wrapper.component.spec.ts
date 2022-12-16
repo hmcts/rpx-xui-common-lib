@@ -1,7 +1,13 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { ExuiPageWrapperComponent } from './exui-page-wrapper.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('ExuiPageWrapperComponent', () => {
   let component: ExuiPageWrapperComponent;
@@ -10,13 +16,9 @@ describe('ExuiPageWrapperComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ ExuiPageWrapperComponent ],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
-      providers: [
-        RpxTranslationService, RpxTranslationConfig
-      ]
+      declarations: [ ExuiPageWrapperComponent, RpxTranslationMockPipe ],
+      imports: [],
+      providers: []
     }).compileComponents();
   }));
 

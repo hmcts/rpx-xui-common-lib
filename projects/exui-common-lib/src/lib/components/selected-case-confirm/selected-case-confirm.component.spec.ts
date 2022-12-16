@@ -1,7 +1,14 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('SelectedCaseConfirmComponent', () => {
   let component: SelectedCaseConfirmComponent;
@@ -9,14 +16,9 @@ describe('SelectedCaseConfirmComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseConfirmComponent ],
-      imports: [ RouterTestingModule,
-        RpxTranslationModule.forChild()
-      ],
-      providers: [
-        RpxTranslationConfig,
-        RpxTranslationService
-      ]
+      declarations: [ SelectedCaseConfirmComponent, RpxTranslationMockPipe ],
+      imports: [ RouterTestingModule ],
+      providers: [ ]
     })
     .compileComponents();
   }));

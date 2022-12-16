@@ -1,8 +1,8 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
-import { RpxTranslationModule } from 'rpx-xui-translation';
 import {of} from 'rxjs';
 import {FilterFieldConfig} from '../../models';
 import {FilterService} from '../../services';
@@ -11,6 +11,13 @@ import {FindLocationComponent} from '../find-location/find-location.component';
 import {FindPersonComponent} from '../find-person/find-person.component';
 import {SearchLocationComponent} from '../search-location/search-location.component';
 import {GenericFilterComponent} from './generic-filter.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslationMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GenericFilterComponent', () => {
 
@@ -32,15 +39,8 @@ describe('GenericFilterComponent', () => {
       imports: [ReactiveFormsModule,
         MatAutocompleteModule,
         MatOptionModule,
-        RpxTranslationModule.forRoot({
-          baseUrl: '',
-          debounceTimeMs: 300,
-          validity: {
-            days: 1
-          },
-          testMode: true
-        })],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      ],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, RpxTranslationMockPipe],
       providers: [
         {provide: FilterService, useValue: mockFilterService},
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -372,16 +372,9 @@ describe('Select all checkboxes', () => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule,
         MatAutocompleteModule,
-        MatOptionModule,
-        RpxTranslationModule.forRoot({
-          baseUrl: '',
-          debounceTimeMs: 300,
-          validity: {
-            days: 1
-          },
-          testMode: true
-        })],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+        MatOptionModule
+      ],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, RpxTranslationMockPipe],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -468,17 +461,9 @@ describe('Find location filter config', () => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule,
         MatAutocompleteModule,
-        MatOptionModule,
-        RpxTranslationModule.forRoot({
-          baseUrl: '',
-          debounceTimeMs: 300,
-          validity: {
-            days: 1
-          },
-          testMode: true
-        })
+        MatOptionModule
       ],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, RpxTranslationMockPipe],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
