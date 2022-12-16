@@ -5,8 +5,10 @@
       <h1 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId | rpxTranslate }}</h1>
     </div>
     <div class="govuk-grid-column-twenty-percent">
-      <button id="{{buildElementId('btn-deselect-case')}}"
-              class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" [title]="'Deselect case' | rpxTranslate">
+      <button *ngIf="caseCount > 1"
+        id="{{buildElementId('btn-deselect-case')}}"
+        class="govuk-button hmcts-button--secondary"
+        (click)="onDeselect(sharedCase)" title="Deselect case">
         {{'Deselect case' | rpxTranslate}}
       </button>
     </div>
