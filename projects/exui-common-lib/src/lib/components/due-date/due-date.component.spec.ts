@@ -1,8 +1,8 @@
 import { formatDate } from '@angular/common';
+import { Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateBadgeColour } from '../../models/due-date.model';
 import { DueDateComponent } from './due-date.component';
-import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'rpxTranslate' })
 class RpxTranslationMockPipe implements PipeTransform {
