@@ -190,7 +190,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (e === undefined) {
      this.addAllOption(field);
     } else {
-      this.clearFormArray((<FormArray>this.form.get("user-services")));
+      this.clearFormArray(this.form.get('user-services') as FormArray);
     }
     if (field.name === 'user-services') {
       const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
@@ -488,17 +488,17 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return sortedResults;
   }
 
-  private clearFormArray = (formArray: FormArray) => {
+  private readonly clearFormArray = (formArray: FormArray) => {
     formArray.controls.forEach((el, index) => {
-      if (el.value.key == 'All') {
-        (<FormArray>this.form.get("user-services")).removeAt(index);
+      if (el.value.key === 'All') {
+        (this.form.get('user-services') as FormArray).removeAt(index);
       }
     });
   }
 
-  private addAllOption = (field: FilterFieldConfig) => {
-    if (this.form.get('user-services') && this.form.get('user-services').value.length === 0 && field.minSelected>=0) {
-      (<FormArray>this.form.get("user-services")).push(new FormControl({key: 'All', label: 'All'}));
+  private readonly addAllOption = (field: FilterFieldConfig) => {
+    if (this.form.get('user-services') && this.form.get('user-services').value.length === 0 && field.minSelected >= 0) {
+      (this.form.get('user-services') as FormArray).push(new FormControl({key: 'All', label: 'All'}));
    }
   }
 
