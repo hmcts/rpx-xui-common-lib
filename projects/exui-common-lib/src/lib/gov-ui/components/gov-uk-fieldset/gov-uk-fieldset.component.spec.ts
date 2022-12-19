@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkFieldsetComponent } from './gov-uk-fieldset.component';
@@ -16,7 +16,7 @@ describe('GovUkFieldsetComponent', () => {
   let fixture: ComponentFixture<GovUkFieldsetComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, ReactiveFormsModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
@@ -54,5 +54,4 @@ describe('GovUkFieldsetComponent', () => {
     const header = fixture.debugElement.query(By.css('h1'));
     expect(header).toBeFalsy();
   });
-
 });

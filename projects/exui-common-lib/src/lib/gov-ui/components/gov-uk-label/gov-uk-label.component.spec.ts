@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkLabelComponent } from './gov-uk-label.component';
@@ -15,12 +15,11 @@ describe('GovUkLabelComponent', () => {
   let component: GovUkLabelComponent;
   let fixture: ComponentFixture<GovUkLabelComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
       declarations: [ GovUkLabelComponent, RpxTranslationMockPipe ],
-      providers: [
-      ]
+      providers: []
     })
     .compileComponents();
   }));

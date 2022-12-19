@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceMessageComponent } from './service-message.component';
 
@@ -14,7 +14,7 @@ describe('ServiceMessageComponent', () => {
   let component: ServiceMessageComponent;
   let fixture: ComponentFixture<ServiceMessageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ServiceMessageComponent, RpxTranslationMockPipe],
       imports: [RouterTestingModule],

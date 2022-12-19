@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsBannerComponent } from './hmcts-banner.component';
 
@@ -14,14 +14,13 @@ describe('HmctsBannerComponent', () => {
   let component: HmctsBannerComponent;
   let fixture: ComponentFixture<HmctsBannerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HmctsBannerComponent, RpxTranslationMockPipe ],
       imports: [
         RouterTestingModule
       ],
-      providers: [
-      ]
+      providers: []
     })
     .compileComponents();
   }));
@@ -50,5 +49,4 @@ describe('HmctsBannerComponent', () => {
     const message =  fixture.nativeElement.querySelector('.hmcts-banner__message');
     expect(message.textContent).toContain('message');
   });
-
 });

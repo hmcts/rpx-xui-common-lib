@@ -2,8 +2,10 @@ import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from 
 import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {debounceTime, filter, map, mergeMap, tap} from 'rxjs/operators';
-import {LocationByEPIMMSModel} from '../../models/location.model';
+
+import {BookingCheckType, LocationByEPIMMSModel} from '../../models';
 import {LocationService} from '../../services/locations/location.service';
+import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 
 @Component({
   selector: 'exui-search-location',
@@ -21,6 +23,7 @@ export class SearchLocationComponent implements OnInit {
   @Input() public form: FormGroup;
   @Input() public showAutocomplete: boolean = false;
   @Input() public locations: LocationByEPIMMSModel[] = [];
+  @Input() public bookingCheck: BookingCheckType;
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
@@ -29,7 +32,7 @@ export class SearchLocationComponent implements OnInit {
   private pSelectedLocations: any[] = [];
   private pReset: boolean = true;
 
-  constructor(private readonly locationService: LocationService, private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
+  constructor(private readonly locationService: LocationService, private readonly sessionStorageService: SessionStorageService, private readonly fb: FormBuilder, private readonly cd: ChangeDetectorRef) {
     this.form = this.fb.group({
       searchTerm: ['']
     });
@@ -102,7 +105,20 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
-    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term);
+    let userLocations;
+    let bookingLocations;
+    // Booking type info - can create more
+    // NO_CHECK - All work - Do not filter out locations - Default assumption
+    // ONLY_BOOKINGS - My work - Try to only show base locations/booking locations
+    // POSSIBLE_BOOKINGS - Create booking screen - Show only potential bookings
+    if (this.bookingCheck === BookingCheckType.BOOKINGS_AND_BASE) {
+      userLocations = JSON.parse(this.sessionStorageService.getItem('userLocations'));
+      bookingLocations = JSON.parse(this.sessionStorageService.getItem('bookingLocations'));
+    } else if (this.bookingCheck === BookingCheckType.POSSIBLE_BOOKINGS) {
+      userLocations = JSON.parse(this.sessionStorageService.getItem('userLocations'));
+      this.serviceIds = JSON.parse(this.sessionStorageService.getItem('bookableServices'));
+    }
+    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term, userLocations, bookingLocations);
   }
 
   public resetSearchTerm(): void {

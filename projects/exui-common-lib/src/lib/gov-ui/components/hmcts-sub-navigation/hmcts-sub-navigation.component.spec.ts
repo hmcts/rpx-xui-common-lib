@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsSubNavigationComponent } from './hmcts-sub-navigation.component';
@@ -15,7 +15,7 @@ describe('HmctsSubNavigationComponent', () => {
   let component: HmctsSubNavigationComponent;
   let fixture: ComponentFixture<HmctsSubNavigationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ HmctsSubNavigationComponent, RpxTranslationMockPipe ],

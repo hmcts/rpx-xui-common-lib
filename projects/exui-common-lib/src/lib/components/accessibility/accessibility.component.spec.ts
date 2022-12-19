@@ -13,7 +13,7 @@ describe('AccessibilityComponent', () => {
   let component: AccessibilityComponent;
   let fixture: ComponentFixture<AccessibilityComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ AccessibilityComponent, RpxTranslationMockPipe ],

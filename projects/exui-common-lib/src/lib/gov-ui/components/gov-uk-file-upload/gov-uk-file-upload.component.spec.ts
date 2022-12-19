@@ -1,5 +1,5 @@
-import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkFileUploadComponent } from './gov-uk-file-upload.component';
@@ -16,7 +16,7 @@ describe('GovUkFileUploadComponent', () => {
   let fixture: ComponentFixture<GovUkFileUploadComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],

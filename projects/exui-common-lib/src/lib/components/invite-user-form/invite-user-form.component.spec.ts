@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InviteUserFormComponent } from './invite-user-form.component';
 
@@ -8,7 +8,7 @@ describe('InviteUserFormComponent', () => {
   let fixture: ComponentFixture<InviteUserFormComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
@@ -32,7 +32,7 @@ describe('InviteUserFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call on submit when the button clicked', async(() => {
+  it('should call on submit when the button clicked', waitForAsync(() => {
     spyOn(component, 'onSubmit');
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();
