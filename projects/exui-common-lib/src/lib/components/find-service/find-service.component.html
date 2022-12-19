@@ -18,7 +18,7 @@
   </div>
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection" *ngFor="let selection of selectedServices">
-      <a class="hmcts-filter__tag" (click)="removeService(selection)" href="javascript:void(0)">
+      <a *ngIf="selection.key!=='All'" class="hmcts-filter__tag" (click)="removeService(selection)" href="javascript:void(0)">
         {{ selection.label }}
       </a>
     </li>

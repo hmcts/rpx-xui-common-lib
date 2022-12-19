@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FilterConfig, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
+import { FilterConfig, FilterConfigOption, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
 import { FilterService } from './../../services/filter/filter.service';
 import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
@@ -180,13 +180,21 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when user enters input change radio button
   public inputChanged(field: FilterFieldConfig): void {
-    if (field.name === 'user-services') {
-      const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
-      this.filterSkillsByServices(selectedServices, this.config);
-    }
     if (field.radioSelectionChange && typeof field.radioSelectionChange === 'string') {
       const [name, value] = field.enableCondition.split('=');
       this.form.get(name).patchValue(value);
+    }
+  }
+
+  public inputServiceChanged(e: FilterConfigOption, field: FilterFieldConfig): void {
+    if (e === undefined) {
+     this.addAllOption(field);
+    } else {
+      this.clearFormArray((<FormArray>this.form.get("user-services")));
+    }
+    if (field.name === 'user-services') {
+      const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
+      this.filterSkillsByServices(selectedServices, this.config);
     }
   }
 
@@ -314,6 +322,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       } else if (field.type === 'find-location' || field.type === 'find-service') {
         const formArray = this.buildFormArray(field, settings);
         this.form.addControl(field.name, formArray);
+        this.addAllOption(field);
       } else {
         const validators: ValidatorFn[] = [];
         if (field.minSelected && field.minSelected > 0) {
@@ -478,4 +487,19 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     });
     return sortedResults;
   }
+
+  private clearFormArray = (formArray: FormArray) => {
+    formArray.controls.forEach((el, index) => {
+      if (el.value.key == 'All') {
+        (<FormArray>this.form.get("user-services")).removeAt(index);
+      }
+    });
+  }
+
+  private addAllOption = (field: FilterFieldConfig) => {
+    if (this.form.get('user-services') && this.form.get('user-services').value.length === 0 && field.minSelected>=0) {
+      (<FormArray>this.form.get("user-services")).push(new FormControl({key: 'All', label: 'All'}));
+   }
+  }
+
 }
