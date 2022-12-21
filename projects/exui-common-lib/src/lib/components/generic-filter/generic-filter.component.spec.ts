@@ -1,15 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
-import {By} from '@angular/platform-browser';
-import {of} from 'rxjs';
-import {FilterFieldConfig} from '../../models';
-import {FilterService} from '../../services';
-import {LocationService} from '../../services/locations/location.service';
-import {FindLocationComponent} from '../find-location/find-location.component';
-import {FindPersonComponent} from '../find-person/find-person.component';
-import {SearchLocationComponent} from '../search-location/search-location.component';
-import {GenericFilterComponent} from './generic-filter.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
+import { FilterFieldConfig } from '../../models';
+import { FilterService } from '../../services';
+import { LocationService } from '../../services/locations/location.service';
+import { FindLocationComponent } from '../find-location/find-location.component';
+import { FindPersonComponent } from '../find-person/find-person.component';
+import { SearchLocationComponent } from '../search-location/search-location.component';
+import { GenericFilterComponent } from './generic-filter.component';
 
 describe('GenericFilterComponent', () => {
 
@@ -17,6 +17,7 @@ describe('GenericFilterComponent', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   const mockFilterService: any = {
     getStream: () => of(null),
+    getUserId: jasmine.createSpy().and.returnValue('1234'),
     get: jasmine.createSpy(),
     persist: jasmine.createSpy(),
     givenErrors: {
@@ -135,6 +136,7 @@ describe('GenericFilterComponent', () => {
 
     const result = {
       id: 'examples',
+      idamId: '1234',
       fields: [
         {
           name: 'example1',
@@ -152,6 +154,7 @@ describe('GenericFilterComponent', () => {
       reset: false,
     };
     expect(component.form.valid).toBeTruthy();
+    mockFilterService.getUserId.and.returnValue('1234');
     expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
   });
 
