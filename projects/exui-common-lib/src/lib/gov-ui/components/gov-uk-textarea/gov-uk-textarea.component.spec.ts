@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { GovUkTextareaComponent } from './gov-uk-textarea.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -20,7 +20,7 @@ describe('GovUkSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkTextareaComponent, RpxTranslationMockPipe ],
+      declarations: [ GovUkTextareaComponent, RpxTranslateMockPipe ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]

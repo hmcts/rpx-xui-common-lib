@@ -6,7 +6,7 @@ import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -39,7 +39,7 @@ describe('UserSelectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserSelectComponent, RpxTranslationMockPipe ],
+      declarations: [ UserSelectComponent, RpxTranslateMockPipe ],
       imports: [ MatAutocompleteModule, ReactiveFormsModule ],
       providers: [],
     })

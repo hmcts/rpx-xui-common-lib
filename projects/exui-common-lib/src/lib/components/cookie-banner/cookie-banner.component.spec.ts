@@ -7,7 +7,7 @@ import { CookieBannerComponent } from './cookie-banner.component';
 const windowMock: Window = { location: { reload: () => {}}} as any;
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -22,7 +22,7 @@ describe('CookieBannerComponent', () => {
     cookieService = jasmine.createSpyObj('CookieService', ['setCookie', 'checkCookie', 'getCookie']);
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ CookieBannerComponent, RpxTranslationMockPipe ],
+      declarations: [ CookieBannerComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: [
         { provide: CookieService, useValue: cookieService },

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ExuiPageWrapperComponent } from './exui-page-wrapper.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -16,7 +16,7 @@ describe('ExuiPageWrapperComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ ExuiPageWrapperComponent, RpxTranslationMockPipe ],
+      declarations: [ ExuiPageWrapperComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     }).compileComponents();

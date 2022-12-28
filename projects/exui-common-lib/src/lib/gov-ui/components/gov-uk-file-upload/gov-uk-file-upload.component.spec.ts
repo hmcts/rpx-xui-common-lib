@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { GovUkFileUploadComponent } from './gov-uk-file-upload.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -20,7 +20,7 @@ describe('GovUkFileUploadComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkFileUploadComponent, RpxTranslationMockPipe ],
+      declarations: [ GovUkFileUploadComponent, RpxTranslateMockPipe ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]

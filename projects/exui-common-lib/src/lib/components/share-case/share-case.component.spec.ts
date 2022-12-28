@@ -10,7 +10,7 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
 import { ShareCaseComponent } from './share-case.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -26,7 +26,7 @@ describe('ShareCaseComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ ShareCaseComponent, RpxTranslationMockPipe ],
+      declarations: [ ShareCaseComponent, RpxTranslateMockPipe ],
       imports: [ FormsModule, RouterTestingModule ]
     })
     .compileComponents();

@@ -6,7 +6,7 @@ import { UserDetails } from '../../models/user-details.model';
 import { SelectedCaseComponent } from './selected-case.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -20,7 +20,7 @@ describe('SelectedCaseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseComponent, RpxTranslationMockPipe ],
+      declarations: [ SelectedCaseComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })

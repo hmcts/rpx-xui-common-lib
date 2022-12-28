@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { GovukTableComponent } from './gov-uk-table.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -16,7 +16,7 @@ describe('GovukTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GovukTableComponent, RpxTranslationMockPipe ],
+      declarations: [ GovukTableComponent, RpxTranslateMockPipe ],
       imports: [
         RouterModule,
       ],

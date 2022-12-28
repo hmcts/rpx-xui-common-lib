@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { PaginationComponent } from './pagination.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -17,7 +17,7 @@ describe('PaginationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginationComponent, RpxTranslationMockPipe ],
+      declarations: [ PaginationComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })

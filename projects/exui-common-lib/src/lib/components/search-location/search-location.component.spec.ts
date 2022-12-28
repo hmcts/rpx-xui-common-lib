@@ -12,7 +12,7 @@ import { SessionStorageService } from '../../services/session-storage/session-st
 import { SearchLocationComponent } from './search-location.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -34,7 +34,7 @@ describe('SearchLocationComponent', () => {
       ],
       declarations: [
         SearchLocationComponent,
-        RpxTranslationMockPipe
+        RpxTranslateMockPipe
       ],
       providers: [{ provide: LocationService, useValue: locationServiceMock },
                   { provide: SessionStorageService, useValue: sessionServiceMock}],

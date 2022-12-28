@@ -8,7 +8,7 @@ import {SearchLocationComponent} from '../search-location/search-location.compon
 import {FindLocationComponent} from './find-location.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -40,7 +40,7 @@ describe('FindLocationComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [FindLocationComponent, SearchLocationComponent, RpxTranslationMockPipe],
+      declarations: [FindLocationComponent, SearchLocationComponent, RpxTranslateMockPipe],
       providers: [{provide: LocationService, useValue: searchFilterServiceMock}],
     })
       .compileComponents();

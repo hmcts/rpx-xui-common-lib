@@ -5,7 +5,7 @@ import { CheckboxListComponent } from './checkbox-list.component';
 
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -43,7 +43,7 @@ describe('CheckboxListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxListComponent, WrapperComponent, RpxTranslationMockPipe ],
+      declarations: [ CheckboxListComponent, WrapperComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })

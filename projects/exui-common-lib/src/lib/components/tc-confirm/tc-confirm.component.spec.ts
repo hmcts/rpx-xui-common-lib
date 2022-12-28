@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TcConfirmComponent } from './tc-confirm.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -16,7 +16,7 @@ describe('TcConfirmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TcConfirmComponent, RpxTranslationMockPipe],
+      declarations: [TcConfirmComponent, RpxTranslateMockPipe],
       imports: [RouterTestingModule],
       providers: []
     })

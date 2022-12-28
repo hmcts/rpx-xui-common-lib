@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UserDetailsComponent } from './user-details.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -19,7 +19,7 @@ describe('UserDetailsComponent', () => {
       imports: [RouterTestingModule],
       providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserDetailsComponent, RpxTranslationMockPipe ]
+      declarations: [ UserDetailsComponent, RpxTranslateMockPipe ]
     })
     .compileComponents();
   }));

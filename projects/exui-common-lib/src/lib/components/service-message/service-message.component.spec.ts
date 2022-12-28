@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceMessageComponent } from './service-message.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -16,7 +16,7 @@ describe('ServiceMessageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ServiceMessageComponent, RpxTranslationMockPipe],
+      declarations: [ServiceMessageComponent, RpxTranslateMockPipe],
       imports: [RouterTestingModule],
       providers: []
     })

@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { HmctsIdentityBarComponent } from './hmcts-identity-bar.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -17,7 +17,7 @@ describe('HmctsIdentityBarComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsIdentityBarComponent, RpxTranslationMockPipe ],
+      declarations: [ HmctsIdentityBarComponent, RpxTranslateMockPipe ],
       providers: []
     })
     .compileComponents();

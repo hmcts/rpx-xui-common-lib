@@ -11,7 +11,7 @@ import {LocationService} from '../../services/locations/location.service';
 import {SearchVenueComponent} from './search-venue.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -32,7 +32,7 @@ describe('SearchVenueComponent', () => {
       ],
       declarations: [
         SearchVenueComponent,
-        RpxTranslationMockPipe
+        RpxTranslateMockPipe
       ],
       providers: [
         {provide: LocationService, useValue: searchFilterServiceMock}

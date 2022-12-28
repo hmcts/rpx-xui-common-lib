@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { GovUkFieldsetComponent } from './gov-uk-fieldset.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -20,7 +20,7 @@ describe('GovUkFieldsetComponent', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, ReactiveFormsModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
-      declarations: [ GovUkFieldsetComponent, RpxTranslationMockPipe ],
+      declarations: [ GovUkFieldsetComponent, RpxTranslateMockPipe ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]

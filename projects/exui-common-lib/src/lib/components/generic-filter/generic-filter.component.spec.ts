@@ -17,7 +17,7 @@ import { GenericFilterComponent } from './generic-filter.component';
 
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -52,7 +52,7 @@ describe('GenericFilterComponent', () => {
         SearchLocationComponent,
         FindServiceComponent,
         SearchServiceComponent,
-        RpxTranslationMockPipe
+        RpxTranslateMockPipe
       ],
       providers: [
         {provide: FilterService, useValue: mockFilterService},
@@ -384,7 +384,7 @@ describe('Select all checkboxes', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent, RpxTranslationMockPipe],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent, RpxTranslateMockPipe],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -470,7 +470,7 @@ describe('Find location filter config', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent, RpxTranslationMockPipe],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent, RpxTranslateMockPipe],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}

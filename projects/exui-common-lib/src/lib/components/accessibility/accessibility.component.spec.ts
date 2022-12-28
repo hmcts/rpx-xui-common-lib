@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AccessibilityComponent } from './accessibility.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -16,7 +16,7 @@ describe('AccessibilityComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ AccessibilityComponent, RpxTranslationMockPipe ],
+      declarations: [ AccessibilityComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })

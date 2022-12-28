@@ -6,7 +6,7 @@ import { HmctsPaginationComponent } from '../../gov-ui/components/hmcts-paginati
 import { UserListComponent } from './user-list.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -21,7 +21,7 @@ describe('UserListComponent', () => {
       imports: [RouterTestingModule, NgxPaginationModule],
       providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserListComponent, HmctsPaginationComponent, RpxTranslationMockPipe],
+      declarations: [ UserListComponent, HmctsPaginationComponent, RpxTranslateMockPipe],
     })
     .compileComponents();
   }));

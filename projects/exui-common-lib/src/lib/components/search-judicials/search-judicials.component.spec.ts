@@ -11,7 +11,7 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
 import { SearchJudicialsComponent } from './search-judicials.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -32,7 +32,7 @@ describe('SearchJudicialsComponent', () => {
       ],
       declarations: [
         SearchJudicialsComponent,
-        RpxTranslationMockPipe
+        RpxTranslateMockPipe
       ],
       providers: [
         { provide: FindAPersonService, useValue: searchFilterServiceMock }

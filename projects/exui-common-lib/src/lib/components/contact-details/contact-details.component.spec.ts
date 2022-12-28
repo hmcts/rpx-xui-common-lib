@@ -4,7 +4,7 @@ import { BadgeColour } from '../../models';
 import { ContactDetailsComponent } from './contact-details.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -17,7 +17,7 @@ describe('ContactDetailsComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ ContactDetailsComponent, RpxTranslationMockPipe ],
+      declarations: [ ContactDetailsComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })

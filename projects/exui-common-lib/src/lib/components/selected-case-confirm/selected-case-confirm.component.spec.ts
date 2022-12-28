@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -16,7 +16,7 @@ describe('SelectedCaseConfirmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseConfirmComponent, RpxTranslationMockPipe ],
+      declarations: [ SelectedCaseConfirmComponent, RpxTranslateMockPipe ],
       imports: [ RouterTestingModule ],
       providers: [ ]
     })

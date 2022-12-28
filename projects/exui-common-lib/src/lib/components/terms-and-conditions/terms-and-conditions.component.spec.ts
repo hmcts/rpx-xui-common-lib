@@ -6,7 +6,7 @@ import { TcDisplayPlainComponent } from './tc-display/tc-display-plain/tc-displa
 import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -24,7 +24,7 @@ describe('TermsAndConditionsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TermsAndConditionsComponent, TcDisplayPlainComponent, TcDisplayHtmlComponent, RpxTranslationMockPipe ],
+      declarations: [ TermsAndConditionsComponent, TcDisplayPlainComponent, TcDisplayHtmlComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })

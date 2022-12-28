@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { GovUkLabelComponent } from './gov-uk-label.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -18,7 +18,7 @@ describe('GovUkLabelComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [ GovUkLabelComponent, RpxTranslationMockPipe ],
+      declarations: [ GovUkLabelComponent, RpxTranslateMockPipe ],
       providers: []
     })
     .compileComponents();

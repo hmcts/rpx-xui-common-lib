@@ -5,7 +5,7 @@ import { DateBadgeColour } from '../../models/due-date.model';
 import { DueDateComponent } from './due-date.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -17,7 +17,7 @@ describe('DueDateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DueDateComponent, RpxTranslationMockPipe ],
+      declarations: [ DueDateComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })

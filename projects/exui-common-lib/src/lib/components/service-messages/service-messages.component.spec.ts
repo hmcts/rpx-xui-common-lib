@@ -5,7 +5,7 @@ import { FeatureToggleService } from '../../services/feature-toggle/feature-togg
 import { ServiceMessagesComponent } from './service-messages.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -28,7 +28,7 @@ describe('ServiceMessagesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ServiceMessagesComponent, RpxTranslationMockPipe],
+      declarations: [ServiceMessagesComponent, RpxTranslateMockPipe],
       providers: [
         {
           provide: FeatureToggleService,

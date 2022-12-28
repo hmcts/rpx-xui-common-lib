@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsSubNavigationComponent } from './hmcts-sub-navigation.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -18,7 +18,7 @@ describe('HmctsSubNavigationComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsSubNavigationComponent, RpxTranslationMockPipe ],
+      declarations: [ HmctsSubNavigationComponent, RpxTranslateMockPipe ],
       imports: [
         RouterTestingModule
       ],

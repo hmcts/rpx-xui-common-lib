@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 
 @Pipe({ name: 'rpxTranslate' })
-class RpxTranslationMockPipe implements PipeTransform {
+class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
@@ -16,7 +16,7 @@ describe('LoadingSpinnerComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ LoadingSpinnerComponent, RpxTranslationMockPipe ],
+      declarations: [ LoadingSpinnerComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: []
     })
