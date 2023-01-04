@@ -230,6 +230,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return (this.form.get(field.name) as FormArray)['controls'][i]['value'];
   }
 
+  public updateTaskNameControls(values: string, field: FilterFieldConfig): void {
+    this.form.get(field.name).patchValue(values);
+  }
+
   public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
     const isChecked = event.target.checked;
     const formArray: FormArray = form.get(field.name) as FormArray;
@@ -371,11 +375,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         // if field is find-person build a form group;
         if (field.type === 'find-person') {
           const formGroup = new FormGroup({
-            domain: new FormControl(''),
+            domain: new FormControl(defaultValue && defaultValue.hasOwnProperty('domain') ? defaultValue.domain : ''),
             email: new FormControl(defaultValue && defaultValue.hasOwnProperty('email') ? defaultValue.email : '', validators),
-            id: new FormControl(''),
-            name: new FormControl(''),
-            knownAs: new FormControl(''),
+            id: new FormControl(defaultValue && defaultValue.hasOwnProperty('id') ? defaultValue.id : ''),
+            name: new FormControl(defaultValue && defaultValue.hasOwnProperty('name') ? defaultValue.name : ''),
+            knownAs: new FormControl(defaultValue && defaultValue.hasOwnProperty('knownAs') ? defaultValue.knownAs : ''),
           });
           this.form.addControl(field.name, formGroup);
         } else if (field.type !== 'group-title') {
@@ -428,7 +432,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const values = formValues[name];
       if (Array.isArray(values)) {
         const field = config.fields.find(f => f.name === name);
-        if (field.type === 'find-location') {
+        if (field.type === 'find-location' || field.type === 'find-service') {
           return {value: values, name};
         } else {
           return {value: getValues(field.options, values), name};

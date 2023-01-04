@@ -1,20 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
-import { By } from '@angular/platform-browser';
-
-import { of } from 'rxjs';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
+import {By} from '@angular/platform-browser';
+import {of} from 'rxjs';
 import { FilterConfig, FilterFieldConfig, GroupOptions } from '../../models';
 import { CapitalizePipe } from '../../pipes/capitalize.pipe';
-import { FilterService } from '../../services';
-import { LocationService } from '../../services/locations/location.service';
-import { FindLocationComponent } from '../find-location/find-location.component';
-import { FindPersonComponent } from '../find-person/find-person.component';
+import {FilterService} from '../../services';
+import {LocationService} from '../../services/locations/location.service';
+import {FindLocationComponent} from '../find-location/find-location.component';
+import {FindPersonComponent} from '../find-person/find-person.component';
 import { FindServiceComponent } from '../find-service/find-service.component';
-import { SearchLocationComponent } from '../search-location/search-location.component';
+import { FindTaskNameComponent } from '../find-task-name/find-task-name.component';
+import {SearchLocationComponent} from '../search-location/search-location.component';
 import { SearchServiceComponent } from '../search-service/search-service.component';
-import { GenericFilterComponent } from './generic-filter.component';
-
+import {GenericFilterComponent} from './generic-filter.component';
 
 describe('GenericFilterComponent', () => {
   let component: GenericFilterComponent;
@@ -38,6 +37,7 @@ describe('GenericFilterComponent', () => {
         FindPersonComponent,
         FindLocationComponent,
         SearchLocationComponent,
+        FindTaskNameComponent,
         FindServiceComponent,
         SearchServiceComponent,
         CapitalizePipe
@@ -388,6 +388,7 @@ describe('Select all checkboxes', () => {
         FindPersonComponent,
         FindLocationComponent,
         SearchLocationComponent,
+        FindTaskNameComponent,
         FindServiceComponent,
         SearchServiceComponent,
         CapitalizePipe
@@ -482,6 +483,7 @@ describe('Find location filter config', () => {
         FindPersonComponent,
         FindLocationComponent,
         SearchLocationComponent,
+        FindTaskNameComponent,
         FindServiceComponent,
         SearchServiceComponent,
         CapitalizePipe

@@ -7,50 +7,44 @@
           {{ field.name | capitalize }}
         </div>
     </ng-container>
-
       <ng-container *ngSwitchDefault>
         <div class="govuk-form-group xui-generic-filter"
              [hidden]="hidden(field, form)"
              [id]="field.name"
              [ngClass]="{'form-group-error': submitted && ((form.get(field.name).errors?.minlength || form.get(field.name).errors?.required) || form.get(field.name).errors?.maxlength || form.get(field.name).errors?.email)}">
-
           <div *ngIf="field.title" class="xui-generic-filter__field-title">
             <h3 [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'" style="margin-bottom: 0!important">
               {{field.title | capitalize}}
             </h3>
-
             <div *ngIf="field?.titleHint" class="govuk-!-margin-left-2">
               {{ field.titleHint }}
             </div>
           </div>
-
           <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
-
           <span [id]="field.name + '-error'" class="govuk-error-message"
             *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.minlength || form.get(field.name).errors?.required)">
             <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
           </span>
-
           <span [id]="field.name + '-error'" class="govuk-error-message"
             *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxlength">
             <span class="govuk-visually-hidden">Error:</span> {{field.maxSelectedError}}
           </span>
-
           <span [id]="field.name + '-error'" class="govuk-error-message"
                 *ngIf="field.emailError && submitted && form.get(field.name).errors?.email">
             <span class="govuk-visually-hidden">Error:</span> {{field.emailError}}
           </span>
-
           <div class="govuk-body"  [class.govuk-body--maxWidth480px]="field.maxWidth480px" [ngSwitch]="field.type">
             <ng-container *ngSwitchCase="'select'">
               <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
                 <option disabled selected hidden value="">{{field.disabledText}}</option>
+                <option *ngIf="field.defaultOption" [attr.selected]="true" [value]="field.defaultOption.key">{{field.defaultOption.label}}</option>
                 <option class="govuk-radios__item" *ngFor="let item of field.options" [value]="item.key">{{item.label}}</option>
               </select>
             </ng-container>
             <ng-container *ngSwitchCase="'group-select'">
               <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
-                <option selected value="">{{field.disabledText}}</option>
+                <option disabled selected hidden value="">{{field.disabledText}}</option>
+                <option *ngIf="field.defaultOption" selected [value]="field.defaultOption.key">{{field.defaultOption.label}}</option>
                 <optgroup *ngFor = 'let grp of filteredSkillsByServices' label="{{grp.group | titlecase}}">
                   <option *ngFor = 'let item of grp.options' [value]="item.key">{{item.label}}</option>
                 </optgroup>
@@ -135,6 +129,7 @@
                                   [findPersonGroup]="form"
                                   [selectedPerson]="form.get(field.name)?.value?.email"
                                   [userIncluded]="false"
+                                  [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
               ></xuilib-find-person>
             </ng-container>
             <ng-container *ngSwitchCase="'find-location'">
@@ -150,6 +145,17 @@
                                     [services]="form.get(field.findLocationField)?.value"
                                     [field]="field"
               ></xuilib-find-location>
+            </ng-container>
+            <ng-container *ngSwitchCase="'find-task-name'">
+              <xuilib-find-task-name subTitle="" (taskNameSelected)="updateTaskNameControls($event, field)"
+                                  (taskNameFieldChanged)="inputChanged(field)"
+                                  [submitted]="submitted"
+                                  [disabled]="disabled(field, form)"
+                                  [domain]="form.get(field.domainField)?.value"
+                                  [findTaskNameGroup]="form"
+                                  [selectedTaskName]="form.get(field.name).value.taskName"
+                                  [userIncluded]="false"
+              ></xuilib-find-task-name>
             </ng-container>
             <ng-container *ngSwitchCase="'find-service'">
               <xuilib-find-service (serviceFieldChanged)="inputChanged(field)"
@@ -182,7 +188,6 @@
         </div>
       </ng-container>
     </ng-container>
-
   </div>
   <hr class="govuk-section-break govuk-section-break--m"/>
   <div class="govuk-grid-row">
