@@ -164,6 +164,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (form.valid) {
       this._settings = {
         id: this.config.id,
+        idamId: this.filterService.getUserId(),
         fields: this.getSelectedValues(form.value, this.config)
       };
       this.filterService.givenErrors.next(null);
