@@ -1,8 +1,15 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkSelectComponent } from './gov-uk-select.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovUkSelectComponent', () => {
   let component: GovUkSelectComponent;
@@ -13,7 +20,7 @@ describe('GovUkSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkSelectComponent ],
+      declarations: [ GovUkSelectComponent, RpxTranslateMockPipe ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
@@ -48,5 +55,4 @@ describe('GovUkSelectComponent', () => {
   it('should have content of the option item label element', () => {
     expect(fixture.debugElement.nativeElement.textContent).toContain('label-item');
   });
-
 });

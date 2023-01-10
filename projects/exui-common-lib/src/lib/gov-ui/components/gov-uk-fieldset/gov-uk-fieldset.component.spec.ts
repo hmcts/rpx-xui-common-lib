@@ -1,8 +1,15 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkFieldsetComponent } from './gov-uk-fieldset.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovUkFieldsetComponent', () => {
   let component: GovUkFieldsetComponent;
@@ -11,9 +18,9 @@ describe('GovUkFieldsetComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule],
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [  GovUkFieldsetComponent ],
+      imports: [ FormsModule, ReactiveFormsModule ],
+      schemas: [ NO_ERRORS_SCHEMA ],
+      declarations: [ GovUkFieldsetComponent, RpxTranslateMockPipe ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
@@ -47,5 +54,4 @@ describe('GovUkFieldsetComponent', () => {
     const header = fixture.debugElement.query(By.css('h1'));
     expect(header).toBeFalsy();
   });
-
 });

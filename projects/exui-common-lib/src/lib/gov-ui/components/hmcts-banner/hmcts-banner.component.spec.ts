@@ -1,6 +1,14 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsBannerComponent } from './hmcts-banner.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HmctsBannerComponent', () => {
   let component: HmctsBannerComponent;
@@ -8,10 +16,11 @@ describe('HmctsBannerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HmctsBannerComponent ],
+      declarations: [ HmctsBannerComponent, RpxTranslateMockPipe ],
       imports: [
         RouterTestingModule
-      ]
+      ],
+      providers: []
     })
     .compileComponents();
   }));
@@ -40,5 +49,4 @@ describe('HmctsBannerComponent', () => {
     const message =  fixture.nativeElement.querySelector('.hmcts-banner__message');
     expect(message.textContent).toContain('message');
   });
-
 });

@@ -4,7 +4,7 @@
       <xuilib-gov-label [config]="config"></xuilib-gov-label>
 
       <span *ngIf="config.hint" [id]="config.id +'-hint'" class="govuk-hint">
-          {{config.hint}}
+          {{config.hint | rpxTranslate}}
       </span>
 
       <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
@@ -16,4 +16,4 @@
              [id]="config.id" [name]="config.name"
              [attr.aria-describedby]="setDescribedBy()"
              type="file">
-    </div>
+</div>

@@ -16,7 +16,7 @@
                           (searchLocationChanged)="onSearchInputChanged()"
                           [locationType]="'case-management'"></exui-search-location>
     <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button" data-module="govuk-button" *ngIf="enableAddLocationButton">
-      Add location
+      {{'Add location' | rpxTranslate}}
     </a>
   </div>
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">

@@ -1,9 +1,10 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.6-angular-upgrade-11-welsh",
+  "version": "2.1.6-welsh-translation-v2",
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^3.2.1",
+    "rpx-xui-translation": "^0.1.1"
   },
   "publishConfig": {
     "access": "public"

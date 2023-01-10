@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterContentChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {FilterConfig, FilterError, FilterFieldConfig, FilterSetting} from '../../models';
@@ -12,12 +12,12 @@ import {getValues, maxSelectedValidator, minSelectedValidator} from './generic-f
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class GenericFilterComponent implements OnInit, OnDestroy {
+export class GenericFilterComponent implements OnInit, OnDestroy, AfterContentChecked {
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
 
-  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
+  constructor(private readonly ref: ChangeDetectorRef, private readonly filterService: FilterService, private readonly fb: FormBuilder) {
   }
 
   // tslint:disable-next-line:variable-name
@@ -77,6 +77,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.mergeDefaultFields(this.settings);
     this.buildForm(this.config, this.settings);
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
+  }
+
+  // checks the data projected into the component
+  public ngAfterContentChecked(): void {
+    this.ref.detectChanges();
   }
 
   public ngOnDestroy(): void {

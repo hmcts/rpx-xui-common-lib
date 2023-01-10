@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.6-angular-upgrade-11-welsh",
+  "version": "2.1.6-welsh-translation-v2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
@@ -38,6 +38,7 @@
     "govuk-frontend": "4.0.1",
     "launchdarkly-js-client-sdk": "^2.15.2",
     "ngx-pagination": "^3.2.1",
+    "rpx-xui-translation": "^0.1.1",
     "rxjs": "~6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.6"

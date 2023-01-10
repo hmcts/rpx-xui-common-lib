@@ -1,8 +1,15 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkCheckboxComponent } from './gov-uk-checkbox.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovUkCheckboxComponent', () => {
   let component: GovUkCheckboxComponent;
@@ -13,7 +20,7 @@ describe('GovUkCheckboxComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ GovUkCheckboxComponent ],
+      declarations: [ GovUkCheckboxComponent, RpxTranslateMockPipe ],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
