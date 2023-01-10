@@ -2,6 +2,6 @@
 
 <mat-autocomplete #dropdown="matAutocomplete" [displayWith]="displayValue" autoActiveFirstOption (optionSelected)="onSelected($event)">
   <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
-    {{ user.firstName | rpxTranslate }} {{ user.lastName | rpxTranslate }} - {{ user.email }}
+    {{ user.firstName }} {{ user.lastName }} - {{ user.email }}
   </mat-option>
 </mat-autocomplete>
