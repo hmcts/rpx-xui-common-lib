@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.19-region-filter-changes",
+  "version": "1.7.19-region-filter-changes-1",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",
