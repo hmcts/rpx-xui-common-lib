@@ -85,6 +85,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const services = this.config.fields.find(field => field.name === 'user-services');
     if (services) {
       this.startFilterSkillsByServices(this.form, services);
+      this.initValuesFromCacheForSkillsByServices();
     }
   }
 
@@ -410,6 +411,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       }
       formArray.push(new FormControl(checked));
     }
+
     return formArray;
   }
 
@@ -466,6 +468,27 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
+  public initValuesFromCacheForSkillsByServices() {
+    const cachedValues = this.filteredSkillsByServicesCheckbox.map(skill => {
+      let selected = false;
+
+      if (this.settings && this.settings.fields) {
+        let isSelectedUserSkill: number;
+        const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
+        if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
+          isSelectedUserSkill = selectedUserSkills.value.findIndex(val => {
+            return String(val) === String(skill.key);
+          });
+          selected = isSelectedUserSkill !== -1;
+        }
+      }
+
+      return selected;
+    });
+
+    this.form.get('user-skills').setValue(cachedValues);
+  }
+
   public filterSkillsByServices(services: string[], config: FilterConfig) {
     this.filteredSkillsByServices = [];
     this.filteredSkillsByServicesCheckbox = [];
@@ -503,9 +526,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         userSkillsCheckboxField.options = [];
         userSkillsCheckboxField.options = this.filteredSkillsByServicesCheckbox;
 
-        (this.form.get('user-skills') as FormArray)['controls'] = this.filteredSkillsByServicesCheckbox.map(() => new FormControl());
+        this.form.setControl('user-skills', new FormArray([]));
+        this.filteredSkillsByServicesCheckbox.forEach(() => {
+          (this.form.get('user-skills') as FormArray).push(new FormControl(false));
+        });
 
-        this.form.get('user-skills').setValue(this.filteredSkillsByServicesCheckbox.map(skill => {
+        const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
           let selected = false;
           if (this.settings && this.settings.fields) {
             if (this.previousSelectedNestedCheckbox.length > 0) {
@@ -517,14 +543,23 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
               isSelectedUserSkill = selectedUserSkills.value.findIndex(val => Number(val) === Number(skill.key));
               selected = isSelectedUserSkill !== -1;
             }
-            return selected;
+            if (this.previousSelectedNestedCheckbox.length > 0) {
+              // Pick up from previous selected
+              selected = this.previousSelectedNestedCheckbox.includes(String(skill.key));
+            }
           }
-        }));
+
+          return selected;
+        });
+
+        this.form.get('user-skills').setValue(prevValues);
 
         return this.filteredSkillsByServicesCheckbox;
       }
     }
+
     this.filteredSkillsByServices = this.sortGroupOptions(this.filteredSkillsByServices);
+
     return this.filteredSkillsByServices;
   }
 
