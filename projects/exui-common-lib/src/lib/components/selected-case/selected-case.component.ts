@@ -17,6 +17,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   @Input() public selectedUser: UserDetails;
   @Input() public opened = false;
   @Input() public removeUserFromCaseToggleOn: boolean;
+  @Input() public caseCount: number;
 
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<any>();
