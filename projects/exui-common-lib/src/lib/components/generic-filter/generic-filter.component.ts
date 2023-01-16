@@ -469,10 +469,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public initValuesFromCacheForSkillsByServices() {
-    const cachedValues = this.filteredSkillsByServicesCheckbox.map(skill => {
-      let selected = false;
-
-      if (this.settings && this.settings.fields) {
+    if (this.settings && this.settings.fields) {
+      const cachedValues = this.filteredSkillsByServicesCheckbox.map(skill => {
+        let selected = false;
         let isSelectedUserSkill: number;
         const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
         if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
@@ -481,12 +480,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           });
           selected = isSelectedUserSkill !== -1;
         }
-      }
 
-      return selected;
-    });
+        return selected;
+      });
 
-    this.form.get('user-skills').setValue(cachedValues);
+      this.form.get('user-skills').setValue(cachedValues);
+    }
   }
 
   public filterSkillsByServices(services: string[], config: FilterConfig) {
