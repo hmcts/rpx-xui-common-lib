@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.7.49-wa4-update-user-3",
+  "version": "1.7.49-wa4-update-user-4",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib",

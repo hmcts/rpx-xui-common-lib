@@ -67,6 +67,7 @@ export interface FilterFieldConfig {
   groupOptions?: GroupOptions[];
   maxlength?: number;
   defaultOption?: FilterConfigOption;
+  readonly?: boolean;
 }
 
 export interface GroupOptions {
