@@ -77,7 +77,7 @@ export class SearchJudicialsComponent implements OnInit {
         return apiFilter;
       })
     ).subscribe(judicial => {
-      if (term === judicial.knownAs) {
+      if (term === judicial.fullName) {
         this.formGroup.controls.selectedFormControl.setValue(judicial);
         this.displayedJudicials = [];
         this.judicialChanged.emit(judicial);
@@ -112,7 +112,7 @@ export class SearchJudicialsComponent implements OnInit {
   }
 
   public getDisplayName(selectedJudicial: JudicialUserModel): string {
-    return `${selectedJudicial.knownAs} (${selectedJudicial.emailId})`;
+    return `${selectedJudicial.fullName} (${selectedJudicial.emailId})`;
   }
 
   public searchJudicials(term: string, serviceId: string): Observable<JudicialUserModel[]> {
