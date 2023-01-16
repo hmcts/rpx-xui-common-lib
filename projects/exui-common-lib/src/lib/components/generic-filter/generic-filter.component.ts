@@ -281,7 +281,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.startFilterSkillsByServices(form, field);
     } else if (field.name === 'user-skills') {
       if (isChecked) {
-        const selectedIndex = field.options.findIndex(option => option.key === event.target.value);
+        const selectedIndex = field.options.findIndex(option => Number(option.key) === Number(event.target.value));
         const selectedCheckbox = this.form.get('user-skills').value;
         selectedCheckbox[selectedIndex] = true;
         this.form.get('user-skills').setValue(selectedCheckbox);
@@ -533,10 +533,20 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
         const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
           let selected = false;
-
-          if (this.previousSelectedNestedCheckbox.length > 0) {
-            // Pick up from previous selected
-            selected = this.previousSelectedNestedCheckbox.includes(String(skill.key));
+          if (this.settings && this.settings.fields) {
+            if (this.previousSelectedNestedCheckbox.length > 0) {
+              selected = this.previousSelectedNestedCheckbox.includes(skill.key);
+            }
+            let isSelectedUserSkill: number;
+            const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
+            if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
+              isSelectedUserSkill = selectedUserSkills.value.findIndex(val => Number(val) === Number(skill.key));
+              selected = isSelectedUserSkill !== -1;
+            }
+            if (this.previousSelectedNestedCheckbox.length > 0) {
+              // Pick up from previous selected
+              selected = this.previousSelectedNestedCheckbox.includes(String(skill.key));
+            }
           }
 
           return selected;
