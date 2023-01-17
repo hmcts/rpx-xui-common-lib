@@ -10,6 +10,15 @@ describe('FilterService', () => {
       value: ['value1', 'value2', 'value3']
     }]
   };
+  const filterSetting1: FilterSetting = {
+    id: 'testId1',
+    idamId: '1234',
+    fields: [{
+      name: 'field_11',
+      value: ['value11', 'value12', 'value13']
+    }]
+  };
+
   let service: FilterService;
 
   beforeEach(() => TestBed.configureTestingModule({}));
@@ -45,17 +54,28 @@ describe('FilterService', () => {
     });
   });
 
-  it('should check if session persistence and call deleteItem if exists and calling clearSessionAndLocalPersistence', () => {
-    const persistence: FilterPersistence = 'session';
+  it('isSameUser - return false if filter idamId is not defined', () => {
+    const persistence: FilterPersistence = 'local';
     service.persist(filterSetting, persistence);
-    service.clearSessionAndLocalPersistance(filterSetting.id);
-    expect(sessionStorage.getItem(filterSetting.id)).toBeNull();
+    spyOn(service, 'getUserId').and.returnValue('1234');
+    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting));
+    expect(service.isSameUser('testId')).toEqual(false);
   });
 
-  it('should delete localStorage persistence if exists and calling clearSessionAndLocalPersistence', () => {
-    const persistence: FilterPersistence = 'session';
+  it('isSameUser - return false if filter idamId is not sane as the user id', () => {
+    const persistence: FilterPersistence = 'local';
     service.persist(filterSetting, persistence);
-    service.clearSessionAndLocalPersistance(filterSetting.id);
-    expect(localStorage.getItem(filterSetting.id)).toBeNull();
+    spyOn(service, 'getUserId').and.returnValue('5678');
+    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting));
+    expect(service.isSameUser('testId')).toEqual(false);
   });
+
+  it('isSameUser - return true if filter idamId is same as user id', () => {
+    const persistence: FilterPersistence = 'local';
+    service.persist(filterSetting1, persistence);
+    spyOn(service, 'getUserId').and.returnValue('1234');
+    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting1));
+    expect(service.isSameUser('testId1')).toEqual(false);
+  });
+
 });

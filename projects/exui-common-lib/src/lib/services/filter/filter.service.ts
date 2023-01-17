@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {FilterError, FilterPersistence, FilterSetting} from '../../models';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { FilterError, FilterPersistence, FilterSetting } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +34,18 @@ export class FilterService {
       return JSON.parse(sessionStorage.getItem(id));
     }
     if (localStorage.getItem(id)) {
-      return JSON.parse(localStorage.getItem(id));
+      if (this.isSameUser(id)) {
+        return JSON.parse(window.localStorage.getItem(id));
+      } else {
+        return null;
+      }
     }
     return null;
+  }
+
+  public isSameUser(id: string): boolean {
+    const filterSetting: FilterSetting = JSON.parse(window.localStorage.getItem(id));
+    return !!filterSetting.idamId && filterSetting.idamId === this.getUserId();
   }
 
   public getStream(id: string): Observable<FilterSetting> {
@@ -58,7 +67,8 @@ export class FilterService {
   }
 
   private persistLocal(setting: FilterSetting): void {
-    localStorage.setItem(setting.id, JSON.stringify(setting));
+    setting.idamId = this.getUserId();
+    window.localStorage.setItem(setting.id, JSON.stringify(setting));
   }
 
   private persistSession(setting: FilterSetting): void {
@@ -73,5 +83,15 @@ export class FilterService {
     if (this.streams[setting.id]) {
       this.streams[setting.id].next(setting);
     }
+  }
+
+  public getUserId(): string {
+    const userInfoStr = window.sessionStorage.getItem('userDetails');
+    let userId: string;
+    if (userInfoStr) {
+      const userInfo = JSON.parse(userInfoStr);
+      userId = userInfo.id ? userInfo.id : userInfo.uid;
+    }
+    return userId;
   }
 }

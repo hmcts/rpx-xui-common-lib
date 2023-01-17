@@ -68,6 +68,24 @@
                 </div>
               </div>
             </ng-container>
+            <ng-container *ngSwitchCase="'nested-checkbox'">
+              <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+                <div *ngFor="let item of filteredSkillsByServicesCheckbox; let i = index" class="govuk-checkboxes__item">
+                  <input type="checkbox" class="govuk-checkboxes__input"
+                         [attr.disabled]="disabled(field, form)"
+                         [formControlName]="i"
+                         (change)="toggleSelectAll($event, form, item, field)"
+                         [value]="item.key" [id]="'checkbox_' + item.key"
+                         [name]="'checkbox_' + item.key"
+                  />
+                  <label
+                    [for]="'checkbox_' + item.key"
+                    class="govuk-label govuk-checkboxes__label"
+                    [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
+                  >{{item.label}}</label>
+                </div>
+              </div>
+            </ng-container>
             <ng-container *ngSwitchCase="'checkbox-large'">
               <div class="govuk-checkboxes" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
                 <div *ngFor="let item of field.options; let i = index" class="govuk-checkboxes__item">
@@ -111,6 +129,7 @@
                                   [findPersonGroup]="form"
                                   [selectedPerson]="form.get(field.name)?.value?.email"
                                   [userIncluded]="false"
+                                  [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
               ></xuilib-find-person>
             </ng-container>
             <ng-container *ngSwitchCase="'find-location'">
@@ -168,32 +187,6 @@
           </div>
         </div>
       </ng-container>
-      <ng-container *ngSwitchCase="'find-person'">
-      <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
-                          (personFieldChanged)="inputChanged(field)"
-                          [submitted]="submitted"
-                          [disabled]="disabled(field, form)"
-                          [domain]="form.get(field.domainField)?.value"
-                          [findPersonGroup]="form"
-                          [selectedPerson]="form.get(field.name)?.value?.email"
-                          [userIncluded]="false"
-                          [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
-      ></xuilib-find-person>
-    </ng-container>
-    <ng-container *ngSwitchCase="'find-location'">
-      <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
-                            [form]="form"
-                            [fields]="config.fields"
-                            [locationTitle]="field.locationTitle"
-                            [enableAddLocationButton]="field.enableAddLocationButton"
-                            [disabled]="disabled(field, form)"
-                            [disableInputField]="field.disable"
-                            [selectedLocations]="form.get(field.name)?.value"
-                            [submitted]="submitted"
-                            [services]="form.get(field.findLocationField)?.value"
-                            [field]="field"
-      ></xuilib-find-location>
-    </ng-container>
     </ng-container>
   </div>
   <hr class="govuk-section-break govuk-section-break--m"/>

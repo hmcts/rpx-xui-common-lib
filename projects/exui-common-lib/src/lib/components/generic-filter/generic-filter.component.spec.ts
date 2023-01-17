@@ -20,6 +20,7 @@ describe('GenericFilterComponent', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   const mockFilterService: any = {
     getStream: () => of(null),
+    getUserId: jasmine.createSpy().and.returnValue('1234'),
     get: jasmine.createSpy(),
     persist: jasmine.createSpy(),
     givenErrors: {
@@ -147,6 +148,7 @@ describe('GenericFilterComponent', () => {
 
     const result = {
       id: 'examples',
+      idamId: '1234',
       fields: [
         {
           name: 'example1',
@@ -164,6 +166,7 @@ describe('GenericFilterComponent', () => {
       reset: false,
     };
     expect(component.form.valid).toBeTruthy();
+    mockFilterService.getUserId.and.returnValue('1234');
     expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
   });
 

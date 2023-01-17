@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { BookingCheckType } from './location.model';
 import { PersonRole } from './person.model';
 
-export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select' | 'find-task-name';
+export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select' | 'nested-checkbox' | 'find-task-name';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
@@ -80,6 +80,7 @@ export interface GroupOptions {
 
 export interface FilterSetting {
   id: string;
+  idamId?: string;
   reset?: boolean;
   fields: { name: string, value: any[] }[];
 }
