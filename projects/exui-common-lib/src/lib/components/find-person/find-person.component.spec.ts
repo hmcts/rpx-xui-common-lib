@@ -1,10 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
-import { of } from 'rxjs';
-import { Person, PersonRole } from '../../models';
-import { FindAPersonService } from '../../services/find-person/find-person.service';
-import { FindPersonComponent } from './find-person.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
+import {of} from 'rxjs';
+import {Person, PersonRole} from '../../models';
+
+import {FindAPersonService} from '../../services/find-person/find-person.service';
+import {FindPersonComponent} from './find-person.component';
 
 describe('FindPersonComponent', () => {
   let component: FindPersonComponent;
@@ -77,7 +78,6 @@ describe('FindPersonComponent', () => {
     const displayName = component.getDisplayName(nonJudicialPerson);
     expect(displayName).toEqual('First Last (first.last@email.com)');
   });
-
   it('getDisplayName Non Judicial with no email', () => {
     const nonJudicialPerson = {
       id: 'someId',
@@ -87,21 +87,19 @@ describe('FindPersonComponent', () => {
     const displayName = component.getDisplayName(nonJudicialPerson);
     expect(displayName).toEqual('First Last');
   });
-
   it('getDisplayName Judicial', () => {
     const judicial = {
       id: 'someId',
       name: 'First Last',
       email: 'first.last@email.com',
       domain: PersonRole.JUDICIAL,
-      knownAs: 'Lead Judge',
-      fullName: 'Lead Judge First Last'
+      knownAs: 'Lead Judge'
     };
     const displayName = component.getDisplayName(judicial);
-    expect(displayName).toEqual('Lead Judge First Last (first.last@email.com)');
+    expect(displayName).toEqual('Lead Judge (first.last@email.com)');
   });
 
-  it('getDisplayName Judicial with no full name', () => {
+  it('getDisplayName Judicial with no KnownAs', () => {
     const judicial = {
       id: 'someId',
       name: 'First Last',
@@ -111,6 +109,7 @@ describe('FindPersonComponent', () => {
     const displayName = component.getDisplayName(judicial);
     expect(displayName).toEqual('First Last (first.last@email.com)');
   });
+
 
   it('can filter through both judicial and caseworkers', () => {
     const mockPersonOne = {
@@ -142,4 +141,5 @@ describe('FindPersonComponent', () => {
     component.onInput();
     expect(component.personFieldChanged.emit).toHaveBeenCalled();
   });
+
 });

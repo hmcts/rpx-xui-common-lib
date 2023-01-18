@@ -49,7 +49,6 @@ describe('SelectedCaseComponent', () => {
         }
       }
     });
-    component.caseCount = 2;
     fixture.detectChanges();
   });
 
