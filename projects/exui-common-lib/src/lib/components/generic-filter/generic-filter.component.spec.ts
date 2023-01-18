@@ -8,10 +8,10 @@ import { FilterService } from '../../services';
 import { LocationService } from '../../services/locations/location.service';
 import { FindLocationComponent } from '../find-location/find-location.component';
 import { FindPersonComponent } from '../find-person/find-person.component';
-import { SearchLocationComponent } from '../search-location/search-location.component';
-import { GenericFilterComponent } from './generic-filter.component';
 import { FindServiceComponent } from '../find-service/find-service.component';
+import { SearchLocationComponent } from '../search-location/search-location.component';
 import { SearchServiceComponent } from '../search-service/search-service.component';
+import { GenericFilterComponent } from './generic-filter.component';
 
 
 describe('GenericFilterComponent', () => {
