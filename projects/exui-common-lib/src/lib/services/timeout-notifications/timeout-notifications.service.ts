@@ -58,7 +58,7 @@ export class TimeoutNotificationsService {
    */
   public initialise(config: TimeoutNotificationConfig): void {
 
-    const INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
+    const DOCUMENT_INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
 
     const MINUTES = ' minutes';
     const SECONDS = ' seconds';
@@ -76,8 +76,8 @@ export class TimeoutNotificationsService {
 
     this.idle.setTimeout(idleModalDisplayTimeInSeconds);
 
-    const docInterrupts = new DocumentInterruptSource(INTERRUPTS);
-    const windowInterrupts = new WindowInterruptSource(INTERRUPTS);
+    const docInterrupts = new DocumentInterruptSource(DOCUMENT_INTERRUPTS);
+    const windowInterrupts = new WindowInterruptSource(DOCUMENT_INTERRUPTS);
     this.idle.setInterrupts([docInterrupts, windowInterrupts]);
 
     this.idle.onTimeout.subscribe(() => {
@@ -90,6 +90,8 @@ export class TimeoutNotificationsService {
     ).subscribe((countdown) => {
       this.eventEmitter.next({eventType: COUNTDOWN_EVENT, readableCountdown: countdown});
     });
+    this.idle.onIdleStart.subscribe(() => console.log('You\'ve gone idle!'));
+    this.idle.onIdleEnd.subscribe(() => console.log('You\'re no longer idle!'));
 
     this.keepalive.interval(15);
     this.keepalive.onPing.subscribe(() => {
