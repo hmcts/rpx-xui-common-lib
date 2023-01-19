@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {DocumentInterruptSource, Idle, } from '@ng-idle/core';
+import {DocumentInterruptSource, Idle, WindowInterruptSource} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
 import {Observable, Subject} from 'rxjs';
 import {
@@ -58,7 +58,7 @@ export class TimeoutNotificationsService {
    */
   public initialise(config: TimeoutNotificationConfig): void {
 
-    const DOCUMENT_INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
+    const INTERRUPTS = 'mousedown keydown DOMMouseScroll mousewheel touchstart touchmove scroll';
 
     const MINUTES = ' minutes';
     const SECONDS = ' seconds';
@@ -76,8 +76,9 @@ export class TimeoutNotificationsService {
 
     this.idle.setTimeout(idleModalDisplayTimeInSeconds);
 
-    const interrupt = new DocumentInterruptSource(DOCUMENT_INTERRUPTS);
-    this.idle.setInterrupts([interrupt]);
+    const docInterrupts = new DocumentInterruptSource(INTERRUPTS);
+    const windowInterrupts = new WindowInterruptSource(INTERRUPTS);
+    this.idle.setInterrupts([docInterrupts, windowInterrupts]);
 
     this.idle.onTimeout.subscribe(() => {
       this.eventEmitter.next({eventType: SIGNOUT_EVENT});
@@ -90,6 +91,7 @@ export class TimeoutNotificationsService {
       this.eventEmitter.next({eventType: COUNTDOWN_EVENT, readableCountdown: countdown});
     });
 
+    this.keepalive.interval(15);
     this.keepalive.onPing.subscribe(() => {
       this.eventEmitter.next({eventType: KEEP_ALIVE_EVENT});
     });
