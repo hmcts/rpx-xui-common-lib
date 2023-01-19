@@ -27,7 +27,7 @@ describe('CaseSharingStateService', () => {
     service.setCases(sharedCases);
     let allCases: SharedCase[] = [];
     service.state.subscribe(shareCases => allCases = shareCases);
-    expect(allCases.length).toBe(1);
+    expect(allCases.length === 1).toBeTruthy();
   });
 
   it('should request share', () => {
@@ -44,125 +44,27 @@ describe('CaseSharingStateService', () => {
     };
     service.setCases(sharedCases);
     const newSharedCase: SharedCase[] = service.requestShare(user);
-    expect(newSharedCase[0].pendingShares.length).toBe(1);
+    expect(newSharedCase[0].pendingShares.length === 1).toBeTruthy();
   });
 
-  it('should request unshare', () => {
+  it('should request un share', () => {
+    sharedCases  = [{
+      caseId: '9417373995765133',
+      sharedWith: [],
+      caseTitle: 'Sam Green Vs Williams Lee'
+    }];
     const user: UserDetails = {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com'
     };
-    sharedCases = [
-      {
-        caseId: '9417373995765133',
-        sharedWith: [user],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      }
-    ];
     service.setCases(sharedCases);
-    service.requestUnshare(user, '9417373995765133');
+    service.requestUnshare('9417373995765133', user);
     let allCases: SharedCase[] = [];
     service.state.subscribe(shareCases => allCases = shareCases);
 
-    expect(allCases[0].pendingUnshares.length).toBe(1);
-  });
-
-  it('should request unshare from all cases', () => {
-    const user: UserDetails = {
-      idamId : 'pus111111',
-      firstName: 'JamesPUS',
-      lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
-    };
-    sharedCases = [
-      {
-        caseId: '9417373995765133',
-        sharedWith: [user],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      },
-      {
-        caseId: '9417373995765134',
-        sharedWith: [user],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      }
-    ];
-    service.setCases(sharedCases);
-    service.requestUnshare(user);
-    let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
-
-    expect(allCases[0].pendingUnshares.length).toBe(1);
-    expect(allCases[1].pendingUnshares.length).toBe(1);
-  });
-
-  it('should undo pending share for a new user', () => {
-    const user: UserDetails = {
-      idamId : 'pus111111',
-      firstName: 'JamesPUS',
-      lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
-    };
-    const user2: UserDetails = {
-      idamId : 'pus111112',
-      firstName: 'JamesPUS',
-      lastName: 'PriestPUS',
-      email: 'jamespus.priestpus2@test.com'
-    };
-    sharedCases = [
-      {
-        caseId: '9417373995765133',
-        pendingShares: [user],
-        pendingUnshares: [user2],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      }
-    ];
-    service.setCases(sharedCases);
-    service.requestUnshare(user, '9417373995765133');
-    let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
-
-    expect(allCases[0].pendingShares.length).toBe(0);
-    expect(allCases[0].pendingUnshares.length).toBe(1);
-  });
-
-  it('should undo all pending shares for a new user', () => {
-    const user: UserDetails = {
-      idamId : 'pus111111',
-      firstName: 'JamesPUS',
-      lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
-    };
-    const user2: UserDetails = {
-      idamId : 'pus111112',
-      firstName: 'JamesPUS',
-      lastName: 'PriestPUS',
-      email: 'jamespus.priestpus2@test.com'
-    };
-    sharedCases = [
-      {
-        caseId: '9417373995765133',
-        pendingShares: [user],
-        pendingUnshares: [user2],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      },
-      {
-        caseId: '9417373995765134',
-        pendingShares: [user],
-        pendingUnshares: [user2],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      }
-    ];
-    service.setCases(sharedCases);
-    service.requestUnshare(user);
-    let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
-
-    expect(allCases[0].pendingShares.length).toBe(0);
-    expect(allCases[0].pendingUnshares.length).toBe(1);
-    expect(allCases[1].pendingShares.length).toBe(0);
-    expect(allCases[1].pendingUnshares.length).toBe(1);
+    expect(allCases[0].pendingUnshares.length === 1).toBeTruthy();
   });
 
   it('should cancel a user', () => {
@@ -187,40 +89,19 @@ describe('CaseSharingStateService', () => {
     service.requestCancel('9417373995765133', user);
     let allCases: SharedCase[] = [];
     service.state.subscribe(shareCases => allCases = shareCases);
-    expect(allCases[0].pendingUnshares.length).toBe(0);
+    expect(allCases[0].pendingUnshares.length === 0).toBeTruthy();
   });
 
 
-  it('should remove a case when multiple shared cases exists', () => {
-    sharedCases  = [
-      {
-        caseId: '9417373995765133',
-        sharedWith: [],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      },
-      {
-        caseId: '7898764567832340',
-        sharedWith: [],
-        caseTitle: 'James vs Jane'
-      }
-    ];
+  it('should remove a case', () => {
+    sharedCases  = [{
+      caseId: '9417373995765133',
+      sharedWith: [],
+      caseTitle: 'Sam Green Vs Williams Lee'
+    }];
 
     service.setCases(sharedCases);
     service.removeCase('9417373995765133');
-    expect(service.getCases().length).toBe(1);
-  });
-
-  it('should not remove a case when only one shared case exists', () => {
-    sharedCases  = [
-      {
-        caseId: '9417373995765133',
-        sharedWith: [],
-        caseTitle: 'Sam Green Vs Williams Lee'
-      }
-    ];
-
-    service.setCases(sharedCases);
-    service.removeCase('9417373995765133');
-    expect(service.getCases().length).toBe(1);
+    expect(service.getCases().length === 0).toBeTruthy();
   });
 });

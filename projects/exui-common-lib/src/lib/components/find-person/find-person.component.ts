@@ -100,8 +100,8 @@ export class FindPersonComponent implements OnInit, OnDestroy {
     if (!selectedPerson) {
       return '';
     }
-    if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.fullName) {
-      return `${selectedPerson.fullName} (${selectedPerson.email})`;
+    if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
+      return `${selectedPerson.knownAs} (${selectedPerson.email})`;
     }
     return selectedPerson.email ? `${selectedPerson.name} (${selectedPerson.email})` : selectedPerson.name;
   }

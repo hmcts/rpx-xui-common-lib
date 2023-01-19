@@ -68,39 +68,24 @@ export class CaseSharingStateService {
     return newSharedCases;
   }
 
-  public requestUnshare(user: UserDetails, caseId?: string): SharedCase[] {
+  public requestUnshare(caseId: string, user: UserDetails): void {
     const newSharedCases: SharedCase[] = [];
     for (const sharedCase of this.caseState) {
-      // If no caseId, then request unshare from all shared cases
-      if (caseId === undefined || sharedCase.caseId === caseId) {
+      if (sharedCase.caseId === caseId) {
         if (!sharedCase.pendingUnshares) {
           sharedCase.pendingUnshares = [];
         }
         const newPendingUnshares = sharedCase.pendingUnshares.slice();
-        // If the user is pending shared access, just remove them from pendingShares
-        let newPendingShares;
-        let indexOfPreviouslyAddedUser = -1;
-        if (sharedCase.pendingShares) {
-          indexOfPreviouslyAddedUser = sharedCase.pendingShares.findIndex(u => u.idamId === user.idamId);
-          if (indexOfPreviouslyAddedUser > -1) {
-            newPendingShares = sharedCase.pendingShares.slice();
-            newPendingShares.splice(indexOfPreviouslyAddedUser, 1);
-          }
-        }
-        // If the user does not exist in pendingShares, and already has shared access (i.e. exists in sharedWith),
-        // request removal of shared access
-        if (indexOfPreviouslyAddedUser === -1 && sharedCase.sharedWith && sharedCase.sharedWith.findIndex(
-          u => u.idamId === user.idamId) > -1) {
+        if (newPendingUnshares) {
           if (!newPendingUnshares.some(u => u.email === user.email)) {
             newPendingUnshares.push(user);
           }
+        } else {
+          newPendingUnshares.push(user);
         }
         const newSharedCase = {
           ...sharedCase,
-          pendingUnshares: newPendingUnshares,
-          ...(newPendingShares && {
-            pendingShares: newPendingShares
-          })
+          pendingUnshares: newPendingUnshares
         };
         newSharedCases.push(newSharedCase);
       } else {
@@ -108,7 +93,7 @@ export class CaseSharingStateService {
       }
     }
     this.subject.next(newSharedCases);
-    return newSharedCases;
+    return;
   }
 
   public requestCancel(caseId: string, user: UserDetails): void {
@@ -150,13 +135,11 @@ export class CaseSharingStateService {
   }
 
   public removeCase(caseId: string): void {
-    if (this.caseState.length > 1) {
-      for (let i = 0, l = this.caseState.length; i < l; i++) {
-        if (this.caseState[i].caseId === caseId) {
-          this.caseState.splice(i, 1);
-          this.subject.next(this.caseState);
-          return;
-        }
+    for (let i = 0, l = this.caseState.length; i < l; i++) {
+      if (this.caseState[i].caseId === caseId) {
+        this.caseState.splice(i, 1);
+        this.subject.next(this.caseState);
+        return;
       }
     }
   }

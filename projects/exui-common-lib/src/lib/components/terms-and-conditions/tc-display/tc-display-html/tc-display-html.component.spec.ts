@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TcDisplayHtmlComponent } from './tc-display-html.component';
 
@@ -6,7 +6,7 @@ describe('TcDisplayHtmlComponent', () => {
   let component: TcDisplayHtmlComponent;
   let fixture: ComponentFixture<TcDisplayHtmlComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TcDisplayHtmlComponent ]
     })

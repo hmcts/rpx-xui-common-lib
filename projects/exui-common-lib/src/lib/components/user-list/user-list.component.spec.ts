@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HmctsPaginationComponent } from '../../gov-ui/components/hmcts-pagination/hmcts-pagination.component';
@@ -9,7 +9,7 @@ describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, NgxPaginationModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -34,7 +34,7 @@ describe('UserListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call onUserClick when the link clicked', waitForAsync(() => {
+  it('should call onUserClick when the link clicked', async(() => {
     spyOn(component, 'onUserClick');
     fixture.detectChanges();
     const links = fixture.debugElement.nativeElement.querySelector('.govuk-link');

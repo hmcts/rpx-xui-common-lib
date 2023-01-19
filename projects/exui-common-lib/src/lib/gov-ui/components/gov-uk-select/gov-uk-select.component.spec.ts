@@ -1,5 +1,5 @@
 import {  NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkSelectComponent } from './gov-uk-select.component';
@@ -9,7 +9,7 @@ describe('GovUkSelectComponent', () => {
   let fixture: ComponentFixture<GovUkSelectComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],

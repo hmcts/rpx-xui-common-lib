@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
 import { CookieBannerComponent } from './cookie-banner.component';
@@ -11,7 +11,7 @@ describe('CookieBannerComponent', () => {
   let fixture: ComponentFixture<CookieBannerComponent>;
   let cookieService: any;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     cookieService = jasmine.createSpyObj('CookieService', ['setCookie', 'checkCookie', 'getCookie']);
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

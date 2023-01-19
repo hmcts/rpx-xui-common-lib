@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
@@ -10,7 +10,7 @@ describe('ShareCaseConfirmComponent', () => {
   let fixture: ComponentFixture<ShareCaseConfirmComponent>;
   let sharedCases: SharedCase[] = [];
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [ ShareCaseConfirmComponent ],

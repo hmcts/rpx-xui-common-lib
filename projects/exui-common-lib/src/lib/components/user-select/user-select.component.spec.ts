@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserDetails } from '../../models/user-details.model';
@@ -29,7 +29,7 @@ describe('UserSelectComponent', () => {
     }
   ];
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ UserSelectComponent ],
       imports: [ MatAutocompleteModule, ReactiveFormsModule ]
@@ -51,7 +51,7 @@ describe('UserSelectComponent', () => {
     expect(component.displayValue(testUsers[0])).toEqual('Geddy Lee - g.lee@rush.band');
   });
 
-  it('should filter users correctly', waitForAsync(() => {
+  it('should filter users correctly', async(() => {
     component.users = testUsers;
     component.control.setValue('neil');
     fixture.detectChanges();
