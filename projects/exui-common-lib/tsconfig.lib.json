@@ -2,7 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
-    "target": "es2015",
+    "target": "esnext",
+    "declarationMap": true,
     "module": "es2015",
     "moduleResolution": "node",
     "declaration": true,
@@ -19,7 +20,7 @@
     "baseUrl": "../../node_modules"
   },
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
+    "enableIvy": false,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,

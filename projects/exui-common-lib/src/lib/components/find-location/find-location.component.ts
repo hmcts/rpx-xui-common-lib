@@ -23,7 +23,7 @@ export class FindLocationComponent implements OnInit {
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
-  @ViewChild(SearchLocationComponent) public searchLocationComponent: SearchLocationComponent;
+  @ViewChild(SearchLocationComponent, { static: true }) public searchLocationComponent: SearchLocationComponent;
   private pServices: string[] = [];
   private pDisabled: boolean = false;
 
