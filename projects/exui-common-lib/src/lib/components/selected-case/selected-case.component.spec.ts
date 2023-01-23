@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
@@ -10,7 +10,7 @@ describe('SelectedCaseComponent', () => {
   let user: UserDetails;
   let shareCases: SharedCase[] = [];
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SelectedCaseComponent ]
     })
@@ -49,6 +49,7 @@ describe('SelectedCaseComponent', () => {
         }
       }
     });
+    component.caseCount = 2;
     fixture.detectChanges();
   });
 
@@ -76,10 +77,6 @@ describe('SelectedCaseComponent', () => {
         email: 'james.priest@test.com'
     };
     expect(component.trackByUserId(user)).toEqual('U111111');
-  });
-
-  it('should unselect', () => {
-    expect(component.onUnselect).toBeDefined();
   });
 
   it('should deselect', () => {

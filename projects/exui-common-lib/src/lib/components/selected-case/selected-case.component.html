@@ -5,7 +5,12 @@
       <h1 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId }}</h1>
     </div>
     <div class="govuk-grid-column-twenty-percent">
-      <button id="{{buildElementId('btn-deselect-case')}}" class="govuk-button hmcts-button--secondary" (click)="onDeselect(sharedCase)" title="Deselect case">Deselect case</button>
+      <button *ngIf="caseCount > 1"
+        id="{{buildElementId('btn-deselect-case')}}" 
+        class="govuk-button hmcts-button--secondary" 
+        (click)="onDeselect(sharedCase)" 
+        title="Deselect case">Deselect case
+      </button>
     </div>
     <div class="govuk-accordion__section-header govuk-grid-column-five-percent">
       <div class="govuk-accordion__section-heading">
@@ -30,7 +35,7 @@
         <th id="{{buildElementId('name-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">Name</th>
         <th id="{{buildElementId('email-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">Email address</th>
         <th id="{{buildElementId('action-heading')}}" class="govuk-table__header govuk-table-column-actions" scope="col">Actions</th>
-        <th id="{{buildElementId('label-heading')}}" class="govuk-table__header govuk-table-column-label" scope="col">&nbsp;&nbsp;</th>
+        <th id="{{buildElementId('label-heading')}}" class="govuk-table__header govuk-table-column-label" scope="col">Status</th>
       </tr>
       </thead>
       <tbody class="govuk-table__body">
