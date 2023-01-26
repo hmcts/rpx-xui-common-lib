@@ -1,3 +1,11 @@
+<xuilib-hmcts-error-summary
+  [errorMessages]="validationErrors"
+  [header]="'There is a problem'"
+></xuilib-hmcts-error-summary>
+<h1 *ngIf="title" class="govuk-heading-xl govuk-!-margin-top-2">
+  <span *ngIf="fnTitle" class="govuk-caption-xl">{{fnTitle}}</span>
+  {{title}}
+</h1>
 <div id="add-user">
   <div class="govuk-form-group">
     <label class="govuk-label govuk-!-font-weight-bold" for="add-user-input">{{addUserLabel}}</label>
@@ -36,20 +44,22 @@
     </span>
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <select class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
-          <option value="{{user}}" *ngFor="let user of users">{{user.email}}</option>
+        <select [(ngModel)]="selectedUserToRemove" class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
+          <option [ngValue]="null" selected>Select a person</option>
+          <option *ngFor="let user of assignedUsers" [ngValue]="user">{{user.firstName}} {{user.lastName}} - {{user.email}}</option>
         </select>
       </div>
       <div class="govuk-grid-column-one-thirds">
-        <button id="btn-remove-user" class="govuk-button govuk-button--secondary" title="Remove user from selected cases">Remove</button>
+        <button id="btn-remove-user" (click)="removeUser()" class="govuk-button govuk-button--secondary" title="Remove user from selected cases">Remove</button>
       </div>
     </div>
   </div>
 </div>
 
-<div id="cases">
+<div id="cases" [ngClass]="{'govuk-form-group--error': shareCaseErrorMessage.messages && shareCaseErrorMessage.messages.length > 0}">
   <h3 id="title-selected-cases" class="govuk-heading-m">Selected cases</h3>
-  <div *ngIf="shareCases && shareCases.length > 0"  class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+  <xuilib-gov-uk-error-message [config]="selectedCasesErrorMessageConfig" [errorMessage]="shareCaseErrorMessage"></xuilib-gov-uk-error-message>
+  <div *ngIf="shareCases && shareCases.length > 0" class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
     <xuilib-selected-case-list
       [shareCases$]="shareCases$"
       [removeUserFromCaseToggleOn]="removeUserFromCaseToggleOn"
@@ -59,13 +69,14 @@
     </xuilib-selected-case-list>
   </div>
 
-  <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint">
+  <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint"
+    [ngClass]="{'govuk-form-group--error': shareCaseErrorMessage.messages && shareCaseErrorMessage.messages.length > 0}">
     No cases to display.
   </div>
 
 </div>
 
 <div id="share-case-nav" class="govuk-button-group">
-  <button class="govuk-button" data-module="govuk-button" [disabled]="isDisabledContinue()" title="Continue" [routerLink]="confirmLink">Continue</button>
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button" title="Cancel">Cancel</button>
+  <button id="btn-continue" class="govuk-button" data-module="govuk-button" (click)="onContinue()" title="Continue">Continue</button>
+  <button id="btn-cancel" class="govuk-button govuk-button--secondary" data-module="govuk-button" title="Cancel" [routerLink]="cancelLink">Cancel</button>
 </div>

@@ -47,7 +47,11 @@ export class FindLocationComponent implements OnInit {
   @Input()
   public set services(value: string[]) {
     this.pServices = value;
-    const field = this.fields.find(f => f.name === this.field.findLocationField);
+    const field = this.fields.find(f => {
+      if (this.field) {
+        return f.name === this.field.findLocationField;
+      }
+    });
     if (field) {
       if (typeof value === 'string') {
         this.serviceIds = value;
