@@ -93,8 +93,8 @@
                                 [disableInputField]="field.disable"
                                 [selectedLocations]="form.get(field.name)?.value"
                                 [submitted]="submitted"
-                                [services]="form.get(field.findLocationField)?.value"
                                 [field]="field"
+                                [services]="form.get(field.findLocationField)?.value"
           ></xuilib-find-location>
         </ng-container>
         <ng-container *ngSwitchCase="'find-service'">
@@ -104,9 +104,9 @@
                                 [title]="field.title"
                                 [enableAddServiceButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
-                                [disableInputField]="field.disable"
-                                [selectedServices]="form.get(field.name)?.value"                                
+                                [disableInputField]="field.disable"                              
                                 [field]="field"
+                                [selectedServices]="form.get(field.name)?.value"  
           ></xuilib-find-service>
         </ng-container>
       </div>
