@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsMainWrapperComponent } from './hmcts-main-wrapper.component';
@@ -8,7 +8,7 @@ describe('HmctsMainWrapperComponent', () => {
   let component: HmctsMainWrapperComponent;
   let fixture: ComponentFixture<HmctsMainWrapperComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ HmctsMainWrapperComponent ],
