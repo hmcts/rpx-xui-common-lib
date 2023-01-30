@@ -20,6 +20,7 @@
   max-height: 342px;
   overflow-x: hidden;
   padding: 0;
+  width: 100%;
   width: calc(100% - 4px);
 }
 .autocomplete__menu--visible {
@@ -105,7 +106,7 @@
 }
 
 .auto-complete-container {
-  width: calc(100% - 4px);
+  min-width: 250px;
   display: inline-block;
   margin-right: 4px;
 }
