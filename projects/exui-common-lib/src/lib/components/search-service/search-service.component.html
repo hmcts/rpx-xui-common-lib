@@ -1,9 +1,16 @@
-<div class="govuk-form-group">
-  <select id="serviceSearch__select" class="govuk-select" name="serviceSearch__select"
+<div class="auto-complete-container">
+  <input
+    id="inputServiceSearch"
+    (input)="onInput()"
+    [formControl]="form?.controls.searchTerm"
+    [matAutocomplete]="autoSearchService"
+    class="govuk-input"
+    [attr.disabled]="disabled"
     (change)="onSelectionChanged($event.target.value)">
-    <option [value]="null">All</option>
-    <option *ngFor="let service of services" [value]="service.key">
-      {{ service.label }}
-    </option>
-  </select>
+  <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchService="matAutocomplete">
+    <mat-option *ngFor="let service of services" (onSelectionChange)="onSelectionChanged($event.target.value)">
+      {{ service.name }}
+    </mat-option>
+    <mat-option *ngIf="!services?.length && showAutocomplete && term && term.length >= this.minSearchCharacters">No results found</mat-option>
+  </mat-autocomplete>
 </div>

@@ -45,9 +45,9 @@ export interface FilterFieldConfig {
   lineBreakBefore?: boolean;
   showCondition?: string;
   enableCondition?: string;
+  enableAddButton?: boolean;
   enableAddLocationButton?: boolean;
   enableAddTaskNameButton?: boolean;
-  enableAddButton?: boolean;
   changeResetFields?: string[];
   findPersonField?: string;
   findLocationField?: string;
