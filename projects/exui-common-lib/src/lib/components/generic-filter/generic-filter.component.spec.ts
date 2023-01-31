@@ -1,7 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FilterFieldConfig } from '../../models';
@@ -21,6 +20,7 @@ describe('GenericFilterComponent', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   const mockFilterService: any = {
     getStream: () => of(null),
+    getUserId: jasmine.createSpy().and.returnValue('1234'),
     get: jasmine.createSpy(),
     persist: jasmine.createSpy(),
     givenErrors: {
@@ -30,7 +30,7 @@ describe('GenericFilterComponent', () => {
     }
   };
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
@@ -139,6 +139,7 @@ describe('GenericFilterComponent', () => {
 
     const result = {
       id: 'examples',
+      idamId: '1234',
       fields: [
         {
           name: 'example1',
@@ -156,6 +157,7 @@ describe('GenericFilterComponent', () => {
       reset: false,
     };
     expect(component.form.valid).toBeTruthy();
+    mockFilterService.getUserId.and.returnValue('1234');
     expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
   });
 
@@ -361,7 +363,7 @@ describe('Select all checkboxes', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
@@ -447,7 +449,7 @@ describe('Find location filter config', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
