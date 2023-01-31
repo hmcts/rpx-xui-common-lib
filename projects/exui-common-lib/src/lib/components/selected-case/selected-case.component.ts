@@ -43,10 +43,6 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
     }
   }
 
-  public onUnselect(): void {
-    this.unselect.emit(this.sharedCase);
-  }
-
   public onDeselect(c: SharedCase): void {
     this.unselect.emit(c);
   }
@@ -110,7 +106,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   }
 
   public onRemove(user: UserDetails, sharedCase: SharedCase): void {
-    this.stateService.requestUnshare(sharedCase.caseId, user);
+    this.stateService.requestUnshare(user, sharedCase.caseId);
     this.synchronizeStore.emit(this.shareCases);
   }
 

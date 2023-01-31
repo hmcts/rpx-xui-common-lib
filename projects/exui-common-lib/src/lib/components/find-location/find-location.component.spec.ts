@@ -1,6 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import {LocationService} from '../../services/locations/location.service';
 import {SearchLocationComponent} from '../search-location/search-location.component';
 
@@ -29,7 +30,7 @@ describe('FindLocationComponent', () => {
     postcode: 'AB11 6LT'
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [FindLocationComponent, SearchLocationComponent],
