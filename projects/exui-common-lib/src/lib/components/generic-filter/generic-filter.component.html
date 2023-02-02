@@ -81,11 +81,13 @@
                               [findPersonGroup]="form"
                               [selectedPerson]="form.get(field.name)?.value?.email"
                               [userIncluded]="field.userIncluded"
+                              [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
+                              [services]="field.services"
           ></xuilib-find-person>
         </ng-container>
         <ng-container *ngSwitchCase="'find-location'">
           <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
-                                [form]="form"
+                                [form]="form"                                
                                 [fields]="config.fields"
                                 [locationTitle]="field.locationTitle"
                                 [enableAddLocationButton]="field.enableAddButton"

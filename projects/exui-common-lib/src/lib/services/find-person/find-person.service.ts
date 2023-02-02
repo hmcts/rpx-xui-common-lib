@@ -1,7 +1,7 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import {
   getAllCaseworkersFromServices,
   getSessionStorageKeyForServiceId,
@@ -16,7 +16,7 @@ import {
   RoleCategory,
   SearchOptions
 } from '../../models';
-import {SessionStorageService} from '../session-storage/session-storage.service';
+import { SessionStorageService } from '../session-storage/session-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -106,7 +106,13 @@ export class FindAPersonService {
   public searchInCaseworkers(caseworkers: Caseworker[], searchOptions: SearchOptions): Person[] {
     let roleCategory = RoleCategory.ALL;
     if (!(searchOptions.userRole === PersonRole.ALL)) {
-      roleCategory = searchOptions.userRole === PersonRole.CASEWORKER ? RoleCategory.CASEWORKER : RoleCategory.ADMIN;
+      if (searchOptions.userRole === PersonRole.CASEWORKER) {
+        roleCategory = RoleCategory.CASEWORKER;
+      } else if (searchOptions.userRole === PersonRole.ADMIN) {
+        roleCategory = RoleCategory.ADMIN;
+      } else if (searchOptions.userRole === PersonRole.CTSC) {
+        roleCategory = RoleCategory.CTSC;
+      }
     }
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
