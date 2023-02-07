@@ -80,6 +80,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
     this.mergeDefaultFields(this.settings);
     this.buildForm(this.config, this.settings);
+
+    if (this._config.copyFields) {
+      this.form = this._config.copyFields(this.form);
+    }
+
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
     this.filterSkillsByServices(null, this.config);
     const services = this.config.fields.find(field => field.name === 'user-services');
@@ -173,6 +178,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.filterService.persist(settings, this.config.persistence);
     } else {
       this.emitFormErrors(form);
+    }
+
+    if (this._config.applyButtonCallback) {
+      this._config.applyButtonCallback();
     }
   }
 

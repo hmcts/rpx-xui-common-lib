@@ -158,15 +158,12 @@
         <ng-container *ngSwitchCase="'find-service'">
           <xuilib-find-service (serviceFieldChanged)="inputChanged(field)"
                                 [form]="form"
-                                [fields]="config.fields"
-                                [title]="field.title"
                                 [enableAddServiceButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
-                                [disableInputField]="field.disable"
                                 [selectedServices]="form.get(field.name)?.value"
                                 [services]="field.options"
-                                [field]="field"
-          ></xuilib-find-service>
+                                [field]="field">
+          </xuilib-find-service>
         </ng-container>
         <ng-container *ngSwitchCase="'text-input'">
           <input class="govuk-input" type="text"
