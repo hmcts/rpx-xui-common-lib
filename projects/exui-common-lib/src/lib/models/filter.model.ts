@@ -76,6 +76,7 @@ export interface GroupOptions {
   group: string;
   options: FilterFieldOption[];
   placeholderContent?: string;
+  services?: string[];
 }
 
 export interface FilterSetting {

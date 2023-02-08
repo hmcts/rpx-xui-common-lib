@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { HmctsBannerComponent } from './hmcts-banner.component';
 
@@ -6,7 +6,7 @@ describe('HmctsBannerComponent', () => {
   let component: HmctsBannerComponent;
   let fixture: ComponentFixture<HmctsBannerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HmctsBannerComponent ]
     })

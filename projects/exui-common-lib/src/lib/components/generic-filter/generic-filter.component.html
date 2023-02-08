@@ -128,11 +128,12 @@
                               [selectedPerson]="form.get(field.name)?.value?.email"
                               [userIncluded]="false"
                               [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
+                              [services]="field.services"
           ></xuilib-find-person>
         </ng-container>
         <ng-container *ngSwitchCase="'find-location'">
           <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
-                                [form]="form"
+                                [form]="form"                                
                                 [fields]="config.fields"
                                 [locationTitle]="field.locationTitle"
                                 [enableAddLocationButton]="field.enableAddButton"
@@ -140,8 +141,8 @@
                                 [disableInputField]="field.disable"
                                 [selectedLocations]="form.get(field.name)?.value"
                                 [submitted]="submitted"
-                                [services]="form.get(field.findLocationField)?.value"
                                 [field]="field"
+                                [services]="form.get(field.findLocationField)?.value"
           ></xuilib-find-location>
         </ng-container>
         <ng-container *ngSwitchCase="'find-task-name'">
@@ -158,12 +159,14 @@
         <ng-container *ngSwitchCase="'find-service'">
           <xuilib-find-service (serviceFieldChanged)="inputChanged(field)"
                                 [form]="form"
+                                [fields]="config.fields"
+                                [title]="field.title"
                                 [enableAddServiceButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
-                                [selectedServices]="form.get(field.name)?.value"
-                                [services]="field.options"
-                                [field]="field">
-          </xuilib-find-service>
+                                [disableInputField]="field.disable"                              
+                                [field]="field"
+                                [selectedServices]="form.get(field.name)?.value"  
+          ></xuilib-find-service>
         </ng-container>
         <ng-container *ngSwitchCase="'text-input'">
           <input class="govuk-input" type="text"
