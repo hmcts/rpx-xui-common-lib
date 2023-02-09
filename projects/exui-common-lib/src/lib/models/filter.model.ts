@@ -70,13 +70,14 @@ export interface FilterFieldConfig {
   groupOptions?: GroupOptions[];
   maxlength?: number;
   defaultOption?: FilterConfigOption;
+  servicesField?: string;
+  services?: string[];
 }
 
 export interface GroupOptions {
   group: string;
   options: FilterFieldOption[];
   placeholderContent?: string;
-  services?: string[];
 }
 
 export interface FilterSetting {
