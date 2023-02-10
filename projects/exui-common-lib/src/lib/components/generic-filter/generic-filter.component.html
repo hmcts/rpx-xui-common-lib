@@ -163,9 +163,9 @@
                                 [title]="field.title"
                                 [enableAddServiceButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
-                                [disableInputField]="field.disable"                              
-                                [field]="field"
-                                [selectedServices]="form.get(field.name)?.value"  
+                                [selectedServices]="form.get(field.name)?.value"
+                                [services]="field.options"
+                                [field]="field">
           ></xuilib-find-service>
         </ng-container>
         <ng-container *ngSwitchCase="'text-input'">
