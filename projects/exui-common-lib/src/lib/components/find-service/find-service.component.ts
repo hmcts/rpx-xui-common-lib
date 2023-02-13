@@ -16,6 +16,7 @@ export class FindServiceComponent implements OnInit {
   @Input() public selectedServices: FilterConfigOption[] = [];
   @Input() public enableAddServiceButton: boolean = true;
   @Input() public disabled: boolean = false;
+  @Input() public disableInputField = false;
 
   @Output() public serviceFieldChanged = new EventEmitter<void>();
 

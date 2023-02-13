@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {DocumentInterruptSource, Idle, } from '@ng-idle/core';
+import {DocumentInterruptSource, Idle, WindowInterruptSource} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
 import {Observable, Subject} from 'rxjs';
 import {
@@ -76,8 +76,9 @@ export class TimeoutNotificationsService {
 
     this.idle.setTimeout(idleModalDisplayTimeInSeconds);
 
-    const interrupt = new DocumentInterruptSource(DOCUMENT_INTERRUPTS);
-    this.idle.setInterrupts([interrupt]);
+    const docInterrupts = new DocumentInterruptSource(DOCUMENT_INTERRUPTS);
+    const windowInterrupts = new WindowInterruptSource(DOCUMENT_INTERRUPTS);
+    this.idle.setInterrupts([docInterrupts, windowInterrupts]);
 
     this.idle.onTimeout.subscribe(() => {
       this.eventEmitter.next({eventType: SIGNOUT_EVENT});
@@ -89,7 +90,10 @@ export class TimeoutNotificationsService {
     ).subscribe((countdown) => {
       this.eventEmitter.next({eventType: COUNTDOWN_EVENT, readableCountdown: countdown});
     });
+    this.idle.onIdleStart.subscribe(() => console.log('You\'ve gone idle!'));
+    this.idle.onIdleEnd.subscribe(() => console.log('You\'re no longer idle!'));
 
+    this.keepalive.interval(15);
     this.keepalive.onPing.subscribe(() => {
       this.eventEmitter.next({eventType: KEEP_ALIVE_EVENT});
     });
