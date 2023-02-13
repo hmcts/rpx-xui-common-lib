@@ -23,7 +23,11 @@ export class SearchServiceComponent {
   }
 
   public onSelectionChanged(key: string): void {
+    console.log(key);
+
     const selectedService = this.services.find(s => s.key === key);
+    console.log(selectedService);
+
     this.serviceChanged.emit(selectedService);
   }
 }

@@ -21,18 +21,48 @@ export class FindServiceComponent implements OnInit {
 
   public tempSelectedService: FilterConfigOption = null;
 
+  private readonly allServiceOption = {
+    key: 'all',
+    label: 'All'
+  };
+  private allServices: FilterConfigOption[] = [];
+
   public ngOnInit(): void {
+    this.allServices = this.services;
     this.selectedServices = this.selectedServices !== null ? this.selectedServices.filter((service: FilterConfigOption) => service.key) : [];
     this.SortAnOptions();
   }
 
   public addService(): void {
-    if (this.tempSelectedService === null) {
-      return;
+    if (this.selectedServices.find(s => s.key === this.allServiceOption.key)) {
+      if (this.tempSelectedService === null) {
+        return;
+      }
+      if (this.tempSelectedService.key !== this.allServiceOption.key) {
+        this.removeService(this.allServiceOption);
+      }
     }
-    this.selectedServices = [...this.selectedServices, this.tempSelectedService];
-    this.addSelectedServicesToForm([this.tempSelectedService]);
-    this.services = this.services.filter(s => s.key !== this.tempSelectedService.key);
+
+    if (this.tempSelectedService === null) {
+      this.tempSelectedService = this.allServiceOption;
+    }
+
+    if (!this.selectedServices.find(s => s.key === this.tempSelectedService.key)) {
+      if (this.tempSelectedService.key) {
+        if (this.tempSelectedService.key === this.allServiceOption.key) {
+          this.selectedServices = [];
+          const formArray = this.form.get(this.field.name) as FormArray;
+          while (formArray.length > 0) {
+            formArray.removeAt(0);
+          }
+          this.services = this.allServices;
+        }
+        this.selectedServices = [...this.selectedServices, this.tempSelectedService];
+        this.addSelectedServicesToForm([this.tempSelectedService]);
+        this.services = this.services.filter(s => s.key !== this.tempSelectedService.key);
+      }
+    }
+
     this.tempSelectedService = null;
     this.serviceFieldChanged.emit(this.tempSelectedService);
   }
@@ -44,8 +74,10 @@ export class FindServiceComponent implements OnInit {
       const index = (formArray.value).findIndex((selectedService: FilterConfigOption) => selectedService.key === service.key);
       if (index > -1) {
         formArray.removeAt(index);
-        this.services.splice(index, 0, service);
-        this.SortAnOptions();
+        if (service.key !== this.allServiceOption.key) {
+          this.services.splice(index, 0, service);
+          this.SortAnOptions();
+        }
       }
       this.serviceFieldChanged.emit(service);
     }
@@ -84,7 +116,6 @@ export class FindServiceComponent implements OnInit {
       formArray.push(new FormControl(service));
     }
   }
-
 
   private SortAnOptions(): FilterConfigOption[] {
     return this.services.sort((a, b) => {
