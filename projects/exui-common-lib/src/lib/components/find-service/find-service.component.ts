@@ -17,7 +17,7 @@ export class FindServiceComponent implements OnInit {
   @Input() public enableAddServiceButton: boolean = true;
   @Input() public disabled: boolean = false;
 
-  @Output() public serviceFieldChanged = new EventEmitter<void>();
+  @Output() public serviceFieldChanged = new EventEmitter<FilterConfigOption>();
 
   public tempSelectedService: FilterConfigOption = null;
 
@@ -34,7 +34,7 @@ export class FindServiceComponent implements OnInit {
     this.addSelectedServicesToForm([this.tempSelectedService]);
     this.services = this.services.filter(s => s.key !== this.tempSelectedService.key);
     this.tempSelectedService = null;
-    this.serviceFieldChanged.emit();
+    this.serviceFieldChanged.emit(this.tempSelectedService);
   }
 
   public removeService(service: FilterConfigOption): void {
@@ -47,13 +47,14 @@ export class FindServiceComponent implements OnInit {
         this.services.splice(index, 0, service);
         this.SortAnOptions();
       }
-      this.serviceFieldChanged.emit();
+      this.serviceFieldChanged.emit(service);
     }
   }
 
   public onServiceSelected(service: FilterConfigOption): void {
     if (!service) {
       this.tempSelectedService = null;
+      this.serviceFieldChanged.emit(service);
       return;
     }
     if (this.field.maxSelected === 1) {
@@ -66,6 +67,7 @@ export class FindServiceComponent implements OnInit {
         }
       }
     }
+    this.serviceFieldChanged.emit(service);
   }
 
   private removeSelectedValues(): void {

@@ -156,7 +156,7 @@
           ></xuilib-find-task-name>
         </ng-container>
         <ng-container *ngSwitchCase="'find-service'">
-          <xuilib-find-service (serviceFieldChanged)="inputChanged(field)"
+          <xuilib-find-service (serviceFieldChanged)="inputServiceChanged($event, field)"
                                 [form]="form"
                                 [enableAddServiceButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
