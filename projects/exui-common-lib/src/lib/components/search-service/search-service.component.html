@@ -7,8 +7,7 @@
     class="govuk-input"
     [attr.disabled]="disabled">
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchService="matAutocomplete">
-    <!-- <mat-option [value]="null">All</mat-option> -->
-    <mat-option *ngFor="let service of services" (onSelectionChange)="onSelectionChanged($event.source.value)" [value]="service.key">
+    <mat-option *ngFor="let service of services" (onSelectionChange)="onSelectionChanged($event.source.value)" [value]="service.label">
       {{ service.label }}
     </mat-option>
     <mat-option *ngIf="!services?.length && showAutocomplete && term && term.length >= this.minSearchCharacters">No results found</mat-option>

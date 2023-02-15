@@ -70,6 +70,8 @@ export interface FilterFieldConfig {
   groupOptions?: GroupOptions[];
   maxlength?: number;
   defaultOption?: FilterConfigOption;
+  servicesField?: string;
+  services?: string[];
 }
 
 export interface GroupOptions {

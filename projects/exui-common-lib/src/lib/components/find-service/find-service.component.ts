@@ -16,6 +16,7 @@ export class FindServiceComponent implements OnInit {
   @Input() public selectedServices: FilterConfigOption[] = [];
   @Input() public enableAddServiceButton: boolean = true;
   @Input() public disabled: boolean = false;
+  @Input() public disableInputField = false;
 
   @Output() public serviceFieldChanged = new EventEmitter<FilterConfigOption>();
 
@@ -85,7 +86,8 @@ export class FindServiceComponent implements OnInit {
 
   public onServiceSelected(service: FilterConfigOption): void {
     if (!service) {
-      this.tempSelectedService = null;
+      this.tempSelectedService = this.allServiceOption;
+      service = this.allServiceOption;
       this.serviceFieldChanged.emit(service);
       return;
     }

@@ -253,7 +253,7 @@ describe('ShareCaseComponent', () => {
       { caseId: 'C111111', caseTitle: 'James vs Jane' },
       { caseId: 'C222222', caseTitle: 'Smith vs Lorraine' }
     ];
-    spyOn(stateService, 'getCases').and.returnValue(of(sharedCases));
+    spyOn(stateService, 'getCases').and.returnValue(sharedCases);
     component.onUnselect(sharedCase);
     expect(stateService.getCases).toHaveBeenCalled();
     expect(component.validationErrors.length).toEqual(0);

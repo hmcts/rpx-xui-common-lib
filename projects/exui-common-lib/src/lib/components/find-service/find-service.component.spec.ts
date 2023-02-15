@@ -1,16 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormArray, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {  FormArray, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { FindServiceComponent } from './find-service.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('FindServiceComponent', () => {
   let component: FindServiceComponent;
   let fixture: ComponentFixture<FindServiceComponent>;
 
   const service = {
-    key: '01',
-    label: '01-label',
+    key: 'AAA7',
+    label: 'CIVIL',
   };
 
   const allServiceOption = {
@@ -18,9 +20,9 @@ describe('FindServiceComponent', () => {
     label: 'All'
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      imports: [ReactiveFormsModule, RouterTestingModule.withRoutes([]), MatAutocompleteModule, MatOptionModule],
       declarations: [FindServiceComponent, SearchServiceComponent],
       providers: []
     })
@@ -32,28 +34,33 @@ describe('FindServiceComponent', () => {
     component = fixture.componentInstance;
     component.field = {
       type: 'find-service',
-      name: 'services',
+      name: 'user-services',
       options: [],
       minSelected: 1,
-      maxSelected: null
+      maxSelected: 0
     };
+    component.fields = [{
+      type: 'find-service',
+      name: 'user-services',
+      options: [],
+      minSelected: 1,
+      maxSelected: 0
+    }];
     component.form = new FormGroup({
-      services: new FormArray([]),
+      'user-services': new FormArray([]),
     });
-    const services = [ {
-      key: '01',
-      label: '01-label',
-    },
-    {
-      key: '03',
-      label: '03-label',
-    },
-    {
-      key: null,
-      label: '02-label',
-    },
-  ];
+    const services = [
+      {
+        key: 'AAA7',
+        label: 'CIVIL',
+      },
+      {
+        key: 'ABA5',
+        label: 'PRIVATELAW',
+      },
+    ];
     component.services = services;
+    component.selectedServices = [];
     fixture.detectChanges();
   });
 
@@ -66,13 +73,13 @@ describe('FindServiceComponent', () => {
     component.ngOnInit();
     expect(component.selectedServices).toEqual([
       {
-        key: '01',
-        label: '01-label',
+        key: 'AAA7',
+        label: 'CIVIL',
       },
       {
-        key: '03',
-        label: '03-label',
-      }
+        key: 'ABA5',
+        label: 'PRIVATELAW',
+      },
     ]);
   });
 
@@ -83,7 +90,7 @@ describe('FindServiceComponent', () => {
     };
     component.selectedServices = component.services;
     component.addService();
-    expect(component.selectedServices.length).toEqual(4);
+    expect(component.selectedServices.length).toEqual(3);
   });
 
   it('removeService method should remove a row from the selected services and sort the existing items', () => {
@@ -94,7 +101,7 @@ describe('FindServiceComponent', () => {
       formArray.push(new FormControl(s));
     }
     component.removeService(service);
-    expect(component.selectedServices.length).toEqual(2);
+    expect(component.selectedServices.length).toEqual(1);
     expect((component as any).SortAnOptions).toHaveBeenCalled();
   });
 
@@ -136,17 +143,13 @@ describe('FindServiceComponent', () => {
     (component as any).SortAnOptions();
     expect(component.services).toEqual([
       {
-        key: '01',
-        label: '01-label',
+        key: 'AAA7',
+        label: 'CIVIL',
       },
       {
-        key: null,
-        label: '02-label',
+        key: 'ABA5',
+        label: 'PRIVATELAW',
       },
-      {
-        key: '03',
-        label: '03-label',
-      }
     ]);
   });
 

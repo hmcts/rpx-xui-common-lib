@@ -16,7 +16,7 @@ import {
   RoleCategory,
   SearchOptions
 } from '../../models';
-import {SessionStorageService} from '../storage/session-storage/session-storage.service';
+import { SessionStorageService } from '../storage/session-storage/session-storage.service';
 
 @Injectable({
   providedIn: 'root'
