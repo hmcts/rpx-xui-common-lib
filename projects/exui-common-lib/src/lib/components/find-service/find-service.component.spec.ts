@@ -1,10 +1,10 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import {  FormArray, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
+import { RouterTestingModule } from '@angular/router/testing';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { FindServiceComponent } from './find-service.component';
-import { RouterTestingModule } from '@angular/router/testing';
 
 describe('FindServiceComponent', () => {
   let component: FindServiceComponent;

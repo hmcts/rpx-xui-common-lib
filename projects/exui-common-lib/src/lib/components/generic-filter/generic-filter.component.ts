@@ -504,7 +504,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       return selected;
     });
 
-    if(cachedValues.length > 0) this.form.get('user-skills').setValue(cachedValues);
+    if(cachedValues.length > 0) {
+      this.form.get('user-skills').setValue(cachedValues);
+    }
   }
 
   public filterSkillsByServices(services: string[], config: FilterConfig) {
