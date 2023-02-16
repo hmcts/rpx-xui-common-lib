@@ -44,7 +44,7 @@ export interface FilterFieldConfig {
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
   placeholderContent?: string;
-  services?: string[];
+  servicesField?: string;
 }
 
 export interface FilterSetting {
