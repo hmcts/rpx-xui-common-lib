@@ -197,13 +197,21 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when user enters input change radio button
   public inputChanged(field: FilterFieldConfig): void {
-    if (field.name === 'user-services') {
-      const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
-      this.filterSkillsByServices(selectedServices, this.config);
-    }
     if (field.radioSelectionChange && typeof field.radioSelectionChange === 'string') {
       const [name, value] = field.enableCondition.split('=');
       this.form.get(name).patchValue(value);
+    }
+  }
+
+  public inputServiceChanged(e: FilterConfigOption, field: FilterFieldConfig): void {
+    if (e === undefined) {
+     this.addAllOption(field);
+    } else {
+      this.clearFormArray(this.form.get('user-services') as FormArray);
+    }
+    if (field.name === 'user-services') {
+      const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
+      this.filterSkillsByServices(selectedServices, this.config);
     }
   }
 
@@ -361,6 +369,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       } else if (field.type === 'find-location' || field.type === 'find-service') {
         const formArray = this.buildFormArray(field, settings);
         this.form.addControl(field.name, formArray);
+        this.addAllOption(field);
       } else {
         const validators: ValidatorFn[] = [];
         if (field.minSelected && field.minSelected > 0) {
@@ -495,7 +504,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       return selected;
     });
 
-    this.form.get('user-skills').setValue(cachedValues);
+    if(cachedValues.length > 0) {
+      this.form.get('user-skills').setValue(cachedValues);
+    }
   }
 
   public filterSkillsByServices(services: string[], config: FilterConfig) {
@@ -601,4 +612,19 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     });
     return sortedResults;
   }
+
+  private readonly clearFormArray = (formArray: FormArray) => {
+    formArray.controls.forEach((el, index) => {
+      if (el.value.key === 'All') {
+        (this.form.get('user-services') as FormArray).removeAt(index);
+      }
+    });
+  }
+
+  private readonly addAllOption = (field: FilterFieldConfig) => {
+    if (this.form.get('user-services') && this.form.get('user-services').value.length === 0 && field.minSelected >= 0) {
+      (this.form.get('user-services') as FormArray).push(new FormControl({key: 'All', label: 'All'}));
+   }
+  }
+
 }
