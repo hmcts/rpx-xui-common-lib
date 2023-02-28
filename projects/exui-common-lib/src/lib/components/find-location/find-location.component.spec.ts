@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import {LocationService} from '../../services/locations/location.service';
@@ -52,6 +52,9 @@ describe('FindLocationComponent', () => {
     component.locations = [LOCATION];
     component.form = new FormGroup({
       location: new FormArray([]),
+    });
+    component.searchTermLocationForm = new FormGroup({
+      'searchTerm': new FormControl([]),
     });
     fixture.detectChanges();
   });

@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.10-prs-consolidated",
+  "version": "1.8.11-eui-6783-clear-selected",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",

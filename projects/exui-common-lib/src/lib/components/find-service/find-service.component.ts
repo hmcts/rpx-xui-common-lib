@@ -12,6 +12,7 @@ export class FindServiceComponent implements OnInit {
   @Input() public fields: FilterFieldConfig[];
   @Input() public serviceTitle: string;
   @Input() public form: FormGroup;
+  @Input() public searchTermServiceForm: FormGroup;
   @Input() public services: FilterConfigOption[] = [];
   @Input() public selectedServices: FilterConfigOption[] = [];
   @Input() public enableAddServiceButton: boolean = true;

@@ -28,8 +28,11 @@ export class SearchServiceComponent {
     // Todo
   }
 
-  public onSelectionChanged(label: string): void {
-    const selectedService = this.services.find(s => s.label === label);
-    this.serviceChanged.emit(selectedService);
+  public onSelectionChanged($event: any): void {
+    const label = $event.source?.value;
+    if(label && $event.source.selected) {
+      const selectedService = this.services.find(s => s.label === label);
+      this.serviceChanged.emit(selectedService);
+    }
   }
 }
