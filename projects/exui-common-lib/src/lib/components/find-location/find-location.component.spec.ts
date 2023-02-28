@@ -54,7 +54,7 @@ describe('FindLocationComponent', () => {
       location: new FormArray([]),
     });
     component.searchTermLocationForm = new FormGroup({
-      'searchTerm': new FormControl([]),
+      searchTerm: new FormControl([]),
     });
     fixture.detectChanges();
   });
