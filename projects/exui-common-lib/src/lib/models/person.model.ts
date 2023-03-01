@@ -4,6 +4,7 @@ export interface Person {
   email?: string;
   domain: string;
   knownAs?: string;
+  fullName?: string;
 }
 
 export interface JudicialUserModel {
@@ -37,7 +38,7 @@ export enum PersonRole {
   JUDICIAL = 'Judicial',
   CASEWORKER = 'Legal Ops',
   ADMIN = 'Admin',
-  CTSC = 'CTSC User',
+  CTSC = 'CTSC',
   ALL = 'All',
 }
 

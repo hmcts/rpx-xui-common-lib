@@ -6,7 +6,11 @@
       </label>
     </div>
     <div class="search-service__input-container">
-      <exui-search-service class="search-service__input" [services]="services"
+      <exui-search-service class="search-service__input"
+        [services]="services"
+        [selectedServices]="selectedServices"
+        [delay]="300"
+        [disabled]="disabled"
         (serviceChanged)="onServiceSelected($event)">
       </exui-search-service>
       <a href="javascript:void(0)" (click)="addService()"
@@ -18,7 +22,7 @@
   </div>
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection" *ngFor="let selection of selectedServices">
-      <a class="hmcts-filter__tag" (click)="removeService(selection)" href="javascript:void(0)">
+      <a *ngIf="selection.key!=='All'" class="hmcts-filter__tag" (click)="removeService(selection)" href="javascript:void(0)">
         {{ selection.label }}
       </a>
     </li>

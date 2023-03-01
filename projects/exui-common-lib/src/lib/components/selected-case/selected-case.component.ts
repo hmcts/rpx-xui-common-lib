@@ -17,6 +17,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   @Input() public selectedUser: UserDetails;
   @Input() public opened = false;
   @Input() public removeUserFromCaseToggleOn: boolean;
+  @Input() public caseCount: number;
 
   @Output() public unselect = new EventEmitter<SharedCase>();
   @Output() public synchronizeStore = new EventEmitter<any>();
@@ -40,10 +41,6 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
       const pendingShares = this.sharedCase.pendingShares ? this.sharedCase.pendingShares : [];
       this.combinedSortedShares = this.combineAndSortShares(sharedWith, pendingShares);
     }
-  }
-
-  public onUnselect(): void {
-    this.unselect.emit(this.sharedCase);
   }
 
   public onDeselect(c: SharedCase): void {
@@ -109,7 +106,7 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   }
 
   public onRemove(user: UserDetails, sharedCase: SharedCase): void {
-    this.stateService.requestUnshare(sharedCase.caseId, user);
+    this.stateService.requestUnshare(user, sharedCase.caseId);
     this.synchronizeStore.emit(this.shareCases);
   }
 

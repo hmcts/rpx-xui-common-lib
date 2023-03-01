@@ -1,22 +1,32 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
+import { RouterTestingModule } from '@angular/router/testing';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { FindServiceComponent } from './find-service.component';
 
 describe('FindServiceComponent', () => {
   let component: FindServiceComponent;
   let fixture: ComponentFixture<FindServiceComponent>;
+
   const service = {
-    key: '01',
-    label: '01-label',
+    key: 'AAA7',
+    label: 'CIVIL',
   };
 
-  beforeEach(async(() => {
+  const allServiceOption = {
+    key: 'all',
+    label: 'All'
+  };
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, FormsModule],
+      imports: [ReactiveFormsModule, RouterTestingModule.withRoutes([]), MatAutocompleteModule, MatOptionModule],
       declarations: [FindServiceComponent, SearchServiceComponent],
-      providers: [],
-    }).compileComponents();
+      providers: []
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -24,28 +34,33 @@ describe('FindServiceComponent', () => {
     component = fixture.componentInstance;
     component.field = {
       type: 'find-service',
-      name: 'services',
+      name: 'user-services',
       options: [],
       minSelected: 1,
-      maxSelected: null
+      maxSelected: 0
     };
+    component.fields = [{
+      type: 'find-service',
+      name: 'user-services',
+      options: [],
+      minSelected: 1,
+      maxSelected: 0
+    }];
     component.form = new FormGroup({
-      services: new FormArray([]),
+      'user-services': new FormArray([]),
     });
-    const services = [ {
-      key: '01',
-      label: '01-label',
-    },
-    {
-      key: '03',
-      label: '03-label',
-    },
-    {
-      key: null,
-      label: '02-label',
-    },
-  ];
+    const services = [
+      {
+        key: 'AAA7',
+        label: 'CIVIL',
+      },
+      {
+        key: 'ABA5',
+        label: 'PRIVATELAW',
+      },
+    ];
     component.services = services;
+    component.selectedServices = [];
     fixture.detectChanges();
   });
 
@@ -58,13 +73,13 @@ describe('FindServiceComponent', () => {
     component.ngOnInit();
     expect(component.selectedServices).toEqual([
       {
-        key: '01',
-        label: '01-label',
+        key: 'AAA7',
+        label: 'CIVIL',
       },
       {
-        key: '03',
-        label: '03-label',
-      }
+        key: 'ABA5',
+        label: 'PRIVATELAW',
+      },
     ]);
   });
 
@@ -75,7 +90,7 @@ describe('FindServiceComponent', () => {
     };
     component.selectedServices = component.services;
     component.addService();
-    expect(component.selectedServices.length).toEqual(4);
+    expect(component.selectedServices.length).toEqual(3);
   });
 
   it('removeService method should remove a row from the selected services and sort the existing items', () => {
@@ -86,15 +101,15 @@ describe('FindServiceComponent', () => {
       formArray.push(new FormControl(s));
     }
     component.removeService(service);
-    expect(component.selectedServices.length).toEqual(2);
+    expect(component.selectedServices.length).toEqual(1);
     expect((component as any).SortAnOptions).toHaveBeenCalled();
   });
 
 
-  it(`onServiceSelected method should set the value of 'tempSelectedService' to null, if passed service is undefined or null`, () => {
+  it(`onServiceSelected method should set the value of 'tempSelectedService' to default (All) option, if passed service is undefined or null`, () => {
     component.tempSelectedService = service;
     component.onServiceSelected(null);
-    expect(component.tempSelectedService).toEqual(null);
+    expect(component.tempSelectedService).toEqual(allServiceOption);
   });
 
   it('onServiceSelected method should call the removeSelectedValues, if field has maxSelected is equal to 1', () => {
@@ -128,17 +143,44 @@ describe('FindServiceComponent', () => {
     (component as any).SortAnOptions();
     expect(component.services).toEqual([
       {
-        key: '01',
-        label: '01-label',
+        key: 'AAA7',
+        label: 'CIVIL',
       },
       {
-        key: null,
-        label: '02-label',
+        key: 'ABA5',
+        label: 'PRIVATELAW',
       },
-      {
-        key: '03',
-        label: '03-label',
-      }
     ]);
   });
+
+  it('if user selects "All" option, it should remove all the existing selected options', () => {
+    component.tempSelectedService = allServiceOption;
+    component.selectedServices = component.services;
+    component.addService();
+    expect(component.selectedServices.length).toEqual(1);
+  });
+
+  it('if user selects other option, it should remove "All" from the selected options', () => {
+    component.tempSelectedService = {
+      key: '01',
+      label: '01-label',
+    };
+    component.selectedServices = [];
+    component.selectedServices.push(allServiceOption);
+    component.addService();
+    expect(component.selectedServices.length).toEqual(1);
+    expect(component.selectedServices[0]).toEqual({
+      key: '01',
+      label: '01-label',
+    });
+  });
+
+  it('if user already selected "All" option, it should not select it again', () => {
+    component.tempSelectedService = allServiceOption;
+    component.selectedServices = [];
+    component.selectedServices.push(allServiceOption);
+    component.addService();
+    expect(component.selectedServices.length).toEqual(1);
+  });
+
  });

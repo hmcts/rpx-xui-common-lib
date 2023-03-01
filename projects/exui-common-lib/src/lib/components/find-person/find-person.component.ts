@@ -1,9 +1,10 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Observable, of, Subscription, zip} from 'rxjs';
-import {catchError, debounceTime, filter, map, switchMap, tap} from 'rxjs/operators';
-import {Person, PersonRole} from '../../models';
-import {FindAPersonService} from '../../services/find-person/find-person.service';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subscription, zip } from 'rxjs';
+import { of } from 'rxjs/internal/observable/of';
+import { catchError, debounceTime, filter, map, switchMap, tap } from 'rxjs/operators';
+import { Person, PersonRole } from '../../models';
+import { FindAPersonService } from '../../services/find-person/find-person.service';
 
 @Component({
   selector: 'xuilib-find-person',
@@ -29,7 +30,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   @Input() public selectedPersons: Person[] = [];
   @Input() public errorMessage: string = 'You must select a name';
   @Input() public idValue: string = '';
-  @Input() public services: string[] = ['IA'];
+  @Input() public services: string = 'IA';
   @Input() public disabled: boolean = null;
   public showAutocomplete: boolean = false;
   public findPersonControl: FormControl;
@@ -66,8 +67,8 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialOrCTSCPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
-    const findCaseworkersOrAdminsOrCtsc = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: this.services, userIncluded: this.userIncluded, assignedUser: this.assignedUser});
+    const findJudicialOrCTSCPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser});
+    const findCaseworkersOrAdminsOrCtsc = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser});
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
@@ -101,8 +102,8 @@ export class FindPersonComponent implements OnInit, OnDestroy {
     if (!selectedPerson) {
       return '';
     }
-    if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.knownAs) {
-      return `${selectedPerson.knownAs} (${selectedPerson.email})`;
+    if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.fullName) {
+      return `${selectedPerson.fullName} (${selectedPerson.email})`;
     }
     return selectedPerson.email ? `${selectedPerson.name} (${selectedPerson.email})` : selectedPerson.name;
   }

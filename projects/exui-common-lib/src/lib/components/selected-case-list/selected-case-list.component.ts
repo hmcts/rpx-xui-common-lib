@@ -11,6 +11,7 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
 export class SelectedCaseListComponent implements OnInit {
 
   public shareCases: SharedCase[] = [];
+  public caseCount: number;
 
   @Input() public shareCases$: Observable<SharedCase[]>;
 
@@ -27,11 +28,15 @@ export class SelectedCaseListComponent implements OnInit {
 
   public ngOnInit() {
     this.shareCases$ = this.stateService.state;
-    this.shareCases$.subscribe(shareCases => this.shareCases = shareCases);
+    this.shareCases$.subscribe((shareCases) => {
+      this.shareCases = shareCases;
+      this.caseCount = this.shareCases.length;
+    });
   }
 
   public onUnselect(sharedCase: SharedCase): void {
     this.unselect.emit(sharedCase);
+    this.caseCount = this.shareCases.length;
   }
 
   public onSynchronizeStore(event: any): void {
