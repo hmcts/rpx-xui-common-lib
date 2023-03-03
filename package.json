@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.10-prs-consolidated",
+  "version": "1.8.10-checkbox-label-fix",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
