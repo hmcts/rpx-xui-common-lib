@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {debounceTime, filter, mergeMap, tap} from 'rxjs/operators';
@@ -12,8 +12,8 @@ import { TaskNameService } from '../../services/task-name/task-name.service';
   styleUrls: ['./find-task-name.component.scss'],
 })
 
-export class FindTaskNameComponent implements OnChanges, OnDestroy {
-  @Output() public taskNameSelected = new EventEmitter<string>();
+export class FindTaskNameComponent implements OnInit, OnDestroy {
+  @Output() public taskNameSelected = new EventEmitter<any>();
   @Output() public taskNameFieldChanged = new EventEmitter<void>();
   @Input() public title: string;
   @Input() public boldTitle = 'Find the task name';
@@ -22,7 +22,6 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
   @Input() public findTaskNameGroup: FormGroup = new FormGroup({});
   @Input() public selectedTaskName: string;
   @Input() public submitted: boolean = true;
-  @Input() public userIncluded?: boolean = false;
   @Input() public assignedUser?: string;
   @Input() public placeholderContent: string = '';
   @Input() public isNoResultsShown: boolean = true;
@@ -30,11 +29,11 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
   @Input() public selectedTaskNames: TaskNameModel[] = [];
   @Input() public errorMessage: string = 'You must select a name';
   @Input() public idValue: string = '';
-  @Input() public services: string[] = ['IA'];
+  @Input() public services: string = 'IA';
   @Input() public disabled: boolean = null;
   public showAutocomplete: boolean = false;
   public findTaskNameControl: FormControl;
-  public filteredOptions: string[] = [];
+  public filteredOptions: any[] = [];
   public readonly minSearchCharacters = 1;
   private sub: Subscription;
   public searchTerm: string = '';
@@ -48,42 +47,48 @@ export class FindTaskNameComponent implements OnChanges, OnDestroy {
     }
   }
 
-  public ngOnChanges(): void {
+  public ngOnInit(): void {
+    console.log('services are', this.services);
     this.findTaskNameControl = new FormControl(this.selectedTaskName);
     this.findTaskNameGroup.addControl('findTaskNameControl', this.findTaskNameControl);
     this.sub = this.findTaskNameControl.valueChanges
     .pipe(
       tap(() => this.showAutocomplete = false),
       tap(() => this.filteredOptions = []),
-      tap((term) => this.searchTerm = term),
       debounceTime(300),
-      tap((searchTerm) => {
-        if (!searchTerm) {
-          this.taskNameSelected.emit('');
-        }
-        return searchTerm;
-      }),
-      // tap((searchTerm) => typeof searchTerm === 'string' ? this.taskNameSelected.emit('null') : void 0),
+      tap((searchTerm) => this.searchTerm = searchTerm),
+      tap((searchTerm) => typeof searchTerm === 'string' ? this.taskNameSelected.emit('null') : void 0),
       filter((searchTerm: string) => searchTerm && searchTerm.length >= this.minSearchCharacters),
       mergeMap(() => this.getTaskName()),
     ).subscribe((taskNameModel: TaskNameModel[]) => {
-      this.filteredOptions = taskNameModel.map(task => task.taskName);
+      this.filteredOptions = taskNameModel ? taskNameModel : [];
       if (this.searchTerm) {
-        this.filteredOptions = this.filteredOptions.filter((taskName) => taskName.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase())).map(taskName => taskName);
+        console.log(this.filteredOptions, 'options 1');
+        this.filteredOptions = this.filteredOptions.filter((taskType) => taskType.task_type.task_type_name.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase())).map(taskType=> taskType);
+        console.log(this.filteredOptions, 'options 2');
       }
       this.cd.detectChanges();
     });
   }
 
   public getTaskName(): Observable<TaskNameModel[]> {
-    return this.taskService.getTaskName();
+    return this.taskService.getTaskName(this.services);
   }
 
-  public onSelectionChange(selectedTaskName: string): void {
-    if (selectedTaskName) {
-      this.taskNameSelected.emit(selectedTaskName);
-      this.findTaskNameControl.setValue(selectedTaskName);
+  public onSelectionChange(selectedTaskTypeName: any): void {
+    if (selectedTaskTypeName) {
+      console.log(selectedTaskTypeName, 'is selectedTaskTypeName');
+      this.taskNameSelected.emit(selectedTaskTypeName);
+      this.findTaskNameControl.setValue(this.getTaskTypeName(selectedTaskTypeName), {emitEvent: false, onlySelf: true});
     }
+  }
+
+  public getTaskTypeName(selectedTaskType: any): string {
+    console.log(selectedTaskType, 'is the selected task type');
+    if (!selectedTaskType) {
+      return '';
+    }
+    return selectedTaskType.task_type.task_type_name;
   }
 
   public onInput(): void {

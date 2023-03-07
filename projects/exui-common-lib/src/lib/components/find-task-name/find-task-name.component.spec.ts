@@ -45,7 +45,7 @@ describe('FindTaskNameComponent', () => {
 
 
   it('selection change emits change with task name', () => {
-    const mockTaskName = 'Review Hearing bundle';
+    const mockTaskName = {task_type: {task_type_name: 'Review Hearing bundle', task_type_id: 'reviewHearingBundle'}};
 
     spyOn(component.taskNameSelected, 'emit');
     component.onSelectionChange(null);

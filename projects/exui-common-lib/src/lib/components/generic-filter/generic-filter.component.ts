@@ -249,8 +249,22 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return (this.form.get(field.name) as FormArray)['controls'][i]['value'];
   }
 
-  public updateTaskNameControls(values: string, field: FilterFieldConfig): void {
-    this.form.get(field.name).patchValue(values);
+  public updateTaskNameControls(values: any, field: FilterFieldConfig): void {
+    let keys;
+    if (!values) {
+      keys = Object.keys(this.form.get(field.name).value);
+    } else {
+      keys = values.task_type ? Object.keys(values.task_type) : Object.keys(this.form.get(field.name).value);
+      console.log('keys are', keys);
+    }
+    for (const key of keys) {
+      if (this.form.get(field.name) && this.form.get(field.name).get(key)) {
+        const value = values.task_type && values.task_type[key] ? values.task_type[key] : null;
+        console.log('value is', value);
+        this.form.get(field.name).get(key).patchValue(value);
+        console.log(this.form.get(field.name).get(key).value);
+      }
+    }
   }
 
   public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
@@ -357,10 +371,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   private buildForm(config: FilterConfig, settings: FilterSetting, reset?: boolean): void {
     const findPersonControl = this.form ? this.form.get('findPersonControl') : null;
+    const findTaskNameControl = this.form ? this.form.get('findTaskNameControl') : null;
     this.form = this.fb.group({});
     if (findPersonControl) {
       // in order to maintain find person component, control needs to be kept
       this.form.addControl('findPersonControl', findPersonControl);
+    }
+    if (findTaskNameControl) {
+      this.form.addControl('findTaskNameControl', findTaskNameControl);
     }
     for (const field of config.fields) {
       if (field.type === 'checkbox' || field.type === 'checkbox-large' || field.type === 'nested-checkbox') {
@@ -394,6 +412,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }
         // if field is find-person build a form group;
         if (field.type === 'find-person') {
+          console.log(defaultValue, 'to here');
           const formGroup = new FormGroup({
             domain: new FormControl(defaultValue && defaultValue.hasOwnProperty('domain') ? defaultValue.domain : ''),
             email: new FormControl(defaultValue && defaultValue.hasOwnProperty('email') ? defaultValue.email : '', validators),
@@ -402,6 +421,18 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
             knownAs: new FormControl(defaultValue && defaultValue.hasOwnProperty('knownAs') ? defaultValue.knownAs : ''),
           });
           this.form.addControl(field.name, formGroup);
+        } else if (field.type === 'find-task-name') {
+          console.log(defaultValue, 'what is different here');
+          const formGroup = new FormGroup({
+            task_type_id: new FormControl(defaultValue && defaultValue.hasOwnProperty('task_type_id') ? defaultValue.task_type_id : ''),
+            task_type_name: new FormControl(defaultValue && defaultValue.hasOwnProperty('task_type_name') ? defaultValue.task_type_name : ''),
+          });
+          this.form.addControl(field.name, formGroup);
+          console.log(this.form.get('findTaskNameControl'), 'check control');
+          if (!defaultValue || !defaultValue.task_type_id) {
+            this.form.get('findTaskNameControl').patchValue('');
+          }
+          console.log(this.form.get('findTaskNameControl'), 'after check control');
         } else if (field.type !== 'group-title') {
           const control = new FormControl(defaultValue, validators);
           this.form.addControl(field.name, control);
