@@ -152,8 +152,9 @@
                               [disabled]="disabled(field, form)"
                               [domain]="form.get(field.domainField)?.value"
                               [findTaskNameGroup]="form"
-                              [selectedTaskName]="form.get(field.name).value.taskName"
-                              [userIncluded]="false"
+                              [selectedTaskName]="form.get(field.name)?.value?.task_type_name"
+                              [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
+                              [services]="form.get(field.servicesField)?.value"
           ></xuilib-find-task-name>
         </ng-container>
         <ng-container *ngSwitchCase="'find-service'">

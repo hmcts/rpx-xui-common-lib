@@ -22,7 +22,7 @@
       <mat-option *ngFor="let option of filteredOptions"
                   [value]="option"
                   [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
-                  {{ option }}
+                  {{ getTaskTypeName(option) }}
       </mat-option>
       <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !filteredOptions.length && showAutocomplete">No results found</mat-option>
     </mat-autocomplete>

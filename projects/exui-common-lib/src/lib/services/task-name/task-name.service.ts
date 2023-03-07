@@ -17,13 +17,15 @@ export class TaskNameService {
   /**
    * @return Observable<any[]>: Array of taskName in Observable
    */
-  public getTaskName(): Observable<TaskNameModel[]> {
-    if (this.sessionStorageService.getItem(TaskNameService.taskNamesKey)) {
-      const taskNames = JSON.parse(this.sessionStorageService.getItem(TaskNameService.taskNamesKey));
+  public getTaskName(service: string): Observable<TaskNameModel[]> {
+    console.log(service, 'is the given service');
+    const serviceTaskTypeKey = `${service}-${TaskNameService.taskNamesKey}`;
+    if (this.sessionStorageService.getItem(serviceTaskTypeKey)) {
+      const taskNames = JSON.parse(this.sessionStorageService.getItem(serviceTaskTypeKey));
       return of(taskNames as TaskNameModel[]);
     }
-    return this.http.get<TaskNameModel[]>(`/workallocation/taskNames`).pipe(
-      tap(taskNames => this.sessionStorageService.setItem(TaskNameService.taskNamesKey, JSON.stringify(taskNames)))
+    return this.http.post<TaskNameModel[]>(`/workallocation/taskNames`, {service}).pipe(
+      tap(taskNames => this.sessionStorageService.setItem(serviceTaskTypeKey, JSON.stringify(taskNames)))
     );
   }
 }
