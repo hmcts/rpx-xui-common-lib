@@ -28,6 +28,10 @@ export class SearchServiceComponent {
     // Todo
   }
 
+  public resetSearchTerm(): void {
+    this.form.controls.searchTerm.patchValue('', {emitEvent: false, onlySelf: true});
+  }
+
   public onSelectionChanged($event: any): void {
     const label = $event.source?.value;
     if(label && $event.source.selected) {

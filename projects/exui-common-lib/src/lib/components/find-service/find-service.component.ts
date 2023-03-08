@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { FilterConfigOption, FilterFieldConfig } from '../../models';
+import { SearchServiceComponent } from '../search-service/search-service.component';
 
 @Component({
   selector: 'xuilib-find-service',
@@ -18,6 +19,7 @@ export class FindServiceComponent implements OnInit {
   @Input() public enableAddServiceButton: boolean = true;
   @Input() public disabled: boolean = false;
   @Input() public disableInputField = false;
+  @ViewChild(SearchServiceComponent, { static: true }) public searchServiceComponent: SearchServiceComponent;
 
   @Output() public serviceFieldChanged = new EventEmitter<FilterConfigOption>();
 
@@ -67,6 +69,7 @@ export class FindServiceComponent implements OnInit {
 
     this.tempSelectedService = null;
     this.serviceFieldChanged.emit(this.tempSelectedService);
+    this.searchServiceComponent.resetSearchTerm();
   }
 
   public removeService(service: FilterConfigOption): void {

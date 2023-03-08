@@ -187,6 +187,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     } else {
       this.emitFormErrors(form);
     }
+    for (const field of this.config.fields) {
+      const fieldName = field.name;
+      if(fieldName === 'user-services') {
+        this.searchTermServiceForm.reset();
+      } else if(fieldName === 'user-location') {
+        this.searchTermLocationForm.reset();
+      }
+    }
 
     if (this._config.applyButtonCallback) {
       this._config.applyButtonCallback();
