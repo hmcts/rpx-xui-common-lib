@@ -55,11 +55,11 @@
                      [attr.disabled]="disabled(field, form)"
                      [formControlName]="i"
                      (change)="toggleSelectAll($event, form, item, field)"
-                     [value]="item.key" [id]="'checkbox_' + item.key"
-                     [name]="'checkbox_' + item.key"
+                     [value]="item.key" [id]="'checkbox_' + field.name + item.key"
+                     [name]="'checkbox_' + field.name + item.key"
               />
               <label
-                [for]="'checkbox_' + item.key"
+                [for]="'checkbox_' + field.name + item.key"
                 class="govuk-label govuk-checkboxes__label"
                 [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
               >{{item.label}}</label>
@@ -73,11 +73,11 @@
                      [attr.disabled]="disabled(field, form)"
                      [formControlName]="i"
                      (change)="toggleSelectAll($event, form, item, field)"
-                     [value]="item.key" [id]="'checkbox_' + item.key"
-                     [name]="'checkbox_' + item.key"
+                     [value]="item.key" [id]="'checkbox_' + field.name + item.key"
+                     [name]="'checkbox_' + field.name + item.key"
               />
               <label
-                [for]="'checkbox_' + item.key"
+                [for]="'checkbox_' + field.name + item.key"
                 class="govuk-label govuk-checkboxes__label"
                 [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
               >{{item.label}}</label>
@@ -91,11 +91,11 @@
                      [attr.disabled]="disabled(field, form)"
                      [formControlName]="i"
                      (change)="toggleSelectAll($event, form, item, field)"
-                     [value]="item.key" [id]="'checkbox_' + item.key"
-                     [name]="'checkbox_' + item.key"
+                     [value]="item.key" [id]="'checkbox_' + field.name + item.key"
+                     [name]="'checkbox_' + field.name + item.key"
               />
               <label
-                [for]="'checkbox_' + item.key"
+                [for]="'checkbox_' + field.name + item.key"
                 class="govuk-label govuk-checkboxes__label"
                 [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
               >{{item.label}}</label>
