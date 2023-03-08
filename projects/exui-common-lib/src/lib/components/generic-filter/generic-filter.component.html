@@ -175,7 +175,7 @@
                  [attr.disabled]="disabled(field, form)"
                  (change)="fieldChanged(field, form)"
                  [attr.maxlength]="field.maxlength ? field.maxlength : null"
-                 [attr.readonly]="field.readonly"
+                 [readonly]="field.readonly"
           />
         </ng-container>
         <ng-container *ngSwitchCase="'email-input'">
@@ -184,7 +184,7 @@
                  [id]="field.name"
                  [attr.disabled]="disabled(field, form)"
                  (change)="fieldChanged(field, form)"
-                 [attr.readonly]="field.readonly"
+                 [readonly]="field.readonly"
           />
         </ng-container>
       </div>
