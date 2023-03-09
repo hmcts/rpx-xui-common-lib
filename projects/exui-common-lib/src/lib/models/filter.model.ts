@@ -43,10 +43,13 @@ export interface FilterFieldConfig {
   locationTitle?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
+  placeholderContent?: string;
+  servicesField?: string;
 }
 
 export interface FilterSetting {
   id: string;
+  idamId?: string;
   reset?: boolean;
   fields: { name: string, value: any[] }[];
 }

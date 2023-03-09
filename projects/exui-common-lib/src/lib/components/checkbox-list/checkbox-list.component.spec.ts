@@ -16,7 +16,7 @@ class RpxTranslateMockPipe implements PipeTransform {
   <xuilib-checkbox-list [options]='options' [preselection]='preselection' [labelFunction]='labelFunction'></xuilib-checkbox-list>`
 })
 class WrapperComponent {
-  @ViewChild(CheckboxListComponent, { static: true}) public appComponentRef: CheckboxListComponent<any>;
+  @ViewChild(CheckboxListComponent, { static: true }) public appComponentRef: CheckboxListComponent<any>;
   @Input() public options: any[];
   @Input() public preselection: any[];
   @Input() public labelFunction: (item: any) => string = defaultLabelFunction;
