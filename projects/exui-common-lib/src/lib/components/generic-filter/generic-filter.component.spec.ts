@@ -1,4 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
@@ -385,9 +386,9 @@ describe('Select all checkboxes', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, HttpClientTestingModule],
       declarations: [
         GenericFilterComponent,
         FindPersonComponent,
@@ -429,7 +430,7 @@ describe('Select all checkboxes', () => {
           minSelected: 1,
           maxSelected: 1,
           type: 'checkbox'
-        }
+        },
       ],
       persistence: 'session',
       showCancelFilterButton: true
@@ -473,7 +474,6 @@ describe('Select all checkboxes', () => {
       expect(input.checked).toBe(false);
     }
   });
-
 });
 
 describe('Find location filter config', () => {
@@ -635,4 +635,68 @@ describe('Find location filter config', () => {
 
   });
 
+});
+
+describe('Task Name Filter', () => {
+  let component: GenericFilterComponent;
+  let fixture: ComponentFixture<GenericFilterComponent>;
+  let fieldName: string;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, HttpClientTestingModule],
+      declarations: [
+        GenericFilterComponent,
+        FindTaskNameComponent,
+        CapitalizePipe
+      ],
+      providers: [
+        FilterService,
+      ]
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fieldName = 'taskNameFilter';
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+    component.config = {
+      id: 'examples',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
+      fields: [
+        {
+          name: fieldName,
+          title: 'Task by name',
+          options: [],
+          minSelected: 0,
+          maxSelected: 1,
+          findLocationField: 'service',
+          servicesField: 'service',
+          minSelectedError: 'You must select a task name',
+          maxSelectedError: null,
+          enableAddTaskNameButton: false,
+          type: 'find-task-name',
+        }
+      ],
+      persistence: 'session',
+      showCancelFilterButton: true
+    };
+    fixture.detectChanges();
+  });
+
+  it('should display find-task-filter filter', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const findTaskNameFilterElement = form.querySelector('xuilib-find-task-name') as HTMLElement;
+    expect(findTaskNameFilterElement).toBeTruthy();
+  });
+  it('should add a formGroup and a form control', () => {
+    expect(component.form.get(fieldName)).toBeInstanceOf(FormGroup);
+    expect(component.form.get(fieldName).get('task_type_id')).toBeInstanceOf(FormControl);
+    expect(component.form.get(fieldName).get('task_type_name')).toBeInstanceOf(FormControl);
+
+    expect(component.form.get('findTaskNameControl')).toBeInstanceOf(FormControl);
+  });
 });
