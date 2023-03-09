@@ -18,7 +18,6 @@ export class TaskNameService {
    * @return Observable<any[]>: Array of taskName in Observable
    */
   public getTaskName(service: string): Observable<TaskNameModel[]> {
-    console.log(service, 'is the given service');
     const serviceTaskTypeKey = `${service}-${TaskNameService.taskNamesKey}`;
     if (this.sessionStorageService.getItem(serviceTaskTypeKey)) {
       const taskNames = JSON.parse(this.sessionStorageService.getItem(serviceTaskTypeKey));

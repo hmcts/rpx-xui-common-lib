@@ -38,8 +38,7 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public searchTerm: string = '';
 
-  constructor(private readonly cd: ChangeDetectorRef, private readonly taskService: TaskNameService) {
-  }
+  constructor(private readonly cd: ChangeDetectorRef, private readonly taskService: TaskNameService) {}
 
   public ngOnDestroy() {
     if (this.sub) {
@@ -48,7 +47,6 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    console.log('services are', this.services);
     this.findTaskNameControl = new FormControl(this.selectedTaskName);
     this.findTaskNameGroup.addControl('findTaskNameControl', this.findTaskNameControl);
     this.sub = this.findTaskNameControl.valueChanges
@@ -63,9 +61,7 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
     ).subscribe((taskNameModel: TaskNameModel[]) => {
       this.filteredOptions = taskNameModel ? taskNameModel : [];
       if (this.searchTerm) {
-        console.log(this.filteredOptions, 'options 1');
         this.filteredOptions = this.filteredOptions.filter((taskType) => taskType.task_type.task_type_name.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase())).map(taskType=> taskType);
-        console.log(this.filteredOptions, 'options 2');
       }
       this.cd.detectChanges();
     });
@@ -77,14 +73,12 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
 
   public onSelectionChange(selectedTaskTypeName: any): void {
     if (selectedTaskTypeName) {
-      console.log(selectedTaskTypeName, 'is selectedTaskTypeName');
       this.taskNameSelected.emit(selectedTaskTypeName);
       this.findTaskNameControl.setValue(this.getTaskTypeName(selectedTaskTypeName), {emitEvent: false, onlySelf: true});
     }
   }
 
   public getTaskTypeName(selectedTaskType: any): string {
-    console.log(selectedTaskType, 'is the selected task type');
     if (!selectedTaskType) {
       return '';
     }

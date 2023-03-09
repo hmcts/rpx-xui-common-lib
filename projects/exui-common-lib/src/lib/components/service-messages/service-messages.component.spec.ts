@@ -53,8 +53,8 @@ describe('ServiceMessagesComponent', () => {
   });
 
   describe('hideMessage()', () => {
-
     it('should add an item to the hidden message list', () => {
+      component.hiddenBanners = [];
       const testRole = 'test-message-1';
       component.hideMessage(testRole);
       expect((component.hiddenBanners).length).toBe(1);
