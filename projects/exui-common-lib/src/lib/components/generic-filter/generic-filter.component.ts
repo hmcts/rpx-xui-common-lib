@@ -98,7 +98,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const services = this.config.fields.find(field => field.name === 'user-services');
     if (services) {
       this.startFilterSkillsByServices(this.form, services);
-      this.initValuesFromCacheForSkillsByServices();
+      if(!this._config.copyFields) {
+        this.initValuesFromCacheForSkillsByServices();
+      }
     }
   }
 
@@ -569,33 +571,60 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         userSkillsCheckboxField.options = this.filteredSkillsByServicesCheckbox;
 
         this.form.setControl('user-skills', new FormArray([]));
-        this.filteredSkillsByServicesCheckbox.forEach(() => {
-          (this.form.get('user-skills') as FormArray).push(new FormControl(false));
-        });
 
-        const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
-          let selected = false;
-          if (this.settings && this.settings.fields) {
-            if (this.previousSelectedNestedCheckbox.length > 0) {
-              selected = this.previousSelectedNestedCheckbox.includes(skill.key);
+        if (!this._config.copyFields) {
+          this.filteredSkillsByServicesCheckbox.forEach(() => {
+            (this.form.get('user-skills') as FormArray).push(new FormControl(false));
+          });
+
+          const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
+            let selected = false;
+            if (this.settings && this.settings.fields) {
+              if (this.previousSelectedNestedCheckbox.length > 0) {
+                selected = this.previousSelectedNestedCheckbox.includes(skill.key);
+              }
+              let isSelectedUserSkill: number;
+              const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
+              if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
+                isSelectedUserSkill = selectedUserSkills.value.findIndex(val => Number(val) === Number(skill.key));
+                selected = isSelectedUserSkill !== -1;
+              }
+              if (this.previousSelectedNestedCheckbox.length > 0) {
+                // Pick up from previous selected
+                selected = this.previousSelectedNestedCheckbox.includes(String(skill.key));
+              }
             }
-            let isSelectedUserSkill: number;
-            const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
-            if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
-              isSelectedUserSkill = selectedUserSkills.value.findIndex(val => Number(val) === Number(skill.key));
-              selected = isSelectedUserSkill !== -1;
+
+            return selected;
+          });
+
+          this.form.get('user-skills').setValue(prevValues);
+        } else {
+          let preSelectedSkills: boolean[] = [];
+
+          this.filteredSkillsByServicesCheckbox.map((skillsByServices, index) => {
+            for(let i = 0; i<this._config.preSelectedNestedCheckbox.length; i++) {
+              let skillCopyValue = this._config.preSelectedNestedCheckbox[i]
+
+              if(skillCopyValue.toString() === skillsByServices.key.toString()) {
+                preSelectedSkills[index] = true;
+                break;
+              } else {
+                preSelectedSkills[index] = false;
+              }
             }
-            if (this.previousSelectedNestedCheckbox.length > 0) {
-              // Pick up from previous selected
-              selected = this.previousSelectedNestedCheckbox.includes(String(skill.key));
-            }
+          });
+
+          if(preSelectedSkills.length > 0) {
+            preSelectedSkills.forEach((h) => {
+              (this.form.get('user-skills') as FormArray).push(new FormControl(h));
+            });
+          } else {
+            this.filteredSkillsByServicesCheckbox.map(() => {
+              (this.form.get('user-skills') as FormArray).push(new FormControl(false));
+            });
           }
-
-          return selected;
-        });
-
-        this.form.get('user-skills').setValue(prevValues);
-
+        }
         return this.filteredSkillsByServicesCheckbox;
       }
     }

@@ -21,6 +21,7 @@ export interface FilterConfig {
   cancelButtonText: string;
   cancelSetting?: FilterSetting;
   showCancelFilterButton?: boolean;
+  preSelectedNestedCheckbox?: number[];
   cancelButtonCallback?(): void;
   applyButtonCallback?(): void;
   copyFields?(form: FormGroup): FormGroup;
