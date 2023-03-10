@@ -19,8 +19,16 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public filteredSkillsByServices: GroupOptions[];
   public filteredSkillsByServicesCheckbox: FilterConfigOption[];
   public previousSelectedNestedCheckbox: string[] = [];
+  public searchTermServiceForm: FormGroup;
+  public searchTermLocationForm: FormGroup;
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
+    this.searchTermServiceForm = this.fb.group({
+      searchTerm: ['']
+    });
+    this.searchTermLocationForm = this.fb.group({
+      searchTerm: ['']
+    });
   }
 
   // tslint:disable-next-line:variable-name
@@ -179,6 +187,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     } else {
       this.emitFormErrors(form);
     }
+    for (const field of this.config.fields) {
+      const fieldName = field.name;
+      if(fieldName === 'user-services') {
+        this.searchTermServiceForm.reset();
+      } else if(fieldName === 'user-location') {
+        this.searchTermLocationForm.reset();
+      }
+    }
 
     if (this._config.applyButtonCallback) {
       this._config.applyButtonCallback();
@@ -203,8 +219,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public inputServiceChanged(e: FilterConfigOption, field: FilterFieldConfig): void {
-    if (e === undefined) {
+  public inputServiceChanged(selectedNotAddedService: FilterConfigOption, field: FilterFieldConfig): void {
+    if (selectedNotAddedService === undefined) {
      this.addAllOption(field);
     } else {
       this.clearFormArray(this.form.get('user-services') as FormArray);
@@ -467,12 +483,18 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   private emitFormErrors(form: FormGroup): void {
     let errors: FilterError[] = [];
     for (const field of this.config.fields) {
-      const formGroup = form.get(field.name);
+      const fieldName = field.name;
+      const formGroup = form.get(fieldName);
       if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
-        errors.push({name: field.name, error: field.minSelectedError});
+        errors.push({name: fieldName, error: field.minSelectedError});
+        if(fieldName === 'user-services') {
+          this.searchTermServiceForm.reset();
+        } else if(fieldName === 'user-location') {
+          this.searchTermLocationForm.reset();
+        }
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxlength) {
-        errors.push({name: field.name, error: field.maxSelectedError});
+        errors.push({name: fieldName, error: field.maxSelectedError});
       }
     }
 

@@ -49,6 +49,9 @@ describe('FindServiceComponent', () => {
     component.form = new FormGroup({
       'user-services': new FormArray([]),
     });
+    component.searchTermServiceForm = new FormGroup({
+      searchTerm: new FormControl([]),
+    });
     const services = [
       {
         key: 'AAA7',
