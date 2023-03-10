@@ -600,11 +600,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
           this.form.get('user-skills').setValue(prevValues);
         } else {
-          let preSelectedSkills: boolean[] = [];
+          const preSelectedSkills: boolean[] = [];
 
           this.filteredSkillsByServicesCheckbox.map((skillsByServices, index) => {
             for(let i = 0; i<this._config.preSelectedNestedCheckbox.length; i++) {
-              let skillCopyValue = this._config.preSelectedNestedCheckbox[i]
+              const skillCopyValue = this._config.preSelectedNestedCheckbox[i];
 
               if(skillCopyValue.toString() === skillsByServices.key.toString()) {
                 preSelectedSkills[index] = true;
