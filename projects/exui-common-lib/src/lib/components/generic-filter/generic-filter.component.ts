@@ -19,8 +19,16 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public filteredSkillsByServices: GroupOptions[];
   public filteredSkillsByServicesCheckbox: FilterConfigOption[];
   public previousSelectedNestedCheckbox: string[] = [];
+  public searchTermServiceForm: FormGroup;
+  public searchTermLocationForm: FormGroup;
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
+    this.searchTermServiceForm = this.fb.group({
+      searchTerm: ['']
+    });
+    this.searchTermLocationForm = this.fb.group({
+      searchTerm: ['']
+    });
   }
 
   // tslint:disable-next-line:variable-name
@@ -90,7 +98,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const services = this.config.fields.find(field => field.name === 'user-services');
     if (services) {
       this.startFilterSkillsByServices(this.form, services);
-      this.initValuesFromCacheForSkillsByServices();
+      if(!this._config.copyFields) {
+        this.initValuesFromCacheForSkillsByServices();
+      }
     }
   }
 
@@ -179,6 +189,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     } else {
       this.emitFormErrors(form);
     }
+    for (const field of this.config.fields) {
+      const fieldName = field.name;
+      if(fieldName === 'user-services') {
+        this.searchTermServiceForm.reset();
+      } else if(fieldName === 'user-location') {
+        this.searchTermLocationForm.reset();
+      }
+    }
 
     if (this._config.applyButtonCallback) {
       this._config.applyButtonCallback();
@@ -203,8 +221,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public inputServiceChanged(e: FilterConfigOption, field: FilterFieldConfig): void {
-    if (e === undefined) {
+  public inputServiceChanged(selectedNotAddedService: FilterConfigOption, field: FilterFieldConfig): void {
+    if (selectedNotAddedService === undefined) {
      this.addAllOption(field);
     } else {
       this.clearFormArray(this.form.get('user-services') as FormArray);
@@ -467,12 +485,18 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   private emitFormErrors(form: FormGroup): void {
     let errors: FilterError[] = [];
     for (const field of this.config.fields) {
-      const formGroup = form.get(field.name);
+      const fieldName = field.name;
+      const formGroup = form.get(fieldName);
       if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
-        errors.push({name: field.name, error: field.minSelectedError});
+        errors.push({name: fieldName, error: field.minSelectedError});
+        if(fieldName === 'user-services') {
+          this.searchTermServiceForm.reset();
+        } else if(fieldName === 'user-location') {
+          this.searchTermLocationForm.reset();
+        }
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxlength) {
-        errors.push({name: field.name, error: field.maxSelectedError});
+        errors.push({name: fieldName, error: field.maxSelectedError});
       }
     }
 
@@ -546,33 +570,60 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         userSkillsCheckboxField.options = this.filteredSkillsByServicesCheckbox;
 
         this.form.setControl('user-skills', new FormArray([]));
-        this.filteredSkillsByServicesCheckbox.forEach(() => {
-          (this.form.get('user-skills') as FormArray).push(new FormControl(false));
-        });
 
-        const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
-          let selected = false;
-          if (this.settings && this.settings.fields) {
-            if (this.previousSelectedNestedCheckbox.length > 0) {
-              selected = this.previousSelectedNestedCheckbox.includes(skill.key);
+        if (!this._config.copyFields) {
+          this.filteredSkillsByServicesCheckbox.forEach(() => {
+            (this.form.get('user-skills') as FormArray).push(new FormControl(false));
+          });
+
+          const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
+            let selected = false;
+            if (this.settings && this.settings.fields) {
+              if (this.previousSelectedNestedCheckbox.length > 0) {
+                selected = this.previousSelectedNestedCheckbox.includes(skill.key);
+              }
+              let isSelectedUserSkill: number;
+              const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
+              if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
+                isSelectedUserSkill = selectedUserSkills.value.findIndex(val => Number(val) === Number(skill.key));
+                selected = isSelectedUserSkill !== -1;
+              }
+              if (this.previousSelectedNestedCheckbox.length > 0) {
+                // Pick up from previous selected
+                selected = this.previousSelectedNestedCheckbox.includes(String(skill.key));
+              }
             }
-            let isSelectedUserSkill: number;
-            const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
-            if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
-              isSelectedUserSkill = selectedUserSkills.value.findIndex(val => Number(val) === Number(skill.key));
-              selected = isSelectedUserSkill !== -1;
+
+            return selected;
+          });
+
+          this.form.get('user-skills').setValue(prevValues);
+        } else {
+          const preSelectedSkills: boolean[] = [];
+
+          this.filteredSkillsByServicesCheckbox.map((skillsByServices, index) => {
+            for(let i = 0; i<this._config.preSelectedNestedCheckbox.length; i++) {
+              const skillCopyValue = this._config.preSelectedNestedCheckbox[i];
+
+              if(skillCopyValue.toString() === skillsByServices.key.toString()) {
+                preSelectedSkills[index] = true;
+                break;
+              } else {
+                preSelectedSkills[index] = false;
+              }
             }
-            if (this.previousSelectedNestedCheckbox.length > 0) {
-              // Pick up from previous selected
-              selected = this.previousSelectedNestedCheckbox.includes(String(skill.key));
-            }
+          });
+
+          if(preSelectedSkills.length > 0) {
+            preSelectedSkills.forEach((h) => {
+              (this.form.get('user-skills') as FormArray).push(new FormControl(h));
+            });
+          } else {
+            this.filteredSkillsByServicesCheckbox.map(() => {
+              (this.form.get('user-skills') as FormArray).push(new FormControl(false));
+            });
           }
-
-          return selected;
-        });
-
-        this.form.get('user-skills').setValue(prevValues);
-
+        }
         return this.filteredSkillsByServicesCheckbox;
       }
     }
