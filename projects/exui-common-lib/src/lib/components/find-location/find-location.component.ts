@@ -20,7 +20,6 @@ export class FindLocationComponent implements OnInit {
   @Input() public fields: FilterFieldConfig[];
   @Input() public locationTitle = 'Search for a location by name';
   @Input() public disableInputField = false;
-  @Input() public searchTermLocationForm?: FormGroup;
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
