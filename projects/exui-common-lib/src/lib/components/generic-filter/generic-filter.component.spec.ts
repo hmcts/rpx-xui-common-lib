@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
@@ -31,7 +31,7 @@ describe('GenericFilterComponent', () => {
     }
   };
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
@@ -364,7 +364,7 @@ describe('Select all checkboxes', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],
@@ -450,7 +450,7 @@ describe('Find location filter config', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
       declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent],

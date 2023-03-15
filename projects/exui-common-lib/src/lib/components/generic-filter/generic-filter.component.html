@@ -87,7 +87,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'find-location'">
           <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
-                                [form]="form"                                
+                                [form]="form"
                                 [fields]="config.fields"
                                 [locationTitle]="field.locationTitle"
                                 [enableAddLocationButton]="field.enableAddButton"
@@ -106,9 +106,9 @@
                                 [title]="field.title"
                                 [enableAddServiceButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
-                                [disableInputField]="field.disable"                              
+                                [disableInputField]="field.disable"
                                 [field]="field"
-                                [selectedServices]="form.get(field.name)?.value"  
+                                [selectedServices]="form.get(field.name)?.value"
           ></xuilib-find-service>
         </ng-container>
       </div>

@@ -80,22 +80,25 @@ export class TimeoutNotificationsService {
     const windowInterrupts = new WindowInterruptSource(DOCUMENT_INTERRUPTS);
     this.idle.setInterrupts([docInterrupts, windowInterrupts]);
 
-    this.idle.onTimeout.subscribe(() => {
-      this.eventEmitter.next({eventType: SIGNOUT_EVENT});
+    this.idle.onTimeout.subscribe({
+      next: () => this.eventEmitter.next({eventType: SIGNOUT_EVENT})
     });
 
     this.idle.onTimeoutWarning.pipe(
       map(sec => (sec > 60) ? Math.ceil(sec / 60) + MINUTES : sec + SECONDS),
       distinctUntilChanged()
-    ).subscribe((countdown) => {
-      this.eventEmitter.next({eventType: COUNTDOWN_EVENT, readableCountdown: countdown});
+    ).subscribe({
+      next: (countdown) => this.eventEmitter.next({eventType: COUNTDOWN_EVENT, readableCountdown: countdown})
     });
     this.idle.onIdleStart.subscribe(() => console.log('You\'ve gone idle!'));
     this.idle.onIdleEnd.subscribe(() => console.log('You\'re no longer idle!'));
 
+    this.idle.onIdleStart.subscribe({next: () => console.log('You\'ve gone idle!')});
+    this.idle.onIdleEnd.subscribe({next: () => console.log('You\'re not idle!')});
+
     this.keepalive.interval(15);
-    this.keepalive.onPing.subscribe(() => {
-      this.eventEmitter.next({eventType: KEEP_ALIVE_EVENT});
+    this.keepalive.onPing.subscribe({
+      next: () => this.eventEmitter.next({eventType: KEEP_ALIVE_EVENT})
     });
 
     const idleInSeconds = Math.floor(totalIdleTimeInSeconds) - idleModalDisplayTimeInSeconds;
