@@ -4,7 +4,6 @@
       <label id="input-selected-location-label" *ngIf="locationTitle">{{locationTitle}}</label>
     </div>
     <exui-search-location class="search-location"
-                          [form]="searchTermLocationForm"
                           [locations]="locations"
                           [selectedLocations]="selectedLocations"
                           [singleMode]="field.maxSelected === 1"

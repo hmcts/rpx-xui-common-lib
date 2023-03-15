@@ -20,13 +20,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public filteredSkillsByServicesCheckbox: FilterConfigOption[];
   public previousSelectedNestedCheckbox: string[] = [];
   public searchTermServiceForm: FormGroup;
-  public searchTermLocationForm: FormGroup;
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
     this.searchTermServiceForm = this.fb.group({
-      searchTerm: ['']
-    });
-    this.searchTermLocationForm = this.fb.group({
       searchTerm: ['']
     });
   }
@@ -193,8 +189,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const fieldName = field.name;
       if(fieldName === 'user-services') {
         this.searchTermServiceForm.reset();
-      } else if(fieldName === 'user-location') {
-        this.searchTermLocationForm.reset();
       }
     }
 
@@ -491,8 +485,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         errors.push({name: fieldName, error: field.minSelectedError});
         if(fieldName === 'user-services') {
           this.searchTermServiceForm.reset();
-        } else if(fieldName === 'user-location') {
-          this.searchTermLocationForm.reset();
         }
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxlength) {
@@ -511,10 +503,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public initValuesFromCacheForSkillsByServices() {
-    const cachedValues = this.filteredSkillsByServicesCheckbox.map(skill => {
-      let selected = false;
-
-      if (this.settings && this.settings.fields) {
+    if (this.settings && this.settings.fields) {
+      const cachedValues = this.filteredSkillsByServicesCheckbox.map(skill => {
+        let selected = false;
         let isSelectedUserSkill: number;
         const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
         if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
@@ -523,13 +514,13 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           });
           selected = isSelectedUserSkill !== -1;
         }
+
+        return selected;
+      });
+
+      if (cachedValues.length > 0) {
+        this.form.get('user-skills').setValue(cachedValues);
       }
-
-      return selected;
-    });
-
-    if(cachedValues.length > 0) {
-      this.form.get('user-skills').setValue(cachedValues);
     }
   }
 

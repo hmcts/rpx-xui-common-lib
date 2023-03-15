@@ -135,7 +135,6 @@
           <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
                                 [form]="form"
                                 [fields]="config.fields"
-                                [searchTermLocationForm]="searchTermLocationForm"
                                 [locationTitle]="field.locationTitle"
                                 [enableAddLocationButton]="field.enableAddButton"
                                 [disabled]="disabled(field, form)"
@@ -177,6 +176,7 @@
                  [attr.disabled]="disabled(field, form)"
                  (change)="fieldChanged(field, form)"
                  [attr.maxlength]="field.maxlength ? field.maxlength : null"
+                 [readonly]="field.readonly"
           />
         </ng-container>
         <ng-container *ngSwitchCase="'email-input'">
@@ -185,6 +185,7 @@
                  [id]="field.name"
                  [attr.disabled]="disabled(field, form)"
                  (change)="fieldChanged(field, form)"
+                 [readonly]="field.readonly"
           />
         </ng-container>
       </div>
