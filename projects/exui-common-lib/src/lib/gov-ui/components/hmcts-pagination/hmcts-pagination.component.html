@@ -1,10 +1,8 @@
 <pagination-template #p="paginationApi" [id]="id" [maxSize]="maxSize" (pageChange)="pageChange.emit($event)"
   (pageBoundsCorrection)="pageBoundsCorrection.emit($event)">
 
-  <nav class="hmcts-pagination" id="pagination-label">
-    <p class="govuk-visually-hidden" aria-labelledby="pagination-label">Pagination navigation</p>
+  <nav class="hmcts-pagination" id="pagination-label" aria-label="pagination">
     <ul class="hmcts-pagination__list" *ngIf="!(p.pages.length <= 1)">
-
       <li class="hmcts-pagination__item  hmcts-pagination__item--prev" [class.disabled]="p.isFirstPage()">
         <a [routerLink]="" class="hmcts-pagination__link" *ngIf="1 < p.getCurrent()" (keyup.enter)="p.previous()"
           (click)="p.previous()">Previous <span class="govuk-visually-hidden">set of pages</span></a>
@@ -14,13 +12,13 @@
         <li class="hmcts-pagination__item" [class.hmcts-pagination__item--active]="p.getCurrent() === page.value"
           [class.hmcts-pagination__item--dots]="page.label === '...'" *ngFor="let page of p.pages">
           <a class="hmcts-pagination__link" [routerLink]="" (keyup.enter)="p.setCurrent(page.value)"
-            (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
-            <span class="govuk-visually-hidden">page </span>
+            (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value" [attr.aria-label]="'Page ' + page.label">
             <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
           </a>
-          <ng-container *ngIf="p.getCurrent() === page.value">
+
+          <a class="hmcts-pagination__link" [routerLink]="" *ngIf="p.getCurrent() === page.value" [attr.aria-label]="'Page ' + page.label" [attr.aria-current]="'Page ' + page.label">
             <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
-          </ng-container>
+          </a>
         </li>
       </ng-container>
 
@@ -28,7 +26,6 @@
         <a [routerLink]="" class="hmcts-pagination__link" *ngIf="!p.isLastPage()" (keyup.enter)="p.next()"
           (click)="p.next()">Next<span class="govuk-visually-hidden"> page</span></a>
       </li>
-
     </ul>
     <p class="hmcts-pagination__results" *ngIf="showResultCount">Showing <b>{{(p.getCurrent() * pageSize) - pageSize + 1}}</b>
       to <b>{{ p.getCurrent() * pageSize > p.getTotalItems() ? p.getTotalItems() : p.getCurrent() *
