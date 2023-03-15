@@ -45,7 +45,7 @@ export interface FilterFieldConfig {
   bookingCheckType?: BookingCheckType;
   userIncluded?: boolean;
   placeholderContent?: string;
-  services?: string[];
+  servicesField?: string;
 }
 
 export interface FilterSetting {
