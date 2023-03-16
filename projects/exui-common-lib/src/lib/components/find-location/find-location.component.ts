@@ -112,11 +112,13 @@ export class FindLocationComponent implements OnInit {
   }
 
   private removeSelectedValues(): void {
-    const formArray = this.form.get(this.field.name) as FormArray;
-    for (let i = 0; i < formArray.length; i++) {
-      formArray.removeAt(i);
+    const formArray = this.form.get(this.field?.name) as FormArray;
+    if (formArray) {
+      for (let i = 0; i < formArray.length; i++) {
+        formArray.removeAt(i);
+      }
+      this.selectedLocations = [];
     }
-    this.selectedLocations = [];
   }
 
   private addSelectedLocationsToForm(locations: LocationByEPIMMSModel[]): void {
