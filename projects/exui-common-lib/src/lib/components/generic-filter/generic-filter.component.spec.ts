@@ -6,7 +6,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FilterConfig, FilterFieldConfig, GroupOptions } from '../../models';
-import { CapitalizePipe } from '../../pipes/capitalize.pipe';
+import { CapitalizePipe } from '../../pipes';
 import { FilterService } from '../../services';
 import { LocationService } from '../../services/locations/location.service';
 import { FindLocationComponent } from '../find-location/find-location.component';

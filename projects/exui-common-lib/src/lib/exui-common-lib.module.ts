@@ -73,7 +73,7 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
-import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { CapitalizePipe } from './pipes';
 import { windowProvider, windowToken } from './window';
 
 export const COMMON_COMPONENTS = [
