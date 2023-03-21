@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.10-fee-paid-filter-change",
+  "version": "1.8.10-fee-paid-filter-change1",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
