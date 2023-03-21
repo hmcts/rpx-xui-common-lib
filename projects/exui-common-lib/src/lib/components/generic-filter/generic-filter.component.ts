@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { FilterConfig, FilterConfigOption, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
 import { FilterService } from '../../services';
 import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
@@ -19,6 +19,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public filteredSkillsByServices: GroupOptions[];
   public filteredSkillsByServicesCheckbox: FilterConfigOption[];
   public previousSelectedNestedCheckbox: string[] = [];
+  public formSubmissionEvent$ = new Subject<void>();
 
   constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {}
 
@@ -166,6 +167,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public applyFilter(form: FormGroup): void {
+    this.formSubmissionEvent$.next();
     this.submitted = true;
     form.markAsTouched();
     if (form.valid) {

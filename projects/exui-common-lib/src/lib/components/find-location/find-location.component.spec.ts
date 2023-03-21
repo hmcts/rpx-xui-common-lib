@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
+import { Subject, Subscription } from 'rxjs';
 import {LocationService} from '../../services/locations/location.service';
 import {SearchLocationComponent} from '../search-location/search-location.component';
-
 import {FindLocationComponent} from './find-location.component';
 
 describe('FindLocationComponent', () => {
@@ -89,5 +89,26 @@ describe('FindLocationComponent', () => {
     spyOn(component.locationFieldChanged, 'emit');
     component.onSearchInputChanged();
     expect(component.locationFieldChanged.emit).toHaveBeenCalled();
+  });
+
+  describe('resetting term search', () => {
+    beforeEach(() => {
+      component.formSubmissionEvent$ = new Subject();
+      component.ngOnInit();
+    });
+
+    it('should reset the search term on each formSubmissionEvent$', () => {
+      spyOn(component.searchLocationComponent, 'resetSearchTerm').and.callThrough();
+      component.formSubmissionEvent$.next();
+      expect(component.searchLocationComponent.resetSearchTerm).toHaveBeenCalled();
+    });
+
+    it('should unsubscribe on ngOnDestroy', () => {
+      // @ts-expect-error private property
+      spyOn<Subscription>(component.formSubmissionEventSubscription, 'unsubscribe');
+      component.ngOnDestroy();
+      // @ts-expect-error private property
+      expect(component.formSubmissionEventSubscription.unsubscribe).toHaveBeenCalledTimes(1);
+    });
   });
 });

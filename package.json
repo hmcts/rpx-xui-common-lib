@@ -1,10 +1,10 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.10-find-service-input-2",
+  "version": "1.8.10-find-service-input-3",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
-    "build:library:watch": "ng build exui-common-lib --prod --watch",
+    "build:library:watch": "ng build exui-common-lib --watch",
     "package": "cat dist/rpx-xui-common-lib/{runtime,polyfills,scripts,main}.js | gzip > elements.js.gz",
     "start": "ng serve -o",
     "start:no-open": "ng serve",

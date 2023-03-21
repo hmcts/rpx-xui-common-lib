@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } f
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Subject, Subscription } from 'rxjs';
 import { FilterConfigOption } from '../../models';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { FindServiceComponent } from './find-service.component';
@@ -225,8 +226,8 @@ describe('FindServiceComponent', () => {
     it('should add a single option ' +
       'and emit serviceFieldChanged event when the option does not have a selectAll property', () => {
       spyOn<any>(component, 'addSelectedServiceToForm').and.callThrough();
-      spyOn<any>(component.serviceFieldChanged, 'emit');
-      spyOn<any>(component.searchServiceComponent, 'resetSearchTerm');
+      spyOn(component.serviceFieldChanged, 'emit');
+      spyOn(component.searchServiceComponent, 'resetSearchTerm');
 
       component.addOption(options[1]);
 
@@ -243,10 +244,10 @@ describe('FindServiceComponent', () => {
       // @ts-expect-error private property
       component.isSelectedAll = true;
 
-      spyOn<any>(component, 'removeAllSelectedValues');
+      spyOn<any>(component, 'removeAllSelectedValues').and.callThrough();
       spyOn<any>(component, 'addSelectedServiceToForm').and.callThrough();
-      spyOn<any>(component.serviceFieldChanged, 'emit');
-      spyOn<any>(component.searchServiceComponent, 'resetSearchTerm');
+      spyOn(component.serviceFieldChanged, 'emit');
+      spyOn(component.searchServiceComponent, 'resetSearchTerm');
 
       component.addOption(options[1]);
 
@@ -258,6 +259,27 @@ describe('FindServiceComponent', () => {
       expect(component.addSelectedServiceToForm).toHaveBeenCalledWith(options[1]);
       expect(component.serviceFieldChanged.emit).toHaveBeenCalled();
       expect(component.searchServiceComponent.resetSearchTerm).toHaveBeenCalled();
+    });
+  });
+
+  describe('resetting term search', () => {
+    beforeEach(() => {
+      component.formSubmissionEvent$ = new Subject();
+      component.ngOnInit();
+    });
+
+    it('should reset the search term on each formSubmissionEvent$', () => {
+      component.searchServiceComponent.searchTerm = 'test123';
+      component.formSubmissionEvent$.next();
+      expect(component.searchServiceComponent.searchTerm).toBe('');
+    });
+
+    it('should unsubscribe on ngOnDestroy', () => {
+      // @ts-expect-error private property
+      spyOn<Subscription>(component.formSubmissionEventSubscription, 'unsubscribe');
+      component.ngOnDestroy();
+      // @ts-expect-error private property
+      expect(component.formSubmissionEventSubscription.unsubscribe).toHaveBeenCalledTimes(1);
     });
   });
 });

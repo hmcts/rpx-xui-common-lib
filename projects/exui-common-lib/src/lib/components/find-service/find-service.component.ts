@@ -1,5 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+
+
+
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
 import { FilterConfigOption, FilterFieldConfig } from '../../models';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 
@@ -8,14 +12,16 @@ import { SearchServiceComponent } from '../search-service/search-service.compone
   templateUrl: './find-service.component.html',
   styleUrls: ['./find-service.component.scss']
 })
-export class FindServiceComponent implements OnInit {
+export class FindServiceComponent implements OnInit, OnDestroy {
   @Input() public field: FilterFieldConfig;
   @Input() public serviceTitle: string;
   @Input() public form: FormGroup;
   @Input() public disabled: boolean = false;
+  @Input() public formSubmissionEvent$: Subject<void>;
   @ViewChild(SearchServiceComponent, { static: true }) public searchServiceComponent: SearchServiceComponent;
   @Output() public serviceFieldChanged = new EventEmitter();
   private isSelectedAll = false;
+  private formSubmissionEventSubscription: Subscription;
 
   public tempSelectedService: FilterConfigOption = null;
   public get selectedServices(): FilterConfigOption[] {
@@ -29,6 +35,11 @@ export class FindServiceComponent implements OnInit {
     // Patch Default Option
     if (this.field.defaultOption) {
       this.addOption(this.field.defaultOption);
+    }
+    if (this.formSubmissionEvent$) {
+      this.formSubmissionEventSubscription = this.formSubmissionEvent$.subscribe(() => {
+        this.searchServiceComponent.resetSearchTerm();
+      });
     }
   }
 
@@ -94,5 +105,9 @@ export class FindServiceComponent implements OnInit {
     return this.field.options.sort((a, b) => {
       return a.label.toLowerCase() > b.label.toLowerCase() ? 1 : (b.label.toLowerCase() > a.label.toLowerCase() ? -1 : 0);
     });
+  }
+
+  public ngOnDestroy() {
+    this.formSubmissionEventSubscription?.unsubscribe();
   }
 }
