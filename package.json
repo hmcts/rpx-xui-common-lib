@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.10-find-service-input",
+  "version": "1.8.10-find-service-input-2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
