@@ -69,7 +69,11 @@ export class FindLocationComponent implements OnInit, OnDestroy {
 
     if (this.formSubmissionEvent$) {
       this.formSubmissionEventSubscription = this.formSubmissionEvent$.subscribe(() => {
-        this.searchLocationComponent.resetSearchTerm();
+        const oneSelectedAndMaxSelectedOne = this.selectedLocations.length === 1 && this.field.maxSelected === 1;
+
+        if (!oneSelectedAndMaxSelectedOne) {
+          this.searchLocationComponent.resetSearchTerm();
+        }
       });
     }
   }

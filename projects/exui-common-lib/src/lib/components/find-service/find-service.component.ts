@@ -38,7 +38,10 @@ export class FindServiceComponent implements OnInit, OnDestroy {
     }
     if (this.formSubmissionEvent$) {
       this.formSubmissionEventSubscription = this.formSubmissionEvent$.subscribe(() => {
-        this.searchServiceComponent.resetSearchTerm();
+        const oneSelectedAndMaxSelectedOne = this.selectedServices.length === 1 && this.field.maxSelected === 1;
+        if (!oneSelectedAndMaxSelectedOne) {
+          this.searchServiceComponent.resetSearchTerm();
+        }
       });
     }
   }
