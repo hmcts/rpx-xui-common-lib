@@ -305,18 +305,18 @@ describe('SearchLocationComponent', () => {
     component.serviceIds = 'IA,SSCS';
     component.bookingCheck = BookingCheckType.NO_CHECK;
     component.getLocations('exampleString');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined, undefined);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined);
     // checks that civil added to userLocations as well
     component.serviceIds = 'IA,CIVIL';
     component.bookingCheck = BookingCheckType.BOOKINGS_AND_BASE;
     sessionServiceMock.getItem.and.returnValues(`[["IA"], []]`, `["12345"]`, '["CIVIL"]');
     component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [['IA'], [], {service: 'CIVIL', locations: [], bookable: true}], ['12345']);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [['IA'], []]);
     // check user locations filtered for bookable correctly
     component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
-    const bookableLocationString = JSON.stringify([{service: 'IA', locations: ['12345'], bookable: true}, {service: 'CIVIL', locations: ['32456'], bookable: false}]);
-    sessionServiceMock.getItem.and.returnValues(bookableLocationString, `["SSCS", "IA"]`, '[]');
+    const bookableLocationString = JSON.stringify([{service: 'IA', locations: ['12345']}, {service: 'CIVIL', locations: ['32456']}]);
+    sessionServiceMock.getItem.and.returnValues(bookableLocationString);
     component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: ['12345'], bookable: true}], undefined);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: ['12345']}, {service: 'CIVIL', locations: ['32456']}]);
   });
 });
