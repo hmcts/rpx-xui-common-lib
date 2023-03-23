@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { FilterConfig, FilterConfigOption, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
-import { FilterService } from './../../services/filter/filter.service';
+import { FilterService } from '../../services';
 import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
 @Component({
@@ -19,13 +19,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public filteredSkillsByServices: GroupOptions[];
   public filteredSkillsByServicesCheckbox: FilterConfigOption[];
   public previousSelectedNestedCheckbox: string[] = [];
-  public searchTermServiceForm: FormGroup;
+  public formSubmissionEvent$ = new Subject<void>();
 
-  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {
-    this.searchTermServiceForm = this.fb.group({
-      searchTerm: ['']
-    });
-  }
+  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {}
 
   // tslint:disable-next-line:variable-name
   private _config: FilterConfig;
@@ -171,6 +167,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public applyFilter(form: FormGroup): void {
+    this.formSubmissionEvent$.next();
     this.submitted = true;
     form.markAsTouched();
     if (form.valid) {
@@ -184,12 +181,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.filterService.persist(settings, this.config.persistence);
     } else {
       this.emitFormErrors(form);
-    }
-    for (const field of this.config.fields) {
-      const fieldName = field.name;
-      if(fieldName === 'user-services') {
-        this.searchTermServiceForm.reset();
-      }
     }
 
     if (this._config.applyButtonCallback) {
@@ -215,12 +206,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public inputServiceChanged(selectedNotAddedService: FilterConfigOption, field: FilterFieldConfig): void {
-    if (selectedNotAddedService === undefined) {
-     this.addAllOption(field);
-    } else {
-      this.clearFormArray(this.form.get('user-services') as FormArray);
-    }
+  public inputServiceChanged(field: FilterFieldConfig): void {
     if (field.name === 'user-services') {
       const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
       this.filterSkillsByServices(selectedServices, this.config);
@@ -396,7 +382,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       } else if (field.type === 'find-location' || field.type === 'find-service') {
         const formArray = this.buildFormArray(field, settings);
         this.form.addControl(field.name, formArray);
-        this.addAllOption(field);
       } else {
         const validators: ValidatorFn[] = [];
         if (field.minSelected && field.minSelected > 0) {
@@ -507,9 +492,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const formGroup = form.get(fieldName);
       if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
         errors.push({name: fieldName, error: field.minSelectedError});
-        if(fieldName === 'user-services') {
-          this.searchTermServiceForm.reset();
-        }
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxlength) {
         errors.push({name: fieldName, error: field.maxSelectedError});
@@ -678,19 +660,4 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     });
     return sortedResults;
   }
-
-  private readonly clearFormArray = (formArray: FormArray) => {
-    formArray.controls.forEach((el, index) => {
-      if (el.value.key === 'All') {
-        (this.form.get('user-services') as FormArray).removeAt(index);
-      }
-    });
-  }
-
-  private readonly addAllOption = (field: FilterFieldConfig) => {
-    if (this.form.get('user-services') && this.form.get('user-services').value.length === 0 && field.minSelected >= 0) {
-      (this.form.get('user-services') as FormArray).push(new FormControl({key: 'All', label: 'All'}));
-   }
-  }
-
 }

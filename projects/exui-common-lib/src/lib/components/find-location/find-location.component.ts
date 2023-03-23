@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {FilterFieldConfig} from '../../models';
-import {LocationByEPIMMSModel} from '../../models/location.model';
+import { Subject, Subscription } from 'rxjs';
+import { FilterFieldConfig, LocationByEPIMMSModel } from '../../models';
 import {getValues} from '../generic-filter/generic-filter-utils';
 import {SearchLocationComponent} from '../search-location/search-location.component';
 
@@ -10,7 +10,7 @@ import {SearchLocationComponent} from '../search-location/search-location.compon
   templateUrl: './find-location.component.html',
   styleUrls: ['./find-location.component.scss']
 })
-export class FindLocationComponent implements OnInit {
+export class FindLocationComponent implements OnInit, OnDestroy {
   @Output() public locationFieldChanged = new EventEmitter<void>();
   @Input() public selectedLocations: LocationByEPIMMSModel[] = [];
   @Input() public submitted: boolean = true;
@@ -20,12 +20,14 @@ export class FindLocationComponent implements OnInit {
   @Input() public fields: FilterFieldConfig[];
   @Input() public locationTitle = 'Search for a location by name';
   @Input() public disableInputField = false;
+  @Input() public formSubmissionEvent$: Subject<void>;
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
   @ViewChild(SearchLocationComponent, { static: true }) public searchLocationComponent: SearchLocationComponent;
   private pServices: string[] = [];
   private pDisabled: boolean = false;
+  private formSubmissionEventSubscription: Subscription;
 
   public get disabled(): boolean {
     return this.pDisabled;
@@ -64,6 +66,16 @@ export class FindLocationComponent implements OnInit {
   public ngOnInit(): void {
     // implemented to get rid of undefined values
     this.selectedLocations = this.selectedLocations.filter(location => location.epimms_id);
+
+    if (this.formSubmissionEvent$) {
+      this.formSubmissionEventSubscription = this.formSubmissionEvent$.subscribe(() => {
+        const oneSelectedAndMaxSelectedOne = this.selectedLocations.length === 1 && this.field.maxSelected === 1;
+
+        if (!oneSelectedAndMaxSelectedOne) {
+          this.searchLocationComponent.resetSearchTerm();
+        }
+      });
+    }
   }
 
   public addLocation(): void {
@@ -126,5 +138,9 @@ export class FindLocationComponent implements OnInit {
     for (const location of locations) {
       formArray.push(new FormControl(location));
     }
+  }
+
+  public ngOnDestroy() {
+    this.formSubmissionEventSubscription?.unsubscribe();
   }
 }

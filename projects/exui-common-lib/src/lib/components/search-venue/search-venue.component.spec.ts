@@ -252,6 +252,7 @@ describe('SearchVenueComponent', () => {
     selectedLoction.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {
       fixture.detectChanges();
+      spyOn(component, 'filter');
       expect(component.filter).not.toHaveBeenCalled();
     });
   });

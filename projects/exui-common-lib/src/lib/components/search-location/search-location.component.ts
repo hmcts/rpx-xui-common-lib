@@ -19,13 +19,13 @@ export class SearchLocationComponent implements OnInit {
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
   @Input() public delay?: number = 500;
-  @Input() public form: FormGroup;
   @Input() public showAutocomplete: boolean = false;
   @Input() public locations: LocationByEPIMMSModel[] = [];
   @Input() public bookingCheck: BookingCheckType;
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
+  public form: FormGroup;
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pSelectedLocations: any[] = [];
@@ -123,7 +123,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public resetSearchTerm(): void {
-    this.form.controls.searchTerm.patchValue('', {emitEvent: false, onlySelf: true});
+    this.form.controls.searchTerm.setValue('', {emitEvent: false, onlySelf: true});
   }
 
   private removeSelectedLocations(locations: LocationByEPIMMSModel[]): LocationByEPIMMSModel[] {

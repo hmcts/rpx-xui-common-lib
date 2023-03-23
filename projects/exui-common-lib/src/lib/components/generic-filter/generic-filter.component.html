@@ -143,6 +143,7 @@
                                 [submitted]="submitted"
                                 [field]="field"
                                 [services]="form.get(field.findLocationField)?.value"
+                                [formSubmissionEvent$]="formSubmissionEvent$"
           ></xuilib-find-location>
         </ng-container>
         <ng-container *ngSwitchCase="'find-task-name'">
@@ -158,17 +159,12 @@
           ></xuilib-find-task-name>
         </ng-container>
         <ng-container *ngSwitchCase="'find-service'">
-          <xuilib-find-service (serviceFieldChanged)="inputServiceChanged($event, field)"
-                                [form]="form"
-                                [searchTermServiceForm]="searchTermServiceForm"
-                                [fields]="config.fields"
-                                [title]="field.title"
-                                [enableAddServiceButton]="field.enableAddButton"
-                                [disabled]="disabled(field, form)"
-                                [selectedServices]="form.get(field.name)?.value"
-                                [services]="field.options"
-                                [field]="field">
-          ></xuilib-find-service>
+          <xuilib-find-service (serviceFieldChanged)="inputServiceChanged(field)"
+                               [field]="field"
+                               [form]="form"
+                               [formSubmissionEvent$]="formSubmissionEvent$"
+                               [disabled]="disabled(field, form)">
+          </xuilib-find-service>
         </ng-container>
         <ng-container *ngSwitchCase="'text-input'">
           <input class="govuk-input" type="text"

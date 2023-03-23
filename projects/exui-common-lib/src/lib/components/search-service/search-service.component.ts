@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatOptionSelectionChange } from '@angular/material/core/option/option';
 import { FilterConfigOption } from '../../models';
 
 @Component({
@@ -8,35 +8,31 @@ import { FilterConfigOption } from '../../models';
   styleUrls: ['./search-service.component.scss']
 })
 export class SearchServiceComponent {
-  @Input() public services: FilterConfigOption[];
-  @Input() public selectedServices: any;
+  @Input() public options: FilterConfigOption[];
+  @Input() public selectedOptions: FilterConfigOption[];
   @Input() public disabled: any;
-  @Input() public delay: any;
-  @Input() public form: FormGroup;
   @Input() public showAutocomplete: boolean = false;
-  @Output() public serviceChanged: EventEmitter<FilterConfigOption> = new EventEmitter<FilterConfigOption>();
-  public readonly minSearchCharacters = 3;
-  public term: string = '';
+  @Output() public optionChanged: EventEmitter<FilterConfigOption> = new EventEmitter<FilterConfigOption>();
+  public searchTerm = '';
+  public readonly MIN_SEARCH_CHARACTERS = 3;
 
-  constructor(private readonly fb: FormBuilder) {
-    this.form = this.fb.group({
-      searchTerm: ['']
-    });
-  }
+  public get filteredOptions(): FilterConfigOption[] {
+    const remainingServices = this.options.filter(s => !this.selectedOptions.find(ss => ss.key === s.key));
 
-  public onInput(): void {
-    // Todo
+    return this.searchTerm?.length >= this.MIN_SEARCH_CHARACTERS ?
+      remainingServices.filter(s => s.label.toLowerCase().includes(this.searchTerm.toLowerCase()))
+      : remainingServices;
   }
 
   public resetSearchTerm(): void {
-    this.form.controls.searchTerm.patchValue('', {emitEvent: false, onlySelf: true});
+    this.searchTerm = '';
   }
 
-  public onSelectionChanged($event: any): void {
+  public onSelectionChanged($event: MatOptionSelectionChange): void {
     const label = $event.source?.value;
-    if(label && $event.source.selected) {
-      const selectedService = this.services.find(s => s.label === label);
-      this.serviceChanged.emit(selectedService);
+    if (label && $event.source.selected) {
+      const selectedService = this.options.find(s => s.label === label);
+      this.optionChanged.emit(selectedService);
     }
   }
 }
