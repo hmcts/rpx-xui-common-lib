@@ -1,6 +1,6 @@
 import { RefDataLocation } from '../../models/ref-data-location.model';
 
-export interface LocationsByServiceCodeResponse {
+export interface RefDataLocationsByServiceCodeResponse {
   court_type: string;
   court_type_id: string;
   court_venues: RefDataLocation[];

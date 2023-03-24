@@ -12,11 +12,13 @@ import { RefDataDataAccessService } from './ref-data-data-access/ref-data-data-a
 export class RefDataService {
   public regions$: Observable<RefDataRegion[]>;
   public services$: Observable<RefDataHMCTSService[]>;
+  public locations$: Observable<RefDataLocation[]>;
   private readonly locationsByServiceCodesCache: {[serviceCode: string]: Observable<RefDataLocation[]>} = {};
 
   constructor(private readonly refDataDataAccessService: RefDataDataAccessService) {
     this.regions$ = this.refDataDataAccessService.getRegions().pipe(shareReplay());
     this.services$ = this.refDataDataAccessService.getServices().pipe(shareReplay());
+    this.locations$ = this.refDataDataAccessService.getLocations().pipe(shareReplay());
   }
 
   public getLocationsByServiceCodes(serviceCodes: string[]): Observable<RefDataLocation[]> {
