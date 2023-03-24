@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RefDataHMCTSService } from '../models/ref-data-htmcs-service.model';
 import { RefDataRegion } from '../models/ref-data-region.model';
-import { RefDataLocation } from '../models/ref-data-location.model';
+import { LocationsByServiceCodeResponse } from './models/locations-by-service-code-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +24,6 @@ export class RefDataDataAccessService {
     const httpParams = new HttpParams()
       .append('service_code', serviceCode);
 
-    return this.http.get<{
-      court_type: string;
-      court_type_id: string;
-      court_venues: RefDataLocation[];
-      service_code: string;
-      welsh_court_type: string;
-    }>(`${RefDataDataAccessService.refDataUrl}/locations-by-service-code`, { params: httpParams });
+    return this.http.get<LocationsByServiceCodeResponse>(`${RefDataDataAccessService.refDataUrl}/locations-by-service-code`, { params: httpParams });
   }
 }
