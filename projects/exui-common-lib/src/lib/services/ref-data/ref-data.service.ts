@@ -14,7 +14,7 @@ export class RefDataService {
   public services$: Observable<RefDataHMCTSService[]>;
   private readonly locationsByServiceCodesCache: {[serviceCode: string]: Observable<RefDataLocation[]>} = {};
 
-  constructor(private refDataDataAccessService: RefDataDataAccessService) {
+  constructor(private readonly refDataDataAccessService: RefDataDataAccessService) {
     this.regions$ = this.refDataDataAccessService.getRegions().pipe(shareReplay());
     this.services$ = this.refDataDataAccessService.getServices().pipe(shareReplay());
   }
