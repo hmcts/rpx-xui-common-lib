@@ -157,8 +157,8 @@
           "options": {
             "tsConfig": "projects/exui-common-lib/tsconfig.lib.json",
             "project": "projects/exui-common-lib/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/exui-common-lib/tsconfig.lib.prod.json"
             }
