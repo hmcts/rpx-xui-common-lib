@@ -35,7 +35,7 @@ export class SearchLocationComponent implements OnInit {
   public term: string = '';
   private pReset: boolean = true;
   public filteredList$: Observable<LocationByEPIMMSModel[] | boolean>;
-  private debounceTimeInput = 300;
+  private readonly debounceTimeInput = 300;
 
   public get reset(): boolean {
     return this.pReset;
