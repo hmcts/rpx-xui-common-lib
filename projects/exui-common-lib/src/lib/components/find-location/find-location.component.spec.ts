@@ -1,11 +1,12 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { Subject, Subscription } from 'rxjs';
-import {LocationService} from '../../services/locations/location.service';
-import {SearchLocationComponent} from '../search-location/search-location.component';
-import {FindLocationComponent} from './find-location.component';
+import { LocationService } from '../../services/locations/location.service';
+import { SearchLocationComponent } from '../search-location/search-location.component';
+import { FindLocationComponent } from './find-location.component';
 
 describe('FindLocationComponent', () => {
   let component: FindLocationComponent;
@@ -32,7 +33,7 @@ describe('FindLocationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, HttpClientTestingModule],
       declarations: [FindLocationComponent, SearchLocationComponent],
       providers: [{provide: LocationService, useValue: searchFilterServiceMock}],
     })
@@ -49,7 +50,7 @@ describe('FindLocationComponent', () => {
       minSelected: 1,
       maxSelected: null
     };
-    component.locations = [LOCATION];
+
     component.form = new FormGroup({
       location: new FormArray([]),
     });
@@ -85,9 +86,9 @@ describe('FindLocationComponent', () => {
     expect(selectedLocationAfterRemove).toBeNull();
   });
 
-  it('should emit an event when search location emits an event to the component', () => {
+  it('should emit an event when formControl gets a new value', () => {
     spyOn(component.locationFieldChanged, 'emit');
-    component.onSearchInputChanged();
+    component.onSearchInputChanged('term');
     expect(component.locationFieldChanged.emit).toHaveBeenCalled();
   });
 
