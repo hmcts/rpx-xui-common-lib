@@ -482,7 +482,7 @@ describe('Find location filter config', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, HttpClientTestingModule],
       declarations: [
         GenericFilterComponent,
         FindPersonComponent,

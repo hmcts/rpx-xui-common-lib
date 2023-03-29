@@ -38,6 +38,7 @@ export interface FilterFieldConfig {
   options: FilterConfigOption[];
   minSelected: number;
   maxSelected: number;
+  type: FilterFieldType;
   minSelectedError?: string;
   maxSelectedError?: string;
   displayMaxSelectedError?: boolean;
@@ -56,7 +57,6 @@ export interface FilterFieldConfig {
   domainField?: string;
   disable?: boolean;
   disabledText?: string;
-  type: FilterFieldType;
   domain?: PersonRole;
   title?: string;
   titleClasses?: string;
@@ -74,6 +74,7 @@ export interface FilterFieldConfig {
   readonly?: boolean;
   servicesField?: string;
   services?: string[];
+  propertyNameFilter?: string;
 }
 
 export interface GroupOptions {

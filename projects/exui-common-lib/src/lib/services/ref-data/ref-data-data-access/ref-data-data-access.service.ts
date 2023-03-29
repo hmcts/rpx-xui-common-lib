@@ -1,11 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocationModel } from '../../../models';
 import { RefDataHMCTSService } from '../models/ref-data-htmcs-service.model';
-import { RefDataLocation } from '../models/ref-data-location.model';
 import { RefDataRegion } from '../models/ref-data-region.model';
 import {
-  RefDataLocationsByServiceCodeResponse
+  LocationModelsByServiceCodeResponse
 } from './models/ref-data-locations-by-service-code-response.model';
 
 @Injectable({
@@ -27,10 +27,10 @@ export class RefDataDataAccessService {
     const httpParams = new HttpParams()
       .append('service_code', serviceCode);
 
-    return this.http.get<RefDataLocationsByServiceCodeResponse>(`${RefDataDataAccessService.refDataUrl}/locations-by-service-code`, { params: httpParams });
+    return this.http.get<LocationModelsByServiceCodeResponse>(`${RefDataDataAccessService.refDataUrl}/locations-by-service-code`, { params: httpParams });
   }
 
   public getLocations() {
-    return this.http.get<RefDataLocation[]>(`${RefDataDataAccessService.refDataUrl}/locations`);
+    return this.http.get<LocationModel[]>(`${RefDataDataAccessService.refDataUrl}/locations`);
   }
 }

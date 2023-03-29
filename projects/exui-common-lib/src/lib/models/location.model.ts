@@ -23,7 +23,7 @@ export interface LocationModel {
     venue_name?: string;
     is_case_management_location: string;
     is_hearing_location: string;
-  }
+}
 
 export interface LocationByEPIMMSModel {
   epimms_id: string;
@@ -53,7 +53,7 @@ export interface LocationsByService {
   service?: string;
   serviceCode?: string;
   bookable?: boolean;
-  locations: Location[];
+  locations: LocationByEPIMMSModel[];
 }
 
 export enum BookingCheckType {

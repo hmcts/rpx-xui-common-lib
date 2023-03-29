@@ -12,7 +12,6 @@ import {SearchLocationComponent} from '../search-location/search-location.compon
 })
 export class FindLocationComponent implements OnInit, OnDestroy {
   @Output() public locationFieldChanged = new EventEmitter<void>();
-  @Input() public selectedLocations: LocationByEPIMMSModel[] = [];
   @Input() public submitted: boolean = true;
   @Input() public enableAddLocationButton: boolean = true;
   @Input() public form: FormGroup;
@@ -21,7 +20,6 @@ export class FindLocationComponent implements OnInit, OnDestroy {
   @Input() public locationTitle = 'Search for a location by name';
   @Input() public disableInputField = false;
   @Input() public formSubmissionEvent$: Subject<void>;
-  public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
   @ViewChild(SearchLocationComponent, { static: true }) public searchLocationComponent: SearchLocationComponent;
@@ -54,6 +52,7 @@ export class FindLocationComponent implements OnInit, OnDestroy {
         return f.name === this.field.findLocationField;
       }
     });
+
     if (field) {
       if (typeof value === 'string') {
         this.serviceIds = value;
@@ -63,14 +62,21 @@ export class FindLocationComponent implements OnInit, OnDestroy {
     }
   }
 
-  public ngOnInit(): void {
-    // implemented to get rid of undefined values
-    this.selectedLocations = this.selectedLocations.filter(location => location.epimms_id);
+  public get selectedLocations() {
+    return (this.form.get(this.field.name)?.value as LocationByEPIMMSModel[])?.filter(location => location.epimms_id);
+  }
 
+  public get propertyNameFilter(): keyof LocationByEPIMMSModel {
+    const DEFAULT_PROPERTY_NAME = 'site_name';
+    return this.field.propertyNameFilter ? this.field.propertyNameFilter as keyof LocationByEPIMMSModel
+      : DEFAULT_PROPERTY_NAME;
+  }
+
+  public ngOnInit(): void {
     if (this.formSubmissionEvent$) {
       this.formSubmissionEventSubscription = this.formSubmissionEvent$.subscribe(() => {
+        // Shouldn't reset search term if single mode and already has selected
         const oneSelectedAndMaxSelectedOne = this.selectedLocations.length === 1 && this.field.maxSelected === 1;
-
         if (!oneSelectedAndMaxSelectedOne) {
           this.searchLocationComponent.resetSearchTerm();
         }
@@ -80,17 +86,14 @@ export class FindLocationComponent implements OnInit, OnDestroy {
 
   public addLocation(): void {
     if (this.tempSelectedLocation) {
-      this.selectedLocations = [...this.selectedLocations, this.tempSelectedLocation];
       this.addSelectedLocationsToForm([this.tempSelectedLocation]);
       this.tempSelectedLocation = null;
-      this.locations = [];
       this.searchLocationComponent.resetSearchTerm();
     }
   }
 
   public removeLocation(location: LocationByEPIMMSModel): void {
     if (location.epimms_id) {
-      this.selectedLocations = this.selectedLocations.filter(selectedLocation => selectedLocation.epimms_id !== location.epimms_id);
       const formArray = this.form.get(this.field.name) as FormArray;
       const index = (formArray.value as LocationByEPIMMSModel[]).findIndex(selectedLocation => selectedLocation.epimms_id === location.epimms_id);
       if (index > -1) {
@@ -99,14 +102,11 @@ export class FindLocationComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onInputChanged(term: string): void {
+  public onSearchInputChanged(term: string): void {
     // if the filter is in single mode clear the selected locations
     if (typeof term === 'string' && this.field.maxSelected === 1) {
-        this.removeSelectedValues();
+      this.removeSelectedValues();
     }
-  }
-
-  public onSearchInputChanged(): void {
     this.locationFieldChanged.emit();
   }
 
@@ -129,7 +129,6 @@ export class FindLocationComponent implements OnInit, OnDestroy {
       for (let i = 0; i < formArray.length; i++) {
         formArray.removeAt(i);
       }
-      this.selectedLocations = [];
     }
   }
 

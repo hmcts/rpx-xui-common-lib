@@ -2,11 +2,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { of, throwError } from 'rxjs';
+import { LocationModel } from '../../models';
 import { RefDataHMCTSService } from './models/ref-data-htmcs-service.model';
-import { RefDataLocation } from './models/ref-data-location.model';
 import { RefDataRegion } from './models/ref-data-region.model';
 import {
-  RefDataLocationsByServiceCodeResponse
+  LocationModelsByServiceCodeResponse
 } from './ref-data-data-access/models/ref-data-locations-by-service-code-response.model';
 import { RefDataDataAccessService } from './ref-data-data-access/ref-data-data-access.service';
 import { RefDataService } from './ref-data.service';
@@ -15,7 +15,7 @@ describe('RefDataService', () => {
   let service: RefDataService;
   let dummyHMCTSServices: RefDataHMCTSService[];
   let dummyRegions: RefDataRegion[];
-  let dummyLocations: RefDataLocation[];
+  let dummyLocations: LocationModel[];
   let refDataDataAccessServiceMock: jasmine.SpyObj<RefDataDataAccessService>;
 
   beforeEach(() => {
@@ -130,7 +130,7 @@ describe('RefDataService', () => {
   });
 
   describe('locations$', () => {
-    it('should return an observable of RefDataLocation[]', () => {
+    it('should return an observable of LocationModel[]', () => {
       service.locations$.subscribe((data) => {
         expect(data).toEqual(dummyLocations);
       });
@@ -141,10 +141,10 @@ describe('RefDataService', () => {
     it('should retrieve locations by service codes', (done) => {
       const serviceCodes = ['code1', 'code2'];
       refDataDataAccessServiceMock.getLocationsByServiceCode.withArgs('code1').and.returnValue(
-        of({court_venues: [dummyLocations[0]]} as RefDataLocationsByServiceCodeResponse)
+        of({court_venues: [dummyLocations[0]]} as LocationModelsByServiceCodeResponse)
       );
       refDataDataAccessServiceMock.getLocationsByServiceCode.withArgs('code2').and.returnValue(
-        of({court_venues: [dummyLocations[1]]} as RefDataLocationsByServiceCodeResponse)
+        of({court_venues: [dummyLocations[1]]} as LocationModelsByServiceCodeResponse)
       );
 
       service.getLocationsByServiceCodes([serviceCodes[0]]).subscribe((locations) => {
@@ -166,10 +166,10 @@ describe('RefDataService', () => {
     it('should add the observables in the locationsByServiceCodesCache grouped by serviceCodes', (done) => {
       const serviceCodes = ['code1', 'code2'];
       refDataDataAccessServiceMock.getLocationsByServiceCode.withArgs('code1').and.returnValue(
-        of({court_venues: [dummyLocations[0]]} as RefDataLocationsByServiceCodeResponse)
+        of({court_venues: [dummyLocations[0]]} as LocationModelsByServiceCodeResponse)
       );
       refDataDataAccessServiceMock.getLocationsByServiceCode.withArgs('code2').and.returnValue(
-        of({court_venues: [dummyLocations[1]]} as RefDataLocationsByServiceCodeResponse)
+        of({court_venues: [dummyLocations[1]]} as LocationModelsByServiceCodeResponse)
       );
 
       service.getLocationsByServiceCodes([serviceCodes[0]]).subscribe(() => {

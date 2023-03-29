@@ -4,27 +4,30 @@
       <label id="input-selected-location-label" *ngIf="locationTitle">{{locationTitle}}</label>
     </div>
     <exui-search-location class="search-location"
-                          [locations]="locations"
+                          [form]="form"
+                          [field]="field"
                           [selectedLocations]="selectedLocations"
+                          [disabled]="disabled"
                           [singleMode]="field.maxSelected === 1"
                           [bookingCheck]="field.bookingCheckType"
-                          [delay]="300"
-                          [disabled]="disabled"
                           [serviceIds]="serviceIds"
-                          (locationInputChanged)="onInputChanged($event)"
+                          [propertyNameFilter]="propertyNameFilter"
+                          (locationTermSearchInputChanged)="onSearchInputChanged($event)"
                           (locationSelected)="onLocationSelected($event)"
-                          (searchLocationChanged)="onSearchInputChanged()"
-                          [locationType]="'case-management'"></exui-search-location>
+                          [locationType]="'case-management'">
+    </exui-search-location>
   </div>
+
   <div>
     <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button add-location-button" data-module="govuk-button" *ngIf="enableAddLocationButton">
       Add location
     </a>
   </div>
+
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection"  *ngFor="let selection of selectedLocations">
       <a class="hmcts-filter__tag" (click)="removeLocation(selection)" href="javascript:void(0)">
-        {{ selection.site_name }}
+        {{ selection[propertyNameFilter] }}
       </a>
     </li>
   </ul>
