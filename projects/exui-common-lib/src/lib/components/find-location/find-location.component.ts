@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterFieldConfig, LocationByEPIMMSModel } from '../../models';
-import {getValues} from '../generic-filter/generic-filter-utils';
-import {SearchLocationComponent} from '../search-location/search-location.component';
+import { getValues } from '../generic-filter/generic-filter-utils';
+import { SearchLocationComponent } from '../search-location/search-location.component';
 
 @Component({
   selector: 'xuilib-find-location',
@@ -102,11 +102,14 @@ export class FindLocationComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onSearchInputChanged(term: string): void {
+  public onInputChanged(term: string): void {
     // if the filter is in single mode clear the selected locations
     if (typeof term === 'string' && this.field.maxSelected === 1) {
-      this.removeSelectedValues();
+        this.removeSelectedValues();
     }
+  }
+
+  public onSearchInputChanged(): void {
     this.locationFieldChanged.emit();
   }
 
