@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, iif, of } from 'rxjs';
+import { iif, Observable, of } from 'rxjs';
 import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import {
   BookingCheckType, FilterConfigOption,
