@@ -30,6 +30,7 @@ export class SearchLocationComponent implements OnInit {
   @Input() public propertyNameFilter: keyof LocationByEPIMMSModel = 'site_name';
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
   public searchTermFormControl = new FormControl('');
   public readonly minSearchCharacters = 3;
   public term: string = '';
@@ -104,6 +105,9 @@ export class SearchLocationComponent implements OnInit {
   public onSelectedLocation(location: LocationByEPIMMSModel): void {
     this.searchTermFormControl.patchValue(location[this.propertyNameFilter], {emitEvent: false, onlySelf: true});
     this.locationSelected.emit(location);
+  }
+  public onInput(): void {
+    this.searchLocationChanged.emit();
   }
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {

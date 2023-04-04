@@ -88,7 +88,7 @@ describe('FindLocationComponent', () => {
 
   it('should emit an event when formControl gets a new value', () => {
     spyOn(component.locationFieldChanged, 'emit');
-    component.onSearchInputChanged('term');
+    component.onSearchInputChanged();
     expect(component.locationFieldChanged.emit).toHaveBeenCalled();
   });
 

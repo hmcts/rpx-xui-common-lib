@@ -12,8 +12,9 @@
                           [bookingCheck]="field.bookingCheckType"
                           [serviceIds]="serviceIds"
                           [propertyNameFilter]="propertyNameFilter"
-                          (locationTermSearchInputChanged)="onSearchInputChanged($event)"
+                          (locationTermSearchInputChanged)="onInputChanged($event)"
                           (locationSelected)="onLocationSelected($event)"
+                          (searchLocationChanged)="onSearchInputChanged()"
                           [locationType]="'case-management'">
     </exui-search-location>
   </div>
