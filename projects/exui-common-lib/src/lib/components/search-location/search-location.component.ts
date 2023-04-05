@@ -28,6 +28,7 @@ export class SearchLocationComponent implements OnInit {
   @Input() public bookingCheck: BookingCheckType;
   @Input() public selectedLocations: LocationByEPIMMSModel[] = [];
   @Input() public propertyNameFilter: keyof LocationByEPIMMSModel = 'site_name';
+  @Input() public delay?: number = 500;
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
