@@ -61,7 +61,7 @@ export class SearchLocationComponent implements OnInit {
       );
 
     // if servicesField exists, then we should filter locations by the service codes
-    if (this.field.servicesField) {
+    if (this.field && this.field.servicesField) {
       this.filteredList$ = searchInputChanges$.pipe(
         switchMap((term: string) => iif(
           // Seems more responsive to do length 0 if locationsByServiceCodes are cached
