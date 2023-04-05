@@ -112,7 +112,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
-    let userLocations: LocationsByService[];
+    let userLocations;
     // Booking type info - can create more
     // NO_CHECK - All work - Do not filter out locations - Default assumption
     // BOOKINGS_AND_BASE - My work - Try to only show base locations/regions
