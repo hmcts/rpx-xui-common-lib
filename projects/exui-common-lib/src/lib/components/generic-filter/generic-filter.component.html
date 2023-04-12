@@ -11,8 +11,8 @@
     <div class="govuk-form-group xui-generic-filter"
          [hidden]="hidden(field, form)"
          [id]="field.name"
-         [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.minLength || form.get(field.name).errors?.maxLength)}">
-         <div *ngIf="field.title" class="xui-generic-filter__field-title">
+         [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.required || form.get(field.name).errors?.minlength || form.get(field.name).errors?.maxLength)}">
+        <div *ngIf="field.title" class="xui-generic-filter__field-title">
           <h3 [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'" style="margin-bottom: 0!important">
             {{field.title | capitalize}}
           </h3>
@@ -21,7 +21,7 @@
           </div>
         </div>
       <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
-      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && form.get(field.name).errors?.minLength">
+      <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.required || form.get(field.name).errors?.minlength)">
         <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
       </span>
       <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
@@ -133,7 +133,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'find-location'">
           <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
-                                [form]="form"                                
+                                [form]="form"
                                 [fields]="config.fields"
                                 [locationTitle]="field.locationTitle"
                                 [enableAddLocationButton]="field.enableAddButton"
