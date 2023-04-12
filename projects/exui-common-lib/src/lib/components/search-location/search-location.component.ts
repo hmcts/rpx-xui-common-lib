@@ -28,6 +28,7 @@ export class SearchLocationComponent implements OnInit {
   @Input() public bookingCheck: BookingCheckType;
   @Input() public selectedLocations: LocationByEPIMMSModel[] = [];
   @Input() public propertyNameFilter: keyof LocationByEPIMMSModel = 'site_name';
+  @Input() public delay?: number = 500;
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
@@ -60,7 +61,7 @@ export class SearchLocationComponent implements OnInit {
       );
 
     // if servicesField exists, then we should filter locations by the service codes
-    if (this.field.servicesField) {
+    if (this.field && this.field.servicesField) {
       this.filteredList$ = searchInputChanges$.pipe(
         switchMap((term: string) => iif(
           // Seems more responsive to do length 0 if locationsByServiceCodes are cached
@@ -111,7 +112,7 @@ export class SearchLocationComponent implements OnInit {
   }
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
-    let userLocations: LocationsByService[];
+    let userLocations;
     // Booking type info - can create more
     // NO_CHECK - All work - Do not filter out locations - Default assumption
     // BOOKINGS_AND_BASE - My work - Try to only show base locations/regions

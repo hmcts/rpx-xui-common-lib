@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.10-find-location-by-service-code-5",
+  "version": "1.8.7-release-4-yarn-3",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
