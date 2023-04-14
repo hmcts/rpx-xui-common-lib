@@ -75,7 +75,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    // this.filterService.givenErrors.next(null);
     if (!this.settings) {
       this.getSettings();
     }
