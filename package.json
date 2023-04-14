@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.7-release-4-yarn-3",
+  "version": "1.8.7-my-work-filter-location-optional",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",

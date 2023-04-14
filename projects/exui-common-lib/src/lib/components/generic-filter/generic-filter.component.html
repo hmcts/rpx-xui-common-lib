@@ -21,6 +21,10 @@
           </div>
         </div>
       <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
+      <div *ngIf="field.hintText"
+        [id]="field.hintText + '-hint'" class="govuk-hint">
+        {{ field.hintText }}
+      </div>
       <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && form.get(field.name).errors?.minLength">
         <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
       </span>
@@ -133,7 +137,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'find-location'">
           <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
-                                [form]="form"                                
+                                [form]="form"
                                 [fields]="config.fields"
                                 [locationTitle]="field.locationTitle"
                                 [enableAddLocationButton]="field.enableAddButton"

@@ -63,6 +63,7 @@ export interface FilterFieldConfig {
   titleHint?: string;
   subTitle?: string;
   locationTitle?: string;
+  hintText?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;
   placeholderContent?: string;
