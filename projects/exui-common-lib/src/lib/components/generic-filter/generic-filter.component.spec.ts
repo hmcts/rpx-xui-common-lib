@@ -28,7 +28,7 @@ describe('GenericFilterComponent', () => {
     persist: jasmine.createSpy(),
     givenErrors: {
       subscribe: jasmine.createSpy(),
-      next: (value: any) => value,
+      next: jasmine.createSpy().and.callFake((value: any) => value),
       unsubscribe: (value: any) => value,
     }
   };
@@ -119,7 +119,6 @@ describe('GenericFilterComponent', () => {
   });
 
   it('should build a form a with checkboxes,radio buttons and select input ', () => {
-
     expect(component.form.value.hasOwnProperty('example1')).toBeTruthy();
     expect(component.form.value.hasOwnProperty('example2')).toBeTruthy();
     expect(component.form.value.hasOwnProperty('example3')).toBeTruthy();
@@ -193,7 +192,6 @@ describe('GenericFilterComponent', () => {
   });
 
   it('should set form state to be invalid', () => {
-
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
     const button: HTMLButtonElement = form.querySelector('button[type="submit"]');
@@ -378,6 +376,20 @@ describe('GenericFilterComponent', () => {
       expect(component.form.get('person').get('id').value).toBe(null);
       expect(component.form.get('person').get('name').value).toBe(null);
       expect(component.form.get('person').get('knownAs').value).toBe(null);
+    });
+  });
+
+  describe('nOnDestroy', () => {
+    it('should unsubscribe from form', () => {
+      spyOn(component.formSub, 'unsubscribe');
+      component.ngOnDestroy();
+      expect(component.formSub.unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should set givenErrors on filterService to null', () => {
+      // component.ngOnDestroy();
+      // @ts-expect-error - private property
+      expect(component.filterService.givenErrors.next).toHaveBeenCalledWith(null);
     });
   });
 });
@@ -632,9 +644,7 @@ describe('Find location filter config', () => {
         expect(actualValues).toEqual([sortedGroupOptions[0], sortedGroupOptions[1]]);
       });
     });
-
   });
-
 });
 
 describe('Task Name Filter', () => {
