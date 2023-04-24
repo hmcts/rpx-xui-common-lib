@@ -53,7 +53,9 @@ export interface LocationsByService {
   service?: string;
   serviceCode?: string;
   bookable?: boolean;
-  locations: LocationByEPIMMSModel[];
+  // EUI-7909 - replace line below
+  locations?: LocationByEPIMMSModel[] | string[];
+  // locations: LocationByEPIMMSModel[];
 }
 
 export enum BookingCheckType {

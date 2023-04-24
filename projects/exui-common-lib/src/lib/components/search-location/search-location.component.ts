@@ -8,8 +8,8 @@ import {
   LocationByEPIMMSModel,
   LocationsByService
 } from '../../models';
-import { RefDataService } from '../../services';
 import { LocationService } from '../../services/locations/location.service';
+import { RefDataService } from '../../services/ref-data';
 import { SessionStorageService } from '../../services/storage/session-storage/session-storage.service';
 
 @Component({
