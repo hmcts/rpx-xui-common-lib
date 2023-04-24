@@ -7,8 +7,8 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { BookingCheckType, LocationByEPIMMSModel } from '../../models';
-import { RefDataService } from '../../services';
 import { LocationService } from '../../services/locations/location.service';
+import { RefDataService } from '../../services/ref-data';
 import { SessionStorageService } from '../../services/storage/session-storage/session-storage.service';
 import { SearchLocationComponent } from './search-location.component';
 
@@ -426,19 +426,30 @@ describe('SearchLocationComponent', () => {
     component.serviceIds = 'IA,SSCS';
     component.bookingCheck = BookingCheckType.NO_CHECK;
     component.getLocations('exampleString');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined);
+    // EUI-7909
+    // expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined, undefined);
     // checks that civil added to userLocations as well
     component.serviceIds = 'IA,CIVIL';
     component.bookingCheck = BookingCheckType.BOOKINGS_AND_BASE;
     const emptyLocationString = JSON.stringify([{service: 'IA', locations: []}]);
     sessionServiceMock.getItem.and.returnValues(emptyLocationString, `["12345"]`, '["CIVIL"]');
     component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: []}]);
+    // EUI-7909
+    // expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [['IA'], []]);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [['IA'], [], {service: 'CIVIL', locations: [], bookable: true}], ['12345']);
     // check user locations filtered for bookable correctly
     component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
-    const bookableLocationString = JSON.stringify([{service: 'IA', locations: [{epimms_id: '12345'}]}, {service: 'CIVIL', locations: [{epimms_id: '32456'}]}]);
-    sessionServiceMock.getItem.and.returnValues(bookableLocationString);
+    // EUI-7909
+    /* const bookableLocationString = JSON.stringify([{service: 'IA', locations: ['12345']}, {service: 'CIVIL', locations: ['32456']}]);
+    sessionServiceMock.getItem.and.returnValues(bookableLocationString); */
+    const bookableLocationString = JSON.stringify([{service: 'IA', locations: ['12345'], bookable: true}, {service: 'CIVIL', locations: ['32456'], bookable: false}]);
+    sessionServiceMock.getItem.and.returnValues(bookableLocationString, `["SSCS", "IA"]`, '[]');
+    //
     component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: [{epimms_id: '12345'}]}, {service: 'CIVIL', locations: [{epimms_id: '32456'}]}]);
+    // EUI-7909
+    // expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: ['12345']}, {service: 'CIVIL', locations: ['32456']}]);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: ['12345'], bookable: true}], undefined);
+    //
   });
 });
