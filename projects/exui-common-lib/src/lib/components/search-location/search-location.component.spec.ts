@@ -289,8 +289,7 @@ describe('SearchLocationComponent', () => {
       flush();
     }));
 
-    // EUI-7909 - uncomment code
-    /* it('should call get locations with the correct parameters', () => {
+    it('should call get locations with the correct parameters', () => {
       component.serviceIds = 'IA,SSCS';
       component.bookingCheck = BookingCheckType.NO_CHECK;
       component.getLocations('exampleString');
@@ -321,7 +320,7 @@ describe('SearchLocationComponent', () => {
       sessionServiceMock.getItem.and.returnValues(bookableLocationsString);
       component.getLocations('exampleString2');
       expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', bookableLocations);
-    }); */
+    });
 
     describe('lookup by serviceCodes (i.e. servicesField does not exist)', () => {
       let serviceCodesFormControlName: string;
@@ -423,30 +422,7 @@ describe('SearchLocationComponent', () => {
     });
   });
 
-  // EUI-7909 - remove this code
   it('should call get locations with the correct parameters', () => {
-    component.serviceIds = 'IA,SSCS';
-    component.bookingCheck = BookingCheckType.NO_CHECK;
-    component.getLocations('exampleString');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined, undefined);
-    // checks that civil added to userLocations as well
-    component.serviceIds = 'IA,CIVIL';
-    component.bookingCheck = BookingCheckType.BOOKINGS_AND_BASE;
-    const emptyLocationString = JSON.stringify([{service: 'IA', locations: []}]);
-    sessionServiceMock.getItem.and.returnValues(emptyLocationString, `["12345"]`, '["CIVIL"]');
-    component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: []}, {service: 'CIVIL', locations: [], bookable: true}], ['12345']);
-    // check user locations filtered for bookable correctly
-    component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
-    const bookableLocationString = JSON.stringify([{service: 'IA', locations: ['12345'], bookable: true}, {service: 'CIVIL', locations: ['32456'], bookable: false}]);
-    sessionServiceMock.getItem.and.returnValues(bookableLocationString, `["SSCS", "IA"]`, '[]');
-    //
-    component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: ['12345'], bookable: true}], undefined);
-    //
-  });
-  // EUI-7909 - uncomment this code
- /*  it('should call get locations with the correct parameters', () => {
     component.serviceIds = 'IA,SSCS';
     component.bookingCheck = BookingCheckType.NO_CHECK;
     component.getLocations('exampleString');
@@ -464,5 +440,5 @@ describe('SearchLocationComponent', () => {
     sessionServiceMock.getItem.and.returnValues(bookableLocationString);
     component.getLocations('exampleString2');
     expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: [{epimms_id: '12345'}]}, {service: 'CIVIL', locations: [{epimms_id: '32456'}]}]);
-  }); */
+  });
 });
