@@ -64,15 +64,3 @@ export enum BookingCheckType {
   POSSIBLE_BOOKINGS = 'POSSIBLE_BOOKINGS',
 }
 
-export interface LocationsByService {
-  service?: string;
-  serviceCode?: string;
-  bookable?: boolean;
-  locations: Location[];
-}
-
-export enum BookingCheckType {
-  NO_CHECK = 'NO_CHECK',
-  BOOKINGS_AND_BASE = 'BOOKINGS_AND_BASE',
-  POSSIBLE_BOOKINGS = 'POSSIBLE_BOOKINGS',
-}
