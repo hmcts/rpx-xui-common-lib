@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatTabsModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
@@ -14,6 +15,7 @@ import { ExuiPageWrapperComponent } from './components/exui-main-wrapper/exui-pa
 import { FindLocationComponent } from './components/find-location/find-location.component';
 import { FindPersonComponent } from './components/find-person/find-person.component';
 import { FindServiceComponent } from './components/find-service/find-service.component';
+import { FindTaskNameComponent } from './components/find-task-name/find-task-name.component';
 import { GenericFilterComponent } from './components/generic-filter/generic-filter.component';
 import { HmctsSessionDialogComponent } from './components/hmcts-session-dialog/hmcts-session-dialog.component';
 import { InviteUserFormComponent } from './components/invite-user-form/invite-user-form.component';
@@ -71,6 +73,7 @@ import {
 } from './gov-ui/components/hmcts-primary-navigation/hmcts-primary-navigation.component';
 import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navigation/hmcts-sub-navigation.component';
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
+import { CapitalizePipe } from './pipes';
 import { windowProvider, windowToken } from './window';
 
 export const COMMON_COMPONENTS = [
@@ -105,6 +108,7 @@ export const COMMON_COMPONENTS = [
   FindPersonComponent,
   SearchJudicialsComponent,
   FindLocationComponent,
+  FindTaskNameComponent,
   SearchLocationComponent,
   FindServiceComponent,
   SearchServiceComponent,
@@ -137,10 +141,15 @@ export const GOV_UI_COMPONENTS = [
   RemoveHostDirective
 ];
 
+const pipes = [
+  CapitalizePipe
+];
+
 @NgModule({
   declarations: [
     ...COMMON_COMPONENTS,
-    ...GOV_UI_COMPONENTS
+    ...GOV_UI_COMPONENTS,
+    ...pipes
   ],
   imports: [
     CommonModule,
@@ -158,7 +167,8 @@ export const GOV_UI_COMPONENTS = [
   exports: [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS,
-    PaginatePipe
+    PaginatePipe,
+    ...pipes
   ]
 })
 export class ExuiCommonLibModule {

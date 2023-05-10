@@ -1,0 +1,12 @@
+.govuk-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__optional {
+    font-weight: 400;
+    font-size: 16px;
+    display: inline-block;
+    margin-left: 0.75rem;
+  }
+}

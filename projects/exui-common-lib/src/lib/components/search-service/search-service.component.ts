@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatOptionSelectionChange } from '@angular/material/core/option/option';
+import { FilterConfigOption } from '../../models';
 
 @Component({
   selector: 'exui-search-service',
@@ -7,20 +8,31 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./search-service.component.scss']
 })
 export class SearchServiceComponent {
-  @Input() public services: any;
-  @Input() public selectedServices: any;
+  @Input() public options: FilterConfigOption[];
+  @Input() public selectedOptions: FilterConfigOption[];
   @Input() public disabled: any;
-  @Input() public delay: any;
-  @Input() public form: FormGroup;
   @Input() public showAutocomplete: boolean = false;
-  public readonly minSearchCharacters = 3;
-  public term: string = '';
+  @Output() public optionChanged: EventEmitter<FilterConfigOption> = new EventEmitter<FilterConfigOption>();
+  public searchTerm = '';
+  public readonly MIN_SEARCH_CHARACTERS = 3;
 
-  public onInput(): void {
-    // Todo
+  public get filteredOptions(): FilterConfigOption[] {
+    const remainingServices = this.options.filter(s => !this.selectedOptions.find(ss => ss.key === s.key));
+
+    return this.searchTerm?.length >= this.MIN_SEARCH_CHARACTERS ?
+      remainingServices.filter(s => s.label.toLowerCase().includes(this.searchTerm.toLowerCase()))
+      : remainingServices;
   }
 
-  public onSelectionChange() {
-    // Todo
+  public resetSearchTerm(): void {
+    this.searchTerm = '';
+  }
+
+  public onSelectionChanged($event: MatOptionSelectionChange): void {
+    const label = $event.source?.value;
+    if (label && $event.source.selected) {
+      const selectedService = this.options.find(s => s.label === label);
+      this.optionChanged.emit(selectedService);
+    }
   }
 }

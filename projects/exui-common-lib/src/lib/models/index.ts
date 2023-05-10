@@ -2,6 +2,7 @@ export * from './case-share.model';
 export * from './contact-details.model';
 export * from './due-date.model';
 export * from './feature-user';
+export * from './filter.model';
 export * from './idle-config.model';
 export * from './location.model';
 export * from './pagination.model';
