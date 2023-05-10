@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.7-7909-removal-changes",
+  "version": "1.8.7-WA-release-4-initial",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
@@ -9,6 +9,7 @@
     "start": "ng serve -o",
     "start:no-open": "ng serve",
     "build": "ng build exui-common-lib",
+    "build:dev": "ng build --watch exui-common-lib",
     "test": "ng test exui-common-lib",
     "lint": "ng lint",
     "e2e": "ng e2e"

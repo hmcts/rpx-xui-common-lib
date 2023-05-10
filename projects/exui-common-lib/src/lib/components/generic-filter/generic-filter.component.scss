@@ -1,14 +1,25 @@
 .contain-classes {
   .elevated-break {
-    position: relative;
-    top: -10px;
+    margin-bottom: 20px;
+
+    @media (min-width: 40.0625em) {
+      margin-bottom: 30px;
+    }
   }
+
+  .govuk-body {
+    &--maxWidth480px {
+      max-width: 480px;
+    }
+  }
+
   .xui-generic-filter {
     .select-all {
       margin-bottom: 10px;
     }
     .govuk-checkboxes {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
 
       > div {
@@ -16,5 +27,15 @@
         flex-shrink: 0;
       }
     }
+
+    &__field-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  .govuk-select {
+    width: 100%;
   }
 }

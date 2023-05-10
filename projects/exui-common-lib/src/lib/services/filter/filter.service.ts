@@ -6,7 +6,6 @@ import { FilterError, FilterPersistence, FilterSetting } from '../../models';
   providedIn: 'root'
 })
 export class FilterService {
-
   public givenErrors: BehaviorSubject<FilterError[]> = new BehaviorSubject(null);
   public isInitialSetting: boolean = false;
   private readonly filterSettings: { [id: string]: FilterSetting } = {};
@@ -32,7 +31,7 @@ export class FilterService {
       return this.filterSettings[id];
     }
     if (sessionStorage.getItem(id)) {
-      return JSON.parse(window.sessionStorage.getItem(id));
+      return JSON.parse(sessionStorage.getItem(id));
     }
     if (localStorage.getItem(id)) {
       if (this.isSameUser(id)) {
@@ -56,13 +55,24 @@ export class FilterService {
     return this.streams[id].asObservable();
   }
 
+  public clearSessionAndLocalPersistance(id: string) {
+    sessionStorage.removeItem(id);
+    localStorage.removeItem(id);
+    if (this.filterSettings[id] !== undefined) {
+      this.filterSettings[id] = null;
+    }
+    if (this.streams[id] !== undefined) {
+      this.streams[id].next(null);
+    }
+  }
+
   private persistLocal(setting: FilterSetting): void {
     setting.idamId = this.getUserId();
     window.localStorage.setItem(setting.id, JSON.stringify(setting));
   }
 
   private persistSession(setting: FilterSetting): void {
-    window.sessionStorage.setItem(setting.id, JSON.stringify(setting));
+    sessionStorage.setItem(setting.id, JSON.stringify(setting));
   }
 
   private persistMemory(setting: FilterSetting): void {

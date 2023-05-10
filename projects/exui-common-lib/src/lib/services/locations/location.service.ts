@@ -1,7 +1,7 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {LocationByEPIMMSModel, LocationsByService} from '../../models/location.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LocationByEPIMMSModel, LocationsByService } from '../../models/location.model';
 
 @Injectable({
   providedIn: 'root'
