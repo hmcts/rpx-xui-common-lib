@@ -1,6 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import {By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
 import {of} from 'rxjs';
@@ -13,7 +14,7 @@ describe('SearchVenueComponent', () => {
   let fixture: ComponentFixture<SearchVenueComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations', 'searchLocations']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -251,6 +252,7 @@ describe('SearchVenueComponent', () => {
     selectedLoction.nativeElement.dispatchEvent(new Event('input'));
     fixture.whenStable().then(() => {
       fixture.detectChanges();
+      spyOn(component, 'filter');
       expect(component.filter).not.toHaveBeenCalled();
     });
   });

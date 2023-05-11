@@ -1,4 +1,23 @@
-:host {
-    display: block;
-    width: 100%;
+@import "~govuk-frontend/govuk/helpers/colour";
+@import "~govuk-frontend/govuk/helpers/typography";
+
+.hmcts-banner-title {
+  color: govuk-colour('white');
+  background-color: govuk-colour("blue");
+  font-weight: 700;
+  padding: 10px 15px 5px;
+
+  &--success {
+    background-color: govuk-colour('green');
+  }
+
+  &--warning {
+    background-color: govuk-colour('red');
+  }
+}
+
+.hmcts-banner__message {
+  &--bold {
+    font-weight: 700;
+  }
 }

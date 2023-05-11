@@ -13,3 +13,4 @@ export * from './role-guard/role.service';
 export * from './cookie/cookie.service';
 export * from './loading/loading.service';
 export * from './filter/filter.service';
+export * from './ref-data';
