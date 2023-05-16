@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { CheckboxesModel, ErrorMessagesModel, GovUiConfigModel } from '../../models';
 import { HtmlTemplatesHelper } from '../../util/helpers/html-templates.helper';
 /*
@@ -16,7 +16,7 @@ import { HtmlTemplatesHelper } from '../../util/helpers/html-templates.helper';
 })
 
 export class GovUkCheckboxesComponent implements OnInit {
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public config: GovUiConfigModel;
   @Input() public items: CheckboxesModel[];
   @Input() public errorMessage: ErrorMessagesModel;

@@ -1,13 +1,13 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkDateComponent } from './gov-uk-date.component';
 
 describe('GovUkDateComponent', () => {
   let component: GovUkDateComponent;
   let fixture: ComponentFixture<GovUkDateComponent>;
-  const formBuilder: FormBuilder = new FormBuilder();
+  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('GovUkDateComponent', () => {
       schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ GovUkDateComponent ],
       providers: [
-        { provide: FormBuilder, useValue: formBuilder }
+        { provide: UntypedFormBuilder, useValue: formBuilder }
       ]
     })
     .compileComponents();
@@ -52,10 +52,10 @@ describe('GovUkDateComponent', () => {
 
   it('should pass validation for a valid date', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     component.formGroup.get('id_day').patchValue('01');
     component.formGroup.get('id_month').patchValue('01');
@@ -67,10 +67,10 @@ describe('GovUkDateComponent', () => {
 
   it('should not pass validation for an invalid date', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     component.formGroup.get('id_day').patchValue('01');
     component.formGroup.get('id_month').patchValue('13');
@@ -82,10 +82,10 @@ describe('GovUkDateComponent', () => {
 
   it('should fail validation if the day is blank (empty string)', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     component.formGroup.get('id_month').patchValue('01');
     component.formGroup.get('id_year').patchValue('2021');
@@ -96,10 +96,10 @@ describe('GovUkDateComponent', () => {
 
   it('should fail validation if the month is blank (null)', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     component.formGroup.get('id_day').patchValue('01');
     component.formGroup.get('id_month').patchValue(null);
@@ -111,10 +111,10 @@ describe('GovUkDateComponent', () => {
 
   it('should fail validation if the year is blank (null)', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     component.formGroup.get('id_day').patchValue('01');
     component.formGroup.get('id_month').patchValue('01');
@@ -126,10 +126,10 @@ describe('GovUkDateComponent', () => {
 
   it('should pass validation if the date is optional and day, month, and year are all empty (month is undefined)', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     // Check that null and undefined are treated as empty values
     component.formGroup.get('id_day').patchValue(null);
@@ -142,10 +142,10 @@ describe('GovUkDateComponent', () => {
 
   it('should pass validation if the date is optional and day, month, and year are all empty (month is null)', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     // Check month is treated as empty if value is null - remember that a -1 offset is applied!
     component.formGroup.get('id_month').patchValue(null);
@@ -157,10 +157,10 @@ describe('GovUkDateComponent', () => {
 
   it('should pass validation if the date is optional and day, month, and year are all empty (month is empty string)', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     // Check month is treated as empty if value is empty string - remember that a -1 offset is applied!
     component.isOptional = true;
@@ -171,10 +171,10 @@ describe('GovUkDateComponent', () => {
 
   it('should fail validation if the date is optional but day, month, or year are not empty', () => {
     const dateValidator = component.DateValidator();
-    component.formGroup = new FormGroup({
-      id_day: new FormControl('', dateValidator),
-      id_month: new FormControl('', null),
-      id_year: new FormControl('', null)
+    component.formGroup = new UntypedFormGroup({
+      id_day: new UntypedFormControl('', dateValidator),
+      id_month: new UntypedFormControl('', null),
+      id_year: new UntypedFormControl('', null)
     });
     // Check that null and undefined are treated as empty values
     component.formGroup.get('id_day').patchValue(null);

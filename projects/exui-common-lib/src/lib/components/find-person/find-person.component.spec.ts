@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { of } from 'rxjs';
@@ -30,8 +30,8 @@ describe('FindPersonComponent', () => {
     fixture = TestBed.createComponent(FindPersonComponent);
 
     component = fixture.componentInstance;
-    component.findPersonGroup = new FormGroup({});
-    component.findPersonGroup.addControl('findPersonControl', new FormControl());
+    component.findPersonGroup = new UntypedFormGroup({});
+    component.findPersonGroup.addControl('findPersonControl', new UntypedFormControl());
     fixture.detectChanges();
   });
 

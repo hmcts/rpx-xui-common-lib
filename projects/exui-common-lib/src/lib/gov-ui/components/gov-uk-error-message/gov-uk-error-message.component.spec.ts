@@ -1,13 +1,13 @@
 import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkErrorMessageComponent } from './gov-uk-error-message.component';
 
 describe('GovUkErrorMessageComponent', () => {
   let component: GovUkErrorMessageComponent;
   let fixture: ComponentFixture<GovUkErrorMessageComponent>;
-  const formBuilder: FormBuilder = new FormBuilder();
+  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('GovUkErrorMessageComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [  GovUkErrorMessageComponent ],
       providers: [
-        { provide: FormBuilder, useValue: formBuilder }
+        { provide: UntypedFormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();
