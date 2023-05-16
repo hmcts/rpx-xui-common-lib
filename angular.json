@@ -103,18 +103,6 @@
               "src/assets"
             ]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -133,15 +121,6 @@
             "production": {
               "devServerTarget": "rpx-xui-common-lib:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
@@ -168,30 +147,13 @@
               "tsConfig": "projects/exui-common-lib/tsconfig.lib.prod.json"
             }
           }
-        ,          "configurations": {
-            "production": {
-              "tsConfig": "projects/exui-common-lib/tsconfig.lib.prod.json"
-            }
-          }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/exui-common-lib/src/test.ts",
             "tsConfig": "projects/exui-common-lib/tsconfig.spec.json",
             "karmaConfig": "projects/exui-common-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/exui-common-lib/tsconfig.lib.json",
-              "projects/exui-common-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

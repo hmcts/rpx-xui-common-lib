@@ -6,7 +6,7 @@
   <div class="govuk-error-summary__body">
     <ul class="govuk-list govuk-error-summary__list">
       <li *ngFor="let message of messages">
-        <a (click)="scrollTo(message['id'])" [routerLink]="" [fragment]="message['id']"
+        <a (click)="scrollTo(message['id'])" [routerLink]="[]" [fragment]="message['id']"
           *ngIf="hasElement(message['id'])">{{message['message']}}</a>
         <span *ngIf="!hasElement(message['id'])">{{message['message']}}</span>
       </li>
