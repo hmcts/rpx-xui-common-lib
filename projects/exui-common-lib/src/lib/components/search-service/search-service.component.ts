@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatOptionSelectionChange } from '@angular/material/core/option/option';
+import { MatOptionSelectionChange } from '@angular/material/core';
 import { FilterConfigOption } from '../../models';
 
 @Component({
