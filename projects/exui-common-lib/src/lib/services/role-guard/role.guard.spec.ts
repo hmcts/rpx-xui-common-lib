@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { take } from 'rxjs/operators';
@@ -34,7 +34,7 @@ describe('RoleGuard', () => {
       .subscribe(allowed => expect(allowed).toBe(true));
   }));
 
-  it('should fail on a single role', async(inject([RoleGuard, RoleService], (guard: RoleGuard, service: RoleService) => {
+  it('should fail on a single role', waitForAsync(inject([RoleGuard, RoleService], (guard: RoleGuard, service: RoleService) => {
     service.roles = ['role_a', 'role_b'];
     guard.canActivate({ data: { roleMatching: RoleMatching.ANY, needsRole: ['role_c'], noRoleMatchRedirect: 'url' }} as unknown as ActivatedRouteSnapshot)
       .pipe(take(1))

@@ -18,8 +18,11 @@ export class LocationService {
    * @param searchTerm: any search term for postcode | site name | venue name |court name | court address etc.
    * @return Observable<LocationByEPIMMSModel[]>: Array of locationModel in Observable
    */
-  public getAllLocations(serviceIds: string, locationType: string, searchTerm: string, userLocations: LocationsByService[]): Observable<LocationByEPIMMSModel[]> {
-    return this.http.post<LocationByEPIMMSModel[]>(`api/locations/getLocations`, {serviceIds, locationType, searchTerm, userLocations});
+  // EUI-7909 - replace definition
+  /* public getAllLocations(serviceIds: string, locationType: string, searchTerm: string, userLocations: LocationsByService[]): Observable<LocationByEPIMMSModel[]> {
+    return this.http.post<LocationByEPIMMSModel[]>(`api/locations/getLocations`, {serviceIds, locationType, searchTerm, userLocations}); */
+  public getAllLocations(serviceIds: string, locationType: string, searchTerm: string, userLocations: LocationsByService[], bookingLocations: string[]): Observable<LocationByEPIMMSModel[]> {
+    return this.http.post<LocationByEPIMMSModel[]>(`api/locations/getLocations`, {serviceIds, locationType, searchTerm, userLocations, bookingLocations});
   }
 
   /**

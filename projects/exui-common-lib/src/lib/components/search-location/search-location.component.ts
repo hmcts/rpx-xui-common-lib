@@ -113,21 +113,49 @@ export class SearchLocationComponent implements OnInit {
 
   public getLocations(term: string): Observable<LocationByEPIMMSModel[]> {
     let userLocations;
+    // EUI-7909 - remove line below
+    let bookingLocations;
     // Booking type info - can create more
     // NO_CHECK - All work - Do not filter out locations - Default assumption
     // BOOKINGS_AND_BASE - My work - Try to only show base locations/regions
     // POSSIBLE_BOOKINGS - Create booking screen - Show only potential bookings
     if (this.bookingCheck === BookingCheckType.BOOKINGS_AND_BASE) {
       userLocations = JSON.parse(this.sessionStorageService.getItem('userLocations')) as LocationsByService[];
+      // EUI - 7909 remove up to next reference of 7909
+      bookingLocations = JSON.parse(this.sessionStorageService.getItem('bookingLocations'));
+      const bookableServices = JSON.parse(this.sessionStorageService.getItem('bookableServices')) as string[];
+      const knownBookableServices: string[] = [];
+      // we do below in order to enable booking locations to be searched for bookable role assignments without base location or region
+      // first get all bookable services existing in userLocations
+      userLocations.forEach(userLocation => {
+        if (userLocation.bookable) {
+          knownBookableServices.push(userLocation.service);
+        }
+      });
+      // then, from the full list of bookable services, add ones that are missing
+      // this is so that booking locations will be checked for all relevant services
+      bookableServices.forEach(bookableService => {
+        if (!knownBookableServices.includes(bookableService)) {
+          userLocations.push({service: bookableService, locations: [], bookable: true});
+        }
+      });
+      // EUI-7909
     } else if (this.bookingCheck === BookingCheckType.POSSIBLE_BOOKINGS) {
       this.serviceIds = this.serviceIds && this.serviceIds.length ? this.serviceIds : JSON.parse(this.sessionStorageService.getItem('bookableServices'));
-      userLocations = JSON.parse(this.sessionStorageService.getItem('bookableUserLocations')) as LocationsByService[];
+      // EUI-7909 - remove next three lines
+      userLocations = JSON.parse(this.sessionStorageService.getItem('userLocations')) as LocationsByService[];
+      // filter out any non-bookable services
+      userLocations = userLocations.filter((userLocation) => userLocation.bookable);
+      // EUI-7909 - uncomment out line below
+      // userLocations = JSON.parse(this.sessionStorageService.getItem('bookableUserLocations')) as LocationsByService[];
     }
     // get all locations will resolve filter setting using objects above
     // if no userLocations, NO_CHECK
     // if just getting all substantive user locations, BOOKINGS_AND_BASE
     // fee paid user locations are used for POSSIBLE_BOOKINGS
-    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term, userLocations);
+    // EUI-7909 - swap lines below
+    // return this.locationService.getAllLocations(this.serviceIds, this.locationType, term, userLocations);
+    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term, userLocations, bookingLocations);
   }
 
   public resetSearchTerm(): void {
