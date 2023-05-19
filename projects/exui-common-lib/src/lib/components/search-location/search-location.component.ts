@@ -18,6 +18,7 @@ import { SessionStorageService } from '../../services/storage/session-storage/se
   styleUrls: ['./search-location.component.scss']
 })
 export class SearchLocationComponent implements OnInit {
+  private static readonly allLocationAPI = `api/locations/getLocations`;
   @Input() public form: FormGroup;
   @Input() public field: FilterFieldConfig;
   @Input() public disabled: boolean = null;
@@ -127,7 +128,7 @@ export class SearchLocationComponent implements OnInit {
     // if no userLocations, NO_CHECK
     // if just getting all substantive user locations, BOOKINGS_AND_BASE
     // fee paid user locations are used for POSSIBLE_BOOKINGS
-    return this.locationService.getAllLocations(this.serviceIds, this.locationType, term, userLocations);
+    return this.locationService.getAllLocations(SearchLocationComponent.allLocationAPI, this.serviceIds, this.locationType, term, userLocations);
   }
 
   public resetSearchTerm(): void {
