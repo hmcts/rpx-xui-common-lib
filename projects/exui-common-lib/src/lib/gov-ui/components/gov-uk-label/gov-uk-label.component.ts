@@ -8,10 +8,11 @@ import {Component, Input} from '@angular/core';
 * */
 @Component({
   selector: 'xuilib-gov-label',
-  templateUrl: './gov-uk-label.component.html'
+  templateUrl: './gov-uk-label.component.html',
+  styleUrls: ['./gov-uk-label.component.scss']
 })
 export class GovUkLabelComponent {
   constructor() { }
-  @Input() public config: { label: string, name: string; id: string, isPageHeading: boolean, classes: string };
+  @Input() public config: { label: string, name: string; id: string, isPageHeading: boolean, classes: string, optional?: string };
 
 }

@@ -1,0 +1,24 @@
+.add-location-button {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.search-location {
+  &__input-container {
+    display: flex;
+  }
+
+  .auto-complete-container {
+    min-width: unset;
+    width: calc(100% - 4px);
+  }
+
+
+  &__input {
+    flex: 1 0 auto;
+  }
+
+  .govuk-button--secondary {
+    background-color: #ddd;
+  }
+}

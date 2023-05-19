@@ -2,15 +2,18 @@
   <input
     id="inputLocationSearch"
     (input)="onInput()"
-    [formControl]="form.controls.searchTerm"
+    [formControl]="searchTermFormControl"
     [matAutocomplete]="autoSearchLocation"
     class="govuk-input"
     [attr.disabled]="disabled">
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
-    <mat-option *ngFor="let location of locations"
-                (onSelectionChange)="onSelectionChange(location)">
-      {{ location.site_name }}
-    </mat-option>
-    <mat-option *ngIf="!locations.length && showAutocomplete && term && term.length >= this.minSearchCharacters">No results found</mat-option>
+    <ng-container *ngIf="filteredList$ | async as filteredList">
+      <ng-container *ngIf="filteredList && filteredList.length >= 0">
+        <mat-option *ngFor="let location of filteredList" (onSelectionChange)="onSelectedLocation(location)">
+          {{ location[propertyNameFilter] }}
+        </mat-option>
+        <mat-option *ngIf="filteredList.length === 0">No results found</mat-option>
+      </ng-container>
+    </ng-container>
   </mat-autocomplete>
 </div>

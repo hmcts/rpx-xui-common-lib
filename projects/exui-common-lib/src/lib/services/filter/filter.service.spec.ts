@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { FilterPersistence, FilterSetting } from '../../models/filter.model';
+import { FilterPersistence, FilterSetting } from '../../models';
 import { FilterService } from './filter.service';
 
 describe('FilterService', () => {
@@ -20,6 +20,7 @@ describe('FilterService', () => {
   };
 
   let service: FilterService;
+
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {

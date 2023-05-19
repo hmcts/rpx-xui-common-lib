@@ -1,6 +1,6 @@
-import {  NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GovUkCheckboxesComponent } from './gov-uk-checkboxes.component';
 
 describe('GovUkCheckboxesComponent', () => {
@@ -23,8 +23,12 @@ describe('GovUkCheckboxesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GovUkCheckboxesComponent);
     component = fixture.componentInstance;
-    component.options = { key: 'key', group: null, config: {hint: 'hint', legend: 'legend', id: 'id'}, errors: null, items: []};
-    component.errors = {isInvalid: false, messages: ['Error']};
+    component.group = new FormGroup({
+      item: new FormControl()
+    });
+    component.config = {hint: 'hint', legend: 'legend', id: 'id', name: 'item'};
+    component.items = [{id: 'item', value: 'item', label: 'Item'}];
+    component.errorMessage = {isInvalid: false, messages: ['Error']};
     fixture.detectChanges();
   });
 

@@ -4,6 +4,7 @@
     "codelyzer"
   ],
   "rules": {
+    "prefer-for-of": false,
     "arrow-parens": false,
     "directive-selector": false,
     "component-selector": false,
@@ -67,7 +68,7 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    
+
     "variable-name": {
       "options": [
         "require-const-for-all-caps"
