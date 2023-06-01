@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import {DocumentInterruptSource, Idle, WindowInterruptSource} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
-import {Observable, Subject} from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import {
   distinctUntilChanged,
   map
 } from 'rxjs/operators';
-import {TimeoutNotificationConfig} from '../../models/timeout-notification.model';
+import {TimeoutNotificationConfig} from '../../models';
 
 /**
  * TimeoutNotificationsService
  *
  * The Timeout Notification Service allows your application to receive notifications
- * when a User is approaching the the total time that a User has been idle for.
+ * when a User is approaching the total time that a User has been idle for.
  *
  * This can be set by your application using the Timeout Notification Config object.
  *
@@ -27,6 +27,7 @@ import {TimeoutNotificationConfig} from '../../models/timeout-notification.model
 })
 export class TimeoutNotificationsService {
 
+  private subs: Subscription[] = [];
   private readonly eventEmitter: Subject<{eventType: string, readableCountdown?: string; }>;
 
   constructor(
@@ -80,34 +81,43 @@ export class TimeoutNotificationsService {
     const windowInterrupts = new WindowInterruptSource(DOCUMENT_INTERRUPTS);
     this.idle.setInterrupts([docInterrupts, windowInterrupts]);
 
-    this.idle.onTimeout.subscribe(() => {
+    this.subs.push(this.idle.onTimeout.subscribe(() => {
       this.eventEmitter.next({eventType: SIGNOUT_EVENT});
-    });
+    }));
 
-    this.idle.onTimeoutWarning.pipe(
+    this.subs.push(this.idle.onTimeoutWarning.pipe(
       map(sec => (sec > 60) ? Math.ceil(sec / 60) + MINUTES : sec + SECONDS),
       distinctUntilChanged()
     ).subscribe((countdown) => {
       this.eventEmitter.next({eventType: COUNTDOWN_EVENT, readableCountdown: countdown});
-    });
-    this.idle.onIdleStart.subscribe(() => console.log('You\'ve gone idle!'));
-    this.idle.onIdleEnd.subscribe(() => console.log('You\'re no longer idle!'));
+    }));
+    this.subs.push(this.idle.onIdleStart.subscribe(() => console.log('You\'ve gone idle!')));
+    this.subs.push(this.idle.onIdleEnd.subscribe(() => console.log('You\'re no longer idle!')));
 
     this.keepalive.interval(15);
-    this.keepalive.onPing.subscribe(() => {
+    this.subs.push(this.keepalive.onPing.subscribe(() => {
       this.eventEmitter.next({eventType: KEEP_ALIVE_EVENT});
-    });
+    }));
 
     const idleInSeconds = Math.floor(totalIdleTimeInSeconds) - idleModalDisplayTimeInSeconds;
     this.idle.setIdle(idleInSeconds);
     this.idle.watch();
   }
 
+  public reset(): void {
+    this.idle.watch();
+  }
+
+  public close(): void {
+    this.subs.forEach(s => s.unsubscribe());
+    this.idle.stop();
+    this.idle.clearInterrupts();
+  }
+
   /**
    * Expose the notification events, so that a 3rd party service can listen to the notifications.
    */
   public notificationOnChange(): Observable<any> {
-
     return this.eventEmitter.asObservable();
   }
 }
