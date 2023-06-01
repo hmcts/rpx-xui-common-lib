@@ -17,44 +17,53 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 12
+      - run: corepack enable && yarn --version
       - run: yarn install
       - run: yarn lint
       - run: yarn build:library
       - run: yarn test
 
   publish-npm:
+    if: startsWith(github.ref, 'refs/tags')
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         if: startsWith(github.ref, 'refs/tags')
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         if: startsWith(github.ref, 'refs/tags')
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run:  yarn install && yarn build:library && cd dist/exui-common-lib && yarn publish
-        if: startsWith(github.ref, 'refs/tags')
+      - run: corepack enable && yarn --version
+      - run: yarn install
+      - run: yarn build:library
+      - run: cd dist/exui-common-lib && npm publish dist/ccd-case-ui-toolkit --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+          NPM_PUBLISH_REGISTRY: https://registry.npmjs.org/
 
   publish-gpr:
+    if: startsWith(github.ref, 'refs/tags')
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         if: startsWith(github.ref, 'refs/tags')
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         if: startsWith(github.ref, 'refs/tags')
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@hmcts'
-      - run: yarn install && yarn build:library && cd dist/exui-common-lib && yarn publish
-        if: startsWith(github.ref, 'refs/tags')
+      - run: corepack enable && yarn --version
+      - run: yarn install
+      - run: yarn build:library
+      - run: cd dist/exui-common-lib && npm publish dist/ccd-case-ui-toolkit --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_PUBLISH_REGISTRY: https://npm.pkg.github.com/
