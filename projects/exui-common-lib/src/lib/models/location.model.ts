@@ -47,6 +47,7 @@ export interface LocationByEPIMMSModel {
   venue_name?: string;
   is_case_management_location?: string;
   is_hearing_location?: string;
+  serviceCodes?: string[];
 }
 
 export interface LocationsByService {
