@@ -27,7 +27,7 @@ import {TimeoutNotificationConfig} from '../../models';
 })
 export class TimeoutNotificationsService {
 
-  private subs: Subscription[] = [];
+  private readonly subs: Subscription[] = [];
   private readonly eventEmitter: Subject<{eventType: string, readableCountdown?: string; }>;
 
   constructor(
