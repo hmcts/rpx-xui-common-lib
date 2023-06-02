@@ -1684,7 +1684,7 @@ __metadata:
     "@ng-idle/keepalive": ^11.0.3
     "@types/jasmine": ~3.6.0
     "@types/jasminewd2": ~2.0.3
-    "@types/node": ^12.11.1
+    "@types/node": ^14.14.31
     codelyzer: ^6.0.0
     core-js: ^2.5.4
     govuk-frontend: 4.0.1
@@ -2154,10 +2154,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^12.11.1":
-  version: 12.20.55
-  resolution: "@types/node@npm:12.20.55"
-  checksum: e4f86785f4092706e0d3b0edff8dca5a13b45627e4b36700acd8dfe6ad53db71928c8dee914d4276c7fd3b6ccd829aa919811c9eb708a2c8e4c6eb3701178c37
+"@types/node@npm:^14.14.31":
+  version: 14.18.48
+  resolution: "@types/node@npm:14.18.48"
+  checksum: bc410153cd12b5f5218c2c2a5ab4a65e8dc99ebffe98261a30e9d4beb8f9a0e4ee48c41b850f8cb80da6ed1024e42bba8dee1592869aa5b1826ddb7c29ad6899
   languageName: node
   linkType: hard
 
