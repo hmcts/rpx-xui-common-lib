@@ -10,17 +10,18 @@ describe('FindAPersonService', () => {
     expect(service).toBeTruthy();
   });
 
+  const userDetails = {
+    id: '1234',
+    forename: 'foreName',
+    surname: 'surName',
+    email: 'email@email.com',
+    active: true,
+    roles: ['pui-case-manager']
+  };
+
   it('find search', () => {
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
-    const userDetails = {
-        id: '1234',
-        forename: 'foreName',
-        surname: 'surName',
-        email: 'email@email.com',
-        active: true,
-        roles: ['pui-case-manager']
-    };
     mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
     mockHttpService.post.and.returnValue(of());
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
@@ -29,15 +30,64 @@ describe('FindAPersonService', () => {
     expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation/findPerson', { searchOptions });
   });
 
+  const people: Person[] = [
+    {
+      id: '123',
+      name: 'Test One',
+      email: 'TestOne@test.com',
+      domain: PersonRole.CASEWORKER
+    },
+    {
+      id: '124',
+      name: 'Test Two',
+      email: 'TestTwo@test.com',
+      domain: PersonRole.CASEWORKER
+    },
+    {
+      id: '125',
+      name: 'Test Three',
+      email: 'TestThree@test.com',
+      domain: PersonRole.CASEWORKER
+    },
+    {
+      id: '126',
+      name: 'Test Four',
+      email: 'TestFour@test.com',
+      domain: PersonRole.ADMIN
+    }
+  ];
+
+  it('find search should not filter out current user and assigned user', () => {
+    const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
+    mockHttpService.post.and.returnValue(of(people));
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false, assignedUser: '1234' };
+    service.find(searchOptions).toPromise().then(result => expect(result).toEqual(people));
+  });
+
+  it('find search should not filter out current user and assigned user', () => {
+    const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
+    mockHttpService.post.and.returnValue(of(people));
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false, assignedUser: '1234' };
+    service.find(searchOptions).toPromise().then(result => expect(result).toEqual(people));
+  });
+
+  it('find search should filter out matching assigned user', () => {
+    const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
+    mockHttpService.post.and.returnValue(of(people));
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false, assignedUser: '123' };
+    service.find(searchOptions).toPromise().then(result => expect(result).toEqual(people.slice(1, 4)));
+  });
+
   it('find specific caseworkers', () => {
-    const userDetails = {
-        id: '125',
-        forename: 'foreName',
-        surname: 'surName',
-        email: 'email@email.com',
-        active: true,
-        roles: ['pui-case-manager']
-    };
     const caseworkers = `[
       {
         "idamId": "123",
@@ -76,7 +126,7 @@ describe('FindAPersonService', () => {
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.CASEWORKER };
     service.findCaseworkers(searchOptions);
-    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation/retrieveCaseWorkersForServices', {fullServices: ['IA']});
+    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation/retrieveCaseWorkersForServices', { fullServices: ['IA'] });
   });
 
   it('should change caseworkers to people', () => {
@@ -108,32 +158,6 @@ describe('FindAPersonService', () => {
         lastName: 'Four',
         email: 'TestFour@test.com',
         roleCategory: 'ADMIN'
-      }
-    ];
-    const people: Person[] = [
-      {
-        id: '123',
-        name: 'Test One',
-        email: 'TestOne@test.com',
-        domain: PersonRole.CASEWORKER
-      },
-      {
-        id: '124',
-        name: 'Test Two',
-        email: 'TestTwo@test.com',
-        domain: PersonRole.CASEWORKER
-      },
-      {
-        id: '125',
-        name: 'Test Three',
-        email: 'TestThree@test.com',
-        domain: PersonRole.CASEWORKER
-      },
-      {
-        id: '126',
-        name: 'Test Four',
-        email: 'TestFour@test.com',
-        domain: PersonRole.ADMIN
       }
     ];
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
