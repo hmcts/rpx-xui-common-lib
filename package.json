@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.9-exui-249-timout-service-fix",
+  "version": "1.8.9-exui-249-timout-service-fix-a",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
