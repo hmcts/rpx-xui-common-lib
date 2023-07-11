@@ -1,9 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('UserSelectComponent', () => {
   let component: UserSelectComponent;
@@ -30,11 +38,11 @@ describe('UserSelectComponent', () => {
     }
   ];
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserSelectComponent ],
-      imports: [ MatAutocompleteModule, ReactiveFormsModule, RpxTranslationModule.forChild() ],
-      providers: [RpxTranslationConfig, RpxTranslationService],
+      declarations: [ UserSelectComponent, RpxTranslateMockPipe ],
+      imports: [ MatAutocompleteModule, ReactiveFormsModule ],
+      providers: [],
     })
     .compileComponents();
   }));
@@ -53,7 +61,7 @@ describe('UserSelectComponent', () => {
     expect(component.displayValue(testUsers[0])).toEqual('Geddy Lee - g.lee@rush.band');
   });
 
-  it('should filter users correctly', async(() => {
+  it('should filter users correctly', waitForAsync(() => {
     component.users = testUsers;
     component.control.setValue('neil');
     fixture.detectChanges();

@@ -1,19 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { of } from 'rxjs';
+import { BookingCheckType } from '../../models';
 import { LocationService } from '../../services/locations/location.service';
+import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 import { SearchLocationComponent } from './search-location.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
   let fixture: ComponentFixture<SearchLocationComponent>;
-  const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  const locationServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
+  const sessionServiceMock = jasmine.createSpyObj('SessionStorageService', ['getItem']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -23,13 +35,11 @@ describe('SearchLocationComponent', () => {
         RpxTranslationModule.forChild()
       ],
       declarations: [
-        SearchLocationComponent
+        SearchLocationComponent,
+        RpxTranslateMockPipe
       ],
-      providers: [
-        RpxTranslationService,
-        RpxTranslationConfig,
-        { provide: LocationService, useValue: searchFilterServiceMock }
-      ],
+      providers: [{ provide: LocationService, useValue: locationServiceMock },
+                  { provide: SessionStorageService, useValue: sessionServiceMock}],
     }).compileComponents();
 
     const LOCATION_RESULTS = [
@@ -300,5 +310,24 @@ describe('SearchLocationComponent', () => {
     spyOn(component.searchLocationChanged, 'emit');
     component.onInput();
     expect(component.searchLocationChanged.emit).toHaveBeenCalled();
+  });
+
+  it('should call get locations with the correct parameters', () => {
+    component.serviceIds = 'IA,SSCS';
+    component.bookingCheck = BookingCheckType.NO_CHECK;
+    component.getLocations('exampleString');
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,SSCS', '', 'exampleString', undefined, undefined);
+    // checks that civil added to userLocations as well
+    component.serviceIds = 'IA,CIVIL';
+    component.bookingCheck = BookingCheckType.BOOKINGS_AND_BASE;
+    sessionServiceMock.getItem.and.returnValues(`[["IA"], []]`, `["12345"]`, '["CIVIL"]');
+    component.getLocations('exampleString2');
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [['IA'], [], {service: 'CIVIL', locations: [], bookable: true}], ['12345']);
+    // check user locations filtered for bookable correctly
+    component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
+    const bookableLocationString = JSON.stringify([{service: 'IA', locations: ['12345'], bookable: true}, {service: 'CIVIL', locations: ['32456'], bookable: false}]);
+    sessionServiceMock.getItem.and.returnValues(bookableLocationString, `["SSCS", "IA"]`, '[]');
+    component.getLocations('exampleString2');
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: ['12345'], bookable: true}], undefined);
   });
 });

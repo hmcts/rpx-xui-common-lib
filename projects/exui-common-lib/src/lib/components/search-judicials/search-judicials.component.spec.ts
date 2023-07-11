@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatOptionModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
@@ -9,25 +11,31 @@ import { JudicialUserModel } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { SearchJudicialsComponent } from './search-judicials.component';
 
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
+
 describe('SearchJudicialsComponent', () => {
   let component: SearchJudicialsComponent;
   let fixture: ComponentFixture<SearchJudicialsComponent>;
   const searchFilterServiceMock = jasmine.createSpyObj('FindAPersonService', ['searchJudicial']);
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
         RouterTestingModule.withRoutes([]),
         MatAutocompleteModule,
-        MatOptionModule,
-        RpxTranslationModule.forChild()
+        MatOptionModule
       ],
       declarations: [
-        SearchJudicialsComponent
+        SearchJudicialsComponent,
+        RpxTranslateMockPipe
       ],
       providers: [
-        RpxTranslationService, RpxTranslationConfig,
         { provide: FindAPersonService, useValue: searchFilterServiceMock }
       ],
     }).compileComponents();

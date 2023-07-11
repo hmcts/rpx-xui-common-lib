@@ -1,9 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { FeatureToggleService } from '../../services/feature-toggle/feature-toggle.service';
 import { ServiceMessagesComponent } from './service-messages.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('ServiceMessagesComponent', () => {
   let component: ServiceMessagesComponent;
@@ -19,13 +25,10 @@ describe('ServiceMessagesComponent', () => {
     'caseworker-probate|caseworker-withscript': 'Probate and script users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.<script>alert("security alert");</script>*<link rel=\"stylesheet\" href=\"styles.css\">*'
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ServiceMessagesComponent],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
+      declarations: [ServiceMessagesComponent, RpxTranslateMockPipe],
       providers: [
         RpxTranslationService, RpxTranslationConfig,
         {
@@ -50,7 +53,6 @@ describe('ServiceMessagesComponent', () => {
   });
 
   describe('getServiceMessages()', () => {
-
     it('should get the service messages and filter according to roles', () => {
       component.getServiceMessages();
       expect(component.filteredMessages.size).toBe(5);

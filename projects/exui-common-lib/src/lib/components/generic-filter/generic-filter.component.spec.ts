@@ -1,16 +1,27 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule, MatOptionModule} from '@angular/material';
-import {By} from '@angular/platform-browser';
-import { RpxTranslationModule } from 'rpx-xui-translation';
-import {of} from 'rxjs';
-import {FilterFieldConfig} from '../../models';
-import {FilterService} from '../../services';
-import {LocationService} from '../../services/locations/location.service';
-import {FindLocationComponent} from '../find-location/find-location.component';
-import {FindPersonComponent} from '../find-person/find-person.component';
-import {SearchLocationComponent} from '../search-location/search-location.component';
-import {GenericFilterComponent} from './generic-filter.component';
+import { Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
+import { FilterFieldConfig } from '../../models';
+import { FilterService } from '../../services';
+import { LocationService } from '../../services/locations/location.service';
+import { FindLocationComponent } from '../find-location/find-location.component';
+import { FindPersonComponent } from '../find-person/find-person.component';
+import { FindServiceComponent } from '../find-service/find-service.component';
+import { SearchLocationComponent } from '../search-location/search-location.component';
+import { SearchServiceComponent } from '../search-service/search-service.component';
+import { GenericFilterComponent } from './generic-filter.component';
+
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GenericFilterComponent', () => {
 
@@ -18,6 +29,7 @@ describe('GenericFilterComponent', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   const mockFilterService: any = {
     getStream: () => of(null),
+    getUserId: jasmine.createSpy().and.returnValue('1234'),
     get: jasmine.createSpy(),
     persist: jasmine.createSpy(),
     givenErrors: {
@@ -27,20 +39,22 @@ describe('GenericFilterComponent', () => {
     }
   };
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule,
+      imports: [
+        ReactiveFormsModule,
         MatAutocompleteModule,
-        MatOptionModule,
-        RpxTranslationModule.forRoot({
-          baseUrl: '',
-          debounceTimeMs: 300,
-          validity: {
-            days: 1
-          },
-          testMode: true
-        })],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+        MatOptionModule
+      ],
+      declarations: [
+        GenericFilterComponent,
+        FindPersonComponent,
+        FindLocationComponent,
+        SearchLocationComponent,
+        FindServiceComponent,
+        SearchServiceComponent,
+        RpxTranslateMockPipe
+      ],
       providers: [
         {provide: FilterService, useValue: mockFilterService},
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -146,6 +160,7 @@ describe('GenericFilterComponent', () => {
 
     const result = {
       id: 'examples',
+      idamId: '1234',
       fields: [
         {
           name: 'example1',
@@ -163,6 +178,7 @@ describe('GenericFilterComponent', () => {
       reset: false,
     };
     expect(component.form.valid).toBeTruthy();
+    mockFilterService.getUserId.and.returnValue('1234');
     expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
   });
 
@@ -368,20 +384,10 @@ describe('Select all checkboxes', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatOptionModule,
-        RpxTranslationModule.forRoot({
-          baseUrl: '',
-          debounceTimeMs: 300,
-          validity: {
-            days: 1
-          },
-          testMode: true
-        })],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent, RpxTranslateMockPipe],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -464,21 +470,10 @@ describe('Find location filter config', () => {
   const searchFilterServiceMock = jasmine.createSpyObj('LocationService', ['getAllLocations']);
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatOptionModule,
-        RpxTranslationModule.forRoot({
-          baseUrl: '',
-          debounceTimeMs: 300,
-          validity: {
-            days: 1
-          },
-          testMode: true
-        })
-      ],
-      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent],
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      declarations: [GenericFilterComponent, FindPersonComponent, FindLocationComponent, SearchLocationComponent, FindServiceComponent, SearchServiceComponent, RpxTranslateMockPipe],
       providers: [
         FilterService,
         {provide: LocationService, useValue: searchFilterServiceMock}
@@ -510,11 +505,11 @@ describe('Find location filter config', () => {
     };
     fixture.detectChanges();
   });
+
   it('should display find-location filter', () => {
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
     const findLocationFormGroup = form.querySelector('xuilib-find-location') as HTMLElement;
     expect(findLocationFormGroup).toBeTruthy();
   });
-
 });

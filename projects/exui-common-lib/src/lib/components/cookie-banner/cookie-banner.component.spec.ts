@@ -1,25 +1,29 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
 import { CookieBannerComponent } from './cookie-banner.component';
 
 const windowMock: Window = { location: { reload: () => {}}} as any;
 
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
+
 describe('CookieBannerComponent', () => {
   let appComponent: CookieBannerComponent;
   let fixture: ComponentFixture<CookieBannerComponent>;
   let cookieService: any;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     cookieService = jasmine.createSpyObj('CookieService', ['setCookie', 'checkCookie', 'getCookie']);
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ CookieBannerComponent ],
-      imports: [
-        RpxTranslationModule.forChild()
-      ],
+      declarations: [ CookieBannerComponent, RpxTranslateMockPipe ],
+      imports: [],
       providers: [
         RpxTranslationService, RpxTranslationConfig,
         { provide: CookieService, useValue: cookieService },

@@ -1,19 +1,26 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { UserDetailsComponent } from './user-details.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('UserDetailsComponent', () => {
   let component: UserDetailsComponent;
   let fixture: ComponentFixture<UserDetailsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, RpxTranslationModule.forChild()],
-      providers: [ RpxTranslationConfig, RpxTranslationService],
+      imports: [RouterTestingModule],
+      providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserDetailsComponent ]
+      declarations: [ UserDetailsComponent, RpxTranslateMockPipe ]
     })
     .compileComponents();
   }));
@@ -48,7 +55,7 @@ describe('UserDetailsComponent', () => {
     expect(resend).toBeTruthy();
   });
 
-  it('should call reinviteClick when the button clicked', async(() => {
+  it('should call reinviteClick when the button clicked', waitForAsync(() => {
     component.user.resendInvite = true;
     spyOn(component, 'reinviteClick');
     fixture.detectChanges();
@@ -65,7 +72,7 @@ describe('UserDetailsComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('button')).toBeTruthy();
   });
 
-  it('should call suspendUser when the button clicked', async(() => {
+  it('should call suspendUser when the button clicked', waitForAsync(() => {
     component.showSuspendUserButton = true;
     spyOn(component, 'suspendUser');
     fixture.detectChanges();

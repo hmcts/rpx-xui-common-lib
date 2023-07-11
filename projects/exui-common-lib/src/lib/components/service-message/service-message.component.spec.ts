@@ -1,19 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { ServiceMessageComponent } from './service-message.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('ServiceMessageComponent', () => {
   let component: ServiceMessageComponent;
   let fixture: ComponentFixture<ServiceMessageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ServiceMessageComponent],
-      imports: [RouterTestingModule, RpxTranslationModule.forChild()],
-      providers: [
-        RpxTranslationConfig, RpxTranslationService
-      ]
+      declarations: [ServiceMessageComponent, RpxTranslateMockPipe],
+      imports: [RouterTestingModule],
+      providers: []
     })
       .compileComponents();
   }));

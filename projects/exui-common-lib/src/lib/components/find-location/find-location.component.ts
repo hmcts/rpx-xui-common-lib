@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {FilterFieldConfig} from '../../models';
 import {LocationByEPIMMSModel} from '../../models/location.model';
@@ -10,7 +10,7 @@ import {SearchLocationComponent} from '../search-location/search-location.compon
   templateUrl: './find-location.component.html',
   styleUrls: ['./find-location.component.scss']
 })
-export class FindLocationComponent {
+export class FindLocationComponent implements OnInit {
   @Output() public locationFieldChanged = new EventEmitter<void>();
   @Input() public selectedLocations: LocationByEPIMMSModel[] = [];
   @Input() public submitted: boolean = true;
@@ -23,7 +23,7 @@ export class FindLocationComponent {
   public locations: LocationByEPIMMSModel[] = [];
   public tempSelectedLocation: LocationByEPIMMSModel = null;
   public serviceIds: string = 'SSCS,IA';
-  @ViewChild(SearchLocationComponent) public searchLocationComponent: SearchLocationComponent;
+  @ViewChild(SearchLocationComponent, { static: true }) public searchLocationComponent: SearchLocationComponent;
   private pServices: string[] = [];
   private pDisabled: boolean = false;
 
@@ -47,7 +47,7 @@ export class FindLocationComponent {
   @Input()
   public set services(value: string[]) {
     this.pServices = value;
-    const field = this.fields.find(f => f.name === this.field.findLocationField);
+    const field = this.fields.find(f => f.name === this.field?.findLocationField);
     if (field) {
       if (typeof value === 'string') {
         this.serviceIds = value;
@@ -55,6 +55,11 @@ export class FindLocationComponent {
         this.serviceIds = getValues(field.options, value).filter(x => x !== 'services_all').join(',');
       }
     }
+  }
+
+  public ngOnInit(): void {
+    // implemented to get rid of undefined values
+    this.selectedLocations = this.selectedLocations.filter(location => location.epimms_id);
   }
 
   public addLocation(): void {

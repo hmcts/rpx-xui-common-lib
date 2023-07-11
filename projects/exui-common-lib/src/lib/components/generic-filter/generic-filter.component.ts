@@ -160,6 +160,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy, AfterContentCh
     if (form.valid) {
       this._settings = {
         id: this.config.id,
+        idamId: this.filterService.getUserId(),
         fields: this.getSelectedValues(form.value, this.config)
       };
       this.filterService.givenErrors.next(null);
@@ -241,15 +242,20 @@ export class GenericFilterComponent implements OnInit, OnDestroy, AfterContentCh
       } else if (hasSelectAllOption && !allChecked && isChecked && isAllCheckedExcludingTheSelectAllOption) {
         formArray.controls[index].patchValue(true);
       }
-      return;
+    } else {
+      formArray.controls.forEach((control: AbstractControl) => {
+        if (isChecked) {
+          control.patchValue(true);
+        } else {
+          control.patchValue(false);
+        }
+      });
     }
-    formArray.controls.forEach((control: AbstractControl) => {
-      if (isChecked) {
-        control.patchValue(true);
-      } else {
-        control.patchValue(false);
+    if (field.changeResetFields && field.changeResetFields.length) {
+      for (const resetField of field.changeResetFields) {
+        this.resetField(resetField, form);
       }
-    });
+    }
   }
 
   private resetField(resetField: string, form: FormGroup): void {
@@ -315,11 +321,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy, AfterContentCh
         // if field is find-person build a form group;
         if (field.type === 'find-person') {
           const formGroup = new FormGroup({
-            domain: new FormControl(''),
+            domain: new FormControl(defaultValue && defaultValue.hasOwnProperty('domain') ? defaultValue.domain : ''),
             email: new FormControl(defaultValue && defaultValue.hasOwnProperty('email') ? defaultValue.email : '', validators),
-            id: new FormControl(''),
-            name: new FormControl(''),
-            knownAs: new FormControl(''),
+            id: new FormControl(defaultValue && defaultValue.hasOwnProperty('id') ? defaultValue.id : ''),
+            name: new FormControl(defaultValue && defaultValue.hasOwnProperty('name') ? defaultValue.name : ''),
+            knownAs: new FormControl(defaultValue && defaultValue.hasOwnProperty('knownAs') ? defaultValue.knownAs : ''),
           });
           this.form.addControl(field.name, formGroup);
         } else {

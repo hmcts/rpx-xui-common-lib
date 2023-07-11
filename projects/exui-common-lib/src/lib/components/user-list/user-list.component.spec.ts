@@ -1,21 +1,28 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsPaginationComponent } from '../../gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import { UserListComponent } from './user-list.component';
 
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
+
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, NgxPaginationModule, RpxTranslationModule.forChild()],
-      providers: [RpxTranslationConfig, RpxTranslationService],
+      imports: [RouterTestingModule, NgxPaginationModule],
+      providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserListComponent, HmctsPaginationComponent],
+      declarations: [ UserListComponent, HmctsPaginationComponent, RpxTranslateMockPipe],
     })
     .compileComponents();
   }));
@@ -36,7 +43,7 @@ describe('UserListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call onUserClick when the link clicked', async(() => {
+  it('should call onUserClick when the link clicked', waitForAsync(() => {
     spyOn(component, 'onUserClick');
     fixture.detectChanges();
     const links = fixture.debugElement.nativeElement.querySelector('.govuk-link');

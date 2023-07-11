@@ -4,6 +4,7 @@
             <a data-selector="sub-nav-link" class="hmcts-sub-navigation__link" [routerLink]="item.href"
                [attr.aria-current]="item.active ? 'page' : null">
                 {{item.text | rpxTranslate}}
+                <span *ngIf="item.roundel && item.roundel > 0 " class="xui-alert-link__number"> {{item.roundel}} </span>
             </a>
         </li>
     </ul>

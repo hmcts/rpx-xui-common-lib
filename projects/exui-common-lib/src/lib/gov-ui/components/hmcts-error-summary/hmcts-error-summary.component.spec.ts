@@ -1,26 +1,29 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { HmctsErrorSummaryComponent } from './hmcts-error-summary.component';
 
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
+
 describe('HmctsErrorSummaryComponent', () => {
   let component: HmctsErrorSummaryComponent;
   let fixture: ComponentFixture<HmctsErrorSummaryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsErrorSummaryComponent ],
+      declarations: [ HmctsErrorSummaryComponent, RpxTranslateMockPipe ],
       imports: [
         RouterTestingModule,
-        RpxTranslationModule.forChild()
       ],
-      providers: [
-        RpxTranslationConfig,
-        RpxTranslationService
-      ]
+      providers: []
     })
     .compileComponents();
   }));
@@ -42,5 +45,4 @@ describe('HmctsErrorSummaryComponent', () => {
     const input = fixture.debugElement.query(By.css('h2'));
     expect(input).toBeTruthy();
   });
-
 });

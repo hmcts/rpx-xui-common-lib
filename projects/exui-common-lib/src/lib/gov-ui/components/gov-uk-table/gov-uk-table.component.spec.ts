@@ -1,23 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovukTableComponent } from './gov-uk-table.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovukTableComponent', () => {
   let component: GovukTableComponent;
   let fixture: ComponentFixture<GovukTableComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GovukTableComponent ],
+      declarations: [ GovukTableComponent, RpxTranslateMockPipe ],
       imports: [
         RouterModule,
-        RpxTranslationModule.forChild()
       ],
-      providers: [
-        RpxTranslationConfig,
-        RpxTranslationService,
-      ]
+      providers: []
     })
     .compileComponents();
   }));
