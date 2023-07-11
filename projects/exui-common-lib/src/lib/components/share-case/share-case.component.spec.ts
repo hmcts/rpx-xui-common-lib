@@ -49,7 +49,6 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see page elements', () => {
-    fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('#add-user-hint').textContent).toContain('Search by name or email address. You can share access with as many people as you need.');
     expect(fixture.debugElement.nativeElement.querySelector('#btn-add-user').textContent).toContain('Add');
     expect(fixture.debugElement.nativeElement.querySelector('#content-why-can-not-find-email').textContent).toContain('Can\'t find an email address?');

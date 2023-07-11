@@ -1,0 +1,11 @@
+.govuk-checkboxes-multi-column {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -20px;
+  margin-right: -20px;
+
+  &__single {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

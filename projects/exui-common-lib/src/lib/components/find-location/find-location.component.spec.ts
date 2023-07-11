@@ -56,7 +56,7 @@ describe('FindLocationComponent', () => {
       minSelected: 1,
       maxSelected: null
     };
-    component.locations = [LOCATION];
+
     component.form = new FormGroup({
       location: new FormArray([]),
     });
@@ -92,9 +92,30 @@ describe('FindLocationComponent', () => {
     expect(selectedLocationAfterRemove).toBeNull();
   });
 
-  it('should emit an event when search location emits an event to the component', () => {
+  it('should emit an event when formControl gets a new value', () => {
     spyOn(component.locationFieldChanged, 'emit');
     component.onSearchInputChanged();
     expect(component.locationFieldChanged.emit).toHaveBeenCalled();
+  });
+
+  describe('resetting term search', () => {
+    beforeEach(() => {
+      component.formSubmissionEvent$ = new Subject();
+      component.ngOnInit();
+    });
+
+    it('should reset the search term on each formSubmissionEvent$', () => {
+      spyOn(component.searchLocationComponent, 'resetSearchTerm').and.callThrough();
+      component.formSubmissionEvent$.next();
+      expect(component.searchLocationComponent.resetSearchTerm).toHaveBeenCalled();
+    });
+
+    it('should unsubscribe on ngOnDestroy', () => {
+      // @ts-expect-error private property
+      spyOn<Subscription>(component.formSubmissionEventSubscription, 'unsubscribe');
+      component.ngOnDestroy();
+      // @ts-expect-error private property
+      expect(component.formSubmissionEventSubscription.unsubscribe).toHaveBeenCalledTimes(1);
+    });
   });
 });

@@ -10,6 +10,7 @@
 <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
 
 <input class="govuk-input"
+       [class.govuk-!-width-full]="config.fullWidth"
        [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
        [id]="config.id"
        [name]="config.name"

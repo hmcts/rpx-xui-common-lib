@@ -6,7 +6,9 @@
 </span>
 <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
 
-<select class="govuk-select" [id]="config.id" [name]="config.id" [formControlName]="config.id" [attr.aria-describedby]='setDescribedBy()'>
-<option value="{{item.value}}" *ngFor="let item of items">{{item.label | rpxTranslate}}</option>
+<select class="govuk-select"
+        [class.govuk-!-width-full]="config.fullWidth"
+        [id]="config.id" [name]="config.id" [formControlName]="config.id" [attr.aria-describedby]='setDescribedBy()'>
+  <option value="{{item.value}}" *ngFor="let item of items">{{item.label | rpxTranslate}}</option>
 </select>
 </div>

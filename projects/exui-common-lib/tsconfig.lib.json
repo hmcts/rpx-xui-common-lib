@@ -20,7 +20,7 @@
     "baseUrl": "../../node_modules"
   },
   "angularCompilerOptions": {
-    "enableIvy": false,
+    "enableIvy": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,

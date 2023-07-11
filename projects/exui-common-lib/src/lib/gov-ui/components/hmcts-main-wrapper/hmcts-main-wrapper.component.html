@@ -8,7 +8,10 @@
         [header]="summaryErrors.header"
         [showWarningMessage]="showWarningMessage">
       </xuilib-hmcts-error-summary>
-      <xuilib-hmcts-banner *ngIf="bannerData" [message]="bannerData.message" [type]="bannerData.type"></xuilib-hmcts-banner>
+      <xuilib-hmcts-banner *ngIf="bannerData"
+                           [type]="bannerData.type"
+                           [message]="bannerData.message"
+      ></xuilib-hmcts-banner>
       <h1 *ngIf="title" class="govuk-heading-xl">{{title | rpxTranslate}}</h1>
       <ng-content></ng-content>
     </div>
