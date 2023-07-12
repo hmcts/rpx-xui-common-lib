@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { of } from 'rxjs';
 import { SharedCase, SharedCaseErrorMessages } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
@@ -26,9 +25,17 @@ describe('ShareCaseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ ShareCaseComponent, RpxTranslateMockPipe ],
-      imports: [ FormsModule, RouterTestingModule ]
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
+      declarations: [
+        ShareCaseComponent,
+        RpxTranslateMockPipe
+      ],
+      imports: [
+        FormsModule,
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
@@ -40,8 +47,8 @@ describe('ShareCaseComponent', () => {
     component.shareCases$ = of(sharedCases);
     // Deliberately omitted fixture.detectChanges() here because this will trigger the component's ngOnInit() before
     // the showRemoveUsers input value has been set, causing a false failure
-    stateService = TestBed.get(CaseSharingStateService);
-    router = TestBed.get(Router);
+    stateService = TestBed.inject(CaseSharingStateService);
+    router = TestBed.inject(Router);
   });
 
   it('should create', () => {
@@ -49,6 +56,7 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see page elements', () => {
+    fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('#add-user-hint').textContent).toContain('Search by name or email address. You can share access with as many people as you need.');
     expect(fixture.debugElement.nativeElement.querySelector('#btn-add-user').textContent).toContain('Add');
     expect(fixture.debugElement.nativeElement.querySelector('#content-why-can-not-find-email').textContent).toContain('Can\'t find an email address?');

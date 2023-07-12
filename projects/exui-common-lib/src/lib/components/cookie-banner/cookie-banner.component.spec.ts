@@ -25,7 +25,6 @@ describe('CookieBannerComponent', () => {
       declarations: [ CookieBannerComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: [
-        RpxTranslationService, RpxTranslationConfig,
         { provide: CookieService, useValue: cookieService },
         { provide: windowToken, useValue: windowMock }
       ]

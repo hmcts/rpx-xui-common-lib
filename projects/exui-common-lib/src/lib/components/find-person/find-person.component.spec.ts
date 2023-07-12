@@ -33,7 +33,6 @@ describe('FindPersonComponent', () => {
         RpxTranslateMockPipe
       ],
       providers: [
-        RpxTranslationService, RpxTranslationConfig,
         {provide: FindAPersonService, useValue: mockFindAPersonService}
       ]
     }).compileComponents();

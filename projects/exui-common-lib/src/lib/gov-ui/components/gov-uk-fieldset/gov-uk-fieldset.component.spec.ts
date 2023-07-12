@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
+import { RpxTranslationConfig, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkFieldsetComponent } from './gov-uk-fieldset.component';
 
 @Pipe({ name: 'rpxTranslate' })

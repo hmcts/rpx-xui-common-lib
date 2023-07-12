@@ -41,22 +41,21 @@
     </details>
   </div>
   <div class="govuk-form-group" *ngIf="showRemoveUsers">
-    <label class="govuk-label govuk-!-font-weight-bold" for="remove-user-input">{{'Remove a person from all cases' | rpxTranslate}}</label>
+    <label class="govuk-label govuk-!-font-weight-bold" for="remove-user-input">
+      {{'Remove a person from all cases' | rpxTranslate}}
+    </label>
     <span id="remove-user-hint" class="govuk-hint">
       {{'Select a person to remove them from all selected cases.' | rpxTranslate}}
     </span>
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <select [(ngModel)]="selectedUserToRemove" class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
-          <option [ngValue]="null" selected>
-            {{'Select a person' | rpxTranslate}}
-          </option>
+          <option [ngValue]="null" selected>Select a person</option>
           <option *ngFor="let user of assignedUsers" [ngValue]="user">{{user.firstName}} {{user.lastName}} - {{user.email}}</option>
         </select>
       </div>
       <div class="govuk-grid-column-one-thirds">
-        <button id="btn-remove-user" (click)="removeUser()" class="govuk-button govuk-button--secondary"
-                [title]="'Remove user from selected cases' | rpxTranslate">
+        <button id="btn-remove-user" (click)="removeUser()" class="govuk-button govuk-button--secondary" title="{{'Remove user from selected cases' | rpxTranslate}}">
           {{'Remove' | rpxTranslate}}
         </button>
       </div>
@@ -80,18 +79,17 @@
   </div>
 
   <div id="noCaseDisplay" *ngIf="shareCases && shareCases.length === 0" class="govuk-hint"
-       [ngClass]="{'govuk-form-group--error': shareCaseErrorMessage.messages && shareCaseErrorMessage.messages.length > 0}">
+    [ngClass]="{'govuk-form-group--error': shareCaseErrorMessage.messages && shareCaseErrorMessage.messages.length > 0}">
     {{'No cases to display.' | rpxTranslate}}
   </div>
 
 </div>
 
 <div id="share-case-nav" class="govuk-button-group">
-  <button id="btn-continue" class="govuk-button" data-module="govuk-button" (click)="onContinue()"
-          [title]="'Continue' | rpxTranslate">
+  <button id="btn-continue" class="govuk-button" data-module="govuk-button" (click)="onContinue()" title="{{'Continue' | rpxTranslate}}">
     {{'Continue' | rpxTranslate}}
   </button>
-  <button id="btn-cancel" class="govuk-button govuk-button--secondary" data-module="govuk-button" title="Cancel" [routerLink]="cancelLink">
+  <button id="btn-cancel" class="govuk-button govuk-button--secondary" data-module="govuk-button" title="{{'Cancel' | rpxTranslate}}" [routerLink]="cancelLink">
     {{'Cancel' | rpxTranslate}}
   </button>
 </div>

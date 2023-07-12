@@ -12,7 +12,7 @@ import { getValues, maxSelectedValidator, minSelectedValidator } from './generic
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class GenericFilterComponent implements OnInit, OnDestroy, AfterContentChecked {
+export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public submitted = false;
   public formSub: Subscription;
@@ -94,11 +94,6 @@ export class GenericFilterComponent implements OnInit, OnDestroy, AfterContentCh
         this.initValuesFromCacheForSkillsByServices();
       }
     }
-  }
-
-  // checks the data projected into the component
-  public ngAfterContentChecked(): void {
-    this.ref.detectChanges();
   }
 
   public ngOnDestroy(): void {

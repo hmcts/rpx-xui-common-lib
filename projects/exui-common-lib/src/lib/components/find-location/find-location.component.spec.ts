@@ -1,11 +1,13 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {FormArray, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
-import {LocationService} from '../../services/locations/location.service';
-import {SearchLocationComponent} from '../search-location/search-location.component';
-import {FindLocationComponent} from './find-location.component';
+import { Subject, Subscription } from 'rxjs';
+import { LocationService } from '../../services/locations/location.service';
+import { SearchLocationComponent } from '../search-location/search-location.component';
+import { FindLocationComponent } from './find-location.component';
 
 @Pipe({ name: 'rpxTranslate' })
 class RpxTranslateMockPipe implements PipeTransform {
@@ -39,9 +41,20 @@ describe('FindLocationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
-      declarations: [FindLocationComponent, SearchLocationComponent, RpxTranslateMockPipe],
-      providers: [{provide: LocationService, useValue: searchFilterServiceMock}],
+      imports: [
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatOptionModule,
+        HttpClientTestingModule
+      ],
+      declarations: [
+        FindLocationComponent,
+        SearchLocationComponent,
+        RpxTranslateMockPipe
+      ],
+      providers: [
+        { provide: LocationService, useValue: searchFilterServiceMock }
+      ]
     })
       .compileComponents();
   }));

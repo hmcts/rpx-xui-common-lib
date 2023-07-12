@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -17,7 +17,6 @@ import { FindTaskNameComponent } from '../find-task-name/find-task-name.componen
 import { SearchLocationComponent } from '../search-location/search-location.component';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { GenericFilterComponent } from './generic-filter.component';
-
 
 @Pipe({ name: 'rpxTranslate' })
 class RpxTranslateMockPipe implements PipeTransform {
@@ -53,11 +52,11 @@ describe('GenericFilterComponent', () => {
         FindPersonComponent,
         FindLocationComponent,
         SearchLocationComponent,
+        FindTaskNameComponent,
         FindServiceComponent,
         SearchServiceComponent,
-        RpxTranslateMockPipe,
-        FindTaskNameComponent,
-        CapitalizePipe
+        CapitalizePipe,
+        RpxTranslateMockPipe
       ],
       providers: [
         {provide: FilterService, useValue: mockFilterService},
@@ -413,12 +412,7 @@ describe('Select all checkboxes', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatOptionModule,
-        HttpClientTestingModule
-      ],
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule, HttpClientTestingModule],
       declarations: [
         GenericFilterComponent,
         FindPersonComponent,
@@ -426,9 +420,9 @@ describe('Select all checkboxes', () => {
         SearchLocationComponent,
         FindServiceComponent,
         SearchServiceComponent,
-        RpxTranslateMockPipe,
         FindTaskNameComponent,
-        CapitalizePipe
+        CapitalizePipe,
+        RpxTranslateMockPipe
       ],
       providers: [
         FilterService,
@@ -522,8 +516,8 @@ describe('Find location filter config', () => {
         FindTaskNameComponent,
         FindServiceComponent,
         SearchServiceComponent,
-        RpxTranslateMockPipe,
-        CapitalizePipe
+        CapitalizePipe,
+        RpxTranslateMockPipe
       ],
       providers: [
         FilterService,
@@ -678,7 +672,8 @@ describe('Task Name Filter', () => {
       declarations: [
         GenericFilterComponent,
         FindTaskNameComponent,
-        CapitalizePipe
+        CapitalizePipe,
+        RpxTranslateMockPipe
       ],
       providers: [
         FilterService,
