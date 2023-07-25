@@ -1,13 +1,13 @@
 import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkCheckboxComponent } from './gov-uk-checkbox.component';
 
 describe('GovUkCheckboxComponent', () => {
   let component: GovUkCheckboxComponent;
   let fixture: ComponentFixture<GovUkCheckboxComponent>;
-  const formBuilder: FormBuilder = new FormBuilder();
+  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('GovUkCheckboxComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ GovUkCheckboxComponent ],
       providers: [
-        { provide: FormBuilder, useValue: formBuilder }
+        { provide: UntypedFormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();

@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormArray, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { Subject, Subscription } from 'rxjs';
@@ -51,8 +51,8 @@ describe('FindLocationComponent', () => {
       maxSelected: null
     };
 
-    component.form = new FormGroup({
-      location: new FormArray([]),
+    component.form = new UntypedFormGroup({
+      location: new UntypedFormArray([]),
     });
     fixture.detectChanges();
   });

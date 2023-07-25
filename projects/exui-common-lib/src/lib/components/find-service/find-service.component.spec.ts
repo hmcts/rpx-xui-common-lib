@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -53,8 +53,8 @@ describe('FindServiceComponent', () => {
       minSelected: 1,
       maxSelected: 0
     };
-    component.form = new FormGroup({
-      'user-services': new FormArray([]),
+    component.form = new UntypedFormGroup({
+      'user-services': new UntypedFormArray([]),
     });
     fixture.detectChanges();
   });
@@ -132,9 +132,9 @@ describe('FindServiceComponent', () => {
   });
 
   it('should clear the form array', () => {
-    const formArray = new FormArray([
-      new FormControl('value1'),
-      new FormControl('value2')
+    const formArray = new UntypedFormArray([
+      new UntypedFormControl('value1'),
+      new UntypedFormControl('value2')
     ]);
     component.form.setControl(component.field.name, formArray);
     expect(formArray.length).toBe(2);
@@ -144,7 +144,7 @@ describe('FindServiceComponent', () => {
   });
 
   it('should add a FormControl to the form array', () => {
-    const formArray = component.form.get(component.field.name) as FormArray;
+    const formArray = component.form.get(component.field.name) as UntypedFormArray;
     // @ts-expect-error addSelectedServiceToForm is private
     component.addSelectedServiceToForm(options[0]);
 
@@ -154,9 +154,9 @@ describe('FindServiceComponent', () => {
 
   describe('removeOption', () => {
     it('should remove the selected option from the form array and emit serviceFieldChanged event', () => {
-      const formArray = new FormArray([
-        new FormControl(options[0]),
-        new FormControl(options[1])
+      const formArray = new UntypedFormArray([
+        new UntypedFormControl(options[0]),
+        new UntypedFormControl(options[1])
       ]);
       component.form.setControl(component.field.name, formArray);
 
@@ -170,9 +170,9 @@ describe('FindServiceComponent', () => {
     });
 
     it('should not remove any options if the selected option is not in the form array', () => {
-      const formArray = new FormArray([
-        new FormControl(options[0]),
-        new FormControl(options[1])
+      const formArray = new UntypedFormArray([
+        new UntypedFormControl(options[0]),
+        new UntypedFormControl(options[1])
       ]);
       component.form.setControl(component.field.name, formArray);
 
@@ -186,15 +186,15 @@ describe('FindServiceComponent', () => {
 
     it('should remove all formArrays and make isSelectedAll = true', () => {
       const selectAllOption = { key: 'All', label: 'All', selectAll: true };
-      component.form.setControl(component.field.name, new FormArray([
-        new FormControl(selectAllOption)
+      component.form.setControl(component.field.name, new UntypedFormArray([
+        new UntypedFormControl(selectAllOption)
       ]));
       // @ts-expect-error isSelectedAll is private
       component.isSelectedAll = true;
 
       component.removeOption(selectAllOption);
 
-      expect((component.form.get(component.field.name) as FormArray)?.length).toBe(0);
+      expect((component.form.get(component.field.name) as UntypedFormArray)?.length).toBe(0);
       // @ts-expect-error isSelectedAll is private
       expect(component.isSelectedAll).toBe(false);
     });

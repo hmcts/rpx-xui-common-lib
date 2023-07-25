@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterConfig, FilterConfigOption, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
 import { FilterService } from '../../services';
@@ -13,7 +13,7 @@ import { getValues, maxSelectedValidator, minSelectedValidator } from './generic
   encapsulation: ViewEncapsulation.None
 })
 export class GenericFilterComponent implements OnInit, OnDestroy {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public submitted = false;
   public formSub: Subscription;
   public filteredSkillsByServices: GroupOptions[];
@@ -21,7 +21,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public previousSelectedNestedCheckbox: string[] = [];
   public formSubmissionEvent$ = new Subject<void>();
 
-  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {}
+  constructor(private readonly filterService: FilterService, private readonly fb: UntypedFormBuilder) {}
 
   // tslint:disable-next-line:variable-name
   private _config: FilterConfig;
@@ -104,12 +104,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public hidden(field: FilterFieldConfig, form: FormGroup): boolean {
+  public hidden(field: FilterFieldConfig, form: UntypedFormGroup): boolean {
     if (!field.showCondition) {
       return false;
     }
     if (typeof field.showCondition === 'string') {
-      const control = form.get(field.name) as FormControl;
+      const control = form.get(field.name) as UntypedFormControl;
       const [name, value] = field.showCondition.split('=');
       if (form.value && form.value[name] === value) {
         if (field.type === 'find-person') {
@@ -133,12 +133,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  public disabled(field: FilterFieldConfig, form: FormGroup): boolean {
+  public disabled(field: FilterFieldConfig, form: UntypedFormGroup): boolean {
     if (!field.enableCondition) {
       return null;
     }
     if (typeof field.enableCondition === 'string') {
-      const control = form.get(field.name) as FormControl;
+      const control = form.get(field.name) as UntypedFormControl;
       const [name, value] = field.enableCondition.split('=');
       if (form.value && form.value[name] === value) {
         if (field.type === 'find-person') {
@@ -168,7 +168,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return field.disable ? field.disable : null;
   }
 
-  public applyFilter(form: FormGroup): void {
+  public applyFilter(form: UntypedFormGroup): void {
     this.formSubmissionEvent$.next();
     this.submitted = true;
     form.markAsTouched();
@@ -191,7 +191,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   // when domain changes ensure that person field is reset
-  public fieldChanged(field: FilterFieldConfig, form: FormGroup): void {
+  public fieldChanged(field: FilterFieldConfig, form: UntypedFormGroup): void {
     // TODO - Do similar with jurisdiction/service for caseworkers by services
     if (field.changeResetFields && field.changeResetFields.length) {
       for (const resetField of field.changeResetFields) {
@@ -246,7 +246,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   }
 
   public checkBoxChecked(field: any, i: number) {
-    return (this.form.get(field.name) as FormArray)['controls'][i]['value'];
+    return (this.form.get(field.name) as UntypedFormArray)['controls'][i]['value'];
   }
 
   public updateTaskNameControls(values: any, field: FilterFieldConfig): void {
@@ -264,9 +264,9 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
+  public toggleSelectAll(event: any, form: UntypedFormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
     const isChecked = event.target.checked;
-    const formArray: FormArray = form.get(field.name) as FormArray;
+    const formArray: UntypedFormArray = form.get(field.name) as UntypedFormArray;
     if (!item.selectAll) {
       const allChecked = formArray.controls.every((control: AbstractControl) => control.value);
       let index: number = null;
@@ -323,7 +323,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  private startFilterSkillsByServices(form: FormGroup, field: FilterFieldConfig) {
+  private startFilterSkillsByServices(form: UntypedFormGroup, field: FilterFieldConfig) {
     const servicesArray: string[] = [];
     form.value[field.name].map((service: boolean, index: number) => {
       if (service) {
@@ -333,19 +333,19 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.filterSkillsByServices(servicesArray, this.config);
   }
 
-  private resetField(resetField: string, form: FormGroup): void {
+  private resetField(resetField: string, form: UntypedFormGroup): void {
     const control = form.get(resetField);
     const defaultValue: { name: string, value: any[] } = this.config.cancelSetting.fields.find((f) => f.name === resetField);
-    if (control instanceof FormArray) {
+    if (control instanceof UntypedFormArray) {
       for (let i = 0; i < control.length; i++) {
         control.removeAt(i);
       }
-    } else if (control instanceof FormGroup) {
+    } else if (control instanceof UntypedFormGroup) {
       const keys = Object.keys(control.value);
       for (const key of keys) {
         this.resetField(key, control);
       }
-    } else if (control instanceof FormControl) {
+    } else if (control instanceof UntypedFormControl) {
       const value = defaultValue && defaultValue.value && defaultValue.value.length ? defaultValue.value[0] : null;
       control.setValue(value);
     }
@@ -408,25 +408,25 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }
         // if field is find-person build a form group;
         if (field.type === 'find-person') {
-          const formGroup = new FormGroup({
-            domain: new FormControl(defaultValue && defaultValue.hasOwnProperty('domain') ? defaultValue.domain : ''),
-            email: new FormControl(defaultValue && defaultValue.hasOwnProperty('email') ? defaultValue.email : '', validators),
-            id: new FormControl(defaultValue && defaultValue.hasOwnProperty('id') ? defaultValue.id : ''),
-            name: new FormControl(defaultValue && defaultValue.hasOwnProperty('name') ? defaultValue.name : ''),
-            knownAs: new FormControl(defaultValue && defaultValue.hasOwnProperty('knownAs') ? defaultValue.knownAs : ''),
+          const formGroup = new UntypedFormGroup({
+            domain: new UntypedFormControl(defaultValue && defaultValue.hasOwnProperty('domain') ? defaultValue.domain : ''),
+            email: new UntypedFormControl(defaultValue && defaultValue.hasOwnProperty('email') ? defaultValue.email : '', validators),
+            id: new UntypedFormControl(defaultValue && defaultValue.hasOwnProperty('id') ? defaultValue.id : ''),
+            name: new UntypedFormControl(defaultValue && defaultValue.hasOwnProperty('name') ? defaultValue.name : ''),
+            knownAs: new UntypedFormControl(defaultValue && defaultValue.hasOwnProperty('knownAs') ? defaultValue.knownAs : ''),
           });
           this.form.addControl(field.name, formGroup);
         } else if (field.type === 'find-task-name') {
-          const formGroup = new FormGroup({
-            task_type_id: new FormControl(defaultValue && defaultValue.hasOwnProperty('task_type_id') ? defaultValue.task_type_id : ''),
-            task_type_name: new FormControl(defaultValue && defaultValue.hasOwnProperty('task_type_name') ? defaultValue.task_type_name : ''),
+          const formGroup = new UntypedFormGroup({
+            task_type_id: new UntypedFormControl(defaultValue && defaultValue.hasOwnProperty('task_type_id') ? defaultValue.task_type_id : ''),
+            task_type_name: new UntypedFormControl(defaultValue && defaultValue.hasOwnProperty('task_type_name') ? defaultValue.task_type_name : ''),
           });
           this.form.addControl(field.name, formGroup);
           if (!defaultValue || !defaultValue.task_type_id) {
             this.form.get('findTaskNameControl')?.patchValue('');
           }
         } else if (field.type !== 'group-title') {
-          const control = new FormControl(defaultValue, validators);
+          const control = new UntypedFormControl(defaultValue, validators);
           this.form.addControl(field.name, control);
         }
 
@@ -438,7 +438,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  private buildCheckBoxFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+  private buildCheckBoxFormArray(field: FilterFieldConfig, settings: FilterSetting): UntypedFormArray {
     const validators = GenericFilterComponent.addFormValidators(field);
     const formArray = this.fb.array([], validators);
     let defaultValues;
@@ -450,13 +450,13 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (defaultValues && Array.isArray(defaultValues.value)) {
         checked = !!defaultValues.value.find((value) => value === option.key);
       }
-      formArray.push(new FormControl(checked));
+      formArray.push(new UntypedFormControl(checked));
     }
 
     return formArray;
   }
 
-  private buildFormArray(field: FilterFieldConfig, settings: FilterSetting): FormArray {
+  private buildFormArray(field: FilterFieldConfig, settings: FilterSetting): UntypedFormArray {
     const validators = GenericFilterComponent.addFormValidators(field);
     const formArray = this.fb.array([], validators);
     let defaultValues: { name: string; value: any[] };
@@ -464,7 +464,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       defaultValues = settings.fields.find((f) => f.name === field.name);
       if (defaultValues && defaultValues.value && defaultValues.value.length > 0) {
         for (const defaultValue of defaultValues.value) {
-          formArray.push(new FormControl(defaultValue));
+          formArray.push(new UntypedFormControl(defaultValue));
         }
       }
     }
@@ -487,7 +487,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     });
   }
 
-  private emitFormErrors(form: FormGroup): void {
+  private emitFormErrors(form: UntypedFormGroup): void {
     let errors: FilterError[] = [];
     for (const field of this.config.fields) {
       const fieldName = field.name;
@@ -569,11 +569,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         userSkillsCheckboxField.options = [];
         userSkillsCheckboxField.options = this.filteredSkillsByServicesCheckbox;
 
-        this.form.setControl('user-skills', new FormArray([]));
+        this.form.setControl('user-skills', new UntypedFormArray([]));
 
         if (!this._config.copyFields) {
           this.filteredSkillsByServicesCheckbox.forEach(() => {
-            (this.form.get('user-skills') as FormArray).push(new FormControl(false));
+            (this.form.get('user-skills') as UntypedFormArray).push(new UntypedFormControl(false));
           });
 
           const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
@@ -616,11 +616,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
           if(preSelectedSkills.length > 0) {
             preSelectedSkills.forEach((h) => {
-              (this.form.get('user-skills') as FormArray).push(new FormControl(h));
+              (this.form.get('user-skills') as UntypedFormArray).push(new UntypedFormControl(h));
             });
           } else {
             this.filteredSkillsByServicesCheckbox.map(() => {
-              (this.form.get('user-skills') as FormArray).push(new FormControl(false));
+              (this.form.get('user-skills') as UntypedFormArray).push(new UntypedFormControl(false));
             });
           }
         }

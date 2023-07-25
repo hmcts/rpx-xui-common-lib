@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
@@ -335,8 +335,8 @@ describe('SearchLocationComponent', () => {
           ...component.field,
           servicesField: serviceCodesFormControlName,
         };
-        component.form = new FormGroup({
-          [serviceCodesFormControlName]: new FormControl(
+        component.form = new UntypedFormGroup({
+          [serviceCodesFormControlName]: new UntypedFormControl(
             [{key: serviceCodesValues[0], label: 'some label'}, {key: serviceCodesValues[1], label: 'some other label'}]
           )
         });

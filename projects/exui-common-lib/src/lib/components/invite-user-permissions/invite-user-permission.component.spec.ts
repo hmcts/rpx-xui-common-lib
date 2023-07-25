@@ -1,12 +1,12 @@
 import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InviteUserPermissionComponent } from './invite-user-permission.component';
 
 describe('InviteUserPermissionComponent', () => {
   let component: InviteUserPermissionComponent;
   let fixture: ComponentFixture<InviteUserPermissionComponent>;
-  const formBuilder: FormBuilder = new FormBuilder();
+  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('InviteUserPermissionComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ InviteUserPermissionComponent ],
       providers: [
-        { provide: FormBuilder, useValue: formBuilder }
+        { provide: UntypedFormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();
@@ -23,11 +23,11 @@ describe('InviteUserPermissionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InviteUserPermissionComponent);
     component = fixture.componentInstance;
-    component.inviteUserForm = formBuilder.group({ roles: new FormGroup({
-      'pui-case-manager': new FormControl(''),
-      'pui-user-manager': new FormControl(''),
-      'pui-organisation-manager': new FormControl(''),
-      'pui-finance-manager': new FormControl('')
+    component.inviteUserForm = formBuilder.group({ roles: new UntypedFormGroup({
+      'pui-case-manager': new UntypedFormControl(''),
+      'pui-user-manager': new UntypedFormControl(''),
+      'pui-organisation-manager': new UntypedFormControl(''),
+      'pui-finance-manager': new UntypedFormControl('')
     })});
     component.errorMessages = {isInvalid: false, messages: ['Error']};
     fixture.detectChanges();
