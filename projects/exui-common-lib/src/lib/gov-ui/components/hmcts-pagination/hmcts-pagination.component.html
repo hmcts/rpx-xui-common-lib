@@ -6,14 +6,14 @@
     <ul class="hmcts-pagination__list" *ngIf="!(p.pages.length <= 1)">
 
       <li class="hmcts-pagination__item  hmcts-pagination__item--prev" [class.disabled]="p.isFirstPage()">
-        <a [routerLink]="" class="hmcts-pagination__link" *ngIf="1 < p.getCurrent()" (keyup.enter)="p.previous()"
+        <a [routerLink]="[][]" class="hmcts-pagination__link" *ngIf="1 < p.getCurrent()" (keyup.enter)="p.previous()"
           (click)="p.previous()">Previous <span class="govuk-visually-hidden">set of pages</span></a>
       </li>
 
       <ng-container *ngIf="showPageNumbers">
         <li class="hmcts-pagination__item" [class.hmcts-pagination__item--active]="p.getCurrent() === page.value"
           [class.hmcts-pagination__item--dots]="page.label === '...'" *ngFor="let page of p.pages">
-          <a class="hmcts-pagination__link" [routerLink]="" (keyup.enter)="p.setCurrent(page.value)"
+          <a class="hmcts-pagination__link" [routerLink]="[][]" (keyup.enter)="p.setCurrent(page.value)"
             (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
             <span class="govuk-visually-hidden">page </span>
             <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
@@ -25,7 +25,7 @@
       </ng-container>
 
       <li class="hmcts-pagination__item  hmcts-pagination__item--next" [class.disabled]="p.isLastPage()">
-        <a [routerLink]="" class="hmcts-pagination__link" *ngIf="!p.isLastPage()" (keyup.enter)="p.next()"
+        <a [routerLink]="[][]" class="hmcts-pagination__link" *ngIf="!p.isLastPage()" (keyup.enter)="p.next()"
           (click)="p.next()">Next<span class="govuk-visually-hidden"> page</span></a>
       </li>
 
