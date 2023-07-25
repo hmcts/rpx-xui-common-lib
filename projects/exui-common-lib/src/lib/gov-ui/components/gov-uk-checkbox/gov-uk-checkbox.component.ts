@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
 * Gov Uk Checkbox Dumb Component responsible for
@@ -13,7 +13,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 
 export class GovUkCheckboxComponent implements OnInit {
   constructor() { }
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public config: GovUiConfigModel;
   @Input() public isChecked: boolean = false;
   // {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string};

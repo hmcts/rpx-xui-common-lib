@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterFieldConfig, LocationByEPIMMSModel } from '../../models';
 import { getValues } from '../generic-filter/generic-filter-utils';
@@ -14,7 +14,7 @@ export class FindLocationComponent implements OnInit, OnDestroy {
   @Output() public locationFieldChanged = new EventEmitter<void>();
   @Input() public submitted: boolean = true;
   @Input() public enableAddLocationButton: boolean = true;
-  @Input() public form: FormGroup;
+  @Input() public form: UntypedFormGroup;
   @Input() public field: FilterFieldConfig;
   @Input() public fields: FilterFieldConfig[];
   @Input() public locationTitle = 'Search for a location by name';
@@ -94,7 +94,7 @@ export class FindLocationComponent implements OnInit, OnDestroy {
 
   public removeLocation(location: LocationByEPIMMSModel): void {
     if (location.epimms_id) {
-      const formArray = this.form.get(this.field.name) as FormArray;
+      const formArray = this.form.get(this.field.name) as UntypedFormArray;
       const index = (formArray.value as LocationByEPIMMSModel[]).findIndex(selectedLocation => selectedLocation.epimms_id === location.epimms_id);
       if (index > -1) {
         formArray.removeAt(index);
@@ -127,7 +127,7 @@ export class FindLocationComponent implements OnInit, OnDestroy {
   }
 
   private removeSelectedValues(): void {
-    const formArray = this.form.get(this.field?.name) as FormArray;
+    const formArray = this.form.get(this.field?.name) as UntypedFormArray;
     if (formArray) {
       for (let i = 0; i < formArray.length; i++) {
         formArray.removeAt(i);
@@ -136,9 +136,9 @@ export class FindLocationComponent implements OnInit, OnDestroy {
   }
 
   private addSelectedLocationsToForm(locations: LocationByEPIMMSModel[]): void {
-    const formArray = this.form.get(this.field.name) as FormArray;
+    const formArray = this.form.get(this.field.name) as UntypedFormArray;
     for (const location of locations) {
-      formArray.push(new FormControl(location));
+      formArray.push(new UntypedFormControl(location));
     }
   }
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { iif, Observable, of } from 'rxjs';
 import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import {
@@ -18,7 +18,7 @@ import { SessionStorageService } from '../../services/storage/session-storage/se
   styleUrls: ['./search-location.component.scss']
 })
 export class SearchLocationComponent implements OnInit {
-  @Input() public form: FormGroup;
+  @Input() public form: UntypedFormGroup;
   @Input() public field: FilterFieldConfig;
   @Input() public disabled: boolean = null;
   @Input() public singleMode: boolean = false;
@@ -32,7 +32,7 @@ export class SearchLocationComponent implements OnInit {
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
-  public searchTermFormControl = new FormControl('');
+  public searchTermFormControl = new UntypedFormControl('');
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pReset: boolean = true;
