@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { UntypedFormControl, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatOptionModule } from '@angular/material/core';
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
+import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
 import { of } from 'rxjs';
 import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
