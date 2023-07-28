@@ -1,6 +1,9 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.7-WA-release-4-initial",
+  "version": "v3.0.0-Draft-02",
+  "engines": {
+    "node": ">=18.17.0"
+  },
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --configuration production",
@@ -50,7 +53,7 @@
     "@angular/language-service": "^16.1.6",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.11.1",
+    "@types/node": "^18.17.0",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
