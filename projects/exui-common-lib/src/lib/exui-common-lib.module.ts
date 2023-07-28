@@ -5,7 +5,6 @@ import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/m
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 import { RouterModule } from '@angular/router';
-import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
 import { AccessibilityComponent } from './components/accessibility/accessibility.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
@@ -158,8 +157,7 @@ const pipes = [
     RouterModule.forChild([]),
     MatAutocompleteModule,
     MatTabsModule,
-    MatInputModule,
-    NgxPaginationModule
+    MatInputModule
   ],
   providers: [
     {provide: windowToken, useFactory: windowProvider}
@@ -167,7 +165,6 @@ const pipes = [
   exports: [
     ...COMMON_COMPONENTS,
     ...GOV_UI_COMPONENTS,
-    PaginatePipe,
     ...pipes
   ]
 })
