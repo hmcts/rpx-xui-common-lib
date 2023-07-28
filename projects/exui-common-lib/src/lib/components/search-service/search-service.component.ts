@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatOptionSelectionChange } from '@angular/material/core/option/option';
 import { FilterConfigOption } from '../../models';
 
 @Component({
@@ -28,7 +27,7 @@ export class SearchServiceComponent {
     this.searchTerm = '';
   }
 
-  public onSelectionChanged($event: MatOptionSelectionChange): void {
+  public onSelectionChanged($event: any): void {
     const label = $event.source?.value;
     if (label && $event.source.selected) {
       const selectedService = this.options.find(s => s.label === label);
