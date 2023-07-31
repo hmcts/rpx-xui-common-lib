@@ -2,7 +2,7 @@
   <div class="search-service">
     <div class="govuk-body">
       <label id="selectServiceSearch-label" for="serviceSearch__select" *ngIf="serviceTitle">
-        {{ serviceTitle }}
+        {{ serviceTitle | rpxTranslate}}
       </label>
     </div>
     <div class="search-service__input-container">
@@ -15,14 +15,14 @@
       <a href="javascript:void(0)" (click)="addOption(tempSelectedService)"
         class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" data-module="govuk-button"
         *ngIf="field?.enableAddButton" id="add-service">
-        Add
+        {{ 'Add' | rpxTranslate}}
       </a>
     </div>
   </div>
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection" *ngFor="let selection of selectedServices">
       <a class="hmcts-filter__tag" (click)="removeOption(selection)" href="javascript:void(0)">
-        {{ selection.label }}
+        {{ selection.label  | rpxTranslate }}
       </a>
     </li>
   </ul>

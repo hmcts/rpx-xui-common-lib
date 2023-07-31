@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
 
 import { DateBadgeColour, SECONDS_IN_A_DAY } from '../../models/due-date.model';
 
@@ -9,7 +9,11 @@ import { DateBadgeColour, SECONDS_IN_A_DAY } from '../../models/due-date.model';
   styleUrls: ['due-date.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DueDateComponent implements OnChanges {
+export class DueDateComponent implements OnChanges, AfterContentChecked {
+
+  constructor(private readonly ref: ChangeDetectorRef) {
+  }
+
 
   /**
    * The due date to use as the basis for rendering this component. It is
@@ -76,6 +80,11 @@ export class DueDateComponent implements OnChanges {
   // Catch any changes to any of the Input() properties.
   public ngOnChanges(): void {
     this.handleInputChanges();
+  }
+
+  // checks the data projected into the component
+  public ngAfterContentChecked(): void {
+    this.ref.detectChanges();
   }
 
   // Set up the label, urgency class, and accessibility fields.

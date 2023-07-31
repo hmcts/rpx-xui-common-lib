@@ -3,6 +3,6 @@
   [id]="config.id" [name]="config.name" [formControlName]="config.value" [checked]="isChecked">
   <xuilib-gov-label appRemoveHost [config]="config"></xuilib-gov-label>
   <span [id]="config.value+'-item-hint'" class="govuk-hint govuk-checkboxes__hint">
-    {{config.hint}}
+    {{config.hint | rpxTranslate}}
   </span>
 </div>

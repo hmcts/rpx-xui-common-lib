@@ -1,7 +1,14 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserDetailsComponent } from './user-details.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('UserDetailsComponent', () => {
   let component: UserDetailsComponent;
@@ -10,8 +17,9 @@ describe('UserDetailsComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
+      providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserDetailsComponent ]
+      declarations: [ UserDetailsComponent, RpxTranslateMockPipe ]
     })
     .compileComponents();
   }));

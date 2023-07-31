@@ -1,8 +1,15 @@
 import { formatDate } from '@angular/common';
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { DateBadgeColour } from '../../models/due-date.model';
 import { DueDateComponent } from './due-date.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('DueDateComponent', () => {
   let component: DueDateComponent;
@@ -10,7 +17,9 @@ describe('DueDateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DueDateComponent ]
+      declarations: [ DueDateComponent, RpxTranslateMockPipe ],
+      imports: [],
+      providers: []
     })
     .compileComponents();
   }));

@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -11,6 +12,13 @@ import { LocationService } from '../../services/locations/location.service';
 import { RefDataService } from '../../services/ref-data';
 import { SessionStorageService } from '../../services/storage/session-storage/session-storage.service';
 import { SearchLocationComponent } from './search-location.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('SearchLocationComponent', () => {
   let component: SearchLocationComponent;
@@ -228,7 +236,8 @@ describe('SearchLocationComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [
-        SearchLocationComponent
+        SearchLocationComponent,
+        RpxTranslateMockPipe
       ],
       providers: [
         {provide: LocationService, useValue: locationServiceMock},
