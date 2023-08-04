@@ -1,0 +1,42 @@
+<div class="govuk-form-group">
+
+    <div>
+      <h2 class="govuk-heading-m">Find Address</h2>
+  
+      <div class="govuk-form-group bottom-30 postcodeLookup" id="addressLookup" [ngClass]="{'form-group-error': missingPostcode}" *ngIf="!isExpanded">
+        <label for="postcodeInput">
+          <span class="govuk-label">Enter a UK postcode</span>
+        </label>
+        <span class="error-message" *ngIf="missingPostcode">Enter the Postcode</span>
+        <input type="text" [ngClass]="{'govuk-input--error': missingPostcode}"
+        id="postcodeInput" name="postcode" class="govuk-input postcodeinput inline-block" [formControl]="postcode">
+        <button type="button" class="govuk-button" (click)="findAddress()">Find address</button>
+      </div>
+  
+      <div class="govuk-form-group" *ngIf="addressOptions" id="selectAddress">
+        <label class="govuk-label" for="addressList">
+          <span class="form-label">Select an address</span>
+        </label>
+  
+        <select class="form-control govuk-select ccd-dropdown addressList" id="addressList" name="address" [formControl]="addressList" (change)="addressSelected()" focusElement>
+          <option *ngFor="let addressOption of addressOptions" [ngValue]="addressOption.value">
+            {{addressOption.description}}
+          </option>
+        </select>
+      </div>
+  
+      <a class="manual-link govuk-link bottom-30" *ngIf="!shouldShowDetailFields()" (click)="blankAddress()" href="javascript:void(0)">I can't enter a UK postcode</a>
+    </div>
+  
+    <!-- <ccd-write-complex-type-field
+      [hidden]="!shouldShowDetailFields()"
+      [caseField]="caseField"
+      [renderLabel]="false"
+      [parent]="parent"
+      [formGroup]="formGroup"
+      [ignoreMandatory]="true"
+      [idPrefix]="buildIdPrefix('detail')"
+      #writeComplexFieldComponent>
+    </ccd-write-complex-type-field> -->
+  </div>
+  
