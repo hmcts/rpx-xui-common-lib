@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.7-address-lookup",
+  "version": "1.8.7-address-component",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
