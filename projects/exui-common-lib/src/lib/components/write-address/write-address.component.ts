@@ -24,9 +24,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   @Input()
   public isExpanded = false;
 
-  @Input()
-  public lookupFormControl: FormControl;
-
   public addressFormGroup = new FormGroup({});
   public postcode: FormControl;
   public addressList: FormControl;
@@ -40,6 +37,9 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   }
 
   public ngOnInit(): void {
+    if (!this.formGroup.get('address')) {
+      this.formGroup.addControl('address', new FormControl({}));
+    }
     this.postcode = new FormControl('');
     this.addressFormGroup.addControl('postcode', this.postcode);
     this.addressList = new FormControl('');
@@ -90,7 +90,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     if (this.isExpanded) {
       return true;
     }
-    const address = this.lookupFormControl.value;
+    const address = this.formGroup.get('address').value;
     let hasAddress = false;
     if (address) {
       Object.keys(address).forEach((key) => {
@@ -104,7 +104,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
   public addressSelected() {
     this.addressField = this.addressList.value;
-    console.log('address fields', this.addressField);
     this.setFormValue();
   }
 
@@ -125,11 +124,10 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   }
 
   private setFormValue() {
-    if (this.lookupFormControl) {
-      this.lookupFormControl.patchValue(
+    if (this.formGroup) {
+      this.formGroup.get('address').patchValue(
         this.addressField
       );
     }
-    console.log(this.lookupFormControl, 'is form control');
   }
 }

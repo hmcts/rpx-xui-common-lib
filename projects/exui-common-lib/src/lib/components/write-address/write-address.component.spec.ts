@@ -25,7 +25,7 @@ describe('WriteAddressFieldComponent', () => {
 
   @Component({
     selector: `write-address-field`,
-    template: `<xuilib-write-address-field [lookupFormControl]="lookupFormControl" [formGroup]="formGroup">
+    template: `<xuilib-write-address-field [formGroup]="formGroup">
     </xuilib-write-address-field>`
   })
   class WrapperComponent {
@@ -33,7 +33,6 @@ describe('WriteAddressFieldComponent', () => {
     public componentUnderTest: WriteAddressFieldComponent;
     public addressField = new FormControl({});
     public formGroup = addressFormGroup();
-    public lookupFormControl = new FormControl({});
   }
 
   let addressService: AddressService;
