@@ -201,14 +201,13 @@ describe('SearchVenueComponent', () => {
 
     fixture = TestBed.createComponent(SearchVenueComponent);
     component = fixture.componentInstance;
-    const locationService = TestBed.get(LocationService);
     spyOn(component.keyUpSubject$, 'next');
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
     component.displayedLocations = LOCATION_RESULTS;
     spyOn(component, 'searchLocations').and.callThrough();
     spyOn(component, 'onFocus').and.callThrough();
 
-    locationService.searchLocations.and.returnValue(of(LOCATION_RESULTS));
+    searchFilterServiceMock.searchLocations.and.returnValue(of(LOCATION_RESULTS));
 
     fixture.detectChanges();
   }));

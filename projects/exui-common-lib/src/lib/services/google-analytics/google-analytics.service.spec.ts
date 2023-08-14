@@ -17,7 +17,7 @@ const windowMock: Window = { gtag: () => {}} as any;
 describe('GoogleAnalyticsService', () => {
 
   let titleTestBed: Title;
-  let windowTestBed: Window;
+  let windowTestBed: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -41,8 +41,8 @@ describe('GoogleAnalyticsService', () => {
       ]
     });
 
-    titleTestBed = TestBed.get(Title);
-    windowTestBed = TestBed.get(windowToken);
+    titleTestBed = TestBed.inject(Title);
+    windowTestBed = TestBed.inject(windowToken);
 
   });
 
@@ -51,9 +51,9 @@ describe('GoogleAnalyticsService', () => {
   }));
 
   it('should call gtag with correct params', inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
-    spyOn(windowTestBed as any, 'gtag').and.callThrough();
+    spyOn(windowTestBed, 'gtag').and.callThrough();
     service.event('eventName', {});
-    expect((windowTestBed as any).gtag).toHaveBeenCalledWith('event', 'eventName', {});
+    expect((windowTestBed).gtag).toHaveBeenCalledWith('event', 'eventName', {});
   }));
 
   it('init should call router navigation end and gtag with correct config',
@@ -61,9 +61,9 @@ describe('GoogleAnalyticsService', () => {
     const event = new NavigationEnd(42, '/url', '/redirect-url');
     TestBed.get(Router).events.next(event);
     spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
-    spyOn(windowTestBed as any, 'gtag').and.callThrough();
+    spyOn(windowTestBed, 'gtag').and.callThrough();
     service.init('testId');
-    expect((windowTestBed as any).gtag).toHaveBeenCalledWith('config', 'testId', {
+    expect((windowTestBed).gtag).toHaveBeenCalledWith('config', 'testId', {
       page_path: '/redirect-url',
       page_title: 'testTitle'
     });

@@ -32,8 +32,8 @@ describe('ShareCaseComponent', () => {
     component.shareCases$ = of(sharedCases);
     // Deliberately omitted fixture.detectChanges() here because this will trigger the component's ngOnInit() before
     // the showRemoveUsers input value has been set, causing a false failure
-    stateService = TestBed.get(CaseSharingStateService);
-    router = TestBed.get(Router);
+    stateService = TestBed.inject(CaseSharingStateService);
+    router = TestBed.inject(Router);
   });
 
   it('should create', () => {

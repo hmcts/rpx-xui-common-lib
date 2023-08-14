@@ -30,29 +30,27 @@ describe('SearchJudicialsComponent', () => {
 
     const JUDICIAL_RESULTS: JudicialUserModel[] = [
       {
-        emailId: 'jacky.collins@judicial.com',
-        fullName: 'Jacky Collins',
-        idamId: '38eb0c5e-29c7-453e-b92d-f2029aaed6c1',
-        isJudge: null,
-        isMagistrate: null,
-        isPanelMember: null,
-        knownAs: 'Hearing Judge',
-        personalCode: 'P100001',
-        surname: 'Jacky',
         title: 'Mr',
+        knownAs: 'Hearing Judge',
+        surname: 'Jacky',
+        fullName: 'Jacky Collins',
+        initials: 'JC',
+        postNominals: 'JP',
+        emailId: 'jacky.collins@judicial.com',
+        personalCode: 'P100001',
+        idamId: '38eb0c5e-29c7-453e-b92d-f2029aaed6c1'
       }
     ];
 
     fixture = TestBed.createComponent(SearchJudicialsComponent);
     component = fixture.componentInstance;
-    const judicialService = TestBed.get(FindAPersonService);
     spyOn(component.keyUpSubject$, 'next');
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
     component.displayedJudicials = JUDICIAL_RESULTS;
     spyOn(component, 'searchJudicials').and.callThrough();
     spyOn(component, 'onFocus').and.callThrough();
 
-    judicialService.searchJudicial.and.returnValue(of(JUDICIAL_RESULTS));
+    searchFilterServiceMock.searchJudicial.and.returnValue(of(JUDICIAL_RESULTS));
 
     fixture.detectChanges();
   }));
