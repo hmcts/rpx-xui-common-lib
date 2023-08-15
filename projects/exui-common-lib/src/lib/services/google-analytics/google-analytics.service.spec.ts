@@ -59,7 +59,7 @@ describe('GoogleAnalyticsService', () => {
   it('init should call router navigation end and gtag with correct config',
   inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
     const event = new NavigationEnd(42, '/url', '/redirect-url');
-    TestBed.get(Router).events.next(event);
+    (TestBed.inject(Router).events as any).next(event);
     spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
     spyOn(windowTestBed, 'gtag').and.callThrough();
     service.init('testId');
