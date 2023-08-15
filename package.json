@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-consume-jrd-e-links-api-new-version",
+  "version": "1.9.0-consume-jrd-e-links-api-new-version-v2",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
