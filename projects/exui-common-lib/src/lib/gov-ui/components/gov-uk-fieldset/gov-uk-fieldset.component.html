@@ -1,14 +1,14 @@
 <fieldset class="govuk-fieldset" [attr.aria-describedby]="setDescribedBy()">
   <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="!config.isPageHeading">
-    {{config.legend}}
+    {{config.legend | rpxTranslate}}
   </legend>
 
   <legend [class]="config.classes + ' govuk-fieldset__legend'" *ngIf="config.isPageHeading">
-    <h1>{{config.legend}}</h1>
+    <h1>{{config.legend | rpxTranslate}}</h1>
   </legend>
 
   <span [id]="config.id+'-hint'" class="govuk-hint" *ngIf="config.hint">
-    {{config.hint}}
+    {{config.hint | rpxTranslate}}
   </span>
   <ng-content></ng-content>
 </fieldset>

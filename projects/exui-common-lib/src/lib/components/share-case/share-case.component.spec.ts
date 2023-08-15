@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,6 +9,13 @@ import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { ShareCaseComponent } from './share-case.component';
 
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
+
 describe('ShareCaseComponent', () => {
   let component: ShareCaseComponent;
   let fixture: ComponentFixture<ShareCaseComponent>;
@@ -18,9 +25,17 @@ describe('ShareCaseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ ShareCaseComponent ],
-      imports: [ FormsModule, RouterTestingModule ]
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
+      declarations: [
+        ShareCaseComponent,
+        RpxTranslateMockPipe
+      ],
+      imports: [
+        FormsModule,
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
@@ -41,6 +56,7 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should see page elements', () => {
+    fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('#add-user-hint').textContent).toContain('Search by name or email address. You can share access with as many people as you need.');
     expect(fixture.debugElement.nativeElement.querySelector('#btn-add-user').textContent).toContain('Add');
     expect(fixture.debugElement.nativeElement.querySelector('#content-why-can-not-find-email').textContent).toContain('Can\'t find an email address?');

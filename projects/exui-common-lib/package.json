@@ -1,9 +1,10 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-consume-jrd-e-links-api-new-version-v2",
+  "version": "1.9.0-consume-jrd-e-links-api-new-version-v3",
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^3.2.1",
+    "rpx-xui-translation": "^0.1.1"
   },
   "publishConfig": {
     "access": "public"

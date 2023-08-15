@@ -1,13 +1,22 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
-import {By} from '@angular/platform-browser';
-import {RouterTestingModule} from '@angular/router/testing';
-import {of} from 'rxjs';
-import {LocationByEPIMMSModel} from '../../models/location.model';
-import {LocationService} from '../../services/locations/location.service';
-import {SearchVenueComponent} from './search-venue.component';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RpxTranslationModule } from 'rpx-xui-translation';
+import { of } from 'rxjs';
+import { LocationByEPIMMSModel } from '../../models/location.model';
+import { LocationService } from '../../services/locations/location.service';
+import { SearchVenueComponent } from './search-venue.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('SearchVenueComponent', () => {
   let component: SearchVenueComponent;
@@ -21,11 +30,15 @@ describe('SearchVenueComponent', () => {
         RouterTestingModule.withRoutes([]),
         MatAutocompleteModule,
         MatOptionModule,
+        RpxTranslationModule.forChild()
       ],
       declarations: [
-        SearchVenueComponent
+        SearchVenueComponent,
+        RpxTranslateMockPipe
       ],
-      providers: [{provide: LocationService, useValue: searchFilterServiceMock}],
+      providers: [
+        {provide: LocationService, useValue: searchFilterServiceMock}
+      ],
     }).compileComponents();
 
     const LOCATION_RESULTS: LocationByEPIMMSModel[] = [

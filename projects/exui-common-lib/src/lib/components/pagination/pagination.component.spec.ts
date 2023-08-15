@@ -1,7 +1,14 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { PaginationComponent } from './pagination.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
@@ -9,7 +16,9 @@ describe('PaginationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      declarations: [ PaginationComponent, RpxTranslateMockPipe ],
+      imports: [],
+      providers: []
     })
     .compileComponents();
   }));

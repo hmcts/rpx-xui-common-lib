@@ -6,9 +6,9 @@
     </svg>
 
     <div class="hmcts-banner__message">
-        <span class="hmcts-banner__assistive">Warning</span>
-        <h2 class="govuk-heading-s" [innerHTML]="message"></h2>
-        <a [routerLink]="" class="govuk-link--no-visited-state" (click)="onHideMessageEvent(key)">Hide message</a>
+        <span class="hmcts-banner__assistive">{{'Warning' | rpxTranslate}}</span>
+        <h2 class="govuk-heading-s" [innerHTML]="message | rpxTranslate"></h2>
+        <a [routerLink]="" class="govuk-link--no-visited-state" (click)="onHideMessageEvent(key)">{{'Hide message' | rpxTranslate}}</a>
     </div>
 
 </div>

@@ -1,6 +1,13 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HmctsSessionDialogComponent } from './hmcts-session-dialog.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HMCTS Dialog Component', () => {
   let component: HmctsSessionDialogComponent;
@@ -9,7 +16,9 @@ describe('HMCTS Dialog Component', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsSessionDialogComponent ]
+      declarations: [ HmctsSessionDialogComponent, RpxTranslateMockPipe ],
+      imports: [],
+      providers: []
     })
       .compileComponents();
   }));
@@ -28,5 +37,4 @@ describe('HMCTS Dialog Component', () => {
   it('should have onClose', () => {
     expect(component.onClose).toBeDefined();
   });
-
 });

@@ -1,8 +1,16 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { SelectedCaseComponent } from './selected-case.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('SelectedCaseComponent', () => {
   let component: SelectedCaseComponent;
@@ -12,7 +20,9 @@ describe('SelectedCaseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseComponent ]
+      declarations: [ SelectedCaseComponent, RpxTranslateMockPipe ],
+      imports: [],
+      providers: []
     })
     .compileComponents();
   }));

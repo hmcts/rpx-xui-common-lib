@@ -23,17 +23,17 @@
       <p class="govuk-body" *ngIf="field.subTitle">{{field.subTitle}}</p>
       <div *ngIf="field.hintText"
         [id]="field.hintText + '-hint'" class="govuk-hint">
-        {{ field.hintText }}
+        {{ field.hintText | rpxTranslate }}
       </div>
       <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMinSelectedError && submitted && (form.get(field.name).errors?.required || form.get(field.name).errors?.minlength)">
-        <span class="govuk-visually-hidden">Error:</span> {{field.minSelectedError}}
+        <span class="govuk-visually-hidden">{{ 'Error:' | rpxTranslate}}</span> {{field.minSelectedError | rpxTranslate }}
       </span>
       <span [id]="field.name + '-error'" class="govuk-error-message" *ngIf="field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength">
-        <span class="govuk-visually-hidden">Error:</span> {{field.maxSelectedError}}
+        <span class="govuk-visually-hidden">{{ 'Error:' | rpxTranslate}}</span> {{field.maxSelectedError | rpxTranslate }}
       </span>
       <span [id]="field.name + '-error'" class="govuk-error-message"
         *ngIf="field.emailError && submitted && form.get(field.name).errors?.email">
-        <span class="govuk-visually-hidden">Error:</span> {{field.emailError}}
+        <span class="govuk-visually-hidden">{{ 'Error:' | rpxTranslate }}</span> {{field.emailError | rpxTranslate }}
       </span>
         <div class="govuk-body"  [class.govuk-body--maxWidth480px]="field.maxWidth480px" [ngSwitch]="field.type">
         <ng-container *ngSwitchCase="'select'">
@@ -88,6 +88,24 @@
             </div>
           </div>
         </ng-container>
+        <ng-container *ngSwitchCase="'nested-checkbox'">
+          <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+            <div *ngFor="let item of filteredSkillsByServicesCheckbox; let i = index" class="govuk-checkboxes__item">
+              <input type="checkbox" class="govuk-checkboxes__input"
+                     [attr.disabled]="disabled(field, form)"
+                     [formControlName]="i"
+                     (change)="toggleSelectAll($event, form, item, field)"
+                     [value]="item.key" [id]="'checkbox_' + field.name + item.key"
+                     [name]="'checkbox_' + field.name + item.key"
+              />
+              <label
+                [for]="'checkbox_' + field.name + item.key"
+                class="govuk-label govuk-checkboxes__label"
+                [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
+              >{{item.label | rpxTranslate}}</label>
+            </div>
+          </div>
+        </ng-container>
         <ng-container *ngSwitchCase="'checkbox-large'">
           <div class="govuk-checkboxes" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
             <div *ngFor="let item of field.options; let i = index" class="govuk-checkboxes__item">
@@ -102,7 +120,7 @@
                 [for]="'checkbox_' + field.name + item.key"
                 class="govuk-label govuk-checkboxes__label"
                 [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
-              >{{item.label}}</label>
+              >{{item.label | rpxTranslate}}</label>
             </div>
           </div>
         </ng-container>
@@ -118,7 +136,7 @@
                      [value]="item.key"
                      (change)="fieldChanged(field, form)"
               />
-              <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label}}</label>
+              <label [for]="'radio_' + item.key" class="govuk-label govuk-radios__label">{{item.label | rpxTranslate}}</label>
             </div>
           </div>
         </ng-container>
@@ -201,12 +219,12 @@
         type="submit"
         id="applyFilter"
         [disabled]="config.enableDisabledButton && form.invalid"
-      >{{config.applyButtonText || 'Apply'}}</button>
+      >{{(config.applyButtonText || 'Apply') | rpxTranslate}}</button>
       <button *ngIf="config.showCancelFilterButton"
         class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"
         type="button"
         id="cancelFilter"
-        (click)="cancelFilter()">{{ config.cancelButtonText || 'Cancel'}}</button>
+        (click)="cancelFilter()">{{ (config.cancelButtonText || 'Cancel') | rpxTranslate}}</button>
     </div>
   </div>
 </form>

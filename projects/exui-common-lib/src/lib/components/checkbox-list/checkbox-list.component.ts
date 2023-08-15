@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'xuilib-checkbox-list',
@@ -6,7 +6,10 @@ import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } 
   styleUrls: ['checkbox-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CheckboxListComponent<T> implements OnChanges {
+export class CheckboxListComponent<T> implements OnChanges, AfterContentChecked {
+
+  constructor(private readonly ref: ChangeDetectorRef) {
+  }
 
   /**
    * The options to show checkboxes for. Note that the type
@@ -60,6 +63,11 @@ export class CheckboxListComponent<T> implements OnChanges {
     this.setupPreselection();
     // Now check the current selection to make sure it's valid.
     this.checkSelection();
+  }
+
+  // checks the data projected into the component
+  public ngAfterContentChecked(): void {
+    this.ref.detectChanges();
   }
 
   /**

@@ -1,6 +1,14 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { GovukTableComponent } from './gov-uk-table.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovukTableComponent', () => {
   let component: GovukTableComponent;
@@ -8,10 +16,11 @@ describe('GovukTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GovukTableComponent ],
+      declarations: [ GovukTableComponent, RpxTranslateMockPipe ],
       imports: [
-        RouterModule
-      ]
+        RouterModule,
+      ],
+      providers: []
     })
     .compileComponents();
   }));
