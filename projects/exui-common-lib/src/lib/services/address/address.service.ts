@@ -14,7 +14,7 @@ export class AddressService {
 
   public getAddressesForPostcode(postcode: string): Observable<AddressModel[]> {
     return this.http
-      .get<any>('/api/addresses?postcode=${postcode}'.replace('${postcode}', postcode), undefined as object)
+      .get<any>('/external/addresses?postcode=${postcode}'.replace('${postcode}', postcode), undefined as object)
       .pipe(
         map((res) => res.results))
       .pipe(
