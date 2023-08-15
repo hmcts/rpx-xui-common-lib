@@ -1,15 +1,15 @@
 <h1 class="govuk-heading-l" *ngIf="title && title.length">
-  <span class="govuk-caption-l">{{title}}</span>
-  {{boldTitle}}
+  <span class="govuk-caption-l">{{title | rpxTranslate}}</span>
+  {{boldTitle | rpxTranslate}}
 </h1>
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
      [ngClass]="{'form-group-error': findPersonGroup.get('findPersonControl').invalid && submitted}">
   <fieldset class="govuk-fieldset" aria-describedby="sub-title-hint">
     <div id="sub-title-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
-      {{subTitle}}
+      {{subTitle | rpxTranslate}}
     </div>
     <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup && findPersonGroup.errors">
-        <span class="govuk-visually-hidden">Error:</span>{{findPersonGroup.errors.error ? findPersonGroup.errors.error : errorMessage}}
+        <span class="govuk-visually-hidden">{{'Error:' | rpxTranslate}}</span>{{findPersonGroup.errors.error ? findPersonGroup.errors.error : errorMessage}}
     </span>
     <input id="inputSelectPerson{{idValue}}" type="text" aria-label="select a person"
            formControlName="findPersonControl"
@@ -22,9 +22,9 @@
       <mat-option *ngFor="let option of filteredOptions"
                   [value]="option"
                   [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
-        {{getDisplayName(option)}}
+        {{getDisplayName(option) | rpxTranslate}}
       </mat-option>
-      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !filteredOptions.length && showAutocomplete">No results found</mat-option>
+      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !filteredOptions.length && showAutocomplete">{{'No results found' | rpxTranslate}}</mat-option>
     </mat-autocomplete>
   </fieldset>
 </div>
