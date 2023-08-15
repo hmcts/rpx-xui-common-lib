@@ -1,3 +1,4 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -6,6 +7,13 @@ import { of } from 'rxjs';
 import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { FindPersonComponent } from './find-person.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('FindPersonComponent', () => {
   let component: FindPersonComponent;
@@ -18,10 +26,11 @@ describe('FindPersonComponent', () => {
       imports: [
         ReactiveFormsModule,
         MatAutocompleteModule,
-        MatOptionModule
+        MatOptionModule,
       ],
       declarations: [
-        FindPersonComponent
+        FindPersonComponent,
+        RpxTranslateMockPipe
       ],
       providers: [
         {provide: FindAPersonService, useValue: mockFindAPersonService}

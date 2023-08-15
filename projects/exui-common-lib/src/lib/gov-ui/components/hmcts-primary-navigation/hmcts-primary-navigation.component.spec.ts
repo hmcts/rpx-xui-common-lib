@@ -1,7 +1,15 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HmctsPrimaryNavigationComponent } from './hmcts-primary-navigation.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HmctsPrimaryNavigationComponent', () => {
   let component: HmctsPrimaryNavigationComponent;
@@ -9,9 +17,11 @@ describe('HmctsPrimaryNavigationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HmctsPrimaryNavigationComponent ],
+      declarations: [ HmctsPrimaryNavigationComponent, RpxTranslateMockPipe ],
       imports: [
         RouterTestingModule
+      ],
+      providers: [
       ]
     })
     .compileComponents();

@@ -45,3 +45,12 @@ testem.log
 .DS_Store
 Thumbs.db
 elements.js.gz
+
+# Yarn V3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

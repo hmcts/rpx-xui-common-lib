@@ -1,11 +1,11 @@
 <div class="page">
-  <a *ngIf="backLink" [routerLink]="backLink" class="govuk-back-link">Back</a>
+  <a *ngIf="backLink" [routerLink]="backLink" class="govuk-back-link">{{'Back' | rpxTranslate}}</a>
   <div class="govuk-width-container">
     <main id="content" role="main" class="govuk-main-wrapper">
       <div class="govuk-grid-row">
         <h1 *ngIf="title" class="govuk-heading-xl">
-          <span *ngIf="fnTitle" class="govuk-caption-xl">{{fnTitle}}</span>
-          {{title}}
+          <span *ngIf="fnTitle" class="govuk-caption-xl">{{fnTitle | rpxTranslate}}</span>
+          {{title | rpxTranslate}}
         </h1>
         <ng-content>
 

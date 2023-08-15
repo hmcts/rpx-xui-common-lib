@@ -12,7 +12,7 @@
         <mat-option *ngFor="let location of filteredList" (onSelectionChange)="onSelectedLocation(location)">
           {{ location[propertyNameFilter] }}
         </mat-option>
-        <mat-option *ngIf="filteredList.length === 0">No results found</mat-option>
+        <mat-option *ngIf="filteredList.length === 0">{{'No results found' | rpxTranslate}}</mat-option>
       </ng-container>
     </ng-container>
   </mat-autocomplete>

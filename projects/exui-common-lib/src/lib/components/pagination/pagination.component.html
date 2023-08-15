@@ -1,21 +1,21 @@
 <nav class="hmcts-pagination" id="pagination-label">
 
-  <p class="govuk-visually-hidden" aria-labelledby="pagination-label">Pagination navigation</p>
+  <p class="govuk-visually-hidden" aria-labelledby="pagination-label">{{'Pagination navigation' | rpxTranslate}}</p>
 
   <ul class="hmcts-pagination__list">
     <li class="hmcts-pagination__item  hmcts-pagination__item--prev">
       <a *ngIf="firstRecord > 1; else noPrevious" class="hmcts-pagination__link" (click)="onPrevious()" href="javascript:void(0)">
-        Previous page
+        {{'Previous page' | rpxTranslate}}
       </a>
       <ng-template #noPrevious>
-        <span class="hmcts-pagination__link">Previous page</span>
+        <span class="hmcts-pagination__link">{{'Previous page' | rpxTranslate}}</span>
       </ng-template>
     </li>
 
     <li class="hmcts-pagination__item  hmcts-pagination__item--next">
-      <a *ngIf="moreItems; else noNext" class="hmcts-pagination__link" (click)="onNext()" href="javascript:void(0)">Next page</a>
+      <a *ngIf="moreItems; else noNext" class="hmcts-pagination__link" (click)="onNext()" href="javascript:void(0)">{{'Next page' | rpxTranslate}}</a>
       <ng-template #noNext>
-        <span class="hmcts-pagination__link">Next page</span>
+        <span class="hmcts-pagination__link">{{'Next page' | rpxTranslate}}</span>
       </ng-template>
     </li>
   </ul>

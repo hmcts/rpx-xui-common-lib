@@ -1,7 +1,14 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { HmctsIdentityBarComponent } from './hmcts-identity-bar.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('HmctsIdentityBarComponent', () => {
   let component: HmctsIdentityBarComponent;
@@ -10,7 +17,8 @@ describe('HmctsIdentityBarComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ HmctsIdentityBarComponent ]
+      declarations: [ HmctsIdentityBarComponent, RpxTranslateMockPipe ],
+      providers: []
     })
     .compileComponents();
   }));
