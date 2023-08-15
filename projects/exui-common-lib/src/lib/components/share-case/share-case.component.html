@@ -26,6 +26,7 @@
           class="govuk-button govuk-button--secondary" [disabled]="isDisabledAdd()"
           title="{{'Add user to selected cases' | rpxTranslate}}">
           {{'Add' | rpxTranslate}}
+          <span class="govuk-visually-hidden">{{'user' | rpxTranslate}}</span>
         </button>
       </div>
     </div>
@@ -57,6 +58,7 @@
       <div class="govuk-grid-column-one-thirds">
         <button id="btn-remove-user" (click)="removeUser()" class="govuk-button govuk-button--secondary" title="{{'Remove user from selected cases' | rpxTranslate}}">
           {{'Remove' | rpxTranslate}}
+          <span class="govuk-visually-hidden"> {{'user' | rpxTranslate}}</span>
         </button>
       </div>
     </div>
