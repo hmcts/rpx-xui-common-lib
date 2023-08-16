@@ -42,25 +42,25 @@ describe('WriteAddressFieldComponent', () => {
 
   function addressFormGroup() {
     return new FormGroup({
-      AddressLine1: new FormControl(),
-      AddressLine2: new FormControl(),
-      AddressLine3: new FormControl(),
-      PostTown: new FormControl(),
-      County: new FormControl(),
-      PostCode: new FormControl(),
-      Country: new FormControl()
+      addressLine1: new FormControl(),
+      addressLine2: new FormControl(),
+      addressLine3: new FormControl(),
+      postTown: new FormControl(),
+      county: new FormControl(),
+      postCode: new FormControl(),
+      country: new FormControl()
     });
   }
 
   function buildAddress(entryNo: number): AddressModel {
     const address = new AddressModel();
-    address.AddressLine1 = `AddressLine1-${entryNo}`;
-    address.AddressLine2 = `AddressLine2-${entryNo}`;
-    address.AddressLine3 = `AddressLine3-${entryNo}`;
-    address.PostTown = `PostTown-${entryNo}`;
-    address.County = `County-${entryNo}`;
-    address.PostCode = `PostCode-${entryNo}`;
-    address.Country = `Country-${entryNo}`;
+    address.addressLine1 = `addressLine1-${entryNo}`;
+    address.addressLine2 = `addressLine2-${entryNo}`;
+    address.addressLine3 = `addressLine3-${entryNo}`;
+    address.postTown = `postTown-${entryNo}`;
+    address.county = `county-${entryNo}`;
+    address.postCode = `postCode-${entryNo}`;
+    address.country = `country-${entryNo}`;
     return address;
   }
 
@@ -139,13 +139,13 @@ describe('WriteAddressFieldComponent', () => {
   it('should render only title, lookup component and address when address set', () => {
 
     const address = new AddressModel();
-    address.AddressLine1 = 'Address Line 1';
-    address.AddressLine2 = 'Address Line 2';
-    address.AddressLine3 = 'Address Line 3';
-    address.PostTown = 'PostTown';
-    address.County = 'County';
-    address.PostCode = 'PostCode';
-    address.Country = 'Country';
+    address.addressLine1 = 'Address Line 1';
+    address.addressLine2 = 'Address Line 2';
+    address.addressLine3 = 'Address Line 3';
+    address.postTown = 'postTown';
+    address.county = 'county';
+    address.postCode = 'postCode';
+    address.country = 'country';
 
     wrapperComponent.addressField = new FormControl(address);
     fixture.detectChanges();
@@ -178,9 +178,9 @@ describe('WriteAddressFieldComponent', () => {
   it('should render a default \'summary item\' and 3 address options when 3 addresses are returned from AddressesService', () => {
 
     const address2 = buildAddress(2);
-    address2.AddressLine2 = '';
+    address2.addressLine2 = '';
     const address3 = buildAddress(3);
-    address3.AddressLine3 = '';
+    address3.addressLine3 = '';
 
     spyOn(addressService, 'getAddressesForPostcode').and.returnValue(
       of([buildAddress(1), address2, address3])
@@ -195,13 +195,13 @@ describe('WriteAddressFieldComponent', () => {
     expect(debugElement.query($ADDRESS_LIST).children[0].nativeElement.innerHTML.trim()).toEqual('3 addresses found');
 
     expect(debugElement.query($ADDRESS_LIST).children[1].nativeElement.innerHTML.trim()).toEqual(
-      'AddressLine1-1, AddressLine2-1, AddressLine3-1, PostTown-1'
+      'addressLine1-1, addressLine2-1, addressLine3-1, postTown-1'
     );
     expect(debugElement.query($ADDRESS_LIST).children[2].nativeElement.innerHTML.trim()).toEqual(
-      'AddressLine1-2, AddressLine3-2, PostTown-2'
+      'addressLine1-2, addressLine3-2, postTown-2'
     );
     expect(debugElement.query($ADDRESS_LIST).children[3].nativeElement.innerHTML.trim()).toEqual(
-      'AddressLine1-3, AddressLine2-3, PostTown-3'
+      'addressLine1-3, addressLine2-3, postTown-3'
     );
 
   });
@@ -238,13 +238,13 @@ describe('WriteAddressFieldComponent', () => {
     expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
     expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
 
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.AddressLine1).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.AddressLine2).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.AddressLine3).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.PostTown).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.County).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.PostCode).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.Country).toEqual('');
+    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine1).toEqual('');
+    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine2).toEqual('');
+    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine3).toEqual('');
+    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.postTown).toEqual('');
+    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.county).toEqual('');
+    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.postCode).toEqual('');
+    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.country).toEqual('');
 
   }); */
 

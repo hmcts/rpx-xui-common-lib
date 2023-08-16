@@ -10,12 +10,12 @@ import { AddressType } from './address-type.enum';
   public parse(address: any) {
     const classification = `${address.CLASSIFICATION_CODE}`;
     const addressModel = new AddressModel();
-    addressModel.AddressLine1 = this.parseAddressLine1(classification, address);
-    addressModel.AddressLine2 = this.parseAddressLine2(classification, address);
-    addressModel.AddressLine3 = this.parseAddressLine3(classification, address);
-    addressModel.PostCode = address.POSTCODE;
-    addressModel.PostTown = address.POST_TOWN;
-    addressModel.Country = AddressType.UK;
+    addressModel.addressLine1 = this.parseAddressLine1(classification, address);
+    addressModel.addressLine2 = this.parseAddressLine2(classification, address);
+    addressModel.addressLine3 = this.parseAddressLine3(classification, address);
+    addressModel.postCode = address.POSTCODE;
+    addressModel.postTown = address.POST_TOWN;
+    addressModel.country = AddressType.UK;
     return addressModel;
   }
 

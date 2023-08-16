@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AddressModel } from '../../models';
 import { AddressOption } from '../../models/address-option.model';
@@ -24,9 +24,20 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   @Input()
   public isExpanded = false;
 
+  @Input()
+  public internationalMode = false;
+
+  @Output() public internationalModeStart = new EventEmitter<void>();
+
+  public isInternational: boolean;
+  public ukRadioChecked = false;
+  public addressChosen = false;
+
   public addressFormGroup = new FormGroup({});
+  public ukInternationalFormGroup = new FormGroup({});
   public postcode: FormControl;
   public addressList: FormControl;
+  public ukAddress: FormControl;
 
   public addressOptions: AddressOption[];
 
@@ -40,10 +51,15 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     if (!this.formGroup.get('address')) {
       this.formGroup.addControl('address', new FormControl({}));
     }
+    this.ukInternationalFormGroup = new FormGroup({
+      ukAddress: new FormControl()
+    })
     this.postcode = new FormControl('');
     this.addressFormGroup.addControl('postcode', this.postcode);
     this.addressList = new FormControl('');
     this.addressFormGroup.addControl('address', this.addressList);
+    this.ukAddress = new FormControl('');
+    this.addressFormGroup.addControl('ukAddress', this.ukAddress);
   }
 
   public findAddress() {
@@ -84,11 +100,17 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   public blankAddress() {
     this.addressField = new AddressModel();
     this.setFormValue();
+    if (this.internationalMode) {
+      this.internationalModeStart.emit();
+    }
   }
 
   public shouldShowDetailFields() {
     if (this.isExpanded) {
       return true;
+    }
+    if (!this.formGroup.get('address')) {
+      return false;
     }
     const address = this.formGroup.get('address').value;
     let hasAddress = false;
@@ -104,6 +126,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
   public addressSelected() {
     this.addressField = this.addressList.value;
+    this.addressChosen = true;
     this.setFormValue();
   }
 
@@ -111,6 +134,15 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     const change = changes['addressField'];
     if (change) {
       this.setFormValue();
+    }
+  }
+
+  public setInternationalAddress(event: any): void {
+    let target = event.target;
+    if (target.checked) {
+      this.ukRadioChecked = true;
+      console.log(target.id, 'is target id');
+      this.isInternational = target.id === 'no';
     }
   }
 

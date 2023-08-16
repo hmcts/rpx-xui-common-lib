@@ -1,0 +1,63 @@
+<ng-container>
+  <div class="govuk-form-group" [formGroup]="addressFormGroup">
+    <label class="govuk-label govuk-!-font-weight-bold">
+      Enter address details
+    </label>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="building-and-street">
+        Building and Street
+      </label>
+      <input class="govuk-input govuk-!-width-full" id="building-and-street" name="building-and-street" type="text"
+        formControlName="buildingAndStreet">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="address-line-2">
+        Address line 2 (Optional)
+      </label>
+      <input class="govuk-input govuk-!-width-full" id="address-line-2" name="address-line-2" type="text"
+        formControlName="addressLine2">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="address-line-3">
+        Address line 3 (Optional)
+      </label>
+      <input class="govuk-input govuk-!-width-full" id="address-line-3" name="address-line-3" type="text"
+        formControlName="addressLine3">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="town-or-city">
+        Town or City
+      </label>
+      <input class="govuk-input govuk-!-width-two-thirds" id="town-or-city" name="town-or-city" type="text"
+        formControlName="townOrCity">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="county">
+        {{this.isInternational ? 'County/ State/ Province (Optional)' : 'County'}}
+      </label>
+      <input class="govuk-input govuk-!-width-two-thirds" id="county" name="county" type="text"
+        formControlName="county">
+    </div>
+
+    <div *ngIf="isInternational" class="govuk-form-group">
+      <label class="govuk-label" for="country">
+        Country
+      </label>
+      <input class="govuk-input govuk-!-width-two-thirds" id="country" name="country" type="text"
+        formControlName="country">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="postcode">
+        Postcode{{this.isInternational ? ' (Optional)' : ''}}
+      </label>
+      <input class="govuk-input govuk-!-width-one-third" id="postcode" name="postcode" type="text"
+        formControlName="postcode">
+    </div>
+  </div>
+</ng-container>

@@ -29,20 +29,20 @@ export class AddressService {
   }
 
   private formatAddressLines(addressModel: AddressModel) {
-    ['AddressLine1', 'AddressLine2', 'AddressLine3', 'PostTown'].forEach((value: keyof typeof addressModel) => {
+    ['addressLine1', 'addressLine2', 'addressLine3', 'postTown'].forEach((value: keyof typeof addressModel) => {
       addressModel[value] = this.toCapitalCase(addressModel[value]);
     });
     return addressModel;
   }
 
   private shiftAddressLinesUp(addressModel: AddressModel) {
-    if (addressModel.AddressLine2 === '') {
-      addressModel.AddressLine2 = addressModel.AddressLine3;
-      addressModel.AddressLine3 = '';
+    if (addressModel.addressLine2 === '') {
+      addressModel.addressLine2 = addressModel.addressLine3;
+      addressModel.addressLine3 = '';
     }
-    if (addressModel.AddressLine1 === '') {
-      addressModel.AddressLine1 = addressModel.AddressLine2;
-      addressModel.AddressLine2 = '';
+    if (addressModel.addressLine1 === '') {
+      addressModel.addressLine1 = addressModel.addressLine2;
+      addressModel.addressLine2 = '';
     }
     return addressModel;
   }
