@@ -11,9 +11,6 @@ import { AddressService } from '../../services/address/address.service';
 })
 export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
-  /* @ViewChildren(FocusElementDirective)
-  public focusElementDirectives: QueryList<FocusElementDirective>;
- */
   public addressesService: AddressService;
 
   public addressField: AddressModel;
@@ -91,12 +88,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     }
   }
 
-/*   public refocusElement(): void {
-    if (this.focusElementDirectives && this.focusElementDirectives.length > 0) {
-      this.focusElementDirectives.first.focus();
-    }
-  } */
-
   public blankAddress() {
     this.addressField = new AddressModel();
     this.setFormValue();
@@ -145,10 +136,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
       this.isInternational = target.id === 'no';
     }
   }
-
-/*   public buildIdPrefix(elementId: string): string {
-    return `${this.idPrefix}_${elementId}`;
-  } */
 
   private defaultLabel(numberOfAddresses: number) {
     return numberOfAddresses === 0 ? 'No address found'
