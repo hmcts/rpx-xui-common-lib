@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkFileUploadComponent } from './gov-uk-file-upload.component';
@@ -15,7 +15,7 @@ class RpxTranslateMockPipe implements PipeTransform {
 describe('GovUkFileUploadComponent', () => {
   let component: GovUkFileUploadComponent;
   let fixture: ComponentFixture<GovUkFileUploadComponent>;
-  const formBuilder: FormBuilder = new FormBuilder();
+  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -24,7 +24,7 @@ describe('GovUkFileUploadComponent', () => {
       declarations: [ GovUkFileUploadComponent, RpxTranslateMockPipe ],
       providers: [
         RpxTranslationConfig, RpxTranslationService,
-        { provide: FormBuilder, useValue: formBuilder }
+        { provide: UntypedFormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();

@@ -1,13 +1,13 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkRadioComponent } from './gov-uk-radio.component';
 
 describe('GovUkRadioComponent', () => {
   let component: GovUkRadioComponent;
   let fixture: ComponentFixture<GovUkRadioComponent>;
-  const formBuilder: FormBuilder = new FormBuilder();
+  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('GovUkRadioComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ GovUkRadioComponent ],
       providers: [
-        { provide: FormBuilder, useValue: formBuilder }
+        { provide: UntypedFormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();

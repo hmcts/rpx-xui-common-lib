@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
 * Gov Uk Radio state-less  Component responsible for
@@ -12,7 +12,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 })
 export class GovUkRadioComponent implements OnInit {
   constructor() { }
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public config: GovUiConfigModel;
   // {value: string, label: string, hint: string; name: string; focusOn: string; id: string; classes: string}; // TODO create interface
 
