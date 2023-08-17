@@ -33,7 +33,13 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -63,7 +69,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -162,13 +169,13 @@
             "production": {
               "tsConfig": "projects/exui-common-lib/tsconfig.lib.prod.json"
             }
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/exui-common-lib/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
