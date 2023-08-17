@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,7 +18,7 @@ export class UserSelectComponent implements OnInit {
 
   public filteredUsers: Observable<UserDetails[]>;
 
-  public control = new FormControl();
+  public control = new UntypedFormControl();
 
   constructor() { }
 

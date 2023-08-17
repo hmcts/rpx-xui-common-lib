@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 import { ErrorMessagesModel } from '../../models';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
@@ -14,7 +14,7 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 export class GovUkSelectComponent {
   constructor() {}
   @Input() public errorMessage: ErrorMessagesModel;
-  @Input() public group: FormGroup;
+  @Input() public group: UntypedFormGroup;
   @Input() public config: GovUiConfigModel;
   // {hint: string; name: string; id: string,  isPageHeading: boolean, classes: string };
   @Input() public items: { label: string, value: string; id: string; }[];
