@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed} from '@angular/core/testing';
 import {UntypedFormControl, UntypedFormGroup, ReactiveFormsModule} from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatOptionModule } from '@angular/material/core';
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
+import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
 import { TaskNameService } from '../../services/task-name/task-name.service';
 
 import {FindTaskNameComponent} from './find-task-name.component';
