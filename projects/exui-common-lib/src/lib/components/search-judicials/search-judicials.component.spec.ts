@@ -56,14 +56,13 @@ describe('SearchJudicialsComponent', () => {
 
     fixture = TestBed.createComponent(SearchJudicialsComponent);
     component = fixture.componentInstance;
-    const judicialService = TestBed.get(FindAPersonService);
     spyOn(component.keyUpSubject$, 'next');
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
     component.displayedJudicials = JUDICIAL_RESULTS;
     spyOn(component, 'searchJudicials').and.callThrough();
     spyOn(component, 'onFocus').and.callThrough();
 
-    judicialService.searchJudicial.and.returnValue(of(JUDICIAL_RESULTS));
+    searchFilterServiceMock.searchJudicial.and.returnValue(of(JUDICIAL_RESULTS));
 
     fixture.detectChanges();
   }));
