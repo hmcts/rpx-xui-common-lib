@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AddressModel } from '../../models';
 import { AddressOption } from '../../models/address-option.model';
 
 @Component({
@@ -28,44 +29,27 @@ export class WriteAddressInputsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setAddressFormGroup();
-    if (this.formGroup.get('ukAddress')) {
-      this.formGroup.get('ukAddress').valueChanges
-        .subscribe(value => {
-          console.log('ukaddress is', value);
-          this.setSpecificText();
-        })
-    }
-    console.log(this.formGroup, 'is form group');
-  }
-
-  private setSpecificText(): void {
-    this.countyText = this.isInternational ? 'County/ State/ Province (Optional)' : 'County';
-    this.postcodeOptional = this.isInternational ? ' (Optional)' : '';
   }
 
   private setAddressFormGroup(): void {
-    const givenAddress = this.formGroup.get('address').value;
-    if (givenAddress.postCode && givenAddress.postCode != '') {
-      this.addressFormGroup = new FormGroup({
-        buildingAndStreet: new FormControl(givenAddress.addressLine1, Validators.required),
-        addressLine2: new FormControl(givenAddress.addressLine2, null),
-        addressLine3: new FormControl(givenAddress.addressLine3, null),
-        townOrCity: new FormControl(givenAddress.postTown, Validators.required),
-        county: new FormControl(givenAddress.county, null),
-        country: new FormControl(givenAddress.country, null),
-        postcode: new FormControl(givenAddress.postCode, null)
-      });
-    } else {
-      this.addressFormGroup = new FormGroup({
-        buildingAndStreet: new FormControl(null, Validators.required),
-        addressLine2: new FormControl(null, null),
-        addressLine3: new FormControl(null, null),
-        townOrCity: new FormControl(null, Validators.required),
-        county: new FormControl(null, null),
-        country: new FormControl(null, null),
-        postcode: new FormControl(null, null)
-      });
+    if (!this.formGroup.get('address')) {
+      this.setFormGroup();
+      return;
     }
+    const givenAddress = this.formGroup.get('address').value;
+    givenAddress.postCode && givenAddress.postCode !== '' ? this.setFormGroup(givenAddress) : this.setFormGroup();
+  }
+
+  private setFormGroup(givenAddress?: AddressModel) {
+    this.addressFormGroup = new FormGroup({
+      buildingAndStreet: new FormControl(givenAddress ? givenAddress.addressLine1 : null, Validators.required),
+      addressLine2: new FormControl(givenAddress ? givenAddress.addressLine2 : null, null),
+      addressLine3: new FormControl(givenAddress ? givenAddress.addressLine3 : null, null),
+      townOrCity: new FormControl(givenAddress ? givenAddress.postTown : null, Validators.required),
+      county: new FormControl(givenAddress ? givenAddress.county : null, null),
+      country: new FormControl(givenAddress ? givenAddress.country : null, null),
+      postcode: new FormControl(givenAddress ? givenAddress.postCode : null, null)
+    });
   }
 
 }

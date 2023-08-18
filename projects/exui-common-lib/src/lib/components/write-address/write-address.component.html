@@ -56,14 +56,4 @@
   <xuilib-write-address-inputs *ngIf="shouldShowDetailFields() && (addressChosen || !internationalMode)"
     [formGroup]="formGroup" [isInternational]="false"></xuilib-write-address-inputs>
 
-  <!-- <ccd-write-complex-type-field
-      [hidden]="!shouldShowDetailFields()"
-      [caseField]="caseField"
-      [renderLabel]="false"
-      [parent]="parent"
-      [formGroup]="formGroup"
-      [ignoreMandatory]="true"
-      [idPrefix]="buildIdPrefix('detail')"
-      #writeComplexFieldComponent>
-    </ccd-write-complex-type-field> -->
 </div>

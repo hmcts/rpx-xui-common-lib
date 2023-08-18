@@ -50,7 +50,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     }
     this.ukInternationalFormGroup = new FormGroup({
       ukAddress: new FormControl()
-    })
+    });
     this.postcode = new FormControl('');
     this.addressFormGroup.addControl('postcode', this.postcode);
     this.addressList = new FormControl('');
@@ -129,10 +129,9 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   }
 
   public setInternationalAddress(event: any): void {
-    let target = event.target;
+    const target = event.target;
     if (target.checked) {
       this.ukRadioChecked = true;
-      console.log(target.id, 'is target id');
       this.isInternational = target.id === 'no';
     }
   }

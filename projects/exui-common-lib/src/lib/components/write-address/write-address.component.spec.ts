@@ -268,4 +268,24 @@ describe('WriteAddressFieldComponent', () => {
 
   });
 
+  it('should set the international address fields correctly', () => {
+
+    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeFalsy();
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+
+    const noMockEvent = {target: {checked: true, id: 'no'}};
+    wrapperComponent.componentUnderTest.setInternationalAddress(noMockEvent);
+    fixture.detectChanges();
+
+    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeTruthy();
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeTruthy();
+
+    const yesMockEvent = {target: {checked: true, id: 'yes'}};
+    wrapperComponent.componentUnderTest.setInternationalAddress(yesMockEvent);
+    fixture.detectChanges();
+
+    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeTruthy();
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+  });
+
 });

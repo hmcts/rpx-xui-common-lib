@@ -38,7 +38,7 @@
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="county">
-        {{this.isInternational ? 'County/ State/ Province (Optional)' : 'County'}}
+        County{{this.isInternational ? '/ State/ Province' : ''}} (Optional)
       </label>
       <input class="govuk-input govuk-!-width-two-thirds" id="county" name="county" type="text"
         formControlName="county">
