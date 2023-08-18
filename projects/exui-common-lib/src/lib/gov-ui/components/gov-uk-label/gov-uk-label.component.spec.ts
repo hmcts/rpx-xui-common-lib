@@ -1,7 +1,15 @@
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { GovUkLabelComponent } from './gov-uk-label.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('GovUkLabelComponent', () => {
   let component: GovUkLabelComponent;
@@ -10,7 +18,8 @@ describe('GovUkLabelComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [ GovUkLabelComponent ]
+      declarations: [ GovUkLabelComponent, RpxTranslateMockPipe ],
+      providers: []
     })
     .compileComponents();
   }));

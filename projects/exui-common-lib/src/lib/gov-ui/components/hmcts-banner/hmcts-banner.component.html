@@ -26,8 +26,8 @@
     </ng-container>
 
     <div class="hmcts-banner__message" [class.hmcts-banner__message--bold]="messageBoldText">
-      <span class="hmcts-banner__assistive">{{ type }}</span>
-      <span class="hmcts-banner__message-text govuk-!-font-weight-bold">{{ message }}</span>
+      <span class="hmcts-banner__assistive">{{type | rpxTranslate}}</span>
+      <span class="hmcts-banner__message-text govuk-!-font-weight-bold">{{message | rpxTranslate}}</span>
     </div>
   </div>
 </ng-container>
