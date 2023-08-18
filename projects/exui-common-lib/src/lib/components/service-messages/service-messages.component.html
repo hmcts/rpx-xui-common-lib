@@ -1,4 +1,4 @@
 <div *ngIf="filteredMessages?.size > 0" class="govuk-width-container govuk-!-margin-top-6">
     <xuilib-service-message *ngFor="let message of filteredMessages | keyvalue" [key]="message.key"
-        [message]="message.value" (hideMessage)="hideMessage($event)"></xuilib-service-message>
+        [message]="message.value | rpxTranslate" (hideMessage)="hideMessage($event)"></xuilib-service-message>
 </div>

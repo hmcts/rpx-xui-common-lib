@@ -2,13 +2,13 @@
   <div class="select-all govuk-checkboxes__item">
     <input type="checkbox" id="select_all" class="govuk-checkboxes__input" [checked]="allSelected"
            (change)="toggleSelectAll()" />
-    <label for="select_all" class="govuk-label govuk-checkboxes__label">Select all / Deselect all</label>
+    <label for="select_all" class="govuk-label govuk-checkboxes__label">{{'Select all / Deselect all' | rpxTranslate}}</label>
   </div>
   <div class="checkbox-items">
     <div *ngFor="let item of options; let i = index" class="govuk-checkboxes__item">
       <input type="checkbox" [id]="'select_' + i" class="govuk-checkboxes__input" [checked]="isSelected(item)"
              (change)="toggleItemSelection(item)" />
-      <label [for]="'select_' + i" class="govuk-label govuk-checkboxes__label">{{labelFunction(item)}}</label>
+      <label [for]="'select_' + i" class="govuk-label govuk-checkboxes__label">{{labelFunction(item) | rpxTranslate}}</label>
     </div>
   </div>
 </div>
