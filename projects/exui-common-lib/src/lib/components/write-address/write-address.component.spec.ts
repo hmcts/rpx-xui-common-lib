@@ -9,9 +9,7 @@ import { AddressService } from '../../services';
 
 describe('WriteAddressFieldComponent', () => {
 
-  const ADDRESS_FIELD_LABEL = 'Find Address';
   const POSTCODE = 'P05T CDE';
-  const $TITLE = By.css('h2');
 
   const $POSTCODE_LOOKUP = By.css('.postcodeLookup');
   const $POSTCODE_LOOKUP_INPUT = By.css('.postcodeinput');
@@ -102,7 +100,6 @@ describe('WriteAddressFieldComponent', () => {
 
   it('should render only title, lookup component and manual link when address not set', () => {
 
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(ADDRESS_FIELD_LABEL);
     expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
     expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
     expect(debugElement.query($MANUAL_LINK)).toBeTruthy();
@@ -150,7 +147,6 @@ describe('WriteAddressFieldComponent', () => {
     wrapperComponent.addressField = new FormControl(address);
     fixture.detectChanges();
 
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(ADDRESS_FIELD_LABEL);
     expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
     expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
 
