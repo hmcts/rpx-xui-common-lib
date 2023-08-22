@@ -1,11 +1,10 @@
 <div class="govuk-form-group">
 
   <div *ngIf="!shouldShowDetailFields()">
-    <h2 class="govuk-heading-m">Find Address</h2>
-
     <div class="govuk-form-group bottom-30 postcodeLookup" id="addressLookup"
       [ngClass]="{'form-group-error': missingPostcode}" *ngIf="!isExpanded">
       <label for="postcodeInput">
+        <span class="govuk-label"><b>Provide address details</b></span>
         <span class="govuk-label">Enter a UK postcode</span>
       </label>
       <span class="error-message" *ngIf="missingPostcode">Enter the Postcode</span>
