@@ -13,7 +13,15 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
   public addressesService: AddressService;
 
-  public addressField: AddressModel;
+  public addressField: AddressModel = {
+    addressLine1: '',
+    addressLine2: '',
+    addressLine3: '',
+    postCode: '',
+    postTown: '',
+    country: '',
+    county: ''
+  };
 
   @Input()
   public formGroup: FormGroup;
@@ -89,7 +97,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   }
 
   public blankAddress() {
-    this.addressField = new AddressModel();
     this.setFormValue();
     if (this.internationalMode) {
       this.internationalModeStart.emit();

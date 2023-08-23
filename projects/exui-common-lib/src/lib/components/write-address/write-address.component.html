@@ -1,7 +1,7 @@
 <div class="govuk-form-group">
 
   <div *ngIf="!shouldShowDetailFields()">
-    <div class="govuk-form-group bottom-30 postcodeLookup" id="addressLookup"
+    <div class="govuk-form-group postcodeLookup" id="addressLookup"
       [ngClass]="{'form-group-error': missingPostcode}" *ngIf="!isExpanded">
       <label for="postcodeInput">
         <span class="govuk-label"><b>Provide address details</b></span>
@@ -26,7 +26,7 @@
       </select>
     </div>
 
-    <a class="manual-link govuk-link bottom-30" *ngIf="!shouldShowDetailFields()" (click)="blankAddress()"
+    <a class="manual-link govuk-link" *ngIf="!shouldShowDetailFields()" (click)="blankAddress()"
       href="javascript:void(0)">I can't enter a UK postcode</a>
   </div>
 
