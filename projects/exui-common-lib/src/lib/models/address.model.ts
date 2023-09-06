@@ -1,10 +1,10 @@
 // tslint:disable:variable-name
 export class AddressModel {
-  public AddressLine1 = '';
-  public AddressLine2 = '';
-  public AddressLine3 = '';
-  public PostTown = '';
-  public County = '';
-  public PostCode = '';
-  public Country = '';
+  public addressLine1: string;
+  public addressLine2: string;
+  public addressLine3: string;
+  public postTown: string;
+  public county: string;
+  public postCode: string;
+  public country: string;
 }

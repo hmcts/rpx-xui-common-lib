@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AddressModel } from '../../models';
 import { AddressOption } from '../../models/address-option.model';
@@ -11,12 +11,17 @@ import { AddressService } from '../../services/address/address.service';
 })
 export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
-  /* @ViewChildren(FocusElementDirective)
-  public focusElementDirectives: QueryList<FocusElementDirective>;
- */
   public addressesService: AddressService;
 
-  public addressField: AddressModel;
+  public addressField: AddressModel = {
+    addressLine1: '',
+    addressLine2: '',
+    addressLine3: '',
+    postCode: '',
+    postTown: '',
+    country: '',
+    county: ''
+  };
 
   @Input()
   public formGroup: FormGroup;
@@ -24,9 +29,20 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   @Input()
   public isExpanded = false;
 
+  @Input()
+  public internationalMode = false;
+
+  @Output() public internationalModeStart = new EventEmitter<void>();
+
+  public isInternational: boolean;
+  public ukRadioChecked = false;
+  public addressChosen = false;
+
   public addressFormGroup = new FormGroup({});
+  public ukInternationalFormGroup = new FormGroup({});
   public postcode: FormControl;
   public addressList: FormControl;
+  public ukAddress: FormControl;
 
   public addressOptions: AddressOption[];
 
@@ -40,10 +56,15 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     if (!this.formGroup.get('address')) {
       this.formGroup.addControl('address', new FormControl({}));
     }
+    this.ukInternationalFormGroup = new FormGroup({
+      ukAddress: new FormControl()
+    });
     this.postcode = new FormControl('');
     this.addressFormGroup.addControl('postcode', this.postcode);
     this.addressList = new FormControl('');
     this.addressFormGroup.addControl('address', this.addressList);
+    this.ukAddress = new FormControl('');
+    this.addressFormGroup.addControl('ukAddress', this.ukAddress);
   }
 
   public findAddress() {
@@ -75,20 +96,19 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     }
   }
 
-/*   public refocusElement(): void {
-    if (this.focusElementDirectives && this.focusElementDirectives.length > 0) {
-      this.focusElementDirectives.first.focus();
-    }
-  } */
-
   public blankAddress() {
-    this.addressField = new AddressModel();
     this.setFormValue();
+    if (this.internationalMode) {
+      this.internationalModeStart.emit();
+    }
   }
 
   public shouldShowDetailFields() {
     if (this.isExpanded) {
       return true;
+    }
+    if (!this.formGroup.get('address')) {
+      return false;
     }
     const address = this.formGroup.get('address').value;
     let hasAddress = false;
@@ -104,6 +124,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
   public addressSelected() {
     this.addressField = this.addressList.value;
+    this.addressChosen = true;
     this.setFormValue();
   }
 
@@ -114,9 +135,13 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     }
   }
 
-/*   public buildIdPrefix(elementId: string): string {
-    return `${this.idPrefix}_${elementId}`;
-  } */
+  public setInternationalAddress(event: any): void {
+    const target = event.target;
+    if (target.checked) {
+      this.ukRadioChecked = true;
+      this.isInternational = target.id === 'no';
+    }
+  }
 
   private defaultLabel(numberOfAddresses: number) {
     return numberOfAddresses === 0 ? 'No address found'

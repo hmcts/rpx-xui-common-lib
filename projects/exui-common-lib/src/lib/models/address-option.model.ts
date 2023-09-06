@@ -15,7 +15,7 @@ export class AddressOption {
 
   private getDescription() {
     return this.removeInitialCommaIfPresent(
-      `${this.value.AddressLine1 === undefined ? '' : this.value.AddressLine1}${this.prefixWithCommaIfPresent(this.value.AddressLine2)}${this.prefixWithCommaIfPresent(this.value.AddressLine3)}, ${this.value.PostTown}`
+      `${this.value.addressLine1 === undefined ? '' : this.value.addressLine1}${this.prefixWithCommaIfPresent(this.value.addressLine2)}${this.prefixWithCommaIfPresent(this.value.addressLine3)}, ${this.value.postTown}`
     );
   }
 

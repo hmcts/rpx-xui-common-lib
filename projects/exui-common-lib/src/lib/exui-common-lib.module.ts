@@ -46,6 +46,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserSelectComponent } from './components/user-select/user-select.component';
+import { WriteAddressInputsComponent } from './components/write-address-inputs/write-address-inputs.component';
 import { WriteAddressFieldComponent } from './components/write-address/write-address.component';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
 import { LetDirective } from './directives/let/let.directive';
@@ -116,7 +117,8 @@ export const COMMON_COMPONENTS = [
   SearchServiceComponent,
   SearchVenueComponent,
   PaginationComponent,
-  WriteAddressFieldComponent
+  WriteAddressFieldComponent,
+  WriteAddressInputsComponent
 ];
 
 export const GOV_UI_COMPONENTS = [
