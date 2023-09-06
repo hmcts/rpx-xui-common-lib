@@ -1,9 +1,10 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.8.7-user-included-filter-rc2",
+  "version": "1.9.0-welsh-translation",
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^3.2.1",
+    "rpx-xui-translation": "^0.1.1"
   },
   "publishConfig": {
     "access": "public"

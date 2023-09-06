@@ -1,11 +1,11 @@
 <ng-container [ngSwitch]="document.mimeType">
   <xuilib-tc-display-html *ngSwitchCase="'text/html'">
-    <div [innerHTML]="document.content"></div>
+    <div [innerHTML]="document.content | rpxTranslate"></div>
   </xuilib-tc-display-html>
   <xuilib-tc-display-plain *ngSwitchCase="'text/plain'">
-    {{ document.content }}
+    {{ document.content | rpxTranslate}}
   </xuilib-tc-display-plain>
   <div *ngSwitchDefault>
-    An error occured. Please try again.
+    {{'An error occured. Please try again.' | rpxTranslate}}
   </div>
 </ng-container>

@@ -41,7 +41,8 @@ export class FindAPersonService {
     }
     this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
     return this.http.post<Person[]>('/workallocation/findPerson', { searchOptions })
-      .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser, blockedUserId].includes(judge.id)))));
+      .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser].includes(judge.id)))));
+    // Removed the current user id to fix EUI-8465.
   }
 
   public findCaseworkers(searchOptions: SearchOptions): Observable<Person[]> {

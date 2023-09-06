@@ -1,3 +1,3 @@
 <span class="govuk-error-message" [id]="config.id + '-error'" *ngFor="let message of errorMessage?.messages">
-  <span class="govuk-visually-hidden">Error:</span>{{message}}
+  <span class="govuk-visually-hidden">{{'Error' | rpxTranslate}}:</span>{{message | rpxTranslate}}
 </span>

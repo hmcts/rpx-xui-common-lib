@@ -1,6 +1,6 @@
 <h1 *ngIf="config.isPageHeading else noHeading">
   <label *ngIf="config.label" [for]="config.id" [class]="config.classes + ' govuk-label'">
-    <span>{{ config.label }}</span>
+    <span>{{ config.label | rpxTranslate }}</span>
     <span class="govuk-label__optional" *ngIf="config.optional">(optional)</span>
   </label>
 </h1>

@@ -1,9 +1,16 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HmctsPaginationComponent } from '../../gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import { UserListComponent } from './user-list.component';
+
+@Pipe({ name: 'rpxTranslate' })
+class RpxTranslateMockPipe implements PipeTransform {
+  public transform(value: string): string {
+    return value;
+  }
+}
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -12,8 +19,9 @@ describe('UserListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, NgxPaginationModule],
+      providers: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserListComponent, HmctsPaginationComponent],
+      declarations: [ UserListComponent, HmctsPaginationComponent, RpxTranslateMockPipe],
     })
     .compileComponents();
   }));
