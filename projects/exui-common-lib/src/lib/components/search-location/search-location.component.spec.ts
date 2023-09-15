@@ -450,8 +450,8 @@ describe('SearchLocationComponent', () => {
     component.getLocations('exampleString2');
     expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('api/locations/getLocations', 'IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: [{epimms_id: '12345'}]}, {service: 'CIVIL', locations: [{epimms_id: '32456'}]}]);
   });
-  // EUI-7909 - uncomment this code
- /*  it('should call get locations with the correct parameters', () => {
+
+  it('should call get locations with the correct parameters', () => {
     component.serviceIds = 'IA,SSCS';
     component.bookingCheck = BookingCheckType.NO_CHECK;
     component.getLocations('exampleString');
@@ -469,5 +469,5 @@ describe('SearchLocationComponent', () => {
     sessionServiceMock.getItem.and.returnValues(bookableLocationString);
     component.getLocations('exampleString2');
     expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: [{epimms_id: '12345'}]}, {service: 'CIVIL', locations: [{epimms_id: '32456'}]}]);
-  }); */
+  });
 });

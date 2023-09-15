@@ -103,7 +103,7 @@ describe('AddressService', () => {
     });
   });
 
-  function isAddressLineInCapitalCase(addressLine: string) {
+  function isAddressLineInCapitalCase(addressLine: string): boolean {
     let result = true;
     addressLine.split(' ').forEach(word => {
         if (!isInCapitalCase(word)) {
@@ -113,12 +113,9 @@ describe('AddressService', () => {
     return result;
   }
 
-  function isInCapitalCase(word: string) {
-    return () => {
-      const uppCase = word.charAt(0) === word.charAt(0).toUpperCase();
-      const lowCase = word.charAt(1) === word.charAt(1).toLowerCase();
-      return (uppCase && lowCase);
-    };
+  function isInCapitalCase(word: string): boolean {
+    const uppCase = word.charAt(0) === word.charAt(0).toUpperCase();
+    const lowCase = word.charAt(1) === word.charAt(1).toLowerCase();
+    return uppCase && lowCase;
   }
-
 });

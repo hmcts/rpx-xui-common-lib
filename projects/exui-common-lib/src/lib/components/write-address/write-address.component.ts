@@ -67,7 +67,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     this.addressFormGroup.addControl('ukAddress', this.ukAddress);
   }
 
-  public findAddress() {
+  public findAddress(): void {
     if (!this.postcode.value) {
       this.missingPostcode = true;
     } else {
@@ -92,18 +92,17 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
           );
         });
       this.addressList.setValue(undefined);
-      // this.refocusElement();
     }
   }
 
-  public blankAddress() {
+  public blankAddress(): void {
     this.setFormValue();
     if (this.internationalMode) {
       this.internationalModeStart.emit();
     }
   }
 
-  public shouldShowDetailFields() {
+  public shouldShowDetailFields(): boolean {
     if (this.isExpanded) {
       return true;
     }
@@ -122,13 +121,13 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     return hasAddress;
   }
 
-  public addressSelected() {
+  public addressSelected(): void {
     this.addressField = this.addressList.value;
     this.addressChosen = true;
     this.setFormValue();
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges): void {
     const change = changes['addressField'];
     if (change) {
       this.setFormValue();
@@ -143,12 +142,12 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     }
   }
 
-  private defaultLabel(numberOfAddresses: number) {
+  private defaultLabel(numberOfAddresses: number): string {
     return numberOfAddresses === 0 ? 'No address found'
       : `${numberOfAddresses}${numberOfAddresses === 1 ? ' address ' : ' addresses '}found`;
   }
 
-  private setFormValue() {
+  private setFormValue(): void {
     if (this.formGroup) {
       this.formGroup.get('address').patchValue(
         this.addressField

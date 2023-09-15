@@ -19,7 +19,7 @@ describe('WriteAddressFieldComponent', () => {
   let wrapperComponent: any;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  function addressFormGroup() {
+  function addressFormGroup(): FormGroup {
     return new FormGroup({
       addressLine1: new FormControl(),
       addressLine2: new FormControl(),
@@ -76,10 +76,6 @@ describe('WriteAddressFieldComponent', () => {
     expect(element.querySelectorAll('.govuk-label').item(5).textContent.trim()).toContain('County/ State/ Province (Optional)');
     expect(element.querySelectorAll('.govuk-label').item(6).textContent.trim()).toContain('Countr');
     expect(element.querySelectorAll('.govuk-label').item(7).textContent.trim()).toContain('Postcode (Optional)');
-
-    /*     expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-        expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeTruthy(); */
-
   });
 
 });

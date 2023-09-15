@@ -24,7 +24,7 @@ export class AddressService {
       );
   }
 
-  private format(addressModel: AddressModel) {
+  private format(addressModel: AddressModel): AddressModel {
     return this.formatAddressLines(this.shiftAddressLinesUp(addressModel));
   }
 
@@ -35,7 +35,7 @@ export class AddressService {
     return addressModel;
   }
 
-  private shiftAddressLinesUp(addressModel: AddressModel) {
+  private shiftAddressLinesUp(addressModel: AddressModel): AddressModel {
     if (addressModel.addressLine2 === '') {
       addressModel.addressLine2 = addressModel.addressLine3;
       addressModel.addressLine3 = '';
@@ -47,7 +47,7 @@ export class AddressService {
     return addressModel;
   }
 
-  private toCapitalCase(sentence: string) {
+  private toCapitalCase(sentence: string): string {
     sentence = sentence.toLowerCase();
     sentence.split(' ').forEach((value) => {
         sentence = sentence.replace(value, value.charAt(0).toUpperCase() + value.substr(1));

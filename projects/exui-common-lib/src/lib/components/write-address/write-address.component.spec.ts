@@ -38,7 +38,7 @@ describe('WriteAddressFieldComponent', () => {
   let debugElement: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  function addressFormGroup() {
+  function addressFormGroup(): FormGroup {
     return new FormGroup({
       addressLine1: new FormControl(),
       addressLine2: new FormControl(),
@@ -62,7 +62,7 @@ describe('WriteAddressFieldComponent', () => {
     return address;
   }
 
-  function queryPostcode(postcode: string) {
+  function queryPostcode(postcode: string): void {
     const postcodeField = fixture.debugElement.query($POSTCODE_LOOKUP_INPUT).nativeElement;
     postcodeField.value = postcode;
     postcodeField.dispatchEvent(new Event('input'));

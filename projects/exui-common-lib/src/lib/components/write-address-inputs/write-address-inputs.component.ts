@@ -40,7 +40,7 @@ export class WriteAddressInputsComponent implements OnInit {
     givenAddress.postCode && givenAddress.postCode !== '' ? this.setFormGroup(givenAddress) : this.setFormGroup();
   }
 
-  private setFormGroup(givenAddress?: AddressModel) {
+  private setFormGroup(givenAddress?: AddressModel): void {
     this.addressFormGroup = new FormGroup({
       buildingAndStreet: new FormControl(givenAddress ? givenAddress.addressLine1 : null, Validators.required),
       addressLine2: new FormControl(givenAddress ? givenAddress.addressLine2 : null, null),
