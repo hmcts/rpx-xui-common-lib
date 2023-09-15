@@ -31,6 +31,7 @@ describe('WriteAddressFieldComponent', () => {
     public componentUnderTest: WriteAddressFieldComponent;
     public addressField = new FormControl({});
     public formGroup = addressFormGroup();
+    public submissionAttempted = false;
   }
 
   let addressService: AddressService;
@@ -40,13 +41,15 @@ describe('WriteAddressFieldComponent', () => {
 
   function addressFormGroup() {
     return new FormGroup({
-      addressLine1: new FormControl(),
-      addressLine2: new FormControl(),
-      addressLine3: new FormControl(),
-      postTown: new FormControl(),
-      county: new FormControl(),
-      postCode: new FormControl(),
-      country: new FormControl()
+      address: new FormGroup({
+        addressLine1: new FormControl(),
+        addressLine2: new FormControl(),
+        addressLine3: new FormControl(),
+        postTown: new FormControl(),
+        county: new FormControl(),
+        postCode: new FormControl(),
+        country: new FormControl()
+      })
     });
   }
 
@@ -104,34 +107,7 @@ describe('WriteAddressFieldComponent', () => {
     expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
     expect(debugElement.query($MANUAL_LINK)).toBeTruthy();
 
-    /*     expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-        expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeTruthy(); */
-
   });
-
-  /*   it('should render only address lines if field is search ', () => {
-      wrapperComponent.componentUnderTest.isExpanded = true; // false by default
-      fixture.detectChanges();
-      expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(CASE_FIELD_LABEL);
-      expect(debugElement.query($POSTCODE_LOOKUP)).toBeFalsy();
-      expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-      expect(debugElement.query($MANUAL_LINK)).toBeFalsy();
-      expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-      expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-    }); */
-
-  /* it('should render only title, lookup component and manual link when writeComplexFieldComponent is null', () => {
-    wrapperComponent.componentUnderTest.writeComplexFieldComponent = null;
-    fixture.detectChanges();
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(CASE_FIELD_LABEL);
-    expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
-    expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-    expect(debugElement.query($MANUAL_LINK)).toBeTruthy();
-
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeTruthy();
-
-  }); */
 
   it('should render only title, lookup component and address when address set', () => {
 
@@ -149,11 +125,6 @@ describe('WriteAddressFieldComponent', () => {
 
     expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
     expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-
-    /* expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value).toEqual(address); */
 
   });
 
@@ -202,48 +173,6 @@ describe('WriteAddressFieldComponent', () => {
 
   });
 
-  /* it('should populate the address with the option selected, removing the \'manual link\'', () => {
-
-    const selectedAddress = buildAddress(1);
-    wrapperComponent.componentUnderTest.addressList.setValue(selectedAddress);
-    wrapperComponent.componentUnderTest.addressSelected();
-
-    fixture.detectChanges();
-
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(ADDRESS_FIELD_LABEL);
-    expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
-    expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-    expect(debugElement.query($MANUAL_LINK)).toBeFalsy();
-
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-
-    expect(wrapperComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value).toEqual(selectedAddress);
-
-  }); */
-
-  /* it('should populate a blank address when the \'manual link\' is clicked', () => {
-
-    fixture.debugElement.query($MANUAL_LINK).nativeElement.dispatchEvent(new Event('click', null));
-    fixture.detectChanges();
-
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(CASE_FIELD_LABEL);
-    expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
-    expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-    expect(debugElement.query($MANUAL_LINK)).toBeFalsy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine1).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine2).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine3).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.postTown).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.county).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.postCode).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.country).toEqual('');
-
-  }); */
-
   it('should render an error when postcode is blank', () => {
 
     debugElement.query($POSTCODE_LOOKUP_FIND).triggerEventHandler('click', null);
@@ -266,22 +195,49 @@ describe('WriteAddressFieldComponent', () => {
 
   it('should set the international address fields correctly', () => {
 
-    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeFalsy();
     expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
 
-    const noMockEvent = {target: {checked: true, id: 'no'}};
-    wrapperComponent.componentUnderTest.setInternationalAddress(noMockEvent);
+    wrapperComponent.componentUnderTest.setInternationalAddress(true);
     fixture.detectChanges();
 
-    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeTruthy();
     expect(wrapperComponent.componentUnderTest.isInternational).toBeTruthy();
 
-    const yesMockEvent = {target: {checked: true, id: 'yes'}};
-    wrapperComponent.componentUnderTest.setInternationalAddress(yesMockEvent);
+    wrapperComponent.componentUnderTest.setInternationalAddress(false);
     fixture.detectChanges();
 
-    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeTruthy();
     expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+  });
+
+  it('should emit international mode on blank address click', () => {
+    spyOn(wrapperComponent.componentUnderTest.internationalModeStart, 'emit');
+    wrapperComponent.componentUnderTest.internationalMode = true;
+    fixture.detectChanges();
+    wrapperComponent.componentUnderTest.blankAddress();
+
+    expect(wrapperComponent.componentUnderTest.internationalModeStart.emit).toHaveBeenCalled();
+  });
+
+  it('should correctly set details when address actually selected', () => {
+    expect(wrapperComponent.componentUnderTest.addressChosen).toBeFalsy();
+    spyOn(wrapperComponent.componentUnderTest.postcodeOptionSelected, 'emit');
+    wrapperComponent.componentUnderTest.addressSelected();
+
+    expect(wrapperComponent.componentUnderTest.addressChosen).toBeTruthy();
+    expect(wrapperComponent.componentUnderTest.postcodeOptionSelected.emit).toHaveBeenCalled();
+  });
+
+  it('should set international address correctly', () => {
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+    spyOn(wrapperComponent.componentUnderTest.ukAddressOptionSelected, 'emit');
+    wrapperComponent.componentUnderTest.setInternationalAddress(true);
+
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeTruthy();
+    expect(wrapperComponent.componentUnderTest.ukAddressOptionSelected.emit).toHaveBeenCalledWith(true);
+
+    wrapperComponent.componentUnderTest.setInternationalAddress(false);
+
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+    expect(wrapperComponent.componentUnderTest.ukAddressOptionSelected.emit).toHaveBeenCalledWith(false);
   });
 
 });

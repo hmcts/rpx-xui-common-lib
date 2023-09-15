@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AddressModel } from '../../models';
+import { AddressMessageEnum, AddressModel } from '../../models';
 import { AddressOption } from '../../models/address-option.model';
 import { AddressService } from '../../services/address/address.service';
 
@@ -10,6 +10,21 @@ import { AddressService } from '../../services/address/address.service';
   templateUrl: './write-address.component.html'
 })
 export class WriteAddressFieldComponent implements OnInit, OnChanges {
+
+  @Input()
+  public formGroup: FormGroup;
+  @Input()
+  public internationalMode = false;
+  @Input()
+  public isInternational: boolean;
+  @Input()
+  public submissionAttempted = false;
+  @Input()
+  public startedInternational: boolean;
+
+  @Output() public postcodeOptionSelected = new EventEmitter<void>();
+  @Output() public internationalModeStart = new EventEmitter<void>();
+  @Output() public ukAddressOptionSelected = new EventEmitter<boolean>();
 
   public addressesService: AddressService;
 
@@ -23,30 +38,17 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     county: ''
   };
 
-  @Input()
-  public formGroup: FormGroup;
+  public optionErrorsPresent = false;
 
-  @Input()
-  public isExpanded = false;
-
-  @Input()
-  public internationalMode = false;
-
-  @Output() public internationalModeStart = new EventEmitter<void>();
-
-  public isInternational: boolean;
-  public ukRadioChecked = false;
   public addressChosen = false;
 
-  public addressFormGroup = new FormGroup({});
-  public ukInternationalFormGroup = new FormGroup({});
-  public postcode: FormControl;
-  public addressList: FormControl;
-  public ukAddress: FormControl;
+  public addressFormGroup: FormGroup;
 
   public addressOptions: AddressOption[];
 
   public missingPostcode = false;
+
+  public optionErrorMessage = AddressMessageEnum.NO_OPTION_SELECTED;
 
   constructor(addressesService: AddressService) {
     this.addressesService = addressesService;
@@ -56,24 +58,23 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     if (!this.formGroup.get('address')) {
       this.formGroup.addControl('address', new FormControl({}));
     }
-    this.ukInternationalFormGroup = new FormGroup({
-      ukAddress: new FormControl()
+    // set the form group relevant to only the external parent component
+    this.addressFormGroup = new FormGroup({
+      // relevant to international mode
+      ukAddress: new FormControl(this.isInternational !== undefined ? (this.isInternational ? 'no' : 'yes') : null),
+      // relevant to postocode lookup
+      postcode: new FormControl(''),
+      addressList: new FormControl('')
     });
-    this.postcode = new FormControl('');
-    this.addressFormGroup.addControl('postcode', this.postcode);
-    this.addressList = new FormControl('');
-    this.addressFormGroup.addControl('address', this.addressList);
-    this.ukAddress = new FormControl('');
-    this.addressFormGroup.addControl('ukAddress', this.ukAddress);
   }
 
   public findAddress() {
-    if (!this.postcode.value) {
+    if (!this.addressFormGroup.get('postcode').value) {
       this.missingPostcode = true;
     } else {
       this.missingPostcode = false;
       this.addressField = null;
-      const postcode = this.postcode.value;
+      const postcode = this.addressFormGroup.get('postcode').value;
       this.addressOptions = [];
       this.addressesService.getAddressesForPostcode(postcode.replace(' ', '').toUpperCase()).subscribe(
         result => {
@@ -91,7 +92,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
             new AddressOption(undefined, this.defaultLabel(this.addressOptions.length))
           );
         });
-      this.addressList.setValue(undefined);
+      this.addressFormGroup.get('addressList').setValue(undefined);
       // this.refocusElement();
     }
   }
@@ -104,9 +105,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   }
 
   public shouldShowDetailFields() {
-    if (this.isExpanded) {
-      return true;
-    }
     if (!this.formGroup.get('address')) {
       return false;
     }
@@ -123,24 +121,36 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   }
 
   public addressSelected() {
-    this.addressField = this.addressList.value;
+    this.addressField = this.addressFormGroup.get('addressList').value;
     this.addressChosen = true;
     this.setFormValue();
+    this.postcodeOptionSelected.emit();
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    const change = changes['addressField'];
-    if (change) {
+    const addressChange = changes['addressField'];
+    if (addressChange) {
       this.setFormValue();
+    }
+    this.checkIfErrorsNeeded();
+  }
+
+  private checkIfErrorsNeeded(): void {
+    if (this.submissionAttempted && this.shouldShowDetailFields() && this.internationalMode && !this.addressChosen) {
+      // ensure errors present when submission attmempted on international radio buttons
+      this.optionErrorsPresent = true;
+    } else {
+      this.optionErrorsPresent = false;
+    }
+    if (this.optionErrorsPresent && (this.addressChosen || this.isInternational !== undefined)) {
+      // ensure parent errors not present when the child form group is present
+      this.optionErrorsPresent = false;
     }
   }
 
-  public setInternationalAddress(event: any): void {
-    const target = event.target;
-    if (target.checked) {
-      this.ukRadioChecked = true;
-      this.isInternational = target.id === 'no';
-    }
+  public setInternationalAddress(isInternational: boolean): void {
+    this.isInternational = isInternational;
+    this.ukAddressOptionSelected.emit(this.isInternational);
   }
 
   private defaultLabel(numberOfAddresses: number) {
