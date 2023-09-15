@@ -92,9 +92,3 @@ export interface LocationsByService {
   bookable?: boolean;
   locations: LocationByEPIMMSModel[];
 }
-
-export enum BookingCheckType {
-  NO_CHECK = 'NO_CHECK',
-  BOOKINGS_AND_BASE = 'BOOKINGS_AND_BASE',
-  POSSIBLE_BOOKINGS = 'POSSIBLE_BOOKINGS',
-}
