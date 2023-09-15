@@ -28,7 +28,7 @@ export class AddressService {
     return this.formatAddressLines(this.shiftAddressLinesUp(addressModel));
   }
 
-  private formatAddressLines(addressModel: AddressModel) {
+  private formatAddressLines(addressModel: AddressModel): AddressModel {
     ['addressLine1', 'addressLine2', 'addressLine3', 'postTown'].forEach((value: keyof typeof addressModel) => {
       addressModel[value] = this.toCapitalCase(addressModel[value]);
     });
