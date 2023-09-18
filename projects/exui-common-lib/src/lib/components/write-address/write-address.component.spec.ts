@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { AddressModel } from '../../models';
 import { AddressService } from '../../services';
-import { WriteAddressFieldComponent } from '..';
+import { WriteAddressFieldComponent } from './write-address.component';
 
 describe('WriteAddressFieldComponent', () => {
 
