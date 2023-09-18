@@ -103,35 +103,7 @@ describe('WriteAddressFieldComponent', () => {
     expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
     expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
     expect(debugElement.query($MANUAL_LINK)).toBeTruthy();
-
-    /*     expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-        expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeTruthy(); */
-
   });
-
-  /*   it('should render only address lines if field is search ', () => {
-      wrapperComponent.componentUnderTest.isExpanded = true; // false by default
-      fixture.detectChanges();
-      expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(CASE_FIELD_LABEL);
-      expect(debugElement.query($POSTCODE_LOOKUP)).toBeFalsy();
-      expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-      expect(debugElement.query($MANUAL_LINK)).toBeFalsy();
-      expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-      expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-    }); */
-
-  /* it('should render only title, lookup component and manual link when writeComplexFieldComponent is null', () => {
-    wrapperComponent.componentUnderTest.writeComplexFieldComponent = null;
-    fixture.detectChanges();
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(CASE_FIELD_LABEL);
-    expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
-    expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-    expect(debugElement.query($MANUAL_LINK)).toBeTruthy();
-
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeTruthy();
-
-  }); */
 
   it('should render only title, lookup component and address when address set', () => {
 
@@ -149,12 +121,6 @@ describe('WriteAddressFieldComponent', () => {
 
     expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
     expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-
-    /* expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value).toEqual(address); */
-
   });
 
   it('should render a single option of \'No address found\' when no addresses are returned from AddressService', () => {
@@ -201,48 +167,6 @@ describe('WriteAddressFieldComponent', () => {
     );
 
   });
-
-  /* it('should populate the address with the option selected, removing the \'manual link\'', () => {
-
-    const selectedAddress = buildAddress(1);
-    wrapperComponent.componentUnderTest.addressList.setValue(selectedAddress);
-    wrapperComponent.componentUnderTest.addressSelected();
-
-    fixture.detectChanges();
-
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(ADDRESS_FIELD_LABEL);
-    expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
-    expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-    expect(debugElement.query($MANUAL_LINK)).toBeFalsy();
-
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-
-    expect(wrapperComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value).toEqual(selectedAddress);
-
-  }); */
-
-  /* it('should populate a blank address when the \'manual link\' is clicked', () => {
-
-    fixture.debugElement.query($MANUAL_LINK).nativeElement.dispatchEvent(new Event('click', null));
-    fixture.detectChanges();
-
-    expect(debugElement.query($TITLE).nativeElement.innerHTML).toEqual(CASE_FIELD_LABEL);
-    expect(debugElement.query($POSTCODE_LOOKUP)).toBeTruthy();
-    expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
-    expect(debugElement.query($MANUAL_LINK)).toBeFalsy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-    expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeFalsy();
-
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine1).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine2).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.addressLine3).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.postTown).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.county).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.postCode).toEqual('');
-    expect(testHostComponent.componentUnderTest.writeComplexFieldComponent.complexGroup.value.country).toEqual('');
-
-  }); */
 
   it('should render an error when postcode is blank', () => {
 
