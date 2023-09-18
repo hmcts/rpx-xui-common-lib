@@ -26,8 +26,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
   @Output() public internationalModeStart = new EventEmitter<void>();
   @Output() public ukAddressOptionSelected = new EventEmitter<boolean>();
 
-  public addressesService: AddressService;
-
   public addressField: AddressModel = {
     addressLine1: '',
     addressLine2: '',
@@ -50,8 +48,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
   public optionErrorMessage = AddressMessageEnum.NO_OPTION_SELECTED;
 
-  constructor(addressesService: AddressService) {
-    this.addressesService = addressesService;
+  constructor(private readonly addressesService: AddressService) {
   }
 
   public ngOnInit(): void {
@@ -93,7 +90,6 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
           );
         });
       this.addressFormGroup.get('addressList').setValue(undefined);
-      // this.refocusElement();
     }
   }
 

@@ -29,11 +29,7 @@ export class WriteAddressInputsComponent implements OnChanges {
   public ngOnChanges(): void {
     const addressGroup = this.formGroup.get('address');
     // if there is an issue with the formgroup, ensure error styling is displayed
-    if (addressGroup.valid) {
-      this.errorsPresent = false;
-    } else {
-      this.errorsPresent = true;
-    }
+    this.errorsPresent = !addressGroup.valid;
   }
 
 }
