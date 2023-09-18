@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import { WriteAddressFieldComponent } from '..';
 import { AddressModel } from '../../models';
 import { AddressService } from '../../services';
+import { WriteAddressFieldComponent } from '..';
 
 describe('WriteAddressFieldComponent', () => {
 
