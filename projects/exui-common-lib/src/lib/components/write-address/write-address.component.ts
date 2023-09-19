@@ -125,8 +125,12 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
   public ngOnChanges(changes: SimpleChanges) {
     const addressChange = changes['addressField'];
+    const internationalChange = changes['isInternational'];
     if (addressChange) {
       this.setFormValue();
+    }
+    if (internationalChange && this.addressFormGroup && this.addressFormGroup.get('ukAddress')) {
+      this.addressFormGroup.get('ukAddress').patchValue(this.isInternational ? 'no' : 'yes');
     }
     this.checkIfErrorsNeeded();
   }
