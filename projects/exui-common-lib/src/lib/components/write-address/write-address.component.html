@@ -1,0 +1,61 @@
+<div class="govuk-form-group" [formGroup]="addressFormGroup" [ngClass]="{'govuk-form-group--error': optionErrorsPresent}">
+  <p class="govuk-error-message" *ngIf="optionErrorsPresent">
+    <span class="govuk-visually-hidden">Error:</span>{{optionErrorMessage}}
+  </p>
+  <div *ngIf="!shouldShowDetailFields() || (!startedInternational && !addressChosen)">
+    <div class="govuk-form-group postcodeLookup" id="addressLookup"
+      [ngClass]="{'form-group-error': missingPostcode}">
+      <label for="postcodeInput">
+        <span class="govuk-label"><b>Provide address details</b></span>
+        <span class="govuk-label">Enter a UK postcode</span>
+      </label>
+      <span class="error-message" *ngIf="missingPostcode">Enter the Postcode</span>
+      <input type="text" [ngClass]="{'govuk-input--error': missingPostcode}" id="postcodeInput" name="postcode"
+        class="govuk-input govuk-!-width-two-thirds postcodeinput inline-block" formControlName="postcode">
+      <button type="button" class="govuk-button" (click)="findAddress()">Find address</button>
+    </div>
+
+    <div class="govuk-form-group" *ngIf="addressOptions" id="selectAddress">
+      <label class="govuk-label" for="addressList">
+        <span class="form-label">Select an address</span>
+      </label>
+
+      <select class="form-control govuk-select ccd-dropdown addressList" id="addressList" name="address"
+        formControlName="addressList" (change)="addressSelected()" focusElement>
+        <option *ngFor="let addressOption of addressOptions" [ngValue]="addressOption.value">
+          {{addressOption.description}}
+        </option>
+      </select>
+    </div>
+
+    <a class="manual-link govuk-link" *ngIf="!shouldShowDetailFields() || (!startedInternational && !addressChosen)" (click)="blankAddress()"
+      href="javascript:void(0)">I can't enter a UK postcode</a>
+  </div>
+
+  <div class="govuk-radios" data-module="govuk-radios"
+    *ngIf="shouldShowDetailFields() && internationalMode && startedInternational && !addressChosen">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="yes" value="yes" name="ukAddress" type="radio" data-aria-controls="address-fields"
+        (click)="setInternationalAddress(false)" formControlName="ukAddress">
+      <label class="govuk-label govuk-radios__label" for="yes">
+        Yes
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" value="no" name="ukAddress" type="radio" data-aria-controls="address-fields"
+        (click)="setInternationalAddress(true)" formControlName="ukAddress">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No
+      </label>
+    </div>
+    <div class="govuk-radios__conditional" id="address-fields">
+      <xuilib-write-address-inputs *ngIf="isInternational !== undefined" [formGroup]="formGroup" [isInternational]="isInternational"
+                                  [submissionAttempted]="submissionAttempted">
+      </xuilib-write-address-inputs>
+    </div>
+  </div>
+
+  <xuilib-write-address-inputs *ngIf="shouldShowDetailFields() && (addressChosen || !internationalMode)"
+    [formGroup]="formGroup" [isInternational]="false" [submissionAttempted]="submissionAttempted"></xuilib-write-address-inputs>
+
+</div>
