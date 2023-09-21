@@ -5,5 +5,4 @@ export enum AddressMessageEnum {
     NO_COUNTRY_SELECTED = 'Enter country',
     NO_POSTCODE_SELECTED = 'Enter postcode',
     INVALID_POSTCODE = 'Enter valid postcode'
-
   }
