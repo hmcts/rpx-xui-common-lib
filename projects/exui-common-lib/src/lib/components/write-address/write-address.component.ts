@@ -94,7 +94,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
             new AddressOption(undefined, this.defaultLabel(this.addressOptions.length))
           );
         }, (error) => {
-          // Note: Edited this so that errors not produced if there are no results for a postcode
+          // Edited this so that errors not produced if there are no results for a postcode
           console.log(`An error occurred retrieving addresses for postcode ${postcode}. ${error}`);
           this.addressOptions.unshift(
             new AddressOption(undefined, this.defaultLabel(this.addressOptions.length))
