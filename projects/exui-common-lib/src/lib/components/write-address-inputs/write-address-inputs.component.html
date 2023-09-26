@@ -66,8 +66,11 @@
       <label class="govuk-label" for="postCode">
         Postcode{{this.isInternational ? ' (Optional)' : ''}}
       </label>
-      <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && !formGroup.get('address').get('postCode').valid">
+      <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('required')">
         <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_POSTCODE_SELECTED}}
+      </p>
+      <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('invalidPostcode')">
+        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.INVALID_POSTCODE}}
       </p>
       <input class="govuk-input govuk-!-width-one-third" id="postCode" name="postCode" type="text"
         formControlName="postCode">
