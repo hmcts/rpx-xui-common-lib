@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-address-non-postcode-3",
+  "version": "1.9.0-postcode-validation",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
