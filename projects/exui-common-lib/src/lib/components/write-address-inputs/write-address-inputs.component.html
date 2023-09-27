@@ -1,0 +1,80 @@
+<ng-container>
+  <form [formGroup]="formGroup">
+  <div class="govuk-form-group" formGroupName="address" [ngClass]="{'govuk-form-group--error': submissionAttempted && errorsPresent}">
+    <label class="govuk-label govuk-!-font-weight-bold">
+      Enter address details
+    </label>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="addressLine1">
+        Building and Street
+      </label>
+      <p class="govuk-error-message" *ngIf="submissionAttempted && !formGroup.get('address').get('addressLine1').valid">
+        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_STREET_SELECTED}}
+      </p>
+      <input class="govuk-input govuk-!-width-full" id="addressLine1" name="addressLine1" type="text"
+        formControlName="addressLine1">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="addressLine2">
+        Address line 2 (Optional)
+      </label>
+      <input class="govuk-input govuk-!-width-full" id="addressLine2" name="addressLine2" type="text"
+        formControlName="addressLine2">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="addressLine3">
+        Address line 3 (Optional)
+      </label>
+      <input class="govuk-input govuk-!-width-full" id="addressLine3" name="addressLine3" type="text"
+        formControlName="addressLine3">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="postTown">
+        Town or City
+      </label>
+      <p class="govuk-error-message" *ngIf="submissionAttempted && !formGroup.get('address').get('postTown').valid">
+        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_CITY_SELECTED}}
+      </p>
+      <input class="govuk-input govuk-!-width-two-thirds" id="postTown" name="postTown" type="text"
+        formControlName="postTown">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="county">
+        County{{this.isInternational ? '/ State/ Province' : ''}} (Optional)
+      </label>
+      <input class="govuk-input govuk-!-width-two-thirds" id="county" name="county" type="text"
+        formControlName="county">
+    </div>
+
+    <div *ngIf="isInternational" class="govuk-form-group">
+      <label class="govuk-label" for="country">
+        Country
+      </label>
+      <p class="govuk-error-message" *ngIf="submissionAttempted && !formGroup.get('address').get('country').valid">
+        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_COUNTRY_SELECTED}}
+      </p>
+      <input class="govuk-input govuk-!-width-two-thirds" id="country" name="country" type="text"
+        formControlName="country">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="postCode">
+        Postcode{{this.isInternational ? ' (Optional)' : ''}}
+      </label>
+      <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('required')">
+        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_POSTCODE_SELECTED}}
+      </p>
+      <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('invalidPostcode')">
+        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.INVALID_POSTCODE}}
+      </p>
+      <input class="govuk-input govuk-!-width-one-third" id="postCode" name="postCode" type="text"
+        formControlName="postCode">
+    </div>
+  </div>
+</form>
+</ng-container>

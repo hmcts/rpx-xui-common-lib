@@ -34,3 +34,5 @@ export * from './user-select/user-select.component';
 export * from './user-select/user-select.component';
 export * from './find-task-name/find-task-name.component';
 export * from './exui-main-wrapper/exui-page-wrapper.component';
+export * from './write-address/write-address.component';
+export * from './write-address-inputs/write-address-inputs.component';
