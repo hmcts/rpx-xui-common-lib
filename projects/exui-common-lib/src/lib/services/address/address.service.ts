@@ -18,9 +18,9 @@ export class AddressService {
       .pipe(
         map((res) => res.results))
       .pipe(
-        map(output => output.map((addresses: any) =>
+        map(output => output ? output.map((addresses: any) =>
           this.format(new AddressParser().parse(addresses[AddressType.DPA]))
-        ))
+        ) : [])
       );
   }
 
