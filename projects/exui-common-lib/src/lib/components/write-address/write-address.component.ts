@@ -71,6 +71,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
       postcode: new FormControl(''),
       addressList: new FormControl('')
     });
+    this.setPostcodeForm();
   }
 
   public findAddress() {
@@ -194,5 +195,10 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
         this.addressField
       );
     }
+  }
+
+  private setPostcodeForm(): void {
+    const postcodeNeeded = this.isInternational === undefined && this.formGroup.get('address') && this.formGroup.get('address').get('postCode');
+    this.addressFormGroup.get('postcode').patchValue(postcodeNeeded ? this.formGroup.get('address').get('postCode').value : '');
   }
 }
