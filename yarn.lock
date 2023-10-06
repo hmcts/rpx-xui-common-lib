@@ -1699,7 +1699,7 @@ __metadata:
     ng-packagr: ^11.2.4
     ngx-pagination: ^3.2.1
     protractor: ~7.0.0
-    rpx-xui-translation: ^0.2.3-yes-no-bug-fix-v2
+    rpx-xui-translation: ^0.2.3-yes-no-bug-fix-v3
     rxjs: ~6.6.7
     ts-node: ~7.0.0
     tslib: ^2.0.0
@@ -11309,7 +11309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rpx-xui-translation@npm:^0.2.3-yes-no-bug-fix-v2":
+"rpx-xui-translation@npm:^0.2.3-yes-no-bug-fix-v3":
   version: 0.2.3
   resolution: "rpx-xui-translation@npm:0.2.3"
   dependencies:
