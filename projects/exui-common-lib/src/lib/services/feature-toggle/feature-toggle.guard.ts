@@ -26,7 +26,7 @@ export class FeatureToggleGuard implements CanActivate {
                 feature => this.featureToggleService.getValueOnce<boolean>(feature, false)
         )).pipe(
             map(featureStatuses => featureStatuses.every(status => status)),
-            map(status => status || this.router.parseUrl(route.data.featureDisabledRedirect as string))
+            map(status => (route.data.expectFeatureEnabled && status) || (!route.data.expectFeatureEnabled && !status) || this.router.parseUrl(route.data.featureDisabledRedirect as string))
         );
     }
 }
