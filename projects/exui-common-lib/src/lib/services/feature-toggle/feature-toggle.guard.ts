@@ -22,9 +22,9 @@ export class FeatureToggleGuard implements CanActivate {
      * @param route Automatically provided by Angular
      */
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
-        return combineLatest(...(route.data.needsFeaturesEnabled as string[]).map(
+        return combineLatest([...(route.data.needsFeaturesEnabled as string[]).map(
                 feature => this.featureToggleService.getValueOnce<boolean>(feature, false)
-        )).pipe(
+        )]).pipe(
             map(featureStatuses => featureStatuses.every(status => status)),
             map(status => (route.data.expectFeatureEnabled !== false && status) || (!route.data.expectFeatureEnabled && !status) || this.router.parseUrl(route.data.featureDisabledRedirect as string))
         );
