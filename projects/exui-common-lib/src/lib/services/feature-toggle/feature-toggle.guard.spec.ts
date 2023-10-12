@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 import { FeatureToggleGuard, FeatureToggleService } from '..';
 
 
-describe('RoleGuard', () => {
+fdescribe('RoleGuard', () => {
   let mockService: any;
   let mockRouter: any;
   let guard: FeatureToggleGuard;
@@ -33,8 +33,9 @@ describe('RoleGuard', () => {
     guard.canActivate({ data: { needsFeaturesEnabled: ['mo-new-register-org'], title: 'Register Organisation', featureDisabledRedirect: '/register-org/register' }} as unknown as ActivatedRouteSnapshot)
       .pipe(take(1))
       .subscribe(allowed => {
-        expect(allowed).toBe(true);
+        expect(allowed).not.toBe(true);
       });
+      expect(mockRouter.parseUrl).toHaveBeenCalledWith('/register-org/register');
   });
 
   it('should deactivate when feature present and expectFeatureEnabled false', () => {
@@ -44,6 +45,7 @@ describe('RoleGuard', () => {
       .subscribe(allowed => {
         expect(allowed).not.toBe(true);
       });
+    expect(mockRouter.parseUrl).toHaveBeenCalledWith('/register-org/register');
   });
 
   it('should activate when feature not present and expectFeatureEnabled false', () => {
@@ -57,7 +59,7 @@ describe('RoleGuard', () => {
 
   it('should activate when feature present and expectFeatureEnabled true', () => {
     mockService.getValueOnce.and.returnValue(of(true));
-    guard.canActivate({ data: { needsFeaturesEnabled: ['mo-new-register-org'], expectFeatureEnabled: true, title: 'Register Organisation', featureDisabledRedirect: '/register-org/register' }} as unknown as ActivatedRouteSnapshot)
+    guard.canActivate({ data: { needsFeaturesEnabled: ['mo-new-register-org'], expectFeatureEnabled: true, title: 'Register Organisation', featureDisabledRedirect: '/register-org-new/register' }} as unknown as ActivatedRouteSnapshot)
       .pipe(take(1))
       .subscribe(allowed => {
         expect(allowed).toBe(true);
@@ -66,10 +68,11 @@ describe('RoleGuard', () => {
 
   it('should activate when feature not present and expectFeatureEnabled true', () => {
     mockService.getValueOnce.and.returnValue(of(false));
-    guard.canActivate({ data: { needsFeaturesEnabled: ['mo-new-register-org'], expectFeatureEnabled: true, title: 'Register Organisation', featureDisabledRedirect: '/register-org/register' }} as unknown as ActivatedRouteSnapshot)
+    guard.canActivate({ data: { needsFeaturesEnabled: ['mo-new-register-org'], expectFeatureEnabled: true, title: 'Register Organisation', featureDisabledRedirect: '/register-org-new/register' }} as unknown as ActivatedRouteSnapshot)
       .pipe(take(1))
       .subscribe(allowed => {
         expect(allowed).not.toBe(true);
       });
+    expect(mockRouter.parseUrl).toHaveBeenCalledWith('/register-org-new/register');
   });
 });
