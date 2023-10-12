@@ -66,7 +66,7 @@ fdescribe('RoleGuard', () => {
       });
   });
 
-  it('should activate when feature not present and expectFeatureEnabled true', () => {
+  it('should activate when feature not present and expectFeatureEnabled true ', () => {
     mockService.getValueOnce.and.returnValue(of(false));
     guard.canActivate({ data: { needsFeaturesEnabled: ['mo-new-register-org'], expectFeatureEnabled: true, title: 'Register Organisation', featureDisabledRedirect: '/register-org-new/register' }} as unknown as ActivatedRouteSnapshot)
       .pipe(take(1))
