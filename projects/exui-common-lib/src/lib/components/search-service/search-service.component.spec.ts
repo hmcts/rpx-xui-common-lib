@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
-import { MatLegacyOptionSelectionChange as MatOptionSelectionChange} from '@angular/material/legacy-core';
+import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FilterConfigOption } from '../../models';
 import { SearchServiceComponent } from './search-service.component';
@@ -24,7 +24,7 @@ describe('SearchServiceComponent', () => {
       declarations: [SearchServiceComponent],
       providers: []
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
