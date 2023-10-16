@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed} from '@angular/core/testing';
-import {UntypedFormControl, UntypedFormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
 import { TaskNameService } from '../../services/task-name/task-name.service';
@@ -29,9 +29,9 @@ describe('FindTaskNameComponent', () => {
     fixture = TestBed.createComponent(FindTaskNameComponent);
 
     component = fixture.componentInstance;
-    component.findTaskNameGroup = new UntypedFormGroup({});
-    component.findTaskNameControl = new UntypedFormControl();
-    component.findTaskNameGroup.addControl('findTaskNameControl', new UntypedFormControl());
+    component.findTaskNameGroup = new FormGroup({});
+    component.findTaskNameControl = new FormControl();
+    component.findTaskNameGroup.addControl('findTaskNameControl', new FormControl());
     fixture.detectChanges();
   });
 

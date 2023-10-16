@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-//import { MatOptionSelectionChange } from '@angular/material/core/option/option';
 import { FilterConfigOption } from '../../models';
+import { MatLegacyOptionSelectionChange as MatOptionSelectionChange} from '@angular/material/legacy-core';
 
 @Component({
   selector: 'exui-search-service',
@@ -28,7 +28,7 @@ export class SearchServiceComponent {
     this.searchTerm = '';
   }
 
-  public onSelectionChanged($event: any): void {
+  public onSelectionChanged($event: MatOptionSelectionChange): void {
     const label = $event.source?.value;
     if (label && $event.source.selected) {
       const selectedService = this.options.find(s => s.label === label);

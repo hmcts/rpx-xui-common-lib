@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterConfigOption, FilterFieldConfig } from '../../models';
 import { SearchServiceComponent } from '../search-service/search-service.component';
@@ -12,7 +12,7 @@ import { SearchServiceComponent } from '../search-service/search-service.compone
 export class FindServiceComponent implements OnInit, OnDestroy {
   @Input() public field: FilterFieldConfig;
   @Input() public serviceTitle: string;
-  @Input() public form: UntypedFormGroup;
+  @Input() public form: FormGroup;
   @Input() public disabled: boolean = false;
   @Input() public formSubmissionEvent$: Subject<void>;
   @ViewChild(SearchServiceComponent, { static: true }) public searchServiceComponent: SearchServiceComponent;
@@ -72,7 +72,7 @@ export class FindServiceComponent implements OnInit, OnDestroy {
       this.removeAllSelectedValues();
       this.isSelectedAll = false;
     } else if (service.key) {
-      const formArray = this.form.get(this.field.name) as UntypedFormArray;
+      const formArray = this.form.get(this.field.name) as FormArray;
       const index = (formArray.value).findIndex((selectedService: FilterConfigOption) => selectedService.key.toLowerCase() === service.key.toLowerCase());
       if (index > -1) {
         formArray.removeAt(index);
@@ -92,13 +92,13 @@ export class FindServiceComponent implements OnInit, OnDestroy {
   }
 
   private removeAllSelectedValues(): void {
-    const formArray = this.form.get(this.field.name) as UntypedFormArray;
+    const formArray = this.form.get(this.field.name) as FormArray;
     formArray.clear();
   }
 
   private addSelectedServiceToForm(service: FilterConfigOption): void {
-    const formArray = this.form.get(this.field.name) as UntypedFormArray;
-    formArray.push(new UntypedFormControl(service));
+    const formArray = this.form.get(this.field.name) as FormArray;
+    formArray.push(new FormControl(service));
   }
 
   private sortOptionsAlphabetically(): FilterConfigOption[] {

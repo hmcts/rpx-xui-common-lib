@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RpxTranslationConfig, RpxTranslationModule, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkTextareaComponent } from './gov-uk-textarea.component';
@@ -15,7 +15,7 @@ class RpxTranslateMockPipe implements PipeTransform {
 describe('GovUkSelectComponent', () => {
   let component: GovUkTextareaComponent;
   let fixture: ComponentFixture<GovUkTextareaComponent>;
-  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
+  const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('GovUkSelectComponent', () => {
       providers: [
         RpxTranslationConfig,
         RpxTranslationService,
-        { provide: UntypedFormBuilder, useValue: formBuilder }
+        { provide: FormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();

@@ -1,12 +1,12 @@
 import {  NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { UntypedFormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InviteUserFormComponent } from './invite-user-form.component';
 
 describe('InviteUserFormComponent', () => {
   let component: InviteUserFormComponent;
   let fixture: ComponentFixture<InviteUserFormComponent>;
-  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
+  const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('InviteUserFormComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ InviteUserFormComponent ],
       providers: [
-        { provide: UntypedFormBuilder, useValue: formBuilder }
+        { provide: FormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();

@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { UntypedFormControl, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
 import { By } from '@angular/platform-browser';
@@ -299,17 +299,17 @@ describe('GenericFilterComponent', () => {
       radioSelectionChange: condition
     };
 
-    const formGroup = new UntypedFormGroup({
-      domain: new UntypedFormControl(''),
-      email: new UntypedFormControl(''),
-      id: new UntypedFormControl(''),
-      name: new UntypedFormControl(''),
-      knownAs: new UntypedFormControl(''),
+    const formGroup = new FormGroup({
+      domain: new FormControl(''),
+      email: new FormControl(''),
+      id: new FormControl(''),
+      name: new FormControl(''),
+      knownAs: new FormControl(''),
     });
 
     it('should correctly set field to disabled when condition met', () => {
-      component.form = new UntypedFormGroup({});
-      component.form.addControl('selectPerson', new UntypedFormControl());
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
       component.form.addControl('person', formGroup);
       // check non-person field to see if it will set correctly
       expect(component.disabled(selectField, component.form)).toBe(true);
@@ -324,8 +324,8 @@ describe('GenericFilterComponent', () => {
     });
 
     it('should correctly set field to hidden when condition met', () => {
-      component.form = new UntypedFormGroup({});
-      component.form.addControl('selectPerson', new UntypedFormControl());
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
       component.form.addControl('person', formGroup);
       expect(component.hidden(selectField, component.form)).toBe(true);
       selectField.showCondition = null;
@@ -337,20 +337,20 @@ describe('GenericFilterComponent', () => {
     });
 
     it('should correctly update domain when dropdown re-selected', () => {
-      component.form = new UntypedFormGroup({});
+      component.form = new FormGroup({});
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
-      component.form.addControl('selectPerson', new UntypedFormControl('All'));
+      component.form.addControl('selectPerson', new FormControl('All'));
       component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
       expect(component.form.get('person').get('email').value).toBe(null);
     });
 
     it('should correctly remove person when radio button changed', () => {
-      component.form = new UntypedFormGroup({});
-      component.form.addControl('selectPerson', new UntypedFormControl());
-      component.form.addControl('findPersonControl', new UntypedFormControl());
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
+      component.form.addControl('findPersonControl', new FormControl());
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
       component.form.get('person').get('email').patchValue('example');
@@ -363,15 +363,15 @@ describe('GenericFilterComponent', () => {
     });
 
     it('should correctly update value when radio button changed', () => {
-      component.form = new UntypedFormGroup({});
-      component.form.addControl('selectPerson', new UntypedFormControl());
+      component.form = new FormGroup({});
+      component.form.addControl('selectPerson', new FormControl());
       component.form.get('selectPerson').patchValue('All');
       component.inputChanged(personField);
       expect(component.form.get('selectPerson').value).toBe('Specific person');
     });
 
     it('should correctly remove person field when method called', () => {
-      component.form = new UntypedFormGroup({});
+      component.form = new FormGroup({});
 
       component.form.addControl('person', formGroup);
       component.form.get('person').get('domain').patchValue('All');
@@ -380,7 +380,7 @@ describe('GenericFilterComponent', () => {
       component.form.get('person').get('name').patchValue('Test');
       component.form.get('person').get('knownAs').patchValue('testing123');
 
-      component.form.addControl('selectPerson', new UntypedFormControl('All'));
+      component.form.addControl('selectPerson', new FormControl('All'));
       component.form.get('selectPerson').patchValue('All');
       component.fieldChanged(radioField, component.form);
       expect(component.form.get('person').get('domain').value).toBe(null);
@@ -636,8 +636,8 @@ describe('Find location filter config', () => {
     };
 
     it('should display group-dropdown', () => {
-      component.form = new UntypedFormGroup({});
-      component.form.addControl('group-dropdown', new UntypedFormControl());
+      component.form = new FormGroup({});
+      component.form.addControl('group-dropdown', new FormControl());
       expect(component).toBeTruthy();
       expect(component.filterSkillsByServices(null, filterConfig)).toEqual(sortedGroupOptions);
     });
@@ -718,10 +718,10 @@ describe('Task Name Filter', () => {
     expect(findTaskNameFilterElement).toBeTruthy();
   });
   it('should add a formGroup and a form control', () => {
-    expect(component.form.get(fieldName)).toBeInstanceOf(UntypedFormGroup);
-    expect(component.form.get(fieldName).get('task_type_id')).toBeInstanceOf(UntypedFormControl);
-    expect(component.form.get(fieldName).get('task_type_name')).toBeInstanceOf(UntypedFormControl);
+    expect(component.form.get(fieldName)).toBeInstanceOf(FormGroup);
+    expect(component.form.get(fieldName).get('task_type_id')).toBeInstanceOf(FormControl);
+    expect(component.form.get(fieldName).get('task_type_name')).toBeInstanceOf(FormControl);
 
-    expect(component.form.get('findTaskNameControl')).toBeInstanceOf(UntypedFormControl);
+    expect(component.form.get('findTaskNameControl')).toBeInstanceOf(FormControl);
   });
 });
