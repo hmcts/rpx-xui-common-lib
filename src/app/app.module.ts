@@ -23,7 +23,7 @@ import { AppComponent } from './app.component';
       validity: {
         days: 1
       },
-      testMode: true,
+      testMode: true
     })
   ],
   providers: [],
