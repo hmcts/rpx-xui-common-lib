@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GovUkCheckboxesComponent } from './gov-uk-checkboxes.component';
 
 @Pipe({ name: 'rpxTranslate' })
@@ -13,7 +13,7 @@ class RpxTranslateMockPipe implements PipeTransform {
 describe('GovUkCheckboxesComponent', () => {
   let component: GovUkCheckboxesComponent;
   let fixture: ComponentFixture<GovUkCheckboxesComponent>;
-  const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
+  const formBuilder: FormBuilder = new FormBuilder();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -21,7 +21,7 @@ describe('GovUkCheckboxesComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ GovUkCheckboxesComponent, RpxTranslateMockPipe ],
       providers: [
-        { provide: UntypedFormBuilder, useValue: formBuilder }
+        { provide: FormBuilder, useValue: formBuilder }
     ]
     })
     .compileComponents();
@@ -30,8 +30,8 @@ describe('GovUkCheckboxesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GovUkCheckboxesComponent);
     component = fixture.componentInstance;
-    component.group = new UntypedFormGroup({
-      item: new UntypedFormControl()
+    component.group = new FormGroup({
+      item: new FormControl()
     });
     component.config = {hint: 'hint', legend: 'legend', id: 'id', name: 'item'};
     component.items = [{id: 'item', value: 'item', label: 'Item'}];

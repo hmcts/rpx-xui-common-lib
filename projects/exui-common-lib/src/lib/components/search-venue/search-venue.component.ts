@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, mergeMap} from 'rxjs/operators';
 import {LocationByEPIMMSModel} from '../../models/location.model';
@@ -18,7 +18,7 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
   @ViewChild('inputSelectedLocation', { read: ElementRef }) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
-  public findLocationFormGroup: UntypedFormGroup;
+  public findLocationFormGroup: FormGroup;
   @Input() public showAutocomplete: boolean = false;
   @Input() public displayedLocations: LocationByEPIMMSModel[];
   @Output() public locationChanged = new EventEmitter<LocationByEPIMMSModel>();
@@ -28,7 +28,7 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
   public readyAfterContent: boolean = false;
   public searchInProgress: boolean = false;
 
-  constructor(private readonly locationService: LocationService, fb: UntypedFormBuilder) {
+  constructor(private readonly locationService: LocationService, fb: FormBuilder) {
     this.findLocationFormGroup = fb.group({
       findLocationFormControl: [null],
       locationSelectedFormControl: [null]
@@ -91,8 +91,8 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
   }
 
   public onSelectionChange(selection?: LocationByEPIMMSModel): void {
-    if (this.findLocationFormGroup.controls.findLocationFormControl instanceof UntypedFormArray) {
-      (this.findLocationFormGroup.controls.locationSelectedFormControl as UntypedFormArray).push(new UntypedFormControl(selection.epimms_id));
+    if (this.findLocationFormGroup.controls.findLocationFormControl instanceof FormArray) {
+      (this.findLocationFormGroup.controls.locationSelectedFormControl as FormArray).push(new FormControl(selection.epimms_id));
     } else {
       this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(selection);
     }

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ErrorMessagesModel } from '../../gov-ui/models';
 
 @Component({
@@ -8,7 +8,7 @@ import { ErrorMessagesModel } from '../../gov-ui/models';
   })
 
   export class InviteUserPermissionComponent {
-    @Input() public inviteUserForm: UntypedFormGroup;
+    @Input() public inviteUserForm: FormGroup;
     @Input() public isPuiCaseManager: boolean = false;
     @Input() public isPuiUserManager: boolean = false;
     @Input() public isPuiOrganisationManager: boolean = false;

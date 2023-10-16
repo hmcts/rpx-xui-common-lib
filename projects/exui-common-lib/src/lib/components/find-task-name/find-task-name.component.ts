@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {debounceTime, filter, mergeMap, tap} from 'rxjs/operators';
 import {PersonRole} from '../../models';
@@ -19,7 +19,7 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
   @Input() public boldTitle = 'Find the task name';
   @Input() public subTitle = 'Type the name of the task name and select them.';
   @Input() public domain = PersonRole.ALL;
-  @Input() public findTaskNameGroup: UntypedFormGroup = new UntypedFormGroup({});
+  @Input() public findTaskNameGroup: FormGroup = new FormGroup({});
   @Input() public selectedTaskName: string;
   @Input() public submitted: boolean = true;
   @Input() public assignedUser?: string;
@@ -32,7 +32,7 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
   @Input() public services: string = 'IA';
   @Input() public disabled: boolean = null;
   public showAutocomplete: boolean = false;
-  public findTaskNameControl: UntypedFormControl;
+  public findTaskNameControl: FormControl;
   public filteredOptions: any[] = [];
   public readonly minSearchCharacters = 1;
   private sub: Subscription;
@@ -47,7 +47,7 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.findTaskNameControl = new UntypedFormControl(this.selectedTaskName);
+    this.findTaskNameControl = new FormControl(this.selectedTaskName);
     this.findTaskNameGroup.addControl('findTaskNameControl', this.findTaskNameControl);
     this.sub = this.findTaskNameControl.valueChanges
     .pipe(

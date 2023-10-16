@@ -1,4 +1,4 @@
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { BookingCheckType } from './location.model';
 import { PersonRole } from './person.model';
 
@@ -24,7 +24,7 @@ export interface FilterConfig {
   preSelectedNestedCheckbox?: number[];
   cancelButtonCallback?(): void;
   applyButtonCallback?(): void;
-  copyFields?(form: UntypedFormGroup): UntypedFormGroup;
+  copyFields?(form: FormGroup): FormGroup;
 }
 
 export interface FilterFieldOption {

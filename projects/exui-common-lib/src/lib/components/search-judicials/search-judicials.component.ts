@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, mergeMap } from 'rxjs/operators';
 import { JudicialUserModel } from '../../models';
@@ -11,7 +11,7 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
   styleUrls: ['./search-judicials.component.scss']
 })
 export class SearchJudicialsComponent implements OnInit {
-  public formGroup: UntypedFormGroup;
+  public formGroup: FormGroup;
   @Input() public control: AbstractControl;
   @Input() public disabled: boolean = null;
   @Input() public selectedJudicials: JudicialUserModel[] = [];
@@ -29,7 +29,7 @@ export class SearchJudicialsComponent implements OnInit {
   public keyUpSubject$: Subject<string> = new Subject();
   public searchInProgress: boolean = false;
 
-  constructor(private readonly judicialService: FindAPersonService, fb: UntypedFormBuilder) {
+  constructor(private readonly judicialService: FindAPersonService, fb: FormBuilder) {
     this.formGroup = fb.group({
       formControl: [null],
       selectedFormControl: [null]
@@ -88,8 +88,8 @@ export class SearchJudicialsComponent implements OnInit {
   }
 
   public onSelectionChange(selection?: JudicialUserModel): void {
-    if (this.formGroup.controls.formControl instanceof UntypedFormArray) {
-      (this.formGroup.controls.selectedFormControl as UntypedFormArray).push(new UntypedFormControl(selection.idamId));
+    if (this.formGroup.controls.formControl instanceof FormArray) {
+      (this.formGroup.controls.selectedFormControl as FormArray).push(new FormControl(selection.idamId));
     } else {
       this.formGroup.controls.selectedFormControl.setValue(selection);
     }

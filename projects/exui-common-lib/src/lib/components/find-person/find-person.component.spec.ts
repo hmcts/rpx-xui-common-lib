@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { UntypedFormControl, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
 import { of } from 'rxjs';
@@ -39,8 +39,8 @@ describe('FindPersonComponent', () => {
     fixture = TestBed.createComponent(FindPersonComponent);
 
     component = fixture.componentInstance;
-    component.findPersonGroup = new UntypedFormGroup({});
-    component.findPersonGroup.addControl('findPersonControl', new UntypedFormControl());
+    component.findPersonGroup = new FormGroup({});
+    component.findPersonGroup.addControl('findPersonControl', new FormControl());
     fixture.detectChanges();
   });
 
