@@ -3,12 +3,12 @@
     <span class="govuk-visually-hidden">Error:</span>{{optionErrorMessage}}
   </p>
   <div *ngIf="postcodeLookupVisible()">
-    <div class="govuk-form-group postcodeLookup" id="addressLookup">
+    <div class="govuk-body postcodeLookup" id="addressLookup">
       <label for="postcodeInput">
         <span class="govuk-label"><b>Provide address details</b></span>
-        <span class="govuk-label">Enter a UK postcode</span>
+        <span class="govuk-hint">Enter a UK postcode</span>
       </label>
-      <div class="govuk-form-group"
+      <div class="govuk-body"
       [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
         <p class="govuk-error-message" *ngIf="missingPostcode || postcodeErrorPresent(true)">
           <span class="govuk-visually-hidden">Error:</span>{{postcodeErrorMessage}}
@@ -19,12 +19,12 @@
       </div>
     </div>
 
-    <div class="govuk-form-group"
+    <div class="govuk-body"
      *ngIf="addressOptions" id="selectAddress">
       <label class="govuk-label" for="addressList">
         <span class="form-label">Select an address</span>
       </label>
-      <div class="govuk-form-group"
+      <div class="govuk-body"
       [ngClass]="{'govuk-form-group--error': postcodeErrorPresent(false)}">
         <p class="govuk-error-message" *ngIf="postcodeErrorPresent(false)">
           <span class="govuk-visually-hidden">Error:</span>{{selectErrorMessage}}

@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-route-expected-feature-2",
+  "version": "1.9.0-register-other-gds-review",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",

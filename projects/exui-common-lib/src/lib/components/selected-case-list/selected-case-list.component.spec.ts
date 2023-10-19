@@ -29,11 +29,17 @@ describe('SelectedCaseListComponent', () => {
   });
 
   it('should unselect', () => {
-    expect(component.onUnselect).toBeDefined();
+    const mockCase = {caseId: '123456789', caseTitle: 'Example case'};
+    spyOn(component.unselect, 'emit');
+    component.onUnselect(mockCase);
+    expect(component.unselect.emit).toHaveBeenCalledWith(mockCase);
   });
 
   it('should synchronize store', () => {
-    expect(component.onSynchronizeStore).toBeDefined();
+    const mockCase = {caseId: '123456789', caseTitle: 'Example case'};
+    spyOn(component.synchronizeStore, 'emit');
+    component.onSynchronizeStore(mockCase);
+    expect(component.synchronizeStore.emit).toHaveBeenCalledWith(mockCase);
   });
 
   it('should track by cased id', () => {

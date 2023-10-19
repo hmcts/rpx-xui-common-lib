@@ -1,11 +1,11 @@
 <ng-container>
   <form [formGroup]="formGroup">
-  <div class="govuk-form-group" formGroupName="address" [ngClass]="{'govuk-form-group--error': submissionAttempted && errorsPresent}">
+  <div class="govuk-body" formGroupName="address" [ngClass]="{'govuk-form-group--error': submissionAttempted && errorsPresent}">
     <label class="govuk-label govuk-!-font-weight-bold">
       Enter address details
     </label>
 
-    <div class="govuk-form-group">
+    <div class="govuk-body">
       <label class="govuk-label" for="addressLine1">
         Building and Street
       </label>
@@ -16,7 +16,7 @@
         formControlName="addressLine1">
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-body">
       <label class="govuk-label" for="addressLine2">
         Address line 2 (Optional)
       </label>
@@ -24,7 +24,7 @@
         formControlName="addressLine2">
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-body">
       <label class="govuk-label" for="addressLine3">
         Address line 3 (Optional)
       </label>
@@ -32,7 +32,7 @@
         formControlName="addressLine3">
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-body">
       <label class="govuk-label" for="postTown">
         Town or City
       </label>
@@ -43,7 +43,7 @@
         formControlName="postTown">
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-body">
       <label class="govuk-label" for="county">
         County{{this.isInternational ? '/ State/ Province' : ''}} (Optional)
       </label>
@@ -51,7 +51,7 @@
         formControlName="county">
     </div>
 
-    <div *ngIf="isInternational" class="govuk-form-group">
+    <div *ngIf="isInternational" class="govuk-body">
       <label class="govuk-label" for="country">
         Country
       </label>
@@ -62,7 +62,7 @@
         formControlName="country">
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-body">
       <label class="govuk-label" for="postCode">
         Postcode{{this.isInternational ? ' (Optional)' : ''}}
       </label>
