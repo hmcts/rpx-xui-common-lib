@@ -84,6 +84,24 @@
                 [for]="'checkbox_' + field.name + item.key"
                 class="govuk-label govuk-checkboxes__label"
                 [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
+              >{{item.label}}</label>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'nested-checkbox'">
+          <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+            <div *ngFor="let item of filteredSkillsByServicesCheckbox; let i = index" class="govuk-checkboxes__item">
+              <input type="checkbox" class="govuk-checkboxes__input"
+                     [attr.disabled]="disabled(field, form)"
+                     [formControlName]="i"
+                     (change)="toggleSelectAll($event, form, item, field)"
+                     [value]="item.key" [id]="'checkbox_' + field.name + item.key"
+                     [name]="'checkbox_' + field.name + item.key"
+              />
+              <label
+                [for]="'checkbox_' + field.name + item.key"
+                class="govuk-label govuk-checkboxes__label"
+                [ngClass]="{'govuk-!-font-weight-bold': item.selectAll}"
               >{{item.label | rpxTranslate}}</label>
             </div>
           </div>

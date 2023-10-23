@@ -1,46 +1,39 @@
 <ng-container>
-  <form [formGroup]="formGroup">
-  <div class="govuk-form-group" formGroupName="address" [ngClass]="{'govuk-form-group--error': submissionAttempted && errorsPresent}">
+  <div class="govuk-form-group" [formGroup]="addressFormGroup">
     <label class="govuk-label govuk-!-font-weight-bold">
       Enter address details
     </label>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="addressLine1">
+      <label class="govuk-label" for="building-and-street">
         Building and Street
       </label>
-      <p class="govuk-error-message" *ngIf="submissionAttempted && !formGroup.get('address').get('addressLine1').valid">
-        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_STREET_SELECTED}}
-      </p>
-      <input class="govuk-input govuk-!-width-full" id="addressLine1" name="addressLine1" type="text"
-        formControlName="addressLine1">
+      <input class="govuk-input govuk-!-width-full" id="building-and-street" name="building-and-street" type="text"
+        formControlName="buildingAndStreet">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="addressLine2">
+      <label class="govuk-label" for="address-line-2">
         Address line 2 (Optional)
       </label>
-      <input class="govuk-input govuk-!-width-full" id="addressLine2" name="addressLine2" type="text"
+      <input class="govuk-input govuk-!-width-full" id="address-line-2" name="address-line-2" type="text"
         formControlName="addressLine2">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="addressLine3">
+      <label class="govuk-label" for="address-line-3">
         Address line 3 (Optional)
       </label>
-      <input class="govuk-input govuk-!-width-full" id="addressLine3" name="addressLine3" type="text"
+      <input class="govuk-input govuk-!-width-full" id="address-line-3" name="address-line-3" type="text"
         formControlName="addressLine3">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="postTown">
+      <label class="govuk-label" for="town-or-city">
         Town or City
       </label>
-      <p class="govuk-error-message" *ngIf="submissionAttempted && !formGroup.get('address').get('postTown').valid">
-        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_CITY_SELECTED}}
-      </p>
-      <input class="govuk-input govuk-!-width-two-thirds" id="postTown" name="postTown" type="text"
-        formControlName="postTown">
+      <input class="govuk-input govuk-!-width-two-thirds" id="town-or-city" name="town-or-city" type="text"
+        formControlName="townOrCity">
     </div>
 
     <div class="govuk-form-group">
@@ -55,26 +48,16 @@
       <label class="govuk-label" for="country">
         Country
       </label>
-      <p class="govuk-error-message" *ngIf="submissionAttempted && !formGroup.get('address').get('country').valid">
-        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_COUNTRY_SELECTED}}
-      </p>
       <input class="govuk-input govuk-!-width-two-thirds" id="country" name="country" type="text"
         formControlName="country">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="postCode">
+      <label class="govuk-label" for="postcode">
         Postcode{{this.isInternational ? ' (Optional)' : ''}}
       </label>
-      <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('required')">
-        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_POSTCODE_SELECTED}}
-      </p>
-      <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('invalidPostcode')">
-        <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.INVALID_POSTCODE}}
-      </p>
-      <input class="govuk-input govuk-!-width-one-third" id="postCode" name="postCode" type="text"
-        formControlName="postCode">
+      <input class="govuk-input govuk-!-width-one-third" id="postcode" name="postcode" type="text"
+        formControlName="postcode">
     </div>
   </div>
-</form>
 </ng-container>

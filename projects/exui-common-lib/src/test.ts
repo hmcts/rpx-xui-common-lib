@@ -9,6 +9,8 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 import 'core-js/es7/reflect';
 
+declare const require: any;
+
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,

@@ -25,7 +25,7 @@ describe('AddressService', () => {
       }]
     });
     injector = getTestBed();
-    addressService = injector.inject(AddressService);
+    addressService = injector.get(AddressService);
   });
 
   it('should be created with all the dependencies', () => {
@@ -65,6 +65,13 @@ describe('AddressService', () => {
   it('should return addresses with postcode value', () => {
     const result = addressService.getAddressesForPostcode(validPostCode);
     result.subscribe(addresses => { expect(addresses[0].postCode.length).toBeGreaterThan(0);});
+  });
+
+  it('should return subscriber error when postcode service returns zero', () => {
+    httpClient.get.and.returnValue(of([]));
+    const result = addressService.getAddressesForPostcode(validPostCode);
+    result.subscribe(addresses => expect(addresses.length).toBe(1),
+                     error => expect(error).toBeTruthy());
   });
 
   it('should shift address lines above when there is no address line 1', () => {
