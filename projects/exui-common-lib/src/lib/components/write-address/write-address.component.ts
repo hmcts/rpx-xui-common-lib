@@ -56,7 +56,7 @@ export class WriteAddressFieldComponent implements OnInit, OnChanges {
     if (!this.formGroup.get('address')) {
       this.formGroup.addControl('address', new FormControl({}));
     }
-    this.ukInternationalFormGroup = new FormGroup<unknown>({
+    this.ukInternationalFormGroup = new FormGroup({
       ukAddress: new FormControl()
     });
     this.postcode = new FormControl('');
