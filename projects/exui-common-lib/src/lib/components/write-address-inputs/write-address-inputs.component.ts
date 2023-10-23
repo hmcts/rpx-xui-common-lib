@@ -41,7 +41,7 @@ export class WriteAddressInputsComponent implements OnInit {
   }
 
   private setFormGroup(givenAddress?: AddressModel) {
-    this.addressFormGroup = new FormGroup({
+    this.addressFormGroup = new FormGroup<unknown>({
       buildingAndStreet: new FormControl(givenAddress ? givenAddress.addressLine1 : null, Validators.required),
       addressLine2: new FormControl(givenAddress ? givenAddress.addressLine2 : null, null),
       addressLine3: new FormControl(givenAddress ? givenAddress.addressLine3 : null, null),
@@ -51,5 +51,4 @@ export class WriteAddressInputsComponent implements OnInit {
       postcode: new FormControl(givenAddress ? givenAddress.postCode : null, null)
     });
   }
-
 }
