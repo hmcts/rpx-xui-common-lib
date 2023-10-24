@@ -35,6 +35,6 @@ describe('HMCTS Dialog Component', () => {
 
 
   it('should have onClose', () => {
-    expect(component.onClose).toBeDefined();
+    expect(component.onClose).toBeTruthy();
   });
 });
