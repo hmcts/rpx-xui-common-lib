@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.0-NodeAndNgUpgrades-04",
+  "version": "2.0.0-NodeAndNgUpgrades-05",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --configuration production",
