@@ -3,16 +3,15 @@
     <span class="govuk-visually-hidden">Error:</span>{{optionErrorMessage}}
   </p>
   <div *ngIf="postcodeLookupVisible()">
-    <div class="govuk-body postcodeLookup" id="addressLookup">
+    <span class="govuk-label"><b>Provide address details</b></span>
+    <div class="govuk-body postcodeLookup" id="addressLookup" [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
+      <p class="govuk-error-message" *ngIf="missingPostcode || postcodeErrorPresent(true)">
+        <span class="govuk-visually-hidden">Error:</span>{{postcodeErrorMessage}}
+      </p>
       <label for="postcodeInput">
-        <span class="govuk-label"><b>Provide address details</b></span>
         <span class="govuk-hint">Enter a UK postcode</span>
       </label>
-      <div class="govuk-body"
-      [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
-        <p class="govuk-error-message" *ngIf="missingPostcode || postcodeErrorPresent(true)">
-          <span class="govuk-visually-hidden">Error:</span>{{postcodeErrorMessage}}
-        </p>
+      <div class="govuk-body">
         <input type="text" [ngClass]="{'govuk-input--error': missingPostcode}" id="postcodeInput" name="postcode"
           class="govuk-input govuk-!-width-two-thirds postcodeinput inline-block" formControlName="postcode">
         <button type="button" class="govuk-button" (click)="findAddress()">Find address</button>
@@ -21,14 +20,14 @@
 
     <div class="govuk-body"
      *ngIf="addressOptions" id="selectAddress">
-      <label class="govuk-label" for="addressList">
-        <span class="form-label">Select an address</span>
-      </label>
       <div class="govuk-body"
       [ngClass]="{'govuk-form-group--error': postcodeErrorPresent(false)}">
         <p class="govuk-error-message" *ngIf="postcodeErrorPresent(false)">
           <span class="govuk-visually-hidden">Error:</span>{{selectErrorMessage}}
        </p>
+       <label class="govuk-label" for="addressList">
+        <span class="form-label">Select an address</span>
+      </label>
         <select class="form-control govuk-select ccd-dropdown addressList" id="addressList" name="address"
           formControlName="addressList" (change)="addressSelected()" focusElement>
           <option *ngFor="let addressOption of addressOptions" [ngValue]="addressOption.value">
@@ -42,7 +41,7 @@
       href="javascript:void(0)">I can't enter a UK postcode</a>
   </div>
 
-  <div class="govuk-radios" data-module="govuk-radios"
+  <div id="govuk-radios" class="govuk-radios" data-module="govuk-radios"
     *ngIf="shouldShowDetailFields() && internationalMode && startedInternational && !addressChosen">
     <div class="govuk-radios__item">
       <input class="govuk-radios__input" id="yes" value="yes" name="ukAddress" type="radio" data-aria-controls="address-fields"
