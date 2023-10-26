@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.1-accessibility-updates",
+  "version": "1.9.1-prerelese-accessibility-updates",
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^2.15.2",
     "ngx-pagination": "^3.2.1",
