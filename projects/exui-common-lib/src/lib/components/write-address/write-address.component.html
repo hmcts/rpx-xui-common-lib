@@ -3,7 +3,7 @@
     <span class="govuk-visually-hidden">Error:</span>{{optionErrorMessage}}
   </p>
   <div *ngIf="postcodeLookupVisible()">
-    <span class="govuk-label"><b>Provide address details</b></span>
+    <span class="govuk-label"><strong>Provide address details</strong></span>
     <div class="govuk-body postcodeLookup" id="addressLookup" [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
       <p class="govuk-error-message" *ngIf="missingPostcode || postcodeErrorPresent(true)">
         <span class="govuk-visually-hidden">Error:</span>{{postcodeErrorMessage}}
