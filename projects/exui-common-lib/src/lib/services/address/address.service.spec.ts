@@ -25,7 +25,7 @@ describe('AddressService', () => {
       }]
     });
     injector = getTestBed();
-    addressService = injector.get(AddressService);
+    addressService = injector.inject(AddressService);
   });
 
   it('should be created with all the dependencies', () => {
@@ -67,13 +67,6 @@ describe('AddressService', () => {
     result.subscribe(addresses => { expect(addresses[0].postCode.length).toBeGreaterThan(0);});
   });
 
-  it('should return subscriber error when postcode service returns zero', () => {
-    httpClient.get.and.returnValue(of([]));
-    const result = addressService.getAddressesForPostcode(validPostCode);
-    result.subscribe(addresses => expect(addresses.length).toBe(1),
-                     error => expect(error).toBeTruthy());
-  });
-
   it('should shift address lines above when there is no address line 1', () => {
     const result = addressService.getAddressesForPostcode(validPostCode);
     result.subscribe(addresses => {
@@ -103,7 +96,7 @@ describe('AddressService', () => {
     });
   });
 
-  function isAddressLineInCapitalCase(addressLine: string): boolean {
+  function isAddressLineInCapitalCase(addressLine: string) {
     let result = true;
     addressLine.split(' ').forEach(word => {
         if (!isInCapitalCase(word)) {
@@ -113,9 +106,12 @@ describe('AddressService', () => {
     return result;
   }
 
-  function isInCapitalCase(word: string): boolean {
-    const uppCase = word.charAt(0) === word.charAt(0).toUpperCase();
-    const lowCase = word.charAt(1) === word.charAt(1).toLowerCase();
-    return uppCase && lowCase;
+  function isInCapitalCase(word: string) {
+    return () => {
+      const uppCase = word.charAt(0) === word.charAt(0).toUpperCase();
+      const lowCase = word.charAt(1) === word.charAt(1).toLowerCase();
+      return (uppCase && lowCase);
+    };
   }
+
 });

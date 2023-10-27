@@ -1,3 +1,5 @@
+export * from './address-message.enum';
+export * from './address-option.model';
 export * from './address.model';
 export * from './case-share.model';
 export * from './contact-details.model';

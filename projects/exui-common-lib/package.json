@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-update-master-branch-with-release-v2",
+  "version": "1.9.0-error-message-change",
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^2.15.2",
     "ngx-pagination": "^3.2.1",

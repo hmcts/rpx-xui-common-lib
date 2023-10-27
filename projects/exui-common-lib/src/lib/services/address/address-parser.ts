@@ -7,7 +7,7 @@ import { AddressType } from './address-type.enum';
  * `Shim` java service.
  */
  export class AddressParser {
-  public parse(address: any): AddressModel {
+  public parse(address: any) {
     const classification = `${address.CLASSIFICATION_CODE}`;
     const addressModel = new AddressModel();
     addressModel.addressLine1 = this.parseAddressLine1(classification, address);
@@ -19,7 +19,7 @@ import { AddressType } from './address-type.enum';
     return addressModel;
   }
 
-  private parseAddressLine1(classification: string, address: any): string {
+  private parseAddressLine1(classification: string, address: any) {
     let addressLine;
     if (classification === AddressType.RD06) {
       addressLine =
@@ -32,7 +32,7 @@ import { AddressType } from './address-type.enum';
     return this.removeNonAddressValues(addressLine);
   }
 
-  private parseAddressLine2(classification: string, address: any): string {
+  private parseAddressLine2(classification: string, address: any) {
     let addressLine;
     if (classification === AddressType.RD06) {
       addressLine = `${address.BUILDING_NAME} `;
@@ -43,7 +43,7 @@ import { AddressType } from './address-type.enum';
     return this.removeNonAddressValues(addressLine);
   }
 
-  private parseAddressLine3(classification: string, address: any): string {
+  private parseAddressLine3(classification: string, address: any) {
     let addressLine;
     if (classification === AddressType.RD06) {
       addressLine =
@@ -55,7 +55,7 @@ import { AddressType } from './address-type.enum';
     return this.removeNonAddressValues(addressLine);
   }
 
-  private removeNonAddressValues(line: string): string {
+  private removeNonAddressValues(line: string) {
     line = line.replace(' null', ' ').replace('null ', ' ');
     line = this.removeUndefinedString(line);
     line = this.removeInitialComma(line);
@@ -63,19 +63,19 @@ import { AddressType } from './address-type.enum';
     return line;
   }
 
-  private removeUndefinedString(value: string): string {
+  private removeUndefinedString(value: string) {
     return value.replace(new RegExp('undefined', 'gi'), '');
   }
 
-  private removeEmptySpaces(value: string): string {
+  private removeEmptySpaces(value: string) {
     return value.replace(new RegExp(' +', 'gi'), ' ').trim();
   }
 
-  private removeInitialComma(value: string): string {
+  private removeInitialComma(value: string) {
     return value.replace(new RegExp('^,', 'gi'), '');
   }
 
-  private prefixWithCommaIfPresent(value: string): string {
+  private prefixWithCommaIfPresent(value: string) {
     return value ? `, ${value}` : value;
   }
 }

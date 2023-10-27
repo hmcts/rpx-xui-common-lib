@@ -13,17 +13,17 @@ export class AddressOption {
     }
   }
 
-  private getDescription(): string {
+  private getDescription() {
     return this.removeInitialCommaIfPresent(
       `${this.value.addressLine1 === undefined ? '' : this.value.addressLine1}${this.prefixWithCommaIfPresent(this.value.addressLine2)}${this.prefixWithCommaIfPresent(this.value.addressLine3)}, ${this.value.postTown}`
     );
   }
 
-  private prefixWithCommaIfPresent(value: string): string {
+  private prefixWithCommaIfPresent(value: string) {
     return value ? `, ${value}` : value;
   }
 
-  private removeInitialCommaIfPresent(value: string): string {
+  private removeInitialCommaIfPresent(value: string) {
     return value.replace(new RegExp('^,', 'gi'), '');
   }
 }

@@ -18,24 +18,24 @@ export class AddressService {
       .pipe(
         map((res) => res.results))
       .pipe(
-        map(output => output.map((addresses: any) =>
+        map(output => output ? output.map((addresses: any) =>
           this.format(new AddressParser().parse(addresses[AddressType.DPA]))
-        ))
+        ) : [])
       );
   }
 
-  private format(addressModel: AddressModel): AddressModel {
+  private format(addressModel: AddressModel) {
     return this.formatAddressLines(this.shiftAddressLinesUp(addressModel));
   }
 
-  private formatAddressLines(addressModel: AddressModel): AddressModel {
+  private formatAddressLines(addressModel: AddressModel) {
     ['addressLine1', 'addressLine2', 'addressLine3', 'postTown'].forEach((value: keyof typeof addressModel) => {
       addressModel[value] = this.toCapitalCase(addressModel[value]);
     });
     return addressModel;
   }
 
-  private shiftAddressLinesUp(addressModel: AddressModel): AddressModel {
+  private shiftAddressLinesUp(addressModel: AddressModel) {
     if (addressModel.addressLine2 === '') {
       addressModel.addressLine2 = addressModel.addressLine3;
       addressModel.addressLine3 = '';
@@ -47,7 +47,7 @@ export class AddressService {
     return addressModel;
   }
 
-  private toCapitalCase(sentence: string): string {
+  private toCapitalCase(sentence: string) {
     sentence = sentence.toLowerCase();
     sentence.split(' ').forEach((value) => {
         sentence = sentence.replace(value, value.charAt(0).toUpperCase() + value.substr(1));

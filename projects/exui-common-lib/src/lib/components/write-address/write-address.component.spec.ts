@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import { WriteAddressFieldComponent } from '..';
 import { AddressModel } from '../../models';
 import { AddressService } from '../../services';
+import { WriteAddressFieldComponent } from './write-address.component';
 
 describe('WriteAddressFieldComponent', () => {
 
@@ -13,11 +13,11 @@ describe('WriteAddressFieldComponent', () => {
 
   const $POSTCODE_LOOKUP = By.css('.postcodeLookup');
   const $POSTCODE_LOOKUP_INPUT = By.css('.postcodeinput');
-  const $POSTCODE_LOOKUP_FIND = By.css('.postcodeLookup > button');
-  const $POSTCODE_LOOKUP_ERROR_MESSAGE = By.css('.error-message');
+  const $POSTCODE_LOOKUP_FIND = By.css('.postcodeLookup > .govuk-body > button');
+  const $POSTCODE_LOOKUP_ERROR_MESSAGE = By.css('.govuk-error-message');
 
   const $SELECT_ADDRESS = By.css('#selectAddress');
-  const $ADDRESS_LIST = By.css('#selectAddress > .addressList');
+  const $ADDRESS_LIST = By.css('#selectAddress > .govuk-body > .addressList');
 
   const $MANUAL_LINK = By.css('.manual-link');
 
@@ -31,6 +31,7 @@ describe('WriteAddressFieldComponent', () => {
     public componentUnderTest: WriteAddressFieldComponent;
     public addressField = new FormControl({});
     public formGroup = addressFormGroup();
+    public submissionAttempted = false;
   }
 
   let addressService: AddressService;
@@ -38,15 +39,17 @@ describe('WriteAddressFieldComponent', () => {
   let debugElement: DebugElement;
   let fixture: ComponentFixture<WrapperComponent>;
 
-  function addressFormGroup(): FormGroup {
+  function addressFormGroup() {
     return new FormGroup({
-      addressLine1: new FormControl(),
-      addressLine2: new FormControl(),
-      addressLine3: new FormControl(),
-      postTown: new FormControl(),
-      county: new FormControl(),
-      postCode: new FormControl(),
-      country: new FormControl()
+      address: new FormGroup({
+        addressLine1: new FormControl(),
+        addressLine2: new FormControl(),
+        addressLine3: new FormControl(),
+        postTown: new FormControl(),
+        county: new FormControl(),
+        postCode: new FormControl(),
+        country: new FormControl()
+      })
     });
   }
 
@@ -62,7 +65,7 @@ describe('WriteAddressFieldComponent', () => {
     return address;
   }
 
-  function queryPostcode(postcode: string): void {
+  function queryPostcode(postcode: string) {
     const postcodeField = fixture.debugElement.query($POSTCODE_LOOKUP_INPUT).nativeElement;
     postcodeField.value = postcode;
     postcodeField.dispatchEvent(new Event('input'));
@@ -190,22 +193,73 @@ describe('WriteAddressFieldComponent', () => {
 
   it('should set the international address fields correctly', () => {
 
-    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeFalsy();
     expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
 
-    const noMockEvent = {target: {checked: true, id: 'no'}};
-    wrapperComponent.componentUnderTest.setInternationalAddress(noMockEvent);
+    wrapperComponent.componentUnderTest.setInternationalAddress(true);
     fixture.detectChanges();
 
-    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeTruthy();
     expect(wrapperComponent.componentUnderTest.isInternational).toBeTruthy();
 
-    const yesMockEvent = {target: {checked: true, id: 'yes'}};
-    wrapperComponent.componentUnderTest.setInternationalAddress(yesMockEvent);
+    wrapperComponent.componentUnderTest.setInternationalAddress(false);
     fixture.detectChanges();
 
-    expect(wrapperComponent.componentUnderTest.ukRadioChecked).toBeTruthy();
     expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+  });
+
+  it('should emit international mode on blank address click', () => {
+    spyOn(wrapperComponent.componentUnderTest.internationalModeStart, 'emit');
+    spyOn(wrapperComponent.componentUnderTest.resetSubmission, 'emit');
+    wrapperComponent.componentUnderTest.internationalMode = true;
+    fixture.detectChanges();
+    wrapperComponent.componentUnderTest.blankAddress();
+
+    expect(wrapperComponent.componentUnderTest.internationalModeStart.emit).toHaveBeenCalled();
+    expect(wrapperComponent.componentUnderTest.resetSubmission.emit).toHaveBeenCalled();
+  });
+
+  it('should correctly set details when address actually selected', () => {
+    expect(wrapperComponent.componentUnderTest.addressChosen).toBeFalsy();
+    spyOn(wrapperComponent.componentUnderTest.postcodeOptionSelected, 'emit');
+    wrapperComponent.componentUnderTest.addressSelected();
+
+    expect(wrapperComponent.componentUnderTest.addressChosen).toBeTruthy();
+    expect(wrapperComponent.componentUnderTest.postcodeOptionSelected.emit).toHaveBeenCalled();
+    expect(wrapperComponent.componentUnderTest.missingPostcode).toBeFalsy();
+  });
+
+  it('should set international address correctly', () => {
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+    spyOn(wrapperComponent.componentUnderTest.ukAddressOptionSelected, 'emit');
+    wrapperComponent.componentUnderTest.setInternationalAddress(true);
+
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeTruthy();
+    expect(wrapperComponent.componentUnderTest.ukAddressOptionSelected.emit).toHaveBeenCalledWith(true);
+
+    wrapperComponent.componentUnderTest.setInternationalAddress(false);
+
+    expect(wrapperComponent.componentUnderTest.isInternational).toBeFalsy();
+    expect(wrapperComponent.componentUnderTest.ukAddressOptionSelected.emit).toHaveBeenCalledWith(false);
+  });
+
+  it('should determine when postcode error should be present', () => {
+    wrapperComponent.componentUnderTest.submissionAttempted = false;
+    wrapperComponent.componentUnderTest.addressSelectable = false;
+    // postcode field, address not selectable, no submission attempted
+    expect(wrapperComponent.componentUnderTest.postcodeErrorPresent(true)).toBeFalsy();
+
+    wrapperComponent.componentUnderTest.submissionAttempted = true;
+    // postcode field, address not selectable, submission attempted
+    expect(wrapperComponent.componentUnderTest.postcodeErrorPresent(true)).toBeTruthy();
+
+    // select field, address not selectable, submission attempted
+    expect(wrapperComponent.componentUnderTest.postcodeErrorPresent(false)).toBeFalsy();
+
+    wrapperComponent.componentUnderTest.addressSelectable = true;
+    // select field, address selectable, submission attempted
+    expect(wrapperComponent.componentUnderTest.postcodeErrorPresent(false)).toBeTruthy();
+
+    // postcode field, address not selectable, submission attempted
+    expect(wrapperComponent.componentUnderTest.postcodeErrorPresent(true)).toBeFalsy();
   });
 
 });
