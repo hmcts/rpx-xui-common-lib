@@ -399,7 +399,7 @@ describe('GenericFilterComponent', () => {
     });
 
     it('should set givenErrors on filterService to null', () => {
-      // component.ngOnDestroy();
+      component.ngOnDestroy();
       // @ts-expect-error - private property
       expect(component.filterService.givenErrors.next).toHaveBeenCalledWith(null);
     });

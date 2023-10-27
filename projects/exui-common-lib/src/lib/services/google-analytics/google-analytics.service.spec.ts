@@ -17,7 +17,7 @@ const windowMock: Window = { gtag: () => {}} as any;
 describe('GoogleAnalyticsService', () => {
 
   let titleTestBed: Title;
-  let windowTestBed: Window;
+  let windowTestBed: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -41,8 +41,8 @@ describe('GoogleAnalyticsService', () => {
       ]
     });
 
-    titleTestBed = TestBed.get(Title);
-    windowTestBed = TestBed.get(windowToken);
+    titleTestBed = TestBed.inject(Title);
+    windowTestBed = TestBed.inject(windowToken);
 
   });
 
@@ -59,11 +59,11 @@ describe('GoogleAnalyticsService', () => {
   it('init should call router navigation end and gtag with correct config',
   inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
     const event = new NavigationEnd(42, '/url', '/redirect-url');
-    TestBed.get(Router).events.next(event);
+    (TestBed.inject(Router).events as any).next(event);
     spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
-    spyOn(windowTestBed as any, 'gtag').and.callThrough();
+    spyOn(windowTestBed, 'gtag').and.callThrough();
     service.init('testId');
-    expect((windowTestBed as any).gtag).toHaveBeenCalledWith('config', 'testId', {
+    expect(windowTestBed.gtag).toHaveBeenCalledWith('config', 'testId', {
       page_path: '/redirect-url',
       page_title: 'testTitle'
     });
