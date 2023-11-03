@@ -78,6 +78,7 @@ import { HmctsSubNavigationComponent } from './gov-ui/components/hmcts-sub-navig
 import { RemoveHostDirective } from './gov-ui/directives/remove-host.directive';
 import { CapitalizePipe } from './pipes';
 import { windowProvider, windowToken } from './window';
+import { RemoveDuplicates } from './pipes/duplicate-filter/duplicate-filter.pipe';
 
 export const COMMON_COMPONENTS = [
   ExuiPageWrapperComponent,
@@ -147,7 +148,8 @@ export const GOV_UI_COMPONENTS = [
 ];
 
 const pipes = [
-  CapitalizePipe
+  CapitalizePipe,
+  RemoveDuplicates
 ];
 
 @NgModule({

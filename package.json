@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-error-message-change",
+  "version": "1.9.1-remove-duplicates-items",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
