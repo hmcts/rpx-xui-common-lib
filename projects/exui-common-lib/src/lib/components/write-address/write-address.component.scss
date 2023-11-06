@@ -2,10 +2,15 @@
   cursor: pointer;
   display: block;
   text-decoration: underline;
+  font-size: 1.1875rem;
 }
 
-.postcodeLookup {
+.postcode-lookup {
   margin-bottom: -30px;
+}
+
+.find-address {
+  left: 1%;
 }
 
 :host {
