@@ -4,7 +4,7 @@
   </p>
   <div *ngIf="postcodeLookupVisible()">
     <span class="govuk-label"><strong>Provide address details</strong></span>
-    <div class="govuk-body postcodeLookup" id="addressLookup" [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
+    <div class="govuk-body postcode-lookup" id="addressLookup" [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
       <p class="govuk-error-message" *ngIf="missingPostcode || postcodeErrorPresent(true)">
         <span class="govuk-visually-hidden">Error:</span>{{postcodeErrorMessage}}
       </p>
@@ -13,8 +13,8 @@
       </label>
       <div class="govuk-body">
         <input type="text" [ngClass]="{'govuk-input--error': missingPostcode}" id="postcodeInput" name="postcode"
-          class="govuk-input govuk-!-width-two-thirds postcodeinput inline-block" formControlName="postcode">
-        <button type="button" class="govuk-button" (click)="findAddress()">Find address</button>
+          class="govuk-input govuk-!-width-one-third postcodeinput inline-block" formControlName="postcode">
+        <button type="button" class="govuk-button find-address" (click)="findAddress()">Find address</button>
       </div>
     </div>
 
