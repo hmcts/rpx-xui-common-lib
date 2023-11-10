@@ -4,7 +4,7 @@
   </p>
   <div *ngIf="postcodeLookupVisible()">
     <span class="govuk-label"><strong>Provide address details</strong></span>
-    <div class="govuk-body postcodeLookup" id="addressLookup" [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
+    <div class="govuk-body postcode-lookup" id="addressLookup" [ngClass]="{'govuk-form-group--error': missingPostcode || postcodeErrorPresent(true)}">
       <label for="postcodeInput">
         <span class="govuk-hint">Enter a UK postcode</span>
       </label>
