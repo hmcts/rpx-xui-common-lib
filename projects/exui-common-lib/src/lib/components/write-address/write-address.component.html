@@ -13,8 +13,8 @@
       </p>
       <div class="govuk-body">
         <input type="text" [ngClass]="{'govuk-input--error': missingPostcode}" id="postcodeInput" name="postcode"
-          class="govuk-input govuk-!-width-two-thirds postcodeinput inline-block" formControlName="postcode">
-        <button type="button" class="govuk-button" (click)="findAddress()">Find address</button>
+          class="govuk-input govuk-!-width-one-third postcodeinput inline-block" formControlName="postcode">
+        <button type="button" class="govuk-button find-address" (click)="findAddress()">Find address</button>
       </div>
     </div>
 

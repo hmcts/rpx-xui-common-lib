@@ -11,9 +11,9 @@ describe('WriteAddressFieldComponent', () => {
 
   const POSTCODE = 'P05T CDE';
 
-  const $POSTCODE_LOOKUP = By.css('.postcodeLookup');
+  const $POSTCODE_LOOKUP = By.css('.postcode-lookup');
   const $POSTCODE_LOOKUP_INPUT = By.css('.postcodeinput');
-  const $POSTCODE_LOOKUP_FIND = By.css('.postcodeLookup > .govuk-body > button');
+  const $POSTCODE_LOOKUP_FIND = By.css('.postcode-lookup > .govuk-body > button');
   const $POSTCODE_LOOKUP_ERROR_MESSAGE = By.css('.govuk-error-message');
 
   const $SELECT_ADDRESS = By.css('#selectAddress');
