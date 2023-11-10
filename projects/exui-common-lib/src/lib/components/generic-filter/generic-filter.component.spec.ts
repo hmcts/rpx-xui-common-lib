@@ -214,7 +214,7 @@ describe('GenericFilterComponent', () => {
   it('should display cancel filter button', () => {
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
-    expect(form.querySelector('button[id="cancelFilter"]')).toBeDefined();
+    expect(form.querySelector('button[id="cancelFilter"]')).toBeTruthy();
   });
 
   it('should call callback if cancelButtonCallback exists', () => {
