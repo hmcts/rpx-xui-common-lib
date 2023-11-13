@@ -90,7 +90,7 @@ describe('SelectedCaseComponent', () => {
   });
 
   it('should deselect', () => {
-    expect(component.onDeselect).toBeDefined();
+    expect(component.onDeselect).toBeTruthy();
   });
 
   it('remove case is toggled off', () => {

@@ -41,7 +41,7 @@ describe('DueDateComponent', () => {
     component.highUrgencyCutoff = 1;
     component.mediumUrgencyCutoff = 3;
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('.due-date')).toBeDefined();
+    expect(fixture.debugElement.nativeElement.querySelector('.due-date')).toBeTruthy();
   });
 
   it('should do no setup if there is no dueDate', () => {
@@ -52,7 +52,6 @@ describe('DueDateComponent', () => {
     component.mediumUrgencyCutoff = 3; // Change from the default of 2.
     component.ngOnChanges();
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('.due-date')).toBeDefined();
     expect(component.label).toBeUndefined();
     expect(component.badge).toBeUndefined();
   });
