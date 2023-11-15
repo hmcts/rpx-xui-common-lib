@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
+import { FeatureToggleService} from "../../services";
 
 @Component({
     selector: 'xuilib-cookie-banner',
@@ -14,13 +15,14 @@ export class CookieBannerComponent implements OnInit {
   @Output() public acceptanceNotifier = new EventEmitter<any>();
 
   public isCookieBannerVisible: boolean = false;
-  private readonly window: Window;
+  private readonly window: any;
 
   constructor(
     private readonly cookieService: CookieService,
+    private readonly featureToggleService: FeatureToggleService,
     @Inject(windowToken) window: any,
   ) {
-    this.window = window as Window;
+    this.window = window;
   }
 
   public ngOnInit(): void {
@@ -60,6 +62,25 @@ export class CookieBannerComponent implements OnInit {
   }
 
   public notifyAcceptance(): void {
+    if (this.window.hasOwnProperty('dtrum')) {
+      // @ts-ignore
+      const dtrum = this.window['dtrum'];
+      if (dtrum) {
+        this.featureToggleService.isEnabled('mc-dynatrace-rum-enabled')
+          .subscribe((enabled) => {
+            if (enabled) {
+              try {
+                dtrum.enable();
+                dtrum.enableSessionReplay(true);
+              } catch (e) {
+                console.error('Error enabling DynaTrace', e)
+              }
+            } else {
+              console.warn('enabled flag set to ' + enabled)
+            }
+          });
+      }
+    }
     this.acceptanceNotifier.emit();
   }
 
