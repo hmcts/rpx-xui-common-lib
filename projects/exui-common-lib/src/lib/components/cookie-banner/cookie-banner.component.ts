@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { FeatureToggleService } from '../../services';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
-import { FeatureToggleService} from "../../services";
 
 @Component({
     selector: 'xuilib-cookie-banner',
@@ -66,17 +66,15 @@ export class CookieBannerComponent implements OnInit {
       // @ts-ignore
       const dtrum = this.window['dtrum'];
       if (dtrum) {
-        this.featureToggleService.isEnabled('mc-dynatrace-rum-enabled')
+        this.featureToggleService.isEnabled('xui-dynatrace-rum-enabled')
           .subscribe((enabled) => {
             if (enabled) {
               try {
                 dtrum.enable();
                 dtrum.enableSessionReplay(true);
               } catch (e) {
-                console.error('Error enabling DynaTrace', e)
+                console.error('Error enabling DynaTrace', e);
               }
-            } else {
-              console.warn('enabled flag set to ' + enabled)
             }
           });
       }
