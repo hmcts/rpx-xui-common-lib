@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-yes-no-bug-fix-v3",
+  "version": "1.9.0-register-org-address-styling-fixes-v2",
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^2.15.2",
     "ngx-pagination": "^3.2.1",
