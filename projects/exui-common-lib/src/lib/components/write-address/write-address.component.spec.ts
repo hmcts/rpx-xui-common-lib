@@ -183,11 +183,10 @@ describe('WriteAddressFieldComponent', () => {
   });
 
   it('should clear the error when postcode is not blank', () => {
-
     wrapperComponent.componentUnderTest.missingPostcode = true;
-    fixture.detectChanges();
-
+    spyOn(addressService, 'getAddressesForPostcode').and.returnValue(of([]));
     queryPostcode(POSTCODE);
+    fixture.detectChanges();
 
     expect(debugElement.query($POSTCODE_LOOKUP_ERROR_MESSAGE)).toBeFalsy();
 
