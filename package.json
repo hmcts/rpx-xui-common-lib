@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-register-org-address-styling-fixes-v2",
+  "version": "1.9.1-enable-rum",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
