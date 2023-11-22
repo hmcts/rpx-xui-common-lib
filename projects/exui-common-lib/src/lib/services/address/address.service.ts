@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { AddressModel } from '../../models';
 import { AddressParser } from './address-parser';
 import { AddressType } from './address-type.enum';
+import { of } from "rxjs/internal/observable/of";
 
 @Injectable()
 export class AddressService {
@@ -13,6 +14,9 @@ export class AddressService {
   }
 
   public getAddressesForPostcode(postcode: string): Observable<AddressModel[]> {
+    if (!postcode) {
+      return of([]);
+    }
     return this.http
       .get<any>('/external/addresses?postcode=${postcode}'.replace('${postcode}', postcode), undefined as object)
       .pipe(
