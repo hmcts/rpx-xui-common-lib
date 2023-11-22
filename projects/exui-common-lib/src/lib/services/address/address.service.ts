@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { of } from 'rxjs/internal/observable/of';
 import { map } from 'rxjs/operators';
 import { AddressModel } from '../../models';
 import { AddressParser } from './address-parser';
 import { AddressType } from './address-type.enum';
-import { of } from "rxjs/internal/observable/of";
 
 @Injectable()
 export class AddressService {
