@@ -5,10 +5,10 @@
     at tke (/Users/olaogunyemi/web-applications/rpx-xui-common-lib/.yarn/releases/yarn-3.5.1.cjs:392:9738)
     at a (/Users/olaogunyemi/web-applications/rpx-xui-common-lib/.yarn/releases/yarn-3.5.1.cjs:392:8836)
     at vC (/Users/olaogunyemi/web-applications/rpx-xui-common-lib/.yarn/releases/yarn-3.5.1.cjs:392:9052)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
     at async EB (/Users/olaogunyemi/web-applications/rpx-xui-common-lib/.yarn/releases/yarn-3.5.1.cjs:392:7061)
     at async Object.kR (/Users/olaogunyemi/web-applications/rpx-xui-common-lib/.yarn/releases/yarn-3.5.1.cjs:392:9461)
     at async Object.jze (/Users/olaogunyemi/web-applications/rpx-xui-common-lib/.yarn/releases/yarn-3.5.1.cjs:709:18949)
-    at async /Users/olaogunyemi/web-applications/rpx-xui-common-lib/.yarn/releases/yarn-3.5.1.cjs:711:23858
 
 ➤ Errors happened when preparing the environment required to run this command.
 ➤ This might be caused by packages being missing from the lockfile, in which case running "yarn install" might help.
