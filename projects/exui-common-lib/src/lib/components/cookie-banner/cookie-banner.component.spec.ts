@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { FeatureToggleService } from '../../services';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
 import { CookieBannerComponent } from './cookie-banner.component';
-
-const windowMock: Window = { location: { reload: () => {}}} as any;
 
 @Pipe({ name: 'rpxTranslate' })
 class RpxTranslateMockPipe implements PipeTransform {
@@ -17,16 +17,24 @@ describe('CookieBannerComponent', () => {
   let appComponent: CookieBannerComponent;
   let fixture: ComponentFixture<CookieBannerComponent>;
   let cookieService: any;
+  let mockFeature: any;
+  let mockDtrum: any;
+  let windowMock: Window;
 
   beforeEach(waitForAsync(() => {
     cookieService = jasmine.createSpyObj('CookieService', ['setCookie', 'checkCookie', 'getCookie']);
+    mockFeature = jasmine.createSpyObj('FeatureToggleService', ['isEnabled']);
+    mockDtrum = jasmine.createSpyObj('dtrum', ['enable', 'enableSessionReplay']);
+    windowMock = { location: { reload: () => {}}, dtrum: mockDtrum } as any;
+    // @ts-ignore
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ CookieBannerComponent, RpxTranslateMockPipe ],
       imports: [],
       providers: [
         { provide: CookieService, useValue: cookieService },
-        { provide: windowToken, useValue: windowMock }
+        { provide: windowToken, useValue: windowMock },
+        { provide: FeatureToggleService, useValue: mockFeature }
       ]
     })
     .compileComponents();
@@ -50,6 +58,36 @@ describe('CookieBannerComponent', () => {
           appComponent.rejectCookie();
           expect(cookieService.setCookie).toHaveBeenCalled();
       });
+  });
+
+  describe('DynaTrace', () => {
+    it('should enable RUM if feature toggle is on', fakeAsync(() => {
+      mockFeature.isEnabled.and.returnValue(of(true));
+      appComponent.notifyAcceptance();
+      expect(mockFeature.isEnabled).toHaveBeenCalled();
+      tick(1000);
+      expect(mockDtrum.enable).toHaveBeenCalled();
+      expect(mockDtrum.enableSessionReplay).toHaveBeenCalled();
+    }));
+
+    it ('should not enable RUM if feature toggle is off', fakeAsync(() => {
+      mockFeature.isEnabled.and.returnValue(of(false));
+      appComponent.notifyAcceptance();
+      expect(mockFeature.isEnabled).toHaveBeenCalled();
+      tick(1000);
+      expect(mockDtrum.enable).not.toHaveBeenCalled();
+      expect(mockDtrum.enableSessionReplay).not.toHaveBeenCalled();
+    }));
+    it ('should disable RUM if Dynatrace object not injected', fakeAsync(() => {
+      // @ts-ignore
+      appComponent.window['dtrum'] = undefined;
+      mockFeature.isEnabled.and.returnValue(of(true));
+      appComponent.notifyAcceptance();
+      expect(mockFeature.isEnabled).not.toHaveBeenCalled();
+      tick(1000);
+      expect(mockDtrum.enable).not.toHaveBeenCalled();
+      expect(mockDtrum.enableSessionReplay).not.toHaveBeenCalled();
+    }));
   });
 
   describe('setState()', () => {

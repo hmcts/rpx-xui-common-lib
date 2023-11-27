@@ -151,7 +151,6 @@ describe('RefDataService', () => {
         expect(locations).toBeDefined();
         expect(locations.length).toBe(1);
         expect(locations[0]).toEqual(dummyLocations[0]);
-        done();
       });
 
       service.getLocationsByServiceCodes(serviceCodes).subscribe((locations) => {
@@ -173,7 +172,6 @@ describe('RefDataService', () => {
       );
 
       service.getLocationsByServiceCodes([serviceCodes[0]]).subscribe(() => {
-        done();
       });
 
       service.getLocationsByServiceCodes(serviceCodes).subscribe(() => {
