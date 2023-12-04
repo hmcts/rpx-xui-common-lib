@@ -120,7 +120,14 @@ describe('ShareCaseComponent', () => {
           idamId: 'u666666',
           firstName: 'Kate',
           lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
+          email: 'kate.grant@lambbrooks.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }]
     }];
     component.shareCases$ = of(sharedCases);
@@ -138,14 +145,28 @@ describe('ShareCaseComponent', () => {
           idamId: 'u666666',
           firstName: 'Kate',
           lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
+          email: 'kate.grant@lambbrooks.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }],
       pendingUnshares: [
         {
           idamId: 'u777777',
           firstName: 'Nick',
           lastName: 'Rodrigues',
-          email: 'nick.rodrigues@lambbrooks.com'
+          email: 'nick.rodrigues@lambbrooks.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }]
     }];
     component.shareCases$ = of(sharedCases);
@@ -163,14 +184,28 @@ describe('ShareCaseComponent', () => {
           idamId: 'u666666',
           firstName: 'Kate',
           lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
+          email: 'kate.grant@lambbrooks.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }],
       pendingShares: [
         {
           idamId: 'u888888',
           firstName: 'Joel',
           lastName: 'Molloy',
-          email: 'joel.molloy@lambbrooks.com'
+          email: 'joel.molloy@lambbrooks.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }]
     }];
     component.shareCases$ = of(sharedCases);
@@ -188,14 +223,28 @@ describe('ShareCaseComponent', () => {
           idamId: 'u666666',
           firstName: 'Kate',
           lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
+          email: 'kate.grant@lambbrooks.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }],
       pendingShares: [
         {
           idamId: 'u888888',
           firstName: 'Joel',
           lastName: 'Molloy',
-          email: 'joel.molloy@lambbrooks.com'
+          email: 'joel.molloy@lambbrooks.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }]
     }];
 
@@ -203,7 +252,14 @@ describe('ShareCaseComponent', () => {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
 
     const addButton = fixture.nativeElement.querySelector('#btn-add-user');
@@ -222,7 +278,14 @@ describe('ShareCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     component.shareCases = [{
       caseId: 'C111111',
@@ -239,7 +302,14 @@ describe('ShareCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const addButton = fixture.nativeElement.querySelector('#btn-add-user');
     component.onSelectedUser(user);
@@ -252,7 +322,14 @@ describe('ShareCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const addButton = fixture.nativeElement.querySelector('#btn-add-user');
     component.onSelectedUser(user);
@@ -313,25 +390,53 @@ describe('ShareCaseComponent', () => {
       idamId : 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user2: UserDetails = {
       idamId : 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user3: UserDetails = {
       idamId : 'aaaa3333-aaaa-3333',
       firstName: 'User',
       lastName: 'Three',
-      email: 'user.three@test.com'
+      email: 'user.three@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user4: UserDetails = {
       idamId : 'aaaa4444-aaaa-4444',
       firstName: 'User',
       lastName: 'Four',
-      email: 'user.four@test.com'
+      email: 'user.four@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -360,7 +465,14 @@ describe('ShareCaseComponent', () => {
       idamId : 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -393,25 +505,53 @@ describe('ShareCaseComponent', () => {
       idamId : 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user2: UserDetails = {
       idamId : 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user3: UserDetails = {
       idamId : 'aaaa3333-aaaa-3333',
       firstName: 'User',
       lastName: 'Three',
-      email: 'user.three@test.com'
+      email: 'user.three@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user4: UserDetails = {
       idamId : 'aaaa4444-aaaa-4444',
       firstName: 'User',
       lastName: 'Four',
-      email: 'user.four@test.com'
+      email: 'user.four@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -438,7 +578,14 @@ describe('ShareCaseComponent', () => {
       idamId : 'aaaa4444-aaaa-4444',
       firstName: 'User',
       lastName: 'Four',
-      email: 'user.four@test.com'
+      email: 'user.four@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -460,13 +607,27 @@ describe('ShareCaseComponent', () => {
       idamId : 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user2: UserDetails = {
       idamId : 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -513,13 +674,27 @@ describe('ShareCaseComponent', () => {
       idamId : 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user2: UserDetails = {
       idamId : 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {

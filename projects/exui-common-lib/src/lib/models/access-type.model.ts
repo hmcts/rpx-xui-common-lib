@@ -1,6 +1,6 @@
 export interface AccessTypeModel {
   jurisdictionId: string;
-  orgProfileId: string;
+  organisationProfileId: string;
   accessTypeId: string;
   enabled: boolean;
 }
