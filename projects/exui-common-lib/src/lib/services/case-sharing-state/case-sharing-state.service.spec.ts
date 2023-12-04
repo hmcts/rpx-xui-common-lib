@@ -40,7 +40,14 @@ describe('CaseSharingStateService', () => {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     service.setCases(sharedCases);
     const newSharedCase: SharedCase[] = service.requestShare(user);
@@ -52,7 +59,14 @@ describe('CaseSharingStateService', () => {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -74,7 +88,14 @@ describe('CaseSharingStateService', () => {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -102,13 +123,27 @@ describe('CaseSharingStateService', () => {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user2: UserDetails = {
       idamId : 'pus111112',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus2@test.com'
+      email: 'jamespus.priestpus2@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -132,13 +167,27 @@ describe('CaseSharingStateService', () => {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     const user2: UserDetails = {
       idamId : 'pus111112',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus2@test.com'
+      email: 'jamespus.priestpus2@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     sharedCases = [
       {
@@ -174,14 +223,28 @@ describe('CaseSharingStateService', () => {
         idamId: 'pus111111',
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
+        email: 'jamespus.priestpus@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }]
     }];
     const user: UserDetails = {
       idamId : 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     service.setCases(sharedCases);
     service.requestCancel('9417373995765133', user);

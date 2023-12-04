@@ -21,19 +21,40 @@ describe('UserSelectComponent', () => {
       idamId: '111111',
       firstName: 'Geddy',
       lastName: 'Lee',
-      email: 'g.lee@rush.band'
+      email: 'g.lee@rush.band',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     },
     {
       idamId: '222222',
       firstName: 'Alex',
       lastName: 'Lifeson',
-      email: 'a.lifeson@rush.band'
+      email: 'a.lifeson@rush.band',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     },
     {
       idamId: '333333',
       firstName: 'Neil',
       lastName: 'Peart',
-      email: 'n.peart@rush.band'
+      email: 'n.peart@rush.band',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     }
   ];
 

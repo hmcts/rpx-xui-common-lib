@@ -33,7 +33,14 @@ describe('SelectedCaseConfirmComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }]
     };
     fixture.detectChanges();
@@ -58,13 +65,27 @@ describe('SelectedCaseConfirmComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
       pendingUnshares: [{
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }]
     };
     expect(component.showUserAccessBlock()).toBeTruthy();

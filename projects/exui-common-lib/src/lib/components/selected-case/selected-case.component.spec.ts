@@ -38,7 +38,14 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }]
     };
     component.shareCases$ = of(shareCases);
@@ -84,7 +91,14 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
     };
     expect(component.trackByUserId(user)).toEqual('U111111');
   });
@@ -101,7 +115,14 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }]
     }];
     component.shareCases$ = of(shareCases);
@@ -111,7 +132,14 @@ describe('SelectedCaseComponent', () => {
       idamId: 'U111111',
       firstName: 'James',
       lastName: 'Priest',
-      email: 'james.priest@test.com'
+      email: 'james.priest@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
   });
@@ -125,14 +153,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
 
       pendingUnshares: [{
         idamId: 'pus111111',
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
+        email: 'jamespus.priestpus@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
     }];
     component.shareCases$ = of(shareCases);
@@ -142,7 +184,14 @@ describe('SelectedCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
   });
@@ -156,7 +205,14 @@ describe('SelectedCaseComponent', () => {
           idamId: 'U111111',
           firstName: 'James',
           lastName: 'Priest',
-          email: 'james.priest@test.com'
+          email: 'james.priest@test.com',
+          lastUpdated: new Date(),
+          accessTypes: [{
+            jurisdictionId: '12345',
+            organisationProfileId: '12345',
+            accessTypeId: '1234',
+            enabled: true
+          }]
         }]
     }];
     component.shareCases$ = of(shareCases);
@@ -167,7 +223,14 @@ describe('SelectedCaseComponent', () => {
       idamId: 'U111111',
       firstName: 'James',
       lastName: 'Priest',
-      email: 'james.priest@test.com'
+      email: 'james.priest@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
@@ -180,19 +243,40 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
       pendingShares: [{
         idamId: 'ps111111',
         firstName: 'JamesPS',
         lastName: 'PriestPS',
-        email: 'jamesps.priestps@test.com'
+        email: 'jamesps.priestps@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
       pendingUnshares: [{
         idamId: 'pus111111',
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
+        email: 'jamespus.priestpus@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
     }];
     component.shareCases$ = of(shareCases);
@@ -201,7 +285,14 @@ describe('SelectedCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
@@ -214,19 +305,40 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
       pendingShares: [{
         idamId: 'ps111111',
         firstName: 'JamesPS',
         lastName: 'PriestPS',
-        email: 'jamesps.priestps@test.com'
+        email: 'jamesps.priestps@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
       pendingUnshares: [{
         idamId: 'pus111111',
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
+        email: 'jamespus.priestpus@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
     }];
     component.shareCases$ = of(shareCases);
@@ -235,7 +347,14 @@ describe('SelectedCaseComponent', () => {
       idamId: 'ps111111',
       firstName: 'JamesPS',
       lastName: 'PriestPS',
-      email: 'jamesps.priestps@test.com'
+      email: 'jamesps.priestps@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
     component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
   });
@@ -248,14 +367,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
 
       pendingUnshares: [{
         idamId: 'pus111111',
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
+        email: 'jamespus.priestpus@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
     }];
     component.shareCases$ = of(shareCases);
@@ -264,7 +397,14 @@ describe('SelectedCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      lastUpdated: new Date(),
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     };
 
     component.isToBeRemoved('C111111', user).toPromise().then(result => expect(result).toEqual(true));
@@ -278,14 +418,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
 
       pendingUnshares: [{
         idamId: 'pus111111',
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
+        email: 'jamespus.priestpus@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
     }];
     component.shareCases$ = of(shareCases);
@@ -304,14 +458,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
 
       pendingUnshares: [{
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
     }];
     component.shareCases$ = of(shareCases);
@@ -329,14 +497,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
 
       pendingUnshares: [{
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
     }];
     spyOn(component, 'onCancel');
@@ -359,14 +541,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james1.priest@test.com'
+        email: 'james1.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
     ],
       pendingShares: [{
         idamId: 'N111111',
         firstName: 'New',
         lastName: 'user',
-        email: 'new.priest@test.com'
+        email: 'new.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
     ]
     }];
@@ -393,7 +589,14 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }],
 
       pendingUnshares: [],
@@ -418,14 +621,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james1.priest@test.com'
+        email: 'james1.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
       ],
       pendingShares: [{
         idamId: 'N111111',
         firstName: 'New',
         lastName: 'user',
-        email: 'new.priest@test.com'
+        email: 'new.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
       ]
     }];
@@ -452,14 +669,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
       ],
       pendingUnshares: [{
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
       ]
     }];
@@ -478,7 +709,14 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
       ]
     }];
@@ -516,14 +754,28 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
       ],
       pendingUnshares: [{
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        lastUpdated: new Date(),
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }
       ]
     }];
