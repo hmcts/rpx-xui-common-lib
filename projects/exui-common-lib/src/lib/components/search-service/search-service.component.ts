@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatOptionSelectionChange } from '@angular/material/core/option/option';
 import { FilterConfigOption } from '../../models';
+import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
 
 @Component({
   selector: 'exui-search-service',
@@ -17,10 +17,10 @@ export class SearchServiceComponent {
   public readonly MIN_SEARCH_CHARACTERS = 3;
 
   public get filteredOptions(): FilterConfigOption[] {
-    const remainingServices = this.options.filter(s => !this.selectedOptions.find(ss => ss.key === s.key));
+    const remainingServices = this.options.filter((s) => !this.selectedOptions.find((ss) => ss.key === s.key));
 
     return this.searchTerm?.length >= this.MIN_SEARCH_CHARACTERS ?
-      remainingServices.filter(s => s.label.toLowerCase().includes(this.searchTerm.toLowerCase()))
+      remainingServices.filter((s) => s.label.toLowerCase().includes(this.searchTerm.toLowerCase()))
       : remainingServices;
   }
 
@@ -31,7 +31,7 @@ export class SearchServiceComponent {
   public onSelectionChanged($event: MatOptionSelectionChange): void {
     const label = $event.source?.value;
     if (label && $event.source.selected) {
-      const selectedService = this.options.find(s => s.label === label);
+      const selectedService = this.options.find((s) => s.label === label);
       this.optionChanged.emit(selectedService);
     }
   }
