@@ -39,7 +39,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -92,7 +91,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -115,8 +113,7 @@ describe('SelectedCaseComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com',
-        lastUpdated: new Date(),
+        email: 'james.priest@test.com', 
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -133,7 +130,6 @@ describe('SelectedCaseComponent', () => {
       firstName: 'James',
       lastName: 'Priest',
       email: 'james.priest@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -154,7 +150,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -168,7 +163,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
         email: 'jamespus.priestpus@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -185,7 +179,6 @@ describe('SelectedCaseComponent', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -206,7 +199,6 @@ describe('SelectedCaseComponent', () => {
           firstName: 'James',
           lastName: 'Priest',
           email: 'james.priest@test.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -224,7 +216,6 @@ describe('SelectedCaseComponent', () => {
       firstName: 'James',
       lastName: 'Priest',
       email: 'james.priest@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -244,7 +235,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -257,7 +247,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'JamesPS',
         lastName: 'PriestPS',
         email: 'jamesps.priestps@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -270,7 +259,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
         email: 'jamespus.priestpus@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -286,7 +274,6 @@ describe('SelectedCaseComponent', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -306,7 +293,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -319,7 +305,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'JamesPS',
         lastName: 'PriestPS',
         email: 'jamesps.priestps@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -332,7 +317,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
         email: 'jamespus.priestpus@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -348,7 +332,6 @@ describe('SelectedCaseComponent', () => {
       firstName: 'JamesPS',
       lastName: 'PriestPS',
       email: 'jamesps.priestps@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -368,7 +351,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -382,7 +364,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
         email: 'jamespus.priestpus@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -398,7 +379,6 @@ describe('SelectedCaseComponent', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -419,7 +399,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -433,7 +412,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
         email: 'jamespus.priestpus@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -459,7 +437,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -473,7 +450,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -498,7 +474,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -512,7 +487,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -542,7 +516,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james1.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -556,7 +529,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'New',
         lastName: 'user',
         email: 'new.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -590,7 +562,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -622,7 +593,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james1.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -636,7 +606,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'New',
         lastName: 'user',
         email: 'new.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -670,7 +639,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -684,7 +652,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -710,7 +677,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -755,7 +721,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -769,7 +734,6 @@ describe('SelectedCaseComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',

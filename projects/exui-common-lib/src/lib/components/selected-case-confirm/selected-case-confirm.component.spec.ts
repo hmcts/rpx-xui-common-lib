@@ -34,7 +34,6 @@ describe('SelectedCaseConfirmComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -66,7 +65,6 @@ describe('SelectedCaseConfirmComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -79,7 +77,6 @@ describe('SelectedCaseConfirmComponent', () => {
         firstName: 'James',
         lastName: 'Priest',
         email: 'james.priest@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',

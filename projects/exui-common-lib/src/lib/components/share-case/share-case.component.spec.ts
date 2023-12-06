@@ -121,7 +121,6 @@ describe('ShareCaseComponent', () => {
           firstName: 'Kate',
           lastName: 'Grant',
           email: 'kate.grant@lambbrooks.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -146,7 +145,6 @@ describe('ShareCaseComponent', () => {
           firstName: 'Kate',
           lastName: 'Grant',
           email: 'kate.grant@lambbrooks.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -160,7 +158,6 @@ describe('ShareCaseComponent', () => {
           firstName: 'Nick',
           lastName: 'Rodrigues',
           email: 'nick.rodrigues@lambbrooks.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -185,7 +182,6 @@ describe('ShareCaseComponent', () => {
           firstName: 'Kate',
           lastName: 'Grant',
           email: 'kate.grant@lambbrooks.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -199,7 +195,6 @@ describe('ShareCaseComponent', () => {
           firstName: 'Joel',
           lastName: 'Molloy',
           email: 'joel.molloy@lambbrooks.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -224,7 +219,6 @@ describe('ShareCaseComponent', () => {
           firstName: 'Kate',
           lastName: 'Grant',
           email: 'kate.grant@lambbrooks.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -238,7 +232,6 @@ describe('ShareCaseComponent', () => {
           firstName: 'Joel',
           lastName: 'Molloy',
           email: 'joel.molloy@lambbrooks.com',
-          lastUpdated: new Date(),
           accessTypes: [{
             jurisdictionId: '12345',
             organisationProfileId: '12345',
@@ -253,7 +246,6 @@ describe('ShareCaseComponent', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -279,8 +271,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -303,8 +294,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -323,8 +313,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -391,8 +380,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'One',
       email: 'user.one@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -404,8 +392,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Two',
       email: 'user.two@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -417,8 +404,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Three',
       email: 'user.three@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -430,8 +416,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Four',
       email: 'user.four@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -466,8 +451,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'One',
       email: 'user.one@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -506,8 +490,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'One',
       email: 'user.one@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -519,8 +502,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Two',
       email: 'user.two@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -532,8 +514,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Three',
       email: 'user.three@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -545,8 +526,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Four',
       email: 'user.four@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -579,8 +559,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Four',
       email: 'user.four@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -608,8 +587,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'One',
       email: 'user.one@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -621,8 +599,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Two',
       email: 'user.two@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -675,8 +652,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'One',
       email: 'user.one@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',
@@ -688,8 +664,7 @@ describe('ShareCaseComponent', () => {
       firstName: 'User',
       lastName: 'Two',
       email: 'user.two@test.com',
-      lastUpdated: new Date(),
-      accessTypes: [{
+            accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
         accessTypeId: '1234',

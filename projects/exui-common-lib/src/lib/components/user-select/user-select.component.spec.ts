@@ -22,7 +22,6 @@ describe('UserSelectComponent', () => {
       firstName: 'Geddy',
       lastName: 'Lee',
       email: 'g.lee@rush.band',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -35,7 +34,6 @@ describe('UserSelectComponent', () => {
       firstName: 'Alex',
       lastName: 'Lifeson',
       email: 'a.lifeson@rush.band',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -48,7 +46,6 @@ describe('UserSelectComponent', () => {
       firstName: 'Neil',
       lastName: 'Peart',
       email: 'n.peart@rush.band',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',

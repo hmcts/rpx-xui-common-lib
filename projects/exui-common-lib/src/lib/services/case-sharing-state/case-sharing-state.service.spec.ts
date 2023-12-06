@@ -41,7 +41,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -60,7 +59,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -89,7 +87,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -124,7 +121,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -137,7 +133,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus2@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -168,7 +163,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -181,7 +175,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus2@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
@@ -224,7 +217,6 @@ describe('CaseSharingStateService', () => {
         firstName: 'JamesPUS',
         lastName: 'PriestPUS',
         email: 'jamespus.priestpus@test.com',
-        lastUpdated: new Date(),
         accessTypes: [{
           jurisdictionId: '12345',
           organisationProfileId: '12345',
@@ -238,7 +230,6 @@ describe('CaseSharingStateService', () => {
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      lastUpdated: new Date(),
       accessTypes: [{
         jurisdictionId: '12345',
         organisationProfileId: '12345',
