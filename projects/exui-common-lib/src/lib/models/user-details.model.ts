@@ -6,6 +6,5 @@ export interface UserDetails {
   firstName: string;
   idamId: string;
   lastName: string;
-  lastUpdated?: Date;
   accessTypes?: AccessTypeModel[];
 }
