@@ -1,4 +1,4 @@
-export interface AccessTypeModel {
+export interface UserAccessType {
   jurisdictionId: string;
   organisationProfileId: string;
   accessTypeId: string;

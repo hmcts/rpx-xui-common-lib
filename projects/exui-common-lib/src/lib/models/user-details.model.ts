@@ -1,4 +1,4 @@
-import { AccessTypeModel } from './access-type.model';
+import { UserAccessType } from './user-access-type.model';
 
 export interface UserDetails {
   caseRoles?: string;
@@ -6,5 +6,5 @@ export interface UserDetails {
   firstName: string;
   idamId: string;
   lastName: string;
-  accessTypes?: AccessTypeModel[];
+  accessTypes?: UserAccessType[];
 }
