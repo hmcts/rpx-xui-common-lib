@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AccessibilityComponent implements OnInit {
-  isEndpointMC: boolean;
+  public isEndpointMC: boolean;
   constructor() {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const urlRef = window.location.href;
     // pointing to MC & preview. May need to refactor this if needed for
     // more applications
@@ -19,7 +19,7 @@ export class AccessibilityComponent implements OnInit {
       || urlRef.includes('xui-webapp')) {
       this.isEndpointMC = true;
     } else {
-      // pointing to MO. 
+      // pointing to MO.
       this.isEndpointMC = false;
     }
   }
