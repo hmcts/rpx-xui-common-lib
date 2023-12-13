@@ -1,5 +1,10 @@
-<h1 class="govuk-heading-xl" id="Accessibility-statement-for-Expert-UI">{{'Accessibility statement for MyHMCTS Manage
-  Cases' | rpxTranslate}}</h1>
+<h1 class="govuk-heading-xl" id="Accessibility-statement-for-Expert-UI">{{'Accessibility statement for MyHMCTS' |
+  rpxTranslate }}
+  {{isEndpointMC ? 'Manage Cases' : 'Manage Organisation' | rpxTranslate}}</h1>
+
+<p class="govuk-body">{{'MyHMCTS' |rpxTranslate}} {{isEndpointMC ? 'Manage Cases' : 'Manage Organisation' |
+  rpxTranslate}} {{'is used across several services. Please use links to find contact information for each service.' |
+  rpxTranslate}}</p>
 
 <ul class="govuk-list">
   <li><a href="accessibility#immigration">{{'Immigration and Asylum' | rpxTranslate}}</a></li>
@@ -11,7 +16,7 @@
 
 <ul class="govuk-list govuk-list--bullet">
   <li>{{'change colours, contrast levels and fonts' | rpxTranslate}}</li>
-  <li>{{'zoom in up to 300% without the text spilling off the screen' | rpxTranslate}}</li>
+  <li *ngIf="isEndpointMC">{{'zoom in up to 300% without the text spilling off the screen' | rpxTranslate}}</li>
   <li>{{'navigate most of the website using just a keyboard' | rpxTranslate}}</li>
   <li>{{'navigate most of the website using speech recognition software' | rpxTranslate}}</li>
   <li>{{'listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and
@@ -32,10 +37,13 @@
 <ul class="govuk-list govuk-list--bullet">
   <li>{{'some pages can\'t be zoomed in to 400% without content overlapping' | rpxTranslate}}</li>
   <li>{{'some page titles aren\'t page specific' | rpxTranslate}}</li>
-  <li>{{'it may be difficult to navigate between pages' | rpxTranslate}}</li>
-  <li>{{'some headings and labels aren\'t specific enough' | rpxTranslate}}</li>
+  <li *ngIf="!isEndpointMC">{{'some pages do not follow a logical tabbing order' | rpxTranslate}}</li>
+  <li *ngIf="!isEndpointMC">{{'some headings levels are skipped' | rpxTranslate}}</li>
+  <li *ngIf="!isEndpointMC">{{'some links do not work' | rpxTranslate}}</li>
+  <li *ngIf="isEndpointMC">{{'it may be difficult to navigate between pages' | rpxTranslate}}</li>
+  <li *ngIf="isEndpointMC">{{'some headings and labels aren\'t specific enough' | rpxTranslate}}</li>
   <li>{{'some PDFs may not be fully accessible to a screen reader' | rpxTranslate}}</li>
-  <li>{{'some buttons may not communicate collapsed status on mobile' | rpxTranslate}}</li>
+  <li *ngIf="isEndpointMC">{{'some buttons may not communicate collapsed status on mobile' | rpxTranslate}}</li>
 </ul>
 
 <h2 class="govuk-heading-l" id="What-to-do-if-you-cannot-access-parts-of-this-website">{{'Feedback and contact
@@ -109,7 +117,7 @@
 
 <ul class="govuk-list govuk-list--bullet">
   <li>{{'email:' | rpxTranslate}} <a href="mailto:MCTSforms@justice.gov.uk"> HMCTSforms@justice.gov.uk</a></li>
-  <li><a href="mailto:customer.service@justice.gov.uk">customer.service@justice.gov.uk</a></li>
+  <li *ngIf="isEndpointMC"><a href="mailto:customer.service@justice.gov.uk">customer.service@justice.gov.uk</a></li>
   <li>call the service you require as listed above.</li>
 </ul>
 
@@ -176,21 +184,50 @@
   which page they are on.
   This fails WCAG 2.1 success criterion 2.4.2: Page Titled (Level A)' | rpxTranslate}}</p>
 
-<p class="govuk-body">{{'It is difficult to understand how some pages are related to one another, and where they are in
+<p *ngIf="isEndpointMC" class="govuk-body">{{'It is difficult to understand how some pages are related to one another,
+  and where they are in
   the context of the whole site.
   This fails WCAG 2.1 success criterion 2.4.5: Multiple Ways (Level AA)' | rpxTranslate}}</p>
 
-<p class="govuk-body">{{'The heading '\Filter\' together with the non-unique '\Case List\' headings heavily imply that a
+<p *ngIf="!isEndpointMC" class="govuk-body">{{'Some users may struggle with keyboard order when tabbing after an error
+  is presented. This fails WCAG 2.1 success criterion 2.4.3: Focus Order (Level A).' | rpxTranslate}}</p>
+<p *ngIf="!isEndpointMC" class="govuk-body">{{'Some headings are skipped, so some users may struggle to navigate with
+  screen reader via headings. This fails WCAG 2.1 success criterion 2.4.6: Headings and labels (Level AA).' |
+  rpxTranslate}}</p>
+<p *ngIf="!isEndpointMC" class="govuk-body">{{'Some error links do not take the user to the specific error field, so
+  some people may struggle with interacting with the links. This fails WCAG 2.1 success criterion 3.2.1: On Focus (Level
+  A).' | rpxTranslate}}</p>
+<p *ngIf="isEndpointMC" class="govuk-body">{{'The heading '\Filter\' together with the non-unique '\Case List\' headings
+  heavily imply that a
   user is
   filtering one '\Case List\’ table, to which they have access, according to the filters they select. However, this is
   not the case.
   Some users may struggle with heading filters as it is not clear which ones correspond to the table data.
   This fails WCAG 2.1 success criterion 2.4.6: Headings and labels (Level AA)' | rpxTranslate}}</p>
 
-<p class="govuk-body">{{'Some users may struggle on mobile where a screen reader doesn\’t indicate that buttons are
+<p *ngIf="isEndpointMC" class="govuk-body">{{'Some users may struggle on mobile where a screen reader doesn\’t indicate
+  that buttons are
   collapsible.
   This fails WCAG 2.1 success criterion 4.1.2: Name, Role, Value (Level A)' | rpxTranslate}}</p>
 
+<h2 *ngIf="!isEndpointMC" class="govuk-heading-m" id="Disproportionate-burden">{{'Disproportionate burden' |
+  rpxTranslate}} </h2>
+
+<p *ngIf="!isEndpointMC" class="govuk-body">{{'We\'re considering if fixing some issues would be a' | rpxTranslate}} <a
+    target="_blank" href="https://www.legislation.gov.uk/uksi/2018/952/regulation/7/made/">{{'disproportionate burden' |
+    rpxTranslate}}</a> {{'within the meaning of
+  the accessibility regulations. These issues are:' | rpxTranslate}}</p>
+
+<ul *ngIf="!isEndpointMC" class="govuk-list govuk-list--bullet">
+  <li>{{'Screen readers not picking up how pages are related to one another, and where they are in the context of the
+    whole site' | rpxTranslate}}</li>
+  <li>{{'Screen readers not picking up on non-unique table headings on the same page' | rpxTranslate}}</li>
+  <li>{{'Some labels, fields, error messages and other content not being clearly identified by screen readers and voice
+    activation software on mobile devices.' | rpxTranslate}}</li>
+</ul>
+
+<p *ngIf="!isEndpointMC" class="govuk-body">{{'When this assessment is complete, we will update this accessibility
+  statement, to cover whether or not disproportionate burden is being claimed.' | rpxTranslate}}</p>
 
 <h2 class="govuk-heading-m" id="Content-that’s-not-within-the-scope-of-the-accessibility-regulations">{{'Content that\’s
   not
