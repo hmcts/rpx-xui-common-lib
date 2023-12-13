@@ -50,7 +50,13 @@ describe('SelectedCaseListComponent', () => {
         idamId: 'U111111',
         firstName: 'James',
         lastName: 'Priest',
-        email: 'james.priest@test.com'
+        email: 'james.priest@test.com',
+        accessTypes: [{
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }]
       }]
     };
     expect(component.trackByCaseId(sharedCase)).toEqual('C111111');
