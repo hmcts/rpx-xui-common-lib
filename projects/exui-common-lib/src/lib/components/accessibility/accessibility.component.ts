@@ -13,13 +13,13 @@ export class AccessibilityComponent implements OnInit {
 
   public ngOnInit(): void {
     const urlRef = window.location.href;
-    // pointing to MC & preview. May need to refactor this if needed for
-    // more applications
+    // pointing to MC & preview. May need to refactor this if
+    // more applications added than MO & MC
     if (urlRef.includes('manage-case')
-      || urlRef.includes('xui-webapp')) {
+      || urlRef.includes('xui-webapp')
+      && !urlRef.includes('xui-mo-webapp')) {
       this.isEndpointMC = true;
     } else {
-      // pointing to MO.
       this.isEndpointMC = false;
     }
   }
