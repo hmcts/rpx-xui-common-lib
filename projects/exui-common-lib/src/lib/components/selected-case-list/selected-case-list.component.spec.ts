@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { SharedCase } from '../../models/case-share.model';
-import { SelectedCaseListComponent } from './selected-case-list.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { SharedCase } from "../../models/case-share.model";
+import { SelectedCaseListComponent } from "./selected-case-list.component";
 
-describe('SelectedCaseListComponent', () => {
+describe("SelectedCaseListComponent", () => {
   let component: SelectedCaseListComponent;
   let sharedCase: SharedCase;
 
@@ -13,9 +13,8 @@ describe('SelectedCaseListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [SelectedCaseListComponent]
-    })
-      .compileComponents();
+      declarations: [SelectedCaseListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -24,42 +23,45 @@ describe('SelectedCaseListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should unselect', () => {
-    const mockCase = {caseId: '123456789', caseTitle: 'Example case'};
-    spyOn(component.unselect, 'emit');
+  it("should unselect", () => {
+    const mockCase = { caseId: "123456789", caseTitle: "Example case" };
+    spyOn(component.unselect, "emit");
     component.onUnselect(mockCase);
     expect(component.unselect.emit).toHaveBeenCalledWith(mockCase);
   });
 
-  it('should synchronize store', () => {
-    const mockCase = {caseId: '123456789', caseTitle: 'Example case'};
-    spyOn(component.synchronizeStore, 'emit');
+  it("should synchronize store", () => {
+    const mockCase = { caseId: "123456789", caseTitle: "Example case" };
+    spyOn(component.synchronizeStore, "emit");
     component.onSynchronizeStore(mockCase);
     expect(component.synchronizeStore.emit).toHaveBeenCalledWith(mockCase);
   });
 
-  it('should track by cased id', () => {
+  it("should track by cased id", () => {
     sharedCase = {
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com',
-        accessTypes: [{
-          jurisdictionId: '12345',
-          organisationProfileId: '12345',
-          accessTypeId: '1234',
-          enabled: true
-        }]
-      }]
+      caseId: "C111111",
+      caseTitle: "Sarah vs Pete",
+      sharedWith: [
+        {
+          idamId: "U111111",
+          firstName: "James",
+          lastName: "Priest",
+          email: "james.priest@test.com",
+          userAccessTypes: [
+            {
+              jurisdictionId: "12345",
+              organisationProfileId: "12345",
+              accessTypeId: "1234",
+              enabled: true,
+            },
+          ],
+        },
+      ],
     };
-    expect(component.trackByCaseId(sharedCase)).toEqual('C111111');
+    expect(component.trackByCaseId(sharedCase)).toEqual("C111111");
   });
-
 });
