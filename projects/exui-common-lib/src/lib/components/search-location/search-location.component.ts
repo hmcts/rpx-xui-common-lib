@@ -33,7 +33,7 @@ export class SearchLocationComponent implements OnInit {
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
-  public searchTermFormControl = new FormControl('', Validators.pattern('^[a-zA-Z0-9]{3,10}$'));
+  public searchTermFormControl = new FormControl('', Validators.pattern('/[^a-zA-Z]/'));
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pReset: boolean = true;
@@ -57,12 +57,9 @@ export class SearchLocationComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    console.log('searchTermFormControl', this.searchTermFormControl.valid)
-    // console.log('fields', this.field)
-    if (this.searchTermFormControl.valid) {
       const searchInputChanges$ = this.searchTermFormControl.valueChanges
         .pipe(
-          tap((term) => { console.log('term ', term); this.locationTermSearchInputChanged.emit(term) })
+          tap((term) => { this.locationTermSearchInputChanged.emit(term) })
         );
 
 
@@ -98,9 +95,6 @@ export class SearchLocationComponent implements OnInit {
         const location = this.selectedLocations[0];
         this.searchTermFormControl.patchValue(location[this.propertyNameFilter], { emitEvent: false, onlySelf: true });
       }
-    } else {
-      console.log('Invalid')
-    }
   }
 
   public onSelectedLocation(location: LocationByEPIMMSModel): void {
@@ -108,7 +102,6 @@ export class SearchLocationComponent implements OnInit {
     this.locationSelected.emit(location);
   }
   public onInput(): void {
-    console.log('onInput()', this.searchTermFormControl.value)
     this.searchLocationChanged.emit();
   }
 
