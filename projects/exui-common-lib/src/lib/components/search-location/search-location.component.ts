@@ -33,12 +33,13 @@ export class SearchLocationComponent implements OnInit {
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
-  public searchTermFormControl = new FormControl('',  Validators.pattern('^[a-zA-Z0-9]{3,10}$'));
+  public searchTermFormControl = new FormControl('', Validators.pattern('^[a-zA-Z0-9]{3,10}$'));
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pReset: boolean = true;
   public filteredList$: Observable<LocationByEPIMMSModel[] | boolean>;
   private readonly debounceTimeInput = 300;
+  private binaryValue = '';
 
   public get reset(): boolean {
     return this.pReset;
@@ -51,59 +52,59 @@ export class SearchLocationComponent implements OnInit {
   }
 
   constructor(private readonly locationService: LocationService,
-              private readonly sessionStorageService: SessionStorageService,
-              private readonly refDataService: RefDataService
-  ) {}
+    private readonly sessionStorageService: SessionStorageService,
+    private readonly refDataService: RefDataService
+  ) { }
 
   public ngOnInit(): void {
-   console.log('searchTermFormControl', this.searchTermFormControl.valid)
-   // console.log('fields', this.field)
-   if(this.searchTermFormControl.valid){
-    const searchInputChanges$ = this.searchTermFormControl.valueChanges
-      .pipe(
-        tap((term) =>{ console.log('term ', term); this.locationTermSearchInputChanged.emit(term)})
-      );
-  
+    console.log('searchTermFormControl', this.searchTermFormControl.valid)
+    // console.log('fields', this.field)
+    if (this.searchTermFormControl.valid) {
+      const searchInputChanges$ = this.searchTermFormControl.valueChanges
+        .pipe(
+          tap((term) => { console.log('term ', term); this.locationTermSearchInputChanged.emit(term) })
+        );
 
-    // if servicesField exists, then we should filter locations by the service codes
-    if (this.field && this.field.servicesField) {
-      this.filteredList$ = searchInputChanges$.pipe(
-        switchMap((term: string) =>  iif(
-          // Seems more responsive to do length 0 if locationsByServiceCodes are cached
-          () => (!!term && term.length >= 0),
-         
+
+      // if servicesField exists, then we should filter locations by the service codes
+      if (this.field && this.field.servicesField) {
+        this.filteredList$ = searchInputChanges$.pipe(
+          switchMap((term: string) => iif(
+            // Seems more responsive to do length 0 if locationsByServiceCodes are cached
+            () => (!!term && term.length >= 0),
+
             this.refDataService.getLocationsByServiceCodes(
               (this.form.get(this.field.servicesField)?.value as FilterConfigOption[]).map((service) => service.key)
             ),
             // Returns false if the search term is empty to not show the autocomplete field i.e. ngIf should be false
             of(false)
-        )),
-      );
-    } else {
-      this.filteredList$ = searchInputChanges$.pipe(
-        // Debounce needed to prevent multiple API calls being made
-        debounceTime(this.debounceTimeInput),
-        switchMap((term: string) => iif(
-          () => (!!term && term.length  >= this.minSearchCharacters && this.searchTermFormControl.valid),
-          this.getLocations(term).pipe(
-            map((locations) => this.filterUnselectedLocations(locations, this.selectedLocations, this.singleMode)),
-          ),
-          of(false)
-        )),
-      );
-    }
+          )),
+        );
+      } else {
+        this.filteredList$ = searchInputChanges$.pipe(
+          // Debounce needed to prevent multiple API calls being made
+          debounceTime(this.debounceTimeInput),
+          switchMap((term: string) => iif(
+            () => (!!term && term.length >= this.minSearchCharacters && this.searchTermFormControl.valid),
+            this.getLocations(term).pipe(
+              map((locations) => this.filterUnselectedLocations(locations, this.selectedLocations, this.singleMode)),
+            ),
+            of(false)
+          )),
+        );
+      }
 
-    if (this.singleMode && this.selectedLocations.length > 0) {
-      const location = this.selectedLocations[0];
-      this.searchTermFormControl.patchValue(location[this.propertyNameFilter], {emitEvent: false, onlySelf: true});
+      if (this.singleMode && this.selectedLocations.length > 0) {
+        const location = this.selectedLocations[0];
+        this.searchTermFormControl.patchValue(location[this.propertyNameFilter], { emitEvent: false, onlySelf: true });
+      }
+    } else {
+      console.log('Invalid')
     }
-  } else{
-    console.log('Invalid')
-  }
   }
 
   public onSelectedLocation(location: LocationByEPIMMSModel): void {
-    this.searchTermFormControl.patchValue(location[this.propertyNameFilter], {emitEvent: false, onlySelf: true});
+    this.searchTermFormControl.patchValue(location[this.propertyNameFilter], { emitEvent: false, onlySelf: true });
     this.locationSelected.emit(location);
   }
   public onInput(): void {
@@ -145,5 +146,15 @@ export class SearchLocationComponent implements OnInit {
     return locations.filter(
       location => !selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(location.epimms_id) && location[this.propertyNameFilter]
     );
+  }
+
+  public RemoveInvalidString(formInputValue: any) {
+    const element = formInputValue.target as HTMLInputElement;
+    const newInputValue = element.value;
+    if (/[^a-zA-Z]/.test(newInputValue)) {
+      element.value = this.binaryValue;
+    } else {
+      this.binaryValue = newInputValue;
+    }
   }
 }
