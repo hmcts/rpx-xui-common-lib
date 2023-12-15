@@ -12,7 +12,8 @@
     "build:dev": "ng build --watch exui-common-lib",
     "test": "ng test exui-common-lib",
     "lint": "ng lint rpx-xui-common-lib",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "clean": "rimraf node_modules"
   },
   "repository": {
     "type": "git",

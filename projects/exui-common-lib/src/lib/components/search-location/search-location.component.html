@@ -1,7 +1,7 @@
 <div class="auto-complete-container">
   <input
     id="inputLocationSearch"
-    (input)="onInput()"
+    (change)="onInput()"
     [formControl]="searchTermFormControl"
     [matAutocomplete]="autoSearchLocation"
     class="govuk-input"
