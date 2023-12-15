@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.2-pre-release-accessibility-updated-filter-new",
+  "version": "2.0.3-pre-release-accessibility-page-amended",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --configuration production",
