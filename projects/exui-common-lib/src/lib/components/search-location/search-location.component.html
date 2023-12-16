@@ -1,7 +1,4 @@
 <div class="auto-complete-container">
-  <div *ngIf="searchTermFormControl.errors?.['patttern']">
-    <span class="govuk-error-message">{{'Special characters not allowed' | rpxTranslate}}</span>
-  </div>
   <input
     id="inputLocationSearch"
     (keyup)="RemoveInvalidString($event)"
