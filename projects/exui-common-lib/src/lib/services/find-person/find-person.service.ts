@@ -32,12 +32,9 @@ export class FindAPersonService {
 
   public find(searchOptions: SearchOptions): Observable<Person[]> {
     const userInfoStr = this.sessionStorageService.getItem('userDetails');
-    // added because userId getting reset by caseworker logic
-    let blockedUserId: string = null;
     if (userInfoStr && !searchOptions.userIncluded) {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
-      blockedUserId = this.userId;
     }
     this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
     return this.http.post<Person[]>('/workallocation/findPerson', { searchOptions })
