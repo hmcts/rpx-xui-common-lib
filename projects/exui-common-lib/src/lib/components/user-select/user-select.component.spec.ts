@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
 
@@ -21,19 +21,37 @@ describe('UserSelectComponent', () => {
       idamId: '111111',
       firstName: 'Geddy',
       lastName: 'Lee',
-      email: 'g.lee@rush.band'
+      email: 'g.lee@rush.band',
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     },
     {
       idamId: '222222',
       firstName: 'Alex',
       lastName: 'Lifeson',
-      email: 'a.lifeson@rush.band'
+      email: 'a.lifeson@rush.band',
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     },
     {
       idamId: '333333',
       firstName: 'Neil',
       lastName: 'Peart',
-      email: 'n.peart@rush.band'
+      email: 'n.peart@rush.band',
+      accessTypes: [{
+        jurisdictionId: '12345',
+        organisationProfileId: '12345',
+        accessTypeId: '1234',
+        enabled: true
+      }]
     }
   ];
 

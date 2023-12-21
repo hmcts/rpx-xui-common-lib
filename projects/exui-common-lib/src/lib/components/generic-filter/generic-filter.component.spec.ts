@@ -2,8 +2,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatOptionModule } from '@angular/material/core';
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
+import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FilterConfig, FilterFieldConfig, GroupOptions } from '../../models';
@@ -214,7 +214,7 @@ describe('GenericFilterComponent', () => {
   it('should display cancel filter button', () => {
     const formDebugElement = fixture.debugElement.query(By.css('form'));
     const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
-    expect(form.querySelector('button[id="cancelFilter"]')).toBeDefined();
+    expect(form.querySelector('button[id="cancelFilter"]')).toBeTruthy();
   });
 
   it('should call callback if cancelButtonCallback exists', () => {
@@ -391,7 +391,7 @@ describe('GenericFilterComponent', () => {
     });
   });
 
-  describe('nOnDestroy', () => {
+  describe('Test ngOnDestroy', () => {
     it('should unsubscribe from form', () => {
       spyOn(component.formSub, 'unsubscribe');
       component.ngOnDestroy();
@@ -399,7 +399,7 @@ describe('GenericFilterComponent', () => {
     });
 
     it('should set givenErrors on filterService to null', () => {
-      // component.ngOnDestroy();
+      component.ngOnDestroy();
       // @ts-expect-error - private property
       expect(component.filterService.givenErrors.next).toHaveBeenCalledWith(null);
     });
