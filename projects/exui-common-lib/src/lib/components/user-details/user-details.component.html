@@ -25,7 +25,7 @@
           <div *ngIf="userHasRole('pui-caa')">{{'Case access administrator' | rpxTranslate}}</div>
           <div *ngIf="userHasRole('pui-finance-manager')">{{'Manage fee accounts' | rpxTranslate}}</div>
         </td>
-        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></td>
+        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" role="link"  aria-label="{{'Change roles' | rpxTranslate}}" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></td>
     </tr>
   </tbody>
 </table>
