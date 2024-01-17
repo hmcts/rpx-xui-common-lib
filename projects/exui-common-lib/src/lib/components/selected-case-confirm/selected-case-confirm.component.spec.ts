@@ -1,16 +1,16 @@
-import { Pipe, PipeTransform } from "@angular/core";
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { SelectedCaseConfirmComponent } from "./selected-case-confirm.component";
+import { Pipe, PipeTransform } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SelectedCaseConfirmComponent } from './selected-case-confirm.component';
 
-@Pipe({ name: "rpxTranslate" })
+@Pipe({ name: 'rpxTranslate' })
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
 }
 
-describe("SelectedCaseConfirmComponent", () => {
+describe('SelectedCaseConfirmComponent', () => {
   let component: SelectedCaseConfirmComponent;
   let fixture: ComponentFixture<SelectedCaseConfirmComponent>;
 
@@ -18,7 +18,7 @@ describe("SelectedCaseConfirmComponent", () => {
     TestBed.configureTestingModule({
       declarations: [SelectedCaseConfirmComponent, RpxTranslateMockPipe],
       imports: [RouterTestingModule],
-      providers: [],
+      providers: []
     }).compileComponents();
   }));
 
@@ -26,83 +26,83 @@ describe("SelectedCaseConfirmComponent", () => {
     fixture = TestBed.createComponent(SelectedCaseConfirmComponent);
     component = fixture.componentInstance;
     component.sharedCase = {
-      caseId: "C111111",
-      caseTitle: "Share a case",
+      caseId: 'C111111',
+      caseTitle: 'Share a case',
       sharedWith: [
         {
-          idamId: "U111111",
-          firstName: "James",
-          lastName: "Priest",
-          email: "james.priest@test.com",
+          idamId: 'U111111',
+          firstName: 'James',
+          lastName: 'Priest',
+          email: 'james.priest@test.com',
           userAccessTypes: [
             {
-              jurisdictionId: "12345",
-              organisationProfileId: "12345",
-              accessTypeId: "1234",
-              enabled: true,
-            },
-          ],
-        },
-      ],
+              jurisdictionId: '12345',
+              organisationProfileId: '12345',
+              accessTypeId: '1234',
+              enabled: true
+            }
+          ]
+        }
+      ]
     };
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should not show user access block", () => {
+  it('should not show user access block', () => {
     expect(component.showUserAccessBlock()).toBeFalsy();
     fixture.detectChanges();
     const userAccessBlock = fixture.debugElement.nativeElement.querySelector(
-      "[id^='user-access-block']"
+      '[id^=\'user-access-block\']'
     );
     expect(userAccessBlock).toBeNull();
   });
 
-  it("should show user access block", () => {
+  it('should show user access block', () => {
     component.sharedCase = {
-      caseId: "C111111",
-      caseTitle: "Share a case",
+      caseId: 'C111111',
+      caseTitle: 'Share a case',
       sharedWith: [
         {
-          idamId: "U111111",
-          firstName: "James",
-          lastName: "Priest",
-          email: "james.priest@test.com",
+          idamId: 'U111111',
+          firstName: 'James',
+          lastName: 'Priest',
+          email: 'james.priest@test.com',
           userAccessTypes: [
             {
-              jurisdictionId: "12345",
-              organisationProfileId: "12345",
-              accessTypeId: "1234",
-              enabled: true,
-            },
-          ],
-        },
+              jurisdictionId: '12345',
+              organisationProfileId: '12345',
+              accessTypeId: '1234',
+              enabled: true
+            }
+          ]
+        }
       ],
       pendingUnshares: [
         {
-          idamId: "U111111",
-          firstName: "James",
-          lastName: "Priest",
-          email: "james.priest@test.com",
+          idamId: 'U111111',
+          firstName: 'James',
+          lastName: 'Priest',
+          email: 'james.priest@test.com',
           userAccessTypes: [
             {
-              jurisdictionId: "12345",
-              organisationProfileId: "12345",
-              accessTypeId: "1234",
-              enabled: true,
-            },
-          ],
-        },
-      ],
+              jurisdictionId: '12345',
+              organisationProfileId: '12345',
+              accessTypeId: '1234',
+              enabled: true
+            }
+          ]
+        }
+      ]
     };
     expect(component.showUserAccessBlock()).toBeTruthy();
     fixture.detectChanges();
 
     const userAccessBlock = fixture.debugElement.nativeElement.querySelector(
-      "[id^='user-access-block']"
+      '[id^=\'user-access-block\']'
     );
     expect(userAccessBlock).toBeTruthy();
   });
