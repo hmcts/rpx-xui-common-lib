@@ -1,3 +1,5 @@
+import { UserAccessType } from './user-access-type.model';
+
 export interface User {
     [key: string]: any;
     routerLink?: string;
@@ -6,4 +8,5 @@ export interface User {
     email?: string;
     status?: string;
     resendInvite?: boolean;
+    userAccessTypes?: UserAccessType[];
 }
