@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "1.9.0-address-display-full",
+  "version": "2.0.6-pre-release-display-access-types-for-user-details",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --prod",
