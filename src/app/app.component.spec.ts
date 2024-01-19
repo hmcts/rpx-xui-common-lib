@@ -6,7 +6,7 @@ import { ExuiCommonLibModule } from 'projects/exui-common-lib/src';
 import { windowToken } from 'projects/exui-common-lib/src/lib/window';
 import { AppComponent } from './app.component';
 
-const windowMock: Window = { gtag: () => {}} as any;
+const windowMock: Window = { gtag: () => ({}) } as any;
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
@@ -20,7 +20,7 @@ describe('AppComponent', () => {
         {
           provide: windowToken,
           useValue: windowMock
-        },
+        }
       ],
       declarations: [
         AppComponent
@@ -35,7 +35,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'rpx-xui-common-lib'`, () => {
+  it('should have as title \'rpx-xui-common-lib\'', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('rpx-xui-common-lib');

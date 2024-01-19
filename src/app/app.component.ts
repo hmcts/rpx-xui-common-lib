@@ -15,18 +15,19 @@ interface CheckboxLocation {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   public title = 'rpx-xui-common-lib';
   public testDocumentPlain: TCDocument = {
     version: 1,
     content: 'Test Document Content',
     mimeType: 'text/plain'
   };
+
   public testDocumentHtml: TCDocument = {
     version: 2,
-    content: `<h1>HTML Test</h1><p>Document to test <b>HTML</b> content</p>`,
+    content: '<h1>HTML Test</h1><p>Document to test <b>HTML</b> content</p>',
     mimeType: 'text/html'
   };
+
   public contactDetailsData: ContactDetailsDataModel = {
     title: 'Contact Details Component',
     badgeColour: BadgeColour.BADGE_RED,
@@ -35,11 +36,13 @@ export class AppComponent implements OnInit {
     phone: '1111111',
     openingTimes: 'bla bla bla'
   };
+
   public tabItems = [{
     text: 'Tab1'
   }, {
     text: 'Tab2'
   }];
+
   // START: Due Date Component properties.
   public dueDate: Date = new Date();
   public dueDateText: string = this.dueDate.toLocaleDateString();
@@ -48,19 +51,20 @@ export class AppComponent implements OnInit {
   public mediumUrgencyCutoff: number = 2;
   public mediumUrgencyCutoffText: string = '2';
   // START: Checkbox List Component properties.
-  public twickers: CheckboxLocation = {value: 6, name: 'Twickenham', borough: 'Richmond'};
+  public twickers: CheckboxLocation = { value: 6, name: 'Twickenham', borough: 'Richmond' };
   // END: Due Date Component properties.
-  public wimbledon: CheckboxLocation = {value: 8, name: 'Wimbledon', borough: 'Merton'};
-  public goldersGreen: CheckboxLocation = {value: 9, name: 'Golders Green', borough: 'Barnet'};
+  public wimbledon: CheckboxLocation = { value: 8, name: 'Wimbledon', borough: 'Merton' };
+  public goldersGreen: CheckboxLocation = { value: 9, name: 'Golders Green', borough: 'Barnet' };
   public locations: CheckboxLocation[] = [
-    {value: 1, name: 'Baker Street', borough: 'Westminster'},
-    {value: 2, name: 'Clapham Junction', borough: 'Wandsworth'},
-    {value: 3, name: 'King\'s Cross', borough: 'Camden'},
-    {value: 4, name: 'Shoreditch High Street', borough: 'Tower Hamlets'},
-    {value: 5, name: 'South Woodford', borough: 'Redbridge'},
+    { value: 1, name: 'Baker Street', borough: 'Westminster' },
+    { value: 2, name: 'Clapham Junction', borough: 'Wandsworth' },
+    { value: 3, name: 'King\'s Cross', borough: 'Camden' },
+    { value: 4, name: 'Shoreditch High Street', borough: 'Tower Hamlets' },
+    { value: 5, name: 'South Woodford', borough: 'Redbridge' },
     this.twickers,
-    {value: 7, name: 'West Brompton', borough: 'Kensington and Chelsea'}
+    { value: 7, name: 'West Brompton', borough: 'Kensington and Chelsea' }
   ];
+
   public preselection: CheckboxLocation[] = [this.twickers];
   public listHeight: string = '000';
   public checkboxEvents: string = '';
@@ -72,11 +76,11 @@ export class AppComponent implements OnInit {
     fields: [{
       name: 'example1',
       options: [
-        {key: 'Fernando Alonso', label: 'Fernando Alonso'},
-        {key: 'Sebastian Vettel', label: 'Sebastian Vettel'},
-        {key: 'Lewis Hamilton', label: 'Lewis Hamilton'},
-        {key: 'Mick Schumacher', label: 'Mick Schumacher'},
-        {key: 'Lando Norris', label: 'Lando Norris'},
+        { key: 'Fernando Alonso', label: 'Fernando Alonso' },
+        { key: 'Sebastian Vettel', label: 'Sebastian Vettel' },
+        { key: 'Lewis Hamilton', label: 'Lewis Hamilton' },
+        { key: 'Mick Schumacher', label: 'Mick Schumacher' },
+        { key: 'Lando Norris', label: 'Lando Norris' }
       ],
       minSelected: 1,
       maxSelected: 1,
@@ -84,11 +88,11 @@ export class AppComponent implements OnInit {
     }, {
       name: 'example2',
       options: [
-        {key: 'Tinky Winky', label: 'Tinky Winky'},
-        {key: 'Dipsy', label: 'Dipsy'},
-        {key: 'Laa-Laa', label: 'Laa-Laa'},
-        {key: 'Po', label: 'Po'},
-        {key: 'Noo-noo', label: 'Noo-noo'},
+        { key: 'Tinky Winky', label: 'Tinky Winky' },
+        { key: 'Dipsy', label: 'Dipsy' },
+        { key: 'Laa-Laa', label: 'Laa-Laa' },
+        { key: 'Po', label: 'Po' },
+        { key: 'Noo-noo', label: 'Noo-noo' }
       ],
       minSelected: 1,
       maxSelected: 1,
@@ -96,11 +100,11 @@ export class AppComponent implements OnInit {
     }, {
       name: 'example3',
       options: [
-        {key: 'yellow', label: 'Yellow'},
-        {key: 'green', label: 'Green'},
-        {key: 'red', label: 'Red'},
-        {key: 'blue', label: 'Blue'},
-        {key: 'orange', label: 'Orange'},
+        { key: 'yellow', label: 'Yellow' },
+        { key: 'green', label: 'Green' },
+        { key: 'red', label: 'Red' },
+        { key: 'blue', label: 'Blue' },
+        { key: 'orange', label: 'Orange' }
       ],
       minSelected: 1,
       maxSelected: 1,
@@ -156,11 +160,11 @@ export class AppComponent implements OnInit {
   // START: Checkbox List Component functions.
   public labelName = (item: CheckboxLocation): string => {
     return item.name;
-  }
+  };
 
   public labelBorough = (item: CheckboxLocation): string => {
     return item.borough;
-  }
+  };
 
   public setLabelFunction(fn: (item: CheckboxLocation) => string): void {
     this.labelFunction = fn;
@@ -168,7 +172,7 @@ export class AppComponent implements OnInit {
 
   public onCheckboxSelectionChange(selection: CheckboxLocation[]): void {
     let thisEvent: string = 'Selection changed to:\n * ';
-    thisEvent += selection.map(item => this.labelFunction(item)).join(', ');
+    thisEvent += selection.map((item) => this.labelFunction(item)).join(', ');
     console.log(thisEvent, selection);
     this.checkboxEvents += `\n\n${thisEvent}`;
   }

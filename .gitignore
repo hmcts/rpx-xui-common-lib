@@ -54,3 +54,4 @@ elements.js.gz
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+/.angular/cache/

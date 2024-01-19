@@ -4,7 +4,7 @@
     {{ warningTitle | rpxTranslate}}
 </strong>
 </div>
-<table class="govuk-table" *ngIf="user">
+<table class="govuk-table" *ngIf="user" role="presentation">
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
         <th class="govuk-table__header" scope="row">{{'Name' | rpxTranslate}}</th>
@@ -26,7 +26,7 @@
           <div *ngIf="userHasRole('pui-finance-manager')">{{'Manage fee accounts' | rpxTranslate}}</div>
           <div *ngFor="let accesstype of enabledAccessTypes">{{ accesstype | rpxTranslate}}</div> 
         </td>
-        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></td>
+        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></td>
     </tr>
   </tbody>
 </table>
