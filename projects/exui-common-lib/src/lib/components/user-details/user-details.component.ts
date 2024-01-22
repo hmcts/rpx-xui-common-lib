@@ -8,6 +8,7 @@ import { User } from '../../models';
 })
 export class UserDetailsComponent {
     @Input() public user: User;
+    @Input() public enabledAccessTypes: string[] = [];
     @Input() public editPermissionRouterLink: string;
     @Input() public warningTitle: string;
     @Input() public showEditLink: boolean = false;
