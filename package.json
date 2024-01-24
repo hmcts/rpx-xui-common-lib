@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.3-special-character-filter",
+  "version": "2.0.8",
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --configuration production",

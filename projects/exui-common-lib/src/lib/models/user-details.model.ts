@@ -6,5 +6,5 @@ export interface UserDetails {
   firstName: string;
   idamId: string;
   lastName: string;
-  accessTypes?: UserAccessType[];
+  userAccessTypes?: UserAccessType[];
 }
