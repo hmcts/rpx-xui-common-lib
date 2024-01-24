@@ -33,7 +33,7 @@ export class SearchLocationComponent implements OnInit {
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
-  public searchTermFormControl = new FormControl('', Validators.pattern('/[^a-zA-Z]/'));
+  public searchTermFormControl = new FormControl('', Validators.pattern('/[^a-zA-Z -]/'));
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pReset: boolean = true;
@@ -152,7 +152,7 @@ export class SearchLocationComponent implements OnInit {
   public RemoveInvalidString(formInputValue: any) {
     const element = formInputValue.target as HTMLInputElement;
     const newInputValue = element.value;
-    if (/[^a-zA-Z]/.test(newInputValue)) {
+    if (/[^a-zA-Z -]/.test(newInputValue)) {
       element.value = this.binaryValue;
     } else {
       this.binaryValue = newInputValue;
