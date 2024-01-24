@@ -1,6 +1,9 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
   "version": "2.0.8",
+  "engines": {
+    "node": ">=18.17.0"
+  },
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --configuration production",
@@ -36,7 +39,7 @@
     "@ng-idle/core": "^11.1.0",
     "@ng-idle/keepalive": "^11.0.3",
     "core-js": "^2.5.4",
-    "govuk-frontend": "4.0.1",
+    "govuk-frontend": "4.2.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
     "ngx-pagination": "^3.2.1",
     "rpx-xui-translation": "1.0.2",
