@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { FeatureToggleService } from '../../services';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
@@ -23,7 +22,7 @@ describe('CookieBannerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     cookieService = jasmine.createSpyObj('CookieService', ['setCookie', 'checkCookie', 'getCookie']);
-    mockFeature = jasmine.createSpyObj('FeatureToggleService', ['isEnabled']);
+    mockFeature = jasmine.createSpyObj('FeatureToggleService', ['getValueSync']);
     mockDtrum = jasmine.createSpyObj('dtrum', ['enable', 'enableSessionReplay']);
     windowMock = { location: { reload: () => {}}, dtrum: mockDtrum } as any;
     // @ts-ignore
@@ -62,18 +61,18 @@ describe('CookieBannerComponent', () => {
 
   describe('DynaTrace', () => {
     it('should enable RUM if feature toggle is on', fakeAsync(() => {
-      mockFeature.isEnabled.and.returnValue(of(true));
+      mockFeature.getValueSync.and.returnValue(true);
       appComponent.notifyAcceptance();
-      expect(mockFeature.isEnabled).toHaveBeenCalled();
+      expect(mockFeature.getValueSync).toHaveBeenCalled();
       tick(1000);
       expect(mockDtrum.enable).toHaveBeenCalled();
       expect(mockDtrum.enableSessionReplay).toHaveBeenCalled();
     }));
 
     it ('should not enable RUM if feature toggle is off', fakeAsync(() => {
-      mockFeature.isEnabled.and.returnValue(of(false));
+      mockFeature.getValueSync.and.returnValue(false);
       appComponent.notifyAcceptance();
-      expect(mockFeature.isEnabled).toHaveBeenCalled();
+      expect(mockFeature.getValueSync).toHaveBeenCalled();
       tick(1000);
       expect(mockDtrum.enable).not.toHaveBeenCalled();
       expect(mockDtrum.enableSessionReplay).not.toHaveBeenCalled();
@@ -81,9 +80,9 @@ describe('CookieBannerComponent', () => {
     it ('should disable RUM if Dynatrace object not injected', fakeAsync(() => {
       // @ts-ignore
       appComponent.window['dtrum'] = undefined;
-      mockFeature.isEnabled.and.returnValue(of(true));
+      mockFeature.getValueSync.and.returnValue(true);
       appComponent.notifyAcceptance();
-      expect(mockFeature.isEnabled).not.toHaveBeenCalled();
+      expect(mockFeature.getValueSync).toHaveBeenCalled();
       tick(1000);
       expect(mockDtrum.enable).not.toHaveBeenCalled();
       expect(mockDtrum.enableSessionReplay).not.toHaveBeenCalled();

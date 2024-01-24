@@ -62,22 +62,26 @@ export class CookieBannerComponent implements OnInit {
   }
 
   public notifyAcceptance(): void {
-    if (this.window.hasOwnProperty('dtrum')) {
-      // @ts-ignore
-      const dtrum = this.window['dtrum'];
-      if (dtrum) {
-        this.featureToggleService.isEnabled('xui-dynatrace-rum-enabled')
-          .subscribe((enabled) => {
-            if (enabled) {
-              try {
-                dtrum.enable();
-                dtrum.enableSessionReplay(true);
-              } catch (e) {
-                console.error('Error enabling DynaTrace', e);
-              }
-            }
-          });
+    const value = this.featureToggleService.getValueSync('xui-dynatrace-rum-enabled', true)
+    if (value) {
+      if (this.window.hasOwnProperty('dtrum')) {
+        // @ts-ignore
+        const dtrum = this.window['dtrum'];
+        if (dtrum) {
+          try {
+            dtrum.enable();
+            dtrum.enableSessionReplay(true);
+          } catch (e) {
+            console.error('Error enabling DynaTrace', e);
+          }
+        } else {
+          console.info("DynaTrace not enabled on the server");
+        }
+      } else {
+        console.info("DynaTrace not enabled on the server");
       }
+    } else {
+      console.info("Dyntrace RUM not enabled via feature flag");
     }
     this.acceptanceNotifier.emit();
   }
