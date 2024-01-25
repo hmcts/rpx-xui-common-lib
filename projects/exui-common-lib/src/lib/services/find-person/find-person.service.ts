@@ -25,7 +25,7 @@ export class FindAPersonService {
 
   public static caseworkersKey: string = 'caseworkers';
   public userId: string;
-  public assignedUser: string;
+  public assignedUser: string | string[];
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
   }
@@ -38,7 +38,7 @@ export class FindAPersonService {
     }
     this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
     return this.http.post<Person[]>('/workallocation/findPerson', { searchOptions })
-      .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser].includes(judge.id)))));
+      .pipe(map(judiciary => judiciary.filter(judge => !(this.assignedUser.includes(judge.id)))));
     // Removed the current user id to fix EUI-8465.
   }
 
@@ -116,7 +116,7 @@ export class FindAPersonService {
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
     return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-      : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+      : finalPeopleList.filter(person => person && person.id !== this.userId && !this.assignedUser.includes(person.id));
   }
 
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
