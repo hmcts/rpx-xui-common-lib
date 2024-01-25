@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { iif, Observable, of } from 'rxjs';
 import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import {
@@ -33,13 +33,13 @@ export class SearchLocationComponent implements OnInit {
   @Output() public locationSelected = new EventEmitter<LocationByEPIMMSModel>();
   @Output() public locationTermSearchInputChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() public searchLocationChanged: EventEmitter<void> = new EventEmitter<void>();
-  public searchTermFormControl = new FormControl('', Validators.pattern('/[^a-zA-Z -]/'));
+  public searchTermFormControl = new FormControl('');
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pReset: boolean = true;
   public filteredList$: Observable<LocationByEPIMMSModel[] | boolean>;
   private readonly debounceTimeInput = 300;
-  private binaryValue = '';
+  public previousValue = '';
 
   public get reset(): boolean {
     return this.pReset;
@@ -149,15 +149,23 @@ export class SearchLocationComponent implements OnInit {
     );
   }
 
-  public RemoveInvalidString(formInputValue: any) {
-    const element = formInputValue.target as HTMLInputElement;
-    const newInputValue = element.value;
-    if (/[^a-zA-Z -]/.test(newInputValue)) {
-      element.value = this.binaryValue;
+  public removeInvalidString(formInputValue: string) {
+    const element = formInputValue;
+    let newInputValue = element;
+    if (this.isValidNameCharacter(formInputValue)) {
+      newInputValue = this.previousValue;
+      this.searchTermFormControl.setValue(newInputValue);
     } else {
-      this.binaryValue = newInputValue;
+      this.previousValue = newInputValue
+      this.searchTermFormControl.patchValue(newInputValue);
     }
   }
 
-
+  isValidNameCharacter(value: string): boolean {
+    let newInputValue = '';
+    if(value !== undefined) {
+      newInputValue = value;
+    }
+    return (/[^a-zA-Z \s'-]/).test(newInputValue);
+  }
 }

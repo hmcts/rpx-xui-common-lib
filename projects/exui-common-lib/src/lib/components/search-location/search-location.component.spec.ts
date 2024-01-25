@@ -452,10 +452,22 @@ describe('SearchLocationComponent', () => {
   });
 
   it('should call RemoveInvalidString on change input', () => {
-    let spyInvalidString = spyOn(component, 'RemoveInvalidString')
+    let spyInvalidString = spyOn(component, 'removeInvalidString');
     let input = fixture.debugElement.query(By.css('.govuk-input'));
     input.triggerEventHandler('keyup', {});
     fixture.detectChanges();
     expect(spyInvalidString).toHaveBeenCalled();
-  })
+  });
+
+  it('check for invalid regex values', () => {
+    const value = 'Glasg-0?';
+    const isCharInValid = component.isValidNameCharacter(value);
+    expect(isCharInValid).toBeTruthy();
+  });
+
+  it('check for valid regex values', () => {
+    const value = 'Glasg- \'';
+    const isCharInValid = component.isValidNameCharacter(value);
+    expect(isCharInValid).toBeFalsy();
+  });
 });
