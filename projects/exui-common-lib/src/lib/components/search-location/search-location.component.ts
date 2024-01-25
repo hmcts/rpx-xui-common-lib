@@ -161,7 +161,7 @@ export class SearchLocationComponent implements OnInit {
     }
   }
 
-  isValidNameCharacter(value: string): boolean {
+  public isValidNameCharacter(value: string): boolean {
     let newInputValue = '';
     if(value !== undefined) {
       newInputValue = value;
