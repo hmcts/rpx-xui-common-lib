@@ -2,7 +2,7 @@
   <input
     id="inputLocationSearch"
     #char
-    (keyup)="removeInvalidString(char.value)"
+    (keydown)="removeInvalidString($event)"
     (input)="onInput()"
     [formControl]="searchTermFormControl"
     [matAutocomplete]="autoSearchLocation"

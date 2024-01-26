@@ -149,23 +149,35 @@ export class SearchLocationComponent implements OnInit {
     );
   }
 
-  public removeInvalidString(formInputValue: string) {
-    const element = formInputValue;
-    let newInputValue = element;
-    if (this.isValidNameCharacter(formInputValue)) {
-      newInputValue = this.previousValue;
-      this.searchTermFormControl.setValue(newInputValue);
-    } else {
-      this.previousValue = newInputValue
-      this.searchTermFormControl.patchValue(newInputValue);
+  public removeInvalidString(formInputValue: KeyboardEvent) {
+    if (!this.isCharacterValid(formInputValue)) {
+      formInputValue.preventDefault();
     }
   }
 
-  public isValidNameCharacter(value: string): boolean {
-    let newInputValue = '';
-    if(value !== undefined) {
-      newInputValue = value;
+  public isCharacterValid(event: KeyboardEvent): boolean {
+    let pressed = undefined
+    if (event.key !== undefined) {
+      pressed = event.key;
+      if (pressed.length > 1) {
+        switch (pressed) {
+          case 'Tab':
+            return true;
+          case 'ArrowRight':
+            return true;
+          case 'ArrowLeft':
+            return true;
+          case 'Backspace':
+            return true;
+          case 'Enter':
+            return true;
+          default: return false;
+        }
+      }
+    } else if (event.keyCode !== undefined) {
+      pressed = String.fromCharCode(event.keyCode);
     }
-    return (/[^a-zA-Z \s'-]/).test(newInputValue);
+    return pressed && (/[a-zA-Z \s'-]/).test(pressed);
   }
+
 }
