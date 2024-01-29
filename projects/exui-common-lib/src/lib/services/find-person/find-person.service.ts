@@ -25,7 +25,7 @@ export class FindAPersonService {
 
   public static caseworkersKey: string = 'caseworkers';
   public userId: string;
-  public assignedUser: string | string[];
+  public assignedUser: string | string[] = [];
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
   }
@@ -36,7 +36,7 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : [];
     return this.http.post<Person[]>('/workallocation/findPerson', { searchOptions })
       .pipe(map(judiciary => judiciary.filter(judge => !(this.assignedUser.includes(judge.id)))));
     // Removed the current user id to fix EUI-8465.
@@ -48,7 +48,7 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : [];
     const fullServices = searchOptions.services;
     const storedServices = [];
     const newServices: string[] = [];
