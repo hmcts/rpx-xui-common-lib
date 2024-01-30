@@ -115,8 +115,13 @@ export class FindAPersonService {
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
-    return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-      : finalPeopleList.filter(person => person && person.id !== this.userId && !this.assignedUser.includes(person.id));
+    if (typeof(this.assignedUser) === 'string') {
+      return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
+        : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+    } else {
+      return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
+        : finalPeopleList.filter(person => person && person.id !== this.userId && !this.assignedUser.includes(person.id));
+    }
   }
 
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
