@@ -37,8 +37,12 @@ export class FindAPersonService {
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
     this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : [];
+    let assignedUserToCompare = this.assignedUser;
+    if (typeof(this.assignedUser) === 'string') {
+      assignedUserToCompare = [this.assignedUser];
+    }
     return this.http.post<Person[]>('/workallocation/findPerson', { searchOptions })
-      .pipe(map(judiciary => judiciary.filter(judge => !(this.assignedUser.includes(judge.id)))));
+      .pipe(map(judiciary => judiciary.filter(judge => !(assignedUserToCompare.includes(judge.id)))));
     // Removed the current user id to fix EUI-8465.
   }
 

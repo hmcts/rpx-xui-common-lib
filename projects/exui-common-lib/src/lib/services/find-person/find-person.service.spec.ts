@@ -67,6 +67,36 @@ describe('FindAPersonService', () => {
     service.find(searchOptions).toPromise().then(result => expect(result).toEqual(people));
   });
 
+  it('find search should not filter out single partially matching assigned user if passed as a string', () => {
+    const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
+    mockHttpService.post.and.returnValue(of(people));
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false, assignedUser: '12' };
+    service.find(searchOptions).toPromise().then(result => expect(result).toEqual(people));
+  });
+
+  it('find search should not filter out single partially matching assigned user if passed as an array of strings', () => {
+    const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
+    mockHttpService.post.and.returnValue(of(people));
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false, assignedUser: ['12', '130'] };
+    service.find(searchOptions).toPromise().then(result => expect(result).toEqual(people));
+  });
+
+  it('find search should not filter out single partially matching assigned user if passed as an array of strings', () => {
+    const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+    const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+    mockSessionStorageService.getItem.and.returnValue(JSON.stringify(userDetails));
+    mockHttpService.post.and.returnValue(of(people));
+    const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.JUDICIAL, userIncluded: false, assignedUser: ['12', '124'] };
+    service.find(searchOptions).toPromise().then(result => expect(result).toEqual([people[0], people[2], people[3]]));
+  });
+
   it('find search should not filter out multiple non-matching assigned users if passed as a list of strings', () => {
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
