@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { FeatureToggleService } from '../../services';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
 
@@ -11,15 +10,15 @@ import { windowToken } from '../../window';
 export class CookieBannerComponent implements OnInit {
   @Input() public identifier: string;
   @Input() public appName: string;
+  @Input() public enableDynatrace: boolean = false;
   @Output() public rejectionNotifier = new EventEmitter<any>();
   @Output() public acceptanceNotifier = new EventEmitter<any>();
 
   public isCookieBannerVisible: boolean = false;
-  private readonly window: any;
+  public readonly window: any;
 
   constructor(
     private readonly cookieService: CookieService,
-    private readonly featureToggleService: FeatureToggleService,
     @Inject(windowToken) window: any,
   ) {
     this.window = window;
@@ -62,8 +61,7 @@ export class CookieBannerComponent implements OnInit {
   }
 
   public notifyAcceptance(): void {
-    const value = this.featureToggleService.getValueSync('xui-dynatrace-rum-enabled', true)
-    if (value) {
+    if (this.enableDynatrace) {
       if (this.window.hasOwnProperty('dtrum')) {
         // @ts-ignore
         const dtrum = this.window['dtrum'];
@@ -81,7 +79,7 @@ export class CookieBannerComponent implements OnInit {
         console.info("DynaTrace not enabled on the server");
       }
     } else {
-      console.info("Dyntrace RUM not enabled via feature flag");
+      console.info("Dyntrace RUM not enabled via component parameter");
     }
     this.acceptanceNotifier.emit();
   }
