@@ -1,6 +1,8 @@
 <div class="auto-complete-container">
   <input
     id="inputLocationSearch"
+    #char
+    (keydown)="removeInvalidString($event)"
     (input)="onInput()"
     [formControl]="searchTermFormControl"
     [matAutocomplete]="autoSearchLocation"
