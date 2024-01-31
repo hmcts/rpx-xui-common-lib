@@ -39,6 +39,7 @@ export class SearchLocationComponent implements OnInit {
   private pReset: boolean = true;
   public filteredList$: Observable<LocationByEPIMMSModel[] | boolean>;
   private readonly debounceTimeInput = 300;
+  public previousValue = '';
 
   public get reset(): boolean {
     return this.pReset;
@@ -51,9 +52,9 @@ export class SearchLocationComponent implements OnInit {
   }
 
   constructor(private readonly locationService: LocationService,
-              private readonly sessionStorageService: SessionStorageService,
-              private readonly refDataService: RefDataService
-  ) {}
+    private readonly sessionStorageService: SessionStorageService,
+    private readonly refDataService: RefDataService
+  ) { }
 
   public ngOnInit(): void {
     const searchInputChanges$ = this.searchTermFormControl.valueChanges
@@ -67,21 +68,21 @@ export class SearchLocationComponent implements OnInit {
         switchMap((term: string) => iif(
           // Seems more responsive to do length 0 if locationsByServiceCodes are cached
           () => (!!term && term.length >= 0),
-            this.refDataService.getLocationsByServiceCodes(
-              (this.form.get(this.field.servicesField)?.value as FilterConfigOption[]).map((service) => service.key)
-            ).pipe(
-              // Filter locations by the search input term and the chosen property name
-              map((locations) => locations
-                .filter((location) => location[this.propertyNameFilter].toLowerCase().includes(term.toLowerCase()))),
-              // Filter out locations that are already selected
-              map((locations) => this.filterUnselectedLocations(locations, this.selectedLocations, this.singleMode)),
-              // Filter out duplicate locations (by propertyNameFilter)
-              map((locations) => locations.filter((location, index, array) =>
-                index === array.findIndex((item) => item[this.propertyNameFilter] === location[this.propertyNameFilter])
-              )),
-            ),
-            // Returns false if the search term is empty to not show the autocomplete field i.e. ngIf should be false
-            of(false)
+          this.refDataService.getLocationsByServiceCodes(
+            (this.form.get(this.field.servicesField)?.value as FilterConfigOption[]).map((service) => service.key)
+          ).pipe(
+            // Filter locations by the search input term and the chosen property name
+            map((locations) => locations
+              .filter((location) => location[this.propertyNameFilter].toLowerCase().includes(term.toLowerCase()))),
+            // Filter out locations that are already selected
+            map((locations) => this.filterUnselectedLocations(locations, this.selectedLocations, this.singleMode)),
+            // Filter out duplicate locations (by propertyNameFilter)
+            map((locations) => locations.filter((location, index, array) =>
+              index === array.findIndex((item) => item[this.propertyNameFilter] === location[this.propertyNameFilter])
+            )),
+          ),
+          // Returns false if the search term is empty to not show the autocomplete field i.e. ngIf should be false
+          of(false)
         )),
       );
     } else {
@@ -100,12 +101,12 @@ export class SearchLocationComponent implements OnInit {
 
     if (this.singleMode && this.selectedLocations.length > 0) {
       const location = this.selectedLocations[0];
-      this.searchTermFormControl.patchValue(location[this.propertyNameFilter], {emitEvent: false, onlySelf: true});
+      this.searchTermFormControl.patchValue(location[this.propertyNameFilter], { emitEvent: false, onlySelf: true });
     }
   }
 
   public onSelectedLocation(location: LocationByEPIMMSModel): void {
-    this.searchTermFormControl.patchValue(location[this.propertyNameFilter], {emitEvent: false, onlySelf: true});
+    this.searchTermFormControl.patchValue(location[this.propertyNameFilter], { emitEvent: false, onlySelf: true });
     this.locationSelected.emit(location);
   }
   public onInput(): void {
@@ -147,4 +148,36 @@ export class SearchLocationComponent implements OnInit {
       location => !selectedLocations.map(selectedLocation => selectedLocation.epimms_id).includes(location.epimms_id) && location[this.propertyNameFilter]
     );
   }
+
+  public removeInvalidString(formInputValue: KeyboardEvent) {
+    if (!this.isCharacterValid(formInputValue)) {
+      formInputValue.preventDefault();
+    }
+  }
+
+  public isCharacterValid(event: KeyboardEvent): boolean {
+    let pressed = undefined
+    if (event.key !== undefined) {
+      pressed = event.key;
+      if (pressed.length > 1) {
+        switch (pressed) {
+          case 'Tab':
+            return true;
+          case 'ArrowRight':
+            return true;
+          case 'ArrowLeft':
+            return true;
+          case 'Backspace':
+            return true;
+          case 'Enter':
+            return true;
+          default: return false;
+        }
+      }
+    } else if (event.keyCode !== undefined) {
+      pressed = String.fromCharCode(event.keyCode);
+    }
+    return pressed && (/[a-zA-Z \s'-]/).test(pressed);
+  }
+
 }
