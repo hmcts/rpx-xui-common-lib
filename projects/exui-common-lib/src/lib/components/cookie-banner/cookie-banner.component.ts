@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { FeatureToggleService } from '../../services';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
 
@@ -11,15 +10,15 @@ import { windowToken } from '../../window';
 export class CookieBannerComponent implements OnInit {
   @Input() public identifier: string;
   @Input() public appName: string;
+  @Input() public enableDynatrace: boolean = false;
   @Output() public rejectionNotifier = new EventEmitter<any>();
   @Output() public acceptanceNotifier = new EventEmitter<any>();
 
   public isCookieBannerVisible: boolean = false;
-  private readonly window: any;
+  public readonly window: any;
 
   constructor(
     private readonly cookieService: CookieService,
-    private readonly featureToggleService: FeatureToggleService,
     @Inject(windowToken) window: any,
   ) {
     this.window = window;
@@ -62,22 +61,25 @@ export class CookieBannerComponent implements OnInit {
   }
 
   public notifyAcceptance(): void {
-    if (this.window.hasOwnProperty('dtrum')) {
-      // @ts-ignore
-      const dtrum = this.window['dtrum'];
-      if (dtrum) {
-        this.featureToggleService.isEnabled('xui-dynatrace-rum-enabled')
-          .subscribe((enabled) => {
-            if (enabled) {
-              try {
-                dtrum.enable();
-                dtrum.enableSessionReplay(true);
-              } catch (e) {
-                console.error('Error enabling DynaTrace', e);
-              }
-            }
-          });
+    if (this.enableDynatrace) {
+      if (this.window.hasOwnProperty('dtrum')) {
+        // @ts-ignore
+        const dtrum = this.window['dtrum'];
+        if (dtrum) {
+          try {
+            dtrum.enable();
+            dtrum.enableSessionReplay(true);
+          } catch (e) {
+            console.error('Error enabling DynaTrace', e);
+          }
+        } else {
+          console.info("DynaTrace not enabled on the server");
+        }
+      } else {
+        console.info("DynaTrace not enabled on the server");
       }
+    } else {
+      console.info("Dyntrace RUM not enabled via component parameter");
     }
     this.acceptanceNotifier.emit();
   }
