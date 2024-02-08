@@ -24,6 +24,7 @@
           <div *ngIf="user.manageCases === 'Yes'">{{'Manage cases' | rpxTranslate}}</div>
           <div *ngIf="userHasRole('pui-caa')">{{'Case access administrator' | rpxTranslate}}</div>
           <div *ngIf="userHasRole('pui-finance-manager')">{{'Manage fee accounts' | rpxTranslate}}</div>
+          <div *ngFor="let accesstype of enabledAccessTypes">{{ accesstype | rpxTranslate}}</div> 
         </td>
         <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></td>
     </tr>
