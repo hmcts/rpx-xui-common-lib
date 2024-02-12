@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import {SharedCase} from '../../models/case-share.model';
-import {UserDetails} from '../../models/user-details.model';
+import { SharedCase } from '../../models/case-share.model';
+import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from './case-sharing-state.service';
 
 describe('CaseSharingStateService', () => {
@@ -15,38 +15,43 @@ describe('CaseSharingStateService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-
   });
 
   it('should set cases', () => {
-    sharedCases  = [{
-      caseId: '9417373995765133',
-      sharedWith: [],
-      caseTitle: 'Sam Green Vs Williams Lee'
-    }];
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        sharedWith: [],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      }
+    ];
     service.setCases(sharedCases);
     let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
+    service.state.subscribe((shareCases) => (allCases = shareCases));
     expect(allCases.length).toBe(1);
   });
 
   it('should request share', () => {
-    sharedCases  = [{
-      caseId: '9417373995765133',
-      sharedWith: [],
-      caseTitle: 'Sam Green Vs Williams Lee'
-    }];
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        sharedWith: [],
+        caseTitle: 'Sam Green Vs Williams Lee'
+      }
+    ];
     const user: UserDetails = {
-      idamId : 'pus111111',
+      idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     service.setCases(sharedCases);
     const newSharedCase: SharedCase[] = service.requestShare(user);
@@ -55,16 +60,18 @@ describe('CaseSharingStateService', () => {
 
   it('should request unshare', () => {
     const user: UserDetails = {
-      idamId : 'pus111111',
+      idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -76,23 +83,25 @@ describe('CaseSharingStateService', () => {
     service.setCases(sharedCases);
     service.requestUnshare(user, '9417373995765133');
     let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
+    service.state.subscribe((shareCases) => (allCases = shareCases));
 
     expect(allCases[0].pendingUnshares.length).toBe(1);
   });
 
   it('should request unshare from all cases', () => {
     const user: UserDetails = {
-      idamId : 'pus111111',
+      idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -109,7 +118,7 @@ describe('CaseSharingStateService', () => {
     service.setCases(sharedCases);
     service.requestUnshare(user);
     let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
+    service.state.subscribe((shareCases) => (allCases = shareCases));
 
     expect(allCases[0].pendingUnshares.length).toBe(1);
     expect(allCases[1].pendingUnshares.length).toBe(1);
@@ -117,28 +126,32 @@ describe('CaseSharingStateService', () => {
 
   it('should undo pending share for a new user', () => {
     const user: UserDetails = {
-      idamId : 'pus111111',
+      idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user2: UserDetails = {
-      idamId : 'pus111112',
+      idamId: 'pus111112',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus2@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -151,7 +164,7 @@ describe('CaseSharingStateService', () => {
     service.setCases(sharedCases);
     service.requestUnshare(user, '9417373995765133');
     let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
+    service.state.subscribe((shareCases) => (allCases = shareCases));
 
     expect(allCases[0].pendingShares.length).toBe(0);
     expect(allCases[0].pendingUnshares.length).toBe(1);
@@ -159,28 +172,32 @@ describe('CaseSharingStateService', () => {
 
   it('should undo all pending shares for a new user', () => {
     const user: UserDetails = {
-      idamId : 'pus111111',
+      idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user2: UserDetails = {
-      idamId : 'pus111112',
+      idamId: 'pus111112',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
       email: 'jamespus.priestpus2@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -199,7 +216,7 @@ describe('CaseSharingStateService', () => {
     service.setCases(sharedCases);
     service.requestUnshare(user);
     let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
+    service.state.subscribe((shareCases) => (allCases = shareCases));
 
     expect(allCases[0].pendingShares.length).toBe(0);
     expect(allCases[0].pendingUnshares.length).toBe(1);
@@ -208,45 +225,52 @@ describe('CaseSharingStateService', () => {
   });
 
   it('should cancel a user', () => {
-    sharedCases  = [{
-      caseId: '9417373995765133',
-      sharedWith: [],
-      caseTitle: 'Sam Green Vs Williams Lee',
-      pendingUnshares: [{
-        idamId: 'pus111111',
-        firstName: 'JamesPUS',
-        lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com',
-        accessTypes: [{
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        sharedWith: [],
+        caseTitle: 'Sam Green Vs Williams Lee',
+        pendingUnshares: [
+          {
+            idamId: 'pus111111',
+            firstName: 'JamesPUS',
+            lastName: 'PriestPUS',
+            email: 'jamespus.priestpus@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
+    const user: UserDetails = {
+      idamId: 'pus111111',
+      firstName: 'JamesPUS',
+      lastName: 'PriestPUS',
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
           jurisdictionId: '12345',
           organisationProfileId: '12345',
           accessTypeId: '1234',
           enabled: true
-        }]
-      }]
-    }];
-    const user: UserDetails = {
-      idamId : 'pus111111',
-      firstName: 'JamesPUS',
-      lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+        }
+      ]
     };
     service.setCases(sharedCases);
     service.requestCancel('9417373995765133', user);
     let allCases: SharedCase[] = [];
-    service.state.subscribe(shareCases => allCases = shareCases);
+    service.state.subscribe((shareCases) => (allCases = shareCases));
     expect(allCases[0].pendingUnshares.length).toBe(0);
   });
 
-
   it('should remove a case when multiple shared cases exists', () => {
-    sharedCases  = [
+    sharedCases = [
       {
         caseId: '9417373995765133',
         sharedWith: [],
@@ -265,7 +289,7 @@ describe('CaseSharingStateService', () => {
   });
 
   it('should not remove a case when only one shared case exists', () => {
-    sharedCases  = [
+    sharedCases = [
       {
         caseId: '9417373995765133',
         sharedWith: [],

@@ -22,46 +22,51 @@ describe('UserSelectComponent', () => {
       firstName: 'Geddy',
       lastName: 'Lee',
       email: 'g.lee@rush.band',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     },
     {
       idamId: '222222',
       firstName: 'Alex',
       lastName: 'Lifeson',
       email: 'a.lifeson@rush.band',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     },
     {
       idamId: '333333',
       firstName: 'Neil',
       lastName: 'Peart',
       email: 'n.peart@rush.band',
-      accessTypes: [{
-        jurisdictionId: '12345',
-        organisationProfileId: '12345',
-        accessTypeId: '1234',
-        enabled: true
-      }]
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     }
   ];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserSelectComponent, RpxTranslateMockPipe ],
-      imports: [ MatAutocompleteModule, ReactiveFormsModule ],
-      providers: [],
-    })
-    .compileComponents();
+      declarations: [UserSelectComponent, RpxTranslateMockPipe],
+      imports: [MatAutocompleteModule, ReactiveFormsModule],
+      providers: []
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -75,14 +80,16 @@ describe('UserSelectComponent', () => {
   });
 
   it('should create correct displayValue', () => {
-    expect(component.displayValue(testUsers[0])).toEqual('Geddy Lee - g.lee@rush.band');
+    expect(component.displayValue(testUsers[0])).toEqual(
+      'Geddy Lee - g.lee@rush.band'
+    );
   });
 
   it('should filter users correctly', waitForAsync(() => {
     component.users = testUsers;
     component.control.setValue('neil');
     fixture.detectChanges();
-    component.filteredUsers.subscribe(filtered => {
+    component.filteredUsers.subscribe((filtered) => {
       expect(filtered.length).toBe(1);
       expect(filtered[0].firstName).toEqual('Neil');
       expect(filtered[0].lastName).toEqual('Peart');
@@ -94,10 +101,9 @@ describe('UserSelectComponent', () => {
     component.users = testUsers;
     component.control.setValue('');
     fixture.detectChanges();
-    component.filteredUsers.subscribe(filtered => {
+    component.filteredUsers.subscribe((filtered) => {
       expect(filtered.length).toBe(0);
     });
     fixture.detectChanges();
   });
-
 });

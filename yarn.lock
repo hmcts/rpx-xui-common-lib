@@ -2555,7 +2555,7 @@ __metadata:
     codelyzer: ^6.0.2
     core-js: ^2.5.4
     eslint: ^8.33.0
-    govuk-frontend: 4.0.1
+    govuk-frontend: 4.7.0
     jasmine-core: ~5.1.0
     jasmine-spec-reporter: ~7.0.0
     karma: ~6.4.0
@@ -7476,10 +7476,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"govuk-frontend@npm:4.0.1":
-  version: 4.0.1
-  resolution: "govuk-frontend@npm:4.0.1"
-  checksum: dfa5a124c019432b402c4e0ac727e0b3e0555164513f118fd04d16d8e426faf3fc4f6735e0767c159f5709476dc6f6f9053893f7d0399e98c95ac2e36e565f5a
+"govuk-frontend@npm:4.7.0":
+  version: 4.7.0
+  resolution: "govuk-frontend@npm:4.7.0"
+  checksum: 0e246dd2c724e51fd14dd40fc31c66627df7d07ebe89e1a19b1e7da7e7a5eb86bc6560229e18a13e40651e6c953a67422d54e77e240d82efff7b2cbefaa8b88d
   languageName: node
   linkType: hard
 

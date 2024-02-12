@@ -14,8 +14,7 @@ describe('SelectedCaseListComponent', () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [SelectedCaseListComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -29,14 +28,14 @@ describe('SelectedCaseListComponent', () => {
   });
 
   it('should unselect', () => {
-    const mockCase = {caseId: '123456789', caseTitle: 'Example case'};
+    const mockCase = { caseId: '123456789', caseTitle: 'Example case' };
     spyOn(component.unselect, 'emit');
     component.onUnselect(mockCase);
     expect(component.unselect.emit).toHaveBeenCalledWith(mockCase);
   });
 
   it('should synchronize store', () => {
-    const mockCase = {caseId: '123456789', caseTitle: 'Example case'};
+    const mockCase = { caseId: '123456789', caseTitle: 'Example case' };
     spyOn(component.synchronizeStore, 'emit');
     component.onSynchronizeStore(mockCase);
     expect(component.synchronizeStore.emit).toHaveBeenCalledWith(mockCase);
@@ -46,20 +45,23 @@ describe('SelectedCaseListComponent', () => {
     sharedCase = {
       caseId: 'C111111',
       caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com',
-        accessTypes: [{
-          jurisdictionId: '12345',
-          organisationProfileId: '12345',
-          accessTypeId: '1234',
-          enabled: true
-        }]
-      }]
+      sharedWith: [
+        {
+          idamId: 'U111111',
+          firstName: 'James',
+          lastName: 'Priest',
+          email: 'james.priest@test.com',
+          userAccessTypes: [
+            {
+              jurisdictionId: '12345',
+              organisationProfileId: '12345',
+              accessTypeId: '1234',
+              enabled: true
+            }
+          ]
+        }
+      ]
     };
     expect(component.trackByCaseId(sharedCase)).toEqual('C111111');
   });
-
 });
