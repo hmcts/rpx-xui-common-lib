@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "@hmcts/rpx-xui-common-lib",
   "version": "2.0.12",
@@ -30,3 +31,37 @@
     "ngx-spec": "^2.1.4"
   }
 }
+=======
+{
+  "name": "@hmcts/rpx-xui-common-lib",
+  "version": "2.0.16",
+  "peerDependencies": {
+    "launchdarkly-js-client-sdk": "^2.15.2",
+    "ngx-pagination": "^3.2.1",
+    "rpx-xui-translation": "^0.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/hmcts/rpx-xui-common-lib.git",
+  "description": "Angular web component for EXUI common library - xui-common-lib",
+  "author": "Elviani Huseyin <elviani.huseyin@hmcts.net>",
+  "contributors": [
+    {
+      "name": "Elviani Huseyin",
+      "email": "elviani.huseyin@hmcts.net"
+    },
+    {
+      "name": "Ronald Mansveld",
+      "email": "ronald.mansveld@hmcts.net"
+    }
+  ],
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "ngx-spec": "^2.1.4"
+  }
+}
+>>>>>>> master

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as LDClient from 'launchdarkly-js-client-sdk';
+import { initialize, LDClient} from 'launchdarkly-js-client-sdk';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { FeatureUser } from '../../models/feature-user';
@@ -10,7 +10,7 @@ import { FeatureToggleService } from './feature-toggle.service';
 })
 export class LaunchDarklyService implements FeatureToggleService {
 
-    private client: LDClient.LDClient;
+    private client: LDClient;
     private readonly ready: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private readonly features: Record<string, BehaviorSubject<any>> = {};
     private user: FeatureUser = { anonymous: true };
@@ -20,20 +20,21 @@ export class LaunchDarklyService implements FeatureToggleService {
         this.ready.next(false);
         this.user = user;
         this.clientId = clientId;
-        this.client = LDClient.initialize(this.clientId, this.user, {});
+        this.client = initialize(this.clientId, this.user, {});
         this.client.on('ready', () => {
             this.client.identify(this.user).then(() => this.ready.next(true));
         });
     }
 
-    public isEnabled(feature: string): Observable<boolean> {
-        return this.getValue<boolean>(feature, false);
+    public isEnabled(feature: string, defaultValue: boolean = false): Observable<boolean> {
+        return this.getValue<boolean>(feature, defaultValue);
     }
 
     public getArray<R = any>(feature: string): Observable<R[]> {
         return this.getValue<R[]>(feature, []);
     }
 
+    // Note that this function always emits its default value first, which can lead to unexpected results
     public getValue<R>(feature: string, defaultValue: R): Observable<R> {
         if (!this.features.hasOwnProperty(feature)) {
             this.features[feature] = new BehaviorSubject<R>(defaultValue);
@@ -66,5 +67,9 @@ export class LaunchDarklyService implements FeatureToggleService {
             filter(ready => ready),
             map(() => this.client.variation(feature, defaultValue))
         );
+    }
+
+    public getValueSync<R>(feature: string, defaultValue: R): R {
+      return this.client.variation(feature, defaultValue);
     }
 }
