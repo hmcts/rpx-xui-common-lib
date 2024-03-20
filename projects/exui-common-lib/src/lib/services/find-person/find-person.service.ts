@@ -25,7 +25,7 @@ export class FindAPersonService {
 
   public static caseworkersKey: string = 'caseworkers';
   public userId: string;
-  public assignedUser: string;
+  public assignedUser: string | string[] = [];
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
   }
@@ -36,9 +36,13 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : [];
+    let assignedUserToCompare = this.assignedUser;
+    if (typeof(this.assignedUser) === 'string') {
+      assignedUserToCompare = [this.assignedUser];
+    }
     return this.http.post<Person[]>('/workallocation/findPerson', { searchOptions })
-      .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser].includes(judge.id)))));
+      .pipe(map(judiciary => judiciary.filter(judge => !(assignedUserToCompare.includes(judge.id)))));
     // Removed the current user id to fix EUI-8465.
   }
 
@@ -48,7 +52,7 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : [];
     const fullServices = searchOptions.services;
     const storedServices = [];
     const newServices: string[] = [];
@@ -115,8 +119,13 @@ export class FindAPersonService {
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
-    return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-      : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+    if (typeof(this.assignedUser) === 'string') {
+      return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
+        : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+    } else {
+      return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
+        : finalPeopleList.filter(person => person && person.id !== this.userId && !this.assignedUser.includes(person.id));
+    }
   }
 
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {

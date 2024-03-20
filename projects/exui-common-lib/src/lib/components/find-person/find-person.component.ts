@@ -23,7 +23,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   @Input() public selectedPerson: string;
   @Input() public submitted: boolean = true;
   @Input() public userIncluded?: boolean = false;
-  @Input() public assignedUser?: string;
+  @Input() public assignedUser?: string | string[];
   @Input() public placeholderContent: string = '';
   @Input() public isNoResultsShown: boolean = true;
   @Input() public showUpdatedColor: boolean = false;
