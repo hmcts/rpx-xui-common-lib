@@ -1,6 +1,9 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
   "version": "2.0.16-pre-release-accessibility-page-reference-link",
+  "engines": {
+    "node": ">=18.17.0"
+  },
   "scripts": {
     "ng": "ng",
     "build:library": "ng build exui-common-lib --configuration production",

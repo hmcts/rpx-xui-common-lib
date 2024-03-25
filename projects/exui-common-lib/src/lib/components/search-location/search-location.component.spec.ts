@@ -240,9 +240,9 @@ describe('SearchLocationComponent', () => {
         RpxTranslateMockPipe
       ],
       providers: [
-        {provide: LocationService, useValue: locationServiceMock},
-        {provide: SessionStorageService, useValue: sessionServiceMock},
-        {provide: RefDataService, useValue: refDataServiceMock}
+        { provide: LocationService, useValue: locationServiceMock },
+        { provide: SessionStorageService, useValue: sessionServiceMock },
+        { provide: RefDataService, useValue: refDataServiceMock }
       ],
     }).compileComponents();
 
@@ -287,16 +287,16 @@ describe('SearchLocationComponent', () => {
   describe('lookup by jurisdiction (i.e. servicesField does not exist)', () => {
     it('should return false and should not call the api when ' +
       'input characters are less then three', fakeAsync(() => {
-      // @ts-expect-error - private property
-      const debounceTime = component.debounceTimeInput;
+        // @ts-expect-error - private property
+        const debounceTime = component.debounceTimeInput;
 
-      component.filteredList$.subscribe((result) => {
-        expect(result).toBe(false);
-      });
-      component.searchTermFormControl.setValue('');
-      tick(debounceTime);
-      flush();
-    }));
+        component.filteredList$.subscribe((result) => {
+          expect(result).toBe(false);
+        });
+        component.searchTermFormControl.setValue('');
+        tick(debounceTime);
+        flush();
+      }));
 
     it('should call get locations with the correct parameters', () => {
       component.serviceIds = 'IA,SSCS';
@@ -306,7 +306,7 @@ describe('SearchLocationComponent', () => {
       // checks that civil added to userLocations as well
       component.serviceIds = 'IA,CIVIL';
       component.bookingCheck = BookingCheckType.BOOKINGS_AND_BASE;
-      const bookingsAndBase = [{service: 'IA', locations: [dummyLocations[0]]}, {
+      const bookingsAndBase = [{ service: 'IA', locations: [dummyLocations[0]] }, {
         service: 'CIVIL',
         locations: [dummyLocations[1]]
       }];
@@ -314,14 +314,14 @@ describe('SearchLocationComponent', () => {
       sessionServiceMock.getItem.and.returnValues(bookingsAndBaseString);
       component.getLocations('exampleString2');
       expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith(
-        'api/locations/getLocations', 'IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: [dummyLocations[0]]}, {
+        'api/locations/getLocations', 'IA,CIVIL', '', 'exampleString2', [{ service: 'IA', locations: [dummyLocations[0]] }, {
           service: 'CIVIL',
           locations: [dummyLocations[1]]
         }]
       );
       // check user locations filtered for bookable correctly
       component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
-      const bookableLocations = [{service: 'IA', locations: [dummyLocations[0]]}, {
+      const bookableLocations = [{ service: 'IA', locations: [dummyLocations[0]] }, {
         service: 'CIVIL',
         locations: [dummyLocations[1]]
       }];
@@ -345,7 +345,7 @@ describe('SearchLocationComponent', () => {
         };
         component.form = new FormGroup({
           [serviceCodesFormControlName]: new FormControl(
-            [{key: serviceCodesValues[0], label: 'some label'}, {key: serviceCodesValues[1], label: 'some other label'}]
+            [{ key: serviceCodesValues[0], label: 'some label' }, { key: serviceCodesValues[1], label: 'some other label' }]
           )
         });
         component.ngOnInit();
@@ -355,7 +355,7 @@ describe('SearchLocationComponent', () => {
       describe('filteredList$', () => {
         it('should call getLocationsByServiceCodes as part of the switchMap when subscribing with the service codes from the form', fakeAsync(() => {
           component.form.get(serviceCodesFormControlName)
-            .setValue([{key: serviceCodesValues[0], label: 'some label'}, {
+            .setValue([{ key: serviceCodesValues[0], label: 'some label' }, {
               key: serviceCodesValues[1],
               label: 'some other label'
             }]);
@@ -439,15 +439,31 @@ describe('SearchLocationComponent', () => {
     // checks that civil added to userLocations as well
     component.serviceIds = 'IA,CIVIL';
     component.bookingCheck = BookingCheckType.BOOKINGS_AND_BASE;
-    const emptyLocationString = JSON.stringify([{service: 'IA', locations: []}]);
+    const emptyLocationString = JSON.stringify([{ service: 'IA', locations: [] }]);
     sessionServiceMock.getItem.and.returnValues(emptyLocationString, `["12345"]`, '["CIVIL"]');
     component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('api/locations/getLocations', 'IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: []}]);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('api/locations/getLocations', 'IA,CIVIL', '', 'exampleString2', [{ service: 'IA', locations: [] }]);
     // check user locations filtered for bookable correctly
     component.bookingCheck = BookingCheckType.POSSIBLE_BOOKINGS;
-    const bookableLocationString = JSON.stringify([{service: 'IA', locations: [{epimms_id: '12345'}]}, {service: 'CIVIL', locations: [{epimms_id: '32456'}]}]);
+    const bookableLocationString = JSON.stringify([{ service: 'IA', locations: [{ epimms_id: '12345' }] }, { service: 'CIVIL', locations: [{ epimms_id: '32456' }] }]);
     sessionServiceMock.getItem.and.returnValues(bookableLocationString);
     component.getLocations('exampleString2');
-    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('api/locations/getLocations', 'IA,CIVIL', '', 'exampleString2', [{service: 'IA', locations: [{epimms_id: '12345'}]}, {service: 'CIVIL', locations: [{epimms_id: '32456'}]}]);
+    expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith('api/locations/getLocations', 'IA,CIVIL', '', 'exampleString2', [{ service: 'IA', locations: [{ epimms_id: '12345' }] }, { service: 'CIVIL', locations: [{ epimms_id: '32456' }] }]);
+  });
+
+  it('should call RemoveInvalidString on change input', () => {
+    let spyInvalidString = spyOn(component, 'removeInvalidString');
+    let input = fixture.debugElement.query(By.css('.govuk-input'));
+    input.triggerEventHandler('keydown', {});
+    fixture.detectChanges();
+    expect(spyInvalidString).toHaveBeenCalled();
+  });
+
+  it('check for valid regex values', () => {
+    let spyIsValidCharacter = spyOn(component, 'isCharacterValid');
+    let input = fixture.debugElement.query(By.css('.govuk-input'));
+    input.triggerEventHandler('keydown', {});
+    fixture.detectChanges();
+    expect(spyIsValidCharacter).toHaveBeenCalled();
   });
 });
