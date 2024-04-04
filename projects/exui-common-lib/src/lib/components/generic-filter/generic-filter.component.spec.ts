@@ -59,8 +59,8 @@ describe('GenericFilterComponent', () => {
         RpxTranslateMockPipe
       ],
       providers: [
-        {provide: FilterService, useValue: mockFilterService},
-        {provide: LocationService, useValue: searchFilterServiceMock}
+        { provide: FilterService, useValue: mockFilterService },
+        { provide: LocationService, useValue: searchFilterServiceMock }
       ]
     })
       .compileComponents();
@@ -76,17 +76,17 @@ describe('GenericFilterComponent', () => {
       cancelButtonText: 'cancel',
       cancelSetting: {
         id: 'examples',
-        fields: [{name: 'example1', value: ['Fernando Alonso']}]
+        fields: [{ name: 'example1', value: ['Fernando Alonso'] }]
       },
       fields: [
         {
           name: 'example1',
           options: [
-            {key: 'Fernando Alonso', label: 'Fernando Alonso'},
-            {key: 'Sebastian Vettel', label: 'Sebastian Vettel'},
-            {key: 'Lewis Hamilton', label: 'Lewis Hamilton'},
-            {key: 'Mick Schumacher', label: 'Mick Schumacher'},
-            {key: 'Lando Norris', label: 'Lando Norris'},
+            { key: 'Fernando Alonso', label: 'Fernando Alonso' },
+            { key: 'Sebastian Vettel', label: 'Sebastian Vettel' },
+            { key: 'Lewis Hamilton', label: 'Lewis Hamilton' },
+            { key: 'Mick Schumacher', label: 'Mick Schumacher' },
+            { key: 'Lando Norris', label: 'Lando Norris' },
           ],
           title: 'Sample title',
           subTitle: 'Sample subtitle',
@@ -97,11 +97,11 @@ describe('GenericFilterComponent', () => {
         {
           name: 'example2',
           options: [
-            {key: 'Tinky Winky', label: 'Tinky Winky'},
-            {key: 'Dipsy', label: 'Dipsy'},
-            {key: 'Laa-Laa', label: 'Laa-Laa'},
-            {key: 'Po', label: 'Po'},
-            {key: 'Noo-noo', label: 'Noo-noo'},
+            { key: 'Tinky Winky', label: 'Tinky Winky' },
+            { key: 'Dipsy', label: 'Dipsy' },
+            { key: 'Laa-Laa', label: 'Laa-Laa' },
+            { key: 'Po', label: 'Po' },
+            { key: 'Noo-noo', label: 'Noo-noo' },
           ],
           title: 'Sample2 title',
           subTitle: 'Sample2 subtitle',
@@ -112,11 +112,11 @@ describe('GenericFilterComponent', () => {
         {
           name: 'example3',
           options: [
-            {key: 'yellow', label: 'Yellow'},
-            {key: 'green', label: 'Green'},
-            {key: 'red', label: 'Red'},
-            {key: 'blue', label: 'Blue'},
-            {key: 'orange', label: 'Orange'},
+            { key: 'yellow', label: 'Yellow' },
+            { key: 'green', label: 'Green' },
+            { key: 'red', label: 'Red' },
+            { key: 'blue', label: 'Blue' },
+            { key: 'orange', label: 'Orange' },
           ],
           title: 'Sample3 title',
           subTitle: 'Sample3 subtitle',
@@ -443,12 +443,12 @@ describe('Select all checkboxes', () => {
         {
           name: 'example1',
           options: [
-            {key: 'All', label: 'Select All', selectAll: true},
-            {key: 'Fernando Alonso', label: 'Fernando Alonso'},
-            {key: 'Sebastian Vettel', label: 'Sebastian Vettel'},
-            {key: 'Lewis Hamilton', label: 'Lewis Hamilton'},
-            {key: 'Mick Schumacher', label: 'Mick Schumacher'},
-            {key: 'Lando Norris', label: 'Lando Norris'},
+            { key: 'All', label: 'Select All', selectAll: true },
+            { key: 'Fernando Alonso', label: 'Fernando Alonso' },
+            { key: 'Sebastian Vettel', label: 'Sebastian Vettel' },
+            { key: 'Lewis Hamilton', label: 'Lewis Hamilton' },
+            { key: 'Mick Schumacher', label: 'Mick Schumacher' },
+            { key: 'Lando Norris', label: 'Lando Norris' },
           ],
           title: 'Sample title',
           subTitle: 'Sample subtitle',
@@ -521,7 +521,7 @@ describe('Find location filter config', () => {
       ],
       providers: [
         FilterService,
-        {provide: LocationService, useValue: searchFilterServiceMock}
+        { provide: LocationService, useValue: searchFilterServiceMock }
       ]
     })
       .compileComponents();
@@ -557,58 +557,76 @@ describe('Find location filter config', () => {
     expect(findLocationFormGroup).toBeTruthy();
   });
 
+  it('should call the inputchanged function and set isSelectedService', () => {
+    const field: FilterFieldConfig = {
+      name: 'user-location',
+      title: 'Skills',
+      options: [],
+      minSelected: 0,
+      maxSelected: 0,
+      type: 'find-location',
+      lineBreakBefore: true,
+      disabledText: 'All'
+    };
+    component['selectedServices'] = [];
+    component.isServiceSelected = false;
+    fixture.detectChanges();
+    component.inputChanged(field);
+    expect(component.isServiceSelected).toBeTruthy();
+  });
+
 
   describe('group-select dropdown', () => {
-    const groupOptions: GroupOptions[] =  [
+    const groupOptions: GroupOptions[] = [
       {
         group: 'servieA',
         options: [
-          {key: 'serviceA-key1', label: 'Key1'},
-          {key: 'serviceA-key3', label: 'Key3'},
-          {key: 'serviceA-key2', label: 'Key2'}
+          { key: 'serviceA-key1', label: 'Key1' },
+          { key: 'serviceA-key3', label: 'Key3' },
+          { key: 'serviceA-key2', label: 'Key2' }
         ]
       },
       {
         group: 'servieC',
         options: [
-          {key: 'serviceC-key3', label: 'Key3'},
-          {key: 'serviceC-key2', label: 'Key2'},
-          {key: 'serviceC-key1', label: 'Key1'}
+          { key: 'serviceC-key3', label: 'Key3' },
+          { key: 'serviceC-key2', label: 'Key2' },
+          { key: 'serviceC-key1', label: 'Key1' }
         ]
       },
       {
         group: 'servieB',
         options: [
-          {key: 'serviceB-key2', label: 'Key2'},
-          {key: 'serviceB-key1', label: 'Key1'},
-          {key: 'serviceB-key3', label: 'Key3'}
+          { key: 'serviceB-key2', label: 'Key2' },
+          { key: 'serviceB-key1', label: 'Key1' },
+          { key: 'serviceB-key3', label: 'Key3' }
         ]
       }
     ];
 
-    const sortedGroupOptions: GroupOptions[] =  [
+    const sortedGroupOptions: GroupOptions[] = [
       {
         group: 'servieA',
         options: [
-          {key: 'serviceA-key1', label: 'Key1'},
-          {key: 'serviceA-key2', label: 'Key2'},
-          {key: 'serviceA-key3', label: 'Key3'}
+          { key: 'serviceA-key1', label: 'Key1' },
+          { key: 'serviceA-key2', label: 'Key2' },
+          { key: 'serviceA-key3', label: 'Key3' }
         ]
       },
       {
         group: 'servieB',
         options: [
-          {key: 'serviceB-key1', label: 'Key1'},
-          {key: 'serviceB-key2', label: 'Key2'},
-          {key: 'serviceB-key3', label: 'Key3'}
+          { key: 'serviceB-key1', label: 'Key1' },
+          { key: 'serviceB-key2', label: 'Key2' },
+          { key: 'serviceB-key3', label: 'Key3' }
         ]
       },
       {
         group: 'servieC',
         options: [
-          {key: 'serviceC-key1', label: 'Key1'},
-          {key: 'serviceC-key2', label: 'Key2'},
-          {key: 'serviceC-key3', label: 'Key3'}
+          { key: 'serviceC-key1', label: 'Key1' },
+          { key: 'serviceC-key2', label: 'Key2' },
+          { key: 'serviceC-key3', label: 'Key3' }
         ]
       }
     ];
