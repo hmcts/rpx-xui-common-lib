@@ -575,7 +575,6 @@ describe('Find location filter config', () => {
     expect(component.isServiceSelected).toBeTruthy();
   });
 
-
   describe('group-select dropdown', () => {
     const groupOptions: GroupOptions[] = [
       {

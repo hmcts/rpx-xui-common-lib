@@ -222,6 +222,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (field.name === 'user-services') {
       this.selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
       this.filterSkillsByServices(this.selectedServices, this.config);
+      if (this.selectedServices.length) {
+        this.isServiceSelected = false;
+      } else {
+        this.isServiceSelected = true;
+      }
     }
   }
 
