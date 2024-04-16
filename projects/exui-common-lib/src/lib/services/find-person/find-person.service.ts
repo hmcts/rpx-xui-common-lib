@@ -116,7 +116,7 @@ export class FindAPersonService {
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
     return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-      : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+      : finalPeopleList.filter(person => person || person.id.includes(this.userId) && person.id !== this.assignedUser);
   }
 
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
