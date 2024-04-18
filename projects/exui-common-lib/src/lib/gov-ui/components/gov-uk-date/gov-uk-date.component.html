@@ -17,7 +17,7 @@
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <xuilib-gov-label
-              [config]="{label: 'Day', name: config.id+'-day', id: config.id+'-day', classes: 'govuk-date-input__label'}">
+              [config]="{label: 'Day' | rpxTranslate, name: config.id+'-day', id: config.id+'-day', classes: 'govuk-date-input__label'}">
             </xuilib-gov-label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                    [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
@@ -29,7 +29,7 @@
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <xuilib-gov-label
-              [config]="{label: 'Month', name: config.id+'-month', id: config.id+'-month', classes: 'govuk-date-input__label'}">
+              [config]="{label: 'Month' | rpxTranslate, name: config.id+'-month', id: config.id+'-month', classes: 'govuk-date-input__label'}">
             </xuilib-gov-label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                    [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
@@ -41,7 +41,7 @@
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <xuilib-gov-label
-              [config]="{label: 'Year', name: config.id+'-year', id: config.id+'-year', classes: 'govuk-date-input__label'}">
+              [config]="{label: 'Year' | rpxTranslate, name: config.id+'-year', id: config.id+'-year', classes: 'govuk-date-input__label'}">
             </xuilib-gov-label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                    [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"

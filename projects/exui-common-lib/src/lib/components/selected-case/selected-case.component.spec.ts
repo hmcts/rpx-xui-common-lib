@@ -20,11 +20,10 @@ describe('SelectedCaseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectedCaseComponent, RpxTranslateMockPipe ],
+      declarations: [SelectedCaseComponent, RpxTranslateMockPipe],
       imports: [],
       providers: []
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -34,12 +33,22 @@ describe('SelectedCaseComponent', () => {
     component.sharedCase = {
       caseId: 'C111111',
       caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }]
+      sharedWith: [
+        {
+          idamId: 'U111111',
+          firstName: 'James',
+          lastName: 'Priest',
+          email: 'james.priest@test.com',
+          userAccessTypes: [
+            {
+              jurisdictionId: '12345',
+              organisationProfileId: '12345',
+              accessTypeId: '1234',
+              enabled: true
+            }
+          ]
+        }
+      ]
     };
     component.shareCases$ = of(shareCases);
     component.ngOnChanges({
@@ -50,12 +59,14 @@ describe('SelectedCaseComponent', () => {
         currentValue: {
           caseId: 'C111111',
           caseTitle: 'Sarah vs Pete',
-          sharedWith: [{
-            idamId: 'U111111',
-            firstName: 'James',
-            lastName: 'Priest',
-            email: 'james.priest@test.com'
-          }]
+          sharedWith: [
+            {
+              idamId: 'U111111',
+              firstName: 'James',
+              lastName: 'Priest',
+              email: 'james.priest@test.com'
+            }
+          ]
         }
       }
     });
@@ -68,42 +79,91 @@ describe('SelectedCaseComponent', () => {
   });
 
   it('should see page elements', () => {
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'case-title\']').textContent).toContain('Sarah vs Pete');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'case-id\']').textContent).toContain('C111111');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'btn-deselect-case\']').textContent).toContain('Deselect case');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']').textContent).toContain('Users from your organisation with access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'name-heading\']').textContent).toContain('Name');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'email-heading\']').textContent).toContain('Email address');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'action-heading\']').textContent).toContain('Actions');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'user-full-name\']').textContent).toContain('James Priest');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'user-email\']').textContent).toContain('james.priest@test.com');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[id^=\'case-title\']')
+        .textContent
+    ).toContain('Sarah vs Pete');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[id^=\'case-id\']')
+        .textContent
+    ).toContain('C111111');
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'btn-deselect-case\']'
+      ).textContent
+    ).toContain('Deselect case');
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'access-info-has-users\']'
+      ).textContent
+    ).toContain('Users from your organisation with access to this case.');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[id^=\'name-heading\']')
+        .textContent
+    ).toContain('Name');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[id^=\'email-heading\']')
+        .textContent
+    ).toContain('Email address');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[id^=\'action-heading\']')
+        .textContent
+    ).toContain('Actions');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[id^=\'user-full-name\']')
+        .textContent
+    ).toContain('James Priest');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[id^=\'user-email\']')
+        .textContent
+    ).toContain('james.priest@test.com');
   });
 
   it('should track by user id', () => {
     user = {
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
+      idamId: 'U111111',
+      firstName: 'James',
+      lastName: 'Priest',
+      email: 'james.priest@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     expect(component.trackByUserId(user)).toEqual('U111111');
   });
 
   it('should deselect', () => {
-    expect(component.onDeselect).toBeDefined();
+    expect(component.onDeselect).toBeTruthy();
   });
 
   it('remove case is toggled off', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }]
-    }];
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     component.removeUserFromCaseToggleOn = false;
     fixture.detectChanges();
@@ -111,30 +171,62 @@ describe('SelectedCaseComponent', () => {
       idamId: 'U111111',
       firstName: 'James',
       lastName: 'Priest',
-      email: 'james.priest@test.com'
+      email: 'james.priest@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
-    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
+    component
+      .canRemove('C111111', user)
+      .toPromise()
+      .then((result) => expect(result).toEqual(false));
   });
 
   it('case cannot be removed', () => {
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
 
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
-
-      pendingUnshares: [{
-        idamId: 'pus111111',
-        firstName: 'JamesPUS',
-        lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
-      }],
-    }];
+        pendingUnshares: [
+          {
+            idamId: 'pus111111',
+            firstName: 'JamesPUS',
+            lastName: 'PriestPUS',
+            email: 'jamespus.priestpus@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     component.removeUserFromCaseToggleOn = false;
     fixture.detectChanges();
@@ -142,23 +234,45 @@ describe('SelectedCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
-    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(false));
+    component
+      .canRemove('C111111', user)
+      .toPromise()
+      .then((result) => expect(result).toEqual(false));
   });
 
   it('case can be removed', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'U111111',
-          firstName: 'James',
-          lastName: 'Priest',
-          email: 'james.priest@test.com'
-        }]
-    }];
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sam Green Vs Williams Lee',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
@@ -167,209 +281,430 @@ describe('SelectedCaseComponent', () => {
       idamId: 'U111111',
       firstName: 'James',
       lastName: 'Priest',
-      email: 'james.priest@test.com'
+      email: 'james.priest@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
-    component.canRemove('C111111', user).toPromise().then(result => expect(result).toEqual(true));
+    component
+      .canRemove('C111111', user)
+      .toPromise()
+      .then((result) => expect(result).toEqual(true));
   });
 
   it('case cannot be cancelled', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
-      pendingShares: [{
-        idamId: 'ps111111',
-        firstName: 'JamesPS',
-        lastName: 'PriestPS',
-        email: 'jamesps.priestps@test.com'
-      }],
-      pendingUnshares: [{
-        idamId: 'pus111111',
-        firstName: 'JamesPUS',
-        lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
-      }],
-    }];
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingShares: [
+          {
+            idamId: 'ps111111',
+            firstName: 'JamesPS',
+            lastName: 'PriestPS',
+            email: 'jamesps.priestps@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingUnshares: [
+          {
+            idamId: 'pus111111',
+            firstName: 'JamesPUS',
+            lastName: 'PriestPUS',
+            email: 'jamespus.priestpus@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     fixture.detectChanges();
     user = {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
-    component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
+    component
+      .canCancel('C111111', user)
+      .toPromise()
+      .then((result) => expect(result).toEqual(true));
   });
 
   it('case can be cancelled', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
-      pendingShares: [{
-        idamId: 'ps111111',
-        firstName: 'JamesPS',
-        lastName: 'PriestPS',
-        email: 'jamesps.priestps@test.com'
-      }],
-      pendingUnshares: [{
-        idamId: 'pus111111',
-        firstName: 'JamesPUS',
-        lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
-      }],
-    }];
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingShares: [
+          {
+            idamId: 'ps111111',
+            firstName: 'JamesPS',
+            lastName: 'PriestPS',
+            email: 'jamesps.priestps@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingUnshares: [
+          {
+            idamId: 'pus111111',
+            firstName: 'JamesPUS',
+            lastName: 'PriestPUS',
+            email: 'jamespus.priestpus@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     fixture.detectChanges();
     user = {
       idamId: 'ps111111',
       firstName: 'JamesPS',
       lastName: 'PriestPS',
-      email: 'jamesps.priestps@test.com'
+      email: 'jamesps.priestps@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
-    component.canCancel('C111111', user).toPromise().then(result => expect(result).toEqual(true));
+    component
+      .canCancel('C111111', user)
+      .toPromise()
+      .then((result) => expect(result).toEqual(true));
   });
 
   it('checking for isToBeRemoved', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
 
-      pendingUnshares: [{
-        idamId: 'pus111111',
-        firstName: 'JamesPUS',
-        lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
-      }],
-    }];
+        pendingUnshares: [
+          {
+            idamId: 'pus111111',
+            firstName: 'JamesPUS',
+            lastName: 'PriestPUS',
+            email: 'jamespus.priestpus@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     fixture.detectChanges();
     user = {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
 
-    component.isToBeRemoved('C111111', user).toPromise().then(result => expect(result).toEqual(true));
+    component
+      .isToBeRemoved('C111111', user)
+      .toPromise()
+      .then((result) => expect(result).toEqual(true));
   });
 
   it('should display Remove link to already shared user', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
 
-      pendingUnshares: [{
-        idamId: 'pus111111',
-        firstName: 'JamesPUS',
-        lastName: 'PriestPUS',
-        email: 'jamespus.priestpus@test.com'
-      }],
-    }];
+        pendingUnshares: [
+          {
+            idamId: 'pus111111',
+            firstName: 'JamesPUS',
+            lastName: 'PriestPUS',
+            email: 'jamespus.priestpus@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
-    const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
+    const userActionLink = fixture.nativeElement.querySelectorAll(
+      '.govuk-accordion__section-content tbody tr td a'
+    );
     expect(userActionLink.length).toEqual(1);
     expect(userActionLink[0].textContent).toContain('Remove');
   });
 
   it('should display Cancel link to pending unshare user', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
 
-      pendingUnshares: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
-    }];
+        pendingUnshares: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(shareCases);
     fixture.detectChanges();
-    const userActionLink = fixture.nativeElement.querySelectorAll('.govuk-accordion__section-content tbody tr td a');
+    const userActionLink = fixture.nativeElement.querySelectorAll(
+      '.govuk-accordion__section-content tbody tr td a'
+    );
     expect(userActionLink.length).toEqual(1);
     expect(userActionLink[0].textContent).toContain('Cancel');
   });
 
   it('should call onCancel when when html link cancel clicked', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
 
-      pendingUnshares: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
-    }];
+        pendingUnshares: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     spyOn(component, 'onCancel');
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     fixture.detectChanges();
 
-    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');
+    const userActionLink = fixture.nativeElement.querySelector(
+      '.govuk-accordion__section-content tbody tr td a'
+    );
     expect(userActionLink.textContent).toContain('Cancel');
     userActionLink.click();
     expect(component.onCancel).toHaveBeenCalled();
   });
 
-
   it('should display Cancel link to pending share user', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james1.priest@test.com'
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james1.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingShares: [
+          {
+            idamId: 'N111111',
+            firstName: 'New',
+            lastName: 'user',
+            email: 'new.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
       }
-    ],
-      pendingShares: [{
-        idamId: 'N111111',
-        firstName: 'New',
-        lastName: 'user',
-        email: 'new.priest@test.com'
-      }
-    ]
-    }];
+    ];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     component.ngOnChanges({
@@ -381,54 +716,90 @@ describe('SelectedCaseComponent', () => {
       }
     });
     fixture.detectChanges();
-    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr:nth-of-type(2) td a');
+    const userActionLink = fixture.nativeElement.querySelector(
+      '.govuk-accordion__section-content tbody tr:nth-of-type(2) td a'
+    );
     expect(userActionLink.textContent).toContain('Cancel');
   });
 
   it('should call onRemove when when html link Remove clicked', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }],
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
 
-      pendingUnshares: [],
-    }];
+        pendingUnshares: []
+      }
+    ];
     spyOn(component, 'onRemove');
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     component.removeUserFromCaseToggleOn = true;
     fixture.detectChanges();
 
-    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td a');
+    const userActionLink = fixture.nativeElement.querySelector(
+      '.govuk-accordion__section-content tbody tr td a'
+    );
     expect(userActionLink.textContent).toContain('Remove');
     userActionLink.click();
     expect(component.onRemove).toHaveBeenCalled();
   });
 
   it('should display label to be added for pending share user', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james1.priest@test.com'
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james1.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingShares: [
+          {
+            idamId: 'N111111',
+            firstName: 'New',
+            lastName: 'user',
+            email: 'new.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
       }
-      ],
-      pendingShares: [{
-        idamId: 'N111111',
-        firstName: 'New',
-        lastName: 'user',
-        email: 'new.priest@test.com'
-      }
-      ]
-    }];
+    ];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     component.ngOnChanges({
@@ -440,101 +811,186 @@ describe('SelectedCaseComponent', () => {
       }
     });
     fixture.detectChanges();
-    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr:nth-of-type(2) td:nth-of-type(4)');
+    const userActionLink = fixture.nativeElement.querySelector(
+      '.govuk-accordion__section-content tbody tr:nth-of-type(2) td:nth-of-type(4)'
+    );
     expect(userActionLink.textContent).toEqual('To be added');
   });
 
   it('should display label to be Removed for pending unshare user', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingUnshares: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
       }
-      ],
-      pendingUnshares: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }
-      ]
-    }];
+    ];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     fixture.detectChanges();
-    const userActionLink = fixture.nativeElement.querySelector('.govuk-accordion__section-content tbody tr td:nth-of-type(4)');
+    const userActionLink = fixture.nativeElement.querySelector(
+      '.govuk-accordion__section-content tbody tr td:nth-of-type(4)'
+    );
     expect(userActionLink.textContent).toEqual('To be removed');
   });
 
   it('should show "All users with access to this case" when a user is added to the case', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
       }
-      ]
-    }];
+    ];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     fixture.detectChanges();
     expect(component.showUserHasAccessInfo()).toBeTruthy();
     expect(component.showNoUsersAccessInfo()).toBeFalsy();
     expect(component.showUserAccessTable()).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']').textContent).toContain('Users from your organisation with access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-no-user\']')).toBeNull();
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'access-info-has-users\']'
+      ).textContent
+    ).toContain('Users from your organisation with access to this case.');
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'access-info-no-user\']'
+      )
+    ).toBeNull();
   });
 
   it('should show "No users currently have access to this case" when no user is assigned to the case', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: []
-    }];
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: []
+      }
+    ];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     fixture.detectChanges();
     expect(component.showNoUsersAccessInfo()).toBeTruthy();
     expect(component.showUserHasAccessInfo()).toBeFalsy();
     expect(component.showUserAccessTable()).toBeFalsy();
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-no-user\']').textContent).toContain('No users from your organisation currently have access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']')).toBeNull();
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'access-info-no-user\']'
+      ).textContent
+    ).toContain(
+      'No users from your organisation currently have access to this case.'
+    );
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'access-info-has-users\']'
+      )
+    ).toBeNull();
   });
 
   it('should show "No users currently have access to this case" when all users are to be removed', () => {
-    shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'Sarah vs Pete',
-      sharedWith: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
+    shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'Sarah vs Pete',
+        sharedWith: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingUnshares: [
+          {
+            idamId: 'U111111',
+            firstName: 'James',
+            lastName: 'Priest',
+            email: 'james.priest@test.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
       }
-      ],
-      pendingUnshares: [{
-        idamId: 'U111111',
-        firstName: 'James',
-        lastName: 'Priest',
-        email: 'james.priest@test.com'
-      }
-      ]
-    }];
+    ];
     component.shareCases$ = of(shareCases);
     component.sharedCase = shareCases[0];
     fixture.detectChanges();
     expect(component.showNoUsersAccessInfo()).toBeTruthy();
     expect(component.showUserHasAccessInfo()).toBeFalsy();
     expect(component.showUserAccessTable()).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-no-user\']').textContent).toContain('No users from your organisation currently have access to this case.');
-    expect(fixture.debugElement.nativeElement.querySelector('[id^=\'access-info-has-users\']')).toBeNull();
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'access-info-no-user\']'
+      ).textContent
+    ).toContain(
+      'No users from your organisation currently have access to this case.'
+    );
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '[id^=\'access-info-has-users\']'
+      )
+    ).toBeNull();
   });
 
   describe('combineAndSortShares', () => {
@@ -557,7 +1013,10 @@ describe('SelectedCaseComponent', () => {
         }
       ];
 
-      const result = component.combineAndSortShares(sharedWith as UserDetails[], pendingShares as UserDetails[]);
+      const result = component.combineAndSortShares(
+        sharedWith as UserDetails[],
+        pendingShares as UserDetails[]
+      );
       const expected = [
         {
           firstName: 'a'

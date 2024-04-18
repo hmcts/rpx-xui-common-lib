@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { of } from 'rxjs/internal/observable/of';
 import { map } from 'rxjs/operators';
 import { AddressModel } from '../../models';
 import { AddressParser } from './address-parser';
@@ -13,14 +14,17 @@ export class AddressService {
   }
 
   public getAddressesForPostcode(postcode: string): Observable<AddressModel[]> {
+    if (!postcode) {
+      return of([]);
+    }
     return this.http
       .get<any>('/external/addresses?postcode=${postcode}'.replace('${postcode}', postcode), undefined as object)
       .pipe(
         map((res) => res.results))
       .pipe(
-        map(output => output.map((addresses: any) =>
+        map(output => output ? output.map((addresses: any) =>
           this.format(new AddressParser().parse(addresses[AddressType.DPA]))
-        ))
+        ) : [])
       );
   }
 

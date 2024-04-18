@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { SharedCase, SharedCaseErrorMessages } from '../../models/case-share.model';
+import {
+  SharedCase,
+  SharedCaseErrorMessages
+} from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 import { ShareCaseComponent } from './share-case.component';
@@ -25,19 +28,10 @@ describe('ShareCaseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-      ],
-      declarations: [
-        ShareCaseComponent,
-        RpxTranslateMockPipe
-      ],
-      imports: [
-        FormsModule,
-        RouterTestingModule
-      ]
-    })
-    .compileComponents();
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [ShareCaseComponent, RpxTranslateMockPipe],
+      imports: [FormsModule, RouterTestingModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -57,54 +51,109 @@ describe('ShareCaseComponent', () => {
 
   it('should see page elements', () => {
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('#add-user-hint').textContent).toContain('Search by name or email address. You can share access with as many people as you need.');
-    expect(fixture.debugElement.nativeElement.querySelector('#btn-add-user').textContent).toContain('Add');
-    expect(fixture.debugElement.nativeElement.querySelector('#content-why-can-not-find-email').textContent).toContain('Can\'t find an email address?');
-    expect(fixture.debugElement.nativeElement.querySelector('#content-reason-can-not-find-email').textContent).toContain('If you can\'t find your colleague\'s email address, they will need to complete their registration. Contact your administrator for help.');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#add-user-hint')
+        .textContent
+    ).toContain(
+      'Search by name or email address. You can share access with as many people as you need.'
+    );
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#btn-add-user')
+        .textContent
+    ).toContain('Add');
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '#content-why-can-not-find-email'
+      ).textContent
+    ).toContain('Can\'t find an email address?');
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '#content-reason-can-not-find-email'
+      ).textContent
+    ).toContain(
+      'If you can\'t find your colleague\'s email address, they will need to complete their registration. Contact your administrator for help.'
+    );
     // Elements for removing a user should not be shown
-    expect(fixture.debugElement.nativeElement.querySelectorAll('.govuk-label').item(1)).toBeNull();
-    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-hint')).toBeNull();
-    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-input')).toBeNull();
-    expect(fixture.debugElement.nativeElement.querySelector('#btn-remove-user')).toBeNull();
+    expect(
+      fixture.debugElement.nativeElement
+        .querySelectorAll('.govuk-label')
+        .item(1)
+    ).toBeNull();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#remove-user-hint')
+    ).toBeNull();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#remove-user-input')
+    ).toBeNull();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#btn-remove-user')
+    ).toBeNull();
   });
 
   it('should display additional page elements for removing a user', () => {
     component.showRemoveUsers = true;
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelectorAll('.govuk-label').item(1).textContent).toContain('Remove a person from all cases');
-    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-hint').textContent).toContain('Select a person to remove them from all selected cases.');
-    expect(fixture.debugElement.nativeElement.querySelector('#remove-user-input')).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector('#btn-remove-user').textContent).toContain('Remove');
+    expect(
+      fixture.debugElement.nativeElement
+        .querySelectorAll('.govuk-label')
+        .item(1).textContent
+    ).toContain('Remove a person from all cases');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#remove-user-hint')
+        .textContent
+    ).toContain('Select a person to remove them from all selected cases.');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#remove-user-input')
+    ).toBeTruthy();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#btn-remove-user')
+        .textContent
+    ).toContain('Remove');
   });
 
   it('should set the "Add user" label according to the input provided', () => {
     component.addUserLabel = 'Test label';
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelectorAll('.govuk-label').item(0).textContent).toContain('Test label');
+    expect(
+      fixture.debugElement.nativeElement
+        .querySelectorAll('.govuk-label')
+        .item(0).textContent
+    ).toContain('Test label');
   });
 
   it('should see case list', () => {
     fixture.detectChanges();
-    component.shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'James vs Jane'
-    }];
+    component.shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'James vs Jane'
+      }
+    ];
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('#accordion-with-summary-sections')).toBeTruthy();
+    expect(
+      fixture.debugElement.nativeElement.querySelector(
+        '#accordion-with-summary-sections'
+      )
+    ).toBeTruthy();
   });
 
   it('should see no case to display', () => {
     component.shareCases = [];
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('#noCaseDisplay').textContent).toContain('No cases to display.');
+    expect(
+      fixture.debugElement.nativeElement.querySelector('#noCaseDisplay')
+        .textContent
+    ).toContain('No cases to display.');
   });
 
   it('should not allow to continue where there are no shared cases', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: []
-    }];
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        caseTitle: 'Sam Green Vs Williams Lee',
+        sharedWith: []
+      }
+    ];
     component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     component.setContinueAllowed();
@@ -112,17 +161,28 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should not allow to continue', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'u666666',
-          firstName: 'Kate',
-          lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
-        }]
-    }];
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        caseTitle: 'Sam Green Vs Williams Lee',
+        sharedWith: [
+          {
+            idamId: 'u666666',
+            firstName: 'Kate',
+            lastName: 'Grant',
+            email: 'kate.grant@lambbrooks.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     component.setContinueAllowed();
@@ -130,24 +190,44 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should allow to continue when removing a user', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'u666666',
-          firstName: 'Kate',
-          lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
-        }],
-      pendingUnshares: [
-        {
-          idamId: 'u777777',
-          firstName: 'Nick',
-          lastName: 'Rodrigues',
-          email: 'nick.rodrigues@lambbrooks.com'
-        }]
-    }];
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        caseTitle: 'Sam Green Vs Williams Lee',
+        sharedWith: [
+          {
+            idamId: 'u666666',
+            firstName: 'Kate',
+            lastName: 'Grant',
+            email: 'kate.grant@lambbrooks.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingUnshares: [
+          {
+            idamId: 'u777777',
+            firstName: 'Nick',
+            lastName: 'Rodrigues',
+            email: 'nick.rodrigues@lambbrooks.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     component.setContinueAllowed();
@@ -155,24 +235,44 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should allow to continue when adding a user', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'u666666',
-          firstName: 'Kate',
-          lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
-        }],
-      pendingShares: [
-        {
-          idamId: 'u888888',
-          firstName: 'Joel',
-          lastName: 'Molloy',
-          email: 'joel.molloy@lambbrooks.com'
-        }]
-    }];
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        caseTitle: 'Sam Green Vs Williams Lee',
+        sharedWith: [
+          {
+            idamId: 'u666666',
+            firstName: 'Kate',
+            lastName: 'Grant',
+            email: 'kate.grant@lambbrooks.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingShares: [
+          {
+            idamId: 'u888888',
+            firstName: 'Joel',
+            lastName: 'Molloy',
+            email: 'joel.molloy@lambbrooks.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
     component.shareCases$ = of(sharedCases);
     fixture.detectChanges();
     component.setContinueAllowed();
@@ -180,30 +280,58 @@ describe('ShareCaseComponent', () => {
   });
 
   it('should be able to add user', () => {
-    sharedCases = [{
-      caseId: '9417373995765133',
-      caseTitle: 'Sam Green Vs Williams Lee',
-      sharedWith: [
-        {
-          idamId: 'u666666',
-          firstName: 'Kate',
-          lastName: 'Grant',
-          email: 'kate.grant@lambbrooks.com'
-        }],
-      pendingShares: [
-        {
-          idamId: 'u888888',
-          firstName: 'Joel',
-          lastName: 'Molloy',
-          email: 'joel.molloy@lambbrooks.com'
-        }]
-    }];
+    sharedCases = [
+      {
+        caseId: '9417373995765133',
+        caseTitle: 'Sam Green Vs Williams Lee',
+        sharedWith: [
+          {
+            idamId: 'u666666',
+            firstName: 'Kate',
+            lastName: 'Grant',
+            email: 'kate.grant@lambbrooks.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ],
+        pendingShares: [
+          {
+            idamId: 'u888888',
+            firstName: 'Joel',
+            lastName: 'Molloy',
+            email: 'joel.molloy@lambbrooks.com',
+            userAccessTypes: [
+              {
+                jurisdictionId: '12345',
+                organisationProfileId: '12345',
+                accessTypeId: '1234',
+                enabled: true
+              }
+            ]
+          }
+        ]
+      }
+    ];
 
     const user: UserDetails = {
-      idamId : 'pus111111',
+      idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
 
     const addButton = fixture.nativeElement.querySelector('#btn-add-user');
@@ -222,12 +350,22 @@ describe('ShareCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
-    component.shareCases = [{
-      caseId: 'C111111',
-      caseTitle: 'James vs Jane'
-    }];
+    component.shareCases = [
+      {
+        caseId: 'C111111',
+        caseTitle: 'James vs Jane'
+      }
+    ];
     const addButton = fixture.nativeElement.querySelector('#btn-add-user');
     component.onSelectedUser(user);
     fixture.detectChanges();
@@ -239,7 +377,15 @@ describe('ShareCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const addButton = fixture.nativeElement.querySelector('#btn-add-user');
     component.onSelectedUser(user);
@@ -252,7 +398,15 @@ describe('ShareCaseComponent', () => {
       idamId: 'pus111111',
       firstName: 'JamesPUS',
       lastName: 'PriestPUS',
-      email: 'jamespus.priestpus@test.com'
+      email: 'jamespus.priestpus@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const addButton = fixture.nativeElement.querySelector('#btn-add-user');
     component.onSelectedUser(user);
@@ -263,7 +417,8 @@ describe('ShareCaseComponent', () => {
 
   it('should onUnselect not display validation errors when more than one case exists after deselecting a case', () => {
     const sharedCase: SharedCase = {
-      caseId: 'C123', caseTitle: 'Smith vs Dahl'
+      caseId: 'C123',
+      caseTitle: 'Smith vs Dahl'
     };
     sharedCases = [
       { caseId: 'C111111', caseTitle: 'James vs Jane' },
@@ -310,28 +465,60 @@ describe('ShareCaseComponent', () => {
 
   it('should get a list of assigned users, both current and pending', () => {
     const user1: UserDetails = {
-      idamId : 'aaaa1111-aaaa-1111',
+      idamId: 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user2: UserDetails = {
-      idamId : 'aaaa2222-aaaa-2222',
+      idamId: 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user3: UserDetails = {
-      idamId : 'aaaa3333-aaaa-3333',
+      idamId: 'aaaa3333-aaaa-3333',
       firstName: 'User',
       lastName: 'Three',
-      email: 'user.three@test.com'
+      email: 'user.three@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user4: UserDetails = {
-      idamId : 'aaaa4444-aaaa-4444',
+      idamId: 'aaaa4444-aaaa-4444',
       firstName: 'User',
       lastName: 'Four',
-      email: 'user.four@test.com'
+      email: 'user.four@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -357,10 +544,18 @@ describe('ShareCaseComponent', () => {
 
   it('should remove a user if one is selected', () => {
     const user1: UserDetails = {
-      idamId : 'aaaa1111-aaaa-1111',
+      idamId: 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -390,28 +585,60 @@ describe('ShareCaseComponent', () => {
 
   it('should get the list of assigned users on component initialization', () => {
     const user1: UserDetails = {
-      idamId : 'aaaa1111-aaaa-1111',
+      idamId: 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user2: UserDetails = {
-      idamId : 'aaaa2222-aaaa-2222',
+      idamId: 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user3: UserDetails = {
-      idamId : 'aaaa3333-aaaa-3333',
+      idamId: 'aaaa3333-aaaa-3333',
       firstName: 'User',
       lastName: 'Three',
-      email: 'user.three@test.com'
+      email: 'user.three@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user4: UserDetails = {
-      idamId : 'aaaa4444-aaaa-4444',
+      idamId: 'aaaa4444-aaaa-4444',
       firstName: 'User',
       lastName: 'Four',
-      email: 'user.four@test.com'
+      email: 'user.four@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -435,10 +662,18 @@ describe('ShareCaseComponent', () => {
 
   it('should update the list of assigned users when adding a new user', () => {
     const user4: UserDetails = {
-      idamId : 'aaaa4444-aaaa-4444',
+      idamId: 'aaaa4444-aaaa-4444',
       firstName: 'User',
       lastName: 'Four',
-      email: 'user.four@test.com'
+      email: 'user.four@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -457,16 +692,32 @@ describe('ShareCaseComponent', () => {
 
   it('should set an error message if there is at least one case that would become unassigned', () => {
     const user1: UserDetails = {
-      idamId : 'aaaa1111-aaaa-1111',
+      idamId: 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user2: UserDetails = {
-      idamId : 'aaaa2222-aaaa-2222',
+      idamId: 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {
@@ -510,16 +761,32 @@ describe('ShareCaseComponent', () => {
 
   it('should navigate to the confirmation page if there are no cases that would become unassigned', () => {
     const user1: UserDetails = {
-      idamId : 'aaaa1111-aaaa-1111',
+      idamId: 'aaaa1111-aaaa-1111',
       firstName: 'User',
       lastName: 'One',
-      email: 'user.one@test.com'
+      email: 'user.one@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     const user2: UserDetails = {
-      idamId : 'aaaa2222-aaaa-2222',
+      idamId: 'aaaa2222-aaaa-2222',
       firstName: 'User',
       lastName: 'Two',
-      email: 'user.two@test.com'
+      email: 'user.two@test.com',
+      userAccessTypes: [
+        {
+          jurisdictionId: '12345',
+          organisationProfileId: '12345',
+          accessTypeId: '1234',
+          enabled: true
+        }
+      ]
     };
     sharedCases = [
       {

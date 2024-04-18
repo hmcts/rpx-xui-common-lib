@@ -21,13 +21,15 @@ describe('WriteAddressFieldComponent', () => {
 
   function addressFormGroup() {
     return new FormGroup({
-      addressLine1: new FormControl(),
-      addressLine2: new FormControl(),
-      addressLine3: new FormControl(),
-      postTown: new FormControl(),
-      county: new FormControl(),
-      postCode: new FormControl(),
-      country: new FormControl()
+      address: new FormGroup({
+        addressLine1: new FormControl(),
+        addressLine2: new FormControl(),
+        addressLine3: new FormControl(),
+        postTown: new FormControl(),
+        county: new FormControl(),
+        postCode: new FormControl(),
+        country: new FormControl()
+      })
     });
   }
 
@@ -77,8 +79,16 @@ describe('WriteAddressFieldComponent', () => {
     expect(element.querySelectorAll('.govuk-label').item(6).textContent.trim()).toContain('Countr');
     expect(element.querySelectorAll('.govuk-label').item(7).textContent.trim()).toContain('Postcode (Optional)');
 
-    /*     expect(debugElement.query($ADDRESS_COMPLEX_FIELD)).toBeTruthy();
-        expect(debugElement.query($ADDRESS_COMPLEX_FIELD).nativeElement['hidden']).toBeTruthy(); */
+  });
+
+  it('should check the validity and ensure the errorsPresent is set correctly', () => {
+
+    expect(wrapperComponent.componentUnderTest.errorsPresent).toBeFalsy();
+
+    wrapperComponent.formGroup.get('address').setErrors({incorrect: true});
+    fixture.detectChanges();
+    wrapperComponent.componentUnderTest.ngOnChanges();
+    expect(wrapperComponent.componentUnderTest.errorsPresent).toBeTruthy();
 
   });
 

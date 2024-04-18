@@ -19,14 +19,15 @@ export class FeatureToggleGuard implements CanActivate {
      * in the data array for the route:
      * - needsFeaturesEnabled: An array of feature keys that need to be enabled for this route
      * - featureDisabledRedirect: the URL to redirect to when the this route is not accessible due to disabled features
+     * - expectFeatureEnabled: Sets whether a route should be enabled/disabled based on whether feature is present
      * @param route Automatically provided by Angular
      */
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
-        return combineLatest(...(route.data.needsFeaturesEnabled as string[]).map(
+        return combineLatest([...(route.data.needsFeaturesEnabled as string[]).map(
                 feature => this.featureToggleService.getValueOnce<boolean>(feature, false)
-        )).pipe(
+        )]).pipe(
             map(featureStatuses => featureStatuses.every(status => status)),
-            map(status => status || this.router.parseUrl(route.data.featureDisabledRedirect as string))
+            map(status => (route.data.expectFeatureEnabled !== false && status) || (route.data.expectFeatureEnabled === false && !status) || this.router.parseUrl(route.data.featureDisabledRedirect as string))
         );
     }
 }
