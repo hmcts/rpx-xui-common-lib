@@ -1,6 +1,6 @@
 # RpxXuiCommonLib
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+This project  was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 This Project is used for EXUI team as a common library.
 All the common libraries are located at `projects/exui-common-lib`.
 
