@@ -1,11 +1,11 @@
 <ng-container>
   <form [formGroup]="formGroup">
-  <div class="govuk-body" formGroupName="address" [ngClass]="{'govuk-form-group--error': submissionAttempted && errorsPresent}">
+  <div class="govuk-body" formGroupName="address">
     <label class="govuk-label govuk-!-font-weight-bold">
       Enter address details
     </label>
 
-    <div class="govuk-body">
+    <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !formGroup.get('address').get('addressLine1').valid}">
       <label class="govuk-label" for="addressLine1">
         Building and Street
       </label>
@@ -32,7 +32,7 @@
         formControlName="addressLine3">
     </div>
 
-    <div class="govuk-body">
+    <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !formGroup.get('address').get('postTown').valid}">
       <label class="govuk-label" for="postTown">
         Town or City
       </label>
@@ -48,10 +48,10 @@
         County{{this.isInternational ? '/ State/ Province' : ''}} (Optional)
       </label>
       <input class="govuk-input govuk-!-width-two-thirds" id="county" name="county" type="text"
-        formControlName="county">
+        formControlName="county" >
     </div>
 
-    <div *ngIf="isInternational" class="govuk-body">
+    <div *ngIf="isInternational" class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !formGroup.get('address').get('country').valid}">
       <label class="govuk-label" for="country">
         Country
       </label>
@@ -62,7 +62,7 @@
         formControlName="country">
     </div>
 
-    <div class="govuk-body">
+    <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !isInternational && !formGroup.get('address').get('postCode').valid}">
       <label class="govuk-label" for="postCode">
         Postcode{{this.isInternational ? ' (Optional)' : ''}}
       </label>

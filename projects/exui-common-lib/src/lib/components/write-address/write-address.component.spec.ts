@@ -11,9 +11,9 @@ describe('WriteAddressFieldComponent', () => {
 
   const POSTCODE = 'P05T CDE';
 
-  const $POSTCODE_LOOKUP = By.css('.postcodeLookup');
+  const $POSTCODE_LOOKUP = By.css('.postcode-lookup');
   const $POSTCODE_LOOKUP_INPUT = By.css('.postcodeinput');
-  const $POSTCODE_LOOKUP_FIND = By.css('.postcodeLookup > .govuk-body > button');
+  const $POSTCODE_LOOKUP_FIND = By.css('.postcode-lookup > .govuk-body > button');
   const $POSTCODE_LOOKUP_ERROR_MESSAGE = By.css('.govuk-error-message');
 
   const $SELECT_ADDRESS = By.css('#selectAddress');
@@ -70,7 +70,7 @@ describe('WriteAddressFieldComponent', () => {
     postcodeField.value = postcode;
     postcodeField.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    debugElement.query($POSTCODE_LOOKUP_FIND).triggerEventHandler('click', null);
+    debugElement.query($POSTCODE_LOOKUP_FIND)?.triggerEventHandler('click', null);
     fixture.detectChanges();
   }
 
@@ -174,7 +174,7 @@ describe('WriteAddressFieldComponent', () => {
   });
 
   it('should render an error when postcode is blank', () => {
-
+    queryPostcode('');
     debugElement.query($POSTCODE_LOOKUP_FIND).triggerEventHandler('click', null);
     fixture.detectChanges();
 
@@ -183,11 +183,10 @@ describe('WriteAddressFieldComponent', () => {
   });
 
   it('should clear the error when postcode is not blank', () => {
-
     wrapperComponent.componentUnderTest.missingPostcode = true;
-    fixture.detectChanges();
-
+    spyOn(addressService, 'getAddressesForPostcode').and.returnValue(of([]));
     queryPostcode(POSTCODE);
+    fixture.detectChanges();
 
     expect(debugElement.query($POSTCODE_LOOKUP_ERROR_MESSAGE)).toBeFalsy();
 

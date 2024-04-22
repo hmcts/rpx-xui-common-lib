@@ -29,6 +29,12 @@
   width: 20%;
   float: left;
 }
+.govuk-grid-column-ten-percent {
+  box-sizing: border-box;
+  padding-top: 10px;
+  width: 10%;
+  float: left;
+}
 .govuk-grid-column-five-percent {
   box-sizing: border-box;
   padding-top: 15px;
@@ -58,4 +64,10 @@
 }
 .govuk-accordion__section-content {
   padding-top: 0;
+}
+.govuk-accordion__section-heading {
+  border-top: 0;
+}
+.govuk-accordion__section-button {
+  border-top: 0;
 }
