@@ -41,7 +41,7 @@
     "core-js": "^2.5.4",
     "govuk-frontend": "4.7.0",
     "launchdarkly-js-client-sdk": "^2.15.2",
-    "ngx-pagination": "^3.2.1",
+    "ngx-pagination": "^6.0.3",
     "rpx-xui-translation": "1.0.2",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.1",
