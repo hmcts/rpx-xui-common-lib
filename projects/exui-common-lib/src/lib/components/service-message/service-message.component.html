@@ -7,8 +7,10 @@
 
     <div class="hmcts-banner__message">
         <span class="hmcts-banner__assistive">{{'Warning' | rpxTranslate}}</span>
-        <h2 class="govuk-heading-s" [innerHTML]="message | rpxTranslate"></h2>
+        <h2 class="govuk-heading-s" [innerHTML]="message_en | rpxTranslate"></h2>
+        <h2 *ngIf="message_cy" class="govuk-heading-s" [innerHTML]="message_cy | rpxTranslate"></h2>
         <a [routerLink]="" class="govuk-link--no-visited-state" (click)="onHideMessageEvent(key)">{{'Hide message' | rpxTranslate}}</a>
     </div>
+
 
 </div>
