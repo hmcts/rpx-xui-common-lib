@@ -41,9 +41,21 @@ export class ServiceMessagesComponent implements OnInit {
     });
   }
 
-  private compareDates(msg:ServiceMessages) {
-    let currentDateTime = new Date().toISOString();
-    return currentDateTime >= msg.begin && msg.end >= currentDateTime;
+  private compareDates(msg: ServiceMessages): boolean {
+    let currentDateTime = new Date();
+    let beginDate = null;
+    let endDate = null;
+
+    if (!isNaN(Date.parse(msg.begin))) {
+      beginDate = new Date(msg.begin);
+    }
+    if (!isNaN(Date.parse(msg.end))) {
+      endDate = new Date(msg.end);
+    }
+
+    const beginDateOK = !msg.begin || (beginDate && beginDate < currentDateTime);
+    const endDateOK = !msg.end || (endDate && endDate >= currentDateTime);
+    return beginDateOK && endDateOK
   }
 
   public hideMessage(msg: ServiceMessages): void {

@@ -36,14 +36,14 @@ describe('ServiceMessageComponent', () => {
 
   describe('onHideMessageEvent()', () => {
     it('should emit the id of the message to hide', () => {
-    const hideKey:ServiceMessages = {
-      roles: 'caseworker-probate',
-      index: 1,
-      message_en: 'New message',
-      message_cy: 'Anyyu',
-      begin: '2024-04-18T00:00:00',
-      end: '2024-04-19T00:00:00'
-    };
+      const hideKey: ServiceMessages = {
+        roles: 'caseworker-probate',
+        index: 1,
+        message_en: 'New message',
+        message_cy: 'Anyyu',
+        begin: '2024-04-18T00:00:00',
+        end: '2024-04-19T00:00:00'
+      };
       const hideMessageSpy = spyOn(component.hideMessage, 'emit');
       component.onHideMessageEvent(hideKey);
       expect(hideMessageSpy).toHaveBeenCalledWith(hideKey);
