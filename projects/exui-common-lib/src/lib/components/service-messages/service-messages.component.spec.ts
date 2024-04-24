@@ -83,32 +83,9 @@ describe('ServiceMessagesComponent', () => {
     it('should get the service messages and filter according to roles', () => {
       const dateSpy = spyOn<any>(component, 'compareDates');
       component['createFilteredMessages'](serviceMessagesFake);
+      fixture.autoDetectChanges();
       expect(dateSpy).toHaveBeenCalled();
     });
-  });
-
-  xit('should filter out message if start date is in the future', () => {
-    const serviceMessagesFake: ServiceMessages[] = [
-      {
-        roles: 'caseworker-divorce',
-        index: 2,
-        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
-        message_cy: 'Anyyu',
-        begin: '2034-04-18T00:00:00',
-        end: '2034-05-19T00:00:00'
-      },
-      {
-        roles: 'caseworker-probate',
-        index: 3,
-        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
-        message_cy: 'Anyyu',
-        begin: '2024-04-18T00:00:00',
-        end: '2044-04-20T00:00:00'
-      }
-    ];
-    component['createFilteredMessages'](serviceMessagesFake);
-    fixture.autoDetectChanges();
-    expect(component.filteredMessages.length).toBe(1);
   });
 
   describe('hideMessage()', () => {
