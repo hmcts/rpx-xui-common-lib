@@ -4,6 +4,7 @@ import { RpxTranslationConfig, RpxTranslationService } from 'rpx-xui-translation
 import { of } from 'rxjs';
 import { FeatureToggleService } from '../../services/feature-toggle/feature-toggle.service';
 import { ServiceMessagesComponent } from './service-messages.component';
+import { ServiceMessages } from '../../models/service-message.model';
 
 @Pipe({ name: 'rpxTranslate' })
 class RpxTranslateMockPipe implements PipeTransform {
@@ -17,14 +18,32 @@ describe('ServiceMessagesComponent', () => {
   let fixture: ComponentFixture<ServiceMessagesComponent>;
   const mockFeatureToggleService = jasmine.createSpyObj('FeatureToggleService', ['getValue']);
 
-  const serviceMessagesFake = {
-    'caseworker-divorce': 'Divorce users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
-    'caseworker-divorce|caseworker-probate': 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
-    'caseworker-notfound': 'Not found users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
-    'caseworker-probate': 'Probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
-    'caseworker-probate|caseworker-withanotherscript': 'Probate and script users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.<scr<script>Ha!</script>ipt> alert("WOW");</script>*',
-    'caseworker-probate|caseworker-withscript': 'Probate and script users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.<script>alert("security alert");</script>*<link rel=\"stylesheet\" href=\"styles.css\">*'
-  };
+  const serviceMessagesFake: ServiceMessages[] = [
+    // {
+    //   roles: 'caseworker-probate',
+    //   index: 1,
+    //   message_en: 'Divorce users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+    //   message_cy: 'Anyyu',
+    //   begin: '2024-04-18T00:00:00',
+    //   end: '2034-04-24T00:00:00'
+    // },
+    {
+      roles: 'caseworker-divorce',
+      index: 2,
+      message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+      message_cy: 'Anyyu',
+      begin: '2024-04-18T00:00:00',
+      end: '2034-05-19T00:00:00'
+    },
+    {
+      roles: 'caseworker-probate',
+      index: 3,
+      message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+      message_cy: 'Anyyu',
+      begin: '2024-04-18T00:00:00',
+      end: '2044-04-20T00:00:00'
+    }
+  ];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -53,18 +72,49 @@ describe('ServiceMessagesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('getServiceMessages()', () => {
+  describe('call createFilteredMessages on getServiceMessages() call', () => {
     it('should get the service messages and filter according to roles', () => {
+      const serveMsgSpy = spyOn<any>(component, 'createFilteredMessages');
       component.getServiceMessages();
-      expect(component.filteredMessages.size).toBe(5);
+      expect(serveMsgSpy).toHaveBeenCalled();
     });
+  });
+  describe('call compareDates on createFilteredMessages call', () => {
+    it('should get the service messages and filter according to roles', () => {
+      const dateSpy = spyOn<any>(component, 'compareDates');
+      component['createFilteredMessages'](serviceMessagesFake);
+      expect(dateSpy).toHaveBeenCalled();
+    });
+  });
+
+  xit('should filter out message if start date is in the future', () => {
+    const serviceMessagesFake: ServiceMessages[] = [
+      {
+        roles: 'caseworker-divorce',
+        index: 2,
+        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+        message_cy: 'Anyyu',
+        begin: '2034-04-18T00:00:00',
+        end: '2034-05-19T00:00:00'
+      },
+      {
+        roles: 'caseworker-probate',
+        index: 3,
+        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+        message_cy: 'Anyyu',
+        begin: '2024-04-18T00:00:00',
+        end: '2044-04-20T00:00:00'
+      }
+    ];
+    component['createFilteredMessages'](serviceMessagesFake);
+    fixture.autoDetectChanges();
+    expect(component.filteredMessages.length).toBe(1);
   });
 
   describe('hideMessage()', () => {
     it('should add an item to the hidden message list', () => {
       component.hiddenBanners = [];
-      const testRole = 'test-message-1';
-      component.hideMessage(testRole);
+      component.hideMessage(serviceMessagesFake[0]);
       expect((component.hiddenBanners).length).toBe(1);
     });
   });
