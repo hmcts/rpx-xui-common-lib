@@ -19,14 +19,6 @@ describe('ServiceMessagesComponent', () => {
   const mockFeatureToggleService = jasmine.createSpyObj('FeatureToggleService', ['getValue']);
 
   const serviceMessagesFake: ServiceMessages[] = [
-    // {
-    //   roles: 'caseworker-probate',
-    //   index: 1,
-    //   message_en: 'Divorce users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
-    //   message_cy: 'Anyyu',
-    //   begin: '2024-04-18T00:00:00',
-    //   end: '2034-04-24T00:00:00'
-    // },
     {
       roles: 'caseworker-divorce',
       index: 2,
