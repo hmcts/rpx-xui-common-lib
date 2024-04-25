@@ -2900,7 +2900,7 @@ __metadata:
     "@ng-idle/keepalive": ^11.0.3
     "@types/jasmine": ~4.3.5
     "@types/jasminewd2": ~2.0.3
-    "@types/node": ^18.17.0
+    "@types/node": ^18.19.0
     "@typescript-eslint/eslint-plugin": ^5.59.2
     "@typescript-eslint/parser": ^5.59.2
     codelyzer: ^6.0.2
@@ -2918,7 +2918,7 @@ __metadata:
     ng-packagr: 16.2.3
     ngx-pagination: ^6.0.3
     protractor: ~7.0.0
-    rpx-xui-translation: 1.0.3-angular-upgrade-17
+    rpx-xui-translation: 1.0.3-angular-upgrade-17-rc
     rxjs: ^7.8.1
     ts-node: 10.8.1
     tslib: ^2.6.1
@@ -4530,10 +4530,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.17.0":
-  version: 18.17.5
-  resolution: "@types/node@npm:18.17.5"
-  checksum: b8c658a99234b99425243c324b641ed7b9ceb6bee6b06421fdc9bb7c58f9a5552e353225cc549e6982462ac384abe1985022ed76e2e4728797f59b21f659ca2b
+"@types/node@npm:^18.19.0":
+  version: 18.19.31
+  resolution: "@types/node@npm:18.19.31"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: 949bddfd7071bd47300d1f33d380ee34695ccd5f046f1a03e4d2be0d953ace896905144d44a6f483f241b5ef34b86f0e40a0e312201117782eecf89e81a4ff13
   languageName: node
   linkType: hard
 
@@ -11981,9 +11983,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rpx-xui-translation@npm:1.0.3-angular-upgrade-17":
-  version: 1.0.3-angular-upgrade-17
-  resolution: "rpx-xui-translation@npm:1.0.3-angular-upgrade-17"
+"rpx-xui-translation@npm:1.0.3-angular-upgrade-17-rc":
+  version: 1.0.3-angular-upgrade-17-rc
+  resolution: "rpx-xui-translation@npm:1.0.3-angular-upgrade-17-rc"
   dependencies:
     dexie: ^3.2.2
     luxon: ^2.4.0
@@ -11991,7 +11993,7 @@ __metadata:
   peerDependencies:
     "@angular/common": ^15.2.9
     "@angular/core": ^15.2.9
-  checksum: b1c83780984fa4bb33a3b54179a572713c6e94772d4eede9c8edf287b9382ccd619fdccb6bfa2d26b7aa6ec200535d36a4fe5f332657d90d068d38c53e0e79c8
+  checksum: 430fc54d0d96a5f216047afd4c48d4ac69b9fb0f85708e690d07edb05cb4b999110fc6767151730a71fed0b32107f7d51d98eba249a943820934aea059d7cea9
   languageName: node
   linkType: hard
 
@@ -13284,6 +13286,13 @@ __metadata:
   version: 0.7.31
   resolution: "ua-parser-js@npm:0.7.31"
   checksum: e2f8324a83d1715601576af85b2b6c03890699aaa7272950fc77ea925c70c5e4f75060ae147dc92124e49f7f0e3d6dd2b0a91e7f40d267e92df8894be967ba8b
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 3192ef6f3fd5df652f2dc1cd782b49d6ff14dc98e5dced492aa8a8c65425227da5da6aafe22523c67f035a272c599bb89cfe803c1db6311e44bed3042fc25487
   languageName: node
   linkType: hard
 
