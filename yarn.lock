@@ -2918,7 +2918,7 @@ __metadata:
     ng-packagr: 16.2.3
     ngx-pagination: ^6.0.3
     protractor: ~7.0.0
-    rpx-xui-translation: 1.0.2
+    rpx-xui-translation: 1.0.3-angular-upgrade-17
     rxjs: ^7.8.1
     ts-node: 10.8.1
     tslib: ^2.6.1
@@ -11981,9 +11981,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rpx-xui-translation@npm:1.0.2":
-  version: 1.0.2
-  resolution: "rpx-xui-translation@npm:1.0.2"
+"rpx-xui-translation@npm:1.0.3-angular-upgrade-17":
+  version: 1.0.3-angular-upgrade-17
+  resolution: "rpx-xui-translation@npm:1.0.3-angular-upgrade-17"
   dependencies:
     dexie: ^3.2.2
     luxon: ^2.4.0
@@ -11991,7 +11991,7 @@ __metadata:
   peerDependencies:
     "@angular/common": ^15.2.9
     "@angular/core": ^15.2.9
-  checksum: 305f4ae1d935de2f4d0874637a61863c1b5478872d335653f6986776fc274de9ebfe3728c04c8a386ff8b4d36fa1de8e444d000ad42f2a914bab3fb5989f28bc
+  checksum: b1c83780984fa4bb33a3b54179a572713c6e94772d4eede9c8edf287b9382ccd619fdccb6bfa2d26b7aa6ec200535d36a4fe5f332657d90d068d38c53e0e79c8
   languageName: node
   linkType: hard
 
