@@ -56,4 +56,4 @@ elements.js.gz
 !.yarn/versions
 /.angular/cache/
 
-.ngx/cache/
+.nx/cache/
