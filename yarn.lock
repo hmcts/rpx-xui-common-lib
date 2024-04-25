@@ -2918,7 +2918,6 @@ __metadata:
     ng-packagr: 16.2.3
     ngx-pagination: ^6.0.3
     protractor: ~7.0.0
-    rpx-xui-translation: 1.0.3-angular-upgrade-17-rc
     rxjs: ^7.8.1
     ts-node: 10.8.1
     tslib: ^2.6.1
@@ -6728,13 +6727,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dexie@npm:^3.2.2":
-  version: 3.2.4
-  resolution: "dexie@npm:3.2.4"
-  checksum: 4e5294a954118b6862c864b8c3970904a1733daebcd919488624520696411e2e81ed1bceeac3634c5c15a21e37ce4b8502ed41c4edfbc5ba3f5925c34d56497b
-  languageName: node
-  linkType: hard
-
 "di@npm:^0.0.1":
   version: 0.0.1
   resolution: "di@npm:0.0.1"
@@ -9833,13 +9825,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"luxon@npm:^2.4.0":
-  version: 2.5.2
-  resolution: "luxon@npm:2.5.2"
-  checksum: d8b671ffd2ff0b438af862ac11082a81b3aedd9f8b6a4ca636f944224f8dd381125cd4d274ca0a8aedcaf2cfca0fc2ca96fe4cc1b16a28b7af701afb95c0bff8
-  languageName: node
-  linkType: hard
-
 "magic-string@npm:0.30.1":
   version: 0.30.1
   resolution: "magic-string@npm:0.30.1"
@@ -11980,20 +11965,6 @@ __metadata:
   bin:
     rollup: dist/bin/rollup
   checksum: 8bb20a39c8d91130825159c3823eccf4dc2295c9a0a5c4ed851a5bf2167dbf24d9a29f23461a54c955e5506395e6cc188eafc8ab0e20399d7489fb33793b184e
-  languageName: node
-  linkType: hard
-
-"rpx-xui-translation@npm:1.0.3-angular-upgrade-17-rc":
-  version: 1.0.3-angular-upgrade-17-rc
-  resolution: "rpx-xui-translation@npm:1.0.3-angular-upgrade-17-rc"
-  dependencies:
-    dexie: ^3.2.2
-    luxon: ^2.4.0
-    tslib: ^2.0.0
-  peerDependencies:
-    "@angular/common": ^15.2.9
-    "@angular/core": ^15.2.9
-  checksum: 430fc54d0d96a5f216047afd4c48d4ac69b9fb0f85708e690d07edb05cb4b999110fc6767151730a71fed0b32107f7d51d98eba249a943820934aea059d7cea9
   languageName: node
   linkType: hard
 
