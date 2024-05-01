@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.17",
+  "version": "2.0.17-node-store-caseworkers",
   "engines": {
     "node": ">=18.17.0"
   },
