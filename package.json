@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.18-include-user-in-search-filter",
+  "version": "2.0.18",
   "engines": {
     "node": ">=18.17.0"
   },
