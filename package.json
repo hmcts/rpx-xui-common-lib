@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.18",
+  "version": "2.0.18-upgrade-ld-client",
   "engines": {
     "node": ">=18.17.0"
   },
@@ -40,7 +40,7 @@
     "@ng-idle/keepalive": "^11.0.3",
     "core-js": "^2.5.4",
     "govuk-frontend": "4.7.0",
-    "launchdarkly-js-client-sdk": "^2.15.2",
+    "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^3.2.1",
     "rpx-xui-translation": "1.0.2",
     "rxjs": "^7.8.1",
