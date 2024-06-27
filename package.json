@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.19-upgrade-ld-client",
+  "version": "2.0.21-upgrade-ld-client",
   "engines": {
     "node": ">=18.19.0"
   },
