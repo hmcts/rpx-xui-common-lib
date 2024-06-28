@@ -23,7 +23,7 @@ describe('ServiceMessagesComponent', () => {
     {
       roles: 'caseworker-divorce',
       index: 2,
-      message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+      message_en: 'Alert services notification',
       message_cy: 'Anyyu',
       begin: '2024-04-18T00:00:00',
       end: '2034-05-19T00:00:00'
@@ -31,7 +31,7 @@ describe('ServiceMessagesComponent', () => {
     {
       roles: 'caseworker-probate',
       index: 3,
-      message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+      message_en: 'Please submit all required forms today ',
       message_cy: 'Anyyu',
       begin: '2024-04-18T00:00:00',
       end: '2044-04-20T00:00:00'
@@ -94,7 +94,7 @@ describe('ServiceMessagesComponent', () => {
       {
         roles: 'caseworker-probate',
         index: 3,
-        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+        message_en: 'Maintainance notices',
         message_cy: 'Anyyu',
         begin: '2024-04-18T00:00:00',
         end: '2044-04-20T00:00:00'
@@ -126,7 +126,7 @@ describe('ServiceMessagesComponent', () => {
       {
         roles: 'caseworker-divorce',
         index: 2,
-        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+        message_en: 'Services up and running',
         message_cy: 'Anyyu',
         begin: '2024-03-18T00:00:00',
         end: '2024-03-19T00:00:00'
@@ -142,7 +142,7 @@ describe('ServiceMessagesComponent', () => {
       {
         roles: 'caseworker-divorce',
         index: 2,
-        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+        message_en: 'Judiciary experience required',
         message_cy: 'Anyyu',
         begin: '2024-04-25T00:00:00',
         end: '2024-04-24T00:00:00'
