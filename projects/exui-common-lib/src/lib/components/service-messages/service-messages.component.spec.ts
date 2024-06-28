@@ -18,7 +18,8 @@ describe('ServiceMessagesComponent', () => {
   let fixture: ComponentFixture<ServiceMessagesComponent>;
   const mockFeatureToggleService = jasmine.createSpyObj('FeatureToggleService', ['getValue']);
 
-  const serviceMessagesFake: ServiceMessages[] = [
+  const 
+  serviceMessagesFake: ServiceMessages[] = [
     {
       roles: 'caseworker-divorce',
       index: 2,
@@ -109,7 +110,7 @@ describe('ServiceMessagesComponent', () => {
       {
         roles: 'caseworker-divorce',
         index: 2,
-        message_en: 'Divorce and probate users may experience longer loading times than usual in the system.<br />Click <a href="#">here</a> to find out more.',
+        message_en: 'Happy birthday.',
         message_cy: 'Anyyu',
         begin: '',
         end: ''
