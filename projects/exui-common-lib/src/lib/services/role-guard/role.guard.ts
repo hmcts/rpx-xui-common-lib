@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RoleService } from './role.service';
@@ -12,7 +12,7 @@ export enum RoleMatching {
 @Injectable({
     providedIn: 'root'
   })
-export class RoleGuard implements CanActivate {
+export class RoleGuard  {
 
     public constructor(
         private readonly roleService: RoleService,

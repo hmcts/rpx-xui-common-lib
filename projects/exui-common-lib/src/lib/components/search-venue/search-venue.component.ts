@@ -102,8 +102,9 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
   public search(currentValue: string): void {
     this.searchInProgress = true;
     this.showAutocomplete = !!currentValue && (currentValue.length >= this.minSearchCharacters);
-    if (!currentValue || !currentValue.length) {
-      this.findLocationFormGroup.controls.locationSelectedFormControl.markAsPristine();
+    if (!!currentValue) {
+      this.findLocationFormGroup.controls.locationSelectedFormControl.markAsDirty();
+    } else {
       this.findLocationFormGroup.controls.locationSelectedFormControl.reset();
     }
     if (this.showAutocomplete) {

@@ -1,6 +1,6 @@
 # ExuiCommonLib
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.\
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.\
 Exui-common-lib is used as common library for EXUI projects
 
 ## Code scaffolding
