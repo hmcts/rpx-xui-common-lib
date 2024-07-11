@@ -19,7 +19,7 @@ export class LaunchDarklyService implements FeatureToggleService {
     this.ready.next(false);
     this.context = { kind: 'user', ...user };
     this.clientId = clientId;
-    this.client = initialize(this.clientId, this.context, {});
+    this.client = initialize(this.clientId, this.context, { useReport: true });
     this.client.on('ready', () => {
       this.client.identify(this.context).then(() => this.ready.next(true));
     });
