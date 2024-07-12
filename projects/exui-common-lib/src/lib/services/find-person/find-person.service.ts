@@ -1,15 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import {
-  getAllCaseworkersFromServices,
-  getSessionStorageKeyForServiceId,
-  setCaseworkers
-} from '../../gov-ui/util/session-storage/session-storage-utils';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {
   Caseworker,
-  CaseworkersByService,
   JudicialUserModel,
   Person,
   PersonRole,
@@ -50,36 +44,9 @@ export class FindAPersonService {
     }
     this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
     const fullServices = searchOptions.services;
-    const storedServices = [];
-    const newServices: string[] = [];
-    const storedCaseworkersByService: CaseworkersByService[] = [];
-    fullServices.forEach(serviceId => {
-      const serviceKey = getSessionStorageKeyForServiceId(serviceId);
-      if (this.sessionStorageService.getItem(serviceKey)) {
-        storedServices.push(serviceId);
-        storedCaseworkersByService.push({ service: serviceId, caseworkers: JSON.parse(this.sessionStorageService.getItem(serviceKey)) });
-      } else {
-        newServices.push(serviceId);
-      }
-    });
-    // if all services are stored then return the stored caseworkers by service
-    if (storedServices.length === fullServices.length) {
-      const storedCaseworkers = getAllCaseworkersFromServices(storedCaseworkersByService);
-      return of(this.searchInCaseworkers(storedCaseworkers, searchOptions));
-    }
-    // all serviceIds passed in as node layer getting used anyway and caseworkers also stored there
-    return this.http.post<CaseworkersByService[]>('/workallocation/retrieveCaseWorkersForServices', { fullServices }).pipe(
-      tap(caseworkersByService => {
-        caseworkersByService.forEach(caseworkerListByService => {
-          // for any new service, ensure that they are then stored in the session
-          if (newServices.includes(caseworkerListByService.service)) {
-            setCaseworkers(caseworkerListByService.service, caseworkerListByService.caseworkers, this.sessionStorageService);
-          }
-        });
-      }),
-      map(caseworkersByService => {
-        const givenCaseworkers = getAllCaseworkersFromServices(caseworkersByService);
-        return this.searchInCaseworkers(givenCaseworkers, searchOptions);
+    return this.http.post<Caseworker[]>('/workallocation/caseworker/getUsersByServiceName', {services: fullServices, term: searchOptions.searchTerm}).pipe(
+      map(caseworkers => {
+        return this.searchInCaseworkers(caseworkers, searchOptions);
       })
     );
   }
