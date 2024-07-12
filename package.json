@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.18-location-search-fix",
+  "version": "2.0.23-location-search-fix",
   "engines": {
     "node": ">=18.19.0"
   },
