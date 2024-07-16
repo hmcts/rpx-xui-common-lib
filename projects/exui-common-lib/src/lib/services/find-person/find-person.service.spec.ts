@@ -127,7 +127,7 @@ describe('FindAPersonService', () => {
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.CASEWORKER };
     service.findCaseworkers(searchOptions);
-    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation/retrieveCaseWorkersForServices', { fullServices: ['IA'] });
+    expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation/caseworker/getUsersByServiceName', { services: ['IA'], term: 'term' });
   });
 
   it('should change caseworkers to people', () => {
