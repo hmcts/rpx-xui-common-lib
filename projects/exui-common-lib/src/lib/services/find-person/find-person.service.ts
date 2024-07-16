@@ -80,8 +80,9 @@ export class FindAPersonService {
       }
     }
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
-    return searchOptions.userIncluded ? people.filter(person => person && person.id !== this.assignedUser)
-      : people.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+    const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchOptions.searchTerm));
+    return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
+      : finalPeopleList.filter(person => person && person.id !== this.assignedUser);
   }
 
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
