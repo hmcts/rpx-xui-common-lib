@@ -79,10 +79,11 @@ export class FindAPersonService {
         roleCategory = RoleCategory.CTSC;
       }
     }
+    const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
-    const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchOptions.searchTerm));
+    const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
     return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-      : finalPeopleList.filter(person => person && person.id !== this.assignedUser);
+      : finalPeopleList.filter(person => person || person.id.includes(this.userId) && person.id !== this.assignedUser);
   }
 
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
