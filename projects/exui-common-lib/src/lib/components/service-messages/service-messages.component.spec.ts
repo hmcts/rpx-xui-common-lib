@@ -176,4 +176,41 @@ describe('ServiceMessagesComponent', () => {
       expect((component.hiddenBanners).length).toBe(1);
     });
   });
+
+  it('should show error message if start date is greater than the end date', () => {
+    const serviceMessagesFake: ServiceMessages[] = [
+      {
+        roles: 'caseworker-divorce',
+        index: 2,
+        message_en: 'Judiciary experience required',
+        message_cy: 'Anyyu',
+        begin: '2024-04-25T00:00:00',
+        end: '2024-04-24T00:00:00'
+      }
+    ];
+    component['createFilteredMessages'](serviceMessagesFake);
+    fixture.autoDetectChanges();
+    expect(component.filteredMessages.length).toBe(0);
+    fixture.detectChanges();
+    expect(component.isBannerError).toBeTruthy(); 
+   expect(component.bannerErrorMsg).toContain(`The start date is greater than the end date for message index: ${serviceMessagesFake[0].index}`);
+  });
+  it('should show error message if start date or end date is not well formed', () => {
+    const serviceMessagesFake: ServiceMessages[] = [
+      {
+        roles: 'caseworker-divorce',
+        index: 10,
+        message_en: 'Malformed start or end date',
+        message_cy: 'Incorrect date',
+        begin: '2024-04-25 T00:00:00',
+        end: '2024-04-24T00:00:00'
+      }
+    ];
+    component['createFilteredMessages'](serviceMessagesFake);
+    fixture.autoDetectChanges();
+    expect(component.filteredMessages.length).toBe(0);
+    fixture.detectChanges();
+    expect(component.isBannerError).toBeTruthy(); 
+   expect(component.bannerErrorMsg).toContain(`Invalid start or end date for message index: 10`);
+  });
 });

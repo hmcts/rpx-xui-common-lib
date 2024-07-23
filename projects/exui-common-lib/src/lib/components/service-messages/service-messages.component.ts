@@ -10,6 +10,8 @@ import { ServiceMessages } from '../../models/service-message.model';
 export class ServiceMessagesComponent implements OnInit {
   public hiddenBanners: string[];
   public filteredMessages: ServiceMessages[] = [];
+  public isBannerError: boolean;
+  public bannerErrorMsg: string = '';
 
   @Input() public userRoles: string[];
   @Input() public featureToggleKey: string;
@@ -52,6 +54,14 @@ export class ServiceMessagesComponent implements OnInit {
     }
     if (!isNaN(Date.parse(msg.end))) {
       endDate = new Date(msg.end);
+    }
+    if (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && beginDate > endDate) {
+        this.isBannerError = true;
+        this.bannerErrorMsg = `The start date is greater than the end date for message index: ${msg.index}`;
+    }
+    if (isNaN(Date.parse(msg.begin)) || isNaN(Date.parse(msg.end))) {
+      this.isBannerError = true;
+      this.bannerErrorMsg = `Invalid start or end date for message index: ${msg.index}`;
     }
 
     const beginDateOK = !msg.begin || (beginDate && beginDate < currentDateTime);
