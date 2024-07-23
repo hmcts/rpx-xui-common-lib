@@ -20,8 +20,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public filteredSkillsByServicesCheckbox: FilterConfigOption[];
   public previousSelectedNestedCheckbox: string[] = [];
   public formSubmissionEvent$ = new Subject<void>();
+  public isServiceSelected: boolean = false;
+  public serviceErrorMsg = 'Please select a service';
+  private selectedServices: string[] = [];
 
-  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) {}
+  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) { }
 
   // tslint:disable-next-line:variable-name
   private _config: FilterConfig;
@@ -90,7 +93,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     const services = this.config.fields.find(field => field.name === 'user-services');
     if (services) {
       this.startFilterSkillsByServices(this.form, services);
-      if(!this._config.copyFields) {
+      if (!this._config.copyFields) {
         this.initValuesFromCacheForSkillsByServices();
       }
     }
@@ -179,7 +182,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         fields: this.getSelectedValues(form.value, this.config)
       };
       this.filterService.givenErrors.next(null);
-      const settings = {...this.settings, reset: false};
+      const settings = { ...this.settings, reset: false };
       this.filterService.persist(settings, this.config.persistence);
     } else {
       this.emitFormErrors(form);
@@ -202,6 +205,13 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when user enters input change radio button
   public inputChanged(field: FilterFieldConfig): void {
+    if (field.name === 'user-location') {
+      if (!this.selectedServices.length) {
+        this.isServiceSelected = true;
+      } else {
+        this.isServiceSelected = false;
+      }
+    }
     if (field.radioSelectionChange && typeof field.radioSelectionChange === 'string') {
       const [name, value] = field.enableCondition.split('=');
       this.form.get(name).patchValue(value);
@@ -210,8 +220,13 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   public inputServiceChanged(field: FilterFieldConfig): void {
     if (field.name === 'user-services') {
-      const selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
-      this.filterSkillsByServices(selectedServices, this.config);
+      this.selectedServices = this.getSelectedValuesForFields(this.form.controls, field);
+      this.filterSkillsByServices(this.selectedServices, this.config);
+      if (this.selectedServices.length) {
+        this.isServiceSelected = false;
+      } else {
+        this.isServiceSelected = true;
+      }
     }
   }
 
@@ -220,7 +235,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     if (this.config && this.config.cancelSetting) {
       this._settings.fields = JSON.parse(JSON.stringify(this.config.cancelSetting.fields));
     }
-    const settings = {...this.settings, reset: true};
+    const settings = { ...this.settings, reset: true };
     this.filterService.persist(settings, this.config.persistence);
     this.filterService.givenErrors.next(null);
     this.submitted = false;
@@ -477,12 +492,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (Array.isArray(values)) {
         const field = config.fields.find(f => f.name === name);
         if (field.type === 'find-location' || field.type === 'find-service') {
-          return {value: values, name};
+          return { value: values, name };
         } else {
-          return {value: getValues(field.options, values), name};
+          return { value: getValues(field.options, values), name };
         }
       } else {
-        return {value: [values], name};
+        return { value: [values], name };
       }
     });
   }
@@ -493,15 +508,15 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const fieldName = field.name;
       const formGroup = form.get(fieldName);
       if (formGroup && formGroup.errors && (formGroup.errors.minlength || formGroup.errors.required)) {
-        errors.push({name: fieldName, error: field.minSelectedError});
+        errors.push({ name: fieldName, error: field.minSelectedError });
       }
       if (formGroup && formGroup.errors && formGroup.errors.maxlength) {
-        errors.push({name: fieldName, error: field.maxSelectedError});
+        errors.push({ name: fieldName, error: field.maxSelectedError });
       }
     }
 
     // remove duplicates
-    errors = errors.filter( (filterError, i, arr) => {
+    errors = errors.filter((filterError, i, arr) => {
       return errors.indexOf(arr.find(item => item.name === filterError.name)) === i;
     });
 
@@ -602,10 +617,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           const preSelectedSkills: boolean[] = [];
 
           this.filteredSkillsByServicesCheckbox.map((skillsByServices, index) => {
-            for(let i = 0; i<this._config.preSelectedNestedCheckbox.length; i++) {
+            for (let i = 0; i < this._config.preSelectedNestedCheckbox.length; i++) {
               const skillCopyValue = this._config.preSelectedNestedCheckbox[i];
 
-              if(skillCopyValue.toString() === skillsByServices.key.toString()) {
+              if (skillCopyValue.toString() === skillsByServices.key.toString()) {
                 preSelectedSkills[index] = true;
                 break;
               } else {
@@ -614,7 +629,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
             }
           });
 
-          if(preSelectedSkills.length > 0) {
+          if (preSelectedSkills.length > 0) {
             preSelectedSkills.forEach((h) => {
               (this.form.get('user-skills') as FormArray).push(new FormControl(h));
             });
@@ -655,7 +670,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         return a.label.toLowerCase() > b.label.toLowerCase() ? 1 : (b.label.toLowerCase() > a.label.toLowerCase() ? -1 : 0);
       });
       const result = {
-        group : g,
+        group: g,
         options: sortedOptions
       };
       sortedResults.push(result);
