@@ -21,7 +21,7 @@
             </xuilib-gov-label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                    [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
-                   [id]="config.id"
+                   [id]="config.id+'-day'"
                    [name]="config.id+'-day'" type="number" value="" pattern="[0-9]*"
                    [formControlName]="config.id+'_day'">
           </div>
