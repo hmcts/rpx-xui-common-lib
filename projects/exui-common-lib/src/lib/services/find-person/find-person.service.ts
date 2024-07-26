@@ -61,7 +61,7 @@ export class FindAPersonService {
         domain: caseworker.roleCategory === RoleCategory.CASEWORKER ? PersonRole.CASEWORKER : PersonRole.ADMIN,
         // knownAs can be added if required
       };
-      if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL) {
+      if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
         people.push(thisPerson);
       }
     });
