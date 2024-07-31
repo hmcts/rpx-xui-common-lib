@@ -214,14 +214,13 @@ describe('SearchVenueComponent', () => {
 
     fixture = TestBed.createComponent(SearchVenueComponent);
     component = fixture.componentInstance;
-    const locationService = TestBed.get(LocationService);
     spyOn(component.keyUpSubject$, 'next');
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
     component.displayedLocations = LOCATION_RESULTS;
     spyOn(component, 'searchLocations').and.callThrough();
     spyOn(component, 'onFocus').and.callThrough();
 
-    locationService.searchLocations.and.returnValue(of(LOCATION_RESULTS));
+    searchFilterServiceMock.searchLocations.and.returnValue(of(LOCATION_RESULTS));
 
     fixture.detectChanges();
   }));
@@ -232,6 +231,16 @@ describe('SearchVenueComponent', () => {
 
   it('should create', () => {
     expect(component.searchLocations).toHaveBeenCalled();
+  });
+
+  it('should reset location selected form Control', () => {
+    [
+      { value: '' },
+      { value: undefined }
+    ].forEach(({ value }) => {
+      component.search(value);
+      expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeFalse();
+    });
   });
 
   it('should call onFocus when input has focus', async () => {
@@ -254,6 +263,7 @@ describe('SearchVenueComponent', () => {
       component.keyUpSubject$.subscribe(() => {
         expect(component.keyUpSubject$.next).toHaveBeenCalled();
       });
+      expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeTrue();
     });
   });
 
