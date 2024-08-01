@@ -88,10 +88,10 @@ export class FindAPersonService {
     const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
     if (typeof(this.assignedUser) === 'string') {
       return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-        : finalPeopleList.filter(person => person && person.id !== this.userId && person.id !== this.assignedUser);
+        : finalPeopleList.filter(person => person || person.id.includes(this.userId) && person.id !== this.assignedUser);
     } else {
       return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-        : finalPeopleList.filter(person => person && person.id !== this.userId && !this.assignedUser.includes(person.id));
+        : finalPeopleList.filter(person => person || person.id.includes(this.userId) && !this.assignedUser.includes(person.id));
     }
   }
 

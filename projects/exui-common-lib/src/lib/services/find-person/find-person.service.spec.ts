@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
 import { Person, PersonRole, RoleCategory } from '../../models/person.model';
 import { FindAPersonService } from './find-person.service';
-import { Caseworker } from 'exui-common-lib';
+import { Caseworker } from '../../models';
 
 describe('FindAPersonService', () => {
   it('should be Truthy', () => {
