@@ -16,10 +16,9 @@ import { SessionStorageService } from '../storage/session-storage/session-storag
   providedIn: 'root'
 })
 export class FindAPersonService {
-
   public static caseworkersKey: string = 'caseworkers';
   public userId: string;
-  public assignedUser: string;
+  public assignedUser: string | string[] = [];
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
   }
@@ -30,9 +29,13 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : [];
+    let assignedUserToCompare = this.assignedUser;
+    if (typeof(this.assignedUser) === 'string') {
+      assignedUserToCompare = [this.assignedUser];
+    }
     return this.http.post<Person[]>('/workallocation/findPerson', { searchOptions })
-      .pipe(map(judiciary => judiciary.filter(judge => !([this.assignedUser].includes(judge.id)))));
+      .pipe(map((judiciary) => judiciary.filter((judge) => !(assignedUserToCompare.includes(judge.id)))));
     // Removed the current user id to fix EUI-8465.
   }
 
@@ -42,10 +45,10 @@ export class FindAPersonService {
       const userInfo = JSON.parse(userInfoStr);
       this.userId = userInfo.id ? userInfo.id : userInfo.uid;
     }
-    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : null;
+    this.assignedUser = searchOptions.assignedUser ? searchOptions.assignedUser : [];
     const fullServices = searchOptions.services;
-    return this.http.post<Caseworker[]>('/workallocation/caseworker/getUsersByServiceName', {services: fullServices, term: searchOptions.searchTerm}).pipe(
-      map(caseworkers => {
+    return this.http.post<Caseworker[]>('/workallocation/caseworker/getUsersByServiceName', { services: fullServices, term: searchOptions.searchTerm }).pipe(
+      map((caseworkers) => {
         return this.searchInCaseworkers(caseworkers, searchOptions);
       })
     );
@@ -58,7 +61,7 @@ export class FindAPersonService {
         email: caseworker.email,
         name: `${caseworker.firstName} ${caseworker.lastName}`,
         id: caseworker.idamId,
-        domain: caseworker.roleCategory === RoleCategory.CASEWORKER ? PersonRole.CASEWORKER : PersonRole.ADMIN,
+        domain: caseworker.roleCategory === RoleCategory.CASEWORKER ? PersonRole.CASEWORKER : PersonRole.ADMIN
         // knownAs can be added if required
       };
       if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
@@ -81,9 +84,12 @@ export class FindAPersonService {
     }
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
-    const finalPeopleList = people.filter(person => person && person.name && person.name.toLowerCase().includes(searchTerm));
-    return searchOptions.userIncluded ? finalPeopleList.filter(person => person && person.id !== this.assignedUser)
-      : finalPeopleList.filter(person => person || person.id.includes(this.userId) && person.id !== this.assignedUser);
+    const finalPeopleList = people.filter((person) => person && person.name && person.name.toLowerCase().includes(searchTerm));
+
+    if (typeof(this.assignedUser) === 'string') {
+      return finalPeopleList.filter((person) => person && person.id !== this.assignedUser);
+    }
+    return finalPeopleList.filter((person) => person && !this.assignedUser.includes(person.id));
   }
 
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
@@ -91,4 +97,3 @@ export class FindAPersonService {
       { searchString: value, serviceCode: serviceId });
   }
 }
-

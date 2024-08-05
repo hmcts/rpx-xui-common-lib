@@ -5,5 +5,5 @@ export interface SearchOptions {
   userRole: PersonRole;
   services: string[];
   userIncluded?: boolean;
-  assignedUser?: string;
+  assignedUser?: string | string[];
 }
