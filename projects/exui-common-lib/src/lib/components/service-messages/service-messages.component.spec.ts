@@ -192,8 +192,8 @@ describe('ServiceMessagesComponent', () => {
     fixture.autoDetectChanges();
     expect(component.filteredMessages.length).toBe(0);
     fixture.detectChanges();
-    expect(component.isBannerError).toBeTruthy(); 
-   expect(component.bannerErrorMsg).toContain(`The start date is greater than the end date for message index: ${serviceMessagesFake[0].index}`);
+    expect(component.isBannerError).toBeTruthy();
+   expect(component.bannerErrorMsgs).toContain({message:`The start date is greater than the end date for message index: ${serviceMessagesFake[0].index}`, index: 2});
   });
   it('should show error message if start date or end date is not well formed', () => {
     const serviceMessagesFake: ServiceMessages[] = [
@@ -211,6 +211,6 @@ describe('ServiceMessagesComponent', () => {
     expect(component.filteredMessages.length).toBe(0);
     fixture.detectChanges();
     expect(component.isBannerError).toBeTruthy(); 
-   expect(component.bannerErrorMsg).toContain(`Invalid start or end date for message index: 10`);
+   expect(component.bannerErrorMsgs).toContain({message:`Invalid start or end date for message index: 10`, index: 10});
   });
 });

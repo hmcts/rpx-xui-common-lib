@@ -11,7 +11,7 @@ export class ServiceMessagesComponent implements OnInit {
   public hiddenBanners: string[];
   public filteredMessages: ServiceMessages[] = [];
   public isBannerError: boolean;
-  public bannerErrorMsg: string = '';
+  public bannerErrorMsgs: {message: string, index: number}[] = [];
 
   @Input() public userRoles: string[];
   @Input() public featureToggleKey: string;
@@ -48,20 +48,32 @@ export class ServiceMessagesComponent implements OnInit {
     let currentDateTime = new Date();
     let beginDate = null;
     let endDate = null;
+    const findUnique = this.bannerErrorMsgs.filter(rst => rst.index === msg.index);
 
     if (!isNaN(Date.parse(msg.begin))) {
       beginDate = new Date(msg.begin);
     }
+
     if (!isNaN(Date.parse(msg.end))) {
       endDate = new Date(msg.end);
     }
+
+    if (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && !(beginDate > endDate)) {
+      this.bannerErrorMsgs = this.bannerErrorMsgs.filter(ind => ind.index !== msg.index);
+     }
+
     if (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && beginDate > endDate) {
-        this.isBannerError = true;
-        this.bannerErrorMsg = `The start date is greater than the end date for message index: ${msg.index}`;
+      this.isBannerError = true;
+      if(findUnique.length === 0) {
+        this.bannerErrorMsgs = [...this.bannerErrorMsgs, {message:`The start date is greater than the end date for message index: ${msg.index}`, index: msg.index}];
+      }
     }
+
     if (isNaN(Date.parse(msg.begin)) || isNaN(Date.parse(msg.end))) {
       this.isBannerError = true;
-      this.bannerErrorMsg = `Invalid start or end date for message index: ${msg.index}`;
+      if(findUnique.length === 0) {
+        this.bannerErrorMsgs = [...this.bannerErrorMsgs, {message: `Invalid start or end date for message index: ${msg.index}`, index: msg.index}];
+      }
     }
 
     const beginDateOK = !msg.begin || (beginDate && beginDate < currentDateTime);
