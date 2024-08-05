@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.25-cot-726-rc1",
+  "version": "2.0.25-cot-726-rc2",
   "engines": {
     "node": ">=18.19.0"
   },
@@ -78,5 +78,5 @@
     "tslint": "~6.1.0",
     "typescript": "~5.4.5"
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@3.6.3"
 }
