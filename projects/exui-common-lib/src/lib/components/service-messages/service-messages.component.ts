@@ -62,17 +62,11 @@ export class ServiceMessagesComponent implements OnInit {
       this.bannerErrorMsgs = this.bannerErrorMsgs.filter(ind => ind.index !== msg.index);
      }
 
-    if (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && beginDate > endDate) {
+    if ((!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && beginDate > endDate)
+      || (isNaN(Date.parse(msg.begin)) || isNaN(Date.parse(msg.end)))) {
       this.isBannerError = true;
       if(findUnique.length === 0) {
-        this.bannerErrorMsgs = [...this.bannerErrorMsgs, {message:`The start date is greater than the end date for message index: ${msg.index}`, index: msg.index}];
-      }
-    }
-
-    if (isNaN(Date.parse(msg.begin)) || isNaN(Date.parse(msg.end))) {
-      this.isBannerError = true;
-      if(findUnique.length === 0) {
-        this.bannerErrorMsgs = [...this.bannerErrorMsgs, {message: `Invalid start or end date for message index: ${msg.index}`, index: msg.index}];
+        this.bannerErrorMsgs = [...this.bannerErrorMsgs, {message:`Invalid start/end date OR The start date is greater than the end date. Message index: ${msg.index}`, index: msg.index}];
       }
     }
 
