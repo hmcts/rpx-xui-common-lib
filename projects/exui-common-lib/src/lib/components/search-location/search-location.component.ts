@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { iif, Observable, of } from 'rxjs';
-import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import {
   BookingCheckType, FilterConfigOption,
   FilterFieldConfig,
@@ -93,6 +93,10 @@ export class SearchLocationComponent implements OnInit {
           () => (!!term && term.length >= this.minSearchCharacters),
           this.getLocations(term).pipe(
             map((locations) => this.filterUnselectedLocations(locations, this.selectedLocations, this.singleMode)),
+            catchError(() => {
+              // returns false so the user is not shown the no results found message
+              return of(false);
+            }),
           ),
           of(false)
         )),
