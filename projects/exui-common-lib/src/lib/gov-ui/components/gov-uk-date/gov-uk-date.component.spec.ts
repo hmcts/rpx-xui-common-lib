@@ -42,7 +42,7 @@ describe('GovUkDateComponent', () => {
   });
 
   it('should have input for day, month and year elements', () => {
-    const day = fixture.debugElement.query(By.css('#id-day'));
+    const day = fixture.debugElement.query(By.css('#id'));
     expect(day).toBeTruthy();
     const month = fixture.debugElement.query(By.css('#id-month'));
     expect(month).toBeTruthy();
