@@ -112,8 +112,36 @@ describe('ServiceMessagesComponent', () => {
         index: 2,
         message_en: 'Happy birthday.',
         message_cy: 'Anyyu',
-        begin: '',
-        end: ''
+      }
+    ];
+    component['createFilteredMessages'](serviceMessagesFake);
+    fixture.autoDetectChanges();
+    expect(component.filteredMessages.length).toBe(1);
+  });
+
+  it('should show message when no start date provided', () => {
+    const serviceMessagesFake: ServiceMessages[] = [
+      {
+        roles: 'caseworker-divorce',
+        index: 2,
+        message_en: 'Happy birthday.',
+        message_cy: 'Anyyu',
+        end: '2044-04-20T00:00:00'
+      }
+    ];
+    component['createFilteredMessages'](serviceMessagesFake);
+    fixture.autoDetectChanges();
+    expect(component.filteredMessages.length).toBe(1);
+  });
+
+  it('should show message when no end date provided', () => {
+    const serviceMessagesFake: ServiceMessages[] = [
+      {
+        roles: 'caseworker-divorce',
+        index: 12,
+        message_en: 'Happy birthday.',
+        message_cy: 'Anyyu',
+        begin: '2024-04-20T00:00:00'
       }
     ];
     component['createFilteredMessages'](serviceMessagesFake);

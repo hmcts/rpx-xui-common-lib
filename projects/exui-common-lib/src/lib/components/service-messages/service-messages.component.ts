@@ -50,31 +50,35 @@ export class ServiceMessagesComponent implements OnInit {
     let endDate = null;
     const findUnique = this.bannerErrorMsgs.filter(rst => rst.index === msg.index);
 
-    if (!isNaN(Date.parse(msg.begin))) {
+    if (msg.begin !== undefined && !isNaN(Date.parse(msg.begin))) {
       beginDate = new Date(msg.begin);
     }
 
-    if (!isNaN(Date.parse(msg.end))) {
+    if (msg.end !== undefined && !isNaN(Date.parse(msg.end))) {
       endDate = new Date(msg.end);
     }
 
     if (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && !(beginDate > endDate)) {
       this.bannerErrorMsgs = this.bannerErrorMsgs.filter(ind => ind.index !== msg.index);
-     }
+    }
 
-    if ((!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && beginDate > endDate)
-      || (isNaN(Date.parse(msg.begin)) || isNaN(Date.parse(msg.end)))) {
+    if ((msg.begin || msg.end) && (
+        (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && beginDate > endDate)
+        || (msg.begin && isNaN(Date.parse(msg.begin)))
+        || (msg.end && isNaN(Date.parse(msg.end)))
+      )) {
       this.isBannerError = true;
       if(findUnique.length === 0) {
         this.bannerErrorMsgs = [...this.bannerErrorMsgs, {message:`Invalid start/end date OR The start date is greater than the end date. Message index: ${msg.index}`, index: msg.index}];
       }
+    } else {
+      this.isBannerError = false;
     }
 
     const beginDateOK = !msg.begin || (beginDate && beginDate < currentDateTime);
     const endDateOK = !msg.end || (endDate && endDate >= currentDateTime);
-    return beginDateOK && endDateOK
-  }
-
+    return beginDateOK && endDateOK;
+}
 
   public hideMessage(msg: ServiceMessages): void {
     this.filteredMessages = this.filteredMessages.filter(f => f.index !== msg.index)
