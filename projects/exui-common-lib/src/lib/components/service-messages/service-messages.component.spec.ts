@@ -18,25 +18,25 @@ describe('ServiceMessagesComponent', () => {
   let fixture: ComponentFixture<ServiceMessagesComponent>;
   const mockFeatureToggleService = jasmine.createSpyObj('FeatureToggleService', ['getValue']);
 
-  const 
-  serviceMessagesFake: ServiceMessages[] = [
-    {
-      roles: 'caseworker-divorce',
-      index: 2,
-      message_en: 'Alert services notification',
-      message_cy: 'Anyyu',
-      begin: '2024-04-18T00:00:00',
-      end: '2034-05-19T00:00:00'
-    },
-    {
-      roles: 'caseworker-probate',
-      index: 3,
-      message_en: 'Please submit all required forms today ',
-      message_cy: 'Anyyu',
-      begin: '2024-04-18T00:00:00',
-      end: '2044-04-20T00:00:00'
-    }
-  ];
+  const
+    serviceMessagesFake: ServiceMessages[] = [
+      {
+        roles: 'caseworker-divorce',
+        index: 2,
+        message_en: 'Alert services notification',
+        message_cy: 'Anyyu',
+        begin: '2024-04-18T00:00:00',
+        end: '2034-05-19T00:00:00'
+      },
+      {
+        roles: 'caseworker-probate',
+        index: 3,
+        message_en: 'Please submit all required forms today ',
+        message_cy: 'Anyyu',
+        begin: '2024-04-18T00:00:00',
+        end: '2044-04-20T00:00:00'
+      }
+    ];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -58,6 +58,7 @@ describe('ServiceMessagesComponent', () => {
     fixture = TestBed.createComponent(ServiceMessagesComponent);
     component = fixture.componentInstance;
     component.userRoles = ['caseworker-divorce', 'caseworker-probate'];
+    component.originalMessages = [];
     fixture.detectChanges();
   });
 
@@ -221,8 +222,9 @@ describe('ServiceMessagesComponent', () => {
     expect(component.filteredMessages.length).toBe(0);
     fixture.detectChanges();
     expect(component.isBannerError).toBeTruthy();
-   expect(component.bannerErrorMsgs).toContain({message:`Invalid start/end date OR The start date is greater than the end date. Message index: ${serviceMessagesFake[0].index}`, index: 2});
+    expect(component.bannerErrorMsgs).toContain({ message: `Invalid start/end date OR The start date is greater than the end date. Message index: ${serviceMessagesFake[0].index}`, index: 2 });
   });
+
   it('should show error message if start date or end date is not well formed', () => {
     const serviceMessagesFake: ServiceMessages[] = [
       {
@@ -234,11 +236,11 @@ describe('ServiceMessagesComponent', () => {
         end: '2024-04-24T00:00:00'
       }
     ];
-    component['createFilteredMessages'](serviceMessagesFake);
+    component.originalMessages = serviceMessagesFake;
+    component['compareDates'](serviceMessagesFake[0]);
     fixture.autoDetectChanges();
-    expect(component.filteredMessages.length).toBe(0);
-    fixture.detectChanges();
-    expect(component.isBannerError).toBeTruthy(); 
-   expect(component.bannerErrorMsgs).toContain({message:`Invalid start/end date OR The start date is greater than the end date. Message index: ${serviceMessagesFake[0].index}`, index: 10});
+    expect(component.isBannerError).toBeTrue();
+    expect(component.bannerErrorMsgs.length).toBe(1);
+    expect(component.bannerErrorMsgs).toContain({ message: `Invalid start/end date OR The start date is greater than the end date. Message index: ${serviceMessagesFake[0].index}`, index: 10 });
   });
 });

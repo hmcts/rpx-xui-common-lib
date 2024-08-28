@@ -11,7 +11,8 @@ export class ServiceMessagesComponent implements OnInit {
   public hiddenBanners: string[];
   public filteredMessages: ServiceMessages[] = [];
   public isBannerError: boolean;
-  public bannerErrorMsgs: {message: string, index: number}[] = [];
+  public bannerErrorMsgs: { message: string, index: number }[] = [];
+  public originalMessages: ServiceMessages[] = [];
 
   @Input() public userRoles: string[];
   @Input() public featureToggleKey: string;
@@ -26,6 +27,7 @@ export class ServiceMessagesComponent implements OnInit {
   public getServiceMessages(): void {
     this.featureToggleService.getValue<ServiceMessages[]>(this.featureToggleKey, null)
       .subscribe(messages => {
+        this.originalMessages = messages;
         if (!!messages) {
           this.createFilteredMessages(messages);
         }
@@ -48,7 +50,7 @@ export class ServiceMessagesComponent implements OnInit {
     let currentDateTime = new Date();
     let beginDate = null;
     let endDate = null;
-    const findUnique = this.bannerErrorMsgs.filter(rst => rst.index === msg.index);
+    this.bannerErrorMsgs = [];
 
     if (msg.begin !== undefined && !isNaN(Date.parse(msg.begin))) {
       beginDate = new Date(msg.begin);
@@ -57,20 +59,13 @@ export class ServiceMessagesComponent implements OnInit {
     if (msg.end !== undefined && !isNaN(Date.parse(msg.end))) {
       endDate = new Date(msg.end);
     }
+    const findAll = this.originalMessages.filter((msg) => (msg.begin || msg.end) && beginDate > endDate || (msg.begin && isNaN(Date.parse(msg.begin))) || (msg.end && isNaN(Date.parse(msg.end))));
 
-    if (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && !(beginDate > endDate)) {
-      this.bannerErrorMsgs = this.bannerErrorMsgs.filter(ind => ind.index !== msg.index);
-    }
-
-    if ((msg.begin || msg.end) && (
-        (!isNaN(Date.parse(msg.begin)) && !isNaN(Date.parse(msg.end)) && beginDate > endDate)
-        || (msg.begin && isNaN(Date.parse(msg.begin)))
-        || (msg.end && isNaN(Date.parse(msg.end)))
-      )) {
+    if (findAll.length > 0) {
       this.isBannerError = true;
-      if(findUnique.length === 0) {
-        this.bannerErrorMsgs = [...this.bannerErrorMsgs, {message:`Invalid start/end date OR The start date is greater than the end date. Message index: ${msg.index}`, index: msg.index}];
-      }
+      findAll.forEach(msg => {
+        this.bannerErrorMsgs = [...this.bannerErrorMsgs, { message: `Invalid start/end date OR The start date is greater than the end date. Message index: ${msg.index}`, index: msg.index }];
+      })
     } else {
       this.isBannerError = false;
     }
@@ -78,7 +73,7 @@ export class ServiceMessagesComponent implements OnInit {
     const beginDateOK = !msg.begin || (beginDate && beginDate < currentDateTime);
     const endDateOK = !msg.end || (endDate && endDate >= currentDateTime);
     return beginDateOK && endDateOK;
-}
+  }
 
   public hideMessage(msg: ServiceMessages): void {
     this.filteredMessages = this.filteredMessages.filter(f => f.index !== msg.index)
