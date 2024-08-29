@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.26-banner-message-date-error-handling-updatedv2",
+  "version": "2.0.26-banner-message-date-error-handling-updatedv3",
   "engines": {
     "node": ">=18.19.0"
   },
