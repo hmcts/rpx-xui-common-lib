@@ -62,13 +62,14 @@ export class ServiceMessagesComponent implements OnInit {
     }
     this.originalMessages.forEach(msg => {
       // Only check for errors if both beginDate and endDate are present and valid
-      if (beginDate && endDate && beginDate > endDate) {
+      if ((msg.begin && !isNaN(Date.parse(msg.end))) && (msg.end && !isNaN(Date.parse(msg.end))) && new Date(msg.begin) > new Date(msg.end)) {
         this.isBannerError = true;
         this.bannerErrorMsgs.push({
           message: `The start date is greater than the end date. Message index: ${msg.index}`,
           index: msg.index
         });
       }
+      
       // Check for invalid beginDate or endDate separately, if they are present
       if (msg.begin && isNaN(Date.parse(msg.begin))) {
         this.isBannerError = true;
