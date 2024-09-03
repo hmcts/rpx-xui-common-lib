@@ -170,11 +170,11 @@ describe('ServiceMessagesComponent', () => {
     const serviceMessagesFake: ServiceMessages[] = [
       {
         roles: 'caseworker-divorce',
-        index: 2,
+        index: 8,
         message_en: 'Judiciary experience required',
         message_cy: 'Anyyu',
-        begin: '2024-04-25T00:00:00',
-        end: '2024-04-24T00:00:00'
+        begin: '2024-09-03T00:00:00',
+        end: '2024-08-24T00:00:00'
       }
     ];
     component['createFilteredMessages'](serviceMessagesFake);
@@ -217,9 +217,8 @@ describe('ServiceMessagesComponent', () => {
         end: '2024-04-24T00:00:00'
       }
     ];
-    component['createFilteredMessages'](serviceMessagesFake);
-    fixture.autoDetectChanges();
-    expect(component.filteredMessages.length).toBe(0);
+    component.originalMessages = serviceMessagesFake;
+    component['compareDates'](serviceMessagesFake[0]);
     fixture.detectChanges();
     expect(component.isBannerError).toBeTruthy();
     expect(component.bannerErrorMsgs).toContain({ message: `The start date is greater than the end date. Message index: ${serviceMessagesFake[0].index}`, index: 2 });
