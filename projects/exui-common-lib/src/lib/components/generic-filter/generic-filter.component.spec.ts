@@ -678,6 +678,53 @@ describe('Find location filter config', () => {
   });
 });
 
+describe('cancel button operation options', () => {
+  let component: GenericFilterComponent;
+  let fixture: ComponentFixture<GenericFilterComponent>;
+  let cancelButton = null;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [GenericFilterComponent, RpxTranslateMockPipe],
+      imports: [ReactiveFormsModule],
+      providers: [FilterService]
+    }).compileComponents();
+  });
+
+  it('should set cancel button type to submit if resubmitOnCancel is true', () => {
+
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+    component.config = {
+      applyButtonText: 'apply', id: 'example', persistence: 'session',
+      showCancelFilterButton: true,
+      cancelButtonText: 'Reset to default',
+      submitOnCancel: true,
+      fields: []
+    };
+
+    fixture.detectChanges();
+    cancelButton = fixture.debugElement.query(By.css('#cancelFilter'));
+    expect(cancelButton.attributes.type).toBe('submit');
+  });
+
+  it('should set cancel button type to button if resubmitOnCancel is false', () => {
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+    component.config = {
+      applyButtonText: 'apply', id: 'example', persistence: 'session',
+      showCancelFilterButton: true,
+      cancelButtonText: 'Reset to default',
+      submitOnCancel: false,
+      fields: []
+    };
+    fixture.detectChanges();
+
+    cancelButton = fixture.debugElement.query(By.css('#cancelFilter'));
+    expect(cancelButton.attributes.type).toBe('button');
+  });
+});
+
 describe('Task Name Filter', () => {
   let component: GenericFilterComponent;
   let fixture: ComponentFixture<GenericFilterComponent>;
