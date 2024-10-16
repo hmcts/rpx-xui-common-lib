@@ -21,7 +21,7 @@ export interface FilterConfig {
   cancelButtonText: string;
   cancelSetting?: FilterSetting;
   showCancelFilterButton?: boolean;
-  resubmitOnCancel?: boolean;
+  submitOnCancel?: boolean;
   preSelectedNestedCheckbox?: number[];
   cancelButtonCallback?(): void;
   applyButtonCallback?(): void;

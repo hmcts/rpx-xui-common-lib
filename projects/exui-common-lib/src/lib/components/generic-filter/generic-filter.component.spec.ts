@@ -699,7 +699,7 @@ describe('cancel button operation options', () => {
       applyButtonText: 'apply', id: 'example', persistence: 'session',
       showCancelFilterButton: true,
       cancelButtonText: 'Reset to default',
-      resubmitOnCancel: true,
+      submitOnCancel: true,
       fields: []
     };
 
@@ -715,7 +715,7 @@ describe('cancel button operation options', () => {
       applyButtonText: 'apply', id: 'example', persistence: 'session',
       showCancelFilterButton: true,
       cancelButtonText: 'Reset to default',
-      resubmitOnCancel: false,
+      submitOnCancel: false,
       fields: []
     };
     fixture.detectChanges();

@@ -205,7 +205,7 @@
       >{{(config.applyButtonText || 'Apply') | rpxTranslate}}</button>
       <button *ngIf="config.showCancelFilterButton"
         class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0"
-        [type]="config.resubmitOnCancel ? 'submit' : 'button'"
+        [type]="config.submitOnCancel ? 'submit' : 'button'"
         id="cancelFilter"
         (click)="cancelFilter()">{{ (config.cancelButtonText || 'Cancel') | rpxTranslate}}</button>
     </div>
