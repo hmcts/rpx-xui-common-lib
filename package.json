@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.28-presentation-img-service-banner",
+  "version": "2.0.30-presentation-img-service-banner",
   "engines": {
     "node": ">=18.19.0"
   },
