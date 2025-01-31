@@ -42,7 +42,7 @@ describe('GovUkDateComponent', () => {
   });
 
   it('should have input for day, month and year elements', () => {
-    const day = fixture.debugElement.query(By.css('#id'));
+    const day = fixture.debugElement.query(By.css('#id-day'));
     expect(day).toBeTruthy();
     const month = fixture.debugElement.query(By.css('#id-month'));
     expect(month).toBeTruthy();
@@ -80,6 +80,21 @@ describe('GovUkDateComponent', () => {
       id_year: new FormControl('', null)
     });
     component.formGroup.get('id_day').patchValue('01');
+    component.formGroup.get('id_month').patchValue('13');
+    component.formGroup.get('id_year').patchValue('2021');
+    fixture.detectChanges();
+
+    expect(component.formGroup.status).toBe('INVALID');
+  });
+
+  it('should not pass validation for an invalid date with decimal place', () => {
+    const dateValidator = component.DateValidator();
+    component.formGroup = new FormGroup({
+      id_day: new FormControl('', dateValidator),
+      id_month: new FormControl('', null),
+      id_year: new FormControl('', null)
+    });
+    component.formGroup.get('id_day').patchValue('1.');
     component.formGroup.get('id_month').patchValue('13');
     component.formGroup.get('id_year').patchValue('2021');
     fixture.detectChanges();

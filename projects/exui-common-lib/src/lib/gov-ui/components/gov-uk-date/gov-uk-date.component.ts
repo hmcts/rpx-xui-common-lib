@@ -64,6 +64,13 @@ export class GovUkDateComponent implements OnInit {
       if (this.isOptional && this.isEmpty(day) && this.isEmpty(month) && this.isEmpty(year)) {
         return null;
       }
+      const validDay = this.formGroup.get(this.day).valid;
+      const validMonth = this.formGroup.get(this.month).valid;
+      const validYear = this.formGroup.get(this.year).valid;
+
+      if (!validDay || !validMonth || !validYear) {
+        return { dateComponent: true };
+      }
       // + to coerce year to a number
       return !this.isValidDate(new Date(year, month, day), month, +year) ? { dateComponent: true } : null;
     };
