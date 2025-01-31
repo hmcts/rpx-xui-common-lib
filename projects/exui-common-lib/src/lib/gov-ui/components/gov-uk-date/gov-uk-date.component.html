@@ -34,7 +34,7 @@
             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                    [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
                    [id]="config.id+'-month'"
-                   [name]="config.id+'-month'" type="number" value="" pattern="[0-9]*"
+                   [name]="config.id+'-month'" type="text" value="" pattern="\d*" maxlength="2"
                    [formControlName]="config.id+'_month'">
           </div>
         </div>
@@ -46,7 +46,7 @@
             <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                    [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
                    [id]="config.id+'-year'"
-                   [name]="config.id+'-year'" type="number" value="" pattern="[0-9]*"
+                   [name]="config.id+'-year'" type="text" value="" pattern="\d*" maxlength="4"
                    [formControlName]="config.id+'_year'">
           </div>
         </div>
