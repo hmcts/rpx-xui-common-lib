@@ -87,6 +87,21 @@ describe('GovUkDateComponent', () => {
     expect(component.formGroup.status).toBe('INVALID');
   });
 
+  it('should not pass validation for an invalid date with decimal place', () => {
+    const dateValidator = component.DateValidator();
+    component.formGroup = new FormGroup({
+      id_day: new FormControl('', dateValidator),
+      id_month: new FormControl('', null),
+      id_year: new FormControl('', null)
+    });
+    component.formGroup.get('id_day').patchValue('1.');
+    component.formGroup.get('id_month').patchValue('13');
+    component.formGroup.get('id_year').patchValue('2021');
+    fixture.detectChanges();
+
+    expect(component.formGroup.status).toBe('INVALID');
+  });
+
   it('should fail validation if the day is blank (empty string)', () => {
     const dateValidator = component.DateValidator();
     component.formGroup = new FormGroup({
