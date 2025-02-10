@@ -9,7 +9,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@hmcts/rpx-xui-common-lib@workspace:."
   dependencies:
-    ngx-spec: ^2.1.4
+    ngx-spec: ^2.1.6
     tslib: ^2.0.0
   peerDependencies:
     launchdarkly-js-client-sdk: ^3.3.0
@@ -51,12 +51,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ngx-spec@npm:^2.1.4":
-  version: 2.1.5
-  resolution: "ngx-spec@npm:2.1.5"
+"ngx-spec@npm:^2.1.6":
+  version: 2.1.6
+  resolution: "ngx-spec@npm:2.1.6"
   dependencies:
     minimatch: ^3.0.4
-  checksum: 41c4d13157e1288ddc1f57387c611766096702c84e65c440fab0762dda9aeaf1620a440de05512859cd6653261f0fe9d43b120d43731334e918e52d331a37dee
+  checksum: 0226ac8f8b5be11702b991825d35eed723729fd30f29a88704e7af97318272a30cb11e36a201e006ba2ffe6b884f691fad2298594a3031207cfa5900e722e736
   languageName: node
   linkType: hard
 
