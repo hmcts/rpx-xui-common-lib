@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.34",
+  "version": "2.0.34-clickable-info-message",
   "engines": {
     "node": ">=18.19.0"
   },
