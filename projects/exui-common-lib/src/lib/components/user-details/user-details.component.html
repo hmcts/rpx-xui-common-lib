@@ -30,7 +30,7 @@
     </tr>
   </tbody>
 </table>
-<button *ngIf="showSuspendUserButton" class="govuk-button govuk-button--warning" (click)="suspendUser(user)">
+<button *ngIf="showSuspendUserButton" class="govuk-button govuk-button--warning" tabindex="0" (click)="suspendUser(user)" (keyup.enter)="suspendUser(user)">
   {{'Suspend account' | rpxTranslate}}
 </button>
 <div *ngIf="user && user.resendInvite">
@@ -39,7 +39,7 @@
     <p>{{'If you resend an invitation, they\'ll receive an email from HM Courts and Tribunals to finish setting up their account.' | rpxTranslate}}</p>
     <p>{{'You can\'t invite the same user more than once an hour.' | rpxTranslate}}</p>
   </div>
-  <a role="button" draggable="false" class="govuk-button" (click)="reinviteClick(user)" id="resend-invite-button">
+  <a role="button" draggable="false" class="govuk-button" tabindex="0" (click)="reinviteClick(user)" (keyup.enter)="reinviteClick(user)" id="resend-invite-button">
       {{'Resend invitation' | rpxTranslate}}
   </a>
 </div>
