@@ -15,7 +15,7 @@
     <div class="govuk-accordion__section-header govuk-grid-column-ten-percent">
       <div class="govuk-accordion__section-heading">
         <button type="button" id="{{buildElementId('accordion-with-summary-sections-heading')}}"
-              aria-controls="accordion-with-summary-sections-content" class="govuk-accordion__section-button"
+              [attr.aria-controls]="'accordion-with-summary-sections-content' + buildElementId('accordion-with-summary-sections-heading')" class="govuk-accordion__section-button"
                aria-expanded="false" [title]="'Expand or Collapse' | rpxTranslate">
         <span class="govuk-accordion__icon" aria-hidden="true"></span></button>
       </div>
