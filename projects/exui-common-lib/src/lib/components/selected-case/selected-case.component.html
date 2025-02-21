@@ -22,7 +22,7 @@
     </div>
   </div>
   <div id="{{buildElementId('accordion-with-summary-sections-content')}}" class="govuk-accordion__section-content"
-       [aria-labelledby]="buildElementId('accordion-with-summary-sections-heading')" >
+       [attr.aria-labelledby]="buildElementId('accordion-with-summary-sections-heading')" >
     <div class="govuk-grid-row" *ngIf="showNoUsersAccessInfo()">
       <span id="{{buildElementId('access-info-no-user')}}" class="govuk-div-align-left">
         {{'No users from your organisation currently have access to this case.' | rpxTranslate}}
