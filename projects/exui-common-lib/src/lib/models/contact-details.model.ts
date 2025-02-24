@@ -11,4 +11,8 @@ export interface ContactDetailsDataModel {
     email?: string;
     phone?: string;
     openingTimes?: string;
+    contactDetails?: {
+      name: string;
+      contactLink: string;
+    }
 }
