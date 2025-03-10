@@ -2,7 +2,7 @@
   <h3 class="govuk-heading-m" *ngIf="data.title">{{ data.title }}</h3>
   <p *ngIf="data.badgeText"><span [className]="'hmcts-badge ' + data.badgeColour">{{ data.badgeText }}</span></p>
   <div class="email" *ngIf="data.email"><span class="govuk-!-font-weight-bold">{{'Email:' | rpxTranslate}} </span> <a href="mailto:{{ data.email }}">{{ data.email }}</a></div>
+  <div class="contactDetails" *ngIf="data.contactDetails"><span class="govuk-!-font-weight-bold">{{'Contact:' | rpxTranslate}} </span> <a rel="external" href="{{ data.contactDetails.contactLink }}">{{ data.contactDetails.name }}</a></div>
   <div class="phone" *ngIf="data.phone"><span class="govuk-!-font-weight-bold">{{'Phone:' | rpxTranslate}} </span>{{ data.phone }}</div>
   <div class="opening-times" *ngIf="data.openingTimes"><span class="govuk-!-font-weight-bold">{{'Opening times:' | rpxTranslate }} </span>{{ data.openingTimes}}</div>
 </div>
-
