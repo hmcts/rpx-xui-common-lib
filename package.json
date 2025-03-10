@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.35-user-buttons-v2",
+  "version": "2.0.38",
   "engines": {
     "node": ">=18.19.0"
   },
