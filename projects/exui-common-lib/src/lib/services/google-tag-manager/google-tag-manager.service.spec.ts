@@ -59,6 +59,7 @@ describe('GoogleTagManagerService', () => {
     const params = {};
     service.event('eventName', params);
 
+    expect(windowTestBed.dataLayer.push).toHaveBeenCalledWith({
       event: 'eventName',
       ...params
     });

@@ -26,7 +26,7 @@ describe('GoogleAnalyticsService', () => {
         GoogleAnalyticsService,
         {
           provide: Title,
-          useClass: MockTitle,
+          useClass: MockTitle
         },
         {
           provide: Router,
