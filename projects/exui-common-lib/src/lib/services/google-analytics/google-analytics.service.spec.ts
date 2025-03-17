@@ -37,13 +37,14 @@ describe('GoogleAnalyticsService', () => {
         {
           provide: windowToken,
           useValue: windowMock
-        },
+        }
       ]
     });
 
     titleTestBed = TestBed.inject(Title);
     windowTestBed = TestBed.inject(windowToken);
-
+    // Spy on gtag only once
+    spyOn(windowTestBed, 'gtag').and.callThrough();
   });
 
   it('should be created', inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
@@ -51,22 +52,24 @@ describe('GoogleAnalyticsService', () => {
   }));
 
   it('should call gtag with correct params', inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
-    spyOn(windowTestBed as any, 'gtag').and.callThrough();
-    service.event('eventName', {});
-    expect((windowTestBed as any).gtag).toHaveBeenCalledWith('event', 'eventName', {});
+    const googleAnalyticsKey = 'GTM-XXXXXX';
+    service.init(googleAnalyticsKey);
+
+    const params = {};
+    service.event('eventName', params);
+
+    expect(windowTestBed.gtag).toHaveBeenCalledWith('event', 'eventName', params);
   }));
 
   it('init should call router navigation end and gtag with correct config',
-  inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
-    const event = new NavigationEnd(42, '/url', '/redirect-url');
-    (TestBed.inject(Router).events as any).next(event);
-    spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
-    spyOn(windowTestBed, 'gtag').and.callThrough();
-    service.init('testId');
-    expect(windowTestBed.gtag).toHaveBeenCalledWith('config', 'testId', {
-      page_path: '/redirect-url',
-      page_title: 'testTitle'
-    });
-  }));
-
+    inject([GoogleAnalyticsService], (service: GoogleAnalyticsService) => {
+      const event = new NavigationEnd(42, '/url', '/redirect-url');
+      (TestBed.inject(Router).events as any).next(event);
+      spyOn(titleTestBed, 'getTitle').and.returnValue('testTitle');
+      service.init('testId');
+      expect(windowTestBed.gtag).toHaveBeenCalledWith('config', 'testId', {
+        page_path: '/redirect-url',
+        page_title: 'testTitle'
+      });
+    }));
 });

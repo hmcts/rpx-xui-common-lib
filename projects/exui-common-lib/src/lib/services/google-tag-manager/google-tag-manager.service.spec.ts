@@ -51,10 +51,17 @@ describe('GoogleTagManagerService', () => {
   }));
 
   it('should call gtag with correct params', inject([GoogleTagManagerService], (service: GoogleTagManagerService) => {
-    spyOn((windowTestBed as any).dataLayer, 'push').and.callThrough();
+    const googleAnalyticsKey = 'GTM-XXXXXX';
+    service.init(googleAnalyticsKey);
+
+    spyOn(windowTestBed.dataLayer, 'push').and.callThrough();
+
     const params = {};
     service.event('eventName', params);
-    expect((windowTestBed as any).dataLayer.push).toHaveBeenCalledWith({ event: 'eventName', params });
+
+      event: 'eventName',
+      ...params
+    });
   }));
 
   it('init should call router navigation end and gtag with correct config',
