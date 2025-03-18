@@ -35,7 +35,9 @@ export class ServiceMessagesComponent implements OnInit {
   }
 
   private createFilteredMessages(messages: ServiceMessages[]): void {
-    this.hiddenBanners = JSON.parse(window.sessionStorage.getItem(this.serviceMessageCookie)) || [];
+    this.hiddenBanners = this.getSessionCookie(this.serviceMessageCookie) || [];
+    console.log(this.serviceMessageCookie);
+    console.log(messages);
     this.filteredMessages = messages.filter((message) => {
       const { roles, message_en } = message;
       const regEx = new RegExp(roles);
@@ -92,9 +94,19 @@ export class ServiceMessagesComponent implements OnInit {
     return beginDateOK && endDateOK;
   }
 
+  private setSessionCookie(name: string, value: any): void {
+    document.cookie = `${name}=${encodeURIComponent(JSON.stringify(value))}; path=/; SameSite=Lax`;
+  }
+
   public hideMessage(msg: ServiceMessages): void {
-    this.filteredMessages = this.filteredMessages.filter(f => f.index !== msg.index)
+    this.filteredMessages = this.filteredMessages.filter((f) => f.index !== msg.index);
     this.hiddenBanners.push(msg.message_en);
-    window.sessionStorage.setItem(this.serviceMessageCookie, JSON.stringify(this.hiddenBanners));
+    this.setSessionCookie(this.serviceMessageCookie, this.hiddenBanners);
+  }
+
+  private getSessionCookie(name: string): any {
+    const cookies = document.cookie.split('; ');
+    const cookie = cookies.find((row) => row.startsWith(name + '='));
+    return cookie ? JSON.parse(decodeURIComponent(cookie.split('=')[1])) : [];
   }
 }
