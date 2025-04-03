@@ -13,7 +13,7 @@
     <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
       <mat-option *ngFor="let location of displayedLocationsDuplicationFiltered"
                   [value]="getDisplayName(location)"
-                  (onSelectionChange)="onSelectionChange(location)"
+                  (optionSelected)="onSelectionChange(location)"
                   [ngClass]="{'hide-autocomplete': !showAutocomplete}">
         {{ getDisplayName(location) }}
       </mat-option>
