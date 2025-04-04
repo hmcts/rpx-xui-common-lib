@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FilterConfigOption } from '../../models';
-import { MatOptionSelectionChange } from '@angular/material/core';
+import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
 
 @Component({
   selector: 'exui-search-service',
