@@ -64,5 +64,6 @@ export class GoogleTagManagerService {
         event: eventName,
         ...params
       });
+    }
   }
 }
