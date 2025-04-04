@@ -64,8 +64,5 @@ export class GoogleTagManagerService {
         event: eventName,
         ...params
       });
-    } else {
-      console.warn('Google Analytics not initialized: dataLayer is undefined');
-    }
   }
 }
