@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AddressMessageEnum } from '../../models';
 
@@ -6,9 +6,9 @@ import { AddressMessageEnum } from '../../models';
   selector: 'xuilib-write-address-inputs',
   templateUrl: './write-address-inputs.component.html'
 })
-export class WriteAddressInputsComponent implements OnChanges {
-
+export class WriteAddressInputsComponent implements OnInit, OnChanges {
   public MESSAGE_ENUM = AddressMessageEnum;
+  public isAddressMaxLengthEnabled: boolean;
 
   @Input()
   public formGroup: FormGroup;
@@ -26,9 +26,12 @@ export class WriteAddressInputsComponent implements OnChanges {
   constructor() {
   }
 
+  public ngOnInit(): void {
+    this.isAddressMaxLengthEnabled = window.location.href.includes('manage-org') ? true : false;
+  }
+
   public ngOnChanges(): void {
     // if there is an issue with the formgroup, ensure error styling is displayed
     this.errorsPresent = !this.formGroup.get('address').valid;
   }
-
 }

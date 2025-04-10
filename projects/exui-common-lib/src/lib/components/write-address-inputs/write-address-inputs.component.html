@@ -5,23 +5,39 @@
       Enter address details
     </label>
 
-    <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !formGroup.get('address').get('addressLine1').valid}">
+    <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !formGroup.get('address').get('addressLine2').valid}">
       <label class="govuk-label" for="addressLine1">
         Building and Street
       </label>
       <p class="govuk-error-message" *ngIf="submissionAttempted && !formGroup.get('address').get('addressLine1').valid">
         <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_STREET_SELECTED}}
       </p>
-      <input class="govuk-input govuk-!-width-full" id="addressLine1" name="addressLine1" type="text"
-        formControlName="addressLine1">
+      <div *ngIf="isAddressMaxLengthEnabled">
+        <p class="govuk-hint">Maximum 50 characters</p>
+        <input class="govuk-input govuk-!-width-full" id="addressLine1" name="addressLine1" type="text"
+          formControlName="addressLine1" maxLength="50">
+      </div>
+      <div *ngIf="!isAddressMaxLengthEnabled">
+        <p class="govuk-hint">Maximum 35 characters</p>
+        <input class="govuk-input govuk-!-width-full" id="addressLine1" name="addressLine1" type="text"
+          formControlName="addressLine1">
+      </div>
     </div>
 
     <div class="govuk-body">
       <label class="govuk-label" for="addressLine2">
         Address line 2 (Optional)
       </label>
-      <input class="govuk-input govuk-!-width-full" id="addressLine2" name="addressLine2" type="text"
-        formControlName="addressLine2">
+      <div *ngIf="isAddressMaxLengthEnabled">
+        <p class="govuk-hint">Maximum 50 characters</p>
+        <input class="govuk-input govuk-!-width-full" id="addressLine2" name="addressLine2" type="text"
+          formControlName="addressLine2" maxLength="50">
+      </div>
+      <div *ngIf="!isAddressMaxLengthEnabled">
+        <p class="govuk-hint">Maximum 35 characters</p>
+        <input class="govuk-input govuk-!-width-full" id="addressLine2" name="addressLine2" type="text"
+          formControlName="addressLine2">
+      </div>
     </div>
 
     <div class="govuk-body">
