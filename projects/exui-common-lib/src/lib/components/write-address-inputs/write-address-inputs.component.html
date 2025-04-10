@@ -5,7 +5,7 @@
       Enter address details
     </label>
 
-    <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !formGroup.get('address').get('addressLine2').valid}">
+    <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !formGroup.get('address').get('addressLine1').valid}">
       <label class="govuk-label" for="addressLine1">
         Building and Street
       </label>
