@@ -50,7 +50,7 @@
     </span>
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <select [(ngModel)]="selectedUserToRemove" class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
+        <select [value]="selectedUserToRemove" (change)="onSelectedUserToRemoveChanged($event.target.value)" class="govuk-select" id="remove-user-input" aria-describedby="remove-user-hint">
           <option [ngValue]="null" selected>Select a person</option>
           <option *ngFor="let user of assignedUsers" [ngValue]="user">{{user.firstName}} {{user.lastName}} - {{user.email}}</option>
         </select>

@@ -1,7 +1,8 @@
 <div class="auto-complete-container">
   <input id="inputServiceSearch"
          class="govuk-input"
-         [(ngModel)]="searchTerm"
+         [value]="searchTerm"
+         (input)="onSearchTermChanged($event.target.value)"
          [matAutocomplete]="autoSearchService"
          [attr.disabled]="disabled">
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchService="matAutocomplete">
