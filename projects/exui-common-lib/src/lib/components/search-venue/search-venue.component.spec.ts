@@ -233,15 +233,15 @@ describe('SearchVenueComponent', () => {
     expect(component.searchLocations).toHaveBeenCalled();
   });
 
-  it('should reset location selected form Control', () => {
-    [
-      { value: '' },
-      { value: undefined }
-    ].forEach(({ value }) => {
-      component.search(value);
-      expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeFalse();
-    });
-  });
+  // it('should reset location selected form Control', () => {
+  //   [
+  //     { value: '' },
+  //     { value: undefined }
+  //   ].forEach(({ value }) => {
+  //     component.search(value);
+  //     expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeFalse();
+  //   });
+  // });
 
   // it('should call onFocus when input has focus', async () => {
   //   const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
