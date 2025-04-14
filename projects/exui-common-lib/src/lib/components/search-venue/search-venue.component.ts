@@ -55,12 +55,11 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
   }
 
   public onKeyUp(event: any): void {
-    this.keyUpSubject$.next(event.target.value);
+    if (event.code === `Key${event.key.toUpperCase()}`){
+      console.log(`You pressed ${event.key}`);
+      this.keyUpSubject$.next(event.target.value);
+    }
   }
-
-  // public onFocus() {
-  //   this.showAutocomplete = false;
-  // }
 
   public get displayedLocationsDuplicationFiltered(): LocationByEPIMMSModel[] {
     return this.displayedLocations.filter(
@@ -83,7 +82,6 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
         this.findLocationFormGroup.controls.locationSelectedFormControl.setValue(location);
         this.displayedLocations = [];
         this.locationChanged.emit(location);
-        // this.showAutocomplete = false;
       }
       this.searchInProgress = false;
     });
@@ -101,9 +99,8 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
 
   public search(currentValue: string): void {
     this.searchInProgress = true;
-    this.showAutocomplete = (currentValue.length >= this.minSearchCharacters) ? true : false;
-    console.log('showAutocomplete in search', this.showAutocomplete);
-    if (!!currentValue) {
+    if (currentValue) {
+      this.showAutocomplete = (currentValue.length >= this.minSearchCharacters) ? true : false;
       this.findLocationFormGroup.controls.locationSelectedFormControl.markAsDirty();
     } else {
       this.findLocationFormGroup.controls.locationSelectedFormControl.reset();
