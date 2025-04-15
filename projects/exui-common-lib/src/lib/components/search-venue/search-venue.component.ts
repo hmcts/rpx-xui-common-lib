@@ -56,7 +56,6 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
 
   public onKeyUp(event: any): void {
     if (event.code === `Key${event.key.toUpperCase()}`){
-      console.log(`You pressed ${event.key}`);
       this.keyUpSubject$.next(event.target.value);
     }
   }
