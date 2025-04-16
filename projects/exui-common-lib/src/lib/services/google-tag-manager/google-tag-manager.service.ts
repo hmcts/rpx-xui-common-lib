@@ -25,7 +25,6 @@ export class GoogleTagManagerService {
   public init(googleTagManagerKey: string) {
     this.googleTagManagerKey = googleTagManagerKey;
     try {
-
       (this.window as any).dataLayer = (this.window as any).dataLayer || [];
       (this.window as any).dataLayer.push({
         'gtm.start': new Date().getTime(),
@@ -36,7 +35,6 @@ export class GoogleTagManagerService {
       script.async = true;
       script.src = `https://www.googletagmanager.com/gtm.js?id=${this.googleTagManagerKey}`;
       this.document.head.appendChild(script);
-
     } catch (ex) {
       console.error('Error appending google tag manager');
       console.error(ex);
@@ -46,7 +44,7 @@ export class GoogleTagManagerService {
 
   private listenForRouteChanges() {
     if (this.googleTagManagerKey) {
-      this.router.events.subscribe(event => {
+      this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           (this.window as any).dataLayer.push({
             event: 'pageview',
@@ -60,10 +58,26 @@ export class GoogleTagManagerService {
     }
   }
 
-  public event(eventName: string, params: {}) {
-    (this.window as any).dataLayer.push({
-      event: eventName,
-      params
-    });
+  public virtualPageView(path: string, title: string, metadata?: Record<string, any>) {
+    if ((this.window as any).dataLayer) {
+      (this.window as any).dataLayer.push({
+        event: 'pageview',
+        page: {
+          path,
+          title
+        },
+        ...metadata
+      });
+    }
+  }
+
+  public event(eventName: string, params: Record<string, any>) {
+    if ((this.window as any).dataLayer) {
+      console.log('Pushing event to GTM', eventName, params);
+      (this.window as any).dataLayer.push({
+        event: eventName,
+        ...params
+      });
+    }
   }
 }
