@@ -58,8 +58,22 @@ export class GoogleTagManagerService {
     }
   }
 
+  public virtualPageView(path: string, title: string, metadata?: Record<string, any>) {
+    if ((this.window as any).dataLayer) {
+      (this.window as any).dataLayer.push({
+        event: 'pageview',
+        page: {
+          path,
+          title
+        },
+        ...metadata
+      });
+    }
+  }
+
   public event(eventName: string, params: Record<string, any>) {
     if ((this.window as any).dataLayer) {
+      console.log('Pushing event to GTM', eventName, params);
       (this.window as any).dataLayer.push({
         event: eventName,
         ...params

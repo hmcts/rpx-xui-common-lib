@@ -12,21 +12,20 @@ class MockTitle {
   }
 }
 
-const windowMock: Window = { dataLayer : []} as any;
+const windowMock: Window = { dataLayer: [] } as any;
 
 describe('GoogleTagManagerService', () => {
-
   let titleTestBed: Title;
   let windowTestBed: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [RouterTestingModule],
       providers: [
         GoogleTagManagerService,
         {
           provide: Title,
-          useClass: MockTitle,
+          useClass: MockTitle
         },
         {
           provide: Router,
@@ -37,13 +36,12 @@ describe('GoogleTagManagerService', () => {
         {
           provide: windowToken,
           useValue: windowMock
-        },
+        }
       ]
     });
 
     titleTestBed = TestBed.inject(Title);
     windowTestBed = TestBed.inject(windowToken);
-
   });
 
   it('should be created', inject([GoogleTagManagerService], (service: GoogleTagManagerService) => {
@@ -81,4 +79,30 @@ describe('GoogleTagManagerService', () => {
     });
   }));
 
+    it('should push virtual pageview with correct path, title, and metadata', inject([GoogleTagManagerService], (service: GoogleTagManagerService) => {
+      const googleAnalyticsKey = 'GTM-XXXXXX';
+      service.init(googleAnalyticsKey);
+  
+      // Spy on dataLayer.push
+      const pushSpy = spyOn(windowTestBed.dataLayer, 'push').and.callThrough();
+  
+      const path = '/test/test/12345';
+      const title = 'Test Question';
+      const metadata = {
+        caseTypeId: '12345',
+        jurisdictionId: 'CIVIL',
+        qualifyingQuestionName: 'Test Question'
+      };
+  
+      service.virtualPageView(path, title, metadata);
+  
+      expect(pushSpy).toHaveBeenCalledWith({
+        event: 'pageview',
+        page: {
+          path,
+          title
+        },
+        ...metadata
+      });
+    }));
 });
