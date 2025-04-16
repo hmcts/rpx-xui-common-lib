@@ -9,7 +9,7 @@
       [attr.disabled]="!disabled ? null: disabled"
       [value]="getControlCourtNameValue()"
       #inputSelectedLocation>
-    <mat-autocomplete class="mat-autocomplete-panel-extend" [id]="publicID" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
+    <mat-autocomplete class="mat-autocomplete-panel-extend" id="searchVenueLocation" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
       <mat-option *ngFor="let location of displayedLocationsDuplicationFiltered"
                   [value]="getDisplayName(location)"
                   (onSelectionChange)="onSelectionChange(location)"

@@ -17,7 +17,6 @@ export class SearchVenueComponent implements OnInit, AfterContentInit {
   @Input() public selectedLocations: LocationByEPIMMSModel[];
   @Input() public serviceIds: string = '';
   @Input() public submitted?: boolean = true;
-  @Input() public publicID?: string = '';
   @ViewChild('inputSelectedLocation', { read: ElementRef }) public autoCompleteInputBox: ElementRef<HTMLInputElement>;
   public findLocationFormGroup: FormGroup;
   @Input() public showAutocomplete: boolean = false;
