@@ -3,9 +3,9 @@
     <input
       [formControl]="findLocationFormGroup.controls.findLocationFormControl"
       [matAutocomplete]="autoSearchLocation"
+      id="searchVenueLocation"
       (keydown)="onKeyDown()"
       (keyup)="onKeyUp($event)"
-      (focus)="onFocus()"
       class="autocomplete__input autocomplete__input--default search-box"
       [attr.disabled]="!disabled ? null: disabled"
       [value]="getControlCourtNameValue()"
@@ -14,7 +14,7 @@
       <mat-option *ngFor="let location of displayedLocationsDuplicationFiltered"
                   [value]="getDisplayName(location)"
                   (onSelectionChange)="onSelectionChange(location)"
-                  [ngClass]="{'hide-autocomplete': !showAutocomplete}">
+                  [ngClass]="{'hide-autocomplete': showAutocomplete ? false : true}">
         {{ getDisplayName(location) }}
       </mat-option>
       <mat-option *ngIf="!displayedLocationsDuplicationFiltered?.length && showAutocomplete && !searchInProgress">{{ 'No results found' }}</mat-option>
