@@ -61,8 +61,11 @@ export class GoogleAnalyticsService {
     }
   }
 
-  public event(eventName: string, params: {}) {
-    (this.window as any).gtag('event', eventName, params);
+  public event(eventName: string, params: Record<string, any>) {
+    if (typeof (window as any).gtag === 'function') {
+      (this.window as any).gtag('event', eventName, params);
+    } else {
+      console.warn('Google Analytics is not available.');
+    }
   }
-
 }
