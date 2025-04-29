@@ -14,6 +14,7 @@ export class FeatureToggleGuard  {
         private readonly router: Router
     ) {}
 
+    // TEST-TODO
     /**
      * Usage: Add the FeatureToggleGuard as the Guard for a route, and provide the following
      * in the data array for the route:
@@ -21,6 +22,8 @@ export class FeatureToggleGuard  {
      * - featureDisabledRedirect: the URL to redirect to when the this route is not accessible due to disabled features
      * - expectFeatureEnabled: Sets whether a route should be enabled/disabled based on whether feature is present
      * @param route Automatically provided by Angular
+     * Note: Per Angular 18, when a guard returns a UrlTree as a redirect,
+     * the redirecting navigation will now use replaceUrl if the initial navigation was also using the replaceUrl option.
      */
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
         return combineLatest([...(route.data.needsFeaturesEnabled as string[]).map(

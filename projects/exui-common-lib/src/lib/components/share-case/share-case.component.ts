@@ -207,4 +207,12 @@ export class ShareCaseComponent implements OnInit {
         (!sharedCase.pendingShares || sharedCase.pendingShares.length === 0);
     });
   }
+
+  // TEST-TODO
+  // Another place where ngModel use is removed for Angular best practice
+  // May cause issues but based on understanding should work
+  // TODO: Confirm this works correctly after Angular 18 upgrade
+  public onSelectedUserToRemoveChanged(value: string): void {
+    this.selectedUserToRemove = this.assignedUsers.find(user => `${user.firstName} ${user.lastName} - ${user.email}` === value) || null;
+  }
 }
