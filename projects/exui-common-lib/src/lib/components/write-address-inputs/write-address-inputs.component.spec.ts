@@ -4,9 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WriteAddressInputsComponent } from './write-address-inputs.component';
 
 describe('WriteAddressFieldComponent', () => {
-
   @Component({
-    selector: `write-address-inputs`,
+    selector: 'write-address-inputs',
     template: `<xuilib-write-address-inputs [formGroup]="formGroup" [isInternational]="isInternational">
     </xuilib-write-address-inputs>`
   })
@@ -34,16 +33,14 @@ describe('WriteAddressFieldComponent', () => {
   }
 
   beforeEach(waitForAsync(() => {
-
     TestBed
       .configureTestingModule({
         imports: [
-          ReactiveFormsModule,
+          ReactiveFormsModule
         ],
         declarations: [
           WriteAddressInputsComponent,
-          WrapperComponent,
-
+          WrapperComponent
         ],
         providers: []
       })
@@ -53,11 +50,21 @@ describe('WriteAddressFieldComponent', () => {
     wrapperComponent = fixture.componentInstance;
     wrapperComponent.isInternational = false;
     fixture.detectChanges();
-
   }));
 
-  it('should render the correct labels', () => {
+  it('should set isAddressMaxLengthEnabled based on the current platform URL', () => {
+    wrapperComponent.componentUnderTest.ngOnInit();
+    spyOnProperty(window, 'location').and.returnValue({
+      href: 'https://manage-org.demo.platform.hmcts.net'
+    } as Location);
+    expect(wrapperComponent.componentUnderTest.isAddressMaxLengthEnabled).toBeTrue();
+    spyOnProperty(window, 'location').and.returnValue({
+      href: 'https://approve-org.demo.platform.hmcts.net'
+    } as Location);
+    expect(wrapperComponent.componentUnderTest.isAddressMaxLengthEnabled).toBeFalse();
+  });
 
+  it('should render the correct labels', () => {
     const element = fixture.debugElement.nativeElement;
     expect(element.querySelectorAll('.govuk-label').item(0).textContent.trim()).toContain('Enter address details');
     expect(element.querySelectorAll('.govuk-label').item(1).textContent.trim()).toContain('Building and Street');
@@ -78,18 +85,14 @@ describe('WriteAddressFieldComponent', () => {
     expect(element.querySelectorAll('.govuk-label').item(5).textContent.trim()).toContain('County/ State/ Province (Optional)');
     expect(element.querySelectorAll('.govuk-label').item(6).textContent.trim()).toContain('Countr');
     expect(element.querySelectorAll('.govuk-label').item(7).textContent.trim()).toContain('Postcode (Optional)');
-
   });
 
   it('should check the validity and ensure the errorsPresent is set correctly', () => {
-
     expect(wrapperComponent.componentUnderTest.errorsPresent).toBeFalsy();
 
-    wrapperComponent.formGroup.get('address').setErrors({incorrect: true});
+    wrapperComponent.formGroup.get('address').setErrors({ incorrect: true });
     fixture.detectChanges();
     wrapperComponent.componentUnderTest.ngOnChanges();
     expect(wrapperComponent.componentUnderTest.errorsPresent).toBeTruthy();
-
   });
-
 });
