@@ -19,6 +19,11 @@ export class RoleGuard  {
         private readonly router: Router
     ) {}
 
+    // TEST-TODO
+    /*
+    * Note: Per Angular 18, when a guard returns a UrlTree as a redirect,
+    * the redirecting navigation will now use replaceUrl if the initial navigation was also using the replaceUrl option.
+    * */
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
       return this.roleService.roles$.pipe(
         map(roles => {

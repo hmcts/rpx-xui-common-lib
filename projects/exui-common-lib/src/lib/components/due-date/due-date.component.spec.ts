@@ -90,6 +90,8 @@ describe('DueDateComponent', () => {
     expect(element.getAttribute('class')).toContain(DateBadgeColour.RED);
   });
 
+  // TODO: There is a problem here regarding BST, e.g. 28th March 2025 is UTC, but 31st of March 2025 is UTC+1
+  // when clocks go forward this test incorrectly displays as 2 days ago (rather than 3) for the three days after
   it('should setup correctly for due date of 3 days ago', () => {
     expect(fixture.debugElement.nativeElement.querySelector('.due-date')).toBeNull();
     const THREE_DAYS_AGO: Date = new Date();
