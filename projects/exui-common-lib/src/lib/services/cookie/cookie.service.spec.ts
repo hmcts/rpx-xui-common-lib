@@ -14,7 +14,7 @@ describe('CookieService', () => {
   it('should set a cookie', () => {
 
     cookieService.setCookie('user', 'dummy');
-    expect(mockDocument.cookie).toBe('user=dummy;');
+    expect(mockDocument.cookie).toBe('user=dummy;;SameSite=Strict');
   });
 
   it('should get a cookie', () => {
