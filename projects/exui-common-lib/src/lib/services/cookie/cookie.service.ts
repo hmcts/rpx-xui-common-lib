@@ -13,7 +13,7 @@ export class CookieService {
 
   public setCookie(key: string, value: string, expiryDate?: string): void {
     const expiry = expiryDate ? ` expires=${expiryDate}` : '';
-    const cookie = `${key}=${value};${expiry}; SameSite=Strict`;
+    const cookie = `${key}=${value};${expiry};SameSite=Strict`;
     this.document.cookie = cookie;
   }
 
