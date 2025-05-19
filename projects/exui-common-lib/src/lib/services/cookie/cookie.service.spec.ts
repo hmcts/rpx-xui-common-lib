@@ -13,8 +13,8 @@ describe('CookieService', () => {
 
   it('should set a cookie', () => {
 
-    cookieService.setCookie('user', 'dummy');
-    expect(mockDocument.cookie).toBe('user=dummy;');
+    cookieService.setCookie('user', 'dummy', 'Mon 12th Jan 2024 12:00:00 GMT');
+    expect(mockDocument.cookie).toBe('user=dummy; expires=Mon 12th Jan 2024 12:00:00 GMT;SameSite=Strict');
   });
 
   it('should get a cookie', () => {
