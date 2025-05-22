@@ -5,32 +5,32 @@
     {{ warningTitle | rpxTranslate}}
 </strong>
 </div>
-<table class="govuk-table" *ngIf="user" role="presentation">
-  <tbody class="govuk-table__body">
-    <tr class="govuk-table__row">
-        <th class="govuk-table__header" scope="row">{{'Name' | rpxTranslate}}</th>
-        <td class="govuk-table__cell">{{user.fullName | rpxTranslate}}</td>
-        <td class="govuk-table__cell"></td>
-    </tr>
-    <tr class="govuk-table__row">
-        <th class="govuk-table__header" scope="row">{{'Email address' | rpxTranslate}}</th>
-        <td class="govuk-table__cell">{{user.email}}</td>
-        <td class="govuk-table__cell"></td>
-    </tr>
-    <tr class="govuk-table__row" *ngIf="!user.resendInvite">
-        <th class="govuk-table__header" scope="row">{{'Permissions' | rpxTranslate}}</th>
-        <td class="govuk-table__cell">
+<dl class="govuk-table" *ngIf="user" role="presentation">
+  <div class="govuk-table__body">
+    <div class="govuk-table__row">
+        <dt class="govuk-table__header" scope="row">{{'Name' | rpxTranslate}}</dt>
+        <dd class="govuk-table__cell">{{user.fullName | rpxTranslate}}</dd>
+        <dd class="govuk-table__cell"></dd>
+    </div>
+    <div class="govuk-table__row">
+        <dt class="govuk-table__header" scope="row">{{'Email address' | rpxTranslate}}</dt>
+        <dd class="govuk-table__cell">{{user.email}}</dd>
+        <dd class="govuk-table__cell"></dd>
+    </div>
+    <div class="govuk-table__row" *ngIf="!user.resendInvite">
+        <dt class="govuk-table__header" scope="row">{{'Permissions' | rpxTranslate}}</dt>
+        <dd class="govuk-table__cell">
           <div *ngIf="user.manageOrganisations === 'Yes'">{{'Manage organisations' | rpxTranslate}}</div>
           <div *ngIf="user.manageUsers === 'Yes'">{{'Manage users' | rpxTranslate}}</div>
           <div *ngIf="user.manageCases === 'Yes'">{{'Manage cases' | rpxTranslate}}</div>
           <div *ngIf="userHasRole('pui-caa')">{{'Case access administrator' | rpxTranslate}}</div>
           <div *ngIf="userHasRole('pui-finance-manager')">{{'Manage fee accounts' | rpxTranslate}}</div>
           <div *ngFor="let accesstype of enabledAccessTypes">{{ accesstype | rpxTranslate}}</div> 
-        </td>
-        <td class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></td>
-    </tr>
-  </tbody>
-</table>
+        </dd>
+        <dd class="govuk-table__cell"><a *ngIf="editPermissionRouterLink && showEditLink" role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a></dd>
+    </div>
+  </div>
+</dl>
 <button *ngIf="showSuspendUserButton" class="govuk-button govuk-button--warning" tabindex="0" (click)="suspendUser(user)" (keyup.enter)="suspendUser(user)">
   {{'Suspend account' | rpxTranslate}}
 </button>

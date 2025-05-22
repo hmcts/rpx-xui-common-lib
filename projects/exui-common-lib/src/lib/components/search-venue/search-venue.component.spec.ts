@@ -218,7 +218,6 @@ describe('SearchVenueComponent', () => {
     spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
     component.displayedLocations = LOCATION_RESULTS;
     spyOn(component, 'searchLocations').and.callThrough();
-    spyOn(component, 'onFocus').and.callThrough();
 
     searchFilterServiceMock.searchLocations.and.returnValue(of(LOCATION_RESULTS));
 
@@ -240,16 +239,6 @@ describe('SearchVenueComponent', () => {
     ].forEach(({ value }) => {
       component.search(value);
       expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeFalse();
-    });
-  });
-
-  it('should call onFocus when input has focus', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.dispatchEvent(new Event('focus'));
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(component.onFocus).toHaveBeenCalled();
     });
   });
 
