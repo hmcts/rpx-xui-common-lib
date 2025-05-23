@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterConfig, FilterConfigOption, FilterError, FilterFieldConfig, FilterSetting, GroupOptions } from '../../models';
@@ -24,7 +24,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public serviceErrorMsg = 'Please select a service';
   private selectedServices: string[] = [];
 
-  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder) { }
+  constructor(private readonly filterService: FilterService, private readonly fb: FormBuilder, private readonly cdr: ChangeDetectorRef) { }
 
   // tslint:disable-next-line:variable-name
   private _config: FilterConfig;
@@ -97,6 +97,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         this.initValuesFromCacheForSkillsByServices();
       }
     }
+    // Note: the usage of this is ensure host binding updates (for Angular 18 usage of OnPush)
+    this.cdr.markForCheck();
   }
 
   public ngOnDestroy(): void {
@@ -181,6 +183,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         idamId: this.filterService.getUserId(),
         fields: this.getSelectedValues(form.value, this.config)
       };
+      this.cdr.markForCheck();
       this.filterService.givenErrors.next(null);
       const settings = { ...this.settings, reset: false };
       this.filterService.persist(settings, this.config.persistence);
@@ -201,6 +204,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         this.resetField(resetField, form);
       }
     }
+    this.cdr.markForCheck();
   }
 
   // when user enters input change radio button
@@ -227,6 +231,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       } else {
         this.isServiceSelected = true;
       }
+      this.cdr.markForCheck();
     }
   }
 
@@ -239,6 +244,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     this.filterService.persist(settings, this.config.persistence);
     this.filterService.givenErrors.next(null);
     this.submitted = false;
+    this.cdr.markForCheck();
 
     if (this.config.cancelButtonCallback) {
       this.config.cancelButtonCallback();
@@ -336,6 +342,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }
       }
     }
+    this.cdr.markForCheck();
   }
 
   private startFilterSkillsByServices(form: FormGroup, field: FilterFieldConfig) {
@@ -545,6 +552,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         this.form.get('user-skills').setValue(cachedValues);
       }
     }
+    this.cdr.markForCheck();
   }
 
   public filterSkillsByServices(services: string[], config: FilterConfig) {
@@ -641,6 +649,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
         }
         return this.filteredSkillsByServicesCheckbox;
       }
+      this.cdr.markForCheck();
     }
 
     this.filteredSkillsByServices = this.sortGroupOptions(this.filteredSkillsByServices);
