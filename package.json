@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.0.44-govuk-frontend-upgrade-3",
+  "version": "2.1.0-govuk-frontend-upgrade",
   "engines": {
     "node": ">=18.19.0"
   },
@@ -43,7 +43,7 @@
     "govuk-frontend": "4.9.0",
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^6.0.3",
-    "rpx-xui-translation": "1.0.11-upgrade-18-2",
+    "rpx-xui-translation": "1.1.0",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.1",
     "zone.js": "~0.14.10"
