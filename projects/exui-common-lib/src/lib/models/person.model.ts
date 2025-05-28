@@ -49,5 +49,6 @@ export enum RoleCategory {
   CASEWORKER = 'LEGAL_OPERATIONS',
   ADMIN = 'ADMIN',
   CTSC = 'CTSC',
+  PROFESSIONAL = 'PROFESSIONAL',
   ALL = 'ALL'
 }
