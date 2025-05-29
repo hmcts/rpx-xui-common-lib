@@ -61,7 +61,7 @@ export class FindAPersonService {
         email: caseworker.email,
         name: `${caseworker.firstName} ${caseworker.lastName}`,
         id: caseworker.idamId,
-        domain: caseworker.roleCategory === RoleCategory.CASEWORKER ? PersonRole.CASEWORKER : PersonRole.ADMIN
+        domain: caseworker.roleCategory === RoleCategory.LEGAL_OPERATIONS ? PersonRole.LEGAL_OPERATIONS : PersonRole.ADMIN
         // knownAs can be added if required
       };
       if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
@@ -74,8 +74,8 @@ export class FindAPersonService {
   public searchInCaseworkers(caseworkers: Caseworker[], searchOptions: SearchOptions): Person[] {
     let roleCategory = RoleCategory.ALL;
     if (!(searchOptions.userRole === PersonRole.ALL)) {
-      if (searchOptions.userRole === PersonRole.CASEWORKER) {
-        roleCategory = RoleCategory.CASEWORKER;
+      if (searchOptions.userRole === PersonRole.LEGAL_OPERATIONS) {
+        roleCategory = RoleCategory.LEGAL_OPERATIONS;
       } else if (searchOptions.userRole === PersonRole.ADMIN) {
         roleCategory = RoleCategory.ADMIN;
       } else if (searchOptions.userRole === PersonRole.CTSC) {
