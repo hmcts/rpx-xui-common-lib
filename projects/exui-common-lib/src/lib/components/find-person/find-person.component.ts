@@ -81,7 +81,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
           return zip(findJudicialOrCTSCPeople, findCaseworkersOrAdminsOrCtsc).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
         }
         case PersonRole.CTSC:
-        case PersonRole.CASEWORKER:
+        case PersonRole.LEGAL_OPERATIONS:
         case PersonRole.ADMIN: {
           return findCaseworkersOrAdminsOrCtsc;
         }

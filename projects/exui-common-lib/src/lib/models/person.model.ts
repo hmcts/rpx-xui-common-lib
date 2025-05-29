@@ -34,20 +34,22 @@ export interface Caseworker {
   roleCategory: string;
 }
 
+// used as settings for filters and components
 export enum PersonRole {
   JUDICIAL = 'Judicial',
-  CASEWORKER = 'Legal Ops',
+  LEGAL_OPERATIONS = 'Legal Ops',
   ADMIN = 'Admin',
   CTSC = 'CTSC',
   ALL = 'All',
 }
 
-// Note: RoleCategory could replace PersonRole possibly
-// However a lot of webapp logic is based on current PersonRole understanding
+// Role categories used in application
 export enum RoleCategory {
   JUDICIAL = 'JUDICIAL',
-  CASEWORKER = 'LEGAL_OPERATIONS',
+  LEGAL_OPERATIONS = 'LEGAL_OPERATIONS',
   ADMIN = 'ADMIN',
   CTSC = 'CTSC',
+  PROFESSIONAL = 'PROFESSIONAL',
+  CITIZEN = 'CITIZEN',
   ALL = 'ALL'
 }

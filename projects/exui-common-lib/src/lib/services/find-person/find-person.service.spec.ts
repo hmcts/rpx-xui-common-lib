@@ -36,19 +36,19 @@ describe('FindAPersonService', () => {
       id: '123',
       name: 'Test One',
       email: 'TestOne@test.com',
-      domain: PersonRole.CASEWORKER
+      domain: PersonRole.LEGAL_OPERATIONS
     },
     {
       id: '124',
       name: 'Test Two',
       email: 'TestTwo@test.com',
-      domain: PersonRole.CASEWORKER
+      domain: PersonRole.LEGAL_OPERATIONS
     },
     {
       id: '125',
       name: 'Test Three',
       email: 'TestThree@test.com',
-      domain: PersonRole.CASEWORKER
+      domain: PersonRole.LEGAL_OPERATIONS
     },
     {
       id: '126',
@@ -175,7 +175,7 @@ describe('FindAPersonService', () => {
     mockSessionStorageService.getItem.and.returnValues(JSON.stringify(userDetails), undefined, caseworkers);
 
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
-    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.CASEWORKER };
+    const searchOptions = { searchTerm: 'term', services: ['IA'], userRole: PersonRole.LEGAL_OPERATIONS };
     service.findCaseworkers(searchOptions);
     expect(mockHttpService.post).toHaveBeenCalledWith('/workallocation/caseworker/getUsersByServiceName', { services: ['IA'], term: 'term' });
   });
@@ -215,7 +215,7 @@ describe('FindAPersonService', () => {
     const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     expect(service.mapCaseworkers(caseworkers, RoleCategory.ALL)).toEqual(people);
-    expect(service.mapCaseworkers(caseworkers, RoleCategory.CASEWORKER)).toEqual(people.slice(0, 3));
+    expect(service.mapCaseworkers(caseworkers, RoleCategory.LEGAL_OPERATIONS)).toEqual(people.slice(0, 3));
     expect(service.mapCaseworkers(caseworkers, RoleCategory.ADMIN)).toEqual(people.slice(3, 4));
   });
 
@@ -257,13 +257,13 @@ describe('FindAPersonService', () => {
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     service.userId = '126';
 
-    let searchOptions = { searchTerm: 'four', services: ['IA'], userRole: PersonRole.CASEWORKER };
+    let searchOptions = { searchTerm: 'four', services: ['IA'], userRole: PersonRole.LEGAL_OPERATIONS };
     const filteredUsersSpecificName = service.searchInCaseworkers(caseworkers, searchOptions);
     expect(filteredUsersSpecificName).toEqual([
       { id: '126', name: 'Test Four', email: 'TestFour@test.com', domain: 'Admin' }
     ]);
 
-    searchOptions = { searchTerm: 'test', services: ['IA'], userRole: PersonRole.CASEWORKER };
+    searchOptions = { searchTerm: 'test', services: ['IA'], userRole: PersonRole.LEGAL_OPERATIONS };
     const filteredUsersCaseWorker = service.searchInCaseworkers(caseworkers, searchOptions);
     expect(filteredUsersCaseWorker).toHaveSize(3);
     expect(filteredUsersCaseWorker).toEqual([
