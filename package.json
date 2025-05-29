@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.0-person-role-category-enum",
+  "version": "2.1.0-role-enums",
   "engines": {
     "node": ">=18.19.0"
   },
