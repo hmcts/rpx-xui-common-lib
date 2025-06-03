@@ -12,8 +12,9 @@ export class SearchServiceComponent {
   @Input() public selectedOptions: FilterConfigOption[];
   @Input() public disabled: any;
   @Input() public showAutocomplete: boolean = false;
+  @Input() public searchTerm = ''; // Removed ngModel use here for Angular best practice
+  @Output() public searchTermChange: EventEmitter<string> = new EventEmitter<string>(); // Emit changes to searchTerm
   @Output() public optionChanged: EventEmitter<FilterConfigOption> = new EventEmitter<FilterConfigOption>();
-  public searchTerm = '';
   public readonly MIN_SEARCH_CHARACTERS = 3;
 
   public get filteredOptions(): FilterConfigOption[] {
@@ -24,8 +25,17 @@ export class SearchServiceComponent {
       : remainingServices;
   }
 
+  // TEST-TODO
   public resetSearchTerm(): void {
     this.searchTerm = '';
+    this.searchTermChange.emit(this.searchTerm); // Emit the reset value
+  }
+
+  // TEST-TODO
+  // TODO: Confirm this works correctly post Angular 18 upgrade as has been changed
+  public onSearchTermChanged(value: string): void {
+    this.searchTerm = value;
+    this.searchTermChange.emit(this.searchTerm); // Emit the updated value
   }
 
   public onSelectionChanged($event: MatOptionSelectionChange): void {
