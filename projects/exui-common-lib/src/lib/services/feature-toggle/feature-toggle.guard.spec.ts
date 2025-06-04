@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 import { FeatureToggleGuard, FeatureToggleService } from '..';
 
 
-describe('RoleGuard', () => {
+describe('FeatureToggleGuard', () => {
   let mockService: any;
   let mockRouter: any;
   let guard: FeatureToggleGuard;
