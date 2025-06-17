@@ -133,7 +133,7 @@ describe('FindPersonComponent', () => {
       id: 'p2',
       name: 'Second Last',
       email: 'person@email.com',
-      domain: PersonRole.CASEWORKER
+      domain: PersonRole.LEGAL_OPERATIONS
     };
     const mockPersonThree: Person = {
       id: 'p3',
