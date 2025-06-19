@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.2-google-analytics",
+  "version": "2.1.2-google-analytics-1",
   "engines": {
     "node": ">=18.19.0"
   },
