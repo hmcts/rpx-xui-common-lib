@@ -73,7 +73,6 @@ export class GoogleTagManagerService {
 
   public event(eventName: string, params: Record<string, any>) {
     if ((this.window as any).dataLayer) {
-      console.log('Pushing event to GTM', eventName, params);
       (this.window as any).dataLayer.push({
         event: eventName,
         ...params
