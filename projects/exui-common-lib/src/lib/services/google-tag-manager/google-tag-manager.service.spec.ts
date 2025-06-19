@@ -88,16 +88,17 @@ describe('GoogleTagManagerService', () => {
   
       const path = '/test/test/12345';
       const title = 'Test Question';
+      const event = 'pageview';
       const metadata = {
         caseTypeId: '12345',
         jurisdictionId: 'CIVIL',
         qualifyingQuestionName: 'Test Question'
       };
   
-      service.virtualPageView(path, title, metadata);
+      service.virtualPageView(event, path, title, metadata);
   
       expect(pushSpy).toHaveBeenCalledWith({
-        event: 'pageview',
+        event,
         page: {
           path,
           title
