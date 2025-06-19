@@ -58,10 +58,10 @@ export class GoogleTagManagerService {
     }
   }
 
-  public virtualPageView(path: string, title: string, metadata?: Record<string, any>) {
+  public virtualPageView(eventName: string, path: string, title: string, metadata?: Record<string, any>) {
     if ((this.window as any).dataLayer) {
       (this.window as any).dataLayer.push({
-        event: 'pageview',
+        event: eventName,
         page: {
           path,
           title
