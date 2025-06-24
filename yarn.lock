@@ -2407,7 +2407,7 @@ __metadata:
     "@hmcts/frontend": "npm:0.0.50-alpha"
     "@ng-idle/core": "npm:^11.1.0"
     "@ng-idle/keepalive": "npm:^11.0.3"
-    "@types/jasmine": "npm:~4.3.5"
+    "@types/jasmine": "npm:~4.6.0"
     "@types/jasminewd2": "npm:~2.0.3"
     "@types/node": "npm:^18.19.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
@@ -4926,10 +4926,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jasmine@npm:~4.3.5":
-  version: 4.3.6
-  resolution: "@types/jasmine@npm:4.3.6"
-  checksum: 10c0/2431ba197bd21d306a0d580cd3e2ce9460cc390ffc58f9808daeef4f8b49bab23383bb13c649908174feb7d088e91c5486725db973289ce5a347dc4154400e54
+"@types/jasmine@npm:~4.6.0":
+  version: 4.6.5
+  resolution: "@types/jasmine@npm:4.6.5"
+  checksum: 10c0/9d20e00de9f3a9f68f949d0df55087f47928c03506c110de540945a4837df7c351a2d5fb93cd319cec15ce08ee3560920840d9ab86fae8bfe05242ce48679485
   languageName: node
   linkType: hard
 
