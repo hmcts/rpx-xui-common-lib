@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.0-govuk-frontend-upgrade",
+  "version": "2.1.2-govuk-frontend-upgrade",
   "engines": {
     "node": ">=18.19.0"
   },
