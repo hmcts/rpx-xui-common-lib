@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.4",
+  "version": "2.1.4-exui-3329-rc1",
   "engines": {
     "node": ">=18.19.0"
   },
