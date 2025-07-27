@@ -36,8 +36,6 @@ export class ServiceMessagesComponent implements OnInit {
 
   private createFilteredMessages(messages: ServiceMessages[]): void {
     this.hiddenBanners = this.getSessionCookie(this.serviceMessageCookie) || [];
-    console.log(this.serviceMessageCookie);
-    console.log(messages);
     this.filteredMessages = messages.filter((message) => {
       const { roles, message_en } = message;
       const regEx = new RegExp(roles);
