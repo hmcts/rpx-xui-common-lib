@@ -1,16 +1,20 @@
 <div class="auto-complete-container">
   <input id="inputServiceSearch"
-         class="govuk-input"
-         [value]="searchTerm"
-         (input)="onSearchTermChanged($event.target.value)"
-         [matAutocomplete]="autoSearchService"
-         [attr.disabled]="disabled">
+    class="govuk-input"
+    [value]="searchTerm"
+    (input)="onSearchTermChanged($event.target.value)"
+    [matAutocomplete]="autoSearchService"
+    [attr.disabled]="disabled">
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchService="matAutocomplete">
-    <mat-option *ngFor="let service of filteredOptions" (onSelectionChange)="onSelectionChanged($event)" [value]="service.label">
-      {{ service.label }}
-    </mat-option>
-    <mat-option *ngIf="!filteredOptions?.length && showAutocomplete">
-      No results found
-    </mat-option>
+    @for (service of filteredOptions; track service) {
+      <mat-option (onSelectionChange)="onSelectionChanged($event)" [value]="service.label">
+        {{ service.label }}
+      </mat-option>
+    }
+    @if (!filteredOptions?.length && showAutocomplete) {
+      <mat-option>
+        No results found
+      </mat-option>
+    }
   </mat-autocomplete>
 </div>

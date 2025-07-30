@@ -10,26 +10,28 @@
 ></xuilib-terms-and-conditions>
 
 <xuilib-contact-details
-[data]="contactDetailsData"
+  [data]="contactDetailsData"
 ></xuilib-contact-details>
 
 <!-- Session Modal Timeout Popup -->
 <!-- <xuilib-session-dialog positionTop="300px">
-  <p class="govuk-body">For your security, we will sign you out of your account in
-    <strong class="body-text-highlight">42 seconds</strong>
-  </p>
-  <p>Any information you have not saved will be lost</p>
-  <button type="submit" class="govuk-button submit-button">
-    Stay signed in
-  </button>
-  <button type="sign out" class="govuk-button govuk-button--secondary">
-    Sign out
-  </button>
+<p class="govuk-body">For your security, we will sign you out of your account in
+  <strong class="body-text-highlight">42 seconds</strong>
+</p>
+<p>Any information you have not saved will be lost</p>
+<button type="submit" class="govuk-button submit-button">
+  Stay signed in
+</button>
+<button type="sign out" class="govuk-button govuk-button--secondary">
+  Sign out
+</button>
 </xuilib-session-dialog> -->
 
 <ng-container *xuilibLet="(testObservable | async) as data">
   <ul>
-    <li *ngFor="let t of data">{{t}}</li>
+    @for (t of data; track t) {
+      <li>{{t}}</li>
+    }
   </ul>
 </ng-container>
 
@@ -43,7 +45,7 @@
 <h2>
   Due date component:
   <xuilib-due-date [dueDate]="dueDate"
-                   [highUrgencyCutoff]="highUrgencyCutoff" [mediumUrgencyCutoff]="mediumUrgencyCutoff">
+    [highUrgencyCutoff]="highUrgencyCutoff" [mediumUrgencyCutoff]="mediumUrgencyCutoff">
   </xuilib-due-date>
 </h2>
 <table>
@@ -71,21 +73,35 @@ List height:
   <option value="050">50px</option>
 </select>
 &nbsp;
-<button (click)="addLocation(wimbledon)" *ngIf="!wimbledonAdded">Add Wimbledon option</button>
-<button (click)="removeLocation(wimbledon)" *ngIf="wimbledonAdded">Remove Wimbledon option</button>
-<button (click)="addLocation(goldersGreen)" *ngIf="!goldersGreenAdded">Add Golders Green option</button>
-<button (click)="removeLocation(goldersGreen)" *ngIf="goldersGreenAdded">Remove Golders Green option</button>
+@if (!wimbledonAdded) {
+  <button (click)="addLocation(wimbledon)">Add Wimbledon option</button>
+}
+@if (wimbledonAdded) {
+  <button (click)="removeLocation(wimbledon)">Remove Wimbledon option</button>
+}
+@if (!goldersGreenAdded) {
+  <button (click)="addLocation(goldersGreen)">Add Golders Green option</button>
+}
+@if (goldersGreenAdded) {
+  <button (click)="removeLocation(goldersGreen)">Remove Golders Green option</button>
+}
 &nbsp;
-<button (click)="setLabelFunction(labelName)" *ngIf="labelFunction !== labelName">Use name for label</button>
-<button (click)="setLabelFunction(labelBorough)" *ngIf="labelFunction !== labelBorough">Use borough for label</button>
+@if (labelFunction !== labelName) {
+  <button (click)="setLabelFunction(labelName)">Use name for label</button>
+}
+@if (labelFunction !== labelBorough) {
+  <button (click)="setLabelFunction(labelBorough)">Use borough for label</button>
+}
 <xuilib-checkbox-list [options]="locations" [labelFunction]="labelFunction" [preselection]="preselection"
-                      [className]="'checkbox-list-test h_' + listHeight"
-                      (selectionChange)="onCheckboxSelectionChange($event)"></xuilib-checkbox-list>
+  [className]="'checkbox-list-test h_' + listHeight"
+(selectionChange)="onCheckboxSelectionChange($event)"></xuilib-checkbox-list>
 <div class="checkbox-events">
   {{checkboxEvents}}
 </div>
 
 <div class="spinner-tester">
   <button class="spinner-tester__button" (click)="spinnerTester = !spinnerTester">{{spinnerTester ? 'Stop' : 'Start'}} Spinner</button>
-  <xuilib-loading-spinner *ngIf="spinnerTester"></xuilib-loading-spinner>
+  @if (spinnerTester) {
+    <xuilib-loading-spinner></xuilib-loading-spinner>
+  }
 </div>

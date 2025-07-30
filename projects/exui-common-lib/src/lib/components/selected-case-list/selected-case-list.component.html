@@ -1,19 +1,21 @@
-<ng-container *ngIf="!toConfirm">
-  <xuilib-selected-case
-    *ngFor="let sharedCase of (shareCases$ | async); trackBy: trackByCaseId"
-    [sharedCase]="sharedCase"
-    [caseCount]="caseCount"
-    [removeUserFromCaseToggleOn]="removeUserFromCaseToggleOn"
-    (unselect)="onUnselect($event)"
-    (synchronizeStore)="onSynchronizeStore($event)"
-    >
-  </xuilib-selected-case>
-</ng-container>
+@if (!toConfirm) {
+  @for (sharedCase of (shareCases$ | async); track trackByCaseId($index, sharedCase)) {
+    <xuilib-selected-case
+      [sharedCase]="sharedCase"
+      [caseCount]="caseCount"
+      [removeUserFromCaseToggleOn]="removeUserFromCaseToggleOn"
+      (unselect)="onUnselect($event)"
+      (synchronizeStore)="onSynchronizeStore($event)"
+      >
+    </xuilib-selected-case>
+  }
+}
 
-<ng-container *ngIf="toConfirm">
-  <xuilib-selected-case-confirm
-    *ngFor="let sharedCase of (shareCases$ | async); trackBy: trackByCaseId"
-    [sharedCase]="sharedCase"
-    [changeLink]="changeLink">
-  </xuilib-selected-case-confirm>
-</ng-container>
+@if (toConfirm) {
+  @for (sharedCase of (shareCases$ | async); track trackByCaseId($index, sharedCase)) {
+    <xuilib-selected-case-confirm
+      [sharedCase]="sharedCase"
+      [changeLink]="changeLink">
+    </xuilib-selected-case-confirm>
+  }
+}

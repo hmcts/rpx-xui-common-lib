@@ -1,4 +1,6 @@
 <mat-tab-group animationDuration="0ms" (selectedTabChange)="tabChanged($event)">
-    <mat-tab *ngFor="let tabItem of tabItems; let last = last;" [label]="tabItem.text | rpxTranslate">
+  @for (tabItem of tabItems; track tabItem; let last = $last) {
+    <mat-tab [label]="tabItem.text | rpxTranslate">
     </mat-tab>
+  }
 </mat-tab-group>

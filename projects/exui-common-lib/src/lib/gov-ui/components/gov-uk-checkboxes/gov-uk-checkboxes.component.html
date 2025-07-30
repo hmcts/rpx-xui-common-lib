@@ -1,29 +1,37 @@
 <div class="govuk-form-group gov-uk-input" [formGroup]="group"
-     [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
+  [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
 
   <xuilib-gov-label [config]="config"></xuilib-gov-label>
 
-  <span *ngIf="config.hint" [id]="config.id +'-hint'" class="govuk-hint">
-    {{config.hint}}
-  </span>
+  @if (config.hint) {
+    <span [id]="config.id +'-hint'" class="govuk-hint">
+      {{config.hint}}
+    </span>
+  }
 
   <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
 
   <div class="govuk-checkboxes govuk-checkboxes--small govuk-checkboxes-multi-column" data-module="govuk-checkboxes">
-    <div class="govuk-checkboxes-multi-column__single" *ngFor="let columnItems of columns">
-      <div class="govuk-checkboxes__item" *ngFor="let item of columnItems">
-        <input type="checkbox" class="govuk-checkboxes__input"
-               [id]="item.id" [name]="item.id" [checked]="isChecked(item.value)" [value]="item.value"
-               [attr.aria-describedby]="setDescribedBy()"
-               (change)="onChecked($event.target.checked, item.value)"
-        >
-        <label class="govuk-label govuk-checkboxes__label" [for]="item.id">
-          {{ item.label }}
-        </label>
-        <div *ngIf="item.hint" class="govuk-hint govuk-checkboxes__hint">
-          {{ item.hint }}
-        </div>
+    @for (columnItems of columns; track columnItems) {
+      <div class="govuk-checkboxes-multi-column__single">
+        @for (item of columnItems; track item) {
+          <div class="govuk-checkboxes__item">
+            <input type="checkbox" class="govuk-checkboxes__input"
+              [id]="item.id" [name]="item.id" [checked]="isChecked(item.value)" [value]="item.value"
+              [attr.aria-describedby]="setDescribedBy()"
+              (change)="onChecked($event.target.checked, item.value)"
+              >
+            <label class="govuk-label govuk-checkboxes__label" [for]="item.id">
+              {{ item.label }}
+            </label>
+            @if (item.hint) {
+              <div class="govuk-hint govuk-checkboxes__hint">
+                {{ item.hint }}
+              </div>
+            }
+          </div>
+        }
       </div>
-    </div>
+    }
   </div>
 </div>
