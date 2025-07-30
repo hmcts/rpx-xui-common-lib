@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        @for (user of sharedCase.pendingShares; track trackByUserId($index, user)) {
+        @for (user of sharedCase.pendingShares; track trackByUserId(user)) {
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
             <td class="govuk-table__cell">{{ user.email }}</td>
@@ -28,7 +28,7 @@
             </td>
           </tr>
         }
-        @for (user of sharedCase.pendingUnshares; track trackByUserId($index, user)) {
+        @for (user of sharedCase.pendingUnshares; track trackByUserId(user)) {
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
             <td class="govuk-table__cell">{{ user.email }}</td>

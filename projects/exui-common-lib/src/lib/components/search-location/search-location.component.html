@@ -9,16 +9,15 @@
     class="govuk-input"
     [attr.disabled]="disabled">
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
-    @if (filteredList$ | async; as filteredList) {
-      @if (filteredList && filteredList.length >= 0) {
+    @if (Array.isArray(filteredList)) {
+      @if (filteredList.length > 0) {
         @for (location of filteredList; track location) {
           <mat-option (onSelectionChange)="onSelectedLocation(location)">
             {{ location[propertyNameFilter] }}
           </mat-option>
         }
-        @if (filteredList.length === 0) {
-          <mat-option>{{'No results found' | rpxTranslate}}</mat-option>
-        }
+      } @else {
+        <mat-option>{{ 'No results found' | rpxTranslate }}</mat-option>
       }
     }
   </mat-autocomplete>

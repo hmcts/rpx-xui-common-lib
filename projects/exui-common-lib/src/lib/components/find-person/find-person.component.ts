@@ -59,7 +59,10 @@ export class FindPersonComponent implements OnInit, OnDestroy {
       filter((searchTerm: string) => searchTerm && searchTerm.length > this.minSearchCharacters),
       switchMap((searchTerm: string) => this.filter(searchTerm).pipe(
         tap(() => this.showAutocomplete = true),
-        catchError(() => this.filteredOptions = []),
+        catchError(() => {
+          this.filteredOptions = [];
+          return of([]); // Fallback observable
+        })
       ))
     ).subscribe((people: Person[]) => {
       this.filteredOptions = people;

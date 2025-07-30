@@ -50,7 +50,7 @@
             </tr>
           </thead>
           <tbody class="govuk-table__body">
-            @for (user of combinedSortedShares; track trackByUserId(idx, user); let idx = $index) {
+            @for (user of combinedSortedShares; track trackByUserId(user); let idx = $index) {
               <tr class="govuk-table__row">
                 <td id="user-full-name-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
                 <td id="user-email-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.email }}</td>

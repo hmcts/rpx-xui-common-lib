@@ -1,5 +1,5 @@
 @if (!toConfirm) {
-  @for (sharedCase of (shareCases$ | async); track trackByCaseId($index, sharedCase)) {
+  @for (sharedCase of (shareCases$ | async); track trackByCaseId(sharedCase)) {
     <xuilib-selected-case
       [sharedCase]="sharedCase"
       [caseCount]="caseCount"
@@ -12,7 +12,7 @@
 }
 
 @if (toConfirm) {
-  @for (sharedCase of (shareCases$ | async); track trackByCaseId($index, sharedCase)) {
+  @for (sharedCase of (shareCases$ | async); track trackByCaseId(sharedCase)) {
     <xuilib-selected-case-confirm
       [sharedCase]="sharedCase"
       [changeLink]="changeLink">

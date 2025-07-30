@@ -286,7 +286,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
+  public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: boolean }, field: FilterFieldConfig): void {
     const isChecked = event.target.checked;
     const formArray: FormArray = form.get(field.name) as FormArray;
     if (!item.selectAll) {
