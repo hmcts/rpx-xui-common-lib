@@ -5,9 +5,10 @@ import { FilterConfigOption, FilterFieldConfig } from '../../models';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 
 @Component({
-  selector: 'xuilib-find-service',
-  templateUrl: './find-service.component.html',
-  styleUrls: ['./find-service.component.scss']
+    selector: 'xuilib-find-service',
+    templateUrl: './find-service.component.html',
+    styleUrls: ['./find-service.component.scss'],
+    standalone: false
 })
 export class FindServiceComponent implements OnInit, OnDestroy {
   @Input() public field: FilterFieldConfig;

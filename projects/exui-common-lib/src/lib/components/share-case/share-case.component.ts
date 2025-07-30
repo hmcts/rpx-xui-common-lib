@@ -9,9 +9,10 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
 import { UserSelectComponent } from '../user-select/user-select.component';
 
 @Component({
-  selector: 'xuilib-share-case',
-  templateUrl: './share-case.component.html',
-  styleUrls: ['./share-case.component.scss']
+    selector: 'xuilib-share-case',
+    templateUrl: './share-case.component.html',
+    styleUrls: ['./share-case.component.scss'],
+    standalone: false
 })
 export class ShareCaseComponent implements OnInit {
 

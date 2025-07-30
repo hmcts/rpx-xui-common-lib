@@ -1,10 +1,11 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'xuilib-loading-spinner',
-  templateUrl: './loading-spinner.component.html',
-  styleUrls: ['./loading-spinner.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'xuilib-loading-spinner',
+    templateUrl: './loading-spinner.component.html',
+    styleUrls: ['./loading-spinner.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 
 export class LoadingSpinnerComponent implements AfterContentChecked {

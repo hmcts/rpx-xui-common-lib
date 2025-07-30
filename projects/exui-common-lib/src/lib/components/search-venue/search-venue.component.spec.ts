@@ -11,7 +11,10 @@ import { LocationByEPIMMSModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchVenueComponent } from './search-venue.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

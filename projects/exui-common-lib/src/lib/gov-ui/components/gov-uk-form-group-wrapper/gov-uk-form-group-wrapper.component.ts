@@ -8,8 +8,9 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 * and errorMessage messages
 * */
 @Component({
-  selector: 'xuilib-gov-uk-form-group-wrapper',
-  templateUrl: './gov-uk-form-group-wrapper.component.html'
+    selector: 'xuilib-gov-uk-form-group-wrapper',
+    templateUrl: './gov-uk-form-group-wrapper.component.html',
+    standalone: false
 })
 export class GovUkFormGroupWrapperComponent {
   constructor() { }
