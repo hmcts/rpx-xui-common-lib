@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.5",
+  "version": "2.1.5-javascript-void-removal",
   "engines": {
     "node": ">=18.19.0"
   },
