@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "2.1.5-google-manager-nonce",
+  "version": "2.1.5-google-manager-nonce-2",
   "engines": {
     "node": ">=18.19.0"
   },

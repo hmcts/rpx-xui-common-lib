@@ -18,6 +18,7 @@ export class GoogleTagManagerService {
     private readonly title: Title,
     @Inject(windowToken) win: any,
     @Inject(DOCUMENT) doc: any,
+    // note: the application of nonce is a safeguard, this should be handled by application
     @Optional() @Inject(CSP_NONCE) private readonly cspNonce?: string
   ) {
     this.window = win as Window;
@@ -42,7 +43,10 @@ export class GoogleTagManagerService {
       // 2) nonced external loader
       const script = this.document.createElement('script');
       script.async = true;
-      if (this.cspNonce) script.setAttribute('nonce', this.cspNonce);
+      if (this.cspNonce) {
+        console.log('Applying CSP nonce to GTM script');
+        script.setAttribute('nonce', this.cspNonce);
+      }
       script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(this.googleTagManagerKey)}`;
       script.addEventListener('error', (e) => {
         // helpful to see CSP blocks in user consoles
