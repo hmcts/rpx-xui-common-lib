@@ -39,6 +39,10 @@ export class ServiceMessagesComponent implements OnInit {
     this.filteredMessages = messages.filter((message) => {
       const { roles, message_en } = message;
       const regEx = new RegExp(roles);
+      // If userRoles is empty or undefined, allow the message through
+      if (!this.userRoles || this.userRoles.length === 0) {
+        return this.compareDates(message) && !this.hiddenBanners.includes(message_en);
+      }
       return this.userRoles.some((role) => regEx.test(role)) &&
         this.compareDates(message) &&
         !this.hiddenBanners.includes(message_en);
