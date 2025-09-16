@@ -16,85 +16,65 @@ export class LaunchDarklyService implements FeatureToggleService {
   private clientId: string = '';
 
   public initialize(user: FeatureUser = { anonymous: true }, clientId: string): void {
-    try {
-      this.ready.next(false);
-      this.context = { kind: 'user', ...user };
-      this.clientId = clientId;
-      this.client = initialize(this.clientId, this.context, { useReport: true });
-      this.client.on('ready', () => {
-        this.client.identify(this.context).then(() => this.ready.next(true));
-      });
-      this.client.on('error', (err: any) => {
+    this.ready.next(false);
+    this.context = { kind: 'user', ...user };
+    this.clientId = clientId;
+    this.client = initialize(this.clientId, this.context, { useReport: true });
+    this.client.on('ready', () => {
+      this.client.identify(this.context).then(() => this.ready.next(true));
+    });
+
+    this.client.on('error', (err: any) => {
         console.error('LaunchDarkly client network error:', err);
         // Allow the app to proceed by emitting true, so subscribers are not blocked
         this.ready.next(true);
       });
-    } catch (error) {
-      console.error('Failed to initialize LaunchDarkly client:', error);
-      this.ready.next(false);
-    }
   }
 
   public isEnabled(feature: string, defaultValue: boolean = false): Observable<boolean> {
-    try {
-      return this.getValue<boolean>(feature, defaultValue);
-    } catch (error) {
-      console.error(`Failed to check if feature "${feature}" is enabled:`, error);
-      return new BehaviorSubject<boolean>(defaultValue).asObservable();
-    }
+    return this.getValue<boolean>(feature, defaultValue);
   }
 
   public getArray<R = any>(feature: string): Observable<R[]> {
-    try {
-      return this.getValue<R[]>(feature, []);
-    } catch (error) {
-      console.error(`Failed to get array for feature "${feature}":`, error);
-      return new BehaviorSubject<R[]>([]).asObservable();
-    }
+    return this.getValue<R[]>(feature, []);
   }
 
   // Note that this function always emits its default value first, which can lead to unexpected results
   public getValue<R>(feature: string, defaultValue: R): Observable<R> {
-    try {
-      if (!this.features.hasOwnProperty(feature)) {
-        this.features[feature] = new BehaviorSubject<R>(defaultValue);
-        this.ready.pipe(
-          filter((ready) => ready),
-          map(() => this.client.variation(feature, defaultValue))
-        ).subscribe((value) => {
-          this.features[feature].next(value);
-          this.client.on(`change:${feature}`, (val: R) => {
-            this.features[feature].next(val);
-          });
-        });
-      }
-      return this.features[feature].pipe(
-        distinctUntilChanged()
-      );
-    } catch (error) {
-      console.error(`Failed to get value for feature "${feature}":`, error);
-      return new BehaviorSubject<R>(defaultValue).asObservable();
-    }
-  }
-
-  public getValueOnce<R>(feature: string, defaultValue: R): Observable<R> {
-    try {
-      return this.ready.pipe(
+    if (!this.features.hasOwnProperty(feature)) {
+      this.features[feature] = new BehaviorSubject<R>(defaultValue);
+      this.ready.pipe(
         filter((ready) => ready),
         map(() => this.client.variation(feature, defaultValue))
-      );
-    } catch (error) {
-      console.error(`Failed to get value once for feature "${feature}":`, error);
-      return new BehaviorSubject<R>(defaultValue).asObservable();
+      ).subscribe((value) => {
+        this.features[feature].next(value);
+        this.client.on(`change:${feature}`, (val: R) => {
+          this.features[feature].next(val);
+        });
+      });
     }
+    return this.features[feature].pipe(
+      distinctUntilChanged()
+    );
+  }
+
+  /**
+     * This method returns an observable that will only get the state of the feature toggle
+     * once. It calls the LD SDK directly, and should only be used in circumstances where
+     * only one value should be emitted, that value coming directly from LD. This will likely
+     * only apply for Guards, and should be used only when absolutely necessary.
+     * @see getValue for regular usage.
+     * @param feature string
+     * @param defaultValue R
+     */
+  public getValueOnce<R>(feature: string, defaultValue: R): Observable<R> {
+    return this.ready.pipe(
+      filter((ready) => ready),
+      map(() => this.client.variation(feature, defaultValue))
+    );
   }
 
   public getValueSync<R>(feature: string, defaultValue: R): R {
-    try {
-      return this.client.variation(feature, defaultValue);
-    } catch (error) {
-      console.error(`Failed to get sync value for feature "${feature}":`, error);
-      return defaultValue;
-    }
+    return this.client.variation(feature, defaultValue);
   }
 }
