@@ -5,7 +5,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HmctsPaginationComponent } from '../../gov-ui/components/hmcts-pagination/hmcts-pagination.component';
 import { UserListComponent } from './user-list.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

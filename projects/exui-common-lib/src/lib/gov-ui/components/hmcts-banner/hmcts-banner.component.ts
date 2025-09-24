@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'xuilib-hmcts-banner',
-  templateUrl: './hmcts-banner.component.html',
-  styleUrls: ['./hmcts-banner.component.scss']
+    selector: 'xuilib-hmcts-banner',
+    templateUrl: './hmcts-banner.component.html',
+    styleUrls: ['./hmcts-banner.component.scss'],
+    standalone: false
 })
 export class HmctsBannerComponent {
   @Input() public message: string;

@@ -5,9 +5,10 @@ import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 
 @Component({
-  selector: 'xuilib-selected-case-confirm',
-  templateUrl: './selected-case-confirm.component.html',
-  styleUrls: ['./selected-case-confirm.component.scss']
+    selector: 'xuilib-selected-case-confirm',
+    templateUrl: './selected-case-confirm.component.html',
+    styleUrls: ['./selected-case-confirm.component.scss'],
+    standalone: false
 })
 export class SelectedCaseConfirmComponent implements OnInit {
 

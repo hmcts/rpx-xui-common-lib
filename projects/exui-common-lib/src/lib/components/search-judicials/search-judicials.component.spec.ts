@@ -10,7 +10,10 @@ import { JudicialUserModel } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { SearchJudicialsComponent } from './search-judicials.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

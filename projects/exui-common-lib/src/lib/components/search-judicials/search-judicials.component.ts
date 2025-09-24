@@ -6,9 +6,10 @@ import { JudicialUserModel } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
 @Component({
-  selector: 'xuilib-search-judicials',
-  templateUrl: './search-judicials.component.html',
-  styleUrls: ['./search-judicials.component.scss']
+    selector: 'xuilib-search-judicials',
+    templateUrl: './search-judicials.component.html',
+    styleUrls: ['./search-judicials.component.scss'],
+    standalone: false
 })
 export class SearchJudicialsComponent implements OnInit {
   public formGroup: FormGroup;

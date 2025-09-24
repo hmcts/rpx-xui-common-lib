@@ -8,8 +8,9 @@ describe('WriteAddressFieldComponent', () => {
   @Component({
     selector: `write-address-inputs`,
     template: `<xuilib-write-address-inputs [formGroup]="formGroup" [isInternational]="isInternational">
-    </xuilib-write-address-inputs>`
-  })
+    </xuilib-write-address-inputs>`,
+    standalone: false
+})
   class WrapperComponent {
     @ViewChild(WriteAddressInputsComponent, /* TODO: add static flag */ {})
     public componentUnderTest: WriteAddressInputsComponent;

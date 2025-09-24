@@ -4,7 +4,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CheckboxListComponent } from './checkbox-list.component';
 
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
@@ -12,8 +15,9 @@ class RpxTranslateMockPipe implements PipeTransform {
 }
 
 @Component({
-  template: `
-  <xuilib-checkbox-list [options]='options' [preselection]='preselection' [labelFunction]='labelFunction'></xuilib-checkbox-list>`
+    template: `
+  <xuilib-checkbox-list [options]='options' [preselection]='preselection' [labelFunction]='labelFunction'></xuilib-checkbox-list>`,
+    standalone: false
 })
 class WrapperComponent {
   @ViewChild(CheckboxListComponent, { static: true }) public appComponentRef: CheckboxListComponent<any>;

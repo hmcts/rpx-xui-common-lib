@@ -7,8 +7,9 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 *
 * */
 @Component({
-  selector: 'xuilib-gov-checkbox',
-  templateUrl: './gov-uk-checkbox.component.html'
+    selector: 'xuilib-gov-checkbox',
+    templateUrl: './gov-uk-checkbox.component.html',
+    standalone: false
 })
 
 export class GovUkCheckboxComponent implements OnInit {
