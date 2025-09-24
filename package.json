@@ -2,7 +2,7 @@
   "name": "@hmcts/rpx-xui-common-lib",
   "version": "2.1.6",
   "engines": {
-    "node": ">=18.19.0"
+    "node": ">=20.18.3"
   },
   "scripts": {
     "ng": "ng",
@@ -76,7 +76,7 @@
     "protractor": "~7.0.0",
     "ts-node": "10.8.1",
     "tslint": "~6.1.0",
-    "typescript": "~5.4.5"
+    "typescript": "5.8.2"
   },
   "packageManager": "yarn@4.5.3"
 }
