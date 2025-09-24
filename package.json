@@ -32,7 +32,7 @@
     "@angular/core": "^19.2.15",
     "@angular/forms": "^19.2.15",
     "@angular/localize": "19.2.15",
-    "@angular/material": "16.2.0",
+    "@angular/material": "^16.2.0",
     "@angular/platform-browser": "^19.2.15",
     "@angular/platform-browser-dynamic": "^19.2.15",
     "@angular/router": "^19.2.15",
