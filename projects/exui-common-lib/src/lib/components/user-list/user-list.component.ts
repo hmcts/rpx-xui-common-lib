@@ -5,7 +5,8 @@ import { User } from '../../models/user.model';
 @Component({
     selector: 'xuilib-user-list',
     styleUrls: ['./user-list.component.scss'],
-    templateUrl: './user-list.component.html'
+    templateUrl: './user-list.component.html',
+    standalone: false
 })
 export class UserListComponent implements OnInit {
     @Input() public users: User[] = [];

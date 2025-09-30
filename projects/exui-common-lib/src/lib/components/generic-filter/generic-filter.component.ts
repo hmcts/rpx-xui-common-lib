@@ -6,11 +6,12 @@ import { FilterService } from '../../services';
 import { getValues, maxSelectedValidator, minSelectedValidator } from './generic-filter-utils';
 
 @Component({
-  selector: 'xuilib-generic-filter',
-  templateUrl: 'generic-filter.component.html',
-  styleUrls: ['generic-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+    selector: 'xuilib-generic-filter',
+    templateUrl: 'generic-filter.component.html',
+    styleUrls: ['generic-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;

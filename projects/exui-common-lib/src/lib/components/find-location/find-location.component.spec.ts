@@ -9,7 +9,10 @@ import { LocationService } from '../../services/locations/location.service';
 import { SearchLocationComponent } from '../search-location/search-location.component';
 import { FindLocationComponent } from './find-location.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

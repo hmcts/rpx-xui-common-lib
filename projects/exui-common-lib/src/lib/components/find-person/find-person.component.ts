@@ -7,9 +7,10 @@ import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
 @Component({
-  selector: 'xuilib-find-person',
-  templateUrl: './find-person.component.html',
-  styleUrls: ['./find-person.component.scss'],
+    selector: 'xuilib-find-person',
+    templateUrl: './find-person.component.html',
+    styleUrls: ['./find-person.component.scss'],
+    standalone: false
 })
 
 export class FindPersonComponent implements OnInit, OnDestroy {

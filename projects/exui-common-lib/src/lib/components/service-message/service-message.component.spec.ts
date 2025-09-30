@@ -4,7 +4,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceMessageComponent } from './service-message.component';
 import { ServiceMessages } from '../../models/service-message.model';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

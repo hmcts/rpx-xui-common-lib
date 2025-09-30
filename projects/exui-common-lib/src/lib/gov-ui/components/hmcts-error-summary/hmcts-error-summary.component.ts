@@ -7,8 +7,9 @@ import {AfterViewInit, Component, Inject, Input, OnChanges, SimpleChanges} from 
   Component is also responsible for scrolling. Up and Down the page when user click on links
 */
 @Component({
-  selector: 'xuilib-hmcts-error-summary',
-  templateUrl: './hmcts-error-summary.component.html'
+    selector: 'xuilib-hmcts-error-summary',
+    templateUrl: './hmcts-error-summary.component.html',
+    standalone: false
 })
 export class HmctsErrorSummaryComponent implements AfterViewInit, OnChanges {
 

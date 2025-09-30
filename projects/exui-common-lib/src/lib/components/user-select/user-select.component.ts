@@ -6,9 +6,10 @@ import { map } from 'rxjs/operators';
 import { UserDetails } from '../../models/user-details.model';
 
 @Component({
-  selector: 'xuilib-user-select',
-  templateUrl: './user-select.component.html',
-  styleUrls: ['./user-select.component.scss']
+    selector: 'xuilib-user-select',
+    templateUrl: './user-select.component.html',
+    styleUrls: ['./user-select.component.scss'],
+    standalone: false
 })
 export class UserSelectComponent implements OnInit {
 
