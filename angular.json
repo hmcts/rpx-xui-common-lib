@@ -117,6 +117,17 @@
               "src/**/*.ts"
             ]
           }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "rpx-xui-common-lib:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rpx-xui-common-lib:serve:production"
+            }
+          }
         }
       }
     },
@@ -126,14 +137,13 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "playwright-ng-schematics:playwright",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "rpx-xui-common-lib:serve"
+            "devServerTarget": "rpx-xui-common-lib-e2e:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "rpx-xui-common-lib:serve:production"
+              "devServerTarget": "rpx-xui-common-lib-e2e:serve:production"
             }
           }
         },
@@ -189,6 +199,17 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "exui-common-lib:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "exui-common-lib:serve:production"
+            }
           }
         }
       }
