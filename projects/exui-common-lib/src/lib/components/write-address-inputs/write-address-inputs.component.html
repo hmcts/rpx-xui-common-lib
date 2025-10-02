@@ -45,7 +45,7 @@
 
     <div class="govuk-body">
       <label class="govuk-label" for="county">
-        County{{this.isInternational ? '/ State/ Province' : ''}} (Optional)
+        County{{ isInternational ? '/ State/ Province' : '' }} (Optional)
       </label>
       <input class="govuk-input govuk-!-width-two-thirds" id="county" name="county" type="text"
         formControlName="county" >
@@ -64,7 +64,7 @@
 
     <div class="govuk-body" [ngClass]="{'govuk-form-group--error': submissionAttempted && !isInternational && !formGroup.get('address').get('postCode').valid}">
       <label class="govuk-label" for="postCode">
-        Postcode{{this.isInternational ? ' (Optional)' : ''}}
+        Postcode{{ isInternational ? ' (Optional)' : '' }}
       </label>
       <p class="govuk-error-message" *ngIf="submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('required')">
         <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_POSTCODE_SELECTED}}
