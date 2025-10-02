@@ -6,10 +6,10 @@ import {LocationByEPIMMSModel} from '../../models/location.model';
 import {LocationService} from '../../services/locations/location.service';
 
 @Component({
-    selector: 'xuilib-search-venue',
-    templateUrl: './search-venue.component.html',
-    styleUrls: ['./search-venue.component.scss'],
-    standalone: false
+  selector: 'xuilib-search-venue',
+  templateUrl: './search-venue.component.html',
+  styleUrls: ['./search-venue.component.scss'],
+  standalone: false
 })
 export class SearchVenueComponent implements OnInit, AfterContentInit {
   @Input() public control: AbstractControl;

@@ -14,8 +14,8 @@ import { SessionStorageService } from '../../services/storage/session-storage/se
 import { SearchLocationComponent } from './search-location.component';
 
 @Pipe({
-    name: 'rpxTranslate',
-    standalone: false
+  name: 'rpxTranslate',
+  standalone: false
 })
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
@@ -290,16 +290,16 @@ describe('SearchLocationComponent', () => {
   describe('lookup by jurisdiction (i.e. servicesField does not exist)', () => {
     it('should return false and should not call the api when ' +
       'input characters are less then three', fakeAsync(() => {
-        // @ts-expect-error - private property
-        const debounceTime = component.debounceTimeInput;
+    // @ts-expect-error - private property
+      const debounceTime = component.debounceTimeInput;
 
-        component.filteredList$.subscribe((result) => {
-          expect(result).toBe(false);
-        });
-        component.searchTermFormControl.setValue('');
-        tick(debounceTime);
-        flush();
-      }));
+      component.filteredList$.subscribe((result) => {
+        expect(result).toBe(false);
+      });
+      component.searchTermFormControl.setValue('');
+      tick(debounceTime);
+      flush();
+    }));
 
     it('should call get locations with the correct parameters', () => {
       component.serviceIds = 'IA,SSCS';

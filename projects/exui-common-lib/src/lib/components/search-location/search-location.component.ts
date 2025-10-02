@@ -13,10 +13,10 @@ import { RefDataService } from '../../services/ref-data';
 import { SessionStorageService } from '../../services/storage/session-storage/session-storage.service';
 
 @Component({
-    selector: 'exui-search-location',
-    templateUrl: './search-location.component.html',
-    styleUrls: ['./search-location.component.scss'],
-    standalone: false
+  selector: 'exui-search-location',
+  templateUrl: './search-location.component.html',
+  styleUrls: ['./search-location.component.scss'],
+  standalone: false
 })
 export class SearchLocationComponent implements OnInit {
   private static readonly allLocationAPI = `api/locations/getLocations`;
