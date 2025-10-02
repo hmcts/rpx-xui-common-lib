@@ -457,7 +457,13 @@ describe('SearchLocationComponent', () => {
   it('should call RemoveInvalidString on change input', () => {
     let spyInvalidString = spyOn(component, 'removeInvalidString');
     let input = fixture.debugElement.query(By.css('.govuk-input'));
-    input.triggerEventHandler('keydown', {});
+    const mockKeyboardEvent = {
+      preventDefault: jasmine.createSpy('preventDefault'),
+      key: 'A',
+      code: 'KeyA',
+      target: { value: 'test' }
+    };
+    input.triggerEventHandler('keydown', mockKeyboardEvent);
     fixture.detectChanges();
     expect(spyInvalidString).toHaveBeenCalled();
   });
@@ -465,7 +471,13 @@ describe('SearchLocationComponent', () => {
   it('check for valid regex values', () => {
     let spyIsValidCharacter = spyOn(component, 'isCharacterValid');
     let input = fixture.debugElement.query(By.css('.govuk-input'));
-    input.triggerEventHandler('keydown', {});
+    const mockKeyboardEvent = {
+      preventDefault: jasmine.createSpy('preventDefault'),
+      key: 'A',
+      code: 'KeyA',
+      target: { value: 'test' }
+    };
+    input.triggerEventHandler('keydown', mockKeyboardEvent);
     fixture.detectChanges();
     expect(spyIsValidCharacter).toHaveBeenCalled();
   });
