@@ -288,13 +288,13 @@ describe('SearchLocationComponent', () => {
   }));
 
   describe('lookup by jurisdiction (i.e. servicesField does not exist)', () => {
-    it('should return false and should not call the api when ' +
+    it('should return null and should not call the api when ' +
       'input characters are less then three', fakeAsync(() => {
     // @ts-expect-error - private property
       const debounceTime = component.debounceTimeInput;
 
       component.filteredList$.subscribe((result) => {
-        expect(result).toBe(false);
+        expect(result).toBeNull();
       });
       component.searchTermFormControl.setValue('');
       tick(debounceTime);
@@ -372,9 +372,9 @@ describe('SearchLocationComponent', () => {
           flush();
         }));
 
-        it('should return false and should not call the api when observable searchTerm valueChanges emits', fakeAsync(() => {
+        it('should return null and should not call the api when observable searchTerm valueChanges emits', fakeAsync(() => {
           component.filteredList$.subscribe((result) => {
-            expect(result).toBe(false);
+            expect(result).toBeNull();
           });
 
           component.searchTermFormControl.setValue('');
