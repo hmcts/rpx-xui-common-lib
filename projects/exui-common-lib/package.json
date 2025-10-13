@@ -4,7 +4,7 @@
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^3.2.1",
-    "rpx-xui-translation": "^0.1.1"
+    "rpx-xui-translation": "1.1.2-CME-780-9"
   },
   "publishConfig": {
     "access": "public"
