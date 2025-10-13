@@ -242,4 +242,16 @@ describe('ServiceMessagesComponent', () => {
     expect(component.bannerErrorMsgs.length).toBe(1);
     expect(component.bannerErrorMsgs).toContain({ message: `Invalid start date. Message index: ${serviceMessagesFake[0].index}`, index: 10 });
   });
+
+  it('should allow message through if userRoles is empty and roles is .+', () => {
+    const messages: ServiceMessages[] = [
+      { roles: '.+', index: 1, message_en: 'msg1', message_cy: 'cy1' }
+    ];
+    spyOn(component as any, 'getSessionCookie').and.returnValue([]);
+    spyOn(component as any, 'compareDates').and.returnValue(true);
+    component.userRoles = [];
+    (component as any).createFilteredMessages(messages);
+    expect(component.filteredMessages.length).toBe(1);
+    expect(component.filteredMessages[0].message_en).toBe('msg1');
+  });
 });
