@@ -36,16 +36,10 @@ export class ServiceMessagesComponent implements OnInit {
 
   private createFilteredMessages(messages: ServiceMessages[]): void {
     this.hiddenBanners = this.getSessionCookie(this.serviceMessageCookie) || [];
-    const messageCount = messages.length;
     this.filteredMessages = messages.filter((message) => {
       const { roles, message_en } = message;
       const regEx = new RegExp(roles);
-      // If userRoles is empty or undefined, allow the message through
-      const isRoleMatch =
-        ((!this.userRoles || this.userRoles.length === 0) && messageCount === 1 && roles === '.+')
-        || (this.userRoles && this.userRoles.some((role) => regEx.test(role)));
-
-      return isRoleMatch &&
+      return this.userRoles.some((role) => regEx.test(role)) &&
         this.compareDates(message) &&
         !this.hiddenBanners.includes(message_en);
     });
