@@ -23,12 +23,6 @@ export class LaunchDarklyService implements FeatureToggleService {
     this.client.on('ready', () => {
       this.client.identify(this.context).then(() => this.ready.next(true));
     });
-
-    this.client.on('error', (err: any) => {
-        console.error('LaunchDarkly client network error:', err);
-        // Allow the app to proceed by emitting true, so subscribers are not blocked
-        this.ready.next(true);
-      });
   }
 
   public isEnabled(feature: string, defaultValue: boolean = false): Observable<boolean> {
