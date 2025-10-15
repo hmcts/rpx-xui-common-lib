@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.1.3-cme-778-prerelease",
+  "version": "3.1.4-cme-778-prerelease",
   "peerDependencies": {
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^3.2.1",
