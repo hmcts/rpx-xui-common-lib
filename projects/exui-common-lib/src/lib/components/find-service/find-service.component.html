@@ -12,7 +12,7 @@
         [disabled]="disabled"
         (optionChanged)="onOptionSelected($event)">
       </exui-search-service>
-      <a href="javascript:void(0)" (click)="addOption(tempSelectedService)"
+      <a href="#" (click)="addOption(tempSelectedService); $event.preventDefault()"
         class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" data-module="govuk-button"
         *ngIf="field?.enableAddButton" id="add-service">
         {{ 'Add' | rpxTranslate}}
@@ -22,7 +22,7 @@
   </div>
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection" *ngFor="let selection of selectedServices">
-      <a class="hmcts-filter__tag" (click)="removeOption(selection)" href="javascript:void(0)">
+      <a class="hmcts-filter__tag" (click)="removeOption(selection); $event.preventDefault()" href="#">
         {{ selection.label  | rpxTranslate }}
       </a>
     </li>

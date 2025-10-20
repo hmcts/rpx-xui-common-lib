@@ -21,14 +21,14 @@
   </div>
 
   <div>
-    <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button add-location-button" data-module="govuk-button" *ngIf="enableAddLocationButton">
+    <a href="#" (click)="addLocation(); $event.preventDefault()" class="govuk-button add-location-button" data-module="govuk-button" *ngIf="enableAddLocationButton">
       Add location
     </a>
   </div>
 
   <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
     <li class="location-selection"  *ngFor="let selection of selectedLocations">
-      <a class="hmcts-filter__tag" (click)="removeLocation(selection)" href="javascript:void(0)">
+      <a class="hmcts-filter__tag" (click)="removeLocation(selection); $event.preventDefault()" href="#">
         {{ selection[propertyNameFilter] }}
       </a>
     </li>
