@@ -18,7 +18,10 @@ import { SearchLocationComponent } from '../search-location/search-location.comp
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { GenericFilterComponent } from './generic-filter.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

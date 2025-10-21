@@ -6,8 +6,9 @@ export interface TabItem {
 
 @Component({
     selector: 'xuilib-tab',
-    templateUrl: './tab.component.html'
-  })
+    templateUrl: './tab.component.html',
+    standalone: false
+})
 
 export class TabComponent {
     @Input() public tabItems: any [];

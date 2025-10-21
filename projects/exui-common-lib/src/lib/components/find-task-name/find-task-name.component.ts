@@ -7,9 +7,10 @@ import { TaskNameModel } from '../../models/task-name.model';
 import { TaskNameService } from '../../services/task-name/task-name.service';
 
 @Component({
-  selector: 'xuilib-find-task-name',
-  templateUrl: './find-task-name.component.html',
-  styleUrls: ['./find-task-name.component.scss'],
+    selector: 'xuilib-find-task-name',
+    templateUrl: './find-task-name.component.html',
+    styleUrls: ['./find-task-name.component.scss'],
+    standalone: false
 })
 
 export class FindTaskNameComponent implements OnInit, OnDestroy {

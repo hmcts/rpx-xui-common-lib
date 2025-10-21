@@ -11,7 +11,10 @@ import { LocationByEPIMMSModel } from '../../models/location.model';
 import { LocationService } from '../../services/locations/location.service';
 import { SearchVenueComponent } from './search-venue.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+  name: 'rpxTranslate',
+  standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
@@ -245,13 +248,19 @@ describe('SearchVenueComponent', () => {
   it('should call filter when input is more than 2 characters', async () => {
     const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
     selectedLoction.nativeElement.value = 'MARCUS';
-    selectedLoction.nativeElement.dispatchEvent(new Event('keyup'));
+    // Create proper KeyboardEvent with key property to prevent undefined error
+    const mockKeyboardEvent = new KeyboardEvent('keyup', {
+      key: 'M',
+      code: 'KeyM'
+    });
+    Object.defineProperty(mockKeyboardEvent, 'target', {
+      value: { value: 'MARCUS' }
+    });
+    selectedLoction.nativeElement.dispatchEvent(mockKeyboardEvent);
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.keyUpSubject$.next).toHaveBeenCalled();
-      });
+      expect(component.keyUpSubject$.next).toHaveBeenCalledWith('MARCUS');
       expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeTrue();
     });
   });

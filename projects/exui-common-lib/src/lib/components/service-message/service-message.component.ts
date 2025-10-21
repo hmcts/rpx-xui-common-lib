@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ServiceMessages } from '../../models/service-message.model';
 
 @Component({
-  selector: 'xuilib-service-message',
-  templateUrl: './service-message.component.html',
-  styleUrls: ['./service-message.component.scss']
+    selector: 'xuilib-service-message',
+    templateUrl: './service-message.component.html',
+    styleUrls: ['./service-message.component.scss'],
+    standalone: false
 })
 export class ServiceMessageComponent {
   @Input() public message_en: string;

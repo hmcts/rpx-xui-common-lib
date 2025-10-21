@@ -7,8 +7,9 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 *
 * */
 @Component({
-  selector: 'xuilib-gov-radio',
-  templateUrl: './gov-uk-radio.component.html'
+    selector: 'xuilib-gov-radio',
+    templateUrl: './gov-uk-radio.component.html',
+    standalone: false
 })
 export class GovUkRadioComponent implements OnInit {
   constructor() { }

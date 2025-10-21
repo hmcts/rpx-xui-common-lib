@@ -1,9 +1,11 @@
 <div class="service-picker-custom">
   <div class="search-service">
     <div class="govuk-body">
-      <label id="selectServiceSearch-label" for="serviceSearch__select" *ngIf="serviceTitle">
-        {{ serviceTitle | rpxTranslate}}
-      </label>
+      @if (serviceTitle) {
+        <label id="selectServiceSearch-label" for="serviceSearch__select">
+          {{ serviceTitle | rpxTranslate}}
+        </label>
+      }
     </div>
     <div class="search-service__input-container">
       <exui-search-service class="search-service__input"
@@ -12,19 +14,25 @@
         [disabled]="disabled"
         (optionChanged)="onOptionSelected($event)">
       </exui-search-service>
-      <a href="#" (click)="addOption(tempSelectedService); $event.preventDefault()"
-        class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" data-module="govuk-button"
-        *ngIf="field?.enableAddButton" id="add-service">
-        {{ 'Add' | rpxTranslate}}
-        <span class="govuk-visually-hidden">{{'service' | rpxTranslate}}</span>
-      </a>
+      @if (field?.enableAddButton) {
+        <a href="javascript:void(0)" (click)="addOption(tempSelectedService)"
+          class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" data-module="govuk-button"
+          id="add-service">
+          {{ 'Add' | rpxTranslate}}
+          <span class="govuk-visually-hidden">{{'service' | rpxTranslate}}</span>
+        </a>
+      }
     </div>
   </div>
-  <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
-    <li class="location-selection" *ngFor="let selection of selectedServices">
-      <a class="hmcts-filter__tag" (click)="removeOption(selection); $event.preventDefault()" href="#">
-        {{ selection.label  | rpxTranslate }}
-      </a>
-    </li>
-  </ul>
+  @if (field.maxSelected != 1) {
+    <ul class="hmcts-filter-tags selection-container">
+      @for (selection of selectedServices; track selection) {
+        <li class="location-selection">
+          <a class="hmcts-filter__tag" (click)="removeOption(selection)" href="javascript:void(0)">
+            {{ selection.label  | rpxTranslate }}
+          </a>
+        </li>
+      }
+    </ul>
+  }
 </div>

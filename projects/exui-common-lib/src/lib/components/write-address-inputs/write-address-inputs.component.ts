@@ -3,8 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { AddressMessageEnum } from '../../models';
 
 @Component({
-  selector: 'xuilib-write-address-inputs',
-  templateUrl: './write-address-inputs.component.html'
+    selector: 'xuilib-write-address-inputs',
+    templateUrl: './write-address-inputs.component.html',
+    standalone: false
 })
 export class WriteAddressInputsComponent implements OnChanges {
 

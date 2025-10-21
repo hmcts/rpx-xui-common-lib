@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'xuilib-tc-confirm',
-  templateUrl: './tc-confirm.component.html',
-  styleUrls: ['./tc-confirm.component.scss']
+    selector: 'xuilib-tc-confirm',
+    templateUrl: './tc-confirm.component.html',
+    styleUrls: ['./tc-confirm.component.scss'],
+    standalone: false
 })
 export class TcConfirmComponent {
 
