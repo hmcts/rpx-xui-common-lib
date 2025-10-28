@@ -27,7 +27,7 @@ export class FeatureToggleGuard  {
      */
     public canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
         return combineLatest([...(route.data.needsFeaturesEnabled as string[]).map(
-                feature => this.featureToggleService.getValueOnce<boolean>(feature, false)
+                feature => this.featureToggleService.getValueOnce<boolean>(feature, true)
         )]).pipe(
             map(featureStatuses => featureStatuses.every(status => status)),
             map(status => (route.data.expectFeatureEnabled !== false && status) || (route.data.expectFeatureEnabled === false && !status) || this.router.parseUrl(route.data.featureDisabledRedirect as string))

@@ -38,7 +38,7 @@
     </div>
 
     <a class="manual-link govuk-link" *ngIf="!shouldShowDetailFields() || (!startedInternational && !addressChosen)"
-      (click)="blankAddress()" href="javascript:void(0)">I can't enter a UK postcode</a>
+      (click)="blankAddress(); $event.preventDefault()" href="#">I can't enter a UK postcode</a>
   </div>
 
   <div id="govuk-radios" class="govuk-radios" data-module="govuk-radios"
