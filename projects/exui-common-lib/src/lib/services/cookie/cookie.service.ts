@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+
+import { Inject, Injectable, DOCUMENT } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class CookieService {
 
   public setCookie(key: string, value: string, expiryDate?: string): void {
     const expiry = expiryDate ? ` expires=${expiryDate}` : '';
-    const cookie = `${key}=${value};${expiry}`;
+    const cookie = `${key}=${value};${expiry};SameSite=Strict`;
     this.document.cookie = cookie;
   }
 

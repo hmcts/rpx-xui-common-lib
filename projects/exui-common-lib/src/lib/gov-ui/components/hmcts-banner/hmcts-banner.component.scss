@@ -1,5 +1,4 @@
-@import "govuk-frontend/govuk/helpers/colour";
-@import "govuk-frontend/govuk/helpers/typography";
+@use "govuk-frontend/govuk/all" as *;
 
 .hmcts-banner-title {
   color: govuk-colour('white');

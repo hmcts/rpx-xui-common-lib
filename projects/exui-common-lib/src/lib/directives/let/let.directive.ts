@@ -6,7 +6,8 @@ export class LetContext<T = any> {
 }
 
 @Directive({
-    selector: '[xuilibLet]'
+    selector: '[xuilibLet]',
+    standalone: false
 })
 export class LetDirective<T = any> {
     private readonly context: LetContext<T> = new LetContext<T>();

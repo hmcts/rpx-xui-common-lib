@@ -1,30 +1,40 @@
-<h1 class="govuk-heading-l" *ngIf="title && title.length">
-  <span class="govuk-caption-l">{{title}}</span>
-  {{boldTitle}}
-</h1>
+@if (title && title.length) {
+  <h1 class="govuk-heading-l">
+    <span class="govuk-caption-l">{{title}}</span>
+    {{boldTitle}}
+  </h1>
+}
 <div class="govuk-form-group" [formGroup]="findTaskNameGroup"
-     [ngClass]="{'form-group-error': findTaskNameGroup.get('findTaskNameControl')?.invalid && submitted}">
+  [ngClass]="{'form-group-error': findTaskNameGroup.get('findTaskNameControl')?.invalid && submitted}">
   <fieldset class="govuk-fieldset" aria-describedby="sub-title-hint">
-    <div id="sub-title-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
-      {{subTitle}}
-    </div>
-    <span id="validation-error" class="govuk-error-message" *ngIf="findTaskNameGroup && findTaskNameGroup.errors">
+    @if (subTitle && subTitle.length) {
+      <div id="sub-title-hint" class="govuk-hint">
+        {{subTitle}}
+      </div>
+    }
+    @if (findTaskNameGroup && findTaskNameGroup.errors) {
+      <span id="validation-error" class="govuk-error-message">
         <span class="govuk-visually-hidden">Error:</span>{{findTaskNameGroup.errors.error ? findTaskNameGroup.errors.error : errorMessage}}
-    </span>
+      </span>
+    }
     <input id="inputSelectTaskName{{idValue}}" type="text" aria-label="select a task name"
-           formControlName="findTaskNameControl"
-           [matAutocomplete]="auto"
-           class="govuk-input govuk-!-width-one-third"
-           [placeholder]="placeholderContent"
-           [attr.disabled]="disabled"
-           (input)="onInput()">
+      formControlName="findTaskNameControl"
+      [matAutocomplete]="auto"
+      class="govuk-input govuk-!-width-one-third"
+      [placeholder]="placeholderContent"
+      [attr.disabled]="disabled"
+      (input)="onInput()">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectionChange($event.option.value)">
-      <mat-option *ngFor="let option of filteredOptions"
-                  [value]="option"
-                  [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
-                  {{ getTaskTypeName(option) }}
-      </mat-option>
-      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !filteredOptions.length && showAutocomplete">No results found</mat-option>
+      @for (option of filteredOptions; track option) {
+        <mat-option
+          [value]="option"
+          [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
+          {{ getTaskTypeName(option) }}
+        </mat-option>
+      }
+      @if (isNoResultsShown && !filteredOptions.length && showAutocomplete) {
+        <mat-option [ngClass]="{'select-option': showUpdatedColor}">No results found</mat-option>
+      }
     </mat-autocomplete>
   </fieldset>
 </div>

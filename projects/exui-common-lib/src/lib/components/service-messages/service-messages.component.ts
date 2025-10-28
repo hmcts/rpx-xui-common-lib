@@ -4,8 +4,9 @@ import { ServiceMessages } from '../../models/service-message.model';
 
 
 @Component({
-  selector: 'xuilib-service-messages',
-  templateUrl: './service-messages.component.html'
+    selector: 'xuilib-service-messages',
+    templateUrl: './service-messages.component.html',
+    standalone: false
 })
 export class ServiceMessagesComponent implements OnInit {
   public hiddenBanners: string[];
@@ -36,12 +37,16 @@ export class ServiceMessagesComponent implements OnInit {
 
   private createFilteredMessages(messages: ServiceMessages[]): void {
     this.hiddenBanners = this.getSessionCookie(this.serviceMessageCookie) || [];
-    console.log(this.serviceMessageCookie);
-    console.log(messages);
+    const messageCount = messages.length;
     this.filteredMessages = messages.filter((message) => {
       const { roles, message_en } = message;
       const regEx = new RegExp(roles);
-      return this.userRoles.some((role) => regEx.test(role)) &&
+      // If userRoles is empty or undefined, allow the message through
+      const isRoleMatch =
+        ((!this.userRoles || this.userRoles.length === 0) && messageCount === 1 && roles === '.+')
+        || (this.userRoles && this.userRoles.some((role) => regEx.test(role)));
+
+      return isRoleMatch &&
         this.compareDates(message) &&
         !this.hiddenBanners.includes(message_en);
     });

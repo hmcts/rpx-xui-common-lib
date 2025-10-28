@@ -4,10 +4,11 @@ import { AfterContentChecked, ChangeDetectorRef, Component, Input, OnChanges, Vi
 import { DateBadgeColour, SECONDS_IN_A_DAY } from '../../models/due-date.model';
 
 @Component({
-  selector: 'xuilib-due-date',
-  templateUrl: 'due-date.component.html',
-  styleUrls: ['due-date.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'xuilib-due-date',
+    templateUrl: 'due-date.component.html',
+    styleUrls: ['due-date.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class DueDateComponent implements OnChanges, AfterContentChecked {
 

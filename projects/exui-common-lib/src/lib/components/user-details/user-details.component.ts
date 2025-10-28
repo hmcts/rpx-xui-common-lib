@@ -4,7 +4,8 @@ import { User } from '../../models';
 @Component({
     selector: 'xuilib-user-details',
     styleUrls: ['./user-details.component.scss'],
-    templateUrl: './user-details.component.html'
+    templateUrl: './user-details.component.html',
+    standalone: false
 })
 export class UserDetailsComponent {
     @Input() public user: User;

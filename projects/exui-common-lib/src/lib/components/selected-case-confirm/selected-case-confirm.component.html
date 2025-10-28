@@ -1,39 +1,45 @@
-<div id="user-access-block-{{ sharedCase.caseId }}">
-  <h2 class="govuk-heading-m case-share-confirm__title">{{ sharedCase.caseTitle }}</h2>
-  <div class="case-share-confirm__caption-area" [ngClass]="{'govuk-!-margin-bottom-3': !showUserAccessBlock()}">
-    <div class="govuk-caption-m case-share-confirm__caption">
-      {{ sharedCase.caseId }}
+@if (showUserAccessBlock()) {
+  <div id="user-access-block-{{ sharedCase.caseId }}">
+    <h2 class="govuk-heading-m case-share-confirm__title">{{ sharedCase.caseTitle }}</h2>
+    <div class="case-share-confirm__caption-area">
+      <div class="govuk-caption-m case-share-confirm__caption">
+        {{ sharedCase.caseId }}
+      </div>
+      <a [routerLink]="changeLink" class="case-share-confirm__change-link govuk-link govuk-!-font-size-19">
+        {{'Change' | rpxTranslate}}
+        <span class="govuk-visually-hidden">{{'selected case' | rpxTranslate}}</span>
+      </a>
     </div>
-    <a [routerLink]="changeLink" class="case-share-confirm__change-link govuk-link govuk-!-font-size-19">
-      {{'Change' | rpxTranslate}}
-      <span class="govuk-visually-hidden">{{'selected case' | rpxTranslate}}</span>
-    </a>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header govuk-table-column-header" scope="col">{{'Name' | rpxTranslate}}</th>
+          <th class="govuk-table__header govuk-table-column-header" scope="col">{{'Email address' | rpxTranslate}}</th>
+          <th class="govuk-table__header govuk-table-column-actions" scope="col">{{'Actions' | rpxTranslate}}</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+  @for (user of sharedCase.pendingShares; track trackByUserId(user)) {
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
+            <td class="govuk-table__cell">{{ user.email }}</td>
+            <td class="govuk-table__cell">
+              <span class="hmcts-badge">{{'To be added' | rpxTranslate}}</span>
+            </td>
+          </tr>
+        }
+  @for (user of sharedCase.pendingUnshares; track trackByUserId(user)) {
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
+            <td class="govuk-table__cell">{{ user.email }}</td>
+            <td class="govuk-table__cell">
+              <span class="hmcts-badge hmcts-badge--red">
+                {{'To be removed' | rpxTranslate}}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
-  <table class="govuk-table" *ngIf="showUserAccessBlock()">
-    <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header govuk-table-column-header" scope="col">{{'Name' | rpxTranslate}}</th>
-      <th class="govuk-table__header govuk-table-column-header" scope="col">{{'Email address' | rpxTranslate}}</th>
-      <th class="govuk-table__header govuk-table-column-actions" scope="col">{{'Actions' | rpxTranslate}}</th>
-    </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-    <tr class="govuk-table__row" *ngFor="let user of sharedCase.pendingShares; trackBy: trackByUserId">
-      <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
-      <td class="govuk-table__cell">{{ user.email }}</td>
-      <td class="govuk-table__cell">
-        <span class="hmcts-badge">{{'To be added' | rpxTranslate}}</span>
-      </td>
-    </tr>
-    <tr class="govuk-table__row" *ngFor="let user of sharedCase.pendingUnshares; trackBy: trackByUserId">
-      <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
-      <td class="govuk-table__cell">{{ user.email }}</td>
-      <td class="govuk-table__cell">
-        <span class="hmcts-badge hmcts-badge--red">
-          {{'To be removed' | rpxTranslate}}
-        </span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+}

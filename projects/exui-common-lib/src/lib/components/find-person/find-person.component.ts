@@ -10,6 +10,7 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
   selector: 'xuilib-find-person',
   templateUrl: './find-person.component.html',
   styleUrls: ['./find-person.component.scss'],
+  standalone: false
 })
 
 export class FindPersonComponent implements OnInit, OnDestroy {
@@ -58,7 +59,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
       filter((searchTerm: string) => searchTerm && searchTerm.length > this.minSearchCharacters),
       switchMap((searchTerm: string) => this.filter(searchTerm).pipe(
         tap(() => this.showAutocomplete = true),
-        catchError(() => this.filteredOptions = []),
+        catchError(() => this.handleFilterError()),
       ))
     ).subscribe((people: Person[]) => {
       this.filteredOptions = people;
@@ -67,21 +68,21 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialOrCTSCPeople = this.findPersonService.find({searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser});
-    const findCaseworkersOrAdminsOrCtsc = this.findPersonService.findCaseworkers({searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser});
+    const findJudicialOrCTSCPeople = this.findPersonService.find({ searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser });
+    const findCaseworkersOrAdminsOrCtsc = this.findPersonService.findCaseworkers({ searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser });
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
-          return findJudicialOrCTSCPeople.pipe(map(persons => {
-            const ids: string[] = this.selectedPersons.map(({id}) => id);
+          return findJudicialOrCTSCPeople.pipe(map((persons) => {
+            const ids: string[] = this.selectedPersons.map(({ id }) => id);
             return persons.filter(({ id }) => !ids.includes(id));
           }));
         }
         case PersonRole.ALL: {
-          return zip(findJudicialOrCTSCPeople, findCaseworkersOrAdminsOrCtsc).pipe(map(separatePeople => separatePeople[0].concat(separatePeople[1])));
+          return zip(findJudicialOrCTSCPeople, findCaseworkersOrAdminsOrCtsc).pipe(map((separatePeople) => separatePeople[0].concat(separatePeople[1])));
         }
         case PersonRole.CTSC:
-        case PersonRole.CASEWORKER:
+        case PersonRole.LEGAL_OPERATIONS:
         case PersonRole.ADMIN: {
           return findCaseworkersOrAdminsOrCtsc;
         }
@@ -106,6 +107,11 @@ export class FindPersonComponent implements OnInit, OnDestroy {
       return `${selectedPerson.fullName} (${selectedPerson.email})`;
     }
     return selectedPerson.email ? `${selectedPerson.name} (${selectedPerson.email})` : selectedPerson.name;
+  }
+
+  private handleFilterError(): Observable<Person[]> {
+    this.filteredOptions = [];
+    return of([]);
   }
 
   public onInput(): void {

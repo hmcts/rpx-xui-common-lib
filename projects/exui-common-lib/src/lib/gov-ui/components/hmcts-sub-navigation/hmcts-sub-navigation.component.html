@@ -1,11 +1,17 @@
-<nav class="hmcts-sub-navigation" attr.aria-label="{{label}}" role="navigation" *ngIf="items">
+@if (items) {
+  <nav class="hmcts-sub-navigation" attr.aria-label="{{label}}" role="navigation">
     <ul class="hmcts-sub-navigation__list">
-        <li class="hmcts-sub-navigation__item" *ngFor="let item of items">
-            <a data-selector="sub-nav-link" class="hmcts-sub-navigation__link" [routerLink]="item.href"
-               [attr.aria-current]="item.active ? 'page' : null">
-                {{item.text | rpxTranslate}}
-                <span *ngIf="item.roundel && item.roundel > 0 " class="xui-alert-link__number"> {{item.roundel}} </span>
-            </a>
+      @for (item of items; track item) {
+        <li class="hmcts-sub-navigation__item">
+          <a data-selector="sub-nav-link" class="hmcts-sub-navigation__link" [routerLink]="item.href"
+            [attr.aria-current]="item.active ? 'page' : null">
+            {{item.text | rpxTranslate}}
+            @if (item.roundel && item.roundel > 0 ) {
+              <span class="xui-alert-link__number"> {{item.roundel}} </span>
+            }
+          </a>
         </li>
+      }
     </ul>
-</nav>
+  </nav>
+}

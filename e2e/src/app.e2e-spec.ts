@@ -1,23 +1,28 @@
-import { browser, logging } from 'protractor';
+import { test, expect, Page } from '@playwright/test';
 import { AppPage } from './app.po';
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+test.describe('workspace-project App', () => {
+  let appPage: AppPage;
 
-  beforeEach(() => {
-    page = new AppPage();
+  test.beforeEach(async ({ page }: { page: Page }) => {
+    appPage = new AppPage(page);
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to rpx-xui-common-lib!');
+  test('should display welcome message', async () => {
+    await appPage.navigateTo();
+    const titleText = await appPage.getTitleText();
+    expect(titleText).toBe('ExUI Common Lib Test Page');
   });
 
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+  test.afterEach(async ({ page }: { page: Page }) => {
+    // Check for console errors
+    const consoleErrors: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+    
+    expect(consoleErrors).toHaveLength(0);
   });
 });

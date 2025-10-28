@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+
+import { Inject, Injectable, DOCUMENT } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { windowToken } from '../../window';
@@ -58,10 +58,10 @@ export class GoogleTagManagerService {
     }
   }
 
-  public virtualPageView(path: string, title: string, metadata?: Record<string, any>) {
+  public virtualPageView(eventName: string, path: string, title: string, metadata?: Record<string, any>) {
     if ((this.window as any).dataLayer) {
       (this.window as any).dataLayer.push({
-        event: 'pageview',
+        event: eventName,
         page: {
           path,
           title
@@ -73,7 +73,6 @@ export class GoogleTagManagerService {
 
   public event(eventName: string, params: Record<string, any>) {
     if ((this.window as any).dataLayer) {
-      console.log('Pushing event to GTM', eventName, params);
       (this.window as any).dataLayer.push({
         event: eventName,
         ...params

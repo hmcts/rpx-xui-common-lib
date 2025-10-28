@@ -8,7 +8,10 @@ import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { FindPersonComponent } from './find-person.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
@@ -133,7 +136,7 @@ describe('FindPersonComponent', () => {
       id: 'p2',
       name: 'Second Last',
       email: 'person@email.com',
-      domain: PersonRole.CASEWORKER
+      domain: PersonRole.LEGAL_OPERATIONS
     };
     const mockPersonThree: Person = {
       id: 'p3',

@@ -9,13 +9,17 @@
     class="govuk-input"
     [attr.disabled]="disabled">
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchLocation="matAutocomplete">
-    <ng-container *ngIf="filteredList$ | async as filteredList">
-      <ng-container *ngIf="filteredList && filteredList.length >= 0">
-        <mat-option *ngFor="let location of filteredList" (onSelectionChange)="onSelectedLocation(location)">
-          {{ location[propertyNameFilter] }}
-        </mat-option>
-        <mat-option *ngIf="filteredList.length === 0">{{'No results found' | rpxTranslate}}</mat-option>
-      </ng-container>
-    </ng-container>
+    @if (filteredList$ | async; as filteredList) {
+      @if (filteredList !== null) {
+        @for (location of filteredList; track location) {
+          <mat-option (onSelectionChange)="onSelectedLocation(location)">
+            {{ location[propertyNameFilter] }}
+          </mat-option>
+        }
+        @if (filteredList.length === 0) {
+          <mat-option>{{ 'No results found' | rpxTranslate }}</mat-option>
+        }
+      }
+    }
   </mat-autocomplete>
 </div>

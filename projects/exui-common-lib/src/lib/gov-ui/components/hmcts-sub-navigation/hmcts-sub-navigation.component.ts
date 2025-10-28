@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'xuilib-hmcts-sub-navigation',
-  styleUrls: ['hmcts-sub-navigation.component.scss'],
-  templateUrl: './hmcts-sub-navigation.component.html'
+    selector: 'xuilib-hmcts-sub-navigation',
+    styleUrls: ['hmcts-sub-navigation.component.scss'],
+    templateUrl: './hmcts-sub-navigation.component.html',
+    standalone: false
 })
 export class HmctsSubNavigationComponent {
     @Input() public label: string;

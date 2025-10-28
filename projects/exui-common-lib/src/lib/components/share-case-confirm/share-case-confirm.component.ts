@@ -4,9 +4,10 @@ import { SharedCase } from '../../models/case-share.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 
 @Component({
-  selector: 'xuilib-share-case-confirm',
-  templateUrl: './share-case-confirm.component.html',
-  styleUrls: ['./share-case-confirm.component.scss']
+    selector: 'xuilib-share-case-confirm',
+    templateUrl: './share-case-confirm.component.html',
+    styleUrls: ['./share-case-confirm.component.scss'],
+    standalone: false
 })
 export class ShareCaseConfirmComponent implements OnInit, OnDestroy {
   public shareCases: SharedCase[] = []; // cases selected for sharing

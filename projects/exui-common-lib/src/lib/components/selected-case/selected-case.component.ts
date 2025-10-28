@@ -7,9 +7,10 @@ import { UserDetails } from '../../models/user-details.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 
 @Component({
-  selector: 'xuilib-selected-case',
-  templateUrl: './selected-case.component.html',
-  styleUrls: ['./selected-case.component.scss']
+    selector: 'xuilib-selected-case',
+    templateUrl: './selected-case.component.html',
+    styleUrls: ['./selected-case.component.scss'],
+    standalone: false
 })
 export class SelectedCaseComponent implements OnInit, OnChanges {
 

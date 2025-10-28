@@ -5,9 +5,10 @@ import { AddressOption } from '../../models/address-option.model';
 import { AddressService } from '../../services/address/address.service';
 
 @Component({
-  selector: 'xuilib-write-address-field',
-  styleUrls: ['./write-address.component.scss'],
-  templateUrl: './write-address.component.html'
+    selector: 'xuilib-write-address-field',
+    styleUrls: ['./write-address.component.scss'],
+    templateUrl: './write-address.component.html',
+    standalone: false
 })
 export class WriteAddressFieldComponent implements OnInit, OnChanges {
 
