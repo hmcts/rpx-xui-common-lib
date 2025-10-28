@@ -10,8 +10,9 @@ import { HmctsBannerInfo } from '../hmcts-banner/hmcts-banner-info.interface';
 * @prop back link, title (title), summaryErrors (array of errors)
 * */
 @Component({
-  selector: 'xuilib-hmcts-main-wrapper',
-  templateUrl: './hmcts-main-wrapper.component.html'
+    selector: 'xuilib-hmcts-main-wrapper',
+    templateUrl: './hmcts-main-wrapper.component.html',
+    standalone: false
 })
 export class HmctsMainWrapperComponent implements OnInit {
   public bannerData: HmctsBannerInfo;

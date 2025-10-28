@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'xuilib-hmcts-pagination',
-  templateUrl: './hmcts-pagination.component.html',
-  styleUrls: ['./hmcts-pagination.component.scss']
+    selector: 'xuilib-hmcts-pagination',
+    templateUrl: './hmcts-pagination.component.html',
+    styleUrls: ['./hmcts-pagination.component.scss'],
+    standalone: false
 })
 export class HmctsPaginationComponent {
 

@@ -3,7 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'xuilib-hmcts-primary-navigation',
     templateUrl: './hmcts-primary-navigation.component.html',
-    styleUrls: ['./hmcts-primary-navigation.component.scss']
+    styleUrls: ['./hmcts-primary-navigation.component.scss'],
+    standalone: false
 })
 export class HmctsPrimaryNavigationComponent {
 

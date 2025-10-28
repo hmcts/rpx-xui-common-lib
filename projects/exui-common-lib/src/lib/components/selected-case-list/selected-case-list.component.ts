@@ -4,9 +4,10 @@ import { SharedCase } from '../../models/case-share.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
 
 @Component({
-  selector: 'xuilib-selected-case-list',
-  templateUrl: './selected-case-list.component.html',
-  styleUrls: ['./selected-case-list.component.scss']
+    selector: 'xuilib-selected-case-list',
+    templateUrl: './selected-case-list.component.html',
+    styleUrls: ['./selected-case-list.component.scss'],
+    standalone: false
 })
 export class SelectedCaseListComponent implements OnInit {
 

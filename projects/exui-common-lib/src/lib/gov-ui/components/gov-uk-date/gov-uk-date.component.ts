@@ -13,9 +13,10 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
  * displaying errorMessage messages
  * */
 @Component({
-  selector: 'xuilib-gov-uk-date',
-  templateUrl: './gov-uk-date.component.html',
-  styleUrls: ['./gov-uk-date.component.scss']
+    selector: 'xuilib-gov-uk-date',
+    templateUrl: './gov-uk-date.component.html',
+    styleUrls: ['./gov-uk-date.component.scss'],
+    standalone: false
 })
 export class GovUkDateComponent implements OnInit {
   constructor() {}

@@ -10,7 +10,8 @@ import { getValues, maxSelectedValidator, minSelectedValidator } from './generic
   templateUrl: 'generic-filter.component.html',
   styleUrls: ['generic-filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class GenericFilterComponent implements OnInit, OnDestroy {
   public form: FormGroup;
@@ -37,10 +38,10 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public set config(value: FilterConfig) {
     this._config = {
       ...value,
-      fields: value.fields.map(field => ({
+      fields: value.fields.map((field) => ({
         ...field,
         displayMinSelectedError: false,
-        displayMaxSelectedError: false,
+        displayMaxSelectedError: false
       }))
     };
     this._config = value;
@@ -90,7 +91,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
     this.formSub = this.form.valueChanges.subscribe(() => this.submitted = false);
     this.filterSkillsByServices(null, this.config);
-    const services = this.config.fields.find(field => field.name === 'user-services');
+    const services = this.config.fields.find((field) => field.name === 'user-services');
     if (services) {
       this.startFilterSkillsByServices(this.form, services);
       if (!this._config.copyFields) {
@@ -125,14 +126,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           control.updateValueAndValidity();
         }
         return false;
+      }
+
+      if (field.type === 'find-person') {
+        control.get('email').clearValidators();
+        control.get('email').updateValueAndValidity();
       } else {
-        if (field.type === 'find-person') {
-          control.get('email').clearValidators();
-          control.get('email').updateValueAndValidity();
-        } else {
-          control.clearValidators();
-          control.updateValueAndValidity();
-        }
+        control.clearValidators();
+        control.updateValueAndValidity();
       }
     }
     return true;
@@ -154,14 +155,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           control.updateValueAndValidity();
         }
         return null;
+      }
+
+      if (field.type === 'find-person') {
+        control.get('email').clearValidators();
+        control.get('email').updateValueAndValidity();
       } else {
-        if (field.type === 'find-person') {
-          control.get('email').clearValidators();
-          control.get('email').updateValueAndValidity();
-        } else {
-          control.clearValidators();
-          control.updateValueAndValidity();
-        }
+        control.clearValidators();
+        control.updateValueAndValidity();
       }
     }
     // find-location is special case where need to reset textbox (by existing disabling functionality)
@@ -266,8 +267,14 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public checkBoxChecked(field: any, i: number) {
-    return (this.form.get(field.name) as FormArray)['controls'][i]['value'];
+  public checkBoxChecked(field: any, i: number): any {
+    const fa = this.form.get(field.name) as FormArray;
+    return fa.controls[i].value;
+  }
+
+  // Helper used in templates (Angular 20 strict template inference)
+  public isArray(val: unknown): val is unknown[] {
+    return Array.isArray(val);
   }
 
   public updateTaskNameControls(values: any, field: FilterFieldConfig): void {
@@ -285,7 +292,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  public toggleSelectAll(event: any, form: FormGroup, item: { key: string; label: string; selectAll?: true }, field: FilterFieldConfig): void {
+  // Adjusted parameter type to align with FilterConfigOption interface (selectAll?: boolean)
+  public toggleSelectAll(event: any, form: FormGroup, item: FilterConfigOption, field: FilterFieldConfig): void {
     const isChecked = event.target.checked;
     const formArray: FormArray = form.get(field.name) as FormArray;
     if (!item.selectAll) {
@@ -330,7 +338,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       this.startFilterSkillsByServices(form, field);
     } else if (field.name === 'user-skills') {
       if (isChecked) {
-        const selectedIndex = field.options.findIndex(option => Number(option.key) === Number(event.target.value));
+        const selectedIndex = field.options.findIndex((option) => Number(option.key) === Number(event.target.value));
         const selectedCheckbox = this.form.get('user-skills').value;
         selectedCheckbox[selectedIndex] = true;
         this.form.get('user-skills').setValue(selectedCheckbox);
@@ -497,15 +505,13 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
     return Object.keys(formValues).map((name: string) => {
       const values = formValues[name];
       if (Array.isArray(values)) {
-        const field = config.fields.find(f => f.name === name);
+        const field = config.fields.find((f) => f.name === name);
         if (field.type === 'find-location' || field.type === 'find-service') {
           return { value: values, name };
-        } else {
-          return { value: getValues(field.options, values), name };
         }
-      } else {
-        return { value: [values], name };
+        return { value: getValues(field.options, values), name };
       }
+      return { value: [values], name };
     });
   }
 
@@ -524,7 +530,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
     // remove duplicates
     errors = errors.filter((filterError, i, arr) => {
-      return errors.indexOf(arr.find(item => item.name === filterError.name)) === i;
+      return errors.indexOf(arr.find((item) => item.name === filterError.name)) === i;
     });
 
     if (errors.length) {
@@ -534,12 +540,12 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   public initValuesFromCacheForSkillsByServices() {
     if (this.settings && this.settings.fields) {
-      const cachedValues = this.filteredSkillsByServicesCheckbox.map(skill => {
+      const cachedValues = this.filteredSkillsByServicesCheckbox.map((skill) => {
         let selected = false;
         let isSelectedUserSkill: number;
-        const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
+        const selectedUserSkills = this.settings.fields.find((setting) => setting.name === 'user-skills');
         if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
-          isSelectedUserSkill = selectedUserSkills.value.findIndex(val => {
+          isSelectedUserSkill = selectedUserSkills.value.findIndex((val) => {
             return String(val) === String(skill.key);
           });
           selected = isSelectedUserSkill !== -1;
@@ -558,8 +564,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
   public filterSkillsByServices(services: string[], config: FilterConfig) {
     this.filteredSkillsByServices = [];
     this.filteredSkillsByServicesCheckbox = [];
-    const userSkillsSelectField = config.fields.find(f => f.name === 'user-skills' && f.type === 'group-select');
-    const userSkillsCheckboxField = config.fields.find(f => f.name === 'user-skills' && f.type === 'nested-checkbox');
+    const userSkillsSelectField = config.fields.find((f) => f.name === 'user-skills' && f.type === 'group-select');
+    const userSkillsCheckboxField = config.fields.find((f) => f.name === 'user-skills' && f.type === 'nested-checkbox');
 
     if (userSkillsSelectField) {
       const userSkills = userSkillsSelectField.groupOptions;
@@ -578,13 +584,13 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (!services || services.length === 0) {
         this.filteredSkillsByServices = userSkills;
       } else {
-        services.forEach(s => {
-          const groupOption = userSkills.find(u => u.group.toLowerCase() === s.toLowerCase());
+        services.forEach((s) => {
+          const groupOption = userSkills.find((u) => u.group.toLowerCase() === s.toLowerCase());
           if (groupOption) {
             this.filteredSkillsByServices.push(groupOption);
           }
         });
-        this.filteredSkillsByServicesCheckbox = this.filteredSkillsByServices.map(skill => {
+        this.filteredSkillsByServicesCheckbox = this.filteredSkillsByServices.map((skill) => {
           return skill.options;
         }).reduce((a, b) => {
           return a.concat(b);
@@ -599,16 +605,16 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
             (this.form.get('user-skills') as FormArray).push(new FormControl(false));
           });
 
-          const prevValues = this.filteredSkillsByServicesCheckbox.map(skill => {
+          const prevValues = this.filteredSkillsByServicesCheckbox.map((skill) => {
             let selected = false;
             if (this.settings && this.settings.fields) {
               if (this.previousSelectedNestedCheckbox.length > 0) {
                 selected = this.previousSelectedNestedCheckbox.includes(skill.key);
               }
               let isSelectedUserSkill: number;
-              const selectedUserSkills = this.settings.fields.find(setting => setting.name === 'user-skills');
+              const selectedUserSkills = this.settings.fields.find((setting) => setting.name === 'user-skills');
               if (selectedUserSkills && selectedUserSkills.value && selectedUserSkills.value.length > 0) {
-                isSelectedUserSkill = selectedUserSkills.value.findIndex(val => Number(val) === Number(skill.key));
+                isSelectedUserSkill = selectedUserSkills.value.findIndex((val) => Number(val) === Number(skill.key));
                 selected = isSelectedUserSkill !== -1;
               }
               if (this.previousSelectedNestedCheckbox.length > 0) {
@@ -672,8 +678,8 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   private sortGroupOptions(groupOptions: GroupOptions[]): GroupOptions[] {
     const sortedResults: GroupOptions[] = [];
-    const groups = groupOptions.map(go => go.group);
-    groups.sort().forEach(g => {
+    const groups = groupOptions.map((go) => go.group);
+    groups.sort().forEach((g) => {
       const options = groupOptions.find((go: any) => go.group === g).options;
       const sortedOptions = options.sort((a, b) => {
         return a.label.toLowerCase() > b.label.toLowerCase() ? 1 : (b.label.toLowerCase() > a.label.toLowerCase() ? -1 : 0);

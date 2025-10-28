@@ -9,8 +9,9 @@ import { RadioButtonsModel } from '../../models/radio-buttons.model';
 * @param: errors - array of error stings
 * */
 @Component({
-  selector: 'xuilib-gov-uk-radios',
-  templateUrl: './gov-uk-radios.component.html'
+    selector: 'xuilib-gov-uk-radios',
+    templateUrl: './gov-uk-radios.component.html',
+    standalone: false
 })
 
 export class GovUkRadiosComponent {

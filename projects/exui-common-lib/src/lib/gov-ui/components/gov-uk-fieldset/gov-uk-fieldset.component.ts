@@ -11,8 +11,9 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 * @param errorMessage - used for aria tag
 * */
 @Component({
-  selector: 'xuilib-gov-uk-fieldset',
-  templateUrl: './gov-uk-fieldset.component.html'
+    selector: 'xuilib-gov-uk-fieldset',
+    templateUrl: './gov-uk-fieldset.component.html',
+    standalone: false
 })
 export class GovUkFieldsetComponent {
   constructor() { }

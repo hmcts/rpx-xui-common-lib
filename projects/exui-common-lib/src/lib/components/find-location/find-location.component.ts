@@ -6,9 +6,10 @@ import { getValues } from '../generic-filter/generic-filter-utils';
 import { SearchLocationComponent } from '../search-location/search-location.component';
 
 @Component({
-  selector: 'xuilib-find-location',
-  templateUrl: './find-location.component.html',
-  styleUrls: ['./find-location.component.scss']
+    selector: 'xuilib-find-location',
+    templateUrl: './find-location.component.html',
+    styleUrls: ['./find-location.component.scss'],
+    standalone: false
 })
 export class FindLocationComponent implements OnInit, OnDestroy {
   @Output() public locationFieldChanged = new EventEmitter<void>();
