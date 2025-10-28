@@ -7,9 +7,10 @@ import {Component, Input} from '@angular/core';
 * @prop config - obj with properties
 * */
 @Component({
-  selector: 'xuilib-gov-label',
-  templateUrl: './gov-uk-label.component.html',
-  styleUrls: ['./gov-uk-label.component.scss']
+    selector: 'xuilib-gov-label',
+    templateUrl: './gov-uk-label.component.html',
+    styleUrls: ['./gov-uk-label.component.scss'],
+    standalone: false
 })
 export class GovUkLabelComponent {
   constructor() { }

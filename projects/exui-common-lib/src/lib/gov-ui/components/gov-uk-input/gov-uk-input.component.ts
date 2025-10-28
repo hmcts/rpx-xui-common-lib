@@ -10,9 +10,10 @@ import { HtmlTemplatesHelper } from '../../util/helpers/html-templates.helper';
 * @prop config - adding configuration
 * */
 @Component({
-  selector: 'xuilib-gov-uk-input',
-  templateUrl: './gov-uk-input.component.html',
-  styleUrls: ['./gov-uk-input.component.scss']
+    selector: 'xuilib-gov-uk-input',
+    templateUrl: './gov-uk-input.component.html',
+    styleUrls: ['./gov-uk-input.component.scss'],
+    standalone: false
 })
 export class GovUkInputComponent implements OnInit {
   constructor() { }

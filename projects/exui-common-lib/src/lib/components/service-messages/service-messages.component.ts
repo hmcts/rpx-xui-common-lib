@@ -4,8 +4,9 @@ import { ServiceMessages } from '../../models/service-message.model';
 
 
 @Component({
-  selector: 'xuilib-service-messages',
-  templateUrl: './service-messages.component.html'
+    selector: 'xuilib-service-messages',
+    templateUrl: './service-messages.component.html',
+    standalone: false
 })
 export class ServiceMessagesComponent implements OnInit {
   public hiddenBanners: string[];

@@ -5,7 +5,10 @@ import { By } from '@angular/platform-browser';
 import { RpxTranslationConfig, RpxTranslationService } from 'rpx-xui-translation';
 import { GovUkFieldsetComponent } from './gov-uk-fieldset.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

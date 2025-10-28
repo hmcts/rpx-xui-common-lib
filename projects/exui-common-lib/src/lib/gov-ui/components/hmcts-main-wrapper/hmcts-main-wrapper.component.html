@@ -1,30 +1,40 @@
-<a *ngIf="hasBackLink" [routerLink]="backLink" (click)="onGoBack()" class="govuk-back-link">{{'Back'  | rpxTranslate}}</a>
+@if (hasBackLink) {
+  <a [routerLink]="backLink" (click)="onGoBack()" class="govuk-back-link">{{'Back'  | rpxTranslate}}</a>
+}
 <main id="content" role="main" class="govuk-main-wrapper">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <xuilib-hmcts-error-summary
-        *ngIf="summaryErrors && !summaryErrors.isFromValid"
-        [errorMessages]="summaryErrors.items"
-        [header]="summaryErrors.header"
-        [showWarningMessage]="showWarningMessage">
-      </xuilib-hmcts-error-summary>
-      <xuilib-hmcts-banner *ngIf="bannerData"
-                           [type]="bannerData.type"
-                           [message]="bannerData.message"
-      ></xuilib-hmcts-banner>
-      <h1 *ngIf="title" class="govuk-heading-xl">{{title | rpxTranslate}}</h1>
+      @if (summaryErrors && !summaryErrors.isFromValid) {
+        <xuilib-hmcts-error-summary
+          [errorMessages]="summaryErrors.items"
+          [header]="summaryErrors.header"
+          [showWarningMessage]="showWarningMessage">
+        </xuilib-hmcts-error-summary>
+      }
+      @if (bannerData) {
+        <xuilib-hmcts-banner
+          [type]="bannerData.type"
+          [message]="bannerData.message"
+        ></xuilib-hmcts-banner>
+      }
+      @if (title) {
+        <h1 class="govuk-heading-xl">{{title | rpxTranslate}}</h1>
+      }
       <ng-content></ng-content>
     </div>
-    <div class="govuk-grid-column-one-third" *ngIf="actionButtons?.length > 0">
-      <div class="hmcts-page-heading__actions-wrapper">
-        <a
-          *ngFor="let actionButton of actionButtons"
-          (click)="actionButton.action()"
-          role="button"
-          draggable="false"
-          class="govuk-button {{ actionButton.class }}"
-        >{{ actionButton.name | rpxTranslate }}</a>
+    @if (actionButtons?.length > 0) {
+      <div class="govuk-grid-column-one-third">
+        <div class="hmcts-page-heading__actions-wrapper">
+          @for (actionButton of actionButtons; track actionButton) {
+            <a
+              (click)="actionButton.action()"
+              role="button"
+              draggable="false"
+              class="govuk-button {{ actionButton.class }}"
+            >{{ actionButton.name | rpxTranslate }}</a>
+          }
+        </div>
       </div>
-    </div>
+    }
   </div>
 </main>

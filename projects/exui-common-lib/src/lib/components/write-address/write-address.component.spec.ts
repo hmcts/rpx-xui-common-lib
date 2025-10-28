@@ -24,8 +24,9 @@ describe('WriteAddressFieldComponent', () => {
   @Component({
     selector: `write-address-field`,
     template: `<xuilib-write-address-field [formGroup]="formGroup">
-    </xuilib-write-address-field>`
-  })
+    </xuilib-write-address-field>`,
+    standalone: false
+})
   class WrapperComponent {
     @ViewChild(WriteAddressFieldComponent, /* TODO: add static flag */ {})
     public componentUnderTest: WriteAddressFieldComponent;

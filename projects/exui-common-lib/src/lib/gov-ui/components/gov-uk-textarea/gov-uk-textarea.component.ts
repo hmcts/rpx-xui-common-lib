@@ -11,8 +11,9 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 * @param: errors - array of errorMessage
 * */
 @Component({
-  selector: 'xuilib-gov-uk-textarea',
-  templateUrl: './gov-uk-textarea.component.html'
+    selector: 'xuilib-gov-uk-textarea',
+    templateUrl: './gov-uk-textarea.component.html',
+    standalone: false
 })
 export class GovUkTextareaComponent {
   @Input() public config: GovUiConfigModel;

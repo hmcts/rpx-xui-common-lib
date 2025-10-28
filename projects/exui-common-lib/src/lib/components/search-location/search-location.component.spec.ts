@@ -13,7 +13,10 @@ import { RefDataService } from '../../services/ref-data';
 import { SessionStorageService } from '../../services/storage/session-storage/session-storage.service';
 import { SearchLocationComponent } from './search-location.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+  name: 'rpxTranslate',
+  standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
@@ -285,18 +288,18 @@ describe('SearchLocationComponent', () => {
   }));
 
   describe('lookup by jurisdiction (i.e. servicesField does not exist)', () => {
-    it('should return false and should not call the api when ' +
+    it('should return null and should not call the api when ' +
       'input characters are less then three', fakeAsync(() => {
-        // @ts-expect-error - private property
-        const debounceTime = component.debounceTimeInput;
+    // @ts-expect-error - private property
+      const debounceTime = component.debounceTimeInput;
 
-        component.filteredList$.subscribe((result) => {
-          expect(result).toBe(false);
-        });
-        component.searchTermFormControl.setValue('');
-        tick(debounceTime);
-        flush();
-      }));
+      component.filteredList$.subscribe((result) => {
+        expect(result).toBeNull();
+      });
+      component.searchTermFormControl.setValue('');
+      tick(debounceTime);
+      flush();
+    }));
 
     it('should call get locations with the correct parameters', () => {
       component.serviceIds = 'IA,SSCS';
@@ -369,9 +372,9 @@ describe('SearchLocationComponent', () => {
           flush();
         }));
 
-        it('should return false and should not call the api when observable searchTerm valueChanges emits', fakeAsync(() => {
+        it('should return null and should not call the api when observable searchTerm valueChanges emits', fakeAsync(() => {
           component.filteredList$.subscribe((result) => {
-            expect(result).toBe(false);
+            expect(result).toBeNull();
           });
 
           component.searchTermFormControl.setValue('');
@@ -454,7 +457,13 @@ describe('SearchLocationComponent', () => {
   it('should call RemoveInvalidString on change input', () => {
     let spyInvalidString = spyOn(component, 'removeInvalidString');
     let input = fixture.debugElement.query(By.css('.govuk-input'));
-    input.triggerEventHandler('keydown', {});
+    const mockKeyboardEvent = {
+      preventDefault: jasmine.createSpy('preventDefault'),
+      key: 'A',
+      code: 'KeyA',
+      target: { value: 'test' }
+    };
+    input.triggerEventHandler('keydown', mockKeyboardEvent);
     fixture.detectChanges();
     expect(spyInvalidString).toHaveBeenCalled();
   });
@@ -462,7 +471,13 @@ describe('SearchLocationComponent', () => {
   it('check for valid regex values', () => {
     let spyIsValidCharacter = spyOn(component, 'isCharacterValid');
     let input = fixture.debugElement.query(By.css('.govuk-input'));
-    input.triggerEventHandler('keydown', {});
+    const mockKeyboardEvent = {
+      preventDefault: jasmine.createSpy('preventDefault'),
+      key: 'A',
+      code: 'KeyA',
+      target: { value: 'test' }
+    };
+    input.triggerEventHandler('keydown', mockKeyboardEvent);
     fixture.detectChanges();
     expect(spyIsValidCharacter).toHaveBeenCalled();
   });

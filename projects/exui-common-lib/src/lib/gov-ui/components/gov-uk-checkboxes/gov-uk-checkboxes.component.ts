@@ -10,9 +10,10 @@ import { HtmlTemplatesHelper } from '../../util/helpers/html-templates.helper';
 * @param: errors - array of error stings
 * */
 @Component({
-  selector: 'xuilib-gov-uk-checkboxes',
-  templateUrl: './gov-uk-checkboxes.component.html',
-  styleUrls: ['./gov-uk-checkboxes.component.scss']
+    selector: 'xuilib-gov-uk-checkboxes',
+    templateUrl: './gov-uk-checkboxes.component.html',
+    styleUrls: ['./gov-uk-checkboxes.component.scss'],
+    standalone: false
 })
 
 export class GovUkCheckboxesComponent implements OnInit {

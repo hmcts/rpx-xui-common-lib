@@ -3,9 +3,10 @@ import { FilterConfigOption } from '../../models';
 import { MatLegacyOptionSelectionChange as MatOptionSelectionChange } from '@angular/material/legacy-core';
 
 @Component({
-  selector: 'exui-search-service',
-  templateUrl: './search-service.component.html',
-  styleUrls: ['./search-service.component.scss']
+    selector: 'exui-search-service',
+    templateUrl: './search-service.component.html',
+    styleUrls: ['./search-service.component.scss'],
+    standalone: false
 })
 export class SearchServiceComponent {
   @Input() public options: FilterConfigOption[];

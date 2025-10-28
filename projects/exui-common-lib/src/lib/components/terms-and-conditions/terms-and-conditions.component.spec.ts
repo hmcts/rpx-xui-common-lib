@@ -5,7 +5,10 @@ import { TcDisplayHtmlComponent } from './tc-display/tc-display-html/tc-display-
 import { TcDisplayPlainComponent } from './tc-display/tc-display-plain/tc-display-plain.component';
 import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
