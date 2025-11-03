@@ -22,7 +22,7 @@ test.describe('workspace-project App', () => {
         consoleErrors.push(msg.text());
       }
     });
-    
+
     expect(consoleErrors).toHaveLength(0);
   });
 });

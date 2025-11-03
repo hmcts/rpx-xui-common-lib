@@ -5,7 +5,10 @@ import { SharedCase } from '../../models/case-share.model';
 import { UserDetails } from '../../models/user-details.model';
 import { SelectedCaseComponent } from './selected-case.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

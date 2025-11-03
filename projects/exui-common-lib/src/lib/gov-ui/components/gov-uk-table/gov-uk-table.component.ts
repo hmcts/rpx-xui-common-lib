@@ -4,7 +4,8 @@ import {Component, Input} from '@angular/core';
 @Component({
     selector: 'xuilib-gov-uk-table',
     templateUrl: './gov-uk-table.component.html',
-    styleUrls: ['./gov-uk-table.component.scss']
+    styleUrls: ['./gov-uk-table.component.scss'],
+    standalone: false
 })
 export class GovukTableComponent {
 

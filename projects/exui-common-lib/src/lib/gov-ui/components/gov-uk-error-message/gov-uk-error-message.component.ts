@@ -8,8 +8,9 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 * @prop errorMessage - all error bject with messages property that is arry of strings.
 * */
 @Component({
-  selector: ' xuilib-gov-uk-error-message',
-  templateUrl: './gov-uk-error-message.component.html'
+    selector: ' xuilib-gov-uk-error-message',
+    templateUrl: './gov-uk-error-message.component.html',
+    standalone: false
 })
 export class GovUkErrorMessageComponent {
   constructor() { }

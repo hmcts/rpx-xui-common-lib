@@ -8,7 +8,8 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
 @Component({
   selector: 'xuilib-search-judicials',
   templateUrl: './search-judicials.component.html',
-  styleUrls: ['./search-judicials.component.scss']
+  styleUrls: ['./search-judicials.component.scss'],
+  standalone: false
 })
 export class SearchJudicialsComponent implements OnInit {
   public formGroup: FormGroup;
