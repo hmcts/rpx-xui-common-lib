@@ -1,5 +1,7 @@
 <div id="casesToConfirm">
+  @if (!acceptCases){
   <h3 class="govuk-heading-l">{{'Cases' | rpxTranslate}}</h3>
+  }
   @if (shareCases && shareCases.length > 0) {
     <div id="summarySections">
       <xuilib-selected-case-list
