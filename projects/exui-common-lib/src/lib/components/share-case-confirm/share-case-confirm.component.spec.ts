@@ -5,7 +5,10 @@ import { of } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { ShareCaseConfirmComponent } from './share-case-confirm.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

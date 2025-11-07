@@ -5,7 +5,10 @@ import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/m
 import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

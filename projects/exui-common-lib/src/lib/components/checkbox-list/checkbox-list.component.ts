@@ -1,10 +1,11 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'xuilib-checkbox-list',
-  templateUrl: 'checkbox-list.component.html',
-  styleUrls: ['checkbox-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'xuilib-checkbox-list',
+    templateUrl: 'checkbox-list.component.html',
+    styleUrls: ['checkbox-list.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class CheckboxListComponent<T> implements OnChanges, AfterContentChecked {
 

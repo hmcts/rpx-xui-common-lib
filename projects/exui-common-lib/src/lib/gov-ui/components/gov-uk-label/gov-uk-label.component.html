@@ -1,12 +1,21 @@
-<h1 *ngIf="config.isPageHeading else noHeading">
-  <label *ngIf="config.label" [for]="config.id" [class]="config.classes + ' govuk-label'">
-    <span>{{ config.label | rpxTranslate }}</span>
-    <span class="govuk-label__optional" *ngIf="config.optional">(optional)</span>
-  </label>
-</h1>
-<ng-template #noHeading>
-  <label *ngIf="config.label" [for]="config.id" [class]="config.classes + ' govuk-label'">
-    <span>{{ config.label }}</span>
-    <span class="govuk-label__optional" *ngIf="config.optional">(optional)</span>
-  </label>
-</ng-template>
+@if (config.isPageHeading) {
+  <h1>
+    @if (config.label) {
+      <label [for]="config.id" [class]="config.classes + ' govuk-label'">
+        <span>{{ config.label | rpxTranslate }}</span>
+        @if (config.optional) {
+          <span class="govuk-label__optional">(optional)</span>
+        }
+      </label>
+    }
+  </h1>
+} @else {
+  @if (config.label) {
+    <label [for]="config.id" [class]="config.classes + ' govuk-label'">
+      <span>{{ config.label }}</span>
+      @if (config.optional) {
+        <span class="govuk-label__optional">(optional)</span>
+      }
+    </label>
+  }
+}

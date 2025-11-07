@@ -4,7 +4,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DateBadgeColour } from '../../models/due-date.model';
 import { DueDateComponent } from './due-date.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

@@ -4,7 +4,8 @@ import { windowToken } from '../../window';
 
 @Component({
     selector: 'xuilib-cookie-banner',
-    templateUrl: './cookie-banner.component.html'
+    templateUrl: './cookie-banner.component.html',
+    standalone: false
 })
 
 export class CookieBannerComponent implements OnInit {

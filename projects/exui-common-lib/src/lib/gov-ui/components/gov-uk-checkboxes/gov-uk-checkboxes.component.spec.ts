@@ -3,7 +3,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GovUkCheckboxesComponent } from './gov-uk-checkboxes.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;

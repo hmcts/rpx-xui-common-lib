@@ -1,30 +1,40 @@
-<h1 class="govuk-heading-l" *ngIf="title && title.length">
-  <span class="govuk-caption-l">{{title | rpxTranslate}}</span>
-  {{boldTitle | rpxTranslate}}
-</h1>
+@if (title && title.length) {
+  <h1 class="govuk-heading-l">
+    <span class="govuk-caption-l">{{title | rpxTranslate}}</span>
+    {{boldTitle | rpxTranslate}}
+  </h1>
+}
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
-     [ngClass]="{'form-group-error': findPersonGroup.get('findPersonControl').invalid && submitted}">
+  [ngClass]="{'form-group-error': findPersonGroup.get('findPersonControl').invalid && submitted}">
   <fieldset class="govuk-fieldset" aria-describedby="sub-title-hint">
-    <div id="sub-title-hint" class="govuk-hint" *ngIf="subTitle && subTitle.length">
-      {{subTitle | rpxTranslate}}
-    </div>
-    <span id="validation-error" class="govuk-error-message" *ngIf="findPersonGroup && findPersonGroup.errors">
+    @if (subTitle && subTitle.length) {
+      <div id="sub-title-hint" class="govuk-hint">
+        {{subTitle | rpxTranslate}}
+      </div>
+    }
+    @if (findPersonGroup && findPersonGroup.errors) {
+      <span id="validation-error" class="govuk-error-message">
         <span class="govuk-visually-hidden">{{'Error:' | rpxTranslate}}</span>{{findPersonGroup.errors.error ? findPersonGroup.errors.error : errorMessage}}
-    </span>
+      </span>
+    }
     <input id="inputSelectPerson{{idValue}}" type="text" aria-label="select a person"
-           formControlName="findPersonControl"
-           [matAutocomplete]="auto"
-           class="govuk-input govuk-!-width-one-third"
-           [placeholder]="placeholderContent"
-           [attr.disabled]="disabled"
-           (input)="onInput()">
+      formControlName="findPersonControl"
+      [matAutocomplete]="auto"
+      class="govuk-input govuk-!-width-one-third"
+      [placeholder]="placeholderContent"
+      [attr.disabled]="disabled"
+      (input)="onInput()">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectionChange($event.option.value)">
-      <mat-option *ngFor="let option of filteredOptions"
-                  [value]="option"
-                  [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
-        {{getDisplayName(option) | rpxTranslate}}
-      </mat-option>
-      <mat-option [ngClass]="{'select-option': showUpdatedColor}" *ngIf="isNoResultsShown && !filteredOptions.length && showAutocomplete">{{'No results found' | rpxTranslate}}</mat-option>
+      @for (option of filteredOptions; track option) {
+        <mat-option
+          [value]="option"
+          [ngClass]="{'hide-autocomplete': !showAutocomplete, 'select-option': showUpdatedColor}">
+          {{getDisplayName(option) | rpxTranslate}}
+        </mat-option>
+      }
+      @if (isNoResultsShown && !filteredOptions.length && showAutocomplete) {
+        <mat-option [ngClass]="{'select-option': showUpdatedColor}">{{'No results found' | rpxTranslate}}</mat-option>
+      }
     </mat-autocomplete>
   </fieldset>
 </div>

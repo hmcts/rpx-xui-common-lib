@@ -10,9 +10,10 @@ import {Component, Input} from '@angular/core';
  * @prop back link, appHeaderTitle (appHeaderTitle), summaryErrors (array of errors)
  */
 @Component({
-  selector: 'exui-page-wrapper',
-  templateUrl: 'exui-page-wrapper.component.html',
-  styleUrls: ['exui-page-wrapper.component.scss']
+    selector: 'exui-page-wrapper',
+    templateUrl: 'exui-page-wrapper.component.html',
+    styleUrls: ['exui-page-wrapper.component.scss'],
+    standalone: false
 })
 export class ExuiPageWrapperComponent  {
 

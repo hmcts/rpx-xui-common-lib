@@ -10,7 +10,10 @@ import { JudicialUserModel } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 import { SearchJudicialsComponent } from './search-judicials.component';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+  name: 'rpxTranslate',
+  standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
@@ -50,7 +53,7 @@ describe('SearchJudicialsComponent', () => {
         knownAs: 'Hearing Judge',
         personalCode: 'P100001',
         surname: 'Jacky',
-        title: 'Mr',
+        title: 'Mr'
       }
     ];
 
@@ -88,13 +91,18 @@ describe('SearchJudicialsComponent', () => {
   it('should call filter when input is more than 2 characters', async () => {
     const selectedJudicial = fixture.debugElement.query(By.css('.govuk-input'));
     selectedJudicial.nativeElement.value = 'MARCUS';
-    selectedJudicial.nativeElement.dispatchEvent(new Event('keyup'));
+    const mockKeyboardEvent = new KeyboardEvent('keyup', {
+      key: 'M',
+      code: 'KeyM'
+    });
+    Object.defineProperty(mockKeyboardEvent, 'target', {
+      value: { value: 'MARCUS' }
+    });
+    selectedJudicial.nativeElement.dispatchEvent(mockKeyboardEvent);
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.keyUpSubject$.next).toHaveBeenCalled();
-      });
+      expect(component.keyUpSubject$.next).toHaveBeenCalledWith('MARCUS');
     });
   });
 

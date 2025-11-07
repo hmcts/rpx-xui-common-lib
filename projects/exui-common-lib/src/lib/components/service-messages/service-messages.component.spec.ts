@@ -6,7 +6,10 @@ import { FeatureToggleService } from '../../services/feature-toggle/feature-togg
 import { ServiceMessagesComponent } from './service-messages.component';
 import { ServiceMessages } from '../../models/service-message.model';
 
-@Pipe({ name: 'rpxTranslate' })
+@Pipe({
+    name: 'rpxTranslate',
+    standalone: false
+})
 class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
