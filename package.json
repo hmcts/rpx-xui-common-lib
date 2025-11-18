@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.1.5-cme-778-prerelease",
+  "version": "3.2.0",
   "engines": {
     "node": ">=20.0.0"
   },
