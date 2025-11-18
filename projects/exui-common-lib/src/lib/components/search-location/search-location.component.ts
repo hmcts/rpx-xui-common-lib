@@ -15,7 +15,8 @@ import { SessionStorageService } from '../../services/storage/session-storage/se
 @Component({
   selector: 'exui-search-location',
   templateUrl: './search-location.component.html',
-  styleUrls: ['./search-location.component.scss']
+  styleUrls: ['./search-location.component.scss'],
+  standalone: false
 })
 export class SearchLocationComponent implements OnInit {
   private static readonly allLocationAPI = `api/locations/getLocations`;
@@ -37,7 +38,7 @@ export class SearchLocationComponent implements OnInit {
   public readonly minSearchCharacters = 3;
   public term: string = '';
   private pReset: boolean = true;
-  public filteredList$: Observable<LocationByEPIMMSModel[] | boolean>;
+  public filteredList$: Observable<LocationByEPIMMSModel[] | null>;
   private readonly debounceTimeInput = 300;
   public previousValue = '';
 
@@ -66,7 +67,7 @@ export class SearchLocationComponent implements OnInit {
     if (this.field && this.field.servicesField) {
       this.filteredList$ = searchInputChanges$.pipe(
         switchMap((term: string) => iif(
-          // Seems more responsive to do length 0 if locationsByServiceCodes are cached
+          // display results for any length (>=0) when using cached service codes
           () => (!!term && term.length >= 0),
           this.refDataService.getLocationsByServiceCodes(
             (this.form.get(this.field.servicesField)?.value as FilterConfigOption[]).map((service) => service.key)
@@ -81,9 +82,8 @@ export class SearchLocationComponent implements OnInit {
               index === array.findIndex((item) => item[this.propertyNameFilter] === location[this.propertyNameFilter])
             )),
           ),
-          // Returns false if the search term is empty to not show the autocomplete field i.e. ngIf should be false
-          of(false)
-        )),
+          of(null)
+        ))
       );
     } else {
       this.filteredList$ = searchInputChanges$.pipe(
@@ -93,13 +93,10 @@ export class SearchLocationComponent implements OnInit {
           () => (!!term && term.length >= this.minSearchCharacters),
           this.getLocations(term).pipe(
             map((locations) => this.filterUnselectedLocations(locations, this.selectedLocations, this.singleMode)),
-            catchError(() => {
-              // returns false so the user is not shown the no results found message
-              return of(false);
-            }),
+            catchError(() => of(null))
           ),
-          of(false)
-        )),
+          of(null)
+        ))
       );
     }
 

@@ -24,7 +24,14 @@ It will run the tests for exui-common-lib.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute the end-to-end tests via [Playwright](https://playwright.dev/).
+
+You can also run Playwright tests directly:
+- `npx playwright test` - Run all tests
+- `npx playwright test --ui` - Run tests with UI mode
+- `npx playwright show-report` - View the last test report
+
+The e2e tests are located in the `e2e/` directory and use Playwright's modern testing framework for reliable, fast end-to-end testing across multiple browsers (Chromium, Firefox, and WebKit).
 
 ## Further help
 

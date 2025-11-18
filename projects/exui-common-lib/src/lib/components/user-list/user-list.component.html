@@ -1,22 +1,22 @@
 <table class="govuk-table">
 
-    <thead clas="govuk-table__head">
-        <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">{{'Name' | rpxTranslate}}</th>
-            <th class="govuk-table__header" scope="col">{{'Email' | rpxTranslate}}</th>
-            <th class="govuk-table__header" scope="col">{{'Status' | rpxTranslate}}</th>
-        </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-      <ng-container *ngFor="let u of users | paginate: { itemsPerPage: pagination.itemsPerPage, currentPage: currentPageNumber, totalItems: pagination.totalItems }">
-        <tr class="govuk-table__row" data-selector="table-row">
-            <td class="govuk-table__cell" data-selector="table-cell">
-              <a class="govuk-link" [attr.title]="u.routerLinkTitle" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
-            </td>
-            <td class="govuk-table__cell" data-selector="table-cell">{{ u.email }}</td>
-            <td class="govuk-table__cell" data-selector="table-cell">{{ u.status }}</td>
-        </tr>
-      </ng-container>
-    </tbody>
+  <thead clas="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col">{{'Name' | rpxTranslate}}</th>
+      <th class="govuk-table__header" scope="col">{{'Email' | rpxTranslate}}</th>
+      <th class="govuk-table__header" scope="col">{{'Status' | rpxTranslate}}</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    @for (u of users | paginate: { itemsPerPage: pagination.itemsPerPage, currentPage: currentPageNumber, totalItems: pagination.totalItems }; track u) {
+      <tr class="govuk-table__row" data-selector="table-row">
+        <td class="govuk-table__cell" data-selector="table-cell">
+          <a class="govuk-link" [attr.title]="u.routerLinkTitle" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
+        </td>
+        <td class="govuk-table__cell" data-selector="table-cell">{{ u.email }}</td>
+        <td class="govuk-table__cell" data-selector="table-cell">{{ u.status }}</td>
+      </tr>
+    }
+  </tbody>
 </table>
 <xuilib-hmcts-pagination (pageChange)="emitPageClickEvent($event)" [pageSize]="pagination.itemsPerPage"></xuilib-hmcts-pagination>

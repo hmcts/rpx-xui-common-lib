@@ -5,57 +5,75 @@
       <h3 id="{{buildElementId('case-id')}}" class="govuk-case-sub-title">{{ sharedCase.caseId | rpxTranslate }}</h3>
     </div>
     <div class="govuk-grid-column-ten-percent">
-      <button *ngIf="caseCount > 1"
-        id="{{buildElementId('btn-deselect-case')}}"
-        class="govuk-button hmcts-button--secondary"
-        (click)="onDeselect(sharedCase)" title="Deselect case">
-        {{'Deselect case' | rpxTranslate}}
-      </button>
+      @if (caseCount > 1) {
+        <button
+          id="{{buildElementId('btn-deselect-case')}}"
+          class="govuk-button hmcts-button--secondary"
+          (click)="onDeselect(sharedCase)" title="Deselect case">
+          {{'Deselect case' | rpxTranslate}}
+        </button>
+      }
     </div>
     <div class="govuk-accordion__section-header govuk-grid-column-ten-percent">
       <div class="govuk-accordion__section-heading">
         <button type="button" id="{{buildElementId('accordion-with-summary-sections-heading')}}"
-              [attr.aria-controls]="'accordion-with-summary-sections-content' + buildElementId('accordion-with-summary-sections-heading')" class="govuk-accordion__section-button"
-               aria-expanded="false" [title]="'Expand or Collapse' | rpxTranslate">
-        <span class="govuk-accordion__icon" aria-hidden="true"></span></button>
+          [attr.aria-controls]="'accordion-with-summary-sections-content' + buildElementId('accordion-with-summary-sections-heading')" class="govuk-accordion__section-button"
+          aria-expanded="false" [title]="'Expand or Collapse' | rpxTranslate">
+          <span class="govuk-accordion__icon" aria-hidden="true"></span></button>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="{{buildElementId('accordion-with-summary-sections-content')}}" class="govuk-accordion__section-content"
-       [attr.aria-labelledby]="buildElementId('accordion-with-summary-sections-heading')" >
-    <div class="govuk-grid-row" *ngIf="showNoUsersAccessInfo()">
-      <span id="{{buildElementId('access-info-no-user')}}" class="govuk-div-align-left">
-        {{'No users from your organisation currently have access to this case.' | rpxTranslate}}
-      </span>
+    <div id="{{buildElementId('accordion-with-summary-sections-content')}}" class="govuk-accordion__section-content"
+      [attr.aria-labelledby]="buildElementId('accordion-with-summary-sections-heading')" >
+      @if (showNoUsersAccessInfo()) {
+        <div class="govuk-grid-row">
+          <span id="{{buildElementId('access-info-no-user')}}" class="govuk-div-align-left">
+            {{'No users from your organisation currently have access to this case.' | rpxTranslate}}
+          </span>
+        </div>
+      }
+      @if (showUserHasAccessInfo()) {
+        <div class="govuk-grid-row">
+          <span id="{{buildElementId('access-info-has-users')}}" class="govuk-div-align-left">
+            {{'Users from your organisation with access to this case.' | rpxTranslate}}
+          </span>
+        </div>
+      }
+      @if (showUserAccessTable()) {
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th id="{{buildElementId('name-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">{{'Name' | rpxTranslate}}</th>
+              <th id="{{buildElementId('email-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">{{'Email address' | rpxTranslate}}</th>
+              <th id="{{buildElementId('action-heading')}}" class="govuk-table__header govuk-table-column-actions" scope="col">{{'Actions' | rpxTranslate}}</th>
+              <th id="{{buildElementId('label-heading')}}" class="govuk-table__header govuk-table-column-label" scope="col">{{ 'Status' | rpxTranslate }}</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            @for (user of combinedSortedShares; track trackByUserId(user); let idx = $index) {
+              <tr class="govuk-table__row">
+                <td id="user-full-name-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
+                <td id="user-email-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.email }}</td>
+                <td class="govuk-table__cell">
+                  @if (canRemove(sharedCase.caseId, user) | async) {
+                    <a (click)="onRemove(user, sharedCase)" href="javascript:void(0);">{{'Remove' | rpxTranslate}} <span class="govuk-visually-hidden">{{ user.firstName + ' ' + user.lastName }} {{'from case' | rpxTranslate}}</span></a>
+                  }
+                  @if (canCancel(sharedCase.caseId, user) | async) {
+                    <a (click)="onCancel(user, sharedCase)" href="javascript:void(0);">{{'Cancel' | rpxTranslate}} <span class="govuk-visually-hidden">{{'adding' | rpxTranslate}} {{ user.firstName + ' ' + user.lastName }} {{'to case' | rpxTranslate}}</span></a>
+                  }
+                </td>
+                <td class="govuk-table__cell">
+                  @if (isToBeRemoved(sharedCase.caseId, user) | async) {
+                    <span class="hmcts-badge hmcts-badge--red">{{'To be removed' | rpxTranslate}}</span>
+                  }
+                  @if (isToBeAdded(sharedCase.caseId, user) | async) {
+                    <span class="hmcts-badge">{{'To be added' | rpxTranslate}}</span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
     </div>
-    <div class="govuk-grid-row" *ngIf="showUserHasAccessInfo()">
-      <span id="{{buildElementId('access-info-has-users')}}" class="govuk-div-align-left">
-        {{'Users from your organisation with access to this case.' | rpxTranslate}}
-      </span>
-    </div>
-    <table class="govuk-table" *ngIf="showUserAccessTable()">
-      <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th id="{{buildElementId('name-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">{{'Name' | rpxTranslate}}</th>
-        <th id="{{buildElementId('email-heading')}}" class="govuk-table__header govuk-table-column-header" scope="col">{{'Email address' | rpxTranslate}}</th>
-        <th id="{{buildElementId('action-heading')}}" class="govuk-table__header govuk-table-column-actions" scope="col">{{'Actions' | rpxTranslate}}</th>
-        <th id="{{buildElementId('label-heading')}}" class="govuk-table__header govuk-table-column-label" scope="col">{{ 'Status' | rpxTranslate }}</th>
-      </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row" *ngFor="let user of combinedSortedShares; index as idx; trackBy: trackByUserId">
-          <td id="user-full-name-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
-          <td id="user-email-{{ userIdSetter(canCancel(sharedCase.caseId, user) | async, idx) }}" class="govuk-table__cell">{{ user.email }}</td>
-          <td class="govuk-table__cell">
-            <a *ngIf="canRemove(sharedCase.caseId, user) | async" (click)="onRemove(user, sharedCase); $event.preventDefault()" href="#">{{'Remove' | rpxTranslate}} <span class="govuk-visually-hidden">{{ user.firstName + ' ' + user.lastName }} {{'from case' | rpxTranslate}}</span></a>
-            <a *ngIf="canCancel(sharedCase.caseId, user) | async" (click)="onCancel(user, sharedCase); $event.preventDefault()" href="#">{{'Cancel' | rpxTranslate}} <span class="govuk-visually-hidden">{{'adding' | rpxTranslate}} {{ user.firstName + ' ' + user.lastName }} {{'to case' | rpxTranslate}}</span></a>
-          </td>
-          <td class="govuk-table__cell">
-            <span *ngIf="isToBeRemoved(sharedCase.caseId, user) | async" class="hmcts-badge hmcts-badge--red">{{'To be removed' | rpxTranslate}}</span>
-            <span *ngIf="isToBeAdded(sharedCase.caseId, user) | async" class="hmcts-badge">{{'To be added' | rpxTranslate}}</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
-</div>

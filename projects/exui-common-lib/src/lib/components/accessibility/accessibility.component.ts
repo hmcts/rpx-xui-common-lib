@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'xuilib-accessibility',
-  templateUrl: './accessibility.component.html',
-  styleUrls: ['./accessibility.component.scss']
+    selector: 'xuilib-accessibility',
+    templateUrl: './accessibility.component.html',
+    styleUrls: ['./accessibility.component.scss'],
+    standalone: false
 })
 
 export class AccessibilityComponent implements OnInit {

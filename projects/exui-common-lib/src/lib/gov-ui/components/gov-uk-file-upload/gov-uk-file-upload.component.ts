@@ -11,8 +11,9 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 * @prop config - adding configuration
 * */
 @Component({
-  selector: 'xuilib-gov-uk-file-upload',
-  templateUrl: './gov-uk-file-upload.component.html'
+    selector: 'xuilib-gov-uk-file-upload',
+    templateUrl: './gov-uk-file-upload.component.html',
+    standalone: false
 })
 export class GovUkFileUploadComponent implements OnInit {
   constructor() { }

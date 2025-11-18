@@ -1,4 +1,6 @@
-<span *ngIf="dueDate" class="due-date hmcts-badge" [ngClass]="badge"
-      [title]="accessibleLabel | rpxTranslate" [attr.aria-label]="accessibleLabel | rpxTranslate">
-  {{label | rpxTranslate}}
-</span>
+@if (dueDate) {
+  <span class="due-date hmcts-badge" [ngClass]="badge"
+    [title]="accessibleLabel | rpxTranslate" [attr.aria-label]="accessibleLabel | rpxTranslate">
+    {{label | rpxTranslate}}
+  </span>
+}

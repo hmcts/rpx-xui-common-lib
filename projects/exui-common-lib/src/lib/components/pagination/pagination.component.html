@@ -4,19 +4,21 @@
 
   <ul class="hmcts-pagination__list">
     <li class="hmcts-pagination__item  hmcts-pagination__item--prev">
-      <a *ngIf="firstRecord > 1; else noPrevious" class="hmcts-pagination__link" (click)="onPrevious(); $event.preventDefault()" href="#">
-        {{'Previous page' | rpxTranslate}}
-      </a>
-      <ng-template #noPrevious>
+      @if (firstRecord > 1) {
+        <a class="hmcts-pagination__link" (click)="onPrevious()" href="javascript:void(0)">
+          {{'Previous page' | rpxTranslate}}
+        </a>
+      } @else {
         <span class="hmcts-pagination__link">{{'Previous page' | rpxTranslate}}</span>
-      </ng-template>
+      }
     </li>
 
     <li class="hmcts-pagination__item  hmcts-pagination__item--next">
-      <a *ngIf="moreItems; else noNext" class="hmcts-pagination__link" (click)="onNext(); $event.preventDefault()" href="#">{{'Next page' | rpxTranslate}}</a>
-      <ng-template #noNext>
+      @if (moreItems) {
+        <a class="hmcts-pagination__link" (click)="onNext()" href="javascript:void(0)">{{'Next page' | rpxTranslate}}</a>
+      } @else {
         <span class="hmcts-pagination__link">{{'Next page' | rpxTranslate}}</span>
-      </ng-template>
+      }
     </li>
   </ul>
 </nav>

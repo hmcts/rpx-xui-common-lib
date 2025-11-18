@@ -1,14 +1,18 @@
-<div class="xui-checkbox-list govuk-checkboxes govuk-checkboxes--small" *ngIf="isFunctional">
-  <div class="select-all govuk-checkboxes__item">
-    <input type="checkbox" id="select_all" class="govuk-checkboxes__input" [checked]="allSelected"
-           (change)="toggleSelectAll()" />
-    <label for="select_all" class="govuk-label govuk-checkboxes__label">{{'Select all / Deselect all' | rpxTranslate}}</label>
-  </div>
-  <div class="checkbox-items">
-    <div *ngFor="let item of options; let i = index" class="govuk-checkboxes__item">
-      <input type="checkbox" [id]="'select_' + i" class="govuk-checkboxes__input" [checked]="isSelected(item)"
-             (change)="toggleItemSelection(item)" />
-      <label [for]="'select_' + i" class="govuk-label govuk-checkboxes__label">{{labelFunction(item) | rpxTranslate}}</label>
+@if (isFunctional) {
+  <div class="xui-checkbox-list govuk-checkboxes govuk-checkboxes--small">
+    <div class="select-all govuk-checkboxes__item">
+      <input type="checkbox" id="select_all" class="govuk-checkboxes__input" [checked]="allSelected"
+        (change)="toggleSelectAll()" />
+      <label for="select_all" class="govuk-label govuk-checkboxes__label">{{'Select all / Deselect all' | rpxTranslate}}</label>
+    </div>
+    <div class="checkbox-items">
+      @for (item of options; track item; let i = $index) {
+        <div class="govuk-checkboxes__item">
+          <input type="checkbox" [id]="'select_' + i" class="govuk-checkboxes__input" [checked]="isSelected(item)"
+            (change)="toggleItemSelection(item)" />
+          <label [for]="'select_' + i" class="govuk-label govuk-checkboxes__label">{{labelFunction(item) | rpxTranslate}}</label>
+        </div>
+      }
     </div>
   </div>
-</div>
+}

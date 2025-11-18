@@ -1,36 +1,44 @@
 <div class="location-picker-custom">
   <div class="search-location">
     <div>
-      <label id="input-selected-location-label" *ngIf="locationTitle">{{locationTitle}}</label>
+      @if (locationTitle) {
+        <label id="input-selected-location-label">{{locationTitle}}</label>
+      }
     </div>
     <exui-search-location class="search-location"
-                          [form]="form"
-                          [field]="field"
-                          [selectedLocations]="selectedLocations"
-                          [delay]="300"
-                          [disabled]="disabled"
-                          [singleMode]="field.maxSelected === 1"
-                          [bookingCheck]="field.bookingCheckType"
-                          [serviceIds]="serviceIds"
-                          [propertyNameFilter]="propertyNameFilter"
-                          (locationTermSearchInputChanged)="onInputChanged($event)"
-                          (locationSelected)="onLocationSelected($event)"
-                          (searchLocationChanged)="onSearchInputChanged()"
-                          [locationType]="'case-management'">
+      [form]="form"
+      [field]="field"
+      [selectedLocations]="selectedLocations"
+      [delay]="300"
+      [disabled]="disabled"
+      [singleMode]="field.maxSelected === 1"
+      [bookingCheck]="field.bookingCheckType"
+      [serviceIds]="serviceIds"
+      [propertyNameFilter]="propertyNameFilter"
+      (locationTermSearchInputChanged)="onInputChanged($event)"
+      (locationSelected)="onLocationSelected($event)"
+      (searchLocationChanged)="onSearchInputChanged()"
+      [locationType]="'case-management'">
     </exui-search-location>
   </div>
 
   <div>
-    <a href="#" (click)="addLocation(); $event.preventDefault()" class="govuk-button add-location-button" data-module="govuk-button" *ngIf="enableAddLocationButton">
-      Add location
-    </a>
+    @if (enableAddLocationButton) {
+      <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button add-location-button" data-module="govuk-button">
+        Add location
+      </a>
+    }
   </div>
 
-  <ul class="hmcts-filter-tags selection-container" *ngIf="field.maxSelected != 1">
-    <li class="location-selection"  *ngFor="let selection of selectedLocations">
-      <a class="hmcts-filter__tag" (click)="removeLocation(selection); $event.preventDefault()" href="#">
-        {{ selection[propertyNameFilter] }}
-      </a>
-    </li>
-  </ul>
+  @if (field.maxSelected != 1) {
+    <ul class="hmcts-filter-tags selection-container">
+      @for (selection of selectedLocations; track selection) {
+        <li class="location-selection" >
+          <a class="hmcts-filter__tag" (click)="removeLocation(selection)" href="javascript:void(0)">
+            {{ selection[propertyNameFilter] }}
+          </a>
+        </li>
+      }
+    </ul>
+  }
 </div>

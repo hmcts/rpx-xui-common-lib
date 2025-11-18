@@ -8,8 +8,9 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 * dropdown input.
 * */
 @Component({
-  selector: 'xuilib-gov-select',
-  templateUrl: './gov-uk-select.component.html'
+    selector: 'xuilib-gov-select',
+    templateUrl: './gov-uk-select.component.html',
+    standalone: false
 })
 export class GovUkSelectComponent {
   constructor() {}
