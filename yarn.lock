@@ -784,22 +784,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/localize@npm:20.3.14":
-  version: 20.3.14
-  resolution: "@angular/localize@npm:20.3.14"
+"@angular/localize@npm:20.3.15":
+  version: 20.3.15
+  resolution: "@angular/localize@npm:20.3.15"
   dependencies:
     "@babel/core": "npm:7.28.3"
     "@types/babel__core": "npm:7.20.5"
     tinyglobby: "npm:^0.2.12"
     yargs: "npm:^18.0.0"
   peerDependencies:
-    "@angular/compiler": 20.3.14
-    "@angular/compiler-cli": 20.3.14
+    "@angular/compiler": 20.3.15
+    "@angular/compiler-cli": 20.3.15
   bin:
     localize-extract: tools/bundles/src/extract/cli.js
     localize-migrate: tools/bundles/src/migrate/cli.js
     localize-translate: tools/bundles/src/translate/cli.js
-  checksum: 10c0/a3ede05839e73d98f1a059bd4bfb60b704fb40f38ec90dca825ea6673b6afbe3b84ead075abb3102387e543a9daa48606dc4fcbdbdf7c8772380d5469c35e3b9
+  checksum: 10c0/c025ea9679852776531be0fc037f31d7e75c03cf252ba2836d75343502318dd991170985bf2abc19d0990e4418a00967ea910b66cebb590609fda77513ba24b6
   languageName: node
   linkType: hard
 
@@ -2519,7 +2519,7 @@ __metadata:
     "@angular/core": "npm:^20.3.14"
     "@angular/forms": "npm:^20.3.14"
     "@angular/language-service": "npm:^20.3.14"
-    "@angular/localize": "npm:20.3.14"
+    "@angular/localize": "npm:20.3.15"
     "@angular/material": "npm:16.2.0"
     "@angular/platform-browser": "npm:^20.3.14"
     "@angular/platform-browser-dynamic": "npm:^20.3.14"
@@ -2554,7 +2554,7 @@ __metadata:
     tslib: "npm:^2.6.1"
     tslint: "npm:~6.1.0"
     typescript: "npm:~5.8.3"
-    zone.js: "npm:~0.15.1"
+    zone.js: "npm:~0.16.0"
   languageName: unknown
   linkType: soft
 
@@ -13208,9 +13208,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zone.js@npm:~0.15.1":
-  version: 0.15.1
-  resolution: "zone.js@npm:0.15.1"
-  checksum: 10c0/4eca000f90dbea1c34f62e88ce56910dace8cdecbe14747b214f2af37aa511264c7bd50faf3e9b00612e95dc4567da156a9690fef1983bfcf74604a630d190ef
+"zone.js@npm:~0.16.0":
+  version: 0.16.0
+  resolution: "zone.js@npm:0.16.0"
+  checksum: 10c0/89fa5873077c31e928ed98a4e535dd661a2c860fba580dcb6dc4641295ae6bc831712dfc4d4de67ac7be1d32605bb12913ed9e87784421e47ba453613016577b
   languageName: node
   linkType: hard
