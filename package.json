@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.1-angular-20.3.14",
+  "version": "3.2.2-test",
   "engines": {
     "node": ">=20.0.0"
   },

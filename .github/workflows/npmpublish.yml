@@ -51,18 +51,30 @@ jobs:
     if: startsWith(github.ref, 'refs/tags')
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v5
-        if: startsWith(github.ref, 'refs/tags')
-      - uses: actions/setup-node@v5
-        if: startsWith(github.ref, 'refs/tags')
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
           scope: '@hmcts'
       - run: corepack enable && yarn --version
       - run: yarn install
-      - run: yarn build:library
+      - run: yarn build
+      - name: Pack dist as npm tarball
+        id: pack
+        run: |
+          cd dist/exui-common-lib
+          TAR=$(npm pack)
+          echo "tarball=dist/exui-common-lib/$TAR" >> $GITHUB_OUTPUT
+      - name: Attach tarball to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.pack.outputs.tarball }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm publish dist/exui-common-lib/ --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
