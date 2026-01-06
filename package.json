@@ -37,7 +37,7 @@
     "@angular/platform-browser-dynamic": "^20.3.14",
     "@angular/router": "^20.3.14",
     "@hmcts/frontend": "0.0.50-alpha",
-    "@ng-idle/core": "^11.1.0",
+    "@ng-idle/core": "^16.0.0",
     "@ng-idle/keepalive": "^16.0.0",
     "core-js": "^3.37.0",
     "govuk-frontend": "4.9.0",

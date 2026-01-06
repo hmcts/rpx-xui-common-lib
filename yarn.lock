@@ -2525,7 +2525,7 @@ __metadata:
     "@angular/platform-browser-dynamic": "npm:^20.3.14"
     "@angular/router": "npm:^20.3.14"
     "@hmcts/frontend": "npm:0.0.50-alpha"
-    "@ng-idle/core": "npm:^11.1.0"
+    "@ng-idle/core": "npm:^16.0.0"
     "@ng-idle/keepalive": "npm:^16.0.0"
     "@playwright/test": "npm:1.55.1"
     "@types/jasmine": "npm:~4.3.5"
@@ -4134,15 +4134,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ng-idle/core@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "@ng-idle/core@npm:11.1.0"
+"@ng-idle/core@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "@ng-idle/core@npm:16.0.0"
   dependencies:
-    tslib: "npm:^2.0.0"
+    tslib: "npm:^2.6.0"
   peerDependencies:
-    "@angular/common": ">=9.0.0"
-    "@angular/core": ">=9.0.0"
-  checksum: 10c0/c9c83a8b02655274f8e462c864041b66453498e576e95237b7eedfc44bee3d23b636bf0e57e6718242a40817e5a8e1e75942128cfbbc8e248de950204ea453a3
+    "@angular/common": ">=17.3.10"
+    "@angular/core": ">=17.3.10"
+  checksum: 10c0/e8d8474bda552c3c041c671ea41117cead6644e1837eb93691b1b4896264d067db9a5fe6ff21317ea861890724c962683c4407bae8b7733378e2b74a8087d6c7
   languageName: node
   linkType: hard
 
