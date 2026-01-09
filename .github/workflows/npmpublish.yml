@@ -28,7 +28,7 @@ jobs:
       - run: yarn test
 
   publish-npm:
-    if: github.event_name != 'release'
+    if: github.event_name == 'release'
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -75,7 +75,7 @@ jobs:
           npm publish --access public --tag "$NPM_TAG" --ignore-scripts
 
   publish-gpr:
-    if: github.event_name != 'release'
+    if: github.event_name == 'release'
     needs: build
     runs-on: ubuntu-latest
     permissions:
