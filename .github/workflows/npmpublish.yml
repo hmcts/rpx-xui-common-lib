@@ -9,9 +9,9 @@ on:
     branches:
       - master
       - Release
-      - refs/tags/*
-    tags:
-      - '*'
+  release:
+    types:
+      - created
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
       - run: yarn test
 
   publish-npm:
-    if: startsWith(github.ref, 'refs/tags')
+    if: github.event_name != 'release'
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -36,9 +36,7 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v5
-        if: startsWith(github.ref, 'refs/tags')
       - uses: actions/setup-node@v5
-        if: startsWith(github.ref, 'refs/tags')
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
@@ -51,6 +49,14 @@ jobs:
           npm --version
           npm i -g npm@11.5.1
           npm --version
+
+      - name: Determine npm dist-tag from GitHub Release
+        run: |
+          if [ "${{ github.event.release.prerelease }}" = "true" ]; then
+            echo "NPM_TAG=next" >> "$GITHUB_ENV"
+          else
+            echo "NPM_TAG=latest" >> "$GITHUB_ENV"
+          fi
       
       - name: Publish version (OIDC via npm)
         working-directory: dist/exui-common-lib
@@ -66,10 +72,10 @@ jobs:
           npm config delete //registry.npmjs.org/:_authToken || true
           npm config delete _authToken || true
 
-          npm publish --access public --ignore-scripts
+          npm publish --access public --tag "$NPM_TAG" --ignore-scripts
 
   publish-gpr:
-    if: startsWith(github.ref, 'refs/tags')
+    if: github.event_name != 'release'
     needs: build
     runs-on: ubuntu-latest
     permissions:
