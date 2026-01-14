@@ -59,7 +59,7 @@
     "@angular/compiler-cli": "^20.3.14",
     "@angular/language-service": "^20.3.14",
     "@playwright/test": "1.55.1",
-    "@types/jasmine": "~4.3.5",
+    "@types/jasmine": "~4.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^20.19.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
