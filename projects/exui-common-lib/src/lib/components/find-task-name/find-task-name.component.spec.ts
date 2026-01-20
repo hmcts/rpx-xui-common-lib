@@ -2,17 +2,17 @@ import { ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
-import { TaskNameService } from '../../services/task-name/task-name.service';
+import { TaskService } from '../../services/task/task.service';
 
 import {FindTaskNameComponent} from './find-task-name.component';
 
 describe('FindTaskNameComponent', () => {
   let component: FindTaskNameComponent;
   let fixture: ComponentFixture<FindTaskNameComponent>;
-  let mockTaskService: TaskNameService;
+  let mockTaskService: TaskService;
 
   beforeEach(() => {
-    mockTaskService = jasmine.createSpyObj('TaskNameService', ['getTaskName']);
+    mockTaskService = jasmine.createSpyObj('TaskService', ['getTaskName']);
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -23,7 +23,7 @@ describe('FindTaskNameComponent', () => {
         FindTaskNameComponent
       ],
       providers: [
-        {provide: TaskNameService, useValue: mockTaskService}
+        {provide: TaskService, useValue: mockTaskService}
       ]
     }).compileComponents();
     fixture = TestBed.createComponent(FindTaskNameComponent);

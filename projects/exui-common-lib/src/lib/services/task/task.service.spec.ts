@@ -2,10 +2,10 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { TaskNameModel } from '../../models/task-name.model';
 import { SessionStorageService } from '../storage/session-storage/session-storage.service';
-import { TaskNameService } from './task-name.service';
+import { TaskService } from './task.service';
 
-describe('TaskNameService', () => {
-  let service: TaskNameService;
+describe('TaskService', () => {
+  let service: TaskService;
   let httpMock: HttpTestingController;
   let sessionStorageService: jasmine.SpyObj<SessionStorageService>;
 
@@ -14,11 +14,11 @@ describe('TaskNameService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
-        TaskNameService,
+        TaskService,
         { provide: SessionStorageService, useValue: spySessionStorageService }
       ]
     });
-    service = TestBed.inject(TaskNameService);
+    service = TestBed.inject(TaskService);
     httpMock = TestBed.inject(HttpTestingController);
     sessionStorageService = TestBed.inject(SessionStorageService) as jasmine.SpyObj<SessionStorageService>;
   });

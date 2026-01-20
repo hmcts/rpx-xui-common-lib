@@ -27,6 +27,8 @@ import { SearchJudicialsComponent } from './components/search-judicials/search-j
 import { SearchLocationComponent } from './components/search-location/search-location.component';
 import { SearchServiceComponent } from './components/search-service/search-service.component';
 import { SearchVenueComponent } from './components/search-venue/search-venue.component';
+import { FindWorkTypeComponent } from './components/find-work-type/find-work-type.component';
+import { SearchWorkTypeComponent } from './components/search-work-type/search-work-type.component';
 import { SelectedCaseConfirmComponent } from './components/selected-case-confirm/selected-case-confirm.component';
 import { SelectedCaseListComponent } from './components/selected-case-list/selected-case-list.component';
 import { SelectedCaseComponent } from './components/selected-case/selected-case.component';
@@ -115,6 +117,8 @@ export const COMMON_COMPONENTS = [
   SearchLocationComponent,
   FindServiceComponent,
   SearchServiceComponent,
+  FindWorkTypeComponent,
+  SearchWorkTypeComponent,
   SearchVenueComponent,
   PaginationComponent,
   WriteAddressFieldComponent,
