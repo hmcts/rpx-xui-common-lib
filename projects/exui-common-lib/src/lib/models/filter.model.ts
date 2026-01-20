@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { BookingCheckType } from './location.model';
 import { PersonRole } from './person.model';
 
-export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select' | 'nested-checkbox' | 'find-task-name';
+export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'find-work-type' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select' | 'nested-checkbox' | 'find-task-name';
 
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
@@ -54,6 +54,7 @@ export interface FilterFieldConfig {
   findPersonField?: string;
   findLocationField?: string;
   findTaskNameField?: string;
+  findWorkTypeField?: string;
   domainField?: string;
   disable?: boolean;
   disabledText?: string;
@@ -63,6 +64,7 @@ export interface FilterFieldConfig {
   titleHint?: string;
   subTitle?: string;
   locationTitle?: string;
+  workTypeTitle?: string;
   hintText?: string;
   radioSelectionChange?: string;
   bookingCheckType?: BookingCheckType;

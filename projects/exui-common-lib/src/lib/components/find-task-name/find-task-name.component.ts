@@ -4,7 +4,7 @@ import {Observable, Subscription} from 'rxjs';
 import {debounceTime, filter, mergeMap, tap} from 'rxjs/operators';
 import {PersonRole} from '../../models';
 import { TaskNameModel } from '../../models/task-name.model';
-import { TaskNameService } from '../../services/task-name/task-name.service';
+import { TaskService } from '../../services/task/task.service';
 
 @Component({
     selector: 'xuilib-find-task-name',
@@ -39,7 +39,7 @@ export class FindTaskNameComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public searchTerm: string = '';
 
-  constructor(private readonly cd: ChangeDetectorRef, private readonly taskService: TaskNameService) {}
+  constructor(private readonly cd: ChangeDetectorRef, private readonly taskService: TaskService) {}
 
   public ngOnDestroy() {
     if (this.sub) {

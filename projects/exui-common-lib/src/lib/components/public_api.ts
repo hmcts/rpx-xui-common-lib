@@ -26,6 +26,8 @@ export * from './find-service/find-service.component';
 export * from './search-service/search-service.component';
 export * from './find-location/find-location.component';
 export * from './search-location/search-location.component';
+export * from './find-work-type/find-work-type.component';
+export * from './search-work-type/search-work-type.component';
 export * from './pagination/pagination.component';
 export * from './search-venue/search-venue.component';
 export * from './search-judicials/search-judicials.component';
