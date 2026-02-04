@@ -2525,8 +2525,8 @@ __metadata:
     "@angular/platform-browser-dynamic": "npm:^20.3.14"
     "@angular/router": "npm:^20.3.14"
     "@hmcts/frontend": "npm:0.0.50-alpha"
-    "@ng-idle/core": "npm:^11.1.0"
-    "@ng-idle/keepalive": "npm:^11.0.3"
+    "@ng-idle/core": "npm:^16.0.0"
+    "@ng-idle/keepalive": "npm:^16.0.0"
     "@playwright/test": "npm:1.55.1"
     "@types/jasmine": "npm:~4.3.5"
     "@types/jasminewd2": "npm:~2.0.3"
@@ -4134,28 +4134,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ng-idle/core@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "@ng-idle/core@npm:11.1.0"
+"@ng-idle/core@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "@ng-idle/core@npm:16.0.0"
   dependencies:
-    tslib: "npm:^2.0.0"
+    tslib: "npm:^2.6.0"
   peerDependencies:
-    "@angular/common": ">=9.0.0"
-    "@angular/core": ">=9.0.0"
-  checksum: 10c0/c9c83a8b02655274f8e462c864041b66453498e576e95237b7eedfc44bee3d23b636bf0e57e6718242a40817e5a8e1e75942128cfbbc8e248de950204ea453a3
+    "@angular/common": ">=17.3.10"
+    "@angular/core": ">=17.3.10"
+  checksum: 10c0/e8d8474bda552c3c041c671ea41117cead6644e1837eb93691b1b4896264d067db9a5fe6ff21317ea861890724c962683c4407bae8b7733378e2b74a8087d6c7
   languageName: node
   linkType: hard
 
-"@ng-idle/keepalive@npm:^11.0.3":
-  version: 11.0.3
-  resolution: "@ng-idle/keepalive@npm:11.0.3"
+"@ng-idle/keepalive@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "@ng-idle/keepalive@npm:16.0.0"
   dependencies:
-    tslib: "npm:^2.0.0"
+    tslib: "npm:^2.6.0"
   peerDependencies:
-    "@angular/common": ">=9.0.0"
-    "@angular/core": ">=9.0.0"
-    "@ng-idle/core": ^11.0.3
-  checksum: 10c0/0957422e66fd8272ee1d6f56319a629fe14d1cc16496ff79dc8de232c05dbb7dd6723efba6eb30f1374f7a472b2e12317717bb6c50d30c4d6ce0d16cc8f751c9
+    "@angular/common": ">=17.3.10"
+    "@angular/core": ">=17.3.10"
+    "@ng-idle/core": ^16.0.0
+  checksum: 10c0/6e727ad20888df4a0cc818e17e4f9a1483b9679fb36ab313574115d0a0458af598a90b6cd97806089cc39c92453ac603903e23d1106a5a256ddcb9af225255df
   languageName: node
   linkType: hard
 
@@ -12399,7 +12399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.8.1, tslib@npm:^2.0.0, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.6.1":
+"tslib@npm:2.8.1, tslib@npm:^2.0.0, tslib@npm:^2.1.0, tslib@npm:^2.3.0, tslib@npm:^2.6.0, tslib@npm:^2.6.1":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10c0/9c4759110a19c53f992d9aae23aac5ced636e99887b51b9e61def52611732872ff7668757d4e4c61f19691e36f4da981cd9485e869b4a7408d689f6bf1f14e62
