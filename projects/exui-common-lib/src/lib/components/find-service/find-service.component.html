@@ -15,7 +15,7 @@
         (optionChanged)="onOptionSelected($event)">
       </exui-search-service>
       @if (field?.enableAddButton) {
-        <a href="javascript:void(0)" (click)="addOption(tempSelectedService)"
+        <a href="#" (click)="addOption(tempSelectedService); $event.preventDefault()"
           class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" data-module="govuk-button"
           id="add-service">
           {{ 'Add' | rpxTranslate}}
@@ -28,7 +28,7 @@
     <ul class="hmcts-filter-tags selection-container">
       @for (selection of selectedServices; track selection) {
         <li class="location-selection">
-          <a class="hmcts-filter__tag" (click)="removeOption(selection)" href="javascript:void(0)">
+          <a class="hmcts-filter__tag" href="#" (click)="removeOption(selection); $event.preventDefault()">
             {{ selection.label  | rpxTranslate }}
           </a>
         </li>

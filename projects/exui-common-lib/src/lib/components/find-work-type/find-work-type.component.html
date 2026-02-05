@@ -13,7 +13,7 @@
         (searchWorkTypeChanged)="onSearchInputChanged()">
       </exui-search-work-type>
       @if (enableAddWorkTypeButton) {
-      <a href="javascript:void(0)" (click)="addWorkType()"
+      <a href="#" (click)="addWorkType(); $event.preventDefault()"
         class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" data-module="govuk-button"
         id="add-work-type">
         {{ 'Add' | rpxTranslate}}
@@ -27,7 +27,7 @@
   <ul class="hmcts-filter-tags selection-container">
     @for (selection of selectedWorkTypes; track selection) {
     <li class="work-type-selection">
-      <a class="hmcts-filter__tag" (click)="removeWorkType(selection)" href="javascript:void(0)">
+      <a class="hmcts-filter__tag" href="#" (click)="removeWorkType(selection); $event.preventDefault()">
         {{ selection.label }}
       </a>
     </li>
