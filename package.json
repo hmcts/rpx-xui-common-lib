@@ -64,6 +64,8 @@
     "@types/node": "^20.19.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/types": "^8.0.0",
+    "@typescript-eslint/utils": "^8.0.0",
     "codelyzer": "^6.0.2",
     "eslint": "^8.57.0",
     "jasmine-core": "~5.1.0",
