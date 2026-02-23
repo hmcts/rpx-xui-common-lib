@@ -1,0 +1,17 @@
+.search-work-type__input-container {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.search-work-type__input {
+  flex: 1 1 0;
+}
+
+.govuk-button--secondary {
+  max-width: 57px;
+}
+
+#add-work-type {
+  background-color: #dddddd;
+}
