@@ -94,7 +94,7 @@ export class TimeoutNotificationsService {
     this.subs.push(this.idle.onIdleStart.subscribe(() => console.log('You\'ve gone idle!')));
     this.subs.push(this.idle.onIdleEnd.subscribe(() => console.log('You\'re no longer idle!')));
 
-    this.keepalive.interval(config.keepAliveInSeconds || 15);
+    this.keepalive.interval(config.keepAliveInSeconds || 900);
     this.subs.push(this.keepalive.onPing.subscribe(() => {
       this.eventEmitter.next({eventType: KEEP_ALIVE_EVENT});
     }));
