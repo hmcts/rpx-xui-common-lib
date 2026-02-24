@@ -208,6 +208,20 @@
                     [disabled]="disabled(field, form)">
                   </xuilib-find-service>
                 }
+                @case ('find-work-type') {
+                  <xuilib-find-work-type (workTypeFieldChanged)="inputChanged(field)"
+                    [form]="form"
+                    [fields]="config.fields"
+                    [workTypeTitle]="field.workTypeTitle"
+                    [enableAddWorkTypeButton]="field.enableAddButton"
+                    [disabled]="disabled(field, form)"
+                    [disableInputField]="field.disable"
+                    [submitted]="submitted"
+                    [field]="field"
+                    [services]="form.get(field.findWorkTypeField)?.value"
+                    [formSubmissionEvent$]="formSubmissionEvent$"
+                  ></xuilib-find-work-type>
+                }
                 @case ('text-input') {
                   <input class="govuk-input" type="text"
                     [formControlName]="field.name"
