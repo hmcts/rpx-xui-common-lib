@@ -48,7 +48,7 @@
       }
       @if (!shouldShowDetailFields() || (!startedInternational && !addressChosen)) {
         <a class="manual-link govuk-link"
-        (click)="blankAddress()" href="javascript:void(0)">I can't enter a UK postcode</a>
+        (click)="blankAddress(); $event.preventDefault()" href="#">I can't enter a UK postcode</a>
       }
     </div>
   }
