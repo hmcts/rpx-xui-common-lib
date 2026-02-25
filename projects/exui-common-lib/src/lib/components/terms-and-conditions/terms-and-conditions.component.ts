@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { TCDocument } from '../../models';
 
 @Component({
@@ -11,6 +12,9 @@ export class TermsAndConditionsComponent {
 
   @Input() public document: TCDocument;
 
-  constructor() { }
+  constructor(private readonly sanitizer: DomSanitizer) { }
 
+  public sanitizeHtml(content: string | null | undefined): string {
+    return this.sanitizer.sanitize(SecurityContext.HTML, content ?? '') ?? '';
+  }
 }
