@@ -17,3 +17,4 @@ export * from './loading/loading.service';
 export * from './filter/filter.service';
 export * from './task/task.service';
 export * from './ref-data';
+export * from '../telemetry/telemetry.token';
