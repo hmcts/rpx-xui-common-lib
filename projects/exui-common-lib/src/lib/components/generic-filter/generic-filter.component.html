@@ -159,6 +159,11 @@
                   </div>
                 }
                 @case ('find-person') {
+                  <!-- TODO(EXUI-2073): Decision needed for roleCategory === <NEW_CATEGORY> in find-person filter journeys.
+                       QUESTION: Should filter configs allow selecting <NEW_CATEGORY>, and which domainField value should map to it?
+                       CONTEXT: domainField is config-driven; its raw form value is passed into xuilib-find-person [domain].
+                       CONTEXT: FindPersonComponent.filter() then switches on that value (Judicial, All, CTSC, Legal Ops, Admin).
+                       CONTEXT: Unknown values fall through to default (empty results), and mapped values pick different backend calls. -->
                   <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
                     (personFieldChanged)="inputChanged(field)"
                     [submitted]="submitted"

@@ -71,6 +71,9 @@ export class FindPersonComponent implements OnInit, OnDestroy {
     const findJudicialOrCTSCPeople = this.findPersonService.find({ searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser });
     const findCaseworkersOrAdminsOrCtsc = this.findPersonService.findCaseworkers({ searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser });
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
+      // TODO(EXUI-2073): Decision needed for roleCategory/PersonRole === <NEW_CATEGORY>.
+      // QUESTION: Should this entry point use judicial search, caseworker search, combined search, or remain hidden for <NEW_CATEGORY>?
+      // CONTEXT: Supported branches are Judicial, All, CTSC, Legal Ops, and Admin; default returns no results.
       switch (this.domain) {
         case PersonRole.JUDICIAL: {
           return findJudicialOrCTSCPeople.pipe(map((persons) => {
@@ -87,6 +90,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
           return findCaseworkersOrAdminsOrCtsc;
         }
         default: {
+          // TODO(EXUI-2073): If <NEW_CATEGORY> is added without an explicit branch, this fallback hides all options.
           return of([]);
         }
       }
@@ -103,6 +107,9 @@ export class FindPersonComponent implements OnInit, OnDestroy {
     if (!selectedPerson) {
       return '';
     }
+    // TODO(EXUI-2073): Decision needed for <NEW_CATEGORY> display format.
+    // QUESTION: Should <NEW_CATEGORY> use judicial-style fullName formatting or email/name formatting?
+    // CONTEXT: Only PersonRole.JUDICIAL currently gets a specialised display format.
     if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.fullName) {
       return `${selectedPerson.fullName} (${selectedPerson.email})`;
     }

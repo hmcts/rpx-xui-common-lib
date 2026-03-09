@@ -51,5 +51,8 @@ export enum RoleCategory {
   CTSC = 'CTSC',
   PROFESSIONAL = 'PROFESSIONAL',
   CITIZEN = 'CITIZEN',
+  // TODO(EXUI-2073): Decision needed for <NEW_CATEGORY> alignment with PersonRole.
+  // QUESTION: Is <NEW_CATEGORY> backend-only (RoleCategory) or selectable in UI (PersonRole)?
+  // CONTEXT: Existing RoleCategory values (e.g. PROFESSIONAL, CITIZEN) do not have explicit PersonRole branches.
   ALL = 'ALL'
 }

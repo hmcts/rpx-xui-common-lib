@@ -61,9 +61,19 @@ export class FindAPersonService {
         email: caseworker.email,
         name: `${caseworker.firstName} ${caseworker.lastName}`,
         id: caseworker.idamId,
+        // TODO(EXUI-2073): Decision needed for roleCategory === <NEW_CATEGORY>.
+        // QUESTION: Should <NEW_CATEGORY> map to an existing PersonRole label or get its own label?
+        // CONTEXT: This is the transformation point from backend Caseworker.roleCategory to UI Person.domain.
+        // CONTEXT: Current ternary preserves only LEGAL_OPERATIONS; ADMIN/CTSC/JUDICIAL/PROFESSIONAL/CITIZEN/unknown map to Admin.
+        // CONTEXT: Person.domain is used by UI display/branching, so category collapse can hide distinct behaviour and wording.
         domain: caseworker.roleCategory === RoleCategory.LEGAL_OPERATIONS ? PersonRole.LEGAL_OPERATIONS : PersonRole.ADMIN
         // knownAs can be added if required
       };
+      // TODO(EXUI-2073): Decision needed for roleCategory filtering for <NEW_CATEGORY>.
+      // QUESTION: Should <NEW_CATEGORY> be included only on exact match, with RoleCategory.ALL, or never in this journey?
+      // CONTEXT: Inclusion is decided here by OR-logic: exact roleCategory match, broad RoleCategory.ALL match, or current-user idamId match.
+      // CONTEXT: The current-user bypass can include a person even when their roleCategory does not match the selected filter.
+      // CONTEXT: There is no explicit deny/exclude branch by category, so <NEW_CATEGORY> behaviour depends entirely on these three paths.
       if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
         people.push(thisPerson);
       }
@@ -73,6 +83,11 @@ export class FindAPersonService {
 
   public searchInCaseworkers(caseworkers: Caseworker[], searchOptions: SearchOptions): Person[] {
     let roleCategory = RoleCategory.ALL;
+    // TODO(EXUI-2073): Decision needed for PersonRole -> RoleCategory mapping for <NEW_CATEGORY>.
+    // QUESTION: Should UI expose <NEW_CATEGORY> as a selectable PersonRole, and which RoleCategory should be sent?
+    // CONTEXT: roleCategory starts as ALL and is narrowed only for explicit PersonRole branches below.
+    // CONTEXT: JUDICIAL and any unhandled PersonRole currently keep RoleCategory.ALL (broad caseworker category match).
+    // CONTEXT: If <NEW_CATEGORY> is selectable but not mapped here, caseworker filtering may be broader than intended.
     if (!(searchOptions.userRole === PersonRole.ALL)) {
       if (searchOptions.userRole === PersonRole.LEGAL_OPERATIONS) {
         roleCategory = RoleCategory.LEGAL_OPERATIONS;

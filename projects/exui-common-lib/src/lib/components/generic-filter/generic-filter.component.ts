@@ -199,6 +199,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
 
   // when domain changes ensure that person field is reset
   public fieldChanged(field: FilterFieldConfig, form: FormGroup): void {
+    // TODO(EXUI-2073): Decision needed for <NEW_CATEGORY> when the domain radio/select changes.
+    // QUESTION: Should changing to or from <NEW_CATEGORY> also reset dependent find-person fields?
+    // CONTEXT: This runs on radio/select change events and applies field.changeResetFields for dependent controls.
+    // CONTEXT: In find-person journeys, resetField() clears stored person data (domain/email/id/name/knownAs) in the target group.
+    // CONTEXT: Without reset on domain transitions, a previously selected person can remain while a new domain drives different search logic.
     // TODO - Do similar with jurisdiction/service for caseworkers by services
     if (field.changeResetFields && field.changeResetFields.length) {
       for (const resetField of field.changeResetFields) {
