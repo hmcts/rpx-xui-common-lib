@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.6",
+  "version": "3.2.6-EXUI-4227-angular-upgrade",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -56,8 +56,8 @@
     "@angular-eslint/schematics": "20.4.0",
     "@angular-eslint/template-parser": "20.4.0",
     "@angular/cli": "^20.3.9",
-    "@angular/compiler-cli": "^20.3.14",
-    "@angular/language-service": "^20.3.14",
+    "@angular/compiler-cli": "^20.3.16",
+    "@angular/language-service": "^20.3.16",
     "@playwright/test": "1.55.1",
     "@types/jasmine": "~4.3.5",
     "@types/jasminewd2": "~2.0.3",

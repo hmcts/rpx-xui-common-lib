@@ -691,9 +691,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/compiler-cli@npm:^20.3.14":
-  version: 20.3.15
-  resolution: "@angular/compiler-cli@npm:20.3.15"
+"@angular/compiler-cli@npm:^20.3.16":
+  version: 20.3.17
+  resolution: "@angular/compiler-cli@npm:20.3.17"
   dependencies:
     "@babel/core": "npm:7.28.3"
     "@jridgewell/sourcemap-codec": "npm:^1.4.14"
@@ -704,7 +704,7 @@ __metadata:
     tslib: "npm:^2.3.0"
     yargs: "npm:^18.0.0"
   peerDependencies:
-    "@angular/compiler": 20.3.15
+    "@angular/compiler": 20.3.17
     typescript: ">=5.8 <6.0"
   peerDependenciesMeta:
     typescript:
@@ -712,7 +712,7 @@ __metadata:
   bin:
     ng-xi18n: bundles/src/bin/ng_xi18n.js
     ngc: bundles/src/bin/ngc.js
-  checksum: 10c0/76c03ed72d3303dc83292f5507b243a923d46344931bb0f88902e1072ba538b7b2bbd4ce8ce839957348991fde94385f212b1eb9766b2b852a36cd608a86cca0
+  checksum: 10c0/077913d98e53c41e012950de992d28feecb4ac3c4b267a2bc4b854bc8c40d25b13d08d567fefdde1acf3110d2c9aff97c6773eccf3d7069c873a515dea6098b1
   languageName: node
   linkType: hard
 
@@ -777,10 +777,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/language-service@npm:^20.3.14":
-  version: 20.3.15
-  resolution: "@angular/language-service@npm:20.3.15"
-  checksum: 10c0/7c614c8c33fad71d15ff4ac63cbbb53ec248bb684783cb2d859fd63c5a9afec7d071fc95de4f151899c432fd82f779c4d20878e6b1b56eed68d3ee5e5774d82a
+"@angular/language-service@npm:^20.3.16":
+  version: 20.3.17
+  resolution: "@angular/language-service@npm:20.3.17"
+  checksum: 10c0/5d7a01ca7600570a70eb9ffdec1f1fd2f0a07ae19dfdcd5fb13390484944d4c7119964917269dde6be80d7e7f40b57aef91488e4d6168e42c97daf55dc85a358
   languageName: node
   linkType: hard
 
@@ -2515,10 +2515,10 @@ __metadata:
     "@angular/cli": "npm:^20.3.9"
     "@angular/common": "npm:^20.3.16"
     "@angular/compiler": "npm:^20.3.16"
-    "@angular/compiler-cli": "npm:^20.3.14"
+    "@angular/compiler-cli": "npm:^20.3.16"
     "@angular/core": "npm:^20.3.16"
     "@angular/forms": "npm:^20.3.16"
-    "@angular/language-service": "npm:^20.3.14"
+    "@angular/language-service": "npm:^20.3.16"
     "@angular/localize": "npm:20.3.16"
     "@angular/material": "npm:16.2.0"
     "@angular/platform-browser": "npm:^20.3.16"
