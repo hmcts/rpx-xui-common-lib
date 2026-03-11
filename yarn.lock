@@ -2528,7 +2528,7 @@ __metadata:
     "@ng-idle/core": "npm:^16.0.0"
     "@ng-idle/keepalive": "npm:^16.0.0"
     "@playwright/test": "npm:1.55.1"
-    "@types/jasmine": "npm:~4.3.5"
+    "@types/jasmine": "npm:~4.6.0"
     "@types/jasminewd2": "npm:~2.0.3"
     "@types/node": "npm:^20.19.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
@@ -5120,10 +5120,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jasmine@npm:~4.3.5":
-  version: 4.3.6
-  resolution: "@types/jasmine@npm:4.3.6"
-  checksum: 10c0/2431ba197bd21d306a0d580cd3e2ce9460cc390ffc58f9808daeef4f8b49bab23383bb13c649908174feb7d088e91c5486725db973289ce5a347dc4154400e54
+"@types/jasmine@npm:~4.6.0":
+  version: 4.6.6
+  resolution: "@types/jasmine@npm:4.6.6"
+  checksum: 10c0/aee469cc161b940cad92ed8bbee6ba6af02c675d9c8260a7e152d1b1f9a143875c1f4f1c6c23560af43c693cae815d0a0401610a9a67c16370da6a840fb24202
   languageName: node
   linkType: hard
 
