@@ -2560,7 +2560,7 @@ __metadata:
     ng-packagr: "npm:20.3.0"
     ngx-pagination: "npm:^6.0.3"
     playwright-ng-schematics: "npm:2.0.3"
-    rpx-xui-translation: "npm:1.1.2-CME-780-9"
+    rpx-xui-translation: "npm:1.2.3-unused-package-1"
     rxjs: "npm:^7.8.1"
     ts-node: "npm:10.8.1"
     tslib: "npm:^2.6.1"
@@ -11466,17 +11466,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rpx-xui-translation@npm:1.1.2-CME-780-9":
-  version: 1.1.2-CME-780-9
-  resolution: "rpx-xui-translation@npm:1.1.2-CME-780-9"
+"rpx-xui-translation@npm:1.2.3-unused-package-1":
+  version: 1.2.3-unused-package-1
+  resolution: "rpx-xui-translation@npm:1.2.3-unused-package-1"
   dependencies:
     dexie: "npm:^3.2.2"
     luxon: "npm:^2.4.0"
     tslib: "npm:^2.0.0"
   peerDependencies:
-    "@angular/common": ^20.3.1
-    "@angular/core": ^20.3.1
-  checksum: 10c0/851bde03c5bdef57384039050916aca0208ea71d21b1a8d6a2d51b5820988c8dbf25fa6aafbd0bf1881ebe1efd7752c4748fd9905f7f50e6b65d241caf1b227d
+    "@angular/common": ^20.3.14
+    "@angular/core": ^20.3.14
+  checksum: 10c0/35c1a7aad68531c68a4bbfc2f1499ca6dbd1ee63869fdbfe0107ad2d8fed06cd779d526d97409a69b9c45aadb12c111ebfa87caae9af17e788256f2cc5066ae9
   languageName: node
   linkType: hard
 
