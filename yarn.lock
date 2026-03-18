@@ -2540,7 +2540,6 @@ __metadata:
     "@ng-idle/keepalive": "npm:^16.0.0"
     "@playwright/test": "npm:1.55.1"
     "@types/jasmine": "npm:~4.3.5"
-    "@types/jasminewd2": "npm:~2.0.3"
     "@types/node": "npm:^20.19.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/parser": "npm:^8.0.0"
@@ -5126,26 +5125,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jasmine@npm:*":
-  version: 5.1.9
-  resolution: "@types/jasmine@npm:5.1.9"
-  checksum: 10c0/f39edad861c8d9c980fc5a8b594dc835d72bfa4187b9799a8a1d716b658ac0680e4a50d60e792718acfa19dc62016e8a23c2c6a87a2c90d1e31d070c01da1954
-  languageName: node
-  linkType: hard
-
 "@types/jasmine@npm:~4.3.5":
   version: 4.3.6
   resolution: "@types/jasmine@npm:4.3.6"
   checksum: 10c0/2431ba197bd21d306a0d580cd3e2ce9460cc390ffc58f9808daeef4f8b49bab23383bb13c649908174feb7d088e91c5486725db973289ce5a347dc4154400e54
-  languageName: node
-  linkType: hard
-
-"@types/jasminewd2@npm:~2.0.3":
-  version: 2.0.13
-  resolution: "@types/jasminewd2@npm:2.0.13"
-  dependencies:
-    "@types/jasmine": "npm:*"
-  checksum: 10c0/4a4abed8a09a278e8f21a6bb28e1bf8566658992e1812d0555bdfbdc24e47f23ca19c75444af1d5936337a0c62b777651b9b70dcee7abdfdaa394b517cb259ba
   languageName: node
   linkType: hard
 
