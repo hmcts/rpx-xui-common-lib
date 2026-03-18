@@ -24,7 +24,7 @@
 
   <div>
     @if (enableAddLocationButton) {
-      <a href="javascript:void(0)" (click)="addLocation()" class="govuk-button add-location-button" data-module="govuk-button">
+      <a href="#" (click)="addLocation(); $event.preventDefault()" class="govuk-button add-location-button" data-module="govuk-button">
         Add location
       </a>
     }
@@ -34,7 +34,7 @@
     <ul class="hmcts-filter-tags selection-container">
       @for (selection of selectedLocations; track selection) {
         <li class="location-selection" >
-          <a class="hmcts-filter__tag" (click)="removeLocation(selection)" href="javascript:void(0)">
+          <a class="hmcts-filter__tag" href="#" (click)="removeLocation(selection); $event.preventDefault()">
             {{ selection[propertyNameFilter] }}
           </a>
         </li>

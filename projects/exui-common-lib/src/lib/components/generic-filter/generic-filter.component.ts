@@ -411,7 +411,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       if (field.type === 'checkbox' || field.type === 'checkbox-large' || field.type === 'nested-checkbox') {
         const formArray = this.buildCheckBoxFormArray(field, settings);
         this.form.addControl(field.name, formArray);
-      } else if (field.type === 'find-location' || field.type === 'find-service') {
+      } else if (field.type === 'find-location' || field.type === 'find-service' || (field.type === 'find-work-type' && !reset)) {
         const formArray = this.buildFormArray(field, settings);
         this.form.addControl(field.name, formArray);
       } else {
@@ -455,6 +455,11 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
           if (!defaultValue || !defaultValue.task_type_id) {
             this.form.get('findTaskNameControl')?.patchValue('');
           }
+        } else if (field.type === 'find-work-type') {
+          // note: this currently just resets the form array to empty on reset
+          // further work may be needed here if we want to repopulate with previous selections
+          const formArray = this.buildFormArray(field, null);
+          this.form.addControl(field.name, formArray);
         } else if (field.type !== 'group-title') {
           const control = new FormControl(defaultValue, validators);
           this.form.addControl(field.name, control);
@@ -506,7 +511,7 @@ export class GenericFilterComponent implements OnInit, OnDestroy {
       const values = formValues[name];
       if (Array.isArray(values)) {
         const field = config.fields.find((f) => f.name === name);
-        if (field.type === 'find-location' || field.type === 'find-service') {
+        if (field.type === 'find-location' || field.type === 'find-service' || field.type === 'find-work-type') {
           return { value: values, name };
         }
         return { value: getValues(field.options, values), name };
