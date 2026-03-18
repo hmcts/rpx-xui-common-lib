@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.6",
+  "version": "3.2.7-unused-package-1",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -39,11 +39,10 @@
     "@hmcts/frontend": "0.0.50-alpha",
     "@ng-idle/core": "^16.0.0",
     "@ng-idle/keepalive": "^16.0.0",
-    "core-js": "^3.37.0",
     "govuk-frontend": "4.9.0",
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^6.0.3",
-    "rpx-xui-translation": "1.1.2-CME-780-9",
+    "rpx-xui-translation": "1.2.3-unused-package-1",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.1",
     "zone.js": "~0.15.1"
@@ -60,11 +59,13 @@
     "@angular/language-service": "^20.3.14",
     "@playwright/test": "1.55.1",
     "@types/jasmine": "~4.3.5",
-    "@types/jasminewd2": "~2.0.3",
     "@types/node": "^20.19.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/types": "^8.0.0",
+    "@typescript-eslint/utils": "^8.0.0",
     "codelyzer": "^6.0.2",
+    "core-js": "^3.37.0",
     "eslint": "^8.57.0",
     "jasmine-core": "~5.1.0",
     "jasmine-spec-reporter": "~7.0.0",
