@@ -12,6 +12,8 @@ export * from './timeout-notifications/timeout-notifications.service';
 export * from './role-guard/role.guard';
 export * from './role-guard/role.service';
 export * from './cookie/cookie.service';
+export * from './locations/location.service';
 export * from './loading/loading.service';
 export * from './filter/filter.service';
+export * from './task/task.service';
 export * from './ref-data';

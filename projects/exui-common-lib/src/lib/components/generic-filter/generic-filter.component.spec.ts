@@ -1,15 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import { FilterConfig, FilterFieldConfig, GroupOptions } from '../../models';
+import { FilterConfig, FilterFieldConfig, GroupOptions, WorkType } from '../../models';
 import { CapitalizePipe } from '../../pipes';
-import { FilterService } from '../../services';
-import { LocationService } from '../../services/locations/location.service';
+import { FilterService, LocationService, TaskService } from '../../services';
 import { FindLocationComponent } from '../find-location/find-location.component';
 import { FindPersonComponent } from '../find-person/find-person.component';
 import { FindServiceComponent } from '../find-service/find-service.component';
@@ -17,6 +16,7 @@ import { FindTaskNameComponent } from '../find-task-name/find-task-name.componen
 import { SearchLocationComponent } from '../search-location/search-location.component';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { GenericFilterComponent } from './generic-filter.component';
+import { FindWorkTypeComponent, SearchWorkTypeComponent } from '../public_api';
 
 @Pipe({
     name: 'rpxTranslate',
@@ -26,6 +26,10 @@ class RpxTranslateMockPipe implements PipeTransform {
   public transform(value: string): string {
     return value;
   }
+}
+
+class MockTaskService {
+  public searchWorkTypes = jasmine.createSpy('searchWorkTypes').and.returnValue(of([] as WorkType[]));
 }
 
 describe('GenericFilterComponent', () => {
@@ -743,5 +747,76 @@ describe('Task Name Filter', () => {
     expect(component.form.get(fieldName).get('task_type_name')).toBeInstanceOf(FormControl);
 
     expect(component.form.get('findTaskNameControl')).toBeInstanceOf(FormControl);
+  });
+});
+
+describe('Find work type filter config', () => {
+  let component: GenericFilterComponent;
+  let fixture: ComponentFixture<GenericFilterComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, MatAutocompleteModule, MatOptionModule],
+      declarations: [
+        GenericFilterComponent,
+        FindWorkTypeComponent,
+        SearchWorkTypeComponent,
+        CapitalizePipe,
+        RpxTranslateMockPipe
+      ],
+      providers: [
+        FilterService,
+        { provide: TaskService, useValue: new MockTaskService() }
+      ]
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GenericFilterComponent);
+    component = fixture.componentInstance;
+
+    const workTypeField: FilterFieldConfig = {
+      name: 'workTypes',
+      options: [],
+      minSelected: 0,
+      maxSelected: 3,
+      type: 'find-work-type',
+      workTypeTitle: 'Work type',
+      findWorkTypeField: 'service'
+    };
+
+    const serviceHelperField: FilterFieldConfig = {
+      name: 'service',
+      options: [],
+      minSelected: 0,
+      maxSelected: 1,
+      type: 'text-input'
+    };
+
+    const config: FilterConfig = {
+      id: 'examples',
+      fields: [workTypeField, serviceHelperField],
+      persistence: 'session',
+      applyButtonText: 'apply',
+      cancelButtonText: 'cancel',
+      showCancelFilterButton: true
+    };
+
+    component.config = config;
+    fixture.detectChanges();
+  });
+
+  it('should display find-work-type filter', () => {
+    const formDebugElement = fixture.debugElement.query(By.css('form'));
+    const form: HTMLFormElement = formDebugElement.nativeElement as HTMLFormElement;
+    const findWorkTypeElement = form.querySelector('xuilib-find-work-type') as HTMLElement;
+    expect(findWorkTypeElement).toBeTruthy();
+  });
+
+  it('should add a FormArray for work types', () => {
+    const control = component.form.get('workTypes');
+    expect(control).toBeTruthy();
+    expect(control instanceof FormArray).toBeTrue();
+    expect((control as FormArray).length).toBe(0);
   });
 });
