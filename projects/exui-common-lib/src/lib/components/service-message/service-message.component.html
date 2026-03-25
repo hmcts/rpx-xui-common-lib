@@ -7,9 +7,9 @@
 
   <div class="hmcts-banner__message">
     <span class="hmcts-banner__assistive">{{'Warning' | rpxTranslate}}</span>
-    <h2 class="govuk-heading-s">{{ message_en }}</h2>
+    <h2 class="govuk-heading-s" [innerHTML]="sanitizeHtml(message_en)"></h2>
     @if (message_cy) {
-      <h2 class="govuk-heading-s">{{ message_cy }}</h2>
+      <h2 class="govuk-heading-s" [innerHTML]="sanitizeHtml(message_cy)"></h2>
     }
     <a [routerLink]="" tabindex="0" class="govuk-link--no-visited-state" (click)="onHideMessageEvent(key)" (keyup.enter)="onHideMessageEvent(key)">{{'Hide message' | rpxTranslate}}</a>
   </div>

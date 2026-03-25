@@ -9,7 +9,7 @@
         <div class="hmcts-banner__message">
           <span class="hmcts-banner__assistive">{{'Warning' | rpxTranslate}}</span>
           <h2 class="govuk-heading-s">Error:</h2>
-          <p>{{ errMsg.message }}</p>
+          <p [innerHTML]="errMsg.message"></p>
         </div>
       </div>
     }
