@@ -19,6 +19,7 @@ export class ServiceMessageComponent {
     this.hideMessage.emit(key);
   }
 
+  // ensure no dangerous HTML is rendered in the service message banner
   public sanitizeHtml(content: string | null | undefined): string {
     return this.sanitizer.sanitize(SecurityContext.HTML, content ?? '') ?? '';
   }
