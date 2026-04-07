@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.6",
+  "version": "3.2.6-4300",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -39,7 +39,7 @@
     "@hmcts/frontend": "0.0.50-alpha",
     "@ng-idle/core": "^16.0.0",
     "@ng-idle/keepalive": "^16.0.0",
-    "core-js": "^3.37.0",
+    "core-js": "^3.49.0",
     "govuk-frontend": "4.9.0",
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^6.0.3",
