@@ -3,5 +3,29 @@
   "dest": "../../dist/exui-common-lib",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@angular/animations",
+    "@angular/cdk",
+    "@angular/common",
+    "@angular/compiler",
+    "@angular/core",
+    "@angular/forms",
+    "@angular/localize",
+    "@angular/material",
+    "@angular/platform-browser",
+    "@angular/platform-browser-dynamic",
+    "@angular/router",
+    "@hmcts/frontend",
+    "@ng-idle/core",
+    "@ng-idle/keepalive",
+    "core-js",
+    "govuk-frontend",
+    "launchdarkly-js-client-sdk",
+    "ngx-pagination",
+    "rpx-xui-translation",
+    "rxjs",
+    "tslib",
+    "zone.js"
+  ]
 }
