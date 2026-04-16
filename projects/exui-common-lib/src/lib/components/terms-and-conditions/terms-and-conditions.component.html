@@ -2,7 +2,7 @@
 @switch (document.mimeType) {
   @case ('text/html') {
     <xuilib-tc-display-html>
-      <div [innerHTML]="document.content | rpxTranslate"></div>
+      <div [innerHTML]="sanitizeHtml(document.content | rpxTranslate)"></div>
     </xuilib-tc-display-html>
   }
   @case ('text/plain') {
