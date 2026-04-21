@@ -1,5 +1,6 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, SecurityContext } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DomSanitizer } from '@angular/platform-browser';
 import { TCDocument } from '../../models';
 import { TcDisplayHtmlComponent } from './tc-display/tc-display-html/tc-display-html.component';
 import { TcDisplayPlainComponent } from './tc-display/tc-display-plain/tc-display-plain.component';
@@ -43,5 +44,17 @@ describe('TermsAndConditionsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should sanitize html content', () => {
+    const sanitizer = TestBed.inject(DomSanitizer);
+    const input = '<script>alert(1)</script><p>Safe</p>';
+
+    spyOn(sanitizer, 'sanitize').and.returnValue('<p>Safe</p>');
+
+    const result = component.sanitizeHtml(input);
+
+    expect(sanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.HTML, input);
+    expect(result).toBe('<p>Safe</p>');
   });
 });
