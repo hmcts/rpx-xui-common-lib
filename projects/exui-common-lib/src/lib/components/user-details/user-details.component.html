@@ -12,13 +12,11 @@
     <div class="govuk-table__body">
       <div class="govuk-table__row">
         <dt class="govuk-table__header" scope="row">{{'Name' | rpxTranslate}}</dt>
-        <dd class="govuk-table__cell">{{user.fullName | rpxTranslate}}</dd>
-        <dd class="govuk-table__cell"></dd>
+        <dd class="govuk-table__cell no-border-bottom">{{user.fullName | rpxTranslate}}</dd>
       </div>
       <div class="govuk-table__row">
         <dt class="govuk-table__header" scope="row">{{'Email address' | rpxTranslate}}</dt>
-        <dd class="govuk-table__cell">{{user.email}}</dd>
-        <dd class="govuk-table__cell"></dd>
+        <dd class="govuk-table__cell no-border-bottom">{{user.email}}</dd>
       </div>
       @if (!user.resendInvite) {
         <div class="govuk-table__row">
@@ -43,9 +41,11 @@
               <div>{{ accesstype | rpxTranslate}}</div>
             }
           </dd>
-          <dd class="govuk-table__cell">@if (editPermissionRouterLink && showEditLink) {
-            <a role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a>
-          }</dd>
+          @if (editPermissionRouterLink && showEditLink) {
+            <dd class="govuk-table__cell">
+              <a role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a>
+            </dd>
+          }
         </div>
       }
     </div>
