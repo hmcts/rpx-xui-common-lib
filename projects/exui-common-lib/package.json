@@ -1,10 +1,25 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.9-exui-4425-rc-1",
+  "version": "3.2.9-exui-4425-rc-2",
   "peerDependencies": {
+    "@angular/animations": "^20.3.18",
+    "@angular/cdk": "16.2.0",
+    "@angular/common": "^20.3.18",
+    "@angular/compiler": "^20.3.18",
+    "@angular/core": "^20.3.18",
+    "@angular/forms": "^20.3.18",
+    "@angular/localize": "^20.3.18",
+    "@angular/material": "16.2.0",
+    "@angular/platform-browser": "^20.3.18",
+    "@angular/platform-browser-dynamic": "^20.3.18",
+    "@angular/router": "^20.3.18",
+    "@ng-idle/core": "^16.0.0",
+    "@ng-idle/keepalive": "^16.0.0",
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^3.2.1",
-    "rpx-xui-translation": "1.1.2-CME-780-9"
+    "rxjs": "^7.8.1",
+    "rpx-xui-translation": "1.1.2-CME-780-9",
+    "zone.js": "~0.15.1"
   },
   "publishConfig": {
     "access": "public"

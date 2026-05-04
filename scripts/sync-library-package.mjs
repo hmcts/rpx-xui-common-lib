@@ -12,7 +12,19 @@ const libraryPeerDependencies = libraryPackage.peerDependencies || {};
 const distDependencies = distPackage.dependencies || {};
 const rootDependencies = rootPackage.dependencies || {};
 
-const mergedDependencies = { ...distDependencies };
+const sortDependencies = (dependencies) => Object.keys(dependencies)
+  .sort()
+  .reduce((sortedDependencies, dependencyName) => {
+    sortedDependencies[dependencyName] = dependencies[dependencyName];
+    return sortedDependencies;
+  }, {});
+
+const mergedDependencies = Object.entries(distDependencies)
+  .filter(([dependencyName]) => !libraryPeerDependencies[dependencyName])
+  .reduce((dependencies, [dependencyName, version]) => {
+    dependencies[dependencyName] = version;
+    return dependencies;
+  }, {});
 
 for (const [dependencyName, version] of Object.entries(rootDependencies)) {
   if (libraryPeerDependencies[dependencyName]) {
@@ -24,11 +36,7 @@ for (const [dependencyName, version] of Object.entries(rootDependencies)) {
   }
 }
 
-distPackage.dependencies = Object.keys(mergedDependencies)
-  .sort()
-  .reduce((dependencies, dependencyName) => {
-    dependencies[dependencyName] = mergedDependencies[dependencyName];
-    return dependencies;
-  }, {});
+distPackage.peerDependencies = sortDependencies(libraryPeerDependencies);
+distPackage.dependencies = sortDependencies(mergedDependencies);
 
 writeFileSync(distPackagePath, `${JSON.stringify(distPackage, null, 2)}\n`);
