@@ -37,8 +37,10 @@
             @if (userHasRole('pui-finance-manager')) {
               <div>{{'Manage fee accounts' | rpxTranslate}}</div>
             }
-            @for (accesstype of enabledAccessTypes; track accesstype) {
-              <div>{{ accesstype | rpxTranslate}}</div>
+            @if (ogdUpdateRefreshUserEnabled){
+              @for (accesstype of enabledAccessTypes; track accesstype) {
+                <div>{{ accesstype | rpxTranslate}}</div>
+              }
             }
           </dd>
           @if (editPermissionRouterLink && showEditLink) {

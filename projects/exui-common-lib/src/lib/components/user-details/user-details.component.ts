@@ -15,6 +15,7 @@ export class UserDetailsComponent {
     @Input() public showEditLink: boolean = false;
     @Input() public showHelpLink: boolean = false;
     @Input() public suspendHelpLink: string;
+    @Input() public ogdUpdateRefreshUserEnabled: boolean;
     @Output() public suspendUserEvent = new EventEmitter<User>();
     @Input() public showSuspendUserButton = false;
     @Output() public reinvite = new EventEmitter<User>();
