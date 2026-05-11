@@ -1,5 +1,6 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, SecurityContext } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceMessageComponent } from './service-message.component';
 import { ServiceMessages } from '../../models/service-message.model';
@@ -51,5 +52,17 @@ describe('ServiceMessageComponent', () => {
       component.onHideMessageEvent(hideKey);
       expect(hideMessageSpy).toHaveBeenCalledWith(hideKey);
     });
+  });
+
+  it('should sanitize html content', () => {
+    const sanitizer = TestBed.inject(DomSanitizer);
+    const input = '<script>alert(1)</script><p>Safe</p>';
+
+    spyOn(sanitizer, 'sanitize').and.returnValue('<p>Safe</p>');
+
+    const result = component.sanitizeHtml(input);
+
+    expect(sanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.HTML, input);
+    expect(result).toBe('<p>Safe</p>');
   });
 });
