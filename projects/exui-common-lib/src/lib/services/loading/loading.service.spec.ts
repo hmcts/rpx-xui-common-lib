@@ -33,7 +33,7 @@ describe('LoadingService', () => {
 
   });
 
-  it('should return observable of false when all tokens are unregistered', async (done) => {
+  it('should return observable of false when all tokens are unregistered', (done) => {
     let token1: string;
     let token2: string;
     setTimeout(() => token1 = loadingService.register(), 1);
@@ -48,7 +48,7 @@ describe('LoadingService', () => {
     }, 5);
   });
 
-  it('should return observable of true when multiple tokens are registered, yet one is unregistered', async (done) => {
+  it('should return observable of true when multiple tokens are registered, yet one is unregistered', (done) => {
     let index = 0;
     let tokenToRemove: string;
     let interval = setInterval(() => {
