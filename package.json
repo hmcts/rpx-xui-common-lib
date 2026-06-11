@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.9-4300",
+  "version": "3.2.12",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -65,7 +65,7 @@
     "@typescript-eslint/types": "^8.0.0",
     "@typescript-eslint/utils": "^8.0.0",
     "codelyzer": "^6.0.2",
-    "core-js": "^3.37.0",
+    "core-js": "^3.49.0",
     "eslint": "^8.57.0",
     "jasmine-core": "~5.1.0",
     "jasmine-spec-reporter": "~7.0.0",
