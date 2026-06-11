@@ -80,5 +80,5 @@
     "tslint": "~6.1.0",
     "typescript": "~5.8.3"
   },
-  "packageManager": "yarn@4.5.3"
+  "packageManager": "yarn@4.16.0"
 }
