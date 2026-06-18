@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.9-exui-4425-rc-2",
+  "version": "3.2.12",
   "peerDependencies": {
     "@angular/animations": "^20.3.18",
     "@angular/cdk": "16.2.0",
@@ -18,14 +18,17 @@
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^3.2.1",
     "rxjs": "^7.8.1",
-    "rpx-xui-translation": "1.1.2-CME-780-9",
+    "rpx-xui-translation": "1.2.4",
     "zone.js": "~0.15.1"
   },
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
-  "repository": "https://github.com/hmcts/rpx-xui-common-lib.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmcts/rpx-xui-common-lib.git"
+  },
   "description": "Angular web component for EXUI common library - xui-common-lib",
   "author": "Elviani Huseyin <elviani.huseyin@hmcts.net>",
   "contributors": [
