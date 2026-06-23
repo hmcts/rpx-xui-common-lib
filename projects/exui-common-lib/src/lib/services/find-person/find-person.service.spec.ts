@@ -145,28 +145,28 @@ describe('FindAPersonService', () => {
         "firstName": "Test",
         "lastName": "One",
         "email": "TestOne@test.com",
-        "roleCategory": "LEGAL_OPERATIONS"
+        "roleCategories": ["LEGAL_OPERATIONS"]
       },
       {
         "idamId": "124",
         "firstName": "Test",
         "lastName": "Two",
         "email": "TestTwo@test.com",
-        "roleCategory": "LEGAL_OPERATIONS"
+        "roleCategories": ["LEGAL_OPERATIONS"]
       },
       {
         "idamId": "125",
         "firstName": "Test",
         "lastName": "Three",
         "email": "TestThree@test.com",
-        "roleCategory": "LEGAL_OPERATIONS"
+        "roleCategories": ["LEGAL_OPERATIONS"]
       },
       {
         "idamId": "126",
         "firstName": "Test",
         "lastName": "Four",
         "email": "TestFour@test.com",
-        "roleCategory": "ADMIN"
+        "roleCategories": ["ADMIN"]
       }
     ]`;
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
@@ -187,28 +187,28 @@ describe('FindAPersonService', () => {
         firstName: 'Test',
         lastName: 'One',
         email: 'TestOne@test.com',
-        roleCategory: 'LEGAL_OPERATIONS'
+        roleCategories: ['LEGAL_OPERATIONS']
       },
       {
         idamId: '124',
         firstName: 'Test',
         lastName: 'Two',
         email: 'TestTwo@test.com',
-        roleCategory: 'LEGAL_OPERATIONS'
+        roleCategories: ['LEGAL_OPERATIONS']
       },
       {
         idamId: '125',
         firstName: 'Test',
         lastName: 'Three',
         email: 'TestThree@test.com',
-        roleCategory: 'LEGAL_OPERATIONS'
+        roleCategories: ['LEGAL_OPERATIONS']
       },
       {
         idamId: '126',
         firstName: 'Test',
         lastName: 'Four',
         email: 'TestFour@test.com',
-        roleCategory: 'ADMIN'
+        roleCategories: ['ADMIN']
       }
     ];
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
@@ -226,28 +226,28 @@ describe('FindAPersonService', () => {
         firstName: 'Test',
         lastName: 'One',
         email: 'TestOne@test.com',
-        roleCategory: 'LEGAL_OPERATIONS'
+        roleCategories: ['LEGAL_OPERATIONS']
       },
       {
         idamId: '124',
         firstName: 'Test',
         lastName: 'Two',
         email: 'TestTwo@test.com',
-        roleCategory: 'LEGAL_OPERATIONS'
+        roleCategories: ['LEGAL_OPERATIONS', 'ADMIN']
       },
       {
         idamId: '125',
         firstName: 'Test',
         lastName: 'Three',
         email: 'TestThree@test.com',
-        roleCategory: 'CTSC'
+        roleCategories: ['CTSC']
       },
       {
         idamId: '126',
         firstName: 'Test',
         lastName: 'Four',
         email: 'TestFour@test.com',
-        roleCategory: 'ADMIN'
+        roleCategories: ['ADMIN']
       }
     ];
     const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
@@ -257,7 +257,7 @@ describe('FindAPersonService', () => {
     const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
     service.userId = '126';
 
-    let searchOptions = { searchTerm: 'four', services: ['IA'], userRole: PersonRole.LEGAL_OPERATIONS };
+    let searchOptions = { searchTerm: 'four', services: ['IA'], userRole: PersonRole.ADMIN };
     const filteredUsersSpecificName = service.searchInCaseworkers(caseworkers, searchOptions);
     expect(filteredUsersSpecificName).toEqual([
       { id: '126', name: 'Test Four', email: 'TestFour@test.com', domain: 'Admin' }
@@ -268,7 +268,7 @@ describe('FindAPersonService', () => {
     expect(filteredUsersCaseWorker).toHaveSize(3);
     expect(filteredUsersCaseWorker).toEqual([
       { email: 'TestOne@test.com', name: 'Test One', id: '123', domain: 'Legal Ops' },
-      { email: 'TestTwo@test.com', name: 'Test Two', id: '124', domain: 'Legal Ops' },
+      { email: 'TestTwo@test.com', name: 'Test Two', id: '124', domain: 'Admin' },
       { email: 'TestFour@test.com', name: 'Test Four', id: '126', domain: 'Admin' }
     ]);
 
@@ -276,14 +276,15 @@ describe('FindAPersonService', () => {
     const filteredUsersCTSC = service.searchInCaseworkers(caseworkers, searchOptions);
     expect(filteredUsersCTSC).toHaveSize(2);
     expect(filteredUsersCTSC).toEqual([
-      { email: 'TestThree@test.com', name: 'Test Three', id: '125', domain: 'Admin' },
+      { email: 'TestThree@test.com', name: 'Test Three', id: '125', domain: 'CTSC' },
       { email: 'TestFour@test.com', name: 'Test Four', id: '126', domain: 'Admin' }
     ]);
 
     searchOptions = { searchTerm: 'test', services: ['IA'], userRole: PersonRole.ADMIN };
     const filteredUsersAdmin = service.searchInCaseworkers(caseworkers, searchOptions);
-    expect(filteredUsersAdmin).toHaveSize(1);
+    expect(filteredUsersAdmin).toHaveSize(2);
     expect(filteredUsersAdmin).toEqual([
+      { email: 'TestTwo@test.com', name: 'Test Two', id: '124', domain: 'Admin' },
       { email: 'TestFour@test.com', name: 'Test Four', id: '126', domain: 'Admin' }
     ]);
   });
