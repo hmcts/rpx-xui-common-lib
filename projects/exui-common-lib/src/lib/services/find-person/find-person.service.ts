@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
 import {
   Caseworker,
   JudicialUserModel,
@@ -114,4 +115,38 @@ export class FindAPersonService {
     // return default role if no match found
     return PersonRole.LEGAL_OPERATIONS;
   }
+
+  public findByPersonRole(searchTerm: string, personRole: PersonRole, selectedPersons: Person[], services: string, userIncluded?: boolean, assignedUser?: string | string[]): Observable<Person[]> {
+
+      switch (personRole) {
+        case PersonRole.JUDICIAL: {
+          return this.findJudicialOrCTSCPeople(searchTerm, personRole, services, userIncluded, assignedUser).pipe(map((persons) => {
+            const ids: string[] = selectedPersons.map(({ id }) => id);
+            return persons.filter(({ id }) => !ids.includes(id));
+          }));
+        }
+        case PersonRole.ALL: {
+          return zip(
+            this.findJudicialOrCTSCPeople(searchTerm, personRole, services, userIncluded, assignedUser), 
+            this.findCaseworkersOrAdminsOrCtsc(searchTerm, personRole, services, userIncluded, assignedUser)
+          ).pipe(map((separatePeople) => separatePeople[0].concat(separatePeople[1])));
+        }
+        case PersonRole.CTSC:
+        case PersonRole.LEGAL_OPERATIONS:
+        case PersonRole.ADMIN: {
+          return this.findCaseworkersOrAdminsOrCtsc(searchTerm, personRole, services, userIncluded, assignedUser);
+        }
+        default: {
+          return of([]);
+        }
+      }
+  }
+
+  private findJudicialOrCTSCPeople(searchTerm: string, personRole: PersonRole, services: string, userIncluded?: boolean, assignedUser?: string | string[]): Observable<Person[]> {
+    return this.find({ searchTerm, userRole: personRole, services: [services], userIncluded: userIncluded, assignedUser: assignedUser });
+  }
+
+  private findCaseworkersOrAdminsOrCtsc(searchTerm: string, personRole: PersonRole, services: string, userIncluded?: boolean, assignedUser?: string | string[]): Observable<Person[]> {
+    return this.findCaseworkers({ searchTerm, userRole: personRole, services: [services], userIncluded: userIncluded, assignedUser: assignedUser });
+  } 
 }
