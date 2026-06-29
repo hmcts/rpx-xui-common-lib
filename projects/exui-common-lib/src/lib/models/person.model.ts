@@ -65,11 +65,19 @@ export function getRoleCategory(personRole: PersonRole): RoleCategory {
         roleCategory = RoleCategory.ADMIN;
       } else if (personRole === PersonRole.CTSC) {
         roleCategory = RoleCategory.CTSC;
+      } else if (personRole === PersonRole.ENFORCEMENT) {
+        roleCategory = RoleCategory.ENFORCEMENT;
       }
     }
     return roleCategory;
 }
 
 export function getPersonRole(roleCategory: string): PersonRole {
-  return roleCategory === RoleCategory.LEGAL_OPERATIONS ? PersonRole.LEGAL_OPERATIONS : PersonRole.ADMIN
+  if (roleCategory === RoleCategory.LEGAL_OPERATIONS) {
+    return PersonRole.LEGAL_OPERATIONS;
+  } else if (roleCategory === RoleCategory.ENFORCEMENT) {
+    return PersonRole.ENFORCEMENT;
+  } else {
+    return PersonRole.ADMIN;
+  }
 }
