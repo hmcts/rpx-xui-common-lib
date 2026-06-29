@@ -65,6 +65,8 @@ export function getRoleCategory(personRole: PersonRole): RoleCategory {
         roleCategory = RoleCategory.ADMIN;
       } else if (personRole === PersonRole.CTSC) {
         roleCategory = RoleCategory.CTSC;
+      } else if (personRole === PersonRole.ENFORCEMENT) {
+        roleCategory = RoleCategory.ENFORCEMENT;
       }
     }
     return roleCategory;
@@ -80,6 +82,9 @@ export function getPersonRole(roleCategories: string[]): PersonRole {
     if (roleCategories.includes(RoleCategory.LEGAL_OPERATIONS)) {                                                                                                                                                             
       return PersonRole.LEGAL_OPERATIONS;                                                                                                                                                                                                
     }                                                                                                                                                                                                                                    
+    if (roleCategories.includes(RoleCategory.ENFORCEMENT)) {
+      return PersonRole.ENFORCEMENT;
+    } 
     // return default role if no match found                                                                                                                                                                                             
     return PersonRole.LEGAL_OPERATIONS;           
 }  
