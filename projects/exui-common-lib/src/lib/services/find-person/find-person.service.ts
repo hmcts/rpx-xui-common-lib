@@ -113,7 +113,8 @@ export class FindAPersonService {
         }
         case PersonRole.CTSC:
         case PersonRole.LEGAL_OPERATIONS:
-        case PersonRole.ADMIN: {
+        case PersonRole.ADMIN:
+        case PersonRole.ENFORCEMENT: {
           return this.findCaseworkersOrAdminsOrCtsc(searchTerm, personRole, services, userIncluded, assignedUser);
         }
         default: {
