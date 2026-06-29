@@ -83,6 +83,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
     if (!selectedPerson) {
       return '';
     }
+    // Only the judiciary currently get a specialised display format.
     if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.fullName) {
       return `${selectedPerson.fullName} (${selectedPerson.email})`;
     }
