@@ -287,4 +287,116 @@ describe('FindAPersonService', () => {
       { email: 'TestFour@test.com', name: 'Test Four', id: '126', domain: 'Admin' }
     ]);
   });
+
+  describe('findByPersonRole', () => {
+
+    it('should return judicial and caseworker people for all person roles', () => {
+      const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+      const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+      const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+      const judicialPeople = [people[0]];
+      const caseworkerPeople = [people[3]];
+      const findSpy = spyOn(service, 'find').and.returnValue(of(judicialPeople));
+      const findCaseworkersSpy = spyOn(service, 'findCaseworkers').and.returnValue(of(caseworkerPeople));
+      const assignedUser = ['124'];
+
+      service.findByPersonRole('term', PersonRole.ALL, [], 'IA', true, assignedUser).subscribe((result) => {
+        expect(result).toEqual(judicialPeople.concat(caseworkerPeople));
+      });
+
+      expect(findSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.ALL,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+      expect(findCaseworkersSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.ALL,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+    });
+
+    it('should return judicial or CTSC people for judicial person roles', () => {
+      const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+      const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+      const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+      const judicialPeople = [people[0], people[3]];
+      const selectedPersons = [people[3]];
+      const findSpy = spyOn(service, 'find').and.returnValue(of(judicialPeople));
+      const assignedUser = ['124'];
+
+      service.findByPersonRole('term', PersonRole.JUDICIAL, selectedPersons, 'IA', true, assignedUser).subscribe((result) => {
+        expect(result).toEqual([people[0]]);
+      });
+
+      expect(findSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.JUDICIAL,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+    });
+
+    it('should return caseworkers or admins or CTSC or Enforcement people for CTSC, LEGAL OPS, ADMIN, ENFORCEMENT person roles', () => {
+      const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
+      const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
+      const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
+      const caseworkerPeople = [people[0], people[3]];
+      const findSpy = spyOn(service, 'findCaseworkers').and.returnValue(of(caseworkerPeople));
+      const assignedUser = ['124'];
+
+      service.findByPersonRole('term', PersonRole.CTSC, [], 'IA', true, assignedUser).subscribe((result) => {
+        expect(result).toEqual(caseworkerPeople);
+      });
+
+      expect(findSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.CTSC,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+
+      service.findByPersonRole('term', PersonRole.LEGAL_OPERATIONS, [], 'IA', true, assignedUser).subscribe((result) => {
+        expect(result).toEqual(caseworkerPeople);
+      });
+
+      expect(findSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.LEGAL_OPERATIONS,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+
+      service.findByPersonRole('term', PersonRole.ADMIN, [], 'IA', true, assignedUser).subscribe((result) => {
+        expect(result).toEqual(caseworkerPeople);
+      });
+
+      expect(findSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.ADMIN,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+
+      service.findByPersonRole('term', PersonRole.ENFORCEMENT, [], 'IA', true, assignedUser).subscribe((result) => {
+        expect(result).toEqual(caseworkerPeople);
+      });
+
+      expect(findSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.ENFORCEMENT,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+    });
+  });
 });

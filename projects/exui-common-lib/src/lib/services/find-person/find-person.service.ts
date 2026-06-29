@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
 import {
   Caseworker,
+  getPersonRole,
+  getRoleCategory,
   JudicialUserModel,
   Person,
   PersonRole,
@@ -61,7 +64,7 @@ export class FindAPersonService {
         email: caseworker.email,
         name: `${caseworker.firstName} ${caseworker.lastName}`,
         id: caseworker.idamId,
-        domain: caseworker.roleCategory === RoleCategory.LEGAL_OPERATIONS ? PersonRole.LEGAL_OPERATIONS : PersonRole.ADMIN
+        domain: getPersonRole(caseworker.roleCategory)
         // knownAs can be added if required
       };
       if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
@@ -72,16 +75,8 @@ export class FindAPersonService {
   }
 
   public searchInCaseworkers(caseworkers: Caseworker[], searchOptions: SearchOptions): Person[] {
-    let roleCategory = RoleCategory.ALL;
-    if (!(searchOptions.userRole === PersonRole.ALL)) {
-      if (searchOptions.userRole === PersonRole.LEGAL_OPERATIONS) {
-        roleCategory = RoleCategory.LEGAL_OPERATIONS;
-      } else if (searchOptions.userRole === PersonRole.ADMIN) {
-        roleCategory = RoleCategory.ADMIN;
-      } else if (searchOptions.userRole === PersonRole.CTSC) {
-        roleCategory = RoleCategory.CTSC;
-      }
-    }
+    
+    const roleCategory = getRoleCategory(searchOptions.userRole);
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter((person) => person && person.name && person.name.toLowerCase().includes(searchTerm));
@@ -96,4 +91,39 @@ export class FindAPersonService {
     return this.http.post<JudicialUserModel[]>('api/prd/judicial/getJudicialUsersSearch',
       { searchString: value, serviceCode: serviceId });
   }
+
+  public findByPersonRole(searchTerm: string, personRole: PersonRole, selectedPersons: Person[], services: string, userIncluded?: boolean, assignedUser?: string | string[]): Observable<Person[]> {
+
+      switch (personRole) {
+        case PersonRole.JUDICIAL: {
+          return this.findJudicialOrCTSCPeople(searchTerm, personRole, services, userIncluded, assignedUser).pipe(map((persons) => {
+            const ids: string[] = selectedPersons.map(({ id }) => id);
+            return persons.filter(({ id }) => !ids.includes(id));
+          }));
+        }
+        case PersonRole.ALL: {
+          return zip(
+            this.findJudicialOrCTSCPeople(searchTerm, personRole, services, userIncluded, assignedUser), 
+            this.findCaseworkersOrAdminsOrCtsc(searchTerm, personRole, services, userIncluded, assignedUser)
+          ).pipe(map((separatePeople) => separatePeople[0].concat(separatePeople[1])));
+        }
+        case PersonRole.CTSC:
+        case PersonRole.LEGAL_OPERATIONS:
+        case PersonRole.ADMIN:
+        case PersonRole.ENFORCEMENT: {
+          return this.findCaseworkersOrAdminsOrCtsc(searchTerm, personRole, services, userIncluded, assignedUser);
+        }
+        default: {
+          return of([]);
+        }
+      }
+  }
+
+  private findJudicialOrCTSCPeople(searchTerm: string, personRole: PersonRole, services: string, userIncluded?: boolean, assignedUser?: string | string[]): Observable<Person[]> {
+    return this.find({ searchTerm, userRole: personRole, services: [services], userIncluded: userIncluded, assignedUser: assignedUser });
+  }
+
+  private findCaseworkersOrAdminsOrCtsc(searchTerm: string, personRole: PersonRole, services: string, userIncluded?: boolean, assignedUser?: string | string[]): Observable<Person[]> {
+    return this.findCaseworkers({ searchTerm, userRole: personRole, services: [services], userIncluded: userIncluded, assignedUser: assignedUser });
+  } 
 }

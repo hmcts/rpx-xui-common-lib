@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, Subscription, zip } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
-import { catchError, debounceTime, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, debounceTime, filter, switchMap, tap } from 'rxjs/operators';
 import { Person, PersonRole } from '../../models';
 import { FindAPersonService } from '../../services/find-person/find-person.service';
 
@@ -68,28 +68,8 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   }
 
   public filter(searchTerm: string): Observable<Person[]> {
-    const findJudicialOrCTSCPeople = this.findPersonService.find({ searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser });
-    const findCaseworkersOrAdminsOrCtsc = this.findPersonService.findCaseworkers({ searchTerm, userRole: this.domain, services: [this.services], userIncluded: this.userIncluded, assignedUser: this.assignedUser });
     if (searchTerm && searchTerm.length > this.minSearchCharacters) {
-      switch (this.domain) {
-        case PersonRole.JUDICIAL: {
-          return findJudicialOrCTSCPeople.pipe(map((persons) => {
-            const ids: string[] = this.selectedPersons.map(({ id }) => id);
-            return persons.filter(({ id }) => !ids.includes(id));
-          }));
-        }
-        case PersonRole.ALL: {
-          return zip(findJudicialOrCTSCPeople, findCaseworkersOrAdminsOrCtsc).pipe(map((separatePeople) => separatePeople[0].concat(separatePeople[1])));
-        }
-        case PersonRole.CTSC:
-        case PersonRole.LEGAL_OPERATIONS:
-        case PersonRole.ADMIN: {
-          return findCaseworkersOrAdminsOrCtsc;
-        }
-        default: {
-          return of([]);
-        }
-      }
+      return this.findPersonService.findByPersonRole(searchTerm, this.domain, this.selectedPersons, this.services, this.userIncluded, this.assignedUser);
     }
     return of([]);
   }
@@ -103,6 +83,7 @@ export class FindPersonComponent implements OnInit, OnDestroy {
     if (!selectedPerson) {
       return '';
     }
+    // Only the judiciary currently get a specialised display format.
     if (selectedPerson.domain === PersonRole.JUDICIAL && selectedPerson.fullName) {
       return `${selectedPerson.fullName} (${selectedPerson.email})`;
     }
