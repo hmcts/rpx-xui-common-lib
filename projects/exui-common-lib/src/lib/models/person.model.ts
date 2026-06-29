@@ -53,3 +53,22 @@ export enum RoleCategory {
   CITIZEN = 'CITIZEN',
   ALL = 'ALL'
 }
+
+export function getRoleCategory(personRole: PersonRole): RoleCategory {
+
+    let roleCategory = RoleCategory.ALL;
+    if (!(personRole === PersonRole.ALL)) {
+      if (personRole === PersonRole.LEGAL_OPERATIONS) {
+        roleCategory = RoleCategory.LEGAL_OPERATIONS;
+      } else if (personRole === PersonRole.ADMIN) {
+        roleCategory = RoleCategory.ADMIN;
+      } else if (personRole === PersonRole.CTSC) {
+        roleCategory = RoleCategory.CTSC;
+      }
+    }
+    return roleCategory;
+}
+
+export function getPersonRole(roleCategory: string): PersonRole {
+  return roleCategory === RoleCategory.LEGAL_OPERATIONS ? PersonRole.LEGAL_OPERATIONS : PersonRole.ADMIN
+}

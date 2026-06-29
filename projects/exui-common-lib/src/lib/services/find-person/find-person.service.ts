@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 import {
   Caseworker,
+  getPersonRole,
+  getRoleCategory,
   JudicialUserModel,
   Person,
   PersonRole,
@@ -62,7 +64,7 @@ export class FindAPersonService {
         email: caseworker.email,
         name: `${caseworker.firstName} ${caseworker.lastName}`,
         id: caseworker.idamId,
-        domain: caseworker.roleCategory === RoleCategory.LEGAL_OPERATIONS ? PersonRole.LEGAL_OPERATIONS : PersonRole.ADMIN
+        domain: getPersonRole(caseworker.roleCategory)
         // knownAs can be added if required
       };
       if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
@@ -73,16 +75,8 @@ export class FindAPersonService {
   }
 
   public searchInCaseworkers(caseworkers: Caseworker[], searchOptions: SearchOptions): Person[] {
-    let roleCategory = RoleCategory.ALL;
-    if (!(searchOptions.userRole === PersonRole.ALL)) {
-      if (searchOptions.userRole === PersonRole.LEGAL_OPERATIONS) {
-        roleCategory = RoleCategory.LEGAL_OPERATIONS;
-      } else if (searchOptions.userRole === PersonRole.ADMIN) {
-        roleCategory = RoleCategory.ADMIN;
-      } else if (searchOptions.userRole === PersonRole.CTSC) {
-        roleCategory = RoleCategory.CTSC;
-      }
-    }
+    
+    const roleCategory = getRoleCategory(searchOptions.userRole);
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter((person) => person && person.name && person.name.toLowerCase().includes(searchTerm));
