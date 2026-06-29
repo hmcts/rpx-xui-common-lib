@@ -53,3 +53,32 @@ export enum RoleCategory {
   CITIZEN = 'CITIZEN',
   ALL = 'ALL'
 }
+
+export function getRoleCategory(personRole: PersonRole): RoleCategory {
+
+    let roleCategory = RoleCategory.ALL;
+    if (!(personRole === PersonRole.ALL)) {
+      if (personRole === PersonRole.LEGAL_OPERATIONS) {
+        roleCategory = RoleCategory.LEGAL_OPERATIONS;
+      } else if (personRole === PersonRole.ADMIN) {
+        roleCategory = RoleCategory.ADMIN;
+      } else if (personRole === PersonRole.CTSC) {
+        roleCategory = RoleCategory.CTSC;
+      }
+    }
+    return roleCategory;
+}
+
+export function getPersonRole(roleCategories: string[]): PersonRole {
+    if (roleCategories.includes(RoleCategory.ADMIN)) {                                                                                                                                                                        
+        return PersonRole.ADMIN;                                                                                                                                                                                                           
+    }                                                                                                                                                                                                                                    
+    if (roleCategories.includes(RoleCategory.CTSC)) {                                                                                                                                                                         
+      return PersonRole.CTSC;                                                                                                                                                                                                            
+    }                                                                                                                                                                                                                                    
+    if (roleCategories.includes(RoleCategory.LEGAL_OPERATIONS)) {                                                                                                                                                             
+      return PersonRole.LEGAL_OPERATIONS;                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                    
+    // return default role if no match found                                                                                                                                                                                             
+    return PersonRole.LEGAL_OPERATIONS;           
+}  
