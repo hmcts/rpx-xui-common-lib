@@ -34,12 +34,12 @@ export interface Caseworker {
   roleCategory: string;
 }
 
-// used as settings for filters and components
 export enum PersonRole {
   JUDICIAL = 'Judicial',
   LEGAL_OPERATIONS = 'Legal Ops',
   ADMIN = 'Admin',
   CTSC = 'CTSC',
+  ENFORCEMENT = 'Enforcement',
   ALL = 'All',
 }
 
@@ -51,6 +51,7 @@ export enum RoleCategory {
   CTSC = 'CTSC',
   PROFESSIONAL = 'PROFESSIONAL',
   CITIZEN = 'CITIZEN',
+  ENFORCEMENT = 'ENFORCEMENT',
   ALL = 'ALL'
 }
 
