@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 import {
   Caseworker,
+  getPersonRole,
+  getRoleCategory,
   JudicialUserModel,
   Person,
   PersonRole,
@@ -65,7 +67,8 @@ export class FindAPersonService {
         id: caseworker.idamId,
         // EXUI-4758 - If user has admin role, set domain to admin
         // For more specific domain we need service specific role category (or other technique)
-        domain: this.setDomain(caseworker)
+        // Note: Domain only used internally to set the PersonRole for the Person object 
+        domain: getPersonRole(caseworker.roleCategories)
         // knownAs can be added if required
       };
       if (caseworker.roleCategories.includes(roleCategory) || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
@@ -76,16 +79,8 @@ export class FindAPersonService {
   }
 
   public searchInCaseworkers(caseworkers: Caseworker[], searchOptions: SearchOptions): Person[] {
-    let roleCategory = RoleCategory.ALL;
-    if (!(searchOptions.userRole === PersonRole.ALL)) {
-      if (searchOptions.userRole === PersonRole.LEGAL_OPERATIONS) {
-        roleCategory = RoleCategory.LEGAL_OPERATIONS;
-      } else if (searchOptions.userRole === PersonRole.ADMIN) {
-        roleCategory = RoleCategory.ADMIN;
-      } else if (searchOptions.userRole === PersonRole.CTSC) {
-        roleCategory = RoleCategory.CTSC;
-      }
-    }
+    
+    const roleCategory = getRoleCategory(searchOptions.userRole);
     const searchTerm = searchOptions && searchOptions.searchTerm ? searchOptions.searchTerm.toLowerCase() : '';
     const people = caseworkers ? this.mapCaseworkers(caseworkers, roleCategory) : [];
     const finalPeopleList = people.filter((person) => person && person.name && person.name.toLowerCase().includes(searchTerm));
@@ -99,21 +94,6 @@ export class FindAPersonService {
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
     return this.http.post<JudicialUserModel[]>('api/prd/judicial/getJudicialUsersSearch',
       { searchString: value, serviceCode: serviceId });
-  }
-
-  // Note: Domain only used internally to set the PersonRole for the Person object
-  private setDomain(caseworker: Caseworker): PersonRole {
-    if (caseworker.roleCategories.includes(RoleCategory.ADMIN)) {
-      return PersonRole.ADMIN;
-    }
-    if (caseworker.roleCategories.includes(RoleCategory.CTSC)) {
-      return PersonRole.CTSC;
-    }
-    if (caseworker.roleCategories.includes(RoleCategory.LEGAL_OPERATIONS)) {
-      return PersonRole.LEGAL_OPERATIONS;
-    }
-    // return default role if no match found
-    return PersonRole.LEGAL_OPERATIONS;
   }
 
   public findByPersonRole(searchTerm: string, personRole: PersonRole, selectedPersons: Person[], services: string, userIncluded?: boolean, assignedUser?: string | string[]): Observable<Person[]> {
