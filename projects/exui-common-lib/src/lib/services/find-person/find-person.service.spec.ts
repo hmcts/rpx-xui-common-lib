@@ -342,7 +342,7 @@ describe('FindAPersonService', () => {
       });
     });
 
-    it('should return caseworkers or admins or CTSC people for CTSC, LEGAL OPS, ADMIN person roles', () => {
+    it('should return caseworkers or admins or CTSC or Enforcement people for CTSC, LEGAL OPS, ADMIN, ENFORCEMENT person roles', () => {
       const mockHttpService = jasmine.createSpyObj('mockHttpService', ['put', 'get', 'post']);
       const mockSessionStorageService = jasmine.createSpyObj('mockSessionStorageService', ['setItem', 'getItem']);
       const service = new FindAPersonService(mockHttpService, mockSessionStorageService);
@@ -381,6 +381,18 @@ describe('FindAPersonService', () => {
       expect(findSpy).toHaveBeenCalledWith({
         searchTerm: 'term',
         userRole: PersonRole.ADMIN,
+        services: ['IA'],
+        userIncluded: true,
+        assignedUser
+      });
+
+      service.findByPersonRole('term', PersonRole.ENFORCEMENT, [], 'IA', true, assignedUser).subscribe((result) => {
+        expect(result).toEqual(caseworkerPeople);
+      });
+
+      expect(findSpy).toHaveBeenCalledWith({
+        searchTerm: 'term',
+        userRole: PersonRole.ENFORCEMENT,
         services: ['IA'],
         userIncluded: true,
         assignedUser
