@@ -34,12 +34,12 @@ export interface Caseworker {
   roleCategory: string;
 }
 
-// used as settings for filters and components
 export enum PersonRole {
   JUDICIAL = 'Judicial',
   LEGAL_OPERATIONS = 'Legal Ops',
   ADMIN = 'Admin',
   CTSC = 'CTSC',
+  ENFORCEMENT = 'Enforcement',
   ALL = 'All',
 }
 
@@ -51,5 +51,33 @@ export enum RoleCategory {
   CTSC = 'CTSC',
   PROFESSIONAL = 'PROFESSIONAL',
   CITIZEN = 'CITIZEN',
+  ENFORCEMENT = 'ENFORCEMENT',
   ALL = 'ALL'
+}
+
+export function getRoleCategory(personRole: PersonRole): RoleCategory {
+
+    let roleCategory = RoleCategory.ALL;
+    if (!(personRole === PersonRole.ALL)) {
+      if (personRole === PersonRole.LEGAL_OPERATIONS) {
+        roleCategory = RoleCategory.LEGAL_OPERATIONS;
+      } else if (personRole === PersonRole.ADMIN) {
+        roleCategory = RoleCategory.ADMIN;
+      } else if (personRole === PersonRole.CTSC) {
+        roleCategory = RoleCategory.CTSC;
+      } else if (personRole === PersonRole.ENFORCEMENT) {
+        roleCategory = RoleCategory.ENFORCEMENT;
+      }
+    }
+    return roleCategory;
+}
+
+export function getPersonRole(roleCategory: string): PersonRole {
+  if (roleCategory === RoleCategory.LEGAL_OPERATIONS) {
+    return PersonRole.LEGAL_OPERATIONS;
+  } else if (roleCategory === RoleCategory.ENFORCEMENT) {
+    return PersonRole.ENFORCEMENT;
+  } else {
+    return PersonRole.ADMIN;
+  }
 }
