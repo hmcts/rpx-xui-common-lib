@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.12-exui-4277",
+  "version": "3.2.13",
   "peerDependencies": {
     "@angular/animations": "^20.3.18",
     "@angular/cdk": "16.2.0",
