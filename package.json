@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.12",
+  "version": "3.2.13",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -29,7 +29,6 @@
     "@angular/animations": "^20.3.18",
     "@angular/cdk": "16.2.0",
     "@angular/common": "^20.3.18",
-    "@angular/compiler": "^20.3.18",
     "@angular/core": "^20.3.18",
     "@angular/forms": "^20.3.18",
     "@angular/localize": "^20.3.18",
@@ -43,7 +42,7 @@
     "govuk-frontend": "4.9.0",
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^6.0.3",
-    "rpx-xui-translation": "1.2.4",
+    "rpx-xui-translation": "1.2.7",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.1",
     "zone.js": "~0.15.1"
@@ -56,6 +55,7 @@
     "@angular-eslint/schematics": "20.4.0",
     "@angular-eslint/template-parser": "20.4.0",
     "@angular/cli": "^20.3.9",
+    "@angular/compiler": "^20.3.18",
     "@angular/compiler-cli": "^20.3.18",
     "@angular/language-service": "^20.3.18",
     "@playwright/test": "1.55.1",
