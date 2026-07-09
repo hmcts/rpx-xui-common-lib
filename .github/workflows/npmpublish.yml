@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22.14.0
           registry-url: https://registry.npmjs.org/
       - run: corepack enable && yarn --version
       - run: yarn install
@@ -60,13 +60,15 @@ jobs:
       
       - name: Publish version (OIDC via npm)
         working-directory: dist/exui-common-lib
+        env:
+          NPM_CONFIG_PROVENANCE: "false"
         run: |
           # Ensure we do NOT publish using token-based auth (classic/granular).
           unset NODE_AUTH_TOKEN
 
           # Use a fresh npm user config with no auth token to force OIDC Trusted Publishing.
           export NPM_CONFIG_USERCONFIG="$RUNNER_TEMP/npmrc-noauth"
-          printf "registry=https://registry.npmjs.org/\n" > "$NPM_CONFIG_USERCONFIG"
+          printf "registry=https://registry.npmjs.org/\nprovenance=false\n" > "$NPM_CONFIG_USERCONFIG"
 
           # Defensive: remove any auth token entries if something tries to inject them.
           npm config delete //registry.npmjs.org/:_authToken || true
