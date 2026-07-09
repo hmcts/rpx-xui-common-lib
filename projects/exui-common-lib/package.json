@@ -19,7 +19,7 @@
     "ngx-pagination": "^3.2.1",
     "rxjs": "^7.8.1",
     "rpx-xui-translation": "1.2.4",
-    "zone.js": "~0.15.1"
+    "zone.js": "~0.15.1 || ~0.16.0"
   },
   "publishConfig": {
     "access": "public"
