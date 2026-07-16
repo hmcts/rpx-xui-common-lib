@@ -18,15 +18,14 @@ describe('HmctsErrorSummaryComponent', () => {
   let component: HmctsErrorSummaryComponent;
   let fixture: ComponentFixture<HmctsErrorSummaryComponent>;
 
+  const originalTitle = document.title;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ HmctsErrorSummaryComponent, RpxTranslateMockPipe ],
       imports: [
         RouterTestingModule,
-      ],
-      providers: [
-        { provide: DOCUMENT, useValue: { title: '', querySelector: (): null => null } }
       ]
     })
     .compileComponents();
@@ -36,6 +35,10 @@ describe('HmctsErrorSummaryComponent', () => {
     fixture = TestBed.createComponent(HmctsErrorSummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    document.title = originalTitle;
   });
 
   it('should create', () => {
