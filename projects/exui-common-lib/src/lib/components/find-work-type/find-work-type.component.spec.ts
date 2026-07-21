@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
-import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import { of, Subject, Subscription } from 'rxjs';
 import { FilterFieldConfig } from '../../models';
 import { WorkType } from '../../models/work-type.model';
