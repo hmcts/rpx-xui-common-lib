@@ -17,7 +17,7 @@
             [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.required || form.get(field.name).errors?.minlength || form.get(field.name).errors?.maxLength)}">
             @if (field.title) {
               <div class="xui-generic-filter__field-title">
-                <h3 [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'" style="margin-bottom: 0!important">
+                <h3 [id]="field.name + '-label'" [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'" style="margin-bottom: 0!important">
                   {{field.title | capitalize}}
                 </h3>
                 @if (field?.titleHint) {
@@ -55,7 +55,7 @@
             <div class="govuk-body"  [class.govuk-body--maxWidth480px]="field.maxWidth480px">
               @switch (field.type) {
                 @case ('select') {
-                  <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
+                  <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [attr.aria-labelledby]="field.name + '-label'" [formControlName]="field.name">
                     <option disabled selected hidden value="">{{field.disabledText}}</option>
                     @if (field.defaultOption) {
                       <option [attr.selected]="true" [value]="field.defaultOption.key">{{field.defaultOption.label}}</option>
@@ -66,7 +66,7 @@
                   </select>
                 }
                 @case ('group-select') {
-                  <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [formControlName]="field.name">
+                  <select class="govuk-select" (change)="fieldChanged(field, form)" [attr.disabled]="disabled(field, form)" [name]="'select_' + field.name" [id]="'select_' + field.name" [attr.aria-labelledby]="field.name + '-label'" [formControlName]="field.name">
                     <option disabled selected hidden value="">{{field.disabledText}}</option>
                     @if (field.defaultOption) {
                       <option selected [value]="field.defaultOption.key">{{field.defaultOption.label}}</option>
@@ -81,7 +81,7 @@
                   </select>
                 }
                 @case ('checkbox') {
-                  <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+                  <div class="govuk-checkboxes govuk-checkboxes--small" role="group" [attr.aria-labelledby]="field.name + '-label'" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
                     @for (item of field.options; track item; let i = $index) {
                       <div class="govuk-checkboxes__item">
                         <input type="checkbox" class="govuk-checkboxes__input"
@@ -101,7 +101,7 @@
                   </div>
                 }
                 @case ('nested-checkbox') {
-                  <div class="govuk-checkboxes govuk-checkboxes--small" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+                  <div class="govuk-checkboxes govuk-checkboxes--small" role="group" [attr.aria-labelledby]="field.name + '-label'" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
                     @for (item of filteredSkillsByServicesCheckbox; track item; let i = $index) {
                       <div class="govuk-checkboxes__item">
                         <input type="checkbox" class="govuk-checkboxes__input"
@@ -121,7 +121,7 @@
                   </div>
                 }
                 @case ('checkbox-large') {
-                  <div class="govuk-checkboxes" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
+                  <div class="govuk-checkboxes" role="group" [attr.aria-labelledby]="field.name + '-label'" [formGroupName]="field.name" [attr.field]="field.name" [id]="'checkbox_' + field.name">
                     @for (item of field.options; track item; let i = $index) {
                       <div class="govuk-checkboxes__item">
                         <input type="checkbox" class="govuk-checkboxes__input"
@@ -141,7 +141,7 @@
                   </div>
                 }
                 @case ('radio') {
-                  <div class="govuk-radios">
+                  <div class="govuk-radios" role="group" [attr.aria-labelledby]="field.name + '-label'">
                     @for (item of field.options; track item) {
                       <div class="govuk-radios__item">
                         <input type="radio"
@@ -175,7 +175,7 @@
                   <xuilib-find-location (locationFieldChanged)="inputChanged(field)"
                     [form]="form"
                     [fields]="config.fields"
-                    [locationTitle]="field.locationTitle"
+                    [locationTitle]="field.locationTitle || 'Search for a location by name'"
                     [enableAddLocationButton]="field.enableAddButton"
                     [disabled]="disabled(field, form)"
                     [disableInputField]="field.disable"
@@ -212,7 +212,7 @@
                   <xuilib-find-work-type (workTypeFieldChanged)="inputChanged(field)"
                     [form]="form"
                     [fields]="config.fields"
-                    [workTypeTitle]="field.workTypeTitle"
+                    [workTypeTitle]="field.workTypeTitle || 'Search for a work type by name'"
                     [enableAddWorkTypeButton]="field.enableAddButton"
                     [disabled]="disabled(field, form)"
                     [disableInputField]="field.disable"
