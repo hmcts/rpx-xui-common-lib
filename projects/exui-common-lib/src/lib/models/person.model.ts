@@ -31,7 +31,7 @@ export interface Caseworker {
   lastName: string;
   email: string;
   knownAs?: string;
-  roleCategory: string;
+  roleCategories: string[];
 }
 
 // used as settings for filters and components

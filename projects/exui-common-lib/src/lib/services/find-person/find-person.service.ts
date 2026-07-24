@@ -17,7 +17,8 @@ import { SessionStorageService } from '../storage/session-storage/session-storag
 })
 export class FindAPersonService {
   public static caseworkersKey: string = 'caseworkers';
-  public userId: string;
+  // userId set as empty string as there is no exists check and was type warning
+  public userId: string = '';
   public assignedUser: string | string[] = [];
 
   constructor(private readonly http: HttpClient, private readonly sessionStorageService: SessionStorageService) {
@@ -54,17 +55,19 @@ export class FindAPersonService {
     );
   }
 
-  public mapCaseworkers(caseworkers: Caseworker[], roleCategory: string): Person[] {
+  public mapCaseworkers(caseworkers: Caseworker[], roleCategory: RoleCategory): Person[] {
     const people: Person[] = [];
     caseworkers.forEach((caseworker) => {
       const thisPerson: Person = {
         email: caseworker.email,
         name: `${caseworker.firstName} ${caseworker.lastName}`,
         id: caseworker.idamId,
-        domain: caseworker.roleCategory === RoleCategory.LEGAL_OPERATIONS ? PersonRole.LEGAL_OPERATIONS : PersonRole.ADMIN
+        // EXUI-4758 - If user has admin role, set domain to admin
+        // For more specific domain we need service specific role category (or other technique)
+        domain: this.setDomain(caseworker)
         // knownAs can be added if required
       };
-      if (caseworker.roleCategory === roleCategory || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
+      if (caseworker.roleCategories.includes(roleCategory) || roleCategory === RoleCategory.ALL || caseworker.idamId === this.userId) {
         people.push(thisPerson);
       }
     });
@@ -95,5 +98,20 @@ export class FindAPersonService {
   public searchJudicial(value: string, serviceId: string): Observable<JudicialUserModel[]> {
     return this.http.post<JudicialUserModel[]>('api/prd/judicial/getJudicialUsersSearch',
       { searchString: value, serviceCode: serviceId });
+  }
+
+  // Note: Domain only used internally to set the PersonRole for the Person object
+  private setDomain(caseworker: Caseworker): PersonRole {
+    if (caseworker.roleCategories.includes(RoleCategory.ADMIN)) {
+      return PersonRole.ADMIN;
+    }
+    if (caseworker.roleCategories.includes(RoleCategory.CTSC)) {
+      return PersonRole.CTSC;
+    }
+    if (caseworker.roleCategories.includes(RoleCategory.LEGAL_OPERATIONS)) {
+      return PersonRole.LEGAL_OPERATIONS;
+    }
+    // return default role if no match found
+    return PersonRole.LEGAL_OPERATIONS;
   }
 }
