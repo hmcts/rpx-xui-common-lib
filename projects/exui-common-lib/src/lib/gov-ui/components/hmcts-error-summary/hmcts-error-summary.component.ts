@@ -33,6 +33,16 @@ export class HmctsErrorSummaryComponent implements AfterViewInit, OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.errorMessages) {
       this.scrollTo('errorSummary');
+      this.updatePageTitle();
+    }
+  }
+
+  private updatePageTitle(): void {
+    const hasErrors = !this.showWarningMessage && this.messages && this.messages.length > 0;
+    if (hasErrors && !this.document.title.startsWith('Error:')) {
+      this.document.title = `Error: ${this.document.title}`;
+    } else if (!hasErrors && this.document.title.startsWith('Error:')) {
+      this.document.title = this.document.title.replace(/^Error:\s*/, '');
     }
   }
 

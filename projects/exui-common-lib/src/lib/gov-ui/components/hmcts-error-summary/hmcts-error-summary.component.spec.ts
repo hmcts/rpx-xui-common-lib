@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DOCUMENT, Pipe, PipeTransform, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -18,14 +18,15 @@ describe('HmctsErrorSummaryComponent', () => {
   let component: HmctsErrorSummaryComponent;
   let fixture: ComponentFixture<HmctsErrorSummaryComponent>;
 
+  const originalTitle = document.title;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ HmctsErrorSummaryComponent, RpxTranslateMockPipe ],
       imports: [
         RouterTestingModule,
-      ],
-      providers: []
+      ]
     })
     .compileComponents();
   }));
@@ -34,6 +35,10 @@ describe('HmctsErrorSummaryComponent', () => {
     fixture = TestBed.createComponent(HmctsErrorSummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    document.title = originalTitle;
   });
 
   it('should create', () => {
@@ -46,5 +51,22 @@ describe('HmctsErrorSummaryComponent', () => {
     fixture.detectChanges();
     const input = fixture.debugElement.query(By.css('h2'));
     expect(input).toBeTruthy();
+  });
+
+  it('should prefix document title with "Error:" when errors are set', () => {
+    const doc = TestBed.inject(DOCUMENT) as any;
+    doc.title = 'Add recipient';
+    const messages = [{id: 'cases', message: 'Select at least one change'}];
+    component.messages = messages;
+    component.ngOnChanges({ errorMessages: new SimpleChange([], messages, false) });
+    expect(doc.title).toBe('Error: Add recipient');
+  });
+
+  it('should remove "Error:" prefix from document title when errors are cleared', () => {
+    const doc = TestBed.inject(DOCUMENT) as any;
+    doc.title = 'Error: Add recipient';
+    component.messages = [];
+    component.ngOnChanges({ errorMessages: new SimpleChange([{id: 'cases', message: 'err'}], [], false) });
+    expect(doc.title).toBe('Add recipient');
   });
 });

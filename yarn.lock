@@ -2504,13 +2504,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/frontend@npm:0.0.50-alpha":
-  version: 0.0.50-alpha
-  resolution: "@hmcts/frontend@npm:0.0.50-alpha"
-  checksum: 10c0/626b57d73769f1786c994301cae67ae0417677bd34908b152ba0a575b99c24706f83d27e1659aeee7f6ad0eaa982a12be0491e73f80866c3d35883074c031707
-  languageName: node
-  linkType: hard
-
 "@hmcts/rpx-xui-common-lib@workspace:.":
   version: 0.0.0-use.local
   resolution: "@hmcts/rpx-xui-common-lib@workspace:."
@@ -2535,7 +2528,6 @@ __metadata:
     "@angular/platform-browser": "npm:^20.3.18"
     "@angular/platform-browser-dynamic": "npm:^20.3.18"
     "@angular/router": "npm:^20.3.18"
-    "@hmcts/frontend": "npm:0.0.50-alpha"
     "@ng-idle/core": "npm:^16.0.0"
     "@ng-idle/keepalive": "npm:^16.0.0"
     "@playwright/test": "npm:1.55.1"
@@ -2548,7 +2540,7 @@ __metadata:
     codelyzer: "npm:^6.0.2"
     core-js: "npm:^3.49.0"
     eslint: "npm:^8.57.0"
-    govuk-frontend: "npm:4.9.0"
+    govuk-frontend: "npm:5.13.0"
     jasmine-core: "npm:~5.1.0"
     jasmine-spec-reporter: "npm:~7.0.0"
     karma: "npm:~6.4.0"
@@ -8310,10 +8302,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"govuk-frontend@npm:4.9.0":
-  version: 4.9.0
-  resolution: "govuk-frontend@npm:4.9.0"
-  checksum: 10c0/d4c2634c096e50734fc65b3c1c8ceb60ea173726746bb8e75db8c39cf0d60862e81aa52f48c683f2dce5a11ba9f7e478a16d158fb53a41c9055daceacf745227
+"govuk-frontend@npm:5.13.0":
+  version: 5.13.0
+  resolution: "govuk-frontend@npm:5.13.0"
+  checksum: 10c0/af1c1495c9b543b442709a8131f4455019e07cd9eeea31a4a43b098496047d3468ed3c162d9b246b178c4a3d4214f64b85360bceea95406b188b3d42353593d4
   languageName: node
   linkType: hard
 
