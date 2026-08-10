@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.13-CME-1106-material-date-time",
+  "version": "3.2.14",
   "engines": {
     "node": ">=20.0.0"
   },

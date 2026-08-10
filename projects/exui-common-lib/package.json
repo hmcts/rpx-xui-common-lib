@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.13-CME-1106-material-date-time",
+  "version": "3.2.14",
   "peerDependencies": {
     "@angular/animations": "^20.3.18",
     "@angular/cdk": "^20.2.14",
