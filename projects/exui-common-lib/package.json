@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.14",
+  "version": "3.2.14-CME-1008-Angular-20-post-upgrade-action---Dart-Sass-depricated",
   "peerDependencies": {
     "@angular/animations": "^20.3.18",
     "@angular/cdk": "^20.2.14",
