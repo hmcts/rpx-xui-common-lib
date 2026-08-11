@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.15",
+  "version": "3.2.16",
   "peerDependencies": {
     "@angular/animations": "^20.3.18",
     "@angular/cdk": "16.2.0",
@@ -18,7 +18,7 @@
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^3.2.1",
     "rxjs": "^7.8.1",
-    "rpx-xui-translation": "1.2.10",
+    "rpx-xui-translation": "1.2.12",
     "zone.js": "~0.15.1"
   },
   "publishConfig": {

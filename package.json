@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.15",
+  "version": "3.2.16",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -42,7 +42,7 @@
     "govuk-frontend": "4.9.0",
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^6.0.3",
-    "rpx-xui-translation": "1.2.10",
+    "rpx-xui-translation": "1.2.12",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.1",
     "zone.js": "~0.15.1"
@@ -59,7 +59,7 @@
     "@angular/compiler-cli": "20.3.27",
     "@angular/language-service": "20.3.27",
     "@playwright/test": "1.55.1",
-    "@types/jasmine": "~4.3.5",
+    "@types/jasmine": "~5.1.0",
     "@types/node": "^20.19.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
@@ -73,7 +73,7 @@
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~4.0.0",
+    "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "20.3.2",
     "playwright-ng-schematics": "2.0.3",
