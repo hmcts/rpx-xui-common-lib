@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.14-CME-1008-Angular-20-post-upgrade-action---Dart-Sass-depricated",
+  "version": "3.2.16-CME-1008-Angular-20-post-upgrade-action---Dart-Sass-depricated",
   "peerDependencies": {
     "@angular/animations": "^20.3.18",
     "@angular/cdk": "^20.2.14",
@@ -18,7 +18,7 @@
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^3.2.1",
     "rxjs": "^7.8.1",
-    "rpx-xui-translation": "1.2.4",
+    "rpx-xui-translation": "1.2.12",
     "zone.js": "~0.15.1"
   },
   "publishConfig": {
