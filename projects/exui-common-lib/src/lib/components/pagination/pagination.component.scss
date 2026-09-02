@@ -1,3 +1,4 @@
-span.hmcts-pagination__link:hover {
-  color: revert;
-}
+// Pulls in the actual GOV.UK Design System pagination component styles
+// (https://design-system.service.gov.uk/components/pagination/) rather than
+// reproducing them by hand, so this stays in sync with govuk-frontend.
+@use "govuk-frontend/dist/govuk/components/pagination/pagination" as *;
