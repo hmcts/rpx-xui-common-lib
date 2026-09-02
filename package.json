@@ -2,7 +2,7 @@
   "name": "@hmcts/rpx-xui-common-lib",
   "version": "3.2.16-CME-1008-dart-sass",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.18.0"
   },
   "scripts": {
     "sync:library-package": "node ./scripts/sync-library-package.mjs",
