@@ -52,6 +52,7 @@ import { WriteAddressInputsComponent } from './components/write-address-inputs/w
 import { WriteAddressFieldComponent } from './components/write-address/write-address.component';
 import { FeatureToggleDirective } from './directives/feature-toggle/feature-toggle.directive';
 import { LetDirective } from './directives/let/let.directive';
+import { SafeHtmlDirective } from './directives/safe-html/safe-html.directive';
 import { GovUkCheckboxComponent } from './gov-ui/components/gov-uk-checkbox/gov-uk-checkbox.component';
 import { GovUkCheckboxesComponent } from './gov-ui/components/gov-uk-checkboxes/gov-uk-checkboxes.component';
 import { GovUkDateComponent } from './gov-ui/components/gov-uk-date/gov-uk-date.component';
@@ -90,6 +91,7 @@ export const COMMON_COMPONENTS = [
   ContactDetailsComponent,
   FeatureToggleDirective,
   LetDirective,
+  SafeHtmlDirective,
   HmctsSessionDialogComponent,
   UserListComponent,
   UserDetailsComponent,
