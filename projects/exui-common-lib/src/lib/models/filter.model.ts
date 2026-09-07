@@ -4,6 +4,7 @@ import { PersonRole } from './person.model';
 
 export type FilterFieldType = 'group-title' | 'checkbox' | 'radio' | 'select' | 'find-person' | 'find-location' | 'find-work-type' | 'checkbox-large' | 'find-service' | 'text-input' | 'email-input' | 'group-select' | 'nested-checkbox' | 'find-task-name';
 
+// 'local' is retained as a backwards-compatible alias and is persisted in sessionStorage.
 export type FilterPersistence = 'local' | 'session' | 'memory';
 
 export interface FilterConfigOption {

@@ -14,7 +14,8 @@ export class FilterService {
   public persist(setting: FilterSetting, persistence: FilterPersistence): void {
     switch (persistence) {
       case 'local':
-        this.persistLocal(setting);
+        // Backwards compatibility only, EXUI-4454: localStorage should not be used.
+        this.persistSession(setting);
         break;
       case 'session':
         this.persistSession(setting);
@@ -33,19 +34,17 @@ export class FilterService {
     if (sessionStorage.getItem(id)) {
       return JSON.parse(sessionStorage.getItem(id));
     }
+    // Remove legacy persistent data without reading it back into the application.
+    // Filter settings are user-associated and must not survive the browser session.
     if (localStorage.getItem(id)) {
-      if (this.isSameUser(id)) {
-        return JSON.parse(window.localStorage.getItem(id));
-      } else {
-        return null;
-      }
+      localStorage.removeItem(id);
     }
     return null;
   }
 
   public isSameUser(id: string): boolean {
-    const filterSetting: FilterSetting = JSON.parse(window.localStorage.getItem(id));
-    return !!filterSetting.idamId && filterSetting.idamId === this.getUserId();
+    void id;
+    return false;
   }
 
   public getStream(id: string): Observable<FilterSetting> {
@@ -64,11 +63,6 @@ export class FilterService {
     if (this.streams[id] !== undefined) {
       this.streams[id].next(null);
     }
-  }
-
-  private persistLocal(setting: FilterSetting): void {
-    setting.idamId = this.getUserId();
-    window.localStorage.setItem(setting.id, JSON.stringify(setting));
   }
 
   private persistSession(setting: FilterSetting): void {

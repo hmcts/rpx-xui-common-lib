@@ -31,11 +31,12 @@ describe('FilterService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('persist local', () => {
-    const persistence: FilterPersistence = 'local';
-    service.persist(filterSetting, persistence);
-    service.get(filterSetting.id);
-    expect(service.get(filterSetting.id)).toEqual(filterSetting);
+  it('maps legacy local persistence to session storage', () => {
+    const sessionStorageSetItemSpy = spyOn(sessionStorage, 'setItem');
+
+    service.persist(filterSetting, 'local');
+
+    expect(sessionStorageSetItemSpy).toHaveBeenCalledWith(filterSetting.id, JSON.stringify(filterSetting));
   });
 
   it('persist session', () => {
@@ -54,27 +55,24 @@ describe('FilterService', () => {
     });
   });
 
-  it('isSameUser - return false if filter idamId is not defined', () => {
-    const persistence: FilterPersistence = 'local';
+  it('isSameUser - returns false when filter has no persisted user identity', () => {
+    const persistence: FilterPersistence = 'session';
     service.persist(filterSetting, persistence);
     spyOn(service, 'getUserId').and.returnValue('1234');
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting));
     expect(service.isSameUser('testId')).toEqual(false);
   });
 
-  it('isSameUser - return false if filter idamId is not sane as the user id', () => {
-    const persistence: FilterPersistence = 'local';
+  it('isSameUser - returns false when filter user identity does not match the current user', () => {
+    const persistence: FilterPersistence = 'session';
     service.persist(filterSetting, persistence);
     spyOn(service, 'getUserId').and.returnValue('5678');
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting));
     expect(service.isSameUser('testId')).toEqual(false);
   });
 
-  it('isSameUser - return true if filter idamId is same as user id', () => {
-    const persistence: FilterPersistence = 'local';
+  it('isSameUser - does not accept a persisted idamId after the storage migration', () => {
+    const persistence: FilterPersistence = 'session';
     service.persist(filterSetting1, persistence);
     spyOn(service, 'getUserId').and.returnValue('1234');
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting1));
     expect(service.isSameUser('testId1')).toEqual(false);
   });
 

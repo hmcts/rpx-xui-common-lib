@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
       maxSelected: 1,
       type: 'select'
     }],
-    persistence: 'local',
+    persistence: 'session',
     applyButtonText: 'Apply',
     cancelButtonText: 'Cancel'
   };
