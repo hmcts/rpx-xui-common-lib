@@ -1,4 +1,4 @@
-@use "govuk-frontend/dist/govuk/objects/width-container" as *;
+@use "govuk-frontend/dist/govuk/base" as *;
 
 .hmcts-primary-navigation {
   background-color: govuk-colour("black");
