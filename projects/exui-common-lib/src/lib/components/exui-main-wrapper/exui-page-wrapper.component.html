@@ -3,20 +3,18 @@
     <a [routerLink]="backLink" class="govuk-back-link">{{'Back' | rpxTranslate}}</a>
   }
   <div class="govuk-width-container">
-    <main id="content" role="main" class="govuk-main-wrapper">
-      <div class="govuk-grid-row">
-        @if (title) {
-          <h1 class="govuk-heading-xl">
-            @if (fnTitle) {
-              <span class="govuk-caption-xl">{{fnTitle | rpxTranslate}}</span>
-            }
-            {{title | rpxTranslate}}
-          </h1>
-        }
-        <ng-content>
+    <div class="govuk-grid-row">
+      @if (title) {
+        <h1 class="govuk-heading-xl">
+          @if (fnTitle) {
+            <span class="govuk-caption-xl">{{fnTitle | rpxTranslate}}</span>
+          }
+          {{title | rpxTranslate}}
+        </h1>
+      }
+      <ng-content>
 
-        </ng-content>
-      </div>
-    </main>
+      </ng-content>
+    </div>
   </div>
 </div>

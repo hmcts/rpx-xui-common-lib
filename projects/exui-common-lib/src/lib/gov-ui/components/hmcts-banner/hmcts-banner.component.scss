@@ -1,4 +1,4 @@
-@use "govuk-frontend/govuk/all" as *;
+@use "govuk-frontend/dist/govuk/base" as *;
 
 .hmcts-banner-title {
   color: govuk-colour('white');
@@ -15,8 +15,53 @@
   }
 }
 
+.hmcts-banner {
+  border: 5px solid govuk-colour("blue");
+  color: govuk-colour("blue");
+  font-size: 0;
+  margin-bottom: govuk-spacing(6);
+  padding: govuk-spacing(2);
+
+  &--success {
+    border-color: govuk-colour("green");
+    color: govuk-colour("green");
+  }
+
+  &--warning {
+    border-color: govuk-colour("red");
+    color: govuk-colour("red");
+  }
+}
+
+.hmcts-banner__icon {
+  fill: currentColor;
+  float: left;
+  margin-right: govuk-spacing(2);
+}
+
 .hmcts-banner__message {
+  @include govuk-font($size: 19);
+  color: govuk-colour("black");
+  display: block;
+  overflow: hidden;
+
+  h2 {
+    margin-bottom: govuk-spacing(2);
+  }
+
+  h2:last-child {
+    margin-bottom: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
   &--bold {
     font-weight: 700;
   }
+}
+
+.hmcts-banner__assistive {
+  @include govuk-visually-hidden;
 }
