@@ -1,9 +1,7 @@
 <div class="location-picker-custom">
   <div class="search-location">
     <div>
-      @if (locationTitle) {
-        <label id="input-selected-location-label" for="inputLocationSearch">{{locationTitle}}</label>
-      }
+      <label id="input-selected-location-label" for="inputLocationSearch">{{locationTitle || 'Search for a location'}}</label>
     </div>
     <exui-search-location class="search-location"
       [form]="form"

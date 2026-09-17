@@ -1,11 +1,9 @@
 <div class="service-picker-custom">
   <div class="search-service">
     <div class="govuk-body">
-      @if (serviceTitle) {
-        <label id="selectServiceSearch-label" for="inputServiceSearch">
-          {{ serviceTitle | rpxTranslate}}
-        </label>
-      }
+      <label id="selectServiceSearch-label" for="inputServiceSearch">
+        {{ (serviceTitle || 'Search for a service') | rpxTranslate}}
+      </label>
     </div>
     <div class="search-service__input-container">
       <exui-search-service class="search-service__input"
