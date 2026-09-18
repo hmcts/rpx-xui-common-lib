@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.17",
+  "version": "3.2.17-tar-upscale",
   "engines": {
     "node": ">=24.18.0"
   },
@@ -42,7 +42,7 @@
     "govuk-frontend": "4.9.0",
     "launchdarkly-js-client-sdk": "^3.3.0",
     "ngx-pagination": "^6.0.3",
-    "rpx-xui-translation": "1.2.12",
+    "rpx-xui-translation": "1.2.13-tar-upscale-2",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.1",
     "zone.js": "~0.15.1"
@@ -80,6 +80,9 @@
     "ts-node": "10.8.1",
     "tslint": "~6.1.0",
     "typescript": "~5.8.3"
+  },
+  "resolutions": {
+    "tar": "7.5.22"
   },
   "packageManager": "yarn@4.5.3"
 }
