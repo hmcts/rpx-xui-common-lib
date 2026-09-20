@@ -1,7 +1,7 @@
 export enum BadgeColour {
-  BADGE_RED = 'hmcts-badge--red',
-  BADGE_BLUE = 'hmcts-badge--blue',
-  BADGE_GREEN = 'hmcts-badge--green',
+  BADGE_RED = 'govuk-tag--red',
+  BADGE_BLUE = 'govuk-tag--blue',
+  BADGE_GREEN = 'govuk-tag--green',
 }
 
 export interface ContactDetailsDataModel {

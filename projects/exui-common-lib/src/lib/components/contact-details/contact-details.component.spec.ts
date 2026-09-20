@@ -50,9 +50,9 @@ describe('ContactDetailsComponent', () => {
     fixture.detectChanges();
     const title = fixture.nativeElement.querySelector('h3');
     expect(title.textContent).toEqual('Test Title');
-    const badge = fixture.nativeElement.querySelector('.hmcts-badge');
+    const badge = fixture.nativeElement.querySelector('.govuk-tag');
     expect(badge.textContent).toEqual('PRIVATE BETA');
-    const badgeColour = fixture.nativeElement.querySelector('.hmcts-badge');
+    const badgeColour = fixture.nativeElement.querySelector('.govuk-tag');
     expect(badgeColour).toBeTruthy();
 
     const email = fixture.nativeElement.querySelector('.email');
