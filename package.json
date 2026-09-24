@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.17-5161",
+  "version": "3.2.19",
   "engines": {
     "node": ">=24.18.0"
   },
@@ -42,7 +42,7 @@
     "govuk-frontend": "^4.9.0",
     "launchdarkly-js-client-sdk": "3.9.1",
     "ngx-pagination": "^6.0.3",
-    "rpx-xui-translation": "1.2.13",
+    "rpx-xui-translation": "1.2.15",
     "rxjs": "^7.8.2",
     "tslib": "^2.8.1",
     "zone.js": "0.16.2"
