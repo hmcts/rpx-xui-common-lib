@@ -1,8 +1,11 @@
 <div class="govuk-checkboxes__item" [formGroup]="group">
-  <input class="govuk-checkboxes__input" type="checkbox" [attr.aria-describedby]="config.hint ? config.value+'-item-hint' : null"
-  [id]="config.id" [name]="config.name" [formControlName]="config.value" [checked]="isChecked">
+  <input class="govuk-checkboxes__input" type="checkbox"
+    [attr.aria-describedby]="config.hint ? config.value + '-item-hint' : null"
+    [id]="config.id" [name]="config.name" [formControlName]="config.value" [checked]="isChecked">
   <xuilib-gov-label appRemoveHost [config]="config"></xuilib-gov-label>
-  <span [id]="config.value+'-item-hint'" class="govuk-hint govuk-checkboxes__hint">
-    {{config.hint | rpxTranslate}}
-  </span>
+  @if (config.hint) {
+    <span [id]="config.value + '-item-hint'" class="govuk-hint govuk-checkboxes__hint">
+      {{ config.hint | rpxTranslate }}
+    </span>
+  }
 </div>
