@@ -31,7 +31,12 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/govuk-frontend/govuk/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -136,17 +141,6 @@
       "projectType": "application",
       "prefix": "",
       "architect": {
-        "e2e": {
-          "builder": "playwright-ng-schematics:playwright",
-          "options": {
-            "devServerTarget": "rpx-xui-common-lib-e2e:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "rpx-xui-common-lib-e2e:serve:production"
-            }
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
@@ -199,17 +193,6 @@
             "exclude": [
               "**/node_modules/**"
             ]
-          }
-        },
-        "e2e": {
-          "builder": "playwright-ng-schematics:playwright",
-          "options": {
-            "devServerTarget": "exui-common-lib:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "exui-common-lib:serve:production"
-            }
           }
         }
       }
