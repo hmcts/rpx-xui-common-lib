@@ -2678,7 +2678,7 @@ __metadata:
     karma-coverage-istanbul-reporter: "npm:~3.0.2"
     karma-jasmine: "npm:~5.1.0"
     karma-jasmine-html-reporter: "npm:^1.5.0"
-    launchdarkly-js-client-sdk: "npm:3.9.1"
+    launchdarkly-js-client-sdk: "npm:3.9.6"
     ng-packagr: "npm:20.3.2"
     ngx-pagination: "npm:^6.0.3"
     playwright-ng-schematics: "npm:2.0.3"
@@ -9823,24 +9823,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"launchdarkly-js-client-sdk@npm:3.9.1":
-  version: 3.9.1
-  resolution: "launchdarkly-js-client-sdk@npm:3.9.1"
+"launchdarkly-js-client-sdk@npm:3.9.6":
+  version: 3.9.6
+  resolution: "launchdarkly-js-client-sdk@npm:3.9.6"
   dependencies:
     escape-string-regexp: "npm:^4.0.0"
-    launchdarkly-js-sdk-common: "npm:5.8.0"
-  checksum: 10c0/d7e3046c1c933452b94d834ec2f2b34dacfd01fc848bce323fa497783d121394432b9e474d86d2fb497ec97c45475f7ac9863c3684ee672e4d06c369fc07343e
+    launchdarkly-js-sdk-common: "npm:5.8.3"
+  checksum: 10c0/58880254a0877eeb0c49cf8ce6f2633dabfda41cd617464a5d2ec60f1f55d73049b6526e6106341532abd76b50947da5008b3c8d3edf166cef746a4001f33a09
   languageName: node
   linkType: hard
 
-"launchdarkly-js-sdk-common@npm:5.8.0":
-  version: 5.8.0
-  resolution: "launchdarkly-js-sdk-common@npm:5.8.0"
+"launchdarkly-js-sdk-common@npm:5.8.3":
+  version: 5.8.3
+  resolution: "launchdarkly-js-sdk-common@npm:5.8.3"
   dependencies:
     base64-js: "npm:^1.3.0"
     fast-deep-equal: "npm:^2.0.1"
-    uuid: "npm:^8.0.0"
-  checksum: 10c0/05033ca0c6a194c89d84a4cced2c2d447b44bba3467cfe574973dc12ce3750e47dcecc7a0363d480f91f32b68034fafc5e005f658a0681f7370b5ebf889e68c7
+  checksum: 10c0/1cd8450a1ba845e5796fd9af72c7656a9de79797b05cc28b21198bf6eb3610ca7a1127502137e78791d34a257b321e7a71e84e7946abc613d90548a56d56c21d
   languageName: node
   linkType: hard
 
@@ -13580,7 +13579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^8.0.0, uuid@npm:^8.3.2":
+"uuid@npm:^8.3.2":
   version: 8.3.2
   resolution: "uuid@npm:8.3.2"
   bin:
