@@ -1,7 +1,9 @@
 <div class="work-type-picker-custom">
   <div class="search-work-type">
     <div class="govuk-body">
-      <label id="input-selected-work-type-label" for="inputWorkTypeSearch">{{ (workTypeTitle || 'Search for a work type') | rpxTranslate }}</label>
+      @if (workTypeTitle) {
+      <label id="input-selected-work-type-label" for="inputWorkTypeSearch">{{ workTypeTitle | rpxTranslate }}</label>
+      }
     </div>
     <div class="search-work-type__input-container">
       <exui-search-work-type class="search-work-type__input" [form]="form" [field]="field"
