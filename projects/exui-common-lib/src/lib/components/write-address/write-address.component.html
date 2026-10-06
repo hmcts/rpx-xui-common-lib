@@ -28,14 +28,14 @@
         <div class="govuk-body" id="selectAddress">
           <div class="govuk-body" [ngClass]="{'govuk-form-group--error': postcodeErrorPresent(false)}">
             <label class="govuk-label" for="addressList">
-              <span class="form-label">Select an address</span>
+              Select an address
             </label>
             @if (postcodeErrorPresent(false)) {
               <p class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span>{{selectErrorMessage}}
               </p>
             }
-            <select class="form-control govuk-select ccd-dropdown addressList" id="addressList" name="address"
+            <select class="govuk-select ccd-dropdown addressList" id="addressList" name="address"
               formControlName="addressList" (change)="addressSelected()" focusElement>
               @for (addressOption of addressOptions; track addressOption) {
                 <option [ngValue]="addressOption.value">

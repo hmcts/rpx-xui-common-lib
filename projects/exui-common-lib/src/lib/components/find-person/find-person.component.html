@@ -5,7 +5,7 @@
   </h1>
 }
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
-  [ngClass]="{'form-group-error': findPersonGroup.get('findPersonControl').invalid && submitted}">
+  [ngClass]="{'govuk-form-group--error': findPersonGroup.get('findPersonControl').invalid && submitted}">
   <fieldset class="govuk-fieldset" [attr.aria-describedby]="subTitle && subTitle.length ? 'sub-title-hint' : null">
     <legend class="govuk-visually-hidden">{{boldTitle | rpxTranslate}}</legend>
     @if (subTitle && subTitle.length) {

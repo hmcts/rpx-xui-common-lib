@@ -14,7 +14,7 @@
           <div class="govuk-form-group xui-generic-filter"
             [hidden]="hidden(field, form)"
             [id]="field.name"
-            [ngClass]="{'form-group-error': submitted && (form.get(field.name).errors?.required || form.get(field.name).errors?.minlength || form.get(field.name).errors?.maxLength)}">
+            [ngClass]="{'govuk-form-group--error': submitted && (form.get(field.name).errors?.required || form.get(field.name).errors?.minlength || form.get(field.name).errors?.maxLength)}">
             @if (field.title) {
               <div class="xui-generic-filter__field-title">
                 <h3 [id]="field.name + '-label'" [class]="field.titleClasses ? field.titleClasses : 'govuk-heading-s'" style="margin-bottom: 0!important">

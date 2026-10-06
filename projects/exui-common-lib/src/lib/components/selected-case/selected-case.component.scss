@@ -1,18 +1,16 @@
+@use "govuk-frontend/dist/govuk/base" as *;
+
 .govuk-case-header {
-  border-top: 1px solid #bfc1c3;
+  border-top: 1px solid govuk-colour("black", $variant: "tint-80");
 }
 .govuk-case-title {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 24px;
-  color: #005ea5;
-  font-weight: bold;
+  @include govuk-font($size: 24, $weight: bold);
+  color: govuk-colour("blue");
   padding-left: 0;
 }
 .govuk-case-sub-title {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 1rem !important;
-  color: #6f777b;
-  font-weight: 400;
+  @include govuk-font($size: 16);
+  color: $govuk-secondary-text-colour;
   padding-left: 0;
 }
 .govuk-grid-row {
@@ -51,13 +49,11 @@
   width: 12%;
 }
 .govuk-div-align-left {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 1.1875rem !important;
-  line-height: 1.31579 !important;
+  @include govuk-font($size: 19);
   text-align: left;
   margin-bottom: 20px;
   padding-left: 0;
-  color: #0b0c0c;
+  color: $govuk-text-colour;
 }
 .govuk-accordion__section-header {
   border-top: 0;

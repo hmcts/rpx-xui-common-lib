@@ -2,8 +2,4 @@
   // Prevent text wrapping as it looks really weird. If we ever wanted
   // this to wrap we'd have to do something about the border issue.
   white-space: nowrap;
-  &.hmcts-badge--orange {
-    color: #f47738;
-    border-color: #f47738;
-  }
 }
