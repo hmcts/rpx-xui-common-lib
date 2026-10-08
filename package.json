@@ -57,7 +57,7 @@
     "@angular/compiler": "20.3.31",
     "@angular/compiler-cli": "20.3.31",
     "@angular/language-service": "20.3.31",
-    "@playwright/test": "1.55.1",
+    "@playwright/test": "1.64.0",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.19.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
