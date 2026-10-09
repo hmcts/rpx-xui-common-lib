@@ -5,10 +5,10 @@
   <div class="govuk-width-container">
     <div class="govuk-grid-row">
       @if (title) {
+        @if (fnTitle) {
+          <span class="govuk-caption-xl">{{fnTitle | rpxTranslate}}</span>
+        }
         <h1 class="govuk-heading-xl">
-          @if (fnTitle) {
-            <span class="govuk-caption-xl">{{fnTitle | rpxTranslate}}</span>
-          }
           {{title | rpxTranslate}}
         </h1>
       }
