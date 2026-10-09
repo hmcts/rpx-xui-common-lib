@@ -85,7 +85,7 @@ describe('SelectedCaseComponent', () => {
     expect(
       fixture.debugElement.nativeElement.querySelector('[id^=\'case-title\']')
         .textContent
-    ).toContain('Sarah vs Pete');
+    ).toContain('Case: Sarah vs Pete');
     expect(
       fixture.debugElement.nativeElement.querySelector('[id^=\'case-id\']')
         .textContent
