@@ -3,10 +3,10 @@
   [header]="'There is a problem'"
 ></xuilib-hmcts-error-summary>
 @if (title) {
+  @if (fnTitle) {
+    <span class="govuk-caption-xl">{{fnTitle | rpxTranslate}}</span>
+  }
   <h1 class="govuk-heading-xl govuk-!-margin-top-2">
-    @if (fnTitle) {
-      <span class="govuk-caption-xl">{{fnTitle | rpxTranslate}}</span>
-    }
     {{title | rpxTranslate}}
   </h1>
 }

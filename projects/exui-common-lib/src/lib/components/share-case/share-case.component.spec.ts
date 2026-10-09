@@ -93,6 +93,19 @@ describe('ShareCaseComponent', () => {
     ).toBeNull();
   });
 
+  it('should render the page caption outside the heading', () => {
+    component.fnTitle = 'Share a case';
+    component.title = 'Add recipient';
+    fixture.detectChanges();
+
+    const heading = fixture.debugElement.nativeElement.querySelector('h1');
+    const caption = fixture.debugElement.nativeElement.querySelector('.govuk-caption-xl');
+
+    expect(caption.textContent).toContain('Share a case');
+    expect(heading.textContent).toContain('Add recipient');
+    expect(heading.contains(caption)).toBeFalse();
+  });
+
   it('should display additional page elements for removing a user', () => {
     component.showRemoveUsers = true;
     fixture.detectChanges();
