@@ -1,5 +1,9 @@
 # RpxXuiCommonLib
 
+```ts
+
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.9.
 This Project is used for EXUI team as a common library.
 All the common libraries are located at `projects/exui-common-lib`.
@@ -26,6 +30,8 @@ It will run the tests for exui-common-lib.
 
 The Playwright tests in `e2e/` exercise the demo host (`src/`) in Chromium, Firefox and WebKit locally and in CI. There are 51 distinct scenarios (153 browser executions): 34 for the existing home demo and 17 for the `/coverage` demo. The additional examples cover generic-filter validation, persistence and cancellation; pagination boundaries and events; cookie choices; user selection; terms confirmation; primary and secondary navigation; banners and error summaries; and the session dialog. The `/coverage` page is demo/test-host code only: no production library implementation under `projects/exui-common-lib/` was changed for this expansion. These browser tests do not imply 100% coverage of CommonLib's APIs or consumer journeys; library unit tests still run separately through `yarn test`.
 
+ 
+
 - `yarn e2e` (`ng e2e`) - Angular starts the demo dev server and passes its URL to Playwright via `PLAYWRIGHT_TEST_BASE_URL`, so Playwright does not start a second server.
 - `yarn playwright test` - Playwright starts the demo itself (`yarn start:no-open` on http://localhost:4200), reusing an already running server outside CI. Add `--ui` for UI mode.
 - `yarn test:e2e:typecheck` - typecheck the Playwright config and test sources without starting a browser.
@@ -34,13 +40,19 @@ The Playwright tests in `e2e/` exercise the demo host (`src/`) in Chromium, Fire
 - Odhín writes its HTML index to `test-results/odhin/common-lib-playwright.html` and keeps assets/attachments beside it. Set `PW_ODHIN_OUTPUT`, `PW_ODHIN_INDEX`, `PW_ODHIN_TITLE`, `PW_ODHIN_ENV`, `PW_ODHIN_PROJECT` or `PW_ODHIN_RELEASE` to override metadata and output paths.
 - GitHub Actions publishes Odhín reports to a persistent `odhin-reports` peer branch and deploys one GitHub Pages site with separate history paths. The root index lists branches; `reports/master/` is the branch history index, and `reports/<branch-slug>/runs/<run-id>-attempt-<attempt>/` is an immutable Odhín dashboard. The workflow summary opens the latest immutable dashboard first, then links the branch history and the downloadable `common-lib-playwright-evidence` artifact. Fork pull requests remain artifact-only and are not copied to the public report-history branch.
 - `yarn playwright show-report` - view the last HTML report.
+  
+   You can also run Playwright tests directly:
+- `npx playwright test` - Run all tests
+- `npx playwright test --ui` - Run tests with UI mode
+- `npx playwright show-report` - View the last test report
+
+ 
 
 Install the browsers once with `yarn playwright install chromium firefox webkit`.
 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
 
 ## Timeout Notification Service
 
@@ -55,17 +67,22 @@ and handle these events within your application.
 ### How to implement the Timeout Notification Service
 
 * Step 1. Import the TimeoutNotificationsService from rpx-xui-common-lib
-```
+
+```ts
 import { TimeoutNotificationsService } from '@hmcts/rpx-xui-common-lib';
 ```
+
 * Step 2. Add the TimeoutNotificationService to the constructor.
-```
+
+```html
   constructor(
     private readonly timeoutNotificationsService: TimeoutNotificationsService
   ) {
 ```
+
 * Step 3. Add a Handler, to handle the TimeoutNotificationService events.
-```
+
+```groovy
 public timeoutNotificationEventHandler(event) {
 	switch (event.eventType) {
 	  case 'countdown': {
@@ -89,14 +106,18 @@ public timeoutNotificationEventHandler(event) {
 	}
 }
 ```
+
 * Step 4. Listen for the TimeoutNotificationService events, and send them onto the Handler.
-```
+
+```ts
 this.timeoutNotificationsService.notificationOnChange().subscribe(event => {
   this.timeoutNotificationEventHandler(event);
 });
 ```
+
 * Step 5. Create a configuration object and pass the object to configure the service.
-```
+
+```ts
 /**
  * Timeout Notification Config
  * 
@@ -133,13 +154,13 @@ should be signed out.
 
 ### What does totalIdleTime and idleModalDisplayTime mean?
 
-```totalIdleTime``` is the total amount of time in milliseconds that the User is idle for. ie.
-A User is working, they then stop interacting with the page. When the User stops interacting 
+`totalIdleTime` is the total amount of time in milliseconds that the User is idle for. ie.
+A User is working, they then stop interacting with the page. When the User stops interacting
 with the page is when the totalIdleTime begins.
 
 The Users Total Idle Time, includes the time in which we show the Timeout Modal to a User.
 
-```idleModalDisplayTime``` is the total amount of time in milliseconds to display a Session Timeout Modal.
+`idleModalDisplayTime` is the total amount of time in milliseconds to display a Session Timeout Modal.
 Note that our xui re-usable Session Timeout Modal can be used.
 
 *Important note*: The idleModalDisplayTime IS PART of the totalIdleTime. The idleModalDisplayTime does not get added to the end of the totalIdleTime.
@@ -152,10 +173,11 @@ totalIdleTime is 2 minutes.
 idleModalDisplayTime is 1 minute.
 
 This would lead to:
+
 1. On the User being idle for 1 minute, 'countdown' events are thrown.
-2. When the User is Idle for 2 minutes a 'sign-out' event is thrown. 
+2. When the User is Idle for 2 minutes a 'sign-out' event is thrown.
 3. If the User interacts with the page within this time a 'keep-alive' event is thrown.
-4. By default when the User is idle for under 1 minute, countdown events are thrown each second. 
+4. By default when the User is idle for under 1 minute, countdown events are thrown each second.
 
 ### What happens when the User is in the final minute of being idle?
 
@@ -171,7 +193,7 @@ Step 1. Add the latest '@hmcts/rpx-xui-common-lib' into your project.
 
 Step 2. Add the following component into any parent Angular component where you wish to see the modal dialog. Within the XUI projects we've added this into our app.component.html file.
 
-```
+```html
 <xuilib-session-dialog positionTop="300px" *ngIf="timeoutModalConfig.isVisible" (close)="staySignedInHandler()">
   <h3 class="govuk-heading-m">We are about to sign you out</h3>
   <p class="govuk-body">For your security, we will sign you out of your account in
