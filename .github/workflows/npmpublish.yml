@@ -43,6 +43,10 @@ jobs:
           PW_ODHIN_OUTPUT: test-results/odhin
           PW_ODHIN_INDEX: common-lib-playwright.html
         run: yarn playwright test
+      - name: Verify rendered Odhín dashboard
+        id: odhin_browser
+        if: ${{ !cancelled() && hashFiles('test-results/odhin/common-lib-playwright.html') != '' }}
+        run: yarn node e2e/reporters/odhin-report.browser-check.cjs
       - name: Upload Playwright evidence
         id: playwright_evidence
         if: always()
@@ -56,15 +60,18 @@ jobs:
 
       - name: Prepare Odhín site
         id: odhin_prepare
-        if: ${{ !cancelled() && github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository && hashFiles('test-results/odhin/common-lib-playwright.html') != '' }}
+        if: ${{ !cancelled() && steps.odhin_browser.outcome == 'success' && github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository && hashFiles('test-results/odhin/common-lib-playwright.html') != '' }}
         run: |
           test -s test-results/odhin/common-lib-playwright.html
           node -e '
             const fs = require("node:fs");
             const html = fs.readFileSync("test-results/odhin/common-lib-playwright.html", "utf8");
             const chart = fs.readFileSync("test-results/odhin/js/chartjs.js", "utf8");
-            if (!html.includes("odhin-feature-summary") || chart.includes("chart-file")) {
-              throw new Error("Odhín dashboard enhancement or external chart asset is incomplete");
+            const css = fs.readFileSync("test-results/odhin/presentation/report.css", "utf8");
+            const featureCss = fs.readFileSync("test-results/odhin/presentation/feature.css", "utf8");
+            const script = fs.readFileSync("test-results/odhin/presentation/report.js", "utf8");
+            if (!html.includes("odhin-feature-summary") || !html.includes("./presentation/report.css") || !html.includes("./presentation/feature.css") || !html.includes("./presentation/report.js") || !css.includes("report-metrics") || !featureCss.includes("odhin-feature-summary") || !script.includes("Tests in this run") || html.includes("id=\"odhin-enhancer-styles\"") || html.includes("data:image/") || chart.includes("chart-file")) {
+              throw new Error("Odhín dashboard or its external presentation assets are incomplete");
             }
           '
           cp test-results/odhin/common-lib-playwright.html test-results/odhin/index.html

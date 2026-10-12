@@ -1,0 +1,34 @@
+const assert = require('node:assert/strict');
+const path = require('node:path');
+const { pathToFileURL } = require('node:url');
+const { chromium } = require('@playwright/test');
+
+async function main() {
+  const report = path.resolve(process.env.PW_ODHIN_OUTPUT ?? 'test-results/odhin', process.env.PW_ODHIN_INDEX ?? 'common-lib-playwright.html');
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage();
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.goto(pathToFileURL(report).href);
+    await page.locator('.report-metric').first().waitFor();
+    assert.equal(await page.locator('.report-metric').count(), 4, 'four dashboard metrics render');
+    assert.deepEqual(await page.locator('.report-grid .report-panel .info-box-header').allTextContents().then((titles) => titles.map((title) => title.replace(/[⠿↗]/g, '').trim())),
+      ['Feature Overview', 'Run info', 'Global Summary', 'Projects Summary', 'Status by project'], 'WebApp dashboard panels render in order');
+    assert.equal(await page.locator('.report-grid .report-panel').first().evaluate((element) => getComputedStyle(element).gridColumn), '1 / -1', 'feature overview spans the dashboard');
+    assert.equal(await page.locator('.report-panel > .odhin-thin-border').first().evaluate((element) => getComputedStyle(element).borderRadius), '16px', 'external presentation CSS loads');
+    const total = Number((await page.locator('.report-metric strong').first().textContent()).trim());
+    assert.ok(total > 0, 'run metric contains test results');
+    assert.ok(await page.locator('#test-list-table tbody tr').count() >= total, 'test rows cover final results and possible retries');
+    await page.locator('.feature-toggle').first().click();
+    assert.ok(await page.locator('.feature-tests:not([hidden]) li').count(), 'feature drill-down exposes tests');
+    assert.deepEqual(errors, [], 'report JavaScript has no uncaught errors');
+  } finally {
+    await browser.close();
+  }
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { createHash } = require('node:crypto');
 const { parse } = require('node-html-parser');
 
 const evidenceLinkAttributes = ' target="_blank" rel="noopener noreferrer"';
@@ -429,44 +430,6 @@ function injectEnhancerStyles(root) {
   }
 </style>`)
   );
-}
-
-function dashboardBlockTitle(column) {
-  return column.querySelector('.info-box-header')?.text.trim() ?? '';
-}
-
-function rebalanceTopDashboardColumns(root) {
-  const columns = root.querySelectorAll('.col-12.col-xl-6');
-  const runInfoColumn = columns.find((column) => dashboardBlockTitle(column) === 'Run info');
-  const globalSummaryColumn = columns.find((column) => dashboardBlockTitle(column) === 'Global Summary');
-  const featureOverviewColumn = columns.find((column) => dashboardBlockTitle(column) === 'Feature Overview');
-  const projectsSummaryColumn = columns.find((column) => dashboardBlockTitle(column) === 'Projects Summary');
-
-  if (!runInfoColumn || !globalSummaryColumn || !featureOverviewColumn || !projectsSummaryColumn) {
-    return;
-  }
-
-  const parent = runInfoColumn.parentNode;
-  if (
-    !parent ||
-    parent !== globalSummaryColumn.parentNode ||
-    parent !== featureOverviewColumn.parentNode ||
-    parent !== projectsSummaryColumn.parentNode
-  ) {
-    return;
-  }
-
-  const leftStack = parse(
-    `<div class="col-12 col-xl-6 odhin-dashboard-stack">${runInfoColumn.innerHTML}${featureOverviewColumn.innerHTML}</div>`
-  );
-  const rightStack = parse(
-    `<div class="col-12 col-xl-6 odhin-dashboard-stack">${globalSummaryColumn.innerHTML}${projectsSummaryColumn.innerHTML}</div>`
-  );
-
-  runInfoColumn.replaceWith(leftStack);
-  globalSummaryColumn.replaceWith(rightStack);
-  featureOverviewColumn.remove();
-  projectsSummaryColumn.remove();
 }
 
 function buildFeatureOverviewBlock(featureStats) {
@@ -1307,7 +1270,7 @@ function defaultTestListRowsPerPage(html) {
     );
 }
 
-function enhanceDashboardHtml(html, featureStats, evidenceEntries = []) {
+function enhanceDashboardHtml(html, featureStats, evidenceEntries = [], testMetadata = []) {
   const htmlWithDefaultTestRows = defaultTestListRowsPerPage(html);
   const normalizedStats = normalizeFeatureStats(featureStats);
   const normalizedEvidenceEntries = normalizeEvidenceEntries(evidenceEntries);
@@ -1324,7 +1287,6 @@ function enhanceDashboardHtml(html, featureStats, evidenceEntries = []) {
   if (normalizedStats.length) {
     replaceDashboardBlock(root, 'Files Summary', buildFeatureOverviewBlock(normalizedStats));
     removeDuplicateFeatureStatusBlock(root);
-    rebalanceTopDashboardColumns(root);
     stripLegacyFileChartArtifacts(root);
   }
 
@@ -1332,6 +1294,30 @@ function enhanceDashboardHtml(html, featureStats, evidenceEntries = []) {
   injectAccessibilityIssueSummary(root, normalizedEvidenceEntries);
   injectAccessibilityIssueFilters(root, normalizedEvidenceEntries);
   injectAccessibilityIssueColumns(root, normalizedEvidenceEntries);
+
+  const testTable = root.querySelector('#test-list-table');
+  if (testTable && testMetadata.length) {
+    testTable.querySelectorAll('[data-report-metadata]').forEach((node) => node.remove());
+    const byTarget = new Map(testMetadata.map((entry) => [entry.target, entry]));
+    testTable.querySelectorAll('thead tr, tfoot tr').forEach((row) => {
+      row.insertAdjacentHTML('beforeend', '<th data-report-metadata>Feature</th><th data-report-metadata>Tags</th><th data-report-metadata>Attempt</th>');
+    });
+    testTable.querySelectorAll('tbody tr').forEach((row) => {
+      const entry = byTarget.get(row.getAttribute('data-bs-target'));
+      row.setAttribute('data-duration-ms', String(entry?.durationMs ?? 0));
+      row.insertAdjacentHTML('beforeend', `<td data-report-metadata>${escapeHtml(entry?.feature ?? 'Uncategorised')}</td><td data-report-metadata>${escapeHtml((entry?.tags ?? []).join(', '))}</td><td data-report-metadata>${escapeHtml((entry?.retry ?? 0) + 1)}</td>`);
+    });
+    testMetadata.filter((entry) => entry.logFileName).forEach((entry) => {
+      const modal = root.querySelectorAll('[id]').find((node) => node.getAttribute('id') === entry.target.slice(1));
+      modal?.querySelector('.modal-body')?.insertAdjacentHTML('beforeend', `<p><a href="./${escapeAttribute(entry.logFileName)}" download="test-output.log">Download test output</a></p>`);
+    });
+  }
+
+  root.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=device-width, initial-scale=1');
+  root.querySelector('#common-lib-report-theme')?.remove();
+  root.querySelector('#common-lib-report-ui')?.remove();
+  root.querySelector('head')?.insertAdjacentHTML('beforeend', '<link id="common-lib-report-theme" rel="stylesheet" href="./presentation/report.css">');
+  root.querySelector('body')?.insertAdjacentHTML('beforeend', '<script id="common-lib-report-ui" src="./presentation/report.js"></script>');
 
   return root.toString();
 }
@@ -1368,7 +1354,7 @@ function readAccessibilityEvidenceEntries(outputFolder) {
   return Array.from(entriesByKey.values());
 }
 
-function enhanceGeneratedReport(outputFolder, featureStats) {
+function enhanceGeneratedReport(outputFolder, featureStats, testMetadata = []) {
   if (!outputFolder || !fs.existsSync(outputFolder)) {
     return;
   }
@@ -1380,13 +1366,31 @@ function enhanceGeneratedReport(outputFolder, featureStats) {
   }
 
   const reportFiles = fs.readdirSync(outputFolder).filter((fileName) => fileName.toLowerCase().endsWith('.html'));
+  const presentationFolder = path.join(outputFolder, 'presentation');
+  fs.mkdirSync(presentationFolder, { recursive: true });
 
   reportFiles.forEach((fileName) => {
     const filePath = path.join(outputFolder, fileName);
     const currentHtml = fs.readFileSync(filePath, 'utf8');
-    const nextHtml = enhanceDashboardHtml(currentHtml, normalizedStats, evidenceEntries);
+    let nextHtml = enhanceDashboardHtml(currentHtml, normalizedStats, evidenceEntries, testMetadata);
+    const enhancerStyle = nextHtml.match(/<style id="odhin-enhancer-styles">([\s\S]*?)<\/style>/);
+    if (enhancerStyle) {
+      fs.writeFileSync(path.join(presentationFolder, 'feature.css'), enhancerStyle[1]);
+      nextHtml = nextHtml.replace(enhancerStyle[0], '<link rel="stylesheet" href="./presentation/feature.css">');
+    }
+    nextHtml = nextHtml.replace(/data:image\/(png|jpeg|gif|webp);base64,([A-Za-z0-9+/=]+)/g, (_source, type, encoded) => {
+      const image = Buffer.from(encoded, 'base64');
+      const name = `${createHash('sha256').update(image).digest('hex')}.${type === 'jpeg' ? 'jpg' : type}`;
+      fs.mkdirSync(path.join(outputFolder, 'images'), { recursive: true });
+      fs.writeFileSync(path.join(outputFolder, 'images', name), image);
+      return `./images/${name}`;
+    });
     fs.writeFileSync(filePath, nextHtml, 'utf8');
   });
+
+  for (const name of ['report.css', 'report.js']) {
+    fs.copyFileSync(path.join(__dirname, 'presentation', name), path.join(presentationFolder, name));
+  }
 
   if (normalizedStats.length) {
     const chartAssetPath = path.join(outputFolder, 'js', 'chartjs.js');

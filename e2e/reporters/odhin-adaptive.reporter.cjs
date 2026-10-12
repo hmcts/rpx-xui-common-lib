@@ -1,5 +1,8 @@
 /* global clearTimeout, process, require, module, setTimeout */
 
+const fs = require('node:fs');
+const path = require('node:path');
+const { createHash } = require('node:crypto');
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const odhinModule = require('odhin-reports-playwright');
 const { createEmptyFeatureStat, deriveFeatureName, enhanceGeneratedReport } = require('./odhin-report-enhancer.cjs');
@@ -9,9 +12,18 @@ const terminalStatusesNoRetry = ['passed', 'flaky', 'skipped', 'interrupted'];
 
 class OdhinAdaptiveReporter {
   constructor(options = {}) {
-    // Odhín embeds attachments by default, which can exceed V8's string limit after retried browser failures.
-    // Keep the files beside the published report; callers can explicitly opt back into embedding for a small local run.
-    const reporterOptions = { embedAttachments: false, ...options };
+    const reporterOptions = {
+      ...options,
+      embedAttachments: false,
+      testListColumns: [
+        ...new Set([
+          ...String(options.testListColumns ?? '').toUpperCase().split(',').map((column) => column.trim()).filter(Boolean),
+          'PROJECT',
+          'FILE',
+        ]),
+      ],
+    };
+    this.testMetadata = [];
     this.outputFolder = reporterOptions.outputFolder;
     const configuredLightweight = reporterOptions.lightweight;
     const envLightweight = process.env.PW_ODHIN_LIGHTWEIGHT;
@@ -38,7 +50,7 @@ class OdhinAdaptiveReporter {
       return 'only-on-failure';
     };
 
-    // Keep stdout/stderr only for failed tests in default mode.
+    // Keep failure output as a separate file rather than embedding it in report HTML.
     this.testOutputMode = normalizeTestOutputMode(reporterOptions.testOutput);
     this.profileEnabled =
       typeof reporterOptions.profile === 'boolean'
@@ -98,22 +110,38 @@ class OdhinAdaptiveReporter {
 
     const shouldDropTestOutput = this.testOutputMode === false || (this.testOutputMode === 'only-on-failure' && passedOrSkipped);
 
-    if (shouldTrimHeavyArtifacts || shouldDropTestOutput) {
-      nextResult = { ...nextResult };
-
-      if (shouldDropTestOutput) {
-        nextResult.stdout = [];
-        nextResult.stderr = [];
-        this.trimmedCounts.output += 1;
-      }
-
-      if (shouldTrimHeavyArtifacts) {
-        nextResult.steps = [];
-        nextResult.attachments = [];
-        this.trimmedCounts.heavyArtifacts += 1;
-      }
+    let logFileName;
+    const stdout = Array.isArray(result?.stdout) ? result.stdout : [];
+    const stderr = Array.isArray(result?.stderr) ? result.stderr : [];
+    if (!shouldDropTestOutput && (stdout.length || stderr.length)) {
+      const name = createHash('sha256').update(`${test.id}:${result.retry}`).digest('hex');
+      logFileName = `logs/${name}.log`;
+      fs.mkdirSync(path.join(this.outputFolder, 'logs'), { recursive: true });
+      fs.writeFileSync(
+        path.join(this.outputFolder, logFileName),
+        [stdout.length ? `=== stdout ===\n${stdout.map(String).join('')}` : '', stderr.length ? `=== stderr ===\n${stderr.map(String).join('')}` : ''].filter(Boolean).join('\n\n') + '\n'
+      );
     }
 
+    nextResult = { ...nextResult, stdout: [], stderr: [] };
+    if (shouldDropTestOutput) {
+      this.trimmedCounts.output += 1;
+    }
+
+    if (shouldTrimHeavyArtifacts) {
+      nextResult.steps = [];
+      nextResult.attachments = [];
+      this.trimmedCounts.heavyArtifacts += 1;
+    }
+
+    this.testMetadata.push({
+      target: `#${test.id}-${result.retry}`,
+      feature: deriveFeatureName(test?.location?.file),
+      tags: test.tags ?? [],
+      durationMs: result.duration || 0,
+      retry: result.retry,
+      logFileName,
+    });
     this.recordStatus(result?.status);
     this.recordFeatureStat(test, result);
     this.enqueueInnerCallback('onTestEnd', () => this.inner.onTestEnd(test, nextResult), { test });
@@ -141,7 +169,7 @@ class OdhinAdaptiveReporter {
       }
     }
     try {
-      enhanceGeneratedReport(this.outputFolder, this.featureStats);
+      enhanceGeneratedReport(this.outputFolder, this.featureStats, this.testMetadata);
     } catch (error) {
       process.stderr.write(`[odhin-profile] report enhancement failed: ${formatErrorMessage(error)}\n`);
     }
