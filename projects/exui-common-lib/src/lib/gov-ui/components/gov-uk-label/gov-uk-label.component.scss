@@ -3,6 +3,11 @@
   align-items: center;
   flex-wrap: wrap;
 
+  &.govuk-checkboxes__label--top-aligned {
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
   &__optional {
     font-weight: 400;
     font-size: 16px;

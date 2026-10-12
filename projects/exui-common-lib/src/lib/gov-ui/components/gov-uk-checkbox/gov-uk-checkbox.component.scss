@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+.govuk-checkboxes__item {
+  margin-bottom: 20px;
+}
+
+:host(:last-child) .govuk-checkboxes__item {
+  margin-bottom: 0;
+}
