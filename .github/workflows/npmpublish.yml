@@ -27,14 +27,14 @@ jobs:
       - run: yarn build:library
       - run: yarn test
       - run: yarn test:e2e:typecheck
-      - name: Install Playwright Chromium
-        run: yarn playwright install --with-deps chromium
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps chromium firefox webkit
       - name: Run Playwright smoke
         env:
           PLAYWRIGHT_REPORTERS: dot,html,junit,odhin
           PW_ODHIN_OUTPUT: test-results/odhin
           PW_ODHIN_INDEX: common-lib-playwright.html
-        run: yarn playwright test --project=chromium
+        run: yarn playwright test
       - name: Upload Playwright evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -44,6 +44,39 @@ jobs:
             playwright-report/
             test-results/
           if-no-files-found: warn
+
+      - name: Prepare Odhín site
+        if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          test -s test-results/odhin/common-lib-playwright.html
+          cp test-results/odhin/common-lib-playwright.html test-results/odhin/index.html
+      - name: Configure GitHub Pages
+        if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/configure-pages@v5
+      - name: Upload Odhín site
+        if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: test-results/odhin
+
+  publish-odhin:
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish Odhín report
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Link report in Actions
+        run: |
+          printf '### [Open Odhín report](%s)\n' '${{ steps.deployment.outputs.page_url }}' >> "$GITHUB_STEP_SUMMARY"
 
   publish-npm:
     if: github.event_name == 'release'

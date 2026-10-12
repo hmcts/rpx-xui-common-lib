@@ -76,6 +76,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "20.3.2",
+    "node-html-parser": "^7.0.0",
     "odhin-reports-playwright": "patch:odhin-reports-playwright@npm%3A1.1.8#~/.yarn/patches/odhin-reports-playwright-npm-1.1.8-a445ed88b7.patch",
     "playwright-ng-schematics": "2.0.3",
     "ts-node": "10.8.1",
