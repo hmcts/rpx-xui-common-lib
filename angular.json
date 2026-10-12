@@ -34,13 +34,18 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "node_modules/govuk-frontend/govuk/assets",
+                "input": "node_modules/govuk-frontend/dist/govuk/assets",
                 "output": "/assets"
               }
             ],
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            },
             "scripts": [],
             "extractLicenses": false,
             "sourceMap": true,
@@ -132,22 +137,6 @@
             "production": {
               "devServerTarget": "rpx-xui-common-lib:serve:production"
             }
-          }
-        }
-      }
-    },
-    "rpx-xui-common-lib-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

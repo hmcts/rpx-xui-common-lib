@@ -8,13 +8,20 @@ import { defineConfig, devices, ReporterDescription } from '@playwright/test';
 
 const baseURL = process.env.PLAYWRIGHT_TEST_BASE_URL;
 
-/* Comma-separated subset of dot,list,html,junit (e.g. PLAYWRIGHT_REPORTERS=list,html,junit). */
-const supportedReporters = ['dot', 'list', 'html', 'junit'];
-const defaultReporter = process.env.PLAYWRIGHT_DEFAULT_REPORTER ?? (process.env.CI ? 'dot' : 'list');
+/* Comma-separated subset of dot,list,html,junit,odhin (e.g. PLAYWRIGHT_REPORTERS=list,html,junit,odhin). */
+const supportedReporters = ['dot', 'list', 'html', 'junit', 'odhin'];
+const defaultReporter = process.env.PLAYWRIGHT_DEFAULT_REPORTER ?? (process.env.CI ? 'dot,odhin' : 'list,odhin');
 const reporterNames = (process.env.PLAYWRIGHT_REPORTERS ?? defaultReporter)
   .split(',')
   .map((name) => name.trim())
-  .filter((name) => supportedReporters.includes(name));
+  .filter(Boolean);
+
+const unknownReporters = reporterNames.filter((name) => !supportedReporters.includes(name));
+if (unknownReporters.length > 0) {
+  throw new Error(`Unsupported Playwright reporter(s): ${unknownReporters.join(', ')}`);
+}
+
+const odhinOutput = process.env.PW_ODHIN_OUTPUT ?? 'test-results/odhin';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -40,6 +47,25 @@ export default defineConfig({
     if (name === 'dot') {
       return ['dot'];
     }
+    if (name === 'odhin') {
+      return [
+        './e2e/reporters/odhin-adaptive.reporter.cjs',
+        {
+          outputFolder: odhinOutput,
+          indexFilename: process.env.PW_ODHIN_INDEX ?? 'common-lib-playwright.html',
+          title: process.env.PW_ODHIN_TITLE ?? 'RPX XUI CommonLib Playwright',
+          testEnvironment: process.env.PW_ODHIN_ENV ?? (process.env.CI ? 'CI' : 'local'),
+          project: process.env.PW_ODHIN_PROJECT ?? 'RPX XUI CommonLib',
+          release: process.env.PW_ODHIN_RELEASE ?? '3.2.21',
+          embedAssets: false,
+          embedAttachments: false,
+          startServer: false,
+          consoleLog: true,
+          consoleError: true,
+          testOutput: 'only-on-failure',
+        },
+      ];
+    }
     return ['list'];
   }),
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -47,23 +73,34 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: baseURL ?? 'http://localhost:4200',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    /* Keep failure evidence outside the HTML report. */
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: 'off',
   },
 
   /* Start the demo app unless a server URL is supplied (e.g. by `ng e2e`, which starts its own). */
   webServer: baseURL ? undefined : {
     command: 'yarn start:no-open',
     url: 'http://localhost:4200',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
     timeout: 180_000
   },
 
-  /* The smoke suite runs in Chromium only. */
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+    },
+
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */

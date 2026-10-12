@@ -8,7 +8,7 @@ export class AppPage {
   }
 
   public get heading(): Locator {
-    return this.page.getByRole('heading', { level: 1 }).first();
+    return this.page.getByRole('heading', { name: 'ExUI Common Lib Test Page', level: 1 });
   }
 
   public get addWimbledonButton(): Locator {

@@ -26,6 +26,24 @@ jobs:
       - run: yarn lint
       - run: yarn build:library
       - run: yarn test
+      - run: yarn test:e2e:typecheck
+      - name: Install Playwright Chromium
+        run: yarn playwright install --with-deps chromium
+      - name: Run Playwright smoke
+        env:
+          PLAYWRIGHT_REPORTERS: dot,html,junit,odhin
+          PW_ODHIN_OUTPUT: test-results/odhin
+          PW_ODHIN_INDEX: common-lib-playwright.html
+        run: yarn playwright test --project=chromium
+      - name: Upload Playwright evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-lib-playwright-evidence
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: warn
 
   publish-npm:
     if: github.event_name == 'release'

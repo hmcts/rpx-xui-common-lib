@@ -15,6 +15,7 @@
     "build": "ng build exui-common-lib && node ./scripts/sync-library-package.mjs",
     "build:dev": "ng build --watch exui-common-lib",
     "test": "ng test exui-common-lib",
+    "test:e2e:typecheck": "tsc -p tsconfig.playwright.json --noEmit",
     "lint": "ng lint rpx-xui-common-lib",
     "e2e": "ng e2e"
   },
@@ -75,6 +76,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "20.3.2",
+    "odhin-reports-playwright": "patch:odhin-reports-playwright@npm%3A1.1.8#~/.yarn/patches/odhin-reports-playwright-npm-1.1.8-a445ed88b7.patch",
     "playwright-ng-schematics": "2.0.3",
     "ts-node": "10.8.1",
     "tslint": "~6.1.0",

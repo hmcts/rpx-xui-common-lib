@@ -24,15 +24,17 @@ It will run the tests for exui-common-lib.
 
 ## Running end-to-end tests
 
-The e2e tests in `e2e/` are a Playwright smoke suite for the demo app (`src/`), run in Chromium only.
+The e2e tests in `e2e/` are a small Playwright smoke suite for the demo host (`src/`). They run in Chromium, Firefox and WebKit locally; CI runs the Chromium smoke.
 
 - `yarn e2e` (`ng e2e`) - Angular starts the demo dev server and passes its URL to Playwright via `PLAYWRIGHT_TEST_BASE_URL`, so Playwright does not start a second server.
 - `yarn playwright test` - Playwright starts the demo itself (`yarn start:no-open` on http://localhost:4200), reusing an already running server outside CI. Add `--ui` for UI mode.
+- `yarn test:e2e:typecheck` - typecheck the Playwright config and smoke sources without starting a browser.
 - `PLAYWRIGHT_TEST_BASE_URL=<url> yarn playwright test` - run against an already running host; no server is started.
-- `PLAYWRIGHT_REPORTERS=list,html,junit` - choose reporters (default `list` locally, `dot` in CI; JUnit is written to `test-results/junit.xml`).
+- `PLAYWRIGHT_REPORTERS=list,html,junit,odhin` - choose reporters (default `list,odhin` locally and `dot,odhin` in CI; JUnit is written to `test-results/junit.xml`).
+- Odhín writes its HTML index to `test-results/odhin/common-lib-playwright.html` and keeps assets/attachments beside it. Set `PW_ODHIN_OUTPUT`, `PW_ODHIN_INDEX`, `PW_ODHIN_TITLE`, `PW_ODHIN_ENV`, `PW_ODHIN_PROJECT` or `PW_ODHIN_RELEASE` to override metadata and output paths.
 - `yarn playwright show-report` - view the last HTML report.
 
-Install the browser once with `yarn playwright install chromium`.
+Install the browsers once with `yarn playwright install chromium firefox webkit`.
 
 ## Further help
 
