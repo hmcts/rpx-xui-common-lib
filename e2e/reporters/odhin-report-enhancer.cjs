@@ -1387,6 +1387,17 @@ function enhanceGeneratedReport(outputFolder, featureStats) {
     const nextHtml = enhanceDashboardHtml(currentHtml, normalizedStats, evidenceEntries);
     fs.writeFileSync(filePath, nextHtml, 'utf8');
   });
+
+  if (normalizedStats.length) {
+    const chartAssetPath = path.join(outputFolder, 'js', 'chartjs.js');
+    if (fs.existsSync(chartAssetPath)) {
+      const currentScript = fs.readFileSync(chartAssetPath, 'utf8');
+      const nextScript = removeLegacyFileChartInitializer(currentScript);
+      if (nextScript !== currentScript) {
+        fs.writeFileSync(chartAssetPath, nextScript, 'utf8');
+      }
+    }
+  }
 }
 
 module.exports = {

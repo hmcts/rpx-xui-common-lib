@@ -32,7 +32,7 @@ The e2e tests in `e2e/` are a small Playwright smoke suite for the demo host (`s
 - `PLAYWRIGHT_TEST_BASE_URL=<url> yarn playwright test` - run against an already running host; no server is started.
 - `PLAYWRIGHT_REPORTERS=list,html,junit,odhin` - choose reporters (default `list,odhin` locally and `dot,odhin` in CI; JUnit is written to `test-results/junit.xml`).
 - Odhín writes its HTML index to `test-results/odhin/common-lib-playwright.html` and keeps assets/attachments beside it. Set `PW_ODHIN_OUTPUT`, `PW_ODHIN_INDEX`, `PW_ODHIN_TITLE`, `PW_ODHIN_ENV`, `PW_ODHIN_PROJECT` or `PW_ODHIN_RELEASE` to override metadata and output paths.
-- For PR #568, the GitHub Actions `publish-odhin` job exposes the Odhín dashboard as an openable GitHub Pages link on the workflow run. The downloadable `common-lib-playwright-evidence` artifact retains the HTML, JUnit and browser evidence files.
+- For PR #568, the GitHub Actions `publish-odhin` job exposes the Odhín dashboard as a public GitHub Pages link on the workflow run, including when browser tests fail but still generate the report. Pages shows the latest PR run; the downloadable `common-lib-playwright-evidence` artifact retains each run's exact HTML, JUnit and browser evidence files.
 - `yarn playwright show-report` - view the last HTML report.
 
 Install the browsers once with `yarn playwright install chromium firefox webkit`.

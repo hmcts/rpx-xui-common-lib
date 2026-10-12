@@ -16,6 +16,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      odhin_artifact_ready: ${{ steps.odhin_site.outcome == 'success' }}
+      evidence_url: ${{ steps.playwright_evidence.outputs.artifact-url }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -27,6 +30,7 @@ jobs:
       - run: yarn build:library
       - run: yarn test
       - run: yarn test:e2e:typecheck
+      - run: yarn node --test e2e/reporters/odhin-report-enhancer.node-check.cjs
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium firefox webkit
       - name: Run Playwright smoke
@@ -36,6 +40,7 @@ jobs:
           PW_ODHIN_INDEX: common-lib-playwright.html
         run: yarn playwright test
       - name: Upload Playwright evidence
+        id: playwright_evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -46,21 +51,32 @@ jobs:
           if-no-files-found: warn
 
       - name: Prepare Odhín site
-        if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+        id: odhin_prepare
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository && hashFiles('test-results/odhin/common-lib-playwright.html') != ''
         run: |
           test -s test-results/odhin/common-lib-playwright.html
+          node -e '
+            const fs = require("node:fs");
+            const html = fs.readFileSync("test-results/odhin/common-lib-playwright.html", "utf8");
+            const chart = fs.readFileSync("test-results/odhin/js/chartjs.js", "utf8");
+            if (!html.includes("odhin-feature-summary") || chart.includes("chart-file")) {
+              throw new Error("Odhín dashboard enhancement or external chart asset is incomplete");
+            }
+          '
           cp test-results/odhin/common-lib-playwright.html test-results/odhin/index.html
       - name: Configure GitHub Pages
-        if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+        id: configure_pages
+        if: always() && steps.odhin_prepare.outcome == 'success'
         uses: actions/configure-pages@v5
       - name: Upload Odhín site
-        if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+        id: odhin_site
+        if: always() && steps.configure_pages.outcome == 'success'
         uses: actions/upload-pages-artifact@v4
         with:
           path: test-results/odhin
 
   publish-odhin:
-    if: github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
+    if: always() && needs.build.outputs.odhin_artifact_ready == 'true' && github.event_name == 'pull_request' && github.event.pull_request.number == 568 && github.event.pull_request.head.repo.full_name == github.repository
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -77,6 +93,7 @@ jobs:
       - name: Link report in Actions
         run: |
           printf '### [Open Odhín report](%s)\n' '${{ steps.deployment.outputs.page_url }}' >> "$GITHUB_STEP_SUMMARY"
+          printf 'This public Pages URL shows the latest PR #568 report. [Download this run’s exact evidence](%s).\n' '${{ needs.build.outputs.evidence_url }}' >> "$GITHUB_STEP_SUMMARY"
 
   publish-npm:
     if: github.event_name == 'release'
