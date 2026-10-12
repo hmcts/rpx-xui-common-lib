@@ -12,6 +12,7 @@ import { HmctsBannerInfo } from '../hmcts-banner/hmcts-banner-info.interface';
 @Component({
     selector: 'xuilib-hmcts-main-wrapper',
     templateUrl: './hmcts-main-wrapper.component.html',
+    styleUrls: ['./hmcts-main-wrapper.component.scss'],
     standalone: false
 })
 export class HmctsMainWrapperComponent implements OnInit {
