@@ -19,6 +19,10 @@ export class AppPage {
     return this.serviceMessage.locator('a').filter({ hasText: 'Hide message' });
   }
 
+  public get serviceWarningIcon(): Locator {
+    return this.serviceMessage.locator('svg[role="img"]');
+  }
+
   public termsDocument(index: number): Locator {
     return this.page.locator('xuilib-terms-and-conditions').nth(index);
   }

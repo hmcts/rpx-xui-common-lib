@@ -35,17 +35,6 @@ test.describe('workspace-project App', () => {
     await expect(appPage.heading).toHaveText('ExUI Common Lib Test Page');
   });
 
-  test('should add and remove the Wimbledon checkbox option', async ({ page }) => {
-    const appPage = new AppPage(page);
-    await expect(appPage.wimbledonCheckbox).toHaveCount(0);
-
-    await appPage.addWimbledonButton.click();
-    await expect(appPage.wimbledonCheckbox).toBeVisible();
-
-    await appPage.removeWimbledonButton.click();
-    await expect(appPage.wimbledonCheckbox).toHaveCount(0);
-  });
-
   test.describe('service message and document components', () => {
     test('should render the service warning and hide-message link', async ({ page }) => {
       const appPage = new AppPage(page);
@@ -56,10 +45,19 @@ test.describe('workspace-project App', () => {
       await expect(appPage.hideMessageLink).toBeVisible();
     });
 
+    test('should expose warning semantics for the service message', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await expect(appPage.serviceWarningIcon).toHaveAttribute('role', 'img');
+      await expect(appPage.serviceWarningIcon).toHaveAttribute('aria-label', 'hmcts-warning-icon');
+      await expect(appPage.serviceMessage).toContainText('Warning');
+    });
+
     test('should render the plain terms and conditions document', async ({ page }) => {
       const appPage = new AppPage(page);
 
       await expect(appPage.termsDocument(0)).toHaveText('Test Document Content');
+      await expect(appPage.termsDocument(0).locator('b')).toHaveCount(0);
     });
 
     test('should render HTML terms and conditions content as markup', async ({ page }) => {
@@ -70,6 +68,15 @@ test.describe('workspace-project App', () => {
       await expect(document).toContainText('Document to test HTML content');
       await expect(document.locator('b')).toHaveText('HTML');
     });
+
+    test('should select the renderer that matches each document mime type', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await expect(appPage.termsDocument(0).locator('xuilib-tc-display-plain')).toHaveCount(1);
+      await expect(appPage.termsDocument(0).locator('xuilib-tc-display-html')).toHaveCount(0);
+      await expect(appPage.termsDocument(1).locator('xuilib-tc-display-html')).toHaveCount(1);
+      await expect(appPage.termsDocument(1).locator('xuilib-tc-display-plain')).toHaveCount(0);
+    });
   });
 
   test.describe('contact details component', () => {
@@ -78,6 +85,7 @@ test.describe('workspace-project App', () => {
 
       await expect(appPage.contactDetails.getByRole('heading', { name: 'Contact Details Component' })).toBeVisible();
       await expect(appPage.contactDetails.locator('.hmcts-badge')).toHaveText('PRIVATE BETA');
+      await expect(appPage.contactDetails.locator('.hmcts-badge')).toHaveClass(/hmcts-badge--red/);
     });
 
     test('should render a mailto link for the contact email', async ({ page }) => {
@@ -117,6 +125,14 @@ test.describe('workspace-project App', () => {
     test('should render the observable list values in order', async ({ page }) => {
       await expect(page.locator('ul').first().locator('li')).toHaveText(['this', 'is', 'a', 'test']);
     });
+
+    test('should expose both tab labels and a single active tab', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await expect(page.getByRole('tab')).toHaveCount(2);
+      await expect(page.getByRole('tab', { selected: true })).toHaveCount(1);
+      await expect(appPage.tab('Tab1')).toHaveAttribute('aria-selected', 'true');
+    });
   });
 
   test.describe('due date component', () => {
@@ -137,6 +153,14 @@ test.describe('workspace-project App', () => {
       await expect(appPage.dueDateBadge).toHaveAttribute('aria-label', /past its due date/);
     });
 
+    test('should use the singular overdue label for one day late', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.dueDateInput.fill(dateBeforeDays(1));
+      await expect(appPage.dueDateBadge).toHaveText('+1 day');
+      await expect(appPage.dueDateBadge).toHaveAttribute('aria-label', 'This task is 1 day past its due date');
+    });
+
     test('should mark a distant future date green when no urgency cutoff applies', async ({ page }) => {
       const appPage = new AppPage(page);
 
@@ -146,6 +170,20 @@ test.describe('workspace-project App', () => {
 
       await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--green/);
       await expect(appPage.dueDateBadge).toHaveAttribute('aria-label', /due to be completed by/);
+    });
+
+    test('should render the formatted date for a future due date', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.highUrgencyCutoffInput.fill('0');
+      await appPage.mediumUrgencyCutoffInput.fill('0');
+      await appPage.dueDateInput.fill(dateAfterDays(10));
+
+      await expect(appPage.dueDateBadge).toHaveText('22 Oct');
+      await expect(appPage.dueDateBadge).toHaveAttribute(
+        'aria-label',
+        'This task is due to be completed by 22 October 2026'
+      );
     });
 
     test('should mark a near-term date orange at the medium cutoff', async ({ page }) => {
@@ -167,13 +205,51 @@ test.describe('workspace-project App', () => {
 
       await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--red/);
     });
+
+    test('should keep a date at the high cutoff out of the red state', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.highUrgencyCutoffInput.fill('1');
+      await appPage.mediumUrgencyCutoffInput.fill('2');
+      await appPage.dueDateInput.fill(dateAfterDays(1));
+
+      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--orange/);
+      await expect(appPage.dueDateBadge).not.toHaveClass(/hmcts-badge--red/);
+    });
+
+    test('should retain the last valid due date when invalid input is entered', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await expect(appPage.dueDateBadge).toHaveText('TODAY');
+      await appPage.dueDateInput.fill('not-a-date');
+
+      await expect(appPage.dueDateBadge).toHaveText('TODAY');
+      await expect(appPage.dueDateBadge).toHaveAttribute(
+        'aria-label',
+        'This task is due to be completed today'
+      );
+    });
   });
 
   test.describe('checkbox list component', () => {
+    test('should add and remove the Wimbledon checkbox option', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await expect(appPage.wimbledonCheckbox).toHaveCount(0);
+
+      await appPage.addWimbledonButton.click();
+      await expect(appPage.wimbledonCheckbox).toBeVisible();
+      await expect(appPage.wimbledonCheckbox).not.toBeChecked();
+
+      await appPage.removeWimbledonButton.click();
+      await expect(appPage.wimbledonCheckbox).toHaveCount(0);
+    });
+
     test('should render every location and the preselected location', async ({ page }) => {
       const appPage = new AppPage(page);
 
       await expect(appPage.checkboxOptions).toHaveCount(7);
+      await expect(appPage.checkbox('Select all / Deselect all')).not.toBeChecked();
       await expect(appPage.checkbox('Baker Street')).toBeVisible();
       await expect(appPage.checkbox('Clapham Junction')).toBeVisible();
       await expect(appPage.checkbox("King's Cross")).toBeVisible();
@@ -189,6 +265,18 @@ test.describe('workspace-project App', () => {
       await appPage.checkbox('Baker Street').check();
       await expect(appPage.checkboxEvents).toContainText('Baker Street');
       await expect(appPage.checkboxEvents).toContainText('Twickenham');
+    });
+
+    test('should remove and restore an individual selected location', async ({ page }) => {
+      const appPage = new AppPage(page);
+      const twickenham = appPage.checkbox('Twickenham');
+
+      await expect(twickenham).toBeChecked();
+      await twickenham.uncheck();
+      await expect(twickenham).not.toBeChecked();
+      await twickenham.check();
+      await expect(twickenham).toBeChecked();
+      await expect(appPage.checkboxEvents).toContainText('Selection changed to:');
     });
 
     test('should select and deselect all locations', async ({ page }) => {
@@ -223,6 +311,16 @@ test.describe('workspace-project App', () => {
       await expect(checkbox).toHaveCount(0);
     });
 
+    test('should select a dynamically added location', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.addWimbledonButton.click();
+      await expect(appPage.wimbledonCheckbox).toBeVisible();
+      await appPage.wimbledonCheckbox.check();
+      await expect(appPage.wimbledonCheckbox).toBeChecked();
+      await expect(appPage.checkboxEvents).toContainText('Wimbledon');
+    });
+
     test('should switch checkbox labels between names and boroughs', async ({ page }) => {
       const appPage = new AppPage(page);
       const useBoroughButton = page.getByRole('button', { name: 'Use borough for label' });
@@ -242,6 +340,15 @@ test.describe('workspace-project App', () => {
       await appPage.listHeightSelect.selectOption('100');
       await expect(appPage.checkboxList).toHaveClass(/h_100/);
     });
+
+    test('should apply every supported checkbox list height', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      for (const height of ['000', '080', '050']) {
+        await appPage.listHeightSelect.selectOption(height);
+        await expect(appPage.checkboxList).toHaveClass(new RegExp(`h_${height}`));
+      }
+    });
   });
 
   test.describe('loading spinner component', () => {
@@ -256,6 +363,21 @@ test.describe('workspace-project App', () => {
       await appPage.stopSpinnerButton.click();
       await expect(appPage.spinner).toBeHidden();
     });
+
+    test('should switch the spinner control between start and stop states', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await expect(appPage.startSpinnerButton).toBeVisible();
+      await expect(appPage.stopSpinnerButton).toHaveCount(0);
+
+      await appPage.startSpinnerButton.click();
+      await expect(appPage.stopSpinnerButton).toBeVisible();
+      await expect(appPage.startSpinnerButton).toHaveCount(0);
+
+      await appPage.stopSpinnerButton.click();
+      await expect(appPage.startSpinnerButton).toBeVisible();
+      await expect(appPage.stopSpinnerButton).toHaveCount(0);
+    });
   });
 });
 
@@ -265,6 +387,10 @@ function dateAfterDays(days: number): string {
   return [date.getDate(), date.getMonth() + 1, date.getFullYear()]
     .map((value) => value.toString().padStart(2, '0'))
     .join('/');
+}
+
+function dateBeforeDays(days: number): string {
+  return dateAfterDays(-days);
 }
 
 function isKnownBrowserDiagnostic(message: string, url: string, browserName: string): boolean {
