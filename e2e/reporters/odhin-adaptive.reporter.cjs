@@ -134,16 +134,17 @@ class OdhinAdaptiveReporter {
       this.trimmedCounts.heavyArtifacts += 1;
     }
 
+    const titlePath = typeof test?.titlePath === 'function' ? test.titlePath() : [];
     this.testMetadata.push({
       target: `#${test.id}-${result.retry}`,
-      feature: deriveFeatureName(test?.location?.file),
+      feature: deriveFeatureName(test?.location?.file, titlePath),
       tags: test.tags ?? [],
       durationMs: result.duration || 0,
       retry: result.retry,
       logFileName,
     });
     this.recordStatus(result?.status);
-    this.recordFeatureStat(test, result);
+    this.recordFeatureStat(test, result, titlePath);
     this.enqueueInnerCallback('onTestEnd', () => this.inner.onTestEnd(test, nextResult), { test });
   }
 
@@ -213,13 +214,13 @@ class OdhinAdaptiveReporter {
     }
   }
 
-  recordFeatureStat(test, result) {
+  recordFeatureStat(test, result, titlePath = []) {
     const finalStatus = normalizeFinalStatus(result?.status, result?.retry);
     if (!isFinalResult(finalStatus, result?.retry, test?.retries)) {
       return;
     }
 
-    const featureName = deriveFeatureName(test?.location?.file);
+    const featureName = deriveFeatureName(test?.location?.file, titlePath);
     const current = this.featureStats.get(featureName) ?? createEmptyFeatureStat(featureName);
     current.totalTests += 1;
     current.durationMs += Number(result?.duration ?? 0);

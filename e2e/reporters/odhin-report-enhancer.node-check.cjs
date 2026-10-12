@@ -5,7 +5,20 @@ const path = require('node:path');
 const test = require('node:test');
 const { parse } = require('node-html-parser');
 
-const { createEmptyFeatureStat, enhanceGeneratedReport } = require('./odhin-report-enhancer.cjs');
+const { createEmptyFeatureStat, deriveFeatureName, enhanceGeneratedReport } = require('./odhin-report-enhancer.cjs');
+
+test('derives grouped features from nested Playwright describe titles', () => {
+  const titlePath = ['', 'chromium', 'src/app.spec.ts', 'workspace-project App', 'checkbox list component', 'should render every location'];
+
+  assert.equal(
+    deriveFeatureName('/workspace/e2e/src/app.spec.ts', titlePath),
+    'checkbox list component'
+  );
+  assert.equal(
+    deriveFeatureName('/workspace/e2e/src/app.spec.ts', ['', 'chromium', 'src/app.spec.ts', 'workspace-project App', 'should display welcome message']),
+    'app.spec'
+  );
+});
 
 test('removes the obsolete file chart initializer from external Odhín assets', () => {
   const outputFolder = fs.mkdtempSync(path.join(os.tmpdir(), 'odhin-enhancer-'));

@@ -7,10 +7,20 @@ const { parse } = require('node-html-parser');
 
 const evidenceLinkAttributes = ' target="_blank" rel="noopener noreferrer"';
 
-function deriveFeatureName(filePath) {
+function deriveFeatureName(filePath, titlePath = []) {
   const normalized = String(filePath ?? '')
     .replace(/\\/g, '/')
     .trim();
+
+  const titles = Array.isArray(titlePath) ? titlePath.map(String) : [];
+  const fileIndex = titles.findIndex((title) => {
+    const normalizedTitle = title.replace(/\\/g, '/');
+    return normalizedTitle === normalized || normalized.endsWith(`/${normalizedTitle}`);
+  });
+  const suiteTitles = fileIndex >= 0 ? titles.slice(fileIndex + 1, -1).filter(Boolean) : [];
+  if (suiteTitles.length > 1) {
+    return suiteTitles.at(-1);
+  }
 
   if (!normalized) {
     return 'unknown';

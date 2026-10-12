@@ -33,8 +33,23 @@ async function main() {
       Math.max(visibleRows, reportedRows) >= total,
       'test rows cover final results and possible retries'
     );
-    await page.locator('.feature-toggle').first().click();
-    assert.ok(await page.locator('.feature-tests:not([hidden]) li').count(), 'feature drill-down exposes tests');
+    const featureRows = page.locator('#odhin-feature-summary tbody > tr').filter({ has: page.locator('.feature-toggle') });
+    assert.ok(await featureRows.count() > 1, 'report groups tests into multiple features');
+    let groupedTests = 0;
+    for (let index = 0; index < await featureRows.count(); index += 1) {
+      await featureRows.nth(index).locator('.feature-toggle').click();
+      const details = page.locator(`#feature-tests-${index}`);
+      const tests = await details.locator('li').count();
+      assert.ok(tests > 0, `feature ${index + 1} drill-down exposes tests`);
+      assert.equal(await details.locator('.feature-test-steps').count(), tests, `feature ${index + 1} exposes step links`);
+      groupedTests += tests;
+    }
+    assert.equal(groupedTests, total, 'feature groups account for every report result');
+    await page.locator('#feature-tests-0 .feature-test-steps').first().click();
+    const modal = page.locator('.modal.show').last();
+    await modal.waitFor();
+    assert.equal(await modal.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'View steps opens the native test steps tab');
+    assert.ok(await modal.locator('.result-tabcontent[style*="display: block"] .stepLine').count(), 'native test steps render');
     assert.deepEqual(errors, [], 'report JavaScript has no console or page errors');
   } finally {
     await browser.close();
