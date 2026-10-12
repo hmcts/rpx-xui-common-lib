@@ -9,6 +9,11 @@ async function main() {
   try {
     const page = await browser.newPage();
     const errors = [];
+    page.on('console', (message) => {
+      if (message.type() === 'error') {
+        errors.push(`console: ${message.text()}`);
+      }
+    });
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(pathToFileURL(report).href);
     await page.locator('.report-metric').first().waitFor();
@@ -19,10 +24,18 @@ async function main() {
     assert.equal(await page.locator('.report-panel > .odhin-thin-border').first().evaluate((element) => getComputedStyle(element).borderRadius), '16px', 'external presentation CSS loads');
     const total = Number((await page.locator('.report-metric strong').first().textContent()).trim());
     assert.ok(total > 0, 'run metric contains test results');
-    assert.ok(await page.locator('#test-list-table tbody tr').count() >= total, 'test rows cover final results and possible retries');
+    const visibleRows = await page.locator('#test-list-table tbody tr').count();
+    const tableInfo = await page.locator('#test-list-table_info').textContent();
+    const tableInfoMatch = tableInfo?.match(/of\s+(\d+)\s+entries/);
+    assert.ok(tableInfoMatch, 'test table pagination reports the final-result total');
+    const reportedRows = Number(tableInfoMatch[1]);
+    assert.ok(
+      Math.max(visibleRows, reportedRows) >= total,
+      'test rows cover final results and possible retries'
+    );
     await page.locator('.feature-toggle').first().click();
     assert.ok(await page.locator('.feature-tests:not([hidden]) li').count(), 'feature drill-down exposes tests');
-    assert.deepEqual(errors, [], 'report JavaScript has no uncaught errors');
+    assert.deepEqual(errors, [], 'report JavaScript has no console or page errors');
   } finally {
     await browser.close();
   }
