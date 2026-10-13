@@ -7,6 +7,7 @@ import { collectWaveLikeAccessibilityViolations, attachWaveLikeAccessibilityEvid
 import { collectScreenReaderLikeAccessibilityViolations, attachScreenReaderLikeAccessibilityEvidence,
   attachAccessibilityPageSummaryEvidence } from './screenReaderLikeAccessibility';
 import { buildIssueSummaryHtml, markViolationsOnPage } from './axeIssueRendering';
+import { collectDescriptionViolations, type DescriptionContract } from './description-contract';
 
 export interface EngineOutcome {
   engine: AccessibilityEngine;
@@ -20,7 +21,7 @@ export interface EngineOutcome {
 export type AccessibilityCheckOutcome = { name: string; status: 'passed' | 'failed'; message?: string };
 
 // Collection only. Strict assertions are owned by the specs, including controlled red proof.
-export async function collectAccessibilityEvidence(page: Page, testInfo: TestInfo) {
+export async function collectAccessibilityEvidence(page: Page, testInfo: TestInfo, descriptions: DescriptionContract[] = []) {
   const [feature, pageState = testInfo.title] = testInfo.title.split(' — ');
   const context = { feature, pageState };
   const outcomes: EngineOutcome[] = [];
@@ -58,6 +59,7 @@ export async function collectAccessibilityEvidence(page: Page, testInfo: TestInf
           rules: [...new Set(violations.map((violation) => violation.rule))] });
       } else {
         const evidence = await collectScreenReaderLikeAccessibilityViolations(page);
+        evidence.violations.push(...await collectDescriptionViolations(page, descriptions));
         await attachScreenReaderLikeAccessibilityEvidence(page, testInfo, evidence, engine, { engine, ...context });
         outcomes.push({ engine, status: evidence.violations.length ? 'issues-found' : 'passed', issueCount: evidence.violations.length,
           rules: [...new Set(evidence.violations.map((violation) => violation.rule))] });

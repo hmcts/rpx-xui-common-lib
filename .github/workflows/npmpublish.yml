@@ -44,8 +44,7 @@ jobs:
       - run: yarn build:library
       - run: yarn test
       - run: yarn test:e2e:typecheck
-      - run: yarn node --test e2e/reporters/odhin-site-publisher.node-check.cjs
-      - run: yarn node --test e2e/reporters/odhin-report-enhancer.node-check.cjs
+      - run: yarn node --test e2e/reporters/*.node-check.cjs
       - run: yarn test:a11y:report
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium firefox webkit
@@ -86,6 +85,24 @@ jobs:
             test-results/
           if-no-files-found: warn
 
+      - name: Upload functional report
+        if: ${{ !cancelled() && steps.odhin_browser.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-lib-functional-report
+          path: |
+            test-results/odhin/
+            !test-results/odhin/accessibility/
+          if-no-files-found: error
+
+      - name: Upload accessibility report
+        if: ${{ !cancelled() && steps.accessibility.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-lib-accessibility-report
+          path: test-results/odhin/accessibility/
+          if-no-files-found: error
+
       - name: Prepare Odhín site
         id: odhin_prepare
         if: >-
@@ -110,7 +127,7 @@ jobs:
 
   publish-odhin:
     if: >-
-      ${{ needs.build.result == 'success' && needs.build.outputs.odhin_artifact_ready == 'true' &&
+      ${{ !cancelled() && needs.build.outputs.odhin_artifact_ready == 'true' &&
       ((github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'Release')) ||
       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)) }}
     needs: build
@@ -201,9 +218,10 @@ jobs:
           pages_url="${pages_url%/}"
           branch_url="$pages_url/${{ steps.publish_report.outputs.branch_url_path }}"
           run_url="$pages_url/${{ steps.publish_report.outputs.run_url_path }}"
-          printf '### [Open latest Odhín dashboard for %s](%s)\n' "$ODHIN_BRANCH" "$run_url" >> "$GITHUB_STEP_SUMMARY"
+          printf '### Reports for %s\n\n' "$ODHIN_BRANCH" >> "$GITHUB_STEP_SUMMARY"
+          printf '[Open functional Playwright report](%s)\n\n' "$run_url" >> "$GITHUB_STEP_SUMMARY"
+          printf '[Open accessibility report (advisory findings)](%saccessibility/index.html)\n\n' "$run_url" >> "$GITHUB_STEP_SUMMARY"
           printf '[Open branch report history](%s)\n\n' "$branch_url" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open this run’s accessibility findings and evidence](%saccessibility/index.html)\n\n' "$run_url" >> "$GITHUB_STEP_SUMMARY"
           printf '[Download this run’s exact evidence](%s).\n' '${{ needs.build.outputs.evidence_url }}' >> "$GITHUB_STEP_SUMMARY"
 
   publish-npm:

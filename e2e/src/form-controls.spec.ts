@@ -24,20 +24,8 @@ test('S1.3 supplied select and textarea errors render and clear', async ({ page 
   await controls.errors.click();
   await expect(page.locator('#priority-error')).toHaveText('Error:Choose a priority');
   await expect(page.locator('#case-notes-error')).toHaveText('Error:Enter case notes');
-  await expect(controls.priority).toHaveAttribute('aria-describedby', 'priority-hint priority-error');
-  await expect(page.locator('#priority-hint')).toHaveText('Choose how soon to review.');
   await controls.errors.click();
   await expect(page.locator('#priority-error, #case-notes-error')).toHaveCount(0);
-  await expect(controls.priority).toHaveAttribute('aria-describedby', 'priority-hint');
-});
-
-test('S1.3 textarea description resolves the configured distinct hint ID', async ({ page }) => {
-  const controls = new FormControlsPage(page);
-  await expect(controls.notes).toHaveAttribute('aria-describedby', 'case-notes-hint');
-  await expect(page.locator('#case-notes-hint')).toHaveText('Include only synthetic notes.');
-  await controls.errors.click();
-  await expect(controls.notes).toHaveAttribute('aria-describedby', 'case-notes-hint case-notes-error');
-  await expect(page.locator('#case-notes-error')).toHaveText('Error:Enter case notes');
 });
 
 test('S1.4 valid date updates parent controls and validity', async ({ page }) => {
@@ -96,8 +84,6 @@ test('S1.4 optional empty date remains valid after clearing all fields', async (
 
 test('S1.5 file chooser exposes exact metadata, clear and reselect', async ({ page }) => {
   const controls = new FormControlsPage(page);
-  await expect(controls.file).toHaveAttribute('aria-describedby', 'supportingFile-hint');
-  await expect(page.locator('#supportingFile-hint')).toHaveText('Choose a synthetic text file.');
   await controls.file.setInputFiles({ name: 'evidence.txt', mimeType: 'text/plain', buffer: Buffer.from('proof') });
   await expect.poll(() => controls.file.evaluate((input: HTMLInputElement) =>
     Array.from(input.files, (file) => ({ name: file.name, type: file.type, size: file.size }))))
@@ -109,7 +95,6 @@ test('S1.5 file chooser exposes exact metadata, clear and reselect', async ({ pa
     Array.from(input.files, (file) => ({ name: file.name, type: file.type, size: file.size }))))
     .toEqual([{ name: 'replacement.txt', type: 'text/plain', size: 3 }]);
   await controls.errors.click();
-  await expect(controls.file).toHaveAttribute('aria-describedby', 'supportingFile-hint supportingFile-error');
   await expect(page.locator('#supportingFile-error')).toHaveText('Error:Choose a supporting file');
   await controls.errors.click();
   await expect(page.locator('#supportingFile-error')).toHaveCount(0);

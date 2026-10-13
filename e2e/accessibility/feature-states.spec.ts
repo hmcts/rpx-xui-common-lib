@@ -8,6 +8,7 @@ import { AddressPage } from '../src/address.po';
 import { UserManagementPage } from '../src/user-management.po';
 import { collectAccessibilityEvidence } from './accessibilityAudit';
 import { ASSERTION_MARKER } from './report.cjs';
+import { formDescriptions, formDescriptionStates } from './form-description.data';
 
 test('invitation — initial form', async ({ page }, testInfo) => {
   await page.goto('/coverage/invitation');
@@ -39,15 +40,25 @@ test('invitation — submitted details and permissions', async ({ page }, testIn
   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
 });
 
-test('form controls — initial fields', async ({ page }, testInfo) => {
-  await page.goto('/coverage/form-controls');
-  const controls = new FormControlsPage(page);
-  await expect(controls.priority).toBeVisible();
-  await expect(controls.file).toBeVisible();
-  await expect(controls.day).toBeVisible();
-  const outcomes = await collectAccessibilityEvidence(page, testInfo);
-  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
-});
+for (const state of formDescriptionStates) {
+  test(`form controls — descriptions ${state}`, async ({ page }, testInfo) => {
+    await page.goto('/coverage/form-controls');
+    const controls = new FormControlsPage(page);
+    await expect(controls.priority).toBeVisible();
+    await expect(controls.file).toBeVisible();
+    await expect(controls.day).toBeVisible();
+    if (state !== 'initial') {
+      await controls.errors.click();
+      await expect(page.locator('#case-notes-error')).toBeVisible();
+    }
+    if (state === 'cleared') {
+      await controls.errors.click();
+      await expect(page.locator('#case-notes-error')).toHaveCount(0);
+    }
+    const outcomes = await collectAccessibilityEvidence(page, testInfo, formDescriptions(state));
+    expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+  });
+}
 
 test('form controls — supplied errors and invalid date', async ({ page }, testInfo) => {
   await page.goto('/coverage/form-controls');
