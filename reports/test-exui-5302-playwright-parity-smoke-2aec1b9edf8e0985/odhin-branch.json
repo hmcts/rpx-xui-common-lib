@@ -5,6 +5,16 @@
     {
       "rawBranch": "test/EXUI-5302-playwright-parity-smoke",
       "branchSlug": "test-exui-5302-playwright-parity-smoke-2aec1b9edf8e0985",
+      "runKey": "38377704376-attempt-1",
+      "runId": "38377704376",
+      "runAttempt": "1",
+      "sha": "e59fd87091635417ea5bfb6c0557d6398c40ff77",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38377704376/attempts/1",
+      "createdAt": "2026-10-13T09:43:38.279Z"
+    },
+    {
+      "rawBranch": "test/EXUI-5302-playwright-parity-smoke",
+      "branchSlug": "test-exui-5302-playwright-parity-smoke-2aec1b9edf8e0985",
       "runKey": "38375751501-attempt-1",
       "runId": "38375751501",
       "runAttempt": "1",
