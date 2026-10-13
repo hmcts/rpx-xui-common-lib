@@ -32,7 +32,7 @@ The Playwright tests in `e2e/` exercise the demo host (`src/`) in Chromium, Fire
 - `PLAYWRIGHT_TEST_BASE_URL=<url> yarn playwright test` - run against an already running host; no server is started.
 - `PLAYWRIGHT_REPORTERS=list,html,junit,odhin` - choose reporters (default `list,odhin` locally and `dot,odhin` in CI; JUnit is written to `test-results/junit.xml`).
 - Odhín writes its HTML index to `test-results/odhin/common-lib-playwright.html` and keeps assets/attachments beside it. Set `PW_ODHIN_OUTPUT`, `PW_ODHIN_INDEX`, `PW_ODHIN_TITLE`, `PW_ODHIN_ENV`, `PW_ODHIN_PROJECT` or `PW_ODHIN_RELEASE` to override metadata and output paths.
-- For PR #568, the GitHub Actions `publish-odhin` job exposes the Odhín dashboard as a public GitHub Pages link on the workflow run, including when browser tests fail but still generate the report. Pages shows the latest PR run; the downloadable `common-lib-playwright-evidence` artifact retains each run's exact HTML, JUnit and browser evidence files.
+- GitHub Actions publishes Odhín reports to a persistent `odhin-reports` peer branch and deploys one GitHub Pages site with separate history paths. The root index lists branches; `reports/master/` is the branch history index, and `reports/<branch-slug>/runs/<run-id>-attempt-<attempt>/` is an immutable Odhín dashboard. The workflow summary opens the latest immutable dashboard first, then links the branch history and the downloadable `common-lib-playwright-evidence` artifact. Fork pull requests remain artifact-only and are not copied to the public report-history branch.
 - `yarn playwright show-report` - view the last HTML report.
 
 Install the browsers once with `yarn playwright install chromium firefox webkit`.
