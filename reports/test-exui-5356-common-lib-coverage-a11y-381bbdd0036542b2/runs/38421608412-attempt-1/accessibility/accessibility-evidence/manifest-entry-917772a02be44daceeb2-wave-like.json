@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-e6af87af19912f4654b1",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "service selection",
+  "pageState": "expanded suggestions",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "service selection — expanded suggestions",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "917772a02be44daceeb2-wave-like.html",
+  "jsonFileName": "917772a02be44daceeb2-wave-like.json",
+  "screenshotFileName": "917772a02be44daceeb2-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "917772a02be44daceeb2-wave-like-style-1.css"
+  ]
+}

@@ -1,0 +1,1 @@
+console.log('window.__LIGHTHOUSE_JSON__', __LIGHTHOUSE_JSON__);

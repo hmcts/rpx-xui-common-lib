@@ -1,0 +1,71 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-3c0aef397740f3a035a9",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "user management",
+  "pageState": "next page",
+  "status": "issues-found",
+  "reviewCount": 4,
+  "reviewRules": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "findings": [
+    {
+      "rule": "dlitem",
+      "targets": [
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]",
+        "[\".govuk-table__row:nth-child(3) > dt\"]",
+        "[\".govuk-table__row:nth-child(3) > dd:nth-child(2)\"]",
+        "[\".govuk-table__row:nth-child(3) > dd:nth-child(3)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]"
+      ],
+      "summary": "<dt> and <dd> elements must be contained by a <dl>",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 15,
+  "rules": [
+    "dlitem"
+  ],
+  "targets": [
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]",
+    "[\".govuk-table__row:nth-child(3) > dt\"]",
+    "[\".govuk-table__row:nth-child(3) > dd:nth-child(2)\"]",
+    "[\".govuk-table__row:nth-child(3) > dd:nth-child(3)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]"
+  ],
+  "testTitle": "user management — next page",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "5dfcc752b9720c840088-axe.html",
+  "jsonFileName": "5dfcc752b9720c840088-axe.json",
+  "screenshotFileName": "5dfcc752b9720c840088-axe.png",
+  "assetFileNames": [
+    "5dfcc752b9720c840088-axe-style-1.css"
+  ]
+}

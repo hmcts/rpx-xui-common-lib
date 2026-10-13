@@ -1,0 +1,160 @@
+{
+  "feature": "users",
+  "pageState": "selected user",
+  "strict": true,
+  "url": "http://localhost:4200/coverage?feature=users",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "govuk-template-body",
+        "skip-link"
+      ]
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "User selection"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "User selectionSelect a useralex@example.test",
+        "selector": "div"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "text input",
+        "name": "Select a user",
+        "selector": "input",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage?feature=users",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "heading",
+        "name": "User selection"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "combobox",
+        "name": "Select a user"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "User selection"
+      },
+      {
+        "role": "StaticText",
+        "name": "Select a user"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "alex@example.test"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "User selection"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Select a user"
+      },
+      {
+        "role": "StaticText",
+        "name": "Alex Taylor - alex@example.test"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "alex@example.test"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Alex Taylor - alex@example.test"
+      }
+    ]
+  }
+}

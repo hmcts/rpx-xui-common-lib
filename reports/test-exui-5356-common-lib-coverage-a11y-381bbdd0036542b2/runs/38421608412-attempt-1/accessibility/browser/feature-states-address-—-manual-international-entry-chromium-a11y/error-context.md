@@ -1,0 +1,44 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "Address demo" [level=1] [ref=e5]
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - radio "Yes" [ref=e10] [cursor=pointer]
+      - generic [ref=e11] [cursor=pointer]: "Yes"
+    - generic [ref=e12]:
+      - radio "No" [checked] [active] [ref=e13] [cursor=pointer]
+      - generic [ref=e14] [cursor=pointer]: "No"
+    - generic [ref=e18]:
+      - generic [ref=e19]: Enter address details
+      - generic [ref=e20]:
+        - generic [ref=e21]: Building and Street
+        - textbox "Building and Street" [ref=e22]
+      - generic [ref=e23]:
+        - generic [ref=e24]: Address line 2 (Optional)
+        - textbox "Address line 2 (Optional)" [ref=e25]
+      - generic [ref=e26]:
+        - generic [ref=e27]: Address line 3 (Optional)
+        - textbox "Address line 3 (Optional)" [ref=e28]
+      - generic [ref=e29]:
+        - generic [ref=e30]: Town or City
+        - textbox "Town or City" [ref=e31]
+      - generic [ref=e32]:
+        - generic [ref=e33]: County/ State/ Province (Optional)
+        - textbox "County/ State/ Province (Optional)" [ref=e34]
+      - generic [ref=e35]:
+        - generic [ref=e36]: Country
+        - textbox "Country" [ref=e37]
+      - generic [ref=e38]:
+        - generic [ref=e39]: Postcode (Optional)
+        - textbox "Postcode (Optional)" [ref=e40]
+  - heading "Demo form and event outputs" [level=2] [ref=e41]
+  - generic [ref=e42]: "{ \"address\": { \"addressLine1\": \"\", \"addressLine2\": \"\", \"addressLine3\": \"\", \"postTown\": \"\", \"county\": \"\", \"postCode\": \"\", \"country\": \"\" } }"
+  - paragraph [ref=e43]:
+    - text: "Selection events:"
+    - generic [ref=e44]: "0"
+  - paragraph [ref=e45]:
+    - text: "Addresses available:"
+    - generic [ref=e46]: "false"
+```

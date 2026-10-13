@@ -1,0 +1,54 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "address",
+  "pageState": "invalid postcode",
+  "violationCount": 3,
+  "status": "issues-found",
+  "rules": [
+    "govuk-template-body",
+    "skip-link",
+    "error-describedby"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/address",
+    "http://localhost:4200/coverage/address",
+    "#postcodeInput"
+  ],
+  "testTitle": "address — invalid postcode",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "9e91a0dee8cfb5eeaf03-screen-reader.html",
+  "jsonFileName": "9e91a0dee8cfb5eeaf03-screen-reader.json",
+  "screenshotFileName": "9e91a0dee8cfb5eeaf03-screen-reader.png",
+  "findings": [
+    {
+      "rule": "govuk-template-body",
+      "targets": [],
+      "summary": "The page should use the GOV.UK template body class during the template migration.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "skip-link",
+      "targets": [],
+      "summary": "The page should expose a visible skip-to-main-content link.",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#postcodeInput"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-3"
+    }
+  ],
+  "assetFileNames": [
+    "9e91a0dee8cfb5eeaf03-screen-reader-style-1.css"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-f9637579684f3bad5122",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "cookies",
+  "pageState": "choice banner",
+  "violationCount": 2,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=cookie"
+  ],
+  "testTitle": "cookies — choice banner",
+  "attachmentPrefix": "cookies-choice-banner-page-summary",
+  "htmlFileName": "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.html",
+  "jsonFileName": "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.json",
+  "screenshotFileName": "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.png",
+  "assetFileNames": [
+    "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary-style-1.css"
+  ]
+}
