@@ -130,6 +130,12 @@ function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttemp
     if (!fs.existsSync(stagedIndex) || !fs.statSync(stagedIndex).isFile()) {
       throw new Error(`Odhín HTML index is missing: ${stagedIndex}`);
     }
+    if (fs.existsSync(path.join(stagingDir, 'accessibility', 'index.html'))) {
+      const html = fs.readFileSync(stagedIndex, 'utf8');
+      const body = /<body\b[^>]*>/i;
+      if (!body.test(html)) throw new Error('Odhín HTML body is missing');
+      fs.writeFileSync(stagedIndex, html.replace(body, '$&<nav aria-label="Additional evidence"><a href="./accessibility/index.html">Accessibility findings and evidence</a></nav>'));
+    }
     fs.copyFileSync(stagedIndex, path.join(stagingDir, 'index.html'));
     const metadata = {
       rawBranch: String(rawBranch),

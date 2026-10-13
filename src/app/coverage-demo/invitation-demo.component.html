@@ -1,0 +1,9 @@
+<main class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Invitation form demo</h1>
+  <p class="govuk-body">Synthetic data only. Validation is supplied by the demo parent; no invitation is sent.</p>
+  <xuilib-invite-user-form [inviteUserForm]="form" [errorMessages]="errors" (submitForm)="submit()"></xuilib-invite-user-form>
+  <h2 class="govuk-heading-m">Parent form and emitted events</h2>
+  <p>Form valid: <output data-testid="invitation-valid">{{ form.valid }}</output></p>
+  <p>Submit events: <output data-testid="invitation-submissions">{{ submissions }}</output></p>
+  <pre data-testid="invitation-value">{{ submittedValue | json }}</pre>
+</main>

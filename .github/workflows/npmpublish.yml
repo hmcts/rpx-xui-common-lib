@@ -46,9 +46,11 @@ jobs:
       - run: yarn test:e2e:typecheck
       - run: yarn node --test e2e/reporters/odhin-site-publisher.node-check.cjs
       - run: yarn node --test e2e/reporters/odhin-report-enhancer.node-check.cjs
+      - run: yarn test:a11y:report
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium firefox webkit
-      - name: Run Playwright smoke
+      - name: Run Playwright functional coverage
+        id: functional
         env:
           PLAYWRIGHT_REPORTERS: dot,html,junit,odhin
           PW_ODHIN_OUTPUT: test-results/odhin
@@ -56,8 +58,23 @@ jobs:
         run: yarn playwright test
       - name: Verify rendered Odhín dashboard
         id: odhin_browser
-        if: ${{ !cancelled() && hashFiles('test-results/odhin/common-lib-playwright.html') != '' }}
+        if: ${{ !cancelled() && (steps.functional.outcome == 'success' || steps.functional.outcome == 'failure') }}
         run: yarn node e2e/reporters/odhin-report.browser-check.cjs
+      - name: Verify accessibility scanner
+        id: accessibility_scanner
+        if: ${{ !cancelled() && steps.odhin_browser.outcome == 'success' }}
+        run: yarn test:a11y:self-check
+      - name: Verify combined accessibility report UI
+        id: accessibility_ui
+        if: ${{ !cancelled() && steps.accessibility_scanner.outcome == 'success' }}
+        run: yarn node e2e/reporters/presentation/accessibility.browser-check.cjs
+      - name: Record accessibility findings
+        id: accessibility
+        if: ${{ !cancelled() && steps.accessibility_ui.outcome == 'success' }}
+        env:
+          COMMONLIB_A11Y_RUN_DIR: test-results/odhin/accessibility
+        # Product findings are advisory by explicit approval; execution/report errors still fail.
+        run: yarn test:a11y:advisory
       - name: Upload Playwright evidence
         id: playwright_evidence
         if: always()
@@ -72,12 +89,13 @@ jobs:
       - name: Prepare Odhín site
         id: odhin_prepare
         if: >-
-          ${{ !cancelled() && steps.odhin_browser.outcome == 'success' &&
+          ${{ !cancelled() && steps.odhin_browser.outcome == 'success' && steps.accessibility.outcome == 'success' &&
           ((github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'Release')) ||
           (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)) &&
           hashFiles('test-results/odhin/common-lib-playwright.html') != '' }}
         run: |
           test -s test-results/odhin/common-lib-playwright.html
+          test -s test-results/odhin/accessibility/index.html
           node -e '
             const fs = require("node:fs");
             const html = fs.readFileSync("test-results/odhin/common-lib-playwright.html", "utf8");
@@ -185,6 +203,7 @@ jobs:
           run_url="$pages_url/${{ steps.publish_report.outputs.run_url_path }}"
           printf '### [Open latest Odhín dashboard for %s](%s)\n' "$ODHIN_BRANCH" "$run_url" >> "$GITHUB_STEP_SUMMARY"
           printf '[Open branch report history](%s)\n\n' "$branch_url" >> "$GITHUB_STEP_SUMMARY"
+          printf '[Open this run’s accessibility findings and evidence](%saccessibility/index.html)\n\n' "$run_url" >> "$GITHUB_STEP_SUMMARY"
           printf '[Download this run’s exact evidence](%s).\n' '${{ needs.build.outputs.evidence_url }}' >> "$GITHUB_STEP_SUMMARY"
 
   publish-npm:

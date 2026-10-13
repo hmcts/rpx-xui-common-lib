@@ -24,7 +24,23 @@ It will run the tests for exui-common-lib.
 
 ## Running end-to-end tests
 
-The Playwright tests in `e2e/` exercise the demo host (`src/`) in Chromium, Firefox and WebKit locally and in CI. There are 51 distinct scenarios (153 browser executions): 34 for the existing home demo and 17 for the `/coverage` demo. The additional examples cover generic-filter validation, persistence and cancellation; pagination boundaries and events; cookie choices; user selection; terms confirmation; primary and secondary navigation; banners and error summaries; and the session dialog. The `/coverage` page is demo/test-host code only: no production library implementation under `projects/exui-common-lib/` was changed for this expansion. These browser tests do not imply 100% coverage of CommonLib's APIs or consumer journeys; library unit tests still run separately through `yarn test`.
+The Playwright tests in `e2e/src/` exercise the demo host (`src/`) in Chromium, Firefox and WebKit locally and in CI. Discovery lists 89 distinct functional scenarios (267 browser executions): the original 51 scenarios plus 38 additional contracts. This is a scenario count, not a pass rate or percentage of library functionality. Run `yarn playwright test --list` to inspect the current inventory and use the matching run's reports for its actual results.
+
+The functional inventory reaches at least one directly asserted contract in 40 of 60 public components (previously 19); every component remains partially tested. This includes retained failing assertions, not 40 proven-correct components. Twenty components still have no credited functional browser contract, including location/work-type/venue/judicial/person/task lookups, plural service messages, the accessibility statement and page wrapper. Services, directives, exhaustive input combinations, live integrations and manual assistive-technology testing are separate gaps; neither browser repetition nor automated scanning closes them.
+
+The additional `/coverage/*` routes are explicitly demo/test-host code. They compose real exported library components and expose parent form values and emitted events for assertions; they do not replace library implementations. Production library code under `projects/exui-common-lib/` is unchanged.
+
+| Demo route | Contracts exercised | Boundary |
+| --- | --- | --- |
+| `/home`, `/coverage` | Existing checkbox, date badge, loading, contact, filter, pagination, cookies, navigation, terms, feedback and session-dialog scenarios | Session-dialog markup is not authenticated session-expiry coverage |
+| `/coverage/invitation` | Exact submitted form/permissions, parent-provided errors and correction | No email delivery or live invitation API |
+| `/coverage/form-controls` | Select/textarea values and error relationships, date validity, file chooser clear/reselect | Parent forms are demo-owned; file selection is not upload or drag/drop |
+| `/coverage/service-selection` | Filtering, keyboard selection, exact values, removal/replacement, disabled inputs | Synthetic local service options |
+| `/coverage/case-sharing` | Pending additions/removals, duplicate protection, cancellation, validation and confirmation state continuity | Real sharing state service; no persisted CCD access change |
+| `/coverage/address` | Postcode normalization, parsed lookup selection, empty results and manual/international controls | Real address service with synthetic intercepted HTTP responses |
+| `/coverage/users` | 50/1 pagination, user selection, permission/action visibility and click/keyboard event payloads | Synthetic users; no live suspension or invitation delivery |
+
+These tests do not imply 100% coverage of CommonLib's APIs, behavior or consumer journeys. Library unit tests still run separately through `yarn test`. A failing intended-contract test is evidence to investigate, not permission to change the library or weaken the assertion.
 
 - `yarn e2e` (`ng e2e`) - Angular starts the demo dev server and passes its URL to Playwright via `PLAYWRIGHT_TEST_BASE_URL`, so Playwright does not start a second server.
 - `yarn playwright test` - Playwright starts the demo itself (`yarn start:no-open` on http://localhost:4200), reusing an already running server outside CI. Add `--ui` for UI mode.
@@ -36,6 +52,18 @@ The Playwright tests in `e2e/` exercise the demo host (`src/`) in Chromium, Fire
 - `yarn playwright show-report` - view the last HTML report.
 
 Install the browsers once with `yarn playwright install chromium firefox webkit`.
+
+## Accessibility evidence
+
+The separate accessibility lane reuses the WebApp combined Odhín reporting approach: page/state summaries, axe results, WAVE-like DOM checks, screen-reader heuristics and scoped Lighthouse audits. Findings link to their HTML/JSON evidence and screenshots; these assets remain separate from the report index. WAVE-like checks are not the WebAIM WAVE service, and screen-reader heuristics do not execute NVDA, JAWS or VoiceOver. Automated checks cannot establish accessibility conformance.
+
+- `yarn test:a11y` runs the strict accessibility lane. Product findings remain visible as failed tests.
+- `yarn test:a11y:advisory` permits complete product-finding evidence, as explicitly agreed for this test-only work. Setup, scanner, missing-evidence and reporting errors remain blocking; an absent result is never a pass.
+- `yarn test:a11y:self-check` verifies the scanner against a clean synthetic page; `yarn test:a11y:report` checks report classification and evidence integrity.
+- `yarn node e2e/reporters/presentation/accessibility.browser-check.cjs` verifies the reused report UI with synthetic records. These checks validate reporting, not CommonLib functionality.
+- GitHub Actions stores this run's accessibility evidence alongside its functional Odhín report and links it from the run summary. Immutable per-branch history, including master, remains separate. Local runs reserve their own output directory to avoid stale or overwritten evidence.
+
+Existing library findings must remain visible and be tracked as defects. Only demo-owned markup may be repaired in this work; no library rules are disabled and no library DOM is rewritten to manufacture a clean scan.
 
 ## Further help
 

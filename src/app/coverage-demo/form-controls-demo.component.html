@@ -1,0 +1,20 @@
+<main class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Form controls demo</h1>
+  <p class="govuk-body">Error messages are supplied by the demo parent. Date validity uses the library's own validator.</p>
+  <xuilib-gov-select [group]="form" [items]="priorities"
+    [config]="{id: 'priority', label: 'Priority', hint: 'Choose how soon to review.'}"
+    [errorMessage]="suppliedError('Choose a priority')"></xuilib-gov-select>
+  <xuilib-gov-uk-textarea [group]="form"
+    [config]="{id: 'case-notes', key: 'notes', label: 'Case notes', hint: 'Include only synthetic notes.', rows: 3}"
+    [errorMessage]="suppliedError('Enter case notes')"></xuilib-gov-uk-textarea>
+  <xuilib-gov-uk-file-upload [group]="form"
+    [config]="{id: 'supportingFile', name: 'supportingFile', label: 'Supporting file', hint: 'Choose a synthetic text file.'}"
+    [errorMessage]="suppliedError('Choose a supporting file')"></xuilib-gov-uk-file-upload>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="showErrors = !showErrors">Toggle supplied errors</button>
+  <xuilib-gov-uk-date [formGroup]="dateForm" [isOptional]="true"
+    [config]="{id: 'hearing', label: 'Hearing date (optional)'}" [errorMessage]="dateError"></xuilib-gov-uk-date>
+  <h2 class="govuk-heading-m">Parent form values</h2>
+  <pre data-testid="controls-value">{{ form.getRawValue() | json }}</pre>
+  <p>Date valid: <output data-testid="date-valid">{{ dateForm.valid }}</output></p>
+  <pre data-testid="date-value">{{ dateForm.getRawValue() | json }}</pre>
+</main>

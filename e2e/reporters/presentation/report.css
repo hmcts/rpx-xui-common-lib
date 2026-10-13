@@ -965,3 +965,48 @@ body#body-content {
   outline: 3px dashed var(--report-accent);
   outline-offset: -3px;
 }
+
+/* Use the existing report palette for the WebApp accessibility workspace. */
+#body-content .a11y-workspace {
+  padding: 16px;
+  overflow-wrap: anywhere;
+}
+#body-content .a11y-workspace :is(nav, .a11y-links, .a11y-controls, .a11y-metrics, .a11y-issue-group > summary) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+#body-content .a11y-workspace :is(.a11y-metrics > div, .a11y-controls > label) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 180px;
+  min-width: 0;
+}
+#body-content .a11y-workspace :is(.a11y-metrics > div, .a11y-issue-group, .a11y-evidence-card, .a11y-source-grid > li) {
+  padding: 12px;
+  margin-block: 12px;
+  border: 1px solid var(--report-line);
+  border-radius: var(--odhin-border-radius);
+  background: var(--report-surface);
+}
+#body-content .a11y-workspace :is(input, select) {
+  width: 100%;
+  min-width: 0;
+}
+#body-content .a11y-controls {
+  align-items: end;
+}
+#body-content .a11y-issue-group > summary > strong {
+  flex: 1 1 220px;
+}
+#body-content .a11y-workspace summary {
+  cursor: pointer;
+}
+#body-content .a11y-workspace :is(summary, a, button, input, select):focus-visible {
+  outline: 3px solid var(--report-accent);
+  outline-offset: 3px;
+}
+#body-content .a11y-workspace a {
+  color: var(--report-accent);
+}

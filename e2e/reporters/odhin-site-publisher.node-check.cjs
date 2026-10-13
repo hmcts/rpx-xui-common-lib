@@ -134,3 +134,31 @@ test('rejects an incomplete report before creating public history', () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('links the matching accessibility evidence without changing the source or older runs', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-a11y-site-'));
+  const source = path.join(root, 'source');
+  const site = path.join(root, 'site');
+  try {
+    createSource(source, 'old');
+    publish({ source, site, branch: 'master', runId: '20' });
+    const sourceHtml = '<!doctype html><html><body class="report"><h1>Functional results</h1></body></html>';
+    fs.writeFileSync(path.join(source, 'common-lib-playwright.html'), sourceHtml);
+    fs.mkdirSync(path.join(source, 'accessibility'));
+    fs.writeFileSync(path.join(source, 'accessibility/index.html'), '<h1>Accessibility findings</h1>');
+    fs.writeFileSync(path.join(source, 'accessibility/summary.json'), '{"status":"issues-found"}');
+    publish({ source, site, branch: 'master', runId: '21' });
+    const current = path.join(site, 'reports/master/runs/21-attempt-1');
+    for (const name of ['index.html', 'common-lib-playwright.html']) {
+      assert.match(fs.readFileSync(path.join(current, name), 'utf8'), /href="\.\/accessibility\/index.html"/);
+    }
+    assert.equal(fs.readFileSync(path.join(current, 'accessibility/summary.json'), 'utf8'), '{"status":"issues-found"}');
+    assert.equal(fs.readFileSync(path.join(source, 'common-lib-playwright.html'), 'utf8'), sourceHtml);
+    assert.doesNotMatch(fs.readFileSync(path.join(site, 'reports/master/runs/20-attempt-1/index.html'), 'utf8'), /accessibility/);
+    fs.writeFileSync(path.join(source, 'common-lib-playwright.html'), 'broken document');
+    assert.throws(() => publish({ source, site, branch: 'master', runId: '22' }), /body/);
+    assert.equal(fs.existsSync(path.join(site, 'reports/master/runs/22-attempt-1')), false);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
