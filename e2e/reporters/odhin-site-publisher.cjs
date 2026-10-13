@@ -46,6 +46,24 @@ function readRunMetadata(runDir) {
   return JSON.parse(fs.readFileSync(metadataFile, 'utf8'));
 }
 
+function addReportNavigation(file, accessibility = false) {
+  const html = fs.readFileSync(file, 'utf8');
+  const body = /<body\b[^>]*>/i;
+  if (!body.test(html)) throw new Error('Odhín HTML body is missing');
+  const prefix = accessibility ? '../' : './';
+  const current = accessibility ? 'Accessibility' : 'Functional';
+  const target = accessibility ? 'Functional' : 'Accessibility';
+  const href = accessibility ? '../index.html' : './accessibility/index.html';
+  const navigation = `
+<link rel="stylesheet" href="${prefix}presentation/report-navigation.css">
+<nav class="odhin-report-navigation" aria-label="Odhín reports">
+  <div><strong>Two Odhín reports for this run</strong><span aria-current="page">${current} Odhín report</span></div>
+  <a class="odhin-report-navigation-link" href="${href}">Open ${target} Odhín report</a>
+  <p>Accessibility findings are advisory; functional results are separate.</p>
+</nav>`;
+  fs.writeFileSync(file, html.replace(body, `$&${navigation}`));
+}
+
 function listRuns(branchDir) {
   const runsDir = path.join(branchDir, 'runs');
   if (!fs.existsSync(runsDir)) {
@@ -130,11 +148,12 @@ function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttemp
     if (!fs.existsSync(stagedIndex) || !fs.statSync(stagedIndex).isFile()) {
       throw new Error(`Odhín HTML index is missing: ${stagedIndex}`);
     }
-    if (fs.existsSync(path.join(stagingDir, 'accessibility', 'index.html'))) {
-      const html = fs.readFileSync(stagedIndex, 'utf8');
-      const body = /<body\b[^>]*>/i;
-      if (!body.test(html)) throw new Error('Odhín HTML body is missing');
-      fs.writeFileSync(stagedIndex, html.replace(body, '$&<nav aria-label="Additional evidence"><a href="./accessibility/index.html">Accessibility findings and evidence</a></nav>'));
+    const accessibilityIndex = path.join(stagingDir, 'accessibility', 'index.html');
+    if (fs.existsSync(accessibilityIndex)) {
+      fs.mkdirSync(path.join(stagingDir, 'presentation'), { recursive: true });
+      fs.copyFileSync(path.join(__dirname, 'presentation', 'report-navigation.css'), path.join(stagingDir, 'presentation', 'report-navigation.css'));
+      addReportNavigation(stagedIndex);
+      addReportNavigation(accessibilityIndex, true);
     }
     fs.copyFileSync(stagedIndex, path.join(stagingDir, 'index.html'));
     const metadata = {

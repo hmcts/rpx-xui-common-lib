@@ -145,19 +145,36 @@ test('links the matching accessibility evidence without changing the source or o
     const sourceHtml = '<!doctype html><html><body class="report"><h1>Functional results</h1></body></html>';
     fs.writeFileSync(path.join(source, 'common-lib-playwright.html'), sourceHtml);
     fs.mkdirSync(path.join(source, 'accessibility'));
-    fs.writeFileSync(path.join(source, 'accessibility/index.html'), '<h1>Accessibility findings</h1>');
+    const accessibilityHtml = '<!doctype html><html><body><h1>Accessibility findings</h1></body></html>';
+    fs.writeFileSync(path.join(source, 'accessibility/index.html'), accessibilityHtml);
     fs.writeFileSync(path.join(source, 'accessibility/summary.json'), '{"status":"issues-found"}');
     publish({ source, site, branch: 'master', runId: '21' });
     const current = path.join(site, 'reports/master/runs/21-attempt-1');
     for (const name of ['index.html', 'common-lib-playwright.html']) {
-      assert.match(fs.readFileSync(path.join(current, name), 'utf8'), /href="\.\/accessibility\/index.html"/);
+      const html = fs.readFileSync(path.join(current, name), 'utf8');
+      assert.match(html, /aria-label="Odhín reports"/);
+      assert.match(html, /href="\.\/accessibility\/index.html"[^>]*>Open Accessibility Odhín report/);
+      assert.match(html, /aria-current="page">Functional Odhín report/);
+      assert.match(html, /href="\.\/presentation\/report-navigation.css"/);
+      assert.doesNotMatch(html, /<style|style=/);
     }
+    const accessibility = fs.readFileSync(path.join(current, 'accessibility/index.html'), 'utf8');
+    assert.match(accessibility, /href="\.\.\/index.html"[^>]*>Open Functional Odhín report/);
+    assert.match(accessibility, /aria-current="page">Accessibility Odhín report/);
+    assert.match(accessibility, /href="\.\.\/presentation\/report-navigation.css"/);
+    assert.match(fs.readFileSync(path.join(current, 'presentation/report-navigation.css'), 'utf8'), /:focus-visible/);
     assert.equal(fs.readFileSync(path.join(current, 'accessibility/summary.json'), 'utf8'), '{"status":"issues-found"}');
     assert.equal(fs.readFileSync(path.join(source, 'common-lib-playwright.html'), 'utf8'), sourceHtml);
+    assert.equal(fs.readFileSync(path.join(source, 'accessibility/index.html'), 'utf8'), accessibilityHtml);
     assert.doesNotMatch(fs.readFileSync(path.join(site, 'reports/master/runs/20-attempt-1/index.html'), 'utf8'), /accessibility/);
-    fs.writeFileSync(path.join(source, 'common-lib-playwright.html'), 'broken document');
+    fs.writeFileSync(path.join(source, 'accessibility/index.html'), 'broken accessibility document');
     assert.throws(() => publish({ source, site, branch: 'master', runId: '22' }), /body/);
     assert.equal(fs.existsSync(path.join(site, 'reports/master/runs/22-attempt-1')), false);
+    assert.equal(fs.readdirSync(path.join(site, 'reports/master/runs')).some(name => name.startsWith('.odhin-run-')), false);
+    fs.writeFileSync(path.join(source, 'accessibility/index.html'), accessibilityHtml);
+    fs.writeFileSync(path.join(source, 'common-lib-playwright.html'), 'broken document');
+    assert.throws(() => publish({ source, site, branch: 'master', runId: '23' }), /body/);
+    assert.equal(fs.existsSync(path.join(site, 'reports/master/runs/23-attempt-1')), false);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
