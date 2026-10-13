@@ -1,0 +1,16 @@
+{
+  "rawBranch": "master",
+  "slug": "master",
+  "runs": [
+    {
+      "rawBranch": "master",
+      "branchSlug": "master",
+      "runKey": "38382757905-attempt-1",
+      "runId": "38382757905",
+      "runAttempt": "1",
+      "sha": "324df0a261ded559894eb6f1aeeae4f2d0d66f06",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38382757905/attempts/1",
+      "createdAt": "2026-10-13T10:27:16.850Z"
+    }
+  ]
+}
