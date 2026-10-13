@@ -110,7 +110,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ format('{0}reports/{1}/runs/{2}/', steps.deployment.outputs.page_url, needs.build.outputs.branch_slug, needs.build.outputs.run_key) }}
     steps:
       - uses: actions/checkout@v5
         with:
