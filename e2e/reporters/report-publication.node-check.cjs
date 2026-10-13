@@ -12,6 +12,14 @@ assert(folded?.startsWith('${{') && folded.endsWith('}}'), 'Expected the publica
 const condition = folded.slice(3, -2).trim();
 const gate = new Script(`(${condition})`);
 
+test('publisher disables dependency-cache save without a dependency install', () => {
+  assert.match(
+    job,
+    /- uses: actions\/setup-node@v5\r?\n        with:\r?\n          node-version: 24\.18\.0\r?\n          package-manager-cache: false/,
+    'publish-odhin must not ask setup-node to save a Yarn cache that this job never creates'
+  );
+});
+
 // Literal expectations describe policy, not values computed from the condition.
 const cases = [
   { name: 'failed functional build with verified reports publishes', result: 'failure', want: true },
