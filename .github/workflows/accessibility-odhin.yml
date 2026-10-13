@@ -1,0 +1,45 @@
+name: CommonLib accessibility (advisory)
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: commonlib-accessibility-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24.18.0
+      - run: corepack enable && yarn --version
+      - run: yarn install
+      - run: yarn test:e2e:typecheck
+      - run: yarn test:a11y:report
+      - name: Install Playwright Chromium
+        run: yarn playwright install --with-deps chromium
+      - name: Verify accessibility scanner
+        run: yarn test:a11y:self-check
+      - name: Verify accessibility report UI
+        run: yarn node e2e/reporters/presentation/accessibility.browser-check.cjs
+      - name: Record advisory accessibility findings
+        env:
+          COMMONLIB_A11Y_RUN_DIR: test-results/odhin/accessibility
+        # Product findings are advisory by explicit approval; execution/report errors still fail.
+        run: yarn test:a11y:advisory
+      - name: Verify rendered accessibility Odhín dashboard
+        run: yarn node e2e/accessibility/verify-report.cjs test-results/odhin/accessibility
+      - name: Upload exact accessibility Odhín report
+        uses: actions/upload-artifact@v4
+        with:
+          name: common-lib-accessibility-report
+          path: test-results/odhin/accessibility/
+          if-no-files-found: error

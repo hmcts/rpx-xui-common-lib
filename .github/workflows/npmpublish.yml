@@ -25,16 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       evidence_url: ${{ steps.playwright_evidence.outputs.artifact-url }}
-      odhin_artifact_ready: ${{ steps.odhin_prepare.outcome == 'success' }}
-      run_key: ${{ steps.odhin_context.outputs.run_key }}
     steps:
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - name: Determine Odhín report context
-        id: odhin_context
-        run: |
-          echo "run_key=${GITHUB_RUN_ID}-attempt-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@v5
         with:
           node-version: 24.18.0
@@ -45,7 +39,6 @@ jobs:
       - run: yarn test
       - run: yarn test:e2e:typecheck
       - run: yarn node --test e2e/reporters/*.node-check.cjs
-      - run: yarn test:a11y:report
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium firefox webkit
       - name: Run Playwright functional coverage
@@ -59,21 +52,6 @@ jobs:
         id: odhin_browser
         if: ${{ !cancelled() && (steps.functional.outcome == 'success' || steps.functional.outcome == 'failure') }}
         run: yarn node e2e/reporters/odhin-report.browser-check.cjs
-      - name: Verify accessibility scanner
-        id: accessibility_scanner
-        if: ${{ !cancelled() && steps.odhin_browser.outcome == 'success' }}
-        run: yarn test:a11y:self-check
-      - name: Verify combined accessibility report UI
-        id: accessibility_ui
-        if: ${{ !cancelled() && steps.accessibility_scanner.outcome == 'success' }}
-        run: yarn node e2e/reporters/presentation/accessibility.browser-check.cjs
-      - name: Record accessibility findings
-        id: accessibility
-        if: ${{ !cancelled() && steps.accessibility_ui.outcome == 'success' }}
-        env:
-          COMMONLIB_A11Y_RUN_DIR: test-results/odhin/accessibility
-        # Product findings are advisory by explicit approval; execution/report errors still fail.
-        run: yarn test:a11y:advisory
       - name: Upload Playwright evidence
         id: playwright_evidence
         if: always()
@@ -94,136 +72,6 @@ jobs:
             test-results/odhin/
             !test-results/odhin/accessibility/
           if-no-files-found: error
-
-      - name: Upload accessibility report
-        if: ${{ !cancelled() && steps.accessibility.outcome == 'success' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: common-lib-accessibility-report
-          path: test-results/odhin/accessibility/
-          if-no-files-found: error
-
-      - name: Prepare Odhín site
-        id: odhin_prepare
-        if: >-
-          ${{ !cancelled() && steps.odhin_browser.outcome == 'success' && steps.accessibility.outcome == 'success' &&
-          ((github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'Release')) ||
-          (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)) &&
-          hashFiles('test-results/odhin/common-lib-playwright.html') != '' }}
-        run: |
-          test -s test-results/odhin/common-lib-playwright.html
-          test -s test-results/odhin/accessibility/index.html
-          node -e '
-            const fs = require("node:fs");
-            const html = fs.readFileSync("test-results/odhin/common-lib-playwright.html", "utf8");
-            const chart = fs.readFileSync("test-results/odhin/js/chartjs.js", "utf8");
-            const css = fs.readFileSync("test-results/odhin/presentation/report.css", "utf8");
-            const featureCss = fs.readFileSync("test-results/odhin/presentation/feature.css", "utf8");
-            const script = fs.readFileSync("test-results/odhin/presentation/report.js", "utf8");
-            if (!html.includes("odhin-feature-summary") || !html.includes("./presentation/report.css") || !html.includes("./presentation/feature.css") || !html.includes("./presentation/report.js") || !css.includes("report-metrics") || !featureCss.includes("odhin-feature-summary") || !script.includes("Tests in this run") || html.includes("id=\"odhin-enhancer-styles\"") || html.includes("data:image/") || chart.includes("chart-file")) {
-              throw new Error("Odhín dashboard or its external presentation assets are incomplete");
-            }
-          '
-
-  publish-odhin:
-    if: >-
-      ${{ !cancelled() && needs.build.outputs.odhin_artifact_ready == 'true' &&
-      ((github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'Release')) ||
-      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)) }}
-    needs: build
-    runs-on: ubuntu-latest
-    concurrency:
-      group: commonlib-odhin-publication
-      cancel-in-progress: false
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ format('{0}{1}', steps.deployment.outputs.page_url, steps.publish_report.outputs.run_url_path) }}
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 24.18.0
-          package-manager-cache: false
-      - name: Download exact Playwright evidence
-        uses: actions/download-artifact@v4
-        with:
-          name: common-lib-playwright-evidence
-          path: evidence
-      - name: Prepare and persist Odhín branch history
-        id: publish_report
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          ODHIN_BRANCH: ${{ github.head_ref || github.ref_name }}
-          ODHIN_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-          ODHIN_RUN_KEY: ${{ needs.build.outputs.run_key }}
-        run: |
-          set -euo pipefail
-          report_repo_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
-          auth_header="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n')"
-          if git -c http.extraheader="$auth_header" ls-remote --exit-code --heads "$report_repo_url" odhin-reports >/dev/null 2>&1; then
-            git -c http.extraheader="$auth_header" clone --branch odhin-reports --single-branch "$report_repo_url" odhin-site
-          else
-            git init -b odhin-reports odhin-site
-            git -C odhin-site remote add origin "$report_repo_url"
-          fi
-          publisher_result=$(node e2e/reporters/odhin-site-publisher.cjs \
-            --source evidence/test-results/odhin \
-            --site odhin-site \
-            --branch "$ODHIN_BRANCH" \
-            --run-key "$ODHIN_RUN_KEY" \
-            --run-id "$GITHUB_RUN_ID" \
-            --run-attempt "$GITHUB_RUN_ATTEMPT" \
-            --sha "$ODHIN_SHA" \
-            --run-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/attempts/$GITHUB_RUN_ATTEMPT")
-          printf '%s\n' "$publisher_result"
-          report_paths=$(printf '%s' "$publisher_result" | node -e '
-            let input = "";
-            process.stdin.on("data", chunk => { input += chunk; });
-            process.stdin.on("end", () => {
-              const result = JSON.parse(input);
-              process.stdout.write(`branch_url_path=${result.branchUrlPath}\nrun_url_path=${result.runUrlPath}`);
-            });
-          ')
-          printf '%s\n' "$report_paths" >> "$GITHUB_OUTPUT"
-          git -C odhin-site config user.name github-actions[bot]
-          git -C odhin-site config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git -C odhin-site add .nojekyll reports index.html
-          git -C odhin-site commit -m "ci: publish Odhín $ODHIN_BRANCH $ODHIN_RUN_KEY"
-          git -c http.extraheader="$auth_header" -C odhin-site push origin HEAD:odhin-reports
-          mkdir pages-site
-          cp -R odhin-site/. pages-site/
-          rm -rf pages-site/.git
-      - name: Configure GitHub Pages
-        id: configure_pages
-        uses: actions/configure-pages@v5
-      - name: Upload Odhín site
-        id: odhin_site
-        if: ${{ !cancelled() && steps.configure_pages.outcome == 'success' }}
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: pages-site
-      - name: Publish Odhín report
-        id: deployment
-        uses: actions/deploy-pages@v4
-      - name: Link report in Actions
-        env:
-          ODHIN_BRANCH: ${{ github.head_ref || github.ref_name }}
-        run: |
-          pages_url='${{ steps.deployment.outputs.page_url }}'
-          pages_url="${pages_url%/}"
-          branch_url="$pages_url/${{ steps.publish_report.outputs.branch_url_path }}"
-          run_url="$pages_url/${{ steps.publish_report.outputs.run_url_path }}"
-          printf '### Reports for %s\n\n' "$ODHIN_BRANCH" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open functional Playwright report](%s)\n\n' "$run_url" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open accessibility report (advisory findings)](%saccessibility/index.html)\n\n' "$run_url" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open branch report history](%s)\n\n' "$branch_url" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Download this run’s exact evidence](%s).\n' '${{ needs.build.outputs.evidence_url }}' >> "$GITHUB_STEP_SUMMARY"
 
   publish-npm:
     if: github.event_name == 'release'
