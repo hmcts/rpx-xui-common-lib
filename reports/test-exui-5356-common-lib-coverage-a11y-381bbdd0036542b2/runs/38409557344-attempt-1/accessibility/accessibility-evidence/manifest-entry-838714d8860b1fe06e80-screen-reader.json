@@ -1,0 +1,54 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "home",
+  "pageState": "initial components",
+  "violationCount": 3,
+  "status": "issues-found",
+  "rules": [
+    "govuk-template-body",
+    "skip-link",
+    "table-headers"
+  ],
+  "targets": [
+    "http://localhost:4200/home",
+    "http://localhost:4200/home",
+    "table"
+  ],
+  "testTitle": "home — initial components",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "838714d8860b1fe06e80-screen-reader.html",
+  "jsonFileName": "838714d8860b1fe06e80-screen-reader.json",
+  "screenshotFileName": "838714d8860b1fe06e80-screen-reader.png",
+  "findings": [
+    {
+      "rule": "govuk-template-body",
+      "targets": [],
+      "summary": "The page should use the GOV.UK template body class during the template migration.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "skip-link",
+      "targets": [],
+      "summary": "The page should expose a visible skip-to-main-content link.",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "table-headers",
+      "targets": [
+        "table"
+      ],
+      "summary": "Screen-reader users need row or column headers in data tables.",
+      "anchor": "issue-3"
+    }
+  ],
+  "assetFileNames": [
+    "838714d8860b1fe06e80-screen-reader-style-1.css"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "cf859ece42b60ea1c522-03afd72c21eefb16058e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "Lighthouse /home",
+  "pageState": "representative stable page",
+  "violationCount": 1,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "1 engine(s), 0 known issue(s), 1 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "lighthouse:color-contrast"
+  ],
+  "targets": [
+    "http://localhost:4200/home"
+  ],
+  "testTitle": "Lighthouse /home — representative stable page",
+  "attachmentPrefix": "lighthouse-home-representative-stable-page-page-summary",
+  "htmlFileName": "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.html",
+  "jsonFileName": "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.json",
+  "screenshotFileName": "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.png",
+  "assetFileNames": [
+    "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary-style-1.css"
+  ]
+}

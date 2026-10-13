@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "address",
+  "pageState": "invalid postcode",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — invalid postcode",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "9e91a0dee8cfb5eeaf03-axe.html",
+  "jsonFileName": "9e91a0dee8cfb5eeaf03-axe.json",
+  "screenshotFileName": "9e91a0dee8cfb5eeaf03-axe.png",
+  "assetFileNames": [
+    "9e91a0dee8cfb5eeaf03-axe-style-1.css"
+  ]
+}

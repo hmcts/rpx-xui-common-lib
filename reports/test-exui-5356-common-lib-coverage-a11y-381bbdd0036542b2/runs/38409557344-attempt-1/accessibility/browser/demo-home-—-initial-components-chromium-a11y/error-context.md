@@ -1,0 +1,103 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "ExUI Common Lib Test Page" [level=1] [ref=e5]
+  - generic [ref=e7]:
+    - img "hmcts-warning-icon" [ref=e8]
+    - generic [ref=e10]:
+      - generic [ref=e11]: Warning
+      - heading "This is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden." [level=2] [ref=e12]
+      - generic [ref=e13] [cursor=pointer]: Hide message
+  - generic [ref=e15]: Test Document Content
+  - generic [ref=e18]:
+    - heading "HTML Test" [level=1] [ref=e19]
+    - paragraph [ref=e20]:
+      - text: Document to test
+      - generic [ref=e21]: HTML
+      - text: content
+  - heading "Contact details example" [level=2] [ref=e22]
+  - generic [ref=e24]:
+    - heading "Contact Details Component" [level=3] [ref=e25]
+    - paragraph [ref=e26]:
+      - generic [ref=e27]: PRIVATE BETA
+    - generic [ref=e28]:
+      - generic [ref=e29]: "Email:"
+      - link "test@justice.gov.uk" [ref=e30] [cursor=pointer]:
+        - /url: mailto:test@justice.gov.uk
+    - generic [ref=e31]:
+      - generic [ref=e32]: "Phone:"
+      - text: "1111111"
+    - generic [ref=e33]:
+      - generic [ref=e34]: "Opening times:"
+      - text: bla bla bla
+  - list [ref=e35]:
+    - listitem [ref=e36]: this
+    - listitem [ref=e37]: is
+    - listitem [ref=e38]: a
+    - listitem [ref=e39]: test
+  - heading "Tab items component:" [level=2] [ref=e40]
+  - generic [ref=e42]:
+    - tablist [ref=e45]:
+      - generic [ref=e46]:
+        - tab "Tab1" [selected] [ref=e47] [cursor=pointer]:
+          - generic [ref=e48] [cursor=pointer]: Tab1
+        - tab "Tab2" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50] [cursor=pointer]: Tab2
+    - generic:
+      - tabpanel "Tab1"
+      - tabpanel "Tab2"
+  - 'heading "Due date component: This task is due to be completed today" [level=2] [ref=e52]':
+    - text: "Due date component:"
+    - generic "This task is due to be completed today" [ref=e54]: TODAY
+  - table [ref=e55]:
+    - row "Due date Red threshold Orange threshold" [ref=e56]:
+      - cell "Due date" [ref=e57]
+      - cell "Red threshold" [ref=e58]
+      - cell "Orange threshold" [ref=e59]
+    - row "10/13/2026" [ref=e60]:
+      - cell "10/13/2026" [ref=e61]:
+        - textbox "Due date" [ref=e62]: 10/13/2026
+      - cell [ref=e63]:
+        - spinbutton "Red threshold" [ref=e64]: "0"
+      - cell [ref=e65]:
+        - spinbutton "Orange threshold" [ref=e66]: "2"
+  - heading "Checkbox list component:" [level=2] [ref=e67]
+  - generic [ref=e68]: "List height:"
+  - combobox "List height:" [ref=e69]:
+    - option "Default (no limt)" [selected]
+    - option "100px"
+    - option "80px"
+    - option "50px"
+  - button "Add Wimbledon option" [ref=e70]
+  - button "Add Golders Green option" [ref=e71]
+  - button "Use borough for label" [ref=e72]
+  - generic [ref=e74]:
+    - generic [ref=e75]:
+      - checkbox "Select all / Deselect all" [ref=e76] [cursor=pointer]
+      - generic [ref=e77] [cursor=pointer]: Select all / Deselect all
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - checkbox "Baker Street" [ref=e80] [cursor=pointer]
+        - generic [ref=e81] [cursor=pointer]: Baker Street
+      - generic [ref=e82]:
+        - checkbox "Clapham Junction" [ref=e83] [cursor=pointer]
+        - generic [ref=e84] [cursor=pointer]: Clapham Junction
+      - generic [ref=e85]:
+        - checkbox "King's Cross" [ref=e86] [cursor=pointer]
+        - generic [ref=e87] [cursor=pointer]: King's Cross
+      - generic [ref=e88]:
+        - checkbox "Shoreditch High Street" [ref=e89] [cursor=pointer]
+        - generic [ref=e90] [cursor=pointer]: Shoreditch High Street
+      - generic [ref=e91]:
+        - checkbox "South Woodford" [ref=e92] [cursor=pointer]
+        - generic [ref=e93] [cursor=pointer]: South Woodford
+      - generic [ref=e94]:
+        - checkbox "Twickenham" [checked] [ref=e95] [cursor=pointer]
+        - generic [ref=e96] [cursor=pointer]: Twickenham
+      - generic [ref=e97]:
+        - checkbox "West Brompton" [ref=e98] [cursor=pointer]
+        - generic [ref=e99] [cursor=pointer]: West Brompton
+  - generic [ref=e100]: "Selection changed to: * Twickenham"
+  - button "Start Spinner" [ref=e101]
+```

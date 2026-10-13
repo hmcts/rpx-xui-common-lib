@@ -1,0 +1,32 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-973e0082bf08095265b4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "feedback",
+  "pageState": "validation summary",
+  "violationCount": 2,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=feedback"
+  ],
+  "testTitle": "feedback — validation summary",
+  "attachmentPrefix": "feedback-validation-summary-page-summary",
+  "htmlFileName": "9747289c644b3b6defe8-feedback-validation-summary-page-summary.html",
+  "jsonFileName": "9747289c644b3b6defe8-feedback-validation-summary-page-summary.json",
+  "screenshotFileName": "9747289c644b3b6defe8-feedback-validation-summary-page-summary.png",
+  "assetFileNames": [
+    "9747289c644b3b6defe8-feedback-validation-summary-page-summary-style-1.css"
+  ]
+}

@@ -1,0 +1,90 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "User management demo" [level=1] [ref=e5]
+  - generic [ref=e6]:
+    - table [ref=e7]:
+      - rowgroup [ref=e8]:
+        - row "Name Email Status" [ref=e9]:
+          - columnheader "Name" [ref=e10]
+          - columnheader "Email" [ref=e11]
+          - columnheader "Status" [ref=e12]
+      - rowgroup [ref=e13]:
+        - row "Demo User 51 user51@example.test Active" [ref=e14]:
+          - cell "Demo User 51" [ref=e15]:
+            - link "Demo User 51" [ref=e16] [cursor=pointer]:
+              - /url: /coverage/users/user-51
+          - cell "user51@example.test" [ref=e17]
+          - cell "Active" [ref=e18]
+    - navigation [ref=e21]:
+      - paragraph [ref=e22]: Pagination navigation
+      - list [ref=e23]:
+        - listitem [ref=e24]:
+          - generic [ref=e25]:
+            - text: Previous
+            - generic [ref=e26]: set of pages
+        - listitem [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: page
+            - generic [ref=e30]: "1"
+        - listitem [ref=e31]:
+          - generic [ref=e32]: "2"
+        - listitem
+      - paragraph [ref=e33]:
+        - text: Showing
+        - generic: "51"
+        - text: to
+        - generic: "51"
+        - text: of
+        - generic: "51"
+        - text: results
+  - heading "Selected user" [level=2] [ref=e34]
+  - button "Toggle account actions" [ref=e35] [cursor=pointer]
+  - region "Selected user details" [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - term [ref=e40]: Name
+          - definition [ref=e41]: Demo User 1
+          - definition [ref=e42]
+        - generic [ref=e43]:
+          - term [ref=e44]: Email address
+          - definition [ref=e45]: user1@example.test
+          - definition [ref=e46]
+        - generic [ref=e47]:
+          - term [ref=e48]: Permissions
+          - definition [ref=e49]:
+            - generic [ref=e50]: Manage users
+            - generic [ref=e51]: Manage cases
+            - generic [ref=e52]: Case access administrator
+          - definition [ref=e53]:
+            - link "Change roles" [ref=e54] [cursor=pointer]:
+              - /url: /coverage/users
+              - text: Change
+              - generic [ref=e55] [cursor=pointer]: roles
+      - button "Suspend account" [ref=e56] [cursor=pointer]
+  - heading "Pending invitation" [level=2] [ref=e57]
+  - region "Invited user details" [ref=e58]:
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - term [ref=e62]: Name
+          - definition [ref=e63]: Invited Demo User
+          - definition [ref=e64]
+        - generic [ref=e65]:
+          - term [ref=e66]: Email address
+          - definition [ref=e67]: invited@example.test
+          - definition [ref=e68]
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - paragraph [ref=e71]: This user has already been invited but has not activated their account.
+          - paragraph [ref=e72]: If you resend an invitation, they'll receive an email from HM Courts and Tribunals to finish setting up their account.
+          - paragraph [ref=e73]: You can't invite the same user more than once an hour.
+        - button "Resend invitation" [ref=e74] [cursor=pointer]
+  - heading "Demo event outputs" [level=2] [ref=e75]
+  - generic [ref=e76]: "[ 2 ]"
+  - generic [ref=e77]: "[]"
+  - generic [ref=e78]: "[]"
+  - generic [ref=e79]: "[]"
+```

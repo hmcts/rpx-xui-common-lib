@@ -1,0 +1,37 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "form controls",
+  "pageState": "descriptions initial",
+  "violationCount": 4,
+  "reviewCount": 2,
+  "reviewRules": [
+    "aria-valid-attr-value",
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link",
+    "screen-reader:aria-reference-target",
+    "screen-reader:component-description"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls"
+  ],
+  "testTitle": "form controls — descriptions initial",
+  "attachmentPrefix": "form-controls-descriptions-initial-page-summary",
+  "htmlFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.html",
+  "jsonFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.json",
+  "screenshotFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.png",
+  "assetFileNames": [
+    "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary-style-1.css"
+  ]
+}

@@ -1,0 +1,99 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - generic [ref=e5]:
+    - generic "Share synthetic cases" [ref=e6]:
+      - alert "There is a problem" [ref=e8]:
+        - heading "There is a problem" [level=2] [ref=e9]
+        - list [ref=e11]:
+          - listitem [ref=e12]:
+            - generic [ref=e13]: You have not requested any changes to case sharing
+      - heading "Share synthetic cases" [level=1] [ref=e14]
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - generic [ref=e17]: Add a person to all cases
+          - generic [ref=e18]: Search by name or email address. You can share access with as many people as you need.
+          - generic [ref=e19]:
+            - combobox "Search by name or email address. You can share access with as many people as you need." [ref=e22]
+            - button "Add user" [ref=e24] [cursor=pointer]:
+              - text: Add
+              - generic [ref=e25] [cursor=pointer]: user
+          - group [ref=e26]:
+            - generic [ref=e28] [cursor=pointer]: Can't find an email address?
+        - generic [ref=e29]:
+          - generic [ref=e30]: Remove a person from all cases
+          - generic [ref=e31]: Select a person to remove them from all selected cases.
+          - generic [ref=e32]:
+            - combobox "Remove a person from all cases" [ref=e34]:
+              - option "Select a person" [selected]
+              - option "Alex Taylor - alex@example.test"
+            - button "Remove user" [ref=e36] [cursor=pointer]:
+              - text: Remove
+              - generic [ref=e37] [cursor=pointer]: user
+      - generic [ref=e38]:
+        - heading "Selected cases" [level=3] [ref=e39]
+        - generic [ref=e41]:
+          - generic [ref=e42]: "Error:"
+          - text: You have not requested any changes to case sharing
+        - generic [ref=e44]:
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - generic [ref=e48]:
+                - heading "Synthetic case Alpha" [level=3] [ref=e49]
+                - heading "DEMO-001" [level=3] [ref=e50]
+              - button "Deselect case" [ref=e52] [cursor=pointer]
+              - button "Expand or Collapse" [ref=e55]
+            - generic "Expand or Collapse" [ref=e56]:
+              - generic [ref=e58]: Users from your organisation with access to this case.
+              - table [ref=e59]:
+                - rowgroup [ref=e60]:
+                  - row "Name Email address Actions Status" [ref=e61]:
+                    - columnheader "Name" [ref=e62]
+                    - columnheader "Email address" [ref=e63]
+                    - columnheader "Actions" [ref=e64]
+                    - columnheader "Status" [ref=e65]
+                - rowgroup [ref=e66]:
+                  - row "Alex Taylor alex@example.test Remove Alex Taylor from case" [ref=e67]:
+                    - cell "Alex Taylor" [ref=e68]
+                    - cell "alex@example.test" [ref=e69]
+                    - cell "Remove Alex Taylor from case" [ref=e70]:
+                      - link "Remove Alex Taylor from case" [ref=e71] [cursor=pointer]:
+                        - /url: "#"
+                        - text: Remove
+                        - generic [ref=e72] [cursor=pointer]: Alex Taylor from case
+                    - cell [ref=e73]
+          - generic [ref=e75]:
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - heading "Synthetic case Beta" [level=3] [ref=e78]
+                - heading "DEMO-002" [level=3] [ref=e79]
+              - button "Deselect case" [ref=e81] [cursor=pointer]
+              - button "Expand or Collapse" [ref=e84]
+            - generic "Expand or Collapse" [ref=e85]:
+              - generic [ref=e87]: Users from your organisation with access to this case.
+              - table [ref=e88]:
+                - rowgroup [ref=e89]:
+                  - row "Name Email address Actions Status" [ref=e90]:
+                    - columnheader "Name" [ref=e91]
+                    - columnheader "Email address" [ref=e92]
+                    - columnheader "Actions" [ref=e93]
+                    - columnheader "Status" [ref=e94]
+                - rowgroup [ref=e95]:
+                  - row "Alex Taylor alex@example.test Remove Alex Taylor from case" [ref=e96]:
+                    - cell "Alex Taylor" [ref=e97]
+                    - cell "alex@example.test" [ref=e98]
+                    - cell "Remove Alex Taylor from case" [ref=e99]:
+                      - link "Remove Alex Taylor from case" [ref=e100] [cursor=pointer]:
+                        - /url: "#"
+                        - text: Remove
+                        - generic [ref=e101] [cursor=pointer]: Alex Taylor from case
+                    - cell [ref=e102]
+      - generic [ref=e103]:
+        - button "Continue" [active] [ref=e104] [cursor=pointer]
+        - button "Cancel" [ref=e105] [cursor=pointer]
+    - heading "Demo event outputs" [level=2] [ref=e106]
+    - generic [ref=e107]: "[]"
+    - generic [ref=e108]: "[]"
+    - generic [ref=e109]: "[ { \"caseId\": \"DEMO-001\", \"caseTitle\": \"Synthetic case Alpha\", \"sharedWith\": [ { \"idamId\": \"demo-alex\", \"firstName\": \"Alex\", \"lastName\": \"Taylor\", \"email\": \"alex@example.test\" } ], \"pendingShares\": [], \"pendingUnshares\": [] }, { \"caseId\": \"DEMO-002\", \"caseTitle\": \"Synthetic case Beta\", \"sharedWith\": [ { \"idamId\": \"demo-alex\", \"firstName\": \"Alex\", \"lastName\": \"Taylor\", \"email\": \"alex@example.test\" } ], \"pendingShares\": [], \"pendingUnshares\": [] } ]"
+```

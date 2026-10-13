@@ -1,0 +1,401 @@
+{
+  "url": "http://localhost:4200/coverage/invitation",
+  "violations": [
+    {
+      "rule": "govuk-template-body",
+      "message": "The page should use the GOV.UK template body class during the template migration."
+    },
+    {
+      "rule": "skip-link",
+      "message": "The page should expose a visible skip-to-main-content link."
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Invitation form demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form and emitted events"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Invitation form demoSynthetic data only. Validation is supplied by the demo parent; no invitation is sent.First name Include all middle names. Error:Enter a first name Last nameErr",
+        "selector": "main"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "text input",
+        "name": "First name",
+        "selector": "#firstName",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Last name",
+        "selector": "#lastName",
+        "tabIndex": 0
+      },
+      {
+        "type": "email input",
+        "name": "Email address",
+        "selector": "#email",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Cases",
+        "selector": "#roles",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Users",
+        "selector": "#pui-user-manager",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Organisation",
+        "selector": "#pui-organisation-manager",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Send invitation",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/invitation",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Invitation form demo"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Invitation form demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Synthetic data only. Validation is supplied by the demo parent; no invitation is sent."
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "First name"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Last name"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Email address"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Permissions"
+      },
+      {
+        "role": "button",
+        "name": "Send invitation"
+      },
+      {
+        "role": "StaticText",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "StaticText",
+        "name": "Form valid: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Submit events: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"email\": \"\",\n  \"roles\": {\n    \"pui-case-manager\": false,\n    \"pui-user-manager\": false,\n    \"pui-organisation-manager\": false\n  }\n}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Invitation form demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Synthetic data only. Validation is supplied by the demo parent; no invitation is sent."
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "First name"
+      },
+      {
+        "role": "StaticText",
+        "name": "Include all middle names."
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Error:"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter a first name"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Last name"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Error:"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter a last name"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Email address"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Error:"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter a valid email address"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      }
+    ]
+  }
+}
