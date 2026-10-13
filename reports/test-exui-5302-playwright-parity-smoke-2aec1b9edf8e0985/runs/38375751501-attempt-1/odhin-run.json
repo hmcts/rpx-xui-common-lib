@@ -1,0 +1,10 @@
+{
+  "rawBranch": "test/EXUI-5302-playwright-parity-smoke",
+  "branchSlug": "test-exui-5302-playwright-parity-smoke-2aec1b9edf8e0985",
+  "runKey": "38375751501-attempt-1",
+  "runId": "38375751501",
+  "runAttempt": "1",
+  "sha": "395165665a88826ce36e76dfc26bf2f6ff8b046a",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38375751501/attempts/1",
+  "createdAt": "2026-10-13T09:27:57.883Z"
+}
