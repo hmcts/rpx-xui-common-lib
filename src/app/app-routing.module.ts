@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { CoverageDemoComponent } from './coverage-demo/coverage-demo.component';
 
 const routes: Routes = [
+  {
+    path: 'coverage',
+    component: CoverageDemoComponent
+  },
   {
     path: 'home',
     component: AppComponent
