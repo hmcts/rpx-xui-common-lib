@@ -13,7 +13,7 @@ import { CoverageDemoComponent } from './coverage-demo/coverage-demo.component';
   template: '<router-outlet></router-outlet>',
   standalone: false
 })
-class AppShellComponent { }
+export class AppShellComponent { }
 
 @NgModule({
   declarations: [
