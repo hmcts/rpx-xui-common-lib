@@ -1,0 +1,32 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-55374cb42d6f9e462b70",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "address",
+  "pageState": "selected address",
+  "violationCount": 2,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/address"
+  ],
+  "testTitle": "address — selected address",
+  "attachmentPrefix": "address-selected-address-page-summary",
+  "htmlFileName": "13687011c46513f92965-address-selected-address-page-summary.html",
+  "jsonFileName": "13687011c46513f92965-address-selected-address-page-summary.json",
+  "screenshotFileName": "13687011c46513f92965-address-selected-address-page-summary.png",
+  "assetFileNames": [
+    "13687011c46513f92965-address-selected-address-page-summary-style-1.css"
+  ]
+}

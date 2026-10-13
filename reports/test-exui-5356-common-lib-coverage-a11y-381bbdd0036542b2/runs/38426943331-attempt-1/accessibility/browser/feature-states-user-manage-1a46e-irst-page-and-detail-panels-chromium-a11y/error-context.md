@@ -1,0 +1,384 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "User management demo" [level=1] [ref=e5]
+  - generic [ref=e6]:
+    - table [ref=e7]:
+      - rowgroup [ref=e8]:
+        - row "Name Email Status" [ref=e9]:
+          - columnheader "Name" [ref=e10]
+          - columnheader "Email" [ref=e11]
+          - columnheader "Status" [ref=e12]
+      - rowgroup [ref=e13]:
+        - row "Demo User 1 user1@example.test Active" [ref=e14]:
+          - cell "Demo User 1" [ref=e15]:
+            - link "Demo User 1" [ref=e16] [cursor=pointer]:
+              - /url: /coverage/users/user-1
+          - cell "user1@example.test" [ref=e17]
+          - cell "Active" [ref=e18]
+        - row "Demo User 2 user2@example.test Active" [ref=e19]:
+          - cell "Demo User 2" [ref=e20]:
+            - link "Demo User 2" [ref=e21] [cursor=pointer]:
+              - /url: /coverage/users/user-2
+          - cell "user2@example.test" [ref=e22]
+          - cell "Active" [ref=e23]
+        - row "Demo User 3 user3@example.test Active" [ref=e24]:
+          - cell "Demo User 3" [ref=e25]:
+            - link "Demo User 3" [ref=e26] [cursor=pointer]:
+              - /url: /coverage/users/user-3
+          - cell "user3@example.test" [ref=e27]
+          - cell "Active" [ref=e28]
+        - row "Demo User 4 user4@example.test Active" [ref=e29]:
+          - cell "Demo User 4" [ref=e30]:
+            - link "Demo User 4" [ref=e31] [cursor=pointer]:
+              - /url: /coverage/users/user-4
+          - cell "user4@example.test" [ref=e32]
+          - cell "Active" [ref=e33]
+        - row "Demo User 5 user5@example.test Active" [ref=e34]:
+          - cell "Demo User 5" [ref=e35]:
+            - link "Demo User 5" [ref=e36] [cursor=pointer]:
+              - /url: /coverage/users/user-5
+          - cell "user5@example.test" [ref=e37]
+          - cell "Active" [ref=e38]
+        - row "Demo User 6 user6@example.test Active" [ref=e39]:
+          - cell "Demo User 6" [ref=e40]:
+            - link "Demo User 6" [ref=e41] [cursor=pointer]:
+              - /url: /coverage/users/user-6
+          - cell "user6@example.test" [ref=e42]
+          - cell "Active" [ref=e43]
+        - row "Demo User 7 user7@example.test Active" [ref=e44]:
+          - cell "Demo User 7" [ref=e45]:
+            - link "Demo User 7" [ref=e46] [cursor=pointer]:
+              - /url: /coverage/users/user-7
+          - cell "user7@example.test" [ref=e47]
+          - cell "Active" [ref=e48]
+        - row "Demo User 8 user8@example.test Active" [ref=e49]:
+          - cell "Demo User 8" [ref=e50]:
+            - link "Demo User 8" [ref=e51] [cursor=pointer]:
+              - /url: /coverage/users/user-8
+          - cell "user8@example.test" [ref=e52]
+          - cell "Active" [ref=e53]
+        - row "Demo User 9 user9@example.test Active" [ref=e54]:
+          - cell "Demo User 9" [ref=e55]:
+            - link "Demo User 9" [ref=e56] [cursor=pointer]:
+              - /url: /coverage/users/user-9
+          - cell "user9@example.test" [ref=e57]
+          - cell "Active" [ref=e58]
+        - row "Demo User 10 user10@example.test Active" [ref=e59]:
+          - cell "Demo User 10" [ref=e60]:
+            - link "Demo User 10" [ref=e61] [cursor=pointer]:
+              - /url: /coverage/users/user-10
+          - cell "user10@example.test" [ref=e62]
+          - cell "Active" [ref=e63]
+        - row "Demo User 11 user11@example.test Active" [ref=e64]:
+          - cell "Demo User 11" [ref=e65]:
+            - link "Demo User 11" [ref=e66] [cursor=pointer]:
+              - /url: /coverage/users/user-11
+          - cell "user11@example.test" [ref=e67]
+          - cell "Active" [ref=e68]
+        - row "Demo User 12 user12@example.test Active" [ref=e69]:
+          - cell "Demo User 12" [ref=e70]:
+            - link "Demo User 12" [ref=e71] [cursor=pointer]:
+              - /url: /coverage/users/user-12
+          - cell "user12@example.test" [ref=e72]
+          - cell "Active" [ref=e73]
+        - row "Demo User 13 user13@example.test Active" [ref=e74]:
+          - cell "Demo User 13" [ref=e75]:
+            - link "Demo User 13" [ref=e76] [cursor=pointer]:
+              - /url: /coverage/users/user-13
+          - cell "user13@example.test" [ref=e77]
+          - cell "Active" [ref=e78]
+        - row "Demo User 14 user14@example.test Active" [ref=e79]:
+          - cell "Demo User 14" [ref=e80]:
+            - link "Demo User 14" [ref=e81] [cursor=pointer]:
+              - /url: /coverage/users/user-14
+          - cell "user14@example.test" [ref=e82]
+          - cell "Active" [ref=e83]
+        - row "Demo User 15 user15@example.test Active" [ref=e84]:
+          - cell "Demo User 15" [ref=e85]:
+            - link "Demo User 15" [ref=e86] [cursor=pointer]:
+              - /url: /coverage/users/user-15
+          - cell "user15@example.test" [ref=e87]
+          - cell "Active" [ref=e88]
+        - row "Demo User 16 user16@example.test Active" [ref=e89]:
+          - cell "Demo User 16" [ref=e90]:
+            - link "Demo User 16" [ref=e91] [cursor=pointer]:
+              - /url: /coverage/users/user-16
+          - cell "user16@example.test" [ref=e92]
+          - cell "Active" [ref=e93]
+        - row "Demo User 17 user17@example.test Active" [ref=e94]:
+          - cell "Demo User 17" [ref=e95]:
+            - link "Demo User 17" [ref=e96] [cursor=pointer]:
+              - /url: /coverage/users/user-17
+          - cell "user17@example.test" [ref=e97]
+          - cell "Active" [ref=e98]
+        - row "Demo User 18 user18@example.test Active" [ref=e99]:
+          - cell "Demo User 18" [ref=e100]:
+            - link "Demo User 18" [ref=e101] [cursor=pointer]:
+              - /url: /coverage/users/user-18
+          - cell "user18@example.test" [ref=e102]
+          - cell "Active" [ref=e103]
+        - row "Demo User 19 user19@example.test Active" [ref=e104]:
+          - cell "Demo User 19" [ref=e105]:
+            - link "Demo User 19" [ref=e106] [cursor=pointer]:
+              - /url: /coverage/users/user-19
+          - cell "user19@example.test" [ref=e107]
+          - cell "Active" [ref=e108]
+        - row "Demo User 20 user20@example.test Active" [ref=e109]:
+          - cell "Demo User 20" [ref=e110]:
+            - link "Demo User 20" [ref=e111] [cursor=pointer]:
+              - /url: /coverage/users/user-20
+          - cell "user20@example.test" [ref=e112]
+          - cell "Active" [ref=e113]
+        - row "Demo User 21 user21@example.test Active" [ref=e114]:
+          - cell "Demo User 21" [ref=e115]:
+            - link "Demo User 21" [ref=e116] [cursor=pointer]:
+              - /url: /coverage/users/user-21
+          - cell "user21@example.test" [ref=e117]
+          - cell "Active" [ref=e118]
+        - row "Demo User 22 user22@example.test Active" [ref=e119]:
+          - cell "Demo User 22" [ref=e120]:
+            - link "Demo User 22" [ref=e121] [cursor=pointer]:
+              - /url: /coverage/users/user-22
+          - cell "user22@example.test" [ref=e122]
+          - cell "Active" [ref=e123]
+        - row "Demo User 23 user23@example.test Active" [ref=e124]:
+          - cell "Demo User 23" [ref=e125]:
+            - link "Demo User 23" [ref=e126] [cursor=pointer]:
+              - /url: /coverage/users/user-23
+          - cell "user23@example.test" [ref=e127]
+          - cell "Active" [ref=e128]
+        - row "Demo User 24 user24@example.test Active" [ref=e129]:
+          - cell "Demo User 24" [ref=e130]:
+            - link "Demo User 24" [ref=e131] [cursor=pointer]:
+              - /url: /coverage/users/user-24
+          - cell "user24@example.test" [ref=e132]
+          - cell "Active" [ref=e133]
+        - row "Demo User 25 user25@example.test Active" [ref=e134]:
+          - cell "Demo User 25" [ref=e135]:
+            - link "Demo User 25" [ref=e136] [cursor=pointer]:
+              - /url: /coverage/users/user-25
+          - cell "user25@example.test" [ref=e137]
+          - cell "Active" [ref=e138]
+        - row "Demo User 26 user26@example.test Active" [ref=e139]:
+          - cell "Demo User 26" [ref=e140]:
+            - link "Demo User 26" [ref=e141] [cursor=pointer]:
+              - /url: /coverage/users/user-26
+          - cell "user26@example.test" [ref=e142]
+          - cell "Active" [ref=e143]
+        - row "Demo User 27 user27@example.test Active" [ref=e144]:
+          - cell "Demo User 27" [ref=e145]:
+            - link "Demo User 27" [ref=e146] [cursor=pointer]:
+              - /url: /coverage/users/user-27
+          - cell "user27@example.test" [ref=e147]
+          - cell "Active" [ref=e148]
+        - row "Demo User 28 user28@example.test Active" [ref=e149]:
+          - cell "Demo User 28" [ref=e150]:
+            - link "Demo User 28" [ref=e151] [cursor=pointer]:
+              - /url: /coverage/users/user-28
+          - cell "user28@example.test" [ref=e152]
+          - cell "Active" [ref=e153]
+        - row "Demo User 29 user29@example.test Active" [ref=e154]:
+          - cell "Demo User 29" [ref=e155]:
+            - link "Demo User 29" [ref=e156] [cursor=pointer]:
+              - /url: /coverage/users/user-29
+          - cell "user29@example.test" [ref=e157]
+          - cell "Active" [ref=e158]
+        - row "Demo User 30 user30@example.test Active" [ref=e159]:
+          - cell "Demo User 30" [ref=e160]:
+            - link "Demo User 30" [ref=e161] [cursor=pointer]:
+              - /url: /coverage/users/user-30
+          - cell "user30@example.test" [ref=e162]
+          - cell "Active" [ref=e163]
+        - row "Demo User 31 user31@example.test Active" [ref=e164]:
+          - cell "Demo User 31" [ref=e165]:
+            - link "Demo User 31" [ref=e166] [cursor=pointer]:
+              - /url: /coverage/users/user-31
+          - cell "user31@example.test" [ref=e167]
+          - cell "Active" [ref=e168]
+        - row "Demo User 32 user32@example.test Active" [ref=e169]:
+          - cell "Demo User 32" [ref=e170]:
+            - link "Demo User 32" [ref=e171] [cursor=pointer]:
+              - /url: /coverage/users/user-32
+          - cell "user32@example.test" [ref=e172]
+          - cell "Active" [ref=e173]
+        - row "Demo User 33 user33@example.test Active" [ref=e174]:
+          - cell "Demo User 33" [ref=e175]:
+            - link "Demo User 33" [ref=e176] [cursor=pointer]:
+              - /url: /coverage/users/user-33
+          - cell "user33@example.test" [ref=e177]
+          - cell "Active" [ref=e178]
+        - row "Demo User 34 user34@example.test Active" [ref=e179]:
+          - cell "Demo User 34" [ref=e180]:
+            - link "Demo User 34" [ref=e181] [cursor=pointer]:
+              - /url: /coverage/users/user-34
+          - cell "user34@example.test" [ref=e182]
+          - cell "Active" [ref=e183]
+        - row "Demo User 35 user35@example.test Active" [ref=e184]:
+          - cell "Demo User 35" [ref=e185]:
+            - link "Demo User 35" [ref=e186] [cursor=pointer]:
+              - /url: /coverage/users/user-35
+          - cell "user35@example.test" [ref=e187]
+          - cell "Active" [ref=e188]
+        - row "Demo User 36 user36@example.test Active" [ref=e189]:
+          - cell "Demo User 36" [ref=e190]:
+            - link "Demo User 36" [ref=e191] [cursor=pointer]:
+              - /url: /coverage/users/user-36
+          - cell "user36@example.test" [ref=e192]
+          - cell "Active" [ref=e193]
+        - row "Demo User 37 user37@example.test Active" [ref=e194]:
+          - cell "Demo User 37" [ref=e195]:
+            - link "Demo User 37" [ref=e196] [cursor=pointer]:
+              - /url: /coverage/users/user-37
+          - cell "user37@example.test" [ref=e197]
+          - cell "Active" [ref=e198]
+        - row "Demo User 38 user38@example.test Active" [ref=e199]:
+          - cell "Demo User 38" [ref=e200]:
+            - link "Demo User 38" [ref=e201] [cursor=pointer]:
+              - /url: /coverage/users/user-38
+          - cell "user38@example.test" [ref=e202]
+          - cell "Active" [ref=e203]
+        - row "Demo User 39 user39@example.test Active" [ref=e204]:
+          - cell "Demo User 39" [ref=e205]:
+            - link "Demo User 39" [ref=e206] [cursor=pointer]:
+              - /url: /coverage/users/user-39
+          - cell "user39@example.test" [ref=e207]
+          - cell "Active" [ref=e208]
+        - row "Demo User 40 user40@example.test Active" [ref=e209]:
+          - cell "Demo User 40" [ref=e210]:
+            - link "Demo User 40" [ref=e211] [cursor=pointer]:
+              - /url: /coverage/users/user-40
+          - cell "user40@example.test" [ref=e212]
+          - cell "Active" [ref=e213]
+        - row "Demo User 41 user41@example.test Active" [ref=e214]:
+          - cell "Demo User 41" [ref=e215]:
+            - link "Demo User 41" [ref=e216] [cursor=pointer]:
+              - /url: /coverage/users/user-41
+          - cell "user41@example.test" [ref=e217]
+          - cell "Active" [ref=e218]
+        - row "Demo User 42 user42@example.test Active" [ref=e219]:
+          - cell "Demo User 42" [ref=e220]:
+            - link "Demo User 42" [ref=e221] [cursor=pointer]:
+              - /url: /coverage/users/user-42
+          - cell "user42@example.test" [ref=e222]
+          - cell "Active" [ref=e223]
+        - row "Demo User 43 user43@example.test Active" [ref=e224]:
+          - cell "Demo User 43" [ref=e225]:
+            - link "Demo User 43" [ref=e226] [cursor=pointer]:
+              - /url: /coverage/users/user-43
+          - cell "user43@example.test" [ref=e227]
+          - cell "Active" [ref=e228]
+        - row "Demo User 44 user44@example.test Active" [ref=e229]:
+          - cell "Demo User 44" [ref=e230]:
+            - link "Demo User 44" [ref=e231] [cursor=pointer]:
+              - /url: /coverage/users/user-44
+          - cell "user44@example.test" [ref=e232]
+          - cell "Active" [ref=e233]
+        - row "Demo User 45 user45@example.test Active" [ref=e234]:
+          - cell "Demo User 45" [ref=e235]:
+            - link "Demo User 45" [ref=e236] [cursor=pointer]:
+              - /url: /coverage/users/user-45
+          - cell "user45@example.test" [ref=e237]
+          - cell "Active" [ref=e238]
+        - row "Demo User 46 user46@example.test Active" [ref=e239]:
+          - cell "Demo User 46" [ref=e240]:
+            - link "Demo User 46" [ref=e241] [cursor=pointer]:
+              - /url: /coverage/users/user-46
+          - cell "user46@example.test" [ref=e242]
+          - cell "Active" [ref=e243]
+        - row "Demo User 47 user47@example.test Active" [ref=e244]:
+          - cell "Demo User 47" [ref=e245]:
+            - link "Demo User 47" [ref=e246] [cursor=pointer]:
+              - /url: /coverage/users/user-47
+          - cell "user47@example.test" [ref=e247]
+          - cell "Active" [ref=e248]
+        - row "Demo User 48 user48@example.test Active" [ref=e249]:
+          - cell "Demo User 48" [ref=e250]:
+            - link "Demo User 48" [ref=e251] [cursor=pointer]:
+              - /url: /coverage/users/user-48
+          - cell "user48@example.test" [ref=e252]
+          - cell "Active" [ref=e253]
+        - row "Demo User 49 user49@example.test Active" [ref=e254]:
+          - cell "Demo User 49" [ref=e255]:
+            - link "Demo User 49" [ref=e256] [cursor=pointer]:
+              - /url: /coverage/users/user-49
+          - cell "user49@example.test" [ref=e257]
+          - cell "Active" [ref=e258]
+        - row "Demo User 50 user50@example.test Active" [ref=e259]:
+          - cell "Demo User 50" [ref=e260]:
+            - link "Demo User 50" [ref=e261] [cursor=pointer]:
+              - /url: /coverage/users/user-50
+          - cell "user50@example.test" [ref=e262]
+          - cell "Active" [ref=e263]
+    - navigation [ref=e266]:
+      - paragraph [ref=e267]: Pagination navigation
+      - list [ref=e268]:
+        - listitem
+        - listitem [ref=e269]:
+          - generic [ref=e270]: "1"
+        - listitem [ref=e271]:
+          - generic [ref=e272]:
+            - generic [ref=e273]: page
+            - generic [ref=e274]: "2"
+        - listitem [ref=e275]:
+          - generic [ref=e276]:
+            - text: Next
+            - generic [ref=e277]: page
+      - paragraph [ref=e278]:
+        - text: Showing
+        - generic: "1"
+        - text: to
+        - generic: "50"
+        - text: of
+        - generic: "51"
+        - text: results
+  - heading "Selected user" [level=2] [ref=e279]
+  - button "Toggle account actions" [ref=e280] [cursor=pointer]
+  - region "Selected user details" [ref=e281]:
+    - generic [ref=e282]:
+      - generic [ref=e283]:
+        - generic [ref=e284]:
+          - term [ref=e285]: Name
+          - definition [ref=e286]: Demo User 1
+          - definition [ref=e287]
+        - generic [ref=e288]:
+          - term [ref=e289]: Email address
+          - definition [ref=e290]: user1@example.test
+          - definition [ref=e291]
+        - generic [ref=e292]:
+          - term [ref=e293]: Permissions
+          - definition [ref=e294]:
+            - generic [ref=e295]: Manage users
+            - generic [ref=e296]: Manage cases
+            - generic [ref=e297]: Case access administrator
+          - definition [ref=e298]:
+            - link "Change roles" [ref=e299] [cursor=pointer]:
+              - /url: /coverage/users
+              - text: Change
+              - generic [ref=e300] [cursor=pointer]: roles
+      - button "Suspend account" [ref=e301] [cursor=pointer]
+  - heading "Pending invitation" [level=2] [ref=e302]
+  - region "Invited user details" [ref=e303]:
+    - generic [ref=e304]:
+      - generic [ref=e305]:
+        - generic [ref=e306]:
+          - term [ref=e307]: Name
+          - definition [ref=e308]: Invited Demo User
+          - definition [ref=e309]
+        - generic [ref=e310]:
+          - term [ref=e311]: Email address
+          - definition [ref=e312]: invited@example.test
+          - definition [ref=e313]
+      - generic [ref=e314]:
+        - generic [ref=e315]:
+          - paragraph [ref=e316]: This user has already been invited but has not activated their account.
+          - paragraph [ref=e317]: If you resend an invitation, they'll receive an email from HM Courts and Tribunals to finish setting up their account.
+          - paragraph [ref=e318]: You can't invite the same user more than once an hour.
+        - button "Resend invitation" [ref=e319] [cursor=pointer]
+  - heading "Demo event outputs" [level=2] [ref=e320]
+  - generic [ref=e321]: "[]"
+  - generic [ref=e322]: "[]"
+  - generic [ref=e323]: "[]"
+  - generic [ref=e324]: "[]"
+```

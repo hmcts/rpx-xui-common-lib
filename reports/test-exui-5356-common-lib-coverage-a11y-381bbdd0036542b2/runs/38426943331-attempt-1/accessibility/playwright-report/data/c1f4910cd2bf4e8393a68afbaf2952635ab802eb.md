@@ -1,0 +1,54 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - generic [ref=e5]:
+    - heading "Check case sharing changes" [level=1] [ref=e6]
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - heading "Cases" [level=3] [ref=e9]
+        - generic [ref=e11]:
+          - generic [ref=e13]:
+            - heading "Synthetic case Alpha" [level=2] [ref=e14]
+            - generic [ref=e15]:
+              - generic [ref=e16]: DEMO-001
+              - link "Change selected case" [ref=e17] [cursor=pointer]:
+                - /url: /coverage/case-sharing
+                - text: Change
+                - generic [ref=e18] [cursor=pointer]: selected case
+            - table [ref=e19]:
+              - rowgroup [ref=e20]:
+                - row "Name Email address Actions" [ref=e21]:
+                  - columnheader "Name" [ref=e22]
+                  - columnheader "Email address" [ref=e23]
+                  - columnheader "Actions" [ref=e24]
+              - rowgroup [ref=e25]:
+                - row "Sam Morgan sam@example.test To be added" [ref=e26]:
+                  - cell "Sam Morgan" [ref=e27]
+                  - cell "sam@example.test" [ref=e28]
+                  - cell "To be added" [ref=e29]:
+                    - generic [ref=e30]: To be added
+          - generic [ref=e32]:
+            - heading "Synthetic case Beta" [level=2] [ref=e33]
+            - generic [ref=e34]:
+              - generic [ref=e35]: DEMO-002
+              - link "Change selected case" [ref=e36] [cursor=pointer]:
+                - /url: /coverage/case-sharing
+                - text: Change
+                - generic [ref=e37] [cursor=pointer]: selected case
+            - table [ref=e38]:
+              - rowgroup [ref=e39]:
+                - row "Name Email address Actions" [ref=e40]:
+                  - columnheader "Name" [ref=e41]
+                  - columnheader "Email address" [ref=e42]
+                  - columnheader "Actions" [ref=e43]
+              - rowgroup [ref=e44]:
+                - row "Sam Morgan sam@example.test To be added" [ref=e45]:
+                  - cell "Sam Morgan" [ref=e46]
+                  - cell "sam@example.test" [ref=e47]
+                  - cell "To be added" [ref=e48]:
+                    - generic [ref=e49]: To be added
+      - button "Confirm" [ref=e51] [cursor=pointer]
+    - link "Cancel confirmation" [ref=e52] [cursor=pointer]:
+      - /url: /coverage/case-sharing
+```

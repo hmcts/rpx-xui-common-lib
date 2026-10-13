@@ -1,0 +1,75 @@
+{
+  "title": "address — invalid postcode",
+  "url": "http://localhost:4200/coverage/address",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "140.0.7339.186",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 3,
+      "rules": [
+        "govuk-template-body",
+        "skip-link",
+        "error-describedby"
+      ]
+    }
+  ],
+  "incompleteCount": 0,
+  "published": {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "address",
+    "pageState": "invalid postcode",
+    "violationCount": 3,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:error-describedby"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — invalid postcode",
+    "attachmentPrefix": "address-invalid-postcode-page-summary",
+    "htmlFileName": "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.html",
+    "jsonFileName": "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.json",
+    "screenshotFileName": "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.png",
+    "assetFileNames": [
+      "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary-style-1.css"
+    ]
+  }
+}

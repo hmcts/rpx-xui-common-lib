@@ -1,0 +1,236 @@
+
+    <!doctype html><html lang="en">
+      <head>
+        <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WAVE-like Accessibility Issues</title>
+        <link rel="stylesheet" href="7a4203c09c41cce2a0f3-wave-like-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Evidence navigation</h2>
+            <nav class="toolbar" aria-label="Evidence sections"><a href="#issues">Findings</a><a href="#visual">Image</a><a href="#order">Order</a><a href="#structure">Structure</a></nav>
+            <div class="scorecard">
+              <p><strong>Error: RpxXuiCommonLib</strong></p>
+              <div class="metric-grid">
+                <div class="metric"><strong>3</strong>Issues</div>
+                <div class="metric"><strong>2</strong>Rules</div>
+                <div class="metric"><strong>12</strong>Order</div>
+                <div class="metric"><strong>8</strong>Headings</div>
+              </div>
+            </div>
+            <details open id="issues">
+              <summary>Findings</summary>
+              <ol><li><a href="#issue-1">1. heading-order</a></li><li><a href="#issue-2">2. duplicate-id</a></li><li><a href="#issue-3">3. duplicate-id</a></li></ol>
+            </details>
+            <details id="order">
+              <summary>DOM order inventory</summary>
+              <p>Candidate controls in DOM order; this is not a verified keyboard Tab sequence.</p>
+              <ol>
+        <li>
+          <span class="marker">1</span>
+          <strong>text input</strong>: Search by name or email address. You can share access with as many people as you need.
+          <code>input</code>
+        </li>
+      
+        <li>
+          <span class="marker">2</span>
+          <strong>button</strong>: Add user to selected cases Add user
+          <code>#btn-add-user</code>
+        </li>
+      
+        <li>
+          <span class="marker">3</span>
+          <strong>select</strong>: Remove a person from all cases Select a personAlex Taylor - alex@example.test
+          <code>#remove-user-input</code>
+        </li>
+      
+        <li>
+          <span class="marker">4</span>
+          <strong>button</strong>: Remove user from selected cases Remove user
+          <code>#btn-remove-user</code>
+        </li>
+      
+        <li>
+          <span class="marker">5</span>
+          <strong>button</strong>: Deselect case Deselect case
+          <code>#btn-deselect-case-DEMO-001</code>
+        </li>
+      
+        <li>
+          <span class="marker">6</span>
+          <strong>button</strong>: Expand or Collapse
+          <code>#accordion-with-summary-sections-heading-DEMO-001</code>
+        </li>
+      
+        <li>
+          <span class="marker">7</span>
+          <strong>link</strong>: Remove Alex Taylor from case
+          <code>a</code>
+        </li>
+      
+        <li>
+          <span class="marker">8</span>
+          <strong>button</strong>: Deselect case Deselect case
+          <code>#btn-deselect-case-DEMO-002</code>
+        </li>
+      
+        <li>
+          <span class="marker">9</span>
+          <strong>button</strong>: Expand or Collapse
+          <code>#accordion-with-summary-sections-heading-DEMO-002</code>
+        </li>
+      
+        <li>
+          <span class="marker">10</span>
+          <strong>link</strong>: Remove Alex Taylor from case
+          <code>a</code>
+        </li>
+      
+        <li>
+          <span class="marker">11</span>
+          <strong>button</strong>: Continue Continue
+          <code>#btn-continue</code>
+        </li>
+      
+        <li>
+          <span class="marker">12</span>
+          <strong>button</strong>: Cancel Cancel
+          <code>#btn-cancel</code>
+        </li>
+      </ol>
+            </details>
+            <details id="structure">
+              <summary>Structure</summary>
+              <ol><li><span class="structure-token">h2</span>There is a problem</li><li><span class="structure-token">h1</span>Share synthetic cases</li><li><span class="structure-token">h3</span>Selected cases</li><li><span class="structure-token">h3</span>Synthetic case Alpha</li><li><span class="structure-token">h3</span>DEMO-001</li><li><span class="structure-token">h3</span>Synthetic case Beta</li><li><span class="structure-token">h3</span>DEMO-002</li><li><span class="structure-token">h2</span>Demo event outputs</li><li><span class="structure-token">main</span>There is a problem You have not requested any changes to case sharing Share synthetic cases Add a person to all cases Search by name or email address. You can s</li></ol>
+            </details>
+            <details>
+              <summary>Contrast</summary>
+              <p>Contrast signal is provided by axe and Lighthouse in the unified pack. This WAVE-like panel focuses on structure, order, names, labels, and target evidence.</p>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <div class="banner">
+              <h1>WAVE-like accessibility evidence</h1>
+              <p>3 automated finding(s). These checks include heuristics and conventions, not a WCAG conformance verdict. Match finding numbers to the highlighted page image.</p>
+            </div>
+            <p class="report-nav"><a href="../index.html">Back to Odhín report</a></p>
+            <details class="visual" id="visual"><summary>Show highlighted page image</summary>
+              <img alt="Highlighted page screenshot with WAVE-like issue markers" src="7a4203c09c41cce2a0f3-wave-like.png" />
+            </details>
+            
+        <section class="issue" id="issue-1" tabindex="-1">
+          <h2>1. heading-order</h2>
+          <p><strong>Heading level jumps from h1 to h3.</strong></p>
+          <p><strong>Selector:</strong> <code>#title-selected-cases</code></p>
+          
+    <div class="advice">
+      <h3>Developer advice</h3>
+      <p><strong>Structure heuristic — context review required</strong></p>
+      <h4>Where to look</h4>
+      <dl class="location"><dt>Page</dt><dd>http://localhost:4200/coverage/case-sharing</dd><dt>Selector</dt><dd><code>#title-selected-cases</code></dd><dt>Element</dt><dd><code>h3</code></dd><dt>Name hint</dt><dd>Selected cases</dd><dt>Nearby heading</dt><dd>h1: Share synthetic cases</dd><dt>Landmark</dt><dd>main .govuk-width-container</dd></dl>
+      <dl>
+        <dt>Why this matters</dt>
+        <dd>Unexpected heading jumps can make section relationships harder to understand.</dd>
+        <dt>What to fix</dt>
+        <dd>Check whether the heading hierarchy represents the content. Use nested levels for subsections; do not insert empty headings just to satisfy the check.</dd>
+        <dt>How to verify</dt>
+        <dd>Review the complete heading outline and navigate it with a screen reader; confirm each subsection has the intended parent.</dd>
+        <dt>Guidance</dt><dd><a href="https://www.w3.org/WAI/tutorials/page-structure/headings/">W3C WAI: page headings</a></dd>
+        <dt>Related WCAG criteria</dt><dd>Related: 1.3.1 (A). A heading-level jump alone does not establish a failure. Criteria refer to WCAG 2.2; unless noted, they also existed in WCAG 2.0.</dd>
+      </dl>
+      <details><summary>DOM hints and source investigation</summary><p>search selector #title-selected-cases; search id title-selected-cases; search class govuk-heading-m; check template near h1: Share synthetic cases</p>
+      <p>These are rendered DOM clues, not a verified source-file mapping. Match the selector and nearby text in the route component/template. The excerpt may be truncated.</p>
+      <pre>{
+  &quot;tag&quot;: &quot;h3&quot;,
+  &quot;id&quot;: &quot;title-selected-cases&quot;,
+  &quot;classes&quot;: &quot;govuk-heading-m&quot;,
+  &quot;angularAttrs&quot;: &quot;_ngcontent-ng-c104121396&quot;,
+  &quot;accessibleName&quot;: &quot;Selected cases&quot;,
+  &quot;nearestHeading&quot;: &quot;h1: Share synthetic cases&quot;,
+  &quot;nearestLandmark&quot;: &quot;main .govuk-width-container&quot;
+}</pre></details>
+    </div>
+  
+          <details><summary>Captured DOM excerpt</summary><pre>&lt;h3 _ngcontent-ng-c104121396=&quot;&quot; id=&quot;title-selected-cases&quot; class=&quot;govuk-heading-m&quot;&gt; Selected cases &lt;/h3&gt;</pre></details>
+        </section>
+      
+        <section class="issue" id="issue-2" tabindex="-1">
+          <h2>2. duplicate-id</h2>
+          <p><strong>Duplicate id &quot;user-full-name-0&quot; appears 2 times.</strong></p>
+          <p><strong>Selector:</strong> <code>#user-full-name-0</code></p>
+          
+    <div class="advice">
+      <h3>Developer advice</h3>
+      <p><strong>DOM defect — inspect affected references</strong></p>
+      <h4>Where to look</h4>
+      <dl class="location"><dt>Page</dt><dd>http://localhost:4200/coverage/case-sharing</dd><dt>Selector</dt><dd><code>#user-full-name-0</code></dd><dt>Element</dt><dd><code>td</code></dd><dt>Name hint</dt><dd>Alex Taylor</dd><dt>Nearby heading</dt><dd>h3: DEMO-001</dd><dt>Landmark</dt><dd>main .govuk-width-container</dd></dl>
+      <dl>
+        <dt>Why this matters</dt>
+        <dd>Duplicate identifiers can make labels, descriptions and fragment links resolve to the wrong element.</dd>
+        <dt>What to fix</dt>
+        <dd>Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links.</dd>
+        <dt>How to verify</dt>
+        <dd>Confirm identifiers are unique and activate each affected label/error link; inspect the resulting name and description.</dd>
+        <dt>Guidance</dt><dd><a href="https://www.w3.org/WAI/tutorials/">W3C WAI: accessibility tutorials</a></dd>
+        <dt>Related WCAG criteria</dt><dd>Inspect affected relationships against 1.3.1 (A) or 4.1.2 (A); duplicate IDs alone do not prove either failure. Criteria refer to WCAG 2.2; unless noted, they also existed in WCAG 2.0.</dd>
+      </dl>
+      <details><summary>DOM hints and source investigation</summary><p>search selector #user-full-name-0; search id user-full-name-0; search class govuk-table__cell; check template near h3: DEMO-001</p>
+      <p>These are rendered DOM clues, not a verified source-file mapping. Match the selector and nearby text in the route component/template. The excerpt may be truncated.</p>
+      <pre>{
+  &quot;tag&quot;: &quot;td&quot;,
+  &quot;id&quot;: &quot;user-full-name-0&quot;,
+  &quot;classes&quot;: &quot;govuk-table__cell&quot;,
+  &quot;angularAttrs&quot;: &quot;_ngcontent-ng-c2150780512&quot;,
+  &quot;accessibleName&quot;: &quot;Alex Taylor&quot;,
+  &quot;nearestHeading&quot;: &quot;h3: DEMO-001&quot;,
+  &quot;nearestLandmark&quot;: &quot;main .govuk-width-container&quot;
+}</pre></details>
+    </div>
+  
+          <details><summary>Captured DOM excerpt</summary><pre>&lt;td _ngcontent-ng-c2150780512=&quot;&quot; class=&quot;govuk-table__cell&quot; id=&quot;user-full-name-0&quot;&gt;Alex Taylor&lt;/td&gt;</pre></details>
+        </section>
+      
+        <section class="issue" id="issue-3" tabindex="-1">
+          <h2>3. duplicate-id</h2>
+          <p><strong>Duplicate id &quot;user-email-0&quot; appears 2 times.</strong></p>
+          <p><strong>Selector:</strong> <code>#user-email-0</code></p>
+          
+    <div class="advice">
+      <h3>Developer advice</h3>
+      <p><strong>DOM defect — inspect affected references</strong></p>
+      <h4>Where to look</h4>
+      <dl class="location"><dt>Page</dt><dd>http://localhost:4200/coverage/case-sharing</dd><dt>Selector</dt><dd><code>#user-email-0</code></dd><dt>Element</dt><dd><code>td</code></dd><dt>Name hint</dt><dd>alex@example.test</dd><dt>Nearby heading</dt><dd>h3: DEMO-001</dd><dt>Landmark</dt><dd>main .govuk-width-container</dd></dl>
+      <dl>
+        <dt>Why this matters</dt>
+        <dd>Duplicate identifiers can make labels, descriptions and fragment links resolve to the wrong element.</dd>
+        <dt>What to fix</dt>
+        <dd>Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links.</dd>
+        <dt>How to verify</dt>
+        <dd>Confirm identifiers are unique and activate each affected label/error link; inspect the resulting name and description.</dd>
+        <dt>Guidance</dt><dd><a href="https://www.w3.org/WAI/tutorials/">W3C WAI: accessibility tutorials</a></dd>
+        <dt>Related WCAG criteria</dt><dd>Inspect affected relationships against 1.3.1 (A) or 4.1.2 (A); duplicate IDs alone do not prove either failure. Criteria refer to WCAG 2.2; unless noted, they also existed in WCAG 2.0.</dd>
+      </dl>
+      <details><summary>DOM hints and source investigation</summary><p>search selector #user-email-0; search id user-email-0; search class govuk-table__cell; check template near h3: DEMO-001</p>
+      <p>These are rendered DOM clues, not a verified source-file mapping. Match the selector and nearby text in the route component/template. The excerpt may be truncated.</p>
+      <pre>{
+  &quot;tag&quot;: &quot;td&quot;,
+  &quot;id&quot;: &quot;user-email-0&quot;,
+  &quot;classes&quot;: &quot;govuk-table__cell&quot;,
+  &quot;angularAttrs&quot;: &quot;_ngcontent-ng-c2150780512&quot;,
+  &quot;accessibleName&quot;: &quot;alex@example.test&quot;,
+  &quot;nearestHeading&quot;: &quot;h3: DEMO-001&quot;,
+  &quot;nearestLandmark&quot;: &quot;main .govuk-width-container&quot;
+}</pre></details>
+    </div>
+  
+          <details><summary>Captured DOM excerpt</summary><pre>&lt;td _ngcontent-ng-c2150780512=&quot;&quot; class=&quot;govuk-table__cell&quot; id=&quot;user-email-0&quot;&gt;alex@example.test&lt;/td&gt;</pre></details>
+        </section>
+      
+            <p class="report-nav"><a href="../index.html">Back to Odhín report</a></p>
+          </main>
+        </div>
+      </body>
+    </html>
+  

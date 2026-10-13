@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "home",
+  "pageState": "initial components",
+  "violationCount": 6,
+  "reviewCount": 1,
+  "reviewRules": [
+    "aria-prohibited-attr"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 6 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:color-contrast",
+    "wave-like:h1-count",
+    "wave-like:table-headers",
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link",
+    "screen-reader:table-headers"
+  ],
+  "targets": [
+    "http://localhost:4200/home"
+  ],
+  "testTitle": "home — initial components",
+  "attachmentPrefix": "home-initial-components-page-summary",
+  "htmlFileName": "838714d8860b1fe06e80-home-initial-components-page-summary.html",
+  "jsonFileName": "838714d8860b1fe06e80-home-initial-components-page-summary.json",
+  "screenshotFileName": "838714d8860b1fe06e80-home-initial-components-page-summary.png",
+  "assetFileNames": [
+    "838714d8860b1fe06e80-home-initial-components-page-summary-style-1.css"
+  ]
+}

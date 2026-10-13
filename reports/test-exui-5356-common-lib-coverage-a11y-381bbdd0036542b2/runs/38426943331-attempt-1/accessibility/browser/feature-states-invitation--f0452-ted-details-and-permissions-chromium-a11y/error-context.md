@@ -1,0 +1,43 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "Invitation form demo" [level=1] [ref=e5]
+  - paragraph [ref=e6]: Synthetic data only. Validation is supplied by the demo parent; no invitation is sent.
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e13]: First name
+      - generic [ref=e14]: Include all middle names.
+      - textbox "First name" [ref=e15]: Alex
+    - generic [ref=e17]:
+      - generic [ref=e20]: Last name
+      - textbox "Last name" [ref=e21]: Taylor
+    - generic [ref=e23]:
+      - generic [ref=e26]: Email address
+      - textbox "Email address" [ref=e27]: alex.taylor@example.test
+    - group "Permissions" [ref=e32]:
+      - generic [ref=e33]: Permissions
+      - generic [ref=e34]: Choose what the user will be able to do. You can change this later.
+      - generic [ref=e35]:
+        - generic [ref=e37]:
+          - checkbox "Manage Cases" [checked] [ref=e38] [cursor=pointer]
+          - generic [ref=e40] [cursor=pointer]: Manage Cases
+          - generic [ref=e41]: View, create and progress cases.
+        - generic [ref=e43]:
+          - checkbox "Manage Users" [ref=e44] [cursor=pointer]
+          - generic [ref=e46] [cursor=pointer]: Manage Users
+          - generic [ref=e47]: Invite users.
+        - generic [ref=e49]:
+          - checkbox "Manage Organisation" [ref=e50] [cursor=pointer]
+          - generic [ref=e52] [cursor=pointer]: Manage Organisation
+          - generic [ref=e53]: View organisation name and addresses.
+    - button "Send invitation" [active] [ref=e54] [cursor=pointer]
+  - heading "Parent form and emitted events" [level=2] [ref=e55]
+  - paragraph [ref=e56]:
+    - text: "Form valid:"
+    - status [ref=e57]: "true"
+  - paragraph [ref=e58]:
+    - text: "Submit events:"
+    - status [ref=e59]: "1"
+  - generic [ref=e60]: "{ \"firstName\": \"Alex\", \"lastName\": \"Taylor\", \"email\": \"alex.taylor@example.test\", \"roles\": { \"pui-case-manager\": true, \"pui-user-manager\": false, \"pui-organisation-manager\": false } }"
+```
