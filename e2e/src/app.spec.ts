@@ -1,32 +1,13 @@
-import { expect, test as base } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { AppPage } from './app.po';
+import { test } from './browser-diagnostics.fixture';
 
 const fixedTestDate = new Date('2026-10-12T12:00:00Z');
 
-const test = base.extend<{ browserDiagnostics: string[] }>({
-  browserDiagnostics: async ({ page, browserName }, use) => {
-    const errors: string[] = [];
-
-    page.on('console', (message) => {
-      if (message.type() === 'error' && !isKnownBrowserDiagnostic(message.text(), message.location().url, browserName)) {
-        errors.push(`console: ${message.text()} (${message.location().url})`);
-      }
-    });
-    page.on('pageerror', (error) => errors.push(`pageerror: ${error.message}`));
-
-    await use(errors);
-  },
-});
-
 test.describe('workspace-project App', () => {
-  test.beforeEach(async ({ page, browserDiagnostics }) => {
-    void browserDiagnostics;
+  test.beforeEach(async ({ page }) => {
     await page.clock.setFixedTime(fixedTestDate);
     await new AppPage(page).navigateTo();
-  });
-
-  test.afterEach(async ({ browserDiagnostics }) => {
-    expect(browserDiagnostics).toEqual([]);
   });
 
   test('should display welcome message', async ({ page }) => {
@@ -252,7 +233,7 @@ test.describe('workspace-project App', () => {
       await expect(appPage.checkbox('Select all / Deselect all')).not.toBeChecked();
       await expect(appPage.checkbox('Baker Street')).toBeVisible();
       await expect(appPage.checkbox('Clapham Junction')).toBeVisible();
-      await expect(appPage.checkbox("King's Cross")).toBeVisible();
+      await expect(appPage.checkbox('King\'s Cross')).toBeVisible();
       await expect(appPage.checkbox('Shoreditch High Street')).toBeVisible();
       await expect(appPage.checkbox('South Woodford')).toBeVisible();
       await expect(appPage.checkbox('Twickenham')).toBeChecked();
@@ -391,11 +372,4 @@ function dateAfterDays(days: number): string {
 
 function dateBeforeDays(days: number): string {
   return dateAfterDays(-days);
-}
-
-function isKnownBrowserDiagnostic(message: string, url: string, browserName: string): boolean {
-  return (
-    (browserName === 'firefox' && message.startsWith('[JavaScript Error: "downloadable font:')) ||
-    (browserName === 'webkit' && url === 'https://www.googletagmanager.com/gtm.js?id=GTM-1234')
-  );
 }
