@@ -8,8 +8,14 @@ import { ServiceSelectionDemoComponent } from './coverage-demo/service-selection
 import { CaseSharingDemoComponent, CaseSharingEditDemoComponent, CaseSharingConfirmDemoComponent } from './coverage-demo/case-sharing-demo.component';
 import { AddressDemoComponent } from './coverage-demo/address-demo.component';
 import { UserManagementDemoComponent } from './coverage-demo/user-management-demo.component';
+import { AdvancedFilterDemoComponent } from './coverage-demo/advanced-filter-demo.component';
+import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component';
+import { SearchDemoComponent } from './coverage-demo/search-demo.component';
 
 const routes: Routes = [
+  { path: 'coverage/advanced-filter', component: AdvancedFilterDemoComponent },
+  { path: 'coverage/lifecycle', component: LifecycleDemoComponent },
+  { path: 'coverage/searches', component: SearchDemoComponent },
   { path: 'coverage/invitation', component: InvitationDemoComponent },
   { path: 'coverage/form-controls', component: FormControlsDemoComponent },
   { path: 'coverage/service-selection', component: ServiceSelectionDemoComponent },
