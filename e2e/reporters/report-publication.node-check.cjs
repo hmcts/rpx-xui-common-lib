@@ -19,24 +19,38 @@ function foldedCondition(job) {
   return folded.slice(3, -2).trim();
 }
 
-const publisherJob = jobBlock(publisherWorkflow, 'publish-odhin');
-const condition = foldedCondition(publisherJob);
+const publisherJob = jobBlock(functionalWorkflow, 'publish-odhin');
+const accessibilityJob = jobBlock(accessibilityWorkflow, 'accessibility');
+const accessibilityPublisherJob = jobBlock(accessibilityWorkflow, 'publish-odhin');
+const reusablePublisherJob = jobBlock(publisherWorkflow, 'publish-odhin');
+const condition = publisherJob ? foldedCondition(publisherJob) : 'false';
 const gate = new Script(`(${condition})`);
 
-test('functional workflow remains read-only and publishes only functional evidence as an artifact', () => {
-  assert.doesNotMatch(functionalWorkflow, /^  publish-odhin:/m);
+test('functional workflow publishes functional evidence in the PR run but keeps accessibility off by default', () => {
+  assert.match(functionalWorkflow, /^  publish-odhin:/m);
   assert.doesNotMatch(functionalWorkflow, /test:a11y:advisory|common-lib-accessibility-report/);
   assert.match(functionalWorkflow, /^permissions:\r?\n  contents: read/m);
   assert.match(functionalWorkflow, /name: common-lib-functional-report/);
   assert.match(functionalWorkflow, /name: common-lib-playwright-evidence/);
+  assert.match(publisherJob, /needs: build/);
+  assert.match(publisherJob, /actions: read/);
+  assert.match(publisherJob, /contents: write/);
+  assert.match(publisherJob, /pages: write/);
+  assert.match(publisherJob, /id-token: write/);
+  assert.match(publisherJob, /uses: \.\/\.github\/workflows\/publish-odhin\.yml/);
+  assert.match(publisherJob, /report_type: functional/);
 });
 
 test('manual accessibility workflow keeps product findings advisory but report execution blocking', () => {
   assert.match(accessibilityWorkflow, /^  workflow_dispatch:/m);
+  assert.doesNotMatch(accessibilityWorkflow, /^  (pull_request|push):/m);
   assert.match(accessibilityWorkflow, /ref:\r?\n\s+description: Branch, tag, or commit SHA to test/);
   assert.match(accessibilityWorkflow, /ref: \$\{\{ inputs\.ref \}\}/);
   assert.match(accessibilityWorkflow, /^permissions:\r?\n  contents: read/m);
-  assert.doesNotMatch(accessibilityWorkflow, /pages: write|contents: write|id-token: write/);
+  assert.doesNotMatch(accessibilityJob, /pages: write|contents: write|id-token: write/);
+  assert.match(accessibilityPublisherJob, /needs: accessibility/);
+  assert.match(accessibilityPublisherJob, /uses: \.\/\.github\/workflows\/publish-odhin\.yml/);
+  assert.match(accessibilityPublisherJob, /report_type: accessibility/);
   for (const command of [
     'yarn test:a11y:report',
     'yarn test:a11y:self-check',
@@ -48,22 +62,23 @@ test('manual accessibility workflow keeps product findings advisory but report e
   assert.match(accessibilityWorkflow, /path: accessibility-odhin-artifact\//);
 });
 
-test('only trusted default-branch workflow code receives publication permissions', () => {
-  assert.match(publisherWorkflow, /^  workflow_run:/m);
-  assert.match(publisherWorkflow, /- Node\.js Package/);
-  assert.match(publisherWorkflow, /- CommonLib accessibility \(advisory\)/);
-  assert.match(publisherJob, /contents: write/);
-  assert.match(publisherJob, /actions: read/);
-  assert.match(publisherJob, /pages: write/);
-  assert.match(publisherJob, /id-token: write/);
-  assert.match(publisherJob, /head_repository\.full_name == github\.repository/);
-  assert.match(publisherJob, /workflow_run\.event == 'workflow_dispatch'/);
-  const checkout = publisherJob.match(/- uses: actions\/checkout@v7[\s\S]*?(?=      - uses: actions\/setup-node@v7)/)?.[0];
+test('publisher is reusable and cannot run as an automatic workflow', () => {
+  assert.match(publisherWorkflow, /^  workflow_call:/m);
+  assert.doesNotMatch(publisherWorkflow, /workflow_run/);
+});
+
+test('publication jobs retain same-repository and manual-run boundaries', () => {
+  assert.match(publisherJob, /head\.repo\.full_name == github\.repository/);
+  assert.match(reusablePublisherJob, /contents: write/);
+  assert.match(reusablePublisherJob, /actions: read/);
+  assert.match(reusablePublisherJob, /pages: write/);
+  assert.match(reusablePublisherJob, /id-token: write/);
+  const checkout = reusablePublisherJob.match(/- uses: actions\/checkout@v7[\s\S]*?(?=      - uses: actions\/setup-node@v7)/)?.[0];
   assert.match(checkout || '', /persist-credentials: false/);
   assert.doesNotMatch(checkout || '', /ref:/);
-  assert.match(publisherJob, /report-type "\$ODHIN_REPORT_TYPE"/);
-  assert.match(publisherJob, /run-id "\$ODHIN_SOURCE_RUN_ID"/);
-  assert.match(publisherJob, /run-attempt "\$ODHIN_SOURCE_RUN_ATTEMPT"/);
+  assert.match(reusablePublisherJob, /--report-type "\$ODHIN_REPORT_TYPE"/);
+  assert.match(reusablePublisherJob, /run-id "\$GITHUB_RUN_ID"/);
+  assert.match(reusablePublisherJob, /run-attempt "\$GITHUB_RUN_ATTEMPT"/);
 });
 
 const cases = [
@@ -72,8 +87,6 @@ const cases = [
   { name: 'master functional report publishes', workflow: 'Node.js Package', event: 'push', branch: 'master', want: true },
   { name: 'Release functional report publishes', workflow: 'Node.js Package', event: 'push', branch: 'Release', want: true },
   { name: 'feature push functional report does not publish', workflow: 'Node.js Package', event: 'push', branch: 'test/private', want: false },
-  { name: 'manual advisory accessibility report publishes after a successful complete run', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', want: true },
-  { name: 'failed manual accessibility execution does not publish incomplete evidence', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'failure', want: false },
   { name: 'foreign repository reports never receive Pages publication', workflow: 'Node.js Package', event: 'pull_request', sourceRepo: 'outside/fork', want: false },
   { name: 'manual dispatch of the functional workflow cannot bypass its trigger policy', workflow: 'Node.js Package', event: 'workflow_dispatch', want: false },
   { name: 'an unrelated workflow cannot publish', workflow: 'anything else', event: 'workflow_dispatch', want: false },
@@ -84,16 +97,24 @@ for (const scenario of cases) {
     const context = {
       github: {
         repository: 'hmcts/rpx-xui-common-lib',
+        event_name: scenario.event,
+        ref_name: scenario.branch ?? 'test/EXUI-5356-common-lib-coverage-a11y',
+        head_ref: scenario.event === 'pull_request' ? 'test/EXUI-5356-common-lib-coverage-a11y' : '',
         event: {
-          workflow_run: {
-            name: scenario.workflow,
-            event: scenario.event,
-            conclusion: scenario.conclusion ?? 'success',
-            head_branch: scenario.branch ?? 'test/EXUI-5356-common-lib-coverage-a11y',
-            head_repository: { full_name: scenario.sourceRepo ?? 'hmcts/rpx-xui-common-lib' },
+          pull_request: {
+            head: {
+              repo: { full_name: scenario.sourceRepo ?? 'hmcts/rpx-xui-common-lib' },
+            },
           },
         },
       },
+      needs: {
+        build: {
+          result: scenario.conclusion ?? 'success',
+          outputs: { odhin_artifact_ready: 'true' },
+        },
+      },
+      always: () => true,
     };
     assert.equal(gate.runInNewContext(context), scenario.want);
   });

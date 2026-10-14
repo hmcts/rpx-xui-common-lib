@@ -67,3 +67,16 @@ jobs:
           name: common-lib-accessibility-report
           path: accessibility-odhin-artifact/
           if-no-files-found: error
+
+  publish-odhin:
+    if: ${{ success() }}
+    needs: accessibility
+    uses: ./.github/workflows/publish-odhin.yml
+    with:
+      artifact_name: common-lib-accessibility-report
+      report_type: accessibility
+    permissions:
+      actions: read
+      contents: write
+      pages: write
+      id-token: write

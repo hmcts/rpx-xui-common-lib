@@ -1,12 +1,20 @@
 name: Publish CommonLib Odhín evidence
 
 on:
-  workflow_run:
-    workflows:
-      - Node.js Package
-      - CommonLib accessibility (advisory)
-    types:
-      - completed
+  workflow_call:
+    inputs:
+      artifact_name:
+        description: Report artifact from the calling workflow
+        required: true
+        type: string
+      evidence_url:
+        description: Optional raw evidence artifact URL
+        required: false
+        type: string
+      report_type:
+        description: Odhín report type to publish
+        required: true
+        type: string
 
 concurrency:
   group: commonlib-odhin-publication
@@ -17,15 +25,6 @@ permissions:
 
 jobs:
   publish-odhin:
-    if: >-
-      ${{ github.event.workflow_run.head_repository.full_name == github.repository &&
-      ((github.event.workflow_run.name == 'Node.js Package' &&
-      (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure') &&
-      (github.event.workflow_run.event == 'pull_request' ||
-      (github.event.workflow_run.event == 'push' &&
-      (github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'Release')))) ||
-      (github.event.workflow_run.name == 'CommonLib accessibility (advisory)' &&
-      github.event.workflow_run.event == 'workflow_dispatch' && github.event.workflow_run.conclusion == 'success')) }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -36,7 +35,6 @@ jobs:
       name: github-pages
       url: ${{ format('{0}{1}', steps.deployment.outputs.page_url, steps.publish_report.outputs.run_url_path) }}
     steps:
-      # workflow_run always checks out trusted default-branch publisher code, never the triggering ref.
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
@@ -44,43 +42,26 @@ jobs:
         with:
           node-version: 24.18.0
           package-manager-cache: false
-      - name: Select exact report artifact
-        id: report
-        env:
-          SOURCE_WORKFLOW: ${{ github.event.workflow_run.name }}
-        run: |
-          if [ "$SOURCE_WORKFLOW" = 'Node.js Package' ]; then
-            echo 'artifact_name=common-lib-functional-report' >> "$GITHUB_OUTPUT"
-            echo 'report_type=functional' >> "$GITHUB_OUTPUT"
-          else
-            echo 'artifact_name=common-lib-accessibility-report' >> "$GITHUB_OUTPUT"
-            echo 'report_type=accessibility' >> "$GITHUB_OUTPUT"
-          fi
-      - name: Download exact upstream report
+      - name: Download exact Odhín report
         uses: actions/download-artifact@v8
         with:
-          name: ${{ steps.report.outputs.artifact_name }}
+          name: ${{ inputs.artifact_name }}
           path: evidence
-          repository: ${{ github.repository }}
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ github.token }}
       - name: Prepare and persist immutable Odhín history
         id: publish_report
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          ODHIN_BRANCH: ${{ github.event.workflow_run.head_branch }}
-          ODHIN_SHA: ${{ github.event.workflow_run.head_sha }}
-          ODHIN_RUN_KEY: ${{ github.event.workflow_run.id }}-attempt-${{ github.event.workflow_run.run_attempt }}
-          ODHIN_SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
-          ODHIN_SOURCE_RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
-          ODHIN_RUN_URL: ${{ github.event.workflow_run.html_url }}
-          ODHIN_REPORT_TYPE: ${{ steps.report.outputs.report_type }}
-          ODHIN_DEFAULT_BRANCH: ${{ github.event.workflow_run.head_branch }}
-          ODHIN_DEFAULT_SHA: ${{ github.event.workflow_run.head_sha }}
+          ODHIN_BRANCH: ${{ github.head_ref || github.ref_name }}
+          ODHIN_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          ODHIN_RUN_KEY: ${{ github.run_id }}-attempt-${{ github.run_attempt }}
+          ODHIN_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}
+          ODHIN_REPORT_TYPE: ${{ inputs.report_type }}
         run: |
           set -euo pipefail
-          ODHIN_BRANCH="$ODHIN_DEFAULT_BRANCH"
-          ODHIN_SHA="$ODHIN_DEFAULT_SHA"
+          case "$ODHIN_REPORT_TYPE" in
+            functional|accessibility) ;;
+            *) echo "Unsupported Odhín report type: $ODHIN_REPORT_TYPE" >&2; exit 1 ;;
+          esac
           if [ "$ODHIN_REPORT_TYPE" = 'accessibility' ]; then
             test -s evidence/odhin-source.json
             ODHIN_BRANCH="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).rawBranch)' < evidence/odhin-source.json)"
@@ -100,8 +81,8 @@ jobs:
             --site odhin-site \
             --branch "$ODHIN_BRANCH" \
             --run-key "$ODHIN_RUN_KEY" \
-            --run-id "$ODHIN_SOURCE_RUN_ID" \
-            --run-attempt "$ODHIN_SOURCE_RUN_ATTEMPT" \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT" \
             --sha "$ODHIN_SHA" \
             --run-url "$ODHIN_RUN_URL" \
             --report-type "$ODHIN_REPORT_TYPE")
@@ -135,13 +116,15 @@ jobs:
       - name: Link report in Actions
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
-          REPORT_TYPE: ${{ steps.report.outputs.report_type }}
+          REPORT_TYPE: ${{ inputs.report_type }}
           BRANCH_PATH: ${{ steps.publish_report.outputs.branch_url_path }}
           RUN_PATH: ${{ steps.publish_report.outputs.run_url_path }}
-          UPSTREAM_URL: ${{ github.event.workflow_run.html_url }}
+          EVIDENCE_URL: ${{ inputs.evidence_url }}
         run: |
           pages_url="${PAGES_URL%/}"
           printf '### Published %s Odhín evidence\n\n' "$REPORT_TYPE" >> "$GITHUB_STEP_SUMMARY"
           printf '[Open this immutable report](%s/%s)\n\n' "$pages_url" "$RUN_PATH" >> "$GITHUB_STEP_SUMMARY"
           printf '[Open this report type’s branch history](%s/%s)\n\n' "$pages_url" "$BRANCH_PATH" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open the triggering workflow evidence](%s).\n' "$UPSTREAM_URL" >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "$EVIDENCE_URL" ]; then
+            printf '[Download this run’s exact evidence](%s).\n' "$EVIDENCE_URL" >> "$GITHUB_STEP_SUMMARY"
+          fi
