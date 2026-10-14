@@ -11,11 +11,13 @@ import { UserManagementDemoComponent } from './coverage-demo/user-management-dem
 import { AdvancedFilterDemoComponent } from './coverage-demo/advanced-filter-demo.component';
 import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component';
 import { SearchDemoComponent } from './coverage-demo/search-demo.component';
+import { PrimitivesDemoComponent } from './coverage-demo/primitives-demo.component';
 
 const routes: Routes = [
   { path: 'coverage/advanced-filter', component: AdvancedFilterDemoComponent },
   { path: 'coverage/lifecycle', component: LifecycleDemoComponent },
   { path: 'coverage/searches', component: SearchDemoComponent },
+  { path: 'coverage/primitives', component: PrimitivesDemoComponent },
   { path: 'coverage/invitation', component: InvitationDemoComponent },
   { path: 'coverage/form-controls', component: FormControlsDemoComponent },
   { path: 'coverage/service-selection', component: ServiceSelectionDemoComponent },
