@@ -1,4 +1,5 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["playwright.config.ts", "e2e/**/*.ts"]
+  "compilerOptions": { "allowJs": true },
+  "include": ["playwright.config.ts", "playwright.accessibility.config.ts", "e2e/**/*.ts"]
 }

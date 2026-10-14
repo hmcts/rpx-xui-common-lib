@@ -1,5 +1,7 @@
-<h1>CommonLib component coverage examples</h1>
+<header><h1>CommonLib component coverage examples</h1></header>
 
+<!-- Terms confirmation supplies its own main landmark. -->
+<div [attr.role]="feature === 'terms' ? null : 'main'">
 @switch (feature) {
   @case ('filter') {
     <section data-testid="generic-filter-demo">
@@ -66,3 +68,4 @@
     </section>
   }
 }
+</div>

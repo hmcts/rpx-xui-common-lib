@@ -24,7 +24,8 @@ class OdhinAdaptiveReporter {
       ],
     };
     this.testMetadata = [];
-    this.outputFolder = reporterOptions.outputFolder;
+    this.outputFolder = reporterOptions.outputFolder ?? 'odhin-reports';
+    this.indexFilename = reporterOptions.indexFilename ?? 'index.html';
     const configuredLightweight = reporterOptions.lightweight;
     const envLightweight = process.env.PW_ODHIN_LIGHTWEIGHT;
     this.lightweight =
@@ -156,13 +157,16 @@ class OdhinAdaptiveReporter {
       );
     }
     await this.flushInnerCallbacks();
+    let reportingFailed = this.runtimeHookStats.failed > 0 || this.runtimeHookStats.timedOut > 0;
     if (typeof this.inner.onEnd === 'function') {
       try {
-        await withTimeout(this.inner.onEnd(result), this.finalizationTimeoutMs);
+        const outcome = await withTimeout(this.inner.onEnd(result), this.finalizationTimeoutMs);
+        reportingFailed ||= outcome?.status === 'failed';
       } catch (error) {
+        reportingFailed = true;
         if (isTimeoutError(error)) {
           process.stderr.write(
-            `[odhin-profile] onEnd timed out after ${this.finalizationTimeoutMs}ms; continuing with available evidence.\n`
+            `[odhin-profile] onEnd timed out after ${this.finalizationTimeoutMs}ms; failing the run with partial evidence.\n`
           );
         } else {
           process.stderr.write(`[odhin-profile] onEnd failed: ${formatErrorMessage(error)}\n`);
@@ -170,14 +174,21 @@ class OdhinAdaptiveReporter {
       }
     }
     try {
+      const primaryReport = path.join(this.outputFolder, this.indexFilename);
+      const primaryStat = fs.statSync(primaryReport);
+      if (!primaryStat.isFile() || primaryStat.size === 0) {
+        throw new Error(`Missing or empty primary Odhín report: ${primaryReport}`);
+      }
       enhanceGeneratedReport(this.outputFolder, this.featureStats, this.testMetadata);
     } catch (error) {
+      reportingFailed = true;
       process.stderr.write(`[odhin-profile] report enhancement failed: ${formatErrorMessage(error)}\n`);
     }
     if (this.profileEnabled) {
       const elapsedMs = Math.max(0, Date.now() - this.finalizationStartedAt);
       process.stdout.write(`[odhin-profile] Completed Odhin finalization in ${elapsedMs}ms.\n`);
     }
+    if (reportingFailed) return { status: 'failed' };
   }
 
   async onStdOut(chunk, test, result) {

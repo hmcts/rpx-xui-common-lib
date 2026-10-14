@@ -7,6 +7,90 @@ const { parse } = require('node-html-parser');
 
 const { createEmptyFeatureStat, deriveFeatureName, enhanceGeneratedReport } = require('./odhin-report-enhancer.cjs');
 
+function validReport(t) {
+  const outputFolder = fs.mkdtempSync(path.join(os.tmpdir(), 'odhin-valid-'));
+  t.after(() => fs.rmSync(outputFolder, { recursive: true, force: true }));
+  fs.writeFileSync(path.join(outputFolder, 'index.html'), '<html><body>Report</body></html>');
+  return outputFolder;
+}
+
+test('reporter failures override a passing test run instead of returning false green', async (t) => {
+  const Reporter = require('./odhin-adaptive.reporter.cjs');
+  const reporter = new Reporter({ outputFolder: validReport(t), profile: false, createInnerReporter: () => ({
+    onEnd() { throw new Error('controlled report failure'); },
+  }) });
+  assert.deepEqual(await reporter.onEnd({ status: 'passed' }), { status: 'failed' });
+});
+
+test('reporter runtime hook failures and timeouts fail the final result', async (t) => {
+  const Reporter = require('./odhin-adaptive.reporter.cjs');
+  for (const invoke of [() => { throw new Error('controlled callback failure'); }, () => new Promise(resolve => setTimeout(resolve, 20))]) {
+    const reporter = new Reporter({ outputFolder: validReport(t), profile: false, runtimeHookTimeoutMs: 1, createInnerReporter: () => ({}) });
+    await reporter.enqueueInnerCallback('controlled', invoke);
+    assert.deepEqual(await reporter.onEnd({ status: 'passed' }), { status: 'failed' });
+  }
+});
+
+test('reporter preserves inner failure overrides and does not turn failed tests green', async (t) => {
+  const Reporter = require('./odhin-adaptive.reporter.cjs');
+  const failed = new Reporter({ outputFolder: validReport(t), profile: false, createInnerReporter: () => ({ onEnd: async () => ({ status: 'failed' }) }) });
+  assert.deepEqual(await failed.onEnd({ status: 'passed' }), { status: 'failed' });
+  const outputFolder = fs.mkdtempSync(path.join(os.tmpdir(), 'odhin-healthy-'));
+  t.after(() => fs.rmSync(outputFolder, { recursive: true, force: true }));
+  const healthy = new Reporter({ outputFolder, profile: false, createInnerReporter: () => ({ onEnd: async () => {
+    fs.writeFileSync(path.join(outputFolder, 'index.html'), '<html><body>Report</body></html>');
+    return { status: 'passed' };
+  } }) });
+  assert.equal(await healthy.onEnd({ status: 'failed' }), undefined);
+});
+
+test('missing, empty or wrong primary report fails closed', async (t) => {
+  const Reporter = require('./odhin-adaptive.reporter.cjs');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'odhin-missing-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  for (const mode of ['absent', 'empty', 'wrong']) {
+    const outputFolder = path.join(root, mode);
+    if (mode !== 'absent') {
+      fs.mkdirSync(outputFolder);
+      fs.writeFileSync(path.join(outputFolder, mode === 'empty' ? 'required.html' : 'other.html'), mode === 'empty' ? '' : '<html>Other report</html>');
+    }
+    const reporter = new Reporter({ outputFolder, indexFilename: 'required.html', profile: false,
+      createInnerReporter: () => ({ onEnd: async () => undefined }) });
+    assert.deepEqual(await reporter.onEnd({ status: 'passed' }), { status: 'failed' }, mode);
+  }
+});
+
+test('finalisation timeout and enhancement errors fail the run', async (t) => {
+  const Reporter = require('./odhin-adaptive.reporter.cjs');
+  const slow = new Reporter({ outputFolder: validReport(t), profile: false, finalizationTimeoutMs: 1,
+    createInnerReporter: () => ({ onEnd: () => new Promise(resolve => setTimeout(resolve, 20)) }) });
+  assert.deepEqual(await slow.onEnd({ status: 'passed' }), { status: 'failed' });
+  const outputFolder = validReport(t);
+  fs.writeFileSync(path.join(outputFolder, 'presentation'), 'controlled invalid presentation destination');
+  const reporter = new Reporter({ outputFolder, profile: false, createInnerReporter: () => ({}) });
+  reporter.featureStats.set('feature', createEmptyFeatureStat('feature'));
+  assert.deepEqual(await reporter.onEnd({ status: 'passed' }), { status: 'failed' });
+});
+
+test('Playwright CLI exits nonzero for a report failure despite a passing test', () => {
+  const { spawnSync } = require('node:child_process');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'odhin-exit-proof-'));
+  try {
+    const reporterPath = require.resolve('./odhin-adaptive.reporter.cjs');
+    const testPath = require.resolve('@playwright/test');
+    fs.writeFileSync(path.join(root, 'probe.spec.cjs'), `const { test, expect } = require(${JSON.stringify(testPath)}); test('passing contract', () => expect(2 + 2).toBe(4));`);
+    fs.writeFileSync(path.join(root, 'reporter.cjs'), `const fs = require('node:fs'); const path = require('node:path'); const Reporter = require(${JSON.stringify(reporterPath)}); module.exports = class extends Reporter { constructor(options) { super({outputFolder: options.outputFolder, profile:false, createInnerReporter: () => ({ onEnd() { if(options.mode !== 'missing') { fs.mkdirSync(options.outputFolder); fs.writeFileSync(path.join(options.outputFolder, 'index.html'), '<html><body>Report</body></html>'); } if(options.mode === 'throw') throw new Error('controlled report failure'); } })}); } };`);
+    for (const mode of ['healthy', 'throw', 'missing']) {
+      fs.writeFileSync(path.join(root, 'playwright.config.cjs'), `module.exports = { testDir: ${JSON.stringify(root)}, testMatch: 'probe.spec.cjs', outputDir: ${JSON.stringify(path.join(root, 'results'))}, reporter: [['./reporter.cjs', {mode:${JSON.stringify(mode)},outputFolder:${JSON.stringify(path.join(root, mode))}}]] };`);
+      const result = spawnSync(process.execPath, [require.resolve('@playwright/test/cli'), 'test', '-c', path.join(root, 'playwright.config.cjs')], { cwd: root, encoding: 'utf8' });
+      assert.equal(result.status, mode === 'healthy' ? 0 : 1, result.stdout + result.stderr);
+      if (mode === 'throw') assert.match(result.stderr, /controlled report failure/);
+    }
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('derives grouped features from nested Playwright describe titles', () => {
   const titlePath = ['', 'chromium', 'src/app.spec.ts', 'workspace-project App', 'checkbox list component', 'should render every location'];
 
@@ -97,4 +181,30 @@ test('adds feature metadata to native test rows for dashboard drill-down', () =>
   assert.deepEqual(root.querySelectorAll('#test-list-table thead th').map((cell) => cell.text.trim()), ['Title', 'Feature', 'Tags', 'Attempt']);
   assert.deepEqual(root.querySelectorAll('#test-list-table tbody td').map((cell) => cell.text.trim()), ['A test', 'app.spec', '@smoke', '1']);
   assert.equal(root.querySelector('#test-0 .modal-body a')?.getAttribute('href'), './logs/output.log');
+});
+
+test('reuses combined WebApp accessibility panels and external per-engine evidence links', () => {
+  const { enhanceDashboardHtml } = require('./odhin-report-enhancer.cjs');
+  const title = 'Invitation validation';
+  const html = `<html><head></head><body><div><table id="test-list-table"><thead><tr><th>Title</th></tr></thead><tbody><tr><td>${title}</td></tr></tbody></table></div><div class="modal-content"><div class="header-col-center">${title}</div><div class="modal-body odhin-bg-2"></div></div></body></html>`;
+  const entries = ['summary', 'axe', 'wave-like', 'screen-reader', 'lighthouse'].map((engine) => ({
+    engine, testTitle: title, feature: 'Invitation', pageState: 'Invalid form',
+    htmlFileName: `${engine}.html`, jsonFileName: `${engine}.json`, screenshotFileName: `${engine}.png`,
+    reportFileName: engine === 'lighthouse' ? 'native-lighthouse.html' : '',
+    violationCount: 1, rules: ['label'], targets: ['#firstName']
+  }));
+  const root = parse(enhanceDashboardHtml(html, [], entries));
+  const panel = root.querySelector('.odhin-a11y-test-evidence');
+  assert.ok(panel, 'native test modal receives the combined evidence panel');
+  for (const entry of entries) {
+    for (const file of [entry.htmlFileName, entry.jsonFileName, entry.screenshotFileName]) {
+      assert.ok(panel.querySelector(`a[href="./accessibility-evidence/${file}"]`), file);
+    }
+  }
+  assert.ok(panel.querySelector('a[href="./accessibility-evidence/native-lighthouse.html"]'));
+  assert.equal(root.querySelectorAll('.odhin-a11y-issue-summary tbody tr').length, 4, 'summary does not double count engine issue groups');
+  assert.ok(root.querySelector('[data-a11y-issue-filter="label"]'));
+  assert.match(panel.text, /Scanner, setup and reporting errors remain blocking/);
+  assert.ok(root.querySelector('#TabAccessibility .a11y-workspace'), 'current WebApp combined accessibility workspace is present');
+  assert.equal(root.querySelector('#a11y-workspace-script').getAttribute('src'), './presentation/accessibility.js');
 });
