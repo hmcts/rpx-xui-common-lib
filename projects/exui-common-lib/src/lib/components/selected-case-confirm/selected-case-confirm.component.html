@@ -11,6 +11,7 @@
       </a>
     </div>
     <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-visually-hidden">{{'Pending case access changes' | rpxTranslate}}</caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th class="govuk-table__header govuk-table-column-header" scope="col">{{'Name' | rpxTranslate}}</th>
@@ -24,18 +25,18 @@
             <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
             <td class="govuk-table__cell">{{ user.email }}</td>
             <td class="govuk-table__cell">
-              <span class="hmcts-badge">{{'To be added' | rpxTranslate}}</span>
+              <strong class="govuk-tag govuk-tag--green">{{'To be added' | rpxTranslate}}</strong>
             </td>
           </tr>
-        }
+        }yes 
   @for (user of sharedCase.pendingUnshares; track trackByUserId(user)) {
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
             <td class="govuk-table__cell">{{ user.email }}</td>
             <td class="govuk-table__cell">
-              <span class="hmcts-badge hmcts-badge--red">
+              <strong class="govuk-tag govuk-tag--red">
                 {{'To be removed' | rpxTranslate}}
-              </span>
+              </strong>
             </td>
           </tr>
         }

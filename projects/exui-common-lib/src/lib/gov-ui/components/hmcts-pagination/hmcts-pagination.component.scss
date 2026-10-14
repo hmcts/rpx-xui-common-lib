@@ -95,7 +95,7 @@ $hmcts-pagination-icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
   }
 
   &:hover {
-    color: govuk-colour("light-blue");
+    color: govuk-colour("blue", $variant: "tint-25");
   }
 
   &:focus {

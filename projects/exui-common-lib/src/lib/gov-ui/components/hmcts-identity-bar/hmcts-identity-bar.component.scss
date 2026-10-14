@@ -1,9 +1,10 @@
+@use "govuk-frontend/dist/govuk/base" as *;
 @use "govuk-frontend/dist/govuk/objects/width-container" as *;
 
 .hmcts-identity-bar {
   @include govuk-clearfix;
-  background-color: govuk-colour("light-grey");
-  box-shadow: inset 0 -1px 0 0 govuk-colour("mid-grey");
+  background-color: govuk-colour("black", $variant: "tint-95");
+  box-shadow: inset 0 -1px 0 0 govuk-colour("black", $variant: "tint-80");
   color: govuk-colour("black");
   padding-bottom: govuk-spacing(2) - 1px;
   padding-top: govuk-spacing(2);
