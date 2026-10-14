@@ -23,8 +23,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      evidence_url: ${{ steps.playwright_evidence.outputs.artifact-url }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -53,7 +51,6 @@ jobs:
         if: ${{ !cancelled() && (steps.functional.outcome == 'success' || steps.functional.outcome == 'failure') }}
         run: yarn node e2e/reporters/odhin-report.browser-check.cjs
       - name: Upload Playwright evidence
-        id: playwright_evidence
         if: always()
         uses: actions/upload-artifact@v7
         with:

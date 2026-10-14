@@ -19,13 +19,14 @@ jobs:
   publish-odhin:
     if: >-
       ${{ github.event.workflow_run.head_repository.full_name == github.repository &&
-      ((github.event.workflow_run.name == 'Node.js Package' &&
+      ( (github.event.workflow_run.name == 'Node.js Package' &&
       (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure') &&
       (github.event.workflow_run.event == 'pull_request' ||
       (github.event.workflow_run.event == 'push' &&
       (github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'Release')))) ||
       (github.event.workflow_run.name == 'CommonLib accessibility (advisory)' &&
-      github.event.workflow_run.event == 'workflow_dispatch' && github.event.workflow_run.conclusion == 'success')) }}
+      github.event.workflow_run.event == 'workflow_dispatch' &&
+      github.event.workflow_run.conclusion == 'success') ) }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -36,9 +37,9 @@ jobs:
       name: github-pages
       url: ${{ format('{0}{1}', steps.deployment.outputs.page_url, steps.publish_report.outputs.run_url_path) }}
     steps:
-      # workflow_run always checks out trusted default-branch publisher code, never the triggering ref.
       - uses: actions/checkout@v7
         with:
+          ref: ${{ github.event.repository.default_branch }}
           persist-credentials: false
       - uses: actions/setup-node@v7
         with:
@@ -73,14 +74,10 @@ jobs:
           ODHIN_RUN_KEY: ${{ github.event.workflow_run.id }}-attempt-${{ github.event.workflow_run.run_attempt }}
           ODHIN_SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
           ODHIN_SOURCE_RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
-          ODHIN_RUN_URL: ${{ github.event.workflow_run.html_url }}
+          ODHIN_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/attempts/${{ github.event.workflow_run.run_attempt }}
           ODHIN_REPORT_TYPE: ${{ steps.report.outputs.report_type }}
-          ODHIN_DEFAULT_BRANCH: ${{ github.event.workflow_run.head_branch }}
-          ODHIN_DEFAULT_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           set -euo pipefail
-          ODHIN_BRANCH="$ODHIN_DEFAULT_BRANCH"
-          ODHIN_SHA="$ODHIN_DEFAULT_SHA"
           if [ "$ODHIN_REPORT_TYPE" = 'accessibility' ]; then
             test -s evidence/odhin-source.json
             ODHIN_BRANCH="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).rawBranch)' < evidence/odhin-source.json)"
@@ -138,7 +135,7 @@ jobs:
           REPORT_TYPE: ${{ steps.report.outputs.report_type }}
           BRANCH_PATH: ${{ steps.publish_report.outputs.branch_url_path }}
           RUN_PATH: ${{ steps.publish_report.outputs.run_url_path }}
-          UPSTREAM_URL: ${{ github.event.workflow_run.html_url }}
+          UPSTREAM_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/attempts/${{ github.event.workflow_run.run_attempt }}
         run: |
           pages_url="${PAGES_URL%/}"
           printf '### Published %s Odhín evidence\n\n' "$REPORT_TYPE" >> "$GITHUB_STEP_SUMMARY"
