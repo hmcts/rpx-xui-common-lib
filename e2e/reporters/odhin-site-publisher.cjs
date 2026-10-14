@@ -99,7 +99,7 @@ function renderHistoryIndex(branch, reportType, counterpartRuns, latestOnly = fa
     ? 'Only the current report is published on this Pages site.'
     : `Branch history for <code>${escapeHtml(branch.rawBranch)}</code>.`;
   const history = latestOnly ? '' : `<h2>Run history</h2><ul>${rows || '<li>No reports published.</li>'}</ul>`;
-  const counterpartHistory = latestOnly && counterpartRuns.length === 0
+  const counterpartHistory = latestOnly
     ? ''
     : `<p><a href="${historyHref(reportType)}">Open ${escapeHtml(counterpartDefinition.label)} history</a></p>`;
   return `<!doctype html>
@@ -113,17 +113,18 @@ ${history}
 `;
 }
 
-function renderRootIndex(branches, latestOnly = false) {
+function renderRootIndex(branches, latestOnly = false, reportType = 'functional') {
   const master = branches.find((branch) => branch.rawBranch === 'master');
+  const latestReportPath = latestOnly && reportType === 'accessibility' ? 'accessibility/' : '';
   const rows = branches.map((branch) => {
     const functional = branch.functionalRuns[0];
     const accessibility = branch.accessibilityRuns[0];
     const functionalLink = functional ? ` · <a href="./reports/${encodeURIComponent(branch.slug)}/runs/${encodeURIComponent(functional.runKey)}/">latest functional</a>` : '';
     const accessibilityLink = accessibility ? ` · <a href="./reports/${encodeURIComponent(branch.slug)}/accessibility/runs/${encodeURIComponent(accessibility.runKey)}/">latest accessibility</a>` : '';
-    return `<li><a href="./reports/${encodeURIComponent(branch.slug)}/">${escapeHtml(branch.rawBranch)}</a>${functionalLink}${accessibilityLink}</li>`;
+    return `<li><a href="./reports/${encodeURIComponent(branch.slug)}/${latestReportPath}">${escapeHtml(branch.rawBranch)}</a>${functionalLink}${accessibilityLink}</li>`;
   }).join('');
   const masterLink = master
-    ? `<a href="./reports/${encodeURIComponent(master.slug)}/">Open master ${latestOnly ? 'report' : 'history'}</a>`
+    ? `<a href="./reports/${encodeURIComponent(master.slug)}/${latestReportPath}">Open master ${latestOnly ? 'report' : 'history'}</a>`
     : `Master ${latestOnly ? 'report' : 'history'} will appear after the next master publication.`;
   const description = latestOnly
     ? 'Only the current report is published on this Pages site.'
@@ -242,7 +243,7 @@ function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttemp
   fs.writeFileSync(path.join(branchDir, 'index.html'), renderHistoryIndex(branch, 'functional', accessibilityRuns, latestOnly));
   fs.writeFileSync(path.join(accessibilityDir, 'index.html'), renderHistoryIndex({ rawBranch: String(rawBranch), slug: branchSlug, runs: accessibilityRuns }, 'accessibility', functionalRuns, latestOnly));
   fs.writeFileSync(path.join(siteDir, '.nojekyll'), '');
-  fs.writeFileSync(path.join(siteDir, 'index.html'), renderRootIndex(readBranches(reportsDir), latestOnly));
+  fs.writeFileSync(path.join(siteDir, 'index.html'), renderRootIndex(readBranches(reportsDir), latestOnly, type));
   const relativeHistory = definition.historyDirectory ? `${definition.historyDirectory}/` : '';
   return { reportType: type, branchSlug, branchUrlPath: `reports/${branchSlug}/${relativeHistory}`,
     runUrlPath: `reports/${branchSlug}/${relativeHistory}runs/${safeRunKey}/` };
