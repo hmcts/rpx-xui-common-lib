@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-e4b42f4f9485cf59fdb4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "cookies",
+  "pageState": "accept persisted after reload",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "cookies — accept persisted after reload",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "5e71231c4db52b85c149-axe.html",
+  "jsonFileName": "5e71231c4db52b85c149-axe.json",
+  "screenshotFileName": "5e71231c4db52b85c149-axe.png",
+  "assetFileNames": [
+    "5e71231c4db52b85c149-axe-style-1.css"
+  ]
+}

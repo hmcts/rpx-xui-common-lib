@@ -1,0 +1,44 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "session",
+  "pageState": "visible timeout dialog",
+  "violationCount": 2,
+  "status": "issues-found",
+  "rules": [
+    "govuk-template-body",
+    "skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=dialog",
+    "http://localhost:4200/coverage?feature=dialog"
+  ],
+  "testTitle": "session — visible timeout dialog",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "36235189ae7825a5075c-screen-reader.html",
+  "jsonFileName": "36235189ae7825a5075c-screen-reader.json",
+  "screenshotFileName": "36235189ae7825a5075c-screen-reader.png",
+  "findings": [
+    {
+      "rule": "govuk-template-body",
+      "targets": [],
+      "summary": "The page should use the GOV.UK template body class during the template migration.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "skip-link",
+      "targets": [],
+      "summary": "The page should expose a visible skip-to-main-content link.",
+      "anchor": "issue-2"
+    }
+  ],
+  "assetFileNames": [
+    "36235189ae7825a5075c-screen-reader-style-1.css"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f79177689e7a65fb97a4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "address",
+  "pageState": "initial lookup",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — initial lookup",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "802becc148fc110ebb07-wave-like.html",
+  "jsonFileName": "802becc148fc110ebb07-wave-like.json",
+  "screenshotFileName": "802becc148fc110ebb07-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "802becc148fc110ebb07-wave-like-style-1.css"
+  ]
+}

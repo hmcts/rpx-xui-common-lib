@@ -1,0 +1,395 @@
+{
+  "url": "http://localhost:4200/coverage/address",
+  "violations": [
+    {
+      "rule": "govuk-template-body",
+      "message": "The page should use the GOV.UK template body class during the template migration."
+    },
+    {
+      "rule": "skip-link",
+      "message": "The page should expose a visible skip-to-main-content link."
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Address demo"
+      },
+      {
+        "level": 2,
+        "text": "Demo form and event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Address demo Enter address details Building and Street Address line 2 (Optional) Address line 3 (Optional) Town or City County (Optional) Postcode Demo form and event outputs{ \"add",
+        "selector": "main"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "text input",
+        "name": "Building and Street",
+        "selector": "#addressLine1",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Address line 2 (Optional)",
+        "selector": "#addressLine2",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Address line 3 (Optional)",
+        "selector": "#addressLine3",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Town or City",
+        "selector": "#postTown",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "County (Optional)",
+        "selector": "#county",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Postcode",
+        "selector": "#postCode",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/address",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Address demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "form",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Address demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Building and Street"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Address line 2 (Optional)"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Address line 3 (Optional)"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Town or City"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "County (Optional)"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Postcode"
+      },
+      {
+        "role": "StaticText",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"address\": {\n    \"addressLine1\": \"12 Demo Street\",\n    \"addressLine2\": \"\",\n    \"addressLine3\": \"\",\n    \"postTown\": \"Testville\",\n    \"county\": null,\n    \"postCode\": \"AB1 2CD\",\n    \"country\": \"United Kingdom\"\n  }\n}"
+      },
+      {
+        "role": "StaticText",
+        "name": "Selection events: "
+      },
+      {
+        "role": "StaticText",
+        "name": "1"
+      },
+      {
+        "role": "StaticText",
+        "name": "Addresses available: "
+      },
+      {
+        "role": "StaticText",
+        "name": "true"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Address demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter address details"
+      },
+      {
+        "role": "StaticText",
+        "name": "Building and Street"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Address line 2 (Optional)"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Address line 3 (Optional)"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Town or City"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "County (Optional)"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Postcode"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"address\": {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine1\": \"12 Demo Street\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine2\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine3\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"postTown\": \"Testville\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"county\": null,"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"postCode\": \"AB1 2CD\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"country\": \"United Kingdom\""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  }"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Selection events: "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "1"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Addresses available: "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "true"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Enter address details"
+      }
+    ]
+  }
+}

@@ -1,0 +1,457 @@
+{
+  "url": "http://localhost:4200/coverage/case-sharing",
+  "violations": [
+    {
+      "rule": "govuk-template-body",
+      "message": "The page should use the GOV.UK template body class during the template migration."
+    },
+    {
+      "rule": "skip-link",
+      "message": "The page should expose a visible skip-to-main-content link."
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Share synthetic cases"
+      },
+      {
+        "level": 3,
+        "text": "Selected cases"
+      },
+      {
+        "level": 3,
+        "text": "Synthetic case Alpha"
+      },
+      {
+        "level": 3,
+        "text": "DEMO-001"
+      },
+      {
+        "level": 3,
+        "text": "Synthetic case Beta"
+      },
+      {
+        "level": 3,
+        "text": "DEMO-002"
+      },
+      {
+        "level": 2,
+        "text": "Demo event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Share synthetic cases Add a person to all cases Search by name or email address. You can share access with as many people as you need. Add user Can't find an email address? If you ",
+        "selector": "main"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "text input",
+        "name": "Search by name or email address. You can share access with as many people as you need.",
+        "selector": "input",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Add user to selected cases Add user",
+        "selector": "#btn-add-user",
+        "tabIndex": 0
+      },
+      {
+        "type": "summary",
+        "name": "Can't find an email address?",
+        "selector": "summary",
+        "tabIndex": 0
+      },
+      {
+        "type": "select",
+        "name": "Remove a person from all cases Select a personAlex Taylor - alex@example.test",
+        "selector": "#remove-user-input",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Remove user from selected cases Remove user",
+        "selector": "#btn-remove-user",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Deselect case Deselect case",
+        "selector": "#btn-deselect-case-DEMO-001",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Expand or Collapse",
+        "selector": "#accordion-with-summary-sections-heading-DEMO-001",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Remove Alex Taylor from case",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Deselect case Deselect case",
+        "selector": "#btn-deselect-case-DEMO-002",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Expand or Collapse",
+        "selector": "#accordion-with-summary-sections-heading-DEMO-002",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Remove Alex Taylor from case",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Continue Continue",
+        "selector": "#btn-continue",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Cancel Cancel",
+        "selector": "#btn-cancel",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/case-sharing",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": "Share synthetic cases"
+      },
+      {
+        "role": "heading",
+        "name": "Demo event outputs"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Share synthetic cases"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Demo event outputs"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "StaticText",
+        "name": "[\n  {\n    \"caseId\": \"DEMO-001\",\n    \"caseTitle\": \"Synthetic case Alpha\",\n    \"sharedWith\": [\n      {\n        \"idamId\": \"demo-alex\",\n        \"firstName\": \"Alex\",\n        \"lastName\": \"Taylor\",\n        \"email\": \"alex@example.test\"\n      }\n    ],\n    \"pendingShares\": [],\n    \"pendingUnshares\": []\n  },\n  {\n    \"caseId\": \"DEMO-002\",\n    \"caseTitle\": \"Synthetic case Beta\",\n    \"sharedWith\": [\n      {\n        \"idamId\": \"demo-alex\",\n        \"firstName\": \"Alex\",\n        \"lastName\": \"Taylor\",\n        \"email\": \"alex@example.test\"\n      }\n    ],\n    \"pendingShares\": [],\n    \"pendingUnshares\": []\n  }\n]"
+      },
+      {
+        "role": "StaticText",
+        "name": "Share synthetic cases"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Selected cases"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Continue"
+      },
+      {
+        "role": "button",
+        "name": "Cancel"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Demo event outputs"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "[]"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "[]"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "["
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"caseId\": \"DEMO-001\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"caseTitle\": \"Synthetic case Alpha\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"sharedWith\": ["
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "      {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "        \"idamId\": \"demo-alex\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "        \"firstName\": \"Alex\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "        \"lastName\": \"Taylor\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "        \"email\": \"alex@example.test\""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "      }"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    ],"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"pendingShares\": [],"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"pendingUnshares\": []"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  },"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"caseId\": \"DEMO-002\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"caseTitle\": \"Synthetic case Beta\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"sharedWith\": ["
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "      {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "        \"idamId\": \"demo-alex\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      }
+    ]
+  }
+}

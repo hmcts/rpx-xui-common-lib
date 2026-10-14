@@ -1,0 +1,5222 @@
+[
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "user management",
+    "pageState": "first page and detail panels",
+    "status": "issues-found",
+    "reviewCount": 4,
+    "reviewRules": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ],
+    "findings": [
+      {
+        "rule": "dlitem",
+        "targets": [
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]",
+          "[\"div:nth-child(3) > dt\"]",
+          "[\"div:nth-child(3) > dd:nth-child(2)\"]",
+          "[\"div:nth-child(3) > dd:nth-child(3)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]"
+        ],
+        "summary": "<dt> and <dd> elements must be contained by a <dl>",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 15,
+    "rules": [
+      "dlitem"
+    ],
+    "targets": [
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]",
+      "[\"div:nth-child(3) > dt\"]",
+      "[\"div:nth-child(3) > dd:nth-child(2)\"]",
+      "[\"div:nth-child(3) > dd:nth-child(3)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]"
+    ],
+    "testTitle": "user management — first page and detail panels",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "00dc10493abfdc16111d-axe.html",
+    "jsonFileName": "00dc10493abfdc16111d-axe.json",
+    "screenshotFileName": "00dc10493abfdc16111d-axe.png",
+    "assetFileNames": [
+      "00dc10493abfdc16111d-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "user management",
+    "pageState": "first page and detail panels",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/users",
+      "http://localhost:4200/coverage/users"
+    ],
+    "testTitle": "user management — first page and detail panels",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "00dc10493abfdc16111d-screen-reader.html",
+    "jsonFileName": "00dc10493abfdc16111d-screen-reader.json",
+    "screenshotFileName": "00dc10493abfdc16111d-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "00dc10493abfdc16111d-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "user management",
+    "pageState": "first page and detail panels",
+    "violationCount": 17,
+    "reviewCount": 4,
+    "reviewRules": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 17 unexpected issue(s), 4 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:dlitem",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/users"
+    ],
+    "testTitle": "user management — first page and detail panels",
+    "attachmentPrefix": "user-management-first-page-and-detail-panels-page-summary",
+    "htmlFileName": "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.html",
+    "jsonFileName": "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.json",
+    "screenshotFileName": "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.png",
+    "assetFileNames": [
+      "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "user management",
+    "pageState": "first page and detail panels",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "user management — first page and detail panels",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "00dc10493abfdc16111d-wave-like.html",
+    "jsonFileName": "00dc10493abfdc16111d-wave-like.json",
+    "screenshotFileName": "00dc10493abfdc16111d-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "00dc10493abfdc16111d-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "form controls",
+    "pageState": "descriptions initial",
+    "status": "needs-review",
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-valid-attr-value",
+      "color-contrast"
+    ],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — descriptions initial",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "02e484a79f46c4bf77bb-axe.html",
+    "jsonFileName": "02e484a79f46c4bf77bb-axe.json",
+    "screenshotFileName": "02e484a79f46c4bf77bb-axe.png",
+    "assetFileNames": [
+      "02e484a79f46c4bf77bb-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "form controls",
+    "pageState": "descriptions initial",
+    "violationCount": 4,
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-valid-attr-value",
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:aria-reference-target",
+      "screen-reader:component-description"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls"
+    ],
+    "testTitle": "form controls — descriptions initial",
+    "attachmentPrefix": "form-controls-descriptions-initial-page-summary",
+    "htmlFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.html",
+    "jsonFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.json",
+    "screenshotFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.png",
+    "assetFileNames": [
+      "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "form controls",
+    "pageState": "descriptions initial",
+    "violationCount": 4,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link",
+      "aria-reference-target",
+      "component-description"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls",
+      "http://localhost:4200/coverage/form-controls",
+      "#case-notes",
+      "#case-notes"
+    ],
+    "testTitle": "form controls — descriptions initial",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "02e484a79f46c4bf77bb-screen-reader.html",
+    "jsonFileName": "02e484a79f46c4bf77bb-screen-reader.json",
+    "screenshotFileName": "02e484a79f46c4bf77bb-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "aria-reference-target",
+        "targets": [
+          "#case-notes"
+        ],
+        "summary": "aria-describedby references missing id(s): case-notes-hint.",
+        "anchor": "issue-3"
+      },
+      {
+        "rule": "component-description",
+        "targets": [
+          "#case-notes"
+        ],
+        "summary": "Expected #case-notes-hint text \"Include only synthetic notes.\", received missing target.",
+        "anchor": "issue-4"
+      }
+    ],
+    "assetFileNames": [
+      "02e484a79f46c4bf77bb-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "form controls",
+    "pageState": "descriptions initial",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — descriptions initial",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "02e484a79f46c4bf77bb-wave-like.html",
+    "jsonFileName": "02e484a79f46c4bf77bb-wave-like.json",
+    "screenshotFileName": "02e484a79f46c4bf77bb-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "02e484a79f46c4bf77bb-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "invitation",
+    "pageState": "parent validation errors",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "invitation — parent validation errors",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "084e7985cdee6a829b25-axe.html",
+    "jsonFileName": "084e7985cdee6a829b25-axe.json",
+    "screenshotFileName": "084e7985cdee6a829b25-axe.png",
+    "assetFileNames": [
+      "084e7985cdee6a829b25-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "invitation",
+    "pageState": "parent validation errors",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/invitation"
+    ],
+    "testTitle": "invitation — parent validation errors",
+    "attachmentPrefix": "invitation-parent-validation-errors-page-summary",
+    "htmlFileName": "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.html",
+    "jsonFileName": "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.json",
+    "screenshotFileName": "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.png",
+    "assetFileNames": [
+      "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "invitation",
+    "pageState": "parent validation errors",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/invitation",
+      "http://localhost:4200/coverage/invitation"
+    ],
+    "testTitle": "invitation — parent validation errors",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "084e7985cdee6a829b25-screen-reader.html",
+    "jsonFileName": "084e7985cdee6a829b25-screen-reader.json",
+    "screenshotFileName": "084e7985cdee6a829b25-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "084e7985cdee6a829b25-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "invitation",
+    "pageState": "parent validation errors",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "invitation — parent validation errors",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "084e7985cdee6a829b25-wave-like.html",
+    "jsonFileName": "084e7985cdee6a829b25-wave-like.json",
+    "screenshotFileName": "084e7985cdee6a829b25-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "084e7985cdee6a829b25-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-55374cb42d6f9e462b70",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "address",
+    "pageState": "selected address",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — selected address",
+    "attachmentPrefix": "address-selected-address-page-summary",
+    "htmlFileName": "13687011c46513f92965-address-selected-address-page-summary.html",
+    "jsonFileName": "13687011c46513f92965-address-selected-address-page-summary.json",
+    "screenshotFileName": "13687011c46513f92965-address-selected-address-page-summary.png",
+    "assetFileNames": [
+      "13687011c46513f92965-address-selected-address-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-55374cb42d6f9e462b70",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "address",
+    "pageState": "selected address",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — selected address",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "13687011c46513f92965-axe.html",
+    "jsonFileName": "13687011c46513f92965-axe.json",
+    "screenshotFileName": "13687011c46513f92965-axe.png",
+    "assetFileNames": [
+      "13687011c46513f92965-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-55374cb42d6f9e462b70",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "address",
+    "pageState": "selected address",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address",
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — selected address",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "13687011c46513f92965-screen-reader.html",
+    "jsonFileName": "13687011c46513f92965-screen-reader.json",
+    "screenshotFileName": "13687011c46513f92965-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "13687011c46513f92965-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-55374cb42d6f9e462b70",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "address",
+    "pageState": "selected address",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — selected address",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "13687011c46513f92965-wave-like.html",
+    "jsonFileName": "13687011c46513f92965-wave-like.json",
+    "screenshotFileName": "13687011c46513f92965-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "13687011c46513f92965-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-6c64c1cf3e8ef4e3678b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "filter",
+    "pageState": "applied selection",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "filter — applied selection",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "1e1b191ac765fb45a117-axe.html",
+    "jsonFileName": "1e1b191ac765fb45a117-axe.json",
+    "screenshotFileName": "1e1b191ac765fb45a117-axe.png",
+    "assetFileNames": [
+      "1e1b191ac765fb45a117-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-6c64c1cf3e8ef4e3678b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "filter",
+    "pageState": "applied selection",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "testTitle": "filter — applied selection",
+    "attachmentPrefix": "filter-applied-selection-page-summary",
+    "htmlFileName": "1e1b191ac765fb45a117-filter-applied-selection-page-summary.html",
+    "jsonFileName": "1e1b191ac765fb45a117-filter-applied-selection-page-summary.json",
+    "screenshotFileName": "1e1b191ac765fb45a117-filter-applied-selection-page-summary.png",
+    "assetFileNames": [
+      "1e1b191ac765fb45a117-filter-applied-selection-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-6c64c1cf3e8ef4e3678b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "filter",
+    "pageState": "applied selection",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter",
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "testTitle": "filter — applied selection",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "1e1b191ac765fb45a117-screen-reader.html",
+    "jsonFileName": "1e1b191ac765fb45a117-screen-reader.json",
+    "screenshotFileName": "1e1b191ac765fb45a117-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "1e1b191ac765fb45a117-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-6c64c1cf3e8ef4e3678b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "filter",
+    "pageState": "applied selection",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "filter — applied selection",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "1e1b191ac765fb45a117-wave-like.html",
+    "jsonFileName": "1e1b191ac765fb45a117-wave-like.json",
+    "screenshotFileName": "1e1b191ac765fb45a117-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "1e1b191ac765fb45a117-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "case sharing",
+    "pageState": "pending addition",
+    "status": "issues-found",
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "[\"#title-selected-cases\"]"
+        ],
+        "summary": "Heading levels should only increase by one",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 1,
+    "rules": [
+      "heading-order"
+    ],
+    "targets": [
+      "[\"#title-selected-cases\"]"
+    ],
+    "testTitle": "case sharing — pending addition",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "24ab5b5fa557be97908c-axe.html",
+    "jsonFileName": "24ab5b5fa557be97908c-axe.json",
+    "screenshotFileName": "24ab5b5fa557be97908c-axe.png",
+    "assetFileNames": [
+      "24ab5b5fa557be97908c-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "case sharing",
+    "pageState": "pending addition",
+    "violationCount": 8,
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 8 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:heading-order",
+      "wave-like:heading-order",
+      "wave-like:duplicate-id",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing"
+    ],
+    "testTitle": "case sharing — pending addition",
+    "attachmentPrefix": "case-sharing-pending-addition-page-summary",
+    "htmlFileName": "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.html",
+    "jsonFileName": "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.json",
+    "screenshotFileName": "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.png",
+    "assetFileNames": [
+      "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "case sharing",
+    "pageState": "pending addition",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing",
+      "http://localhost:4200/coverage/case-sharing"
+    ],
+    "testTitle": "case sharing — pending addition",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "24ab5b5fa557be97908c-screen-reader.html",
+    "jsonFileName": "24ab5b5fa557be97908c-screen-reader.json",
+    "screenshotFileName": "24ab5b5fa557be97908c-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "24ab5b5fa557be97908c-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "case sharing",
+    "pageState": "pending addition",
+    "violationCount": 5,
+    "rules": [
+      "heading-order",
+      "duplicate-id",
+      "duplicate-id",
+      "duplicate-id",
+      "duplicate-id"
+    ],
+    "targets": [
+      "#title-selected-cases",
+      "#user-full-name-0",
+      "#user-email-0",
+      "#user-full-name-pendingShares-1",
+      "#user-email-pendingShares-1"
+    ],
+    "testTitle": "case sharing — pending addition",
+    "attachmentPrefix": "wave-like",
+    "status": "issues-found",
+    "htmlFileName": "24ab5b5fa557be97908c-wave-like.html",
+    "jsonFileName": "24ab5b5fa557be97908c-wave-like.json",
+    "screenshotFileName": "24ab5b5fa557be97908c-wave-like.png",
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "#title-selected-cases"
+        ],
+        "summary": "Heading level jumps from h1 to h3.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-full-name-0"
+        ],
+        "summary": "Duplicate id \"user-full-name-0\" appears 2 times.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-email-0"
+        ],
+        "summary": "Duplicate id \"user-email-0\" appears 2 times.",
+        "anchor": "issue-3"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-full-name-pendingShares-1"
+        ],
+        "summary": "Duplicate id \"user-full-name-pendingShares-1\" appears 2 times.",
+        "anchor": "issue-4"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-email-pendingShares-1"
+        ],
+        "summary": "Duplicate id \"user-email-pendingShares-1\" appears 2 times.",
+        "anchor": "issue-5"
+      }
+    ],
+    "assetFileNames": [
+      "24ab5b5fa557be97908c-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "users",
+    "pageState": "suggestions expanded",
+    "status": "issues-found",
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "findings": [
+      {
+        "rule": "aria-required-attr",
+        "targets": [
+          "[\"input\"]"
+        ],
+        "summary": "Required ARIA attributes must be provided",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "region",
+        "targets": [
+          "[\".cdk-overlay-container\"]"
+        ],
+        "summary": "All page content should be contained by landmarks",
+        "anchor": "issue-2"
+      }
+    ],
+    "violationCount": 2,
+    "rules": [
+      "aria-required-attr",
+      "region"
+    ],
+    "targets": [
+      "[\"input\"]",
+      "[\".cdk-overlay-container\"]"
+    ],
+    "testTitle": "users — suggestions expanded",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "34e2c591f700e43121e8-axe.html",
+    "jsonFileName": "34e2c591f700e43121e8-axe.json",
+    "screenshotFileName": "34e2c591f700e43121e8-axe.png",
+    "assetFileNames": [
+      "34e2c591f700e43121e8-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "users",
+    "pageState": "suggestions expanded",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=users",
+      "http://localhost:4200/coverage?feature=users"
+    ],
+    "testTitle": "users — suggestions expanded",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "34e2c591f700e43121e8-screen-reader.html",
+    "jsonFileName": "34e2c591f700e43121e8-screen-reader.json",
+    "screenshotFileName": "34e2c591f700e43121e8-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "34e2c591f700e43121e8-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "users",
+    "pageState": "suggestions expanded",
+    "violationCount": 4,
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:aria-required-attr",
+      "axe:region",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=users"
+    ],
+    "testTitle": "users — suggestions expanded",
+    "attachmentPrefix": "users-suggestions-expanded-page-summary",
+    "htmlFileName": "34e2c591f700e43121e8-users-suggestions-expanded-page-summary.html",
+    "jsonFileName": "34e2c591f700e43121e8-users-suggestions-expanded-page-summary.json",
+    "screenshotFileName": "34e2c591f700e43121e8-users-suggestions-expanded-page-summary.png",
+    "assetFileNames": [
+      "34e2c591f700e43121e8-users-suggestions-expanded-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "users",
+    "pageState": "suggestions expanded",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "users — suggestions expanded",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "34e2c591f700e43121e8-wave-like.html",
+    "jsonFileName": "34e2c591f700e43121e8-wave-like.json",
+    "screenshotFileName": "34e2c591f700e43121e8-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "34e2c591f700e43121e8-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "session",
+    "pageState": "visible timeout dialog",
+    "status": "issues-found",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [
+      {
+        "rule": "aria-dialog-name",
+        "targets": [
+          "[\"dialog\"]"
+        ],
+        "summary": "ARIA dialog and alertdialog nodes should have an accessible name",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 1,
+    "rules": [
+      "aria-dialog-name"
+    ],
+    "targets": [
+      "[\"dialog\"]"
+    ],
+    "testTitle": "session — visible timeout dialog",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "36235189ae7825a5075c-axe.html",
+    "jsonFileName": "36235189ae7825a5075c-axe.json",
+    "screenshotFileName": "36235189ae7825a5075c-axe.png",
+    "assetFileNames": [
+      "36235189ae7825a5075c-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "session",
+    "pageState": "visible timeout dialog",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=dialog",
+      "http://localhost:4200/coverage?feature=dialog"
+    ],
+    "testTitle": "session — visible timeout dialog",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "36235189ae7825a5075c-screen-reader.html",
+    "jsonFileName": "36235189ae7825a5075c-screen-reader.json",
+    "screenshotFileName": "36235189ae7825a5075c-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "36235189ae7825a5075c-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "session",
+    "pageState": "visible timeout dialog",
+    "violationCount": 3,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:aria-dialog-name",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=dialog"
+    ],
+    "testTitle": "session — visible timeout dialog",
+    "attachmentPrefix": "session-visible-timeout-dialog-page-summary",
+    "htmlFileName": "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.html",
+    "jsonFileName": "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.json",
+    "screenshotFileName": "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.png",
+    "assetFileNames": [
+      "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "session",
+    "pageState": "visible timeout dialog",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "session — visible timeout dialog",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "36235189ae7825a5075c-wave-like.html",
+    "jsonFileName": "36235189ae7825a5075c-wave-like.json",
+    "screenshotFileName": "36235189ae7825a5075c-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "36235189ae7825a5075c-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-567fd581dba25dc14f53",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "service selection",
+    "pageState": "selected service",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "service selection — selected service",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "3d208979d1d6cd0f3f10-axe.html",
+    "jsonFileName": "3d208979d1d6cd0f3f10-axe.json",
+    "screenshotFileName": "3d208979d1d6cd0f3f10-axe.png",
+    "assetFileNames": [
+      "3d208979d1d6cd0f3f10-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-567fd581dba25dc14f53",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "service selection",
+    "pageState": "selected service",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/service-selection",
+      "http://localhost:4200/coverage/service-selection"
+    ],
+    "testTitle": "service selection — selected service",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "3d208979d1d6cd0f3f10-screen-reader.html",
+    "jsonFileName": "3d208979d1d6cd0f3f10-screen-reader.json",
+    "screenshotFileName": "3d208979d1d6cd0f3f10-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "3d208979d1d6cd0f3f10-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-567fd581dba25dc14f53",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "service selection",
+    "pageState": "selected service",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/service-selection"
+    ],
+    "testTitle": "service selection — selected service",
+    "attachmentPrefix": "service-selection-selected-service-page-summary",
+    "htmlFileName": "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.html",
+    "jsonFileName": "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.json",
+    "screenshotFileName": "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.png",
+    "assetFileNames": [
+      "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-567fd581dba25dc14f53",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "service selection",
+    "pageState": "selected service",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "service selection — selected service",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "3d208979d1d6cd0f3f10-wave-like.html",
+    "jsonFileName": "3d208979d1d6cd0f3f10-wave-like.json",
+    "screenshotFileName": "3d208979d1d6cd0f3f10-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "3d208979d1d6cd0f3f10-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9fffb2b5c16ba1afd367",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "case sharing",
+    "pageState": "confirmation",
+    "status": "issues-found",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "[\"h3\"]"
+        ],
+        "summary": "Heading levels should only increase by one",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 1,
+    "rules": [
+      "heading-order"
+    ],
+    "targets": [
+      "[\"h3\"]"
+    ],
+    "testTitle": "case sharing — confirmation",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "4cd77f65311f1779f180-axe.html",
+    "jsonFileName": "4cd77f65311f1779f180-axe.json",
+    "screenshotFileName": "4cd77f65311f1779f180-axe.png",
+    "assetFileNames": [
+      "4cd77f65311f1779f180-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9fffb2b5c16ba1afd367",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "case sharing",
+    "pageState": "confirmation",
+    "violationCount": 4,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:heading-order",
+      "wave-like:heading-order",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing/confirmation"
+    ],
+    "testTitle": "case sharing — confirmation",
+    "attachmentPrefix": "case-sharing-confirmation-page-summary",
+    "htmlFileName": "4cd77f65311f1779f180-case-sharing-confirmation-page-summary.html",
+    "jsonFileName": "4cd77f65311f1779f180-case-sharing-confirmation-page-summary.json",
+    "screenshotFileName": "4cd77f65311f1779f180-case-sharing-confirmation-page-summary.png",
+    "assetFileNames": [
+      "4cd77f65311f1779f180-case-sharing-confirmation-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9fffb2b5c16ba1afd367",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "case sharing",
+    "pageState": "confirmation",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing/confirmation",
+      "http://localhost:4200/coverage/case-sharing/confirmation"
+    ],
+    "testTitle": "case sharing — confirmation",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "4cd77f65311f1779f180-screen-reader.html",
+    "jsonFileName": "4cd77f65311f1779f180-screen-reader.json",
+    "screenshotFileName": "4cd77f65311f1779f180-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "4cd77f65311f1779f180-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9fffb2b5c16ba1afd367",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "case sharing",
+    "pageState": "confirmation",
+    "violationCount": 1,
+    "rules": [
+      "heading-order"
+    ],
+    "targets": [
+      "h3"
+    ],
+    "testTitle": "case sharing — confirmation",
+    "attachmentPrefix": "wave-like",
+    "status": "issues-found",
+    "htmlFileName": "4cd77f65311f1779f180-wave-like.html",
+    "jsonFileName": "4cd77f65311f1779f180-wave-like.json",
+    "screenshotFileName": "4cd77f65311f1779f180-wave-like.png",
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "h3"
+        ],
+        "summary": "Heading level jumps from h1 to h3.",
+        "anchor": "issue-1"
+      }
+    ],
+    "assetFileNames": [
+      "4cd77f65311f1779f180-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "filter",
+    "pageState": "initial controls",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "filter — initial controls",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "5803c38c5ee18792ce92-axe.html",
+    "jsonFileName": "5803c38c5ee18792ce92-axe.json",
+    "screenshotFileName": "5803c38c5ee18792ce92-axe.png",
+    "assetFileNames": [
+      "5803c38c5ee18792ce92-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "filter",
+    "pageState": "initial controls",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "testTitle": "filter — initial controls",
+    "attachmentPrefix": "filter-initial-controls-page-summary",
+    "htmlFileName": "5803c38c5ee18792ce92-filter-initial-controls-page-summary.html",
+    "jsonFileName": "5803c38c5ee18792ce92-filter-initial-controls-page-summary.json",
+    "screenshotFileName": "5803c38c5ee18792ce92-filter-initial-controls-page-summary.png",
+    "assetFileNames": [
+      "5803c38c5ee18792ce92-filter-initial-controls-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "filter",
+    "pageState": "initial controls",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter",
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "testTitle": "filter — initial controls",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "5803c38c5ee18792ce92-screen-reader.html",
+    "jsonFileName": "5803c38c5ee18792ce92-screen-reader.json",
+    "screenshotFileName": "5803c38c5ee18792ce92-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "5803c38c5ee18792ce92-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "filter",
+    "pageState": "initial controls",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "filter — initial controls",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "5803c38c5ee18792ce92-wave-like.html",
+    "jsonFileName": "5803c38c5ee18792ce92-wave-like.json",
+    "screenshotFileName": "5803c38c5ee18792ce92-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "5803c38c5ee18792ce92-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-3c0aef397740f3a035a9",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "user management",
+    "pageState": "next page",
+    "status": "issues-found",
+    "reviewCount": 4,
+    "reviewRules": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ],
+    "findings": [
+      {
+        "rule": "dlitem",
+        "targets": [
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+          "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]",
+          "[\".govuk-table__row:nth-child(3) > dt\"]",
+          "[\".govuk-table__row:nth-child(3) > dd:nth-child(2)\"]",
+          "[\".govuk-table__row:nth-child(3) > dd:nth-child(3)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+          "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]"
+        ],
+        "summary": "<dt> and <dd> elements must be contained by a <dl>",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 15,
+    "rules": [
+      "dlitem"
+    ],
+    "targets": [
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+      "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]",
+      "[\".govuk-table__row:nth-child(3) > dt\"]",
+      "[\".govuk-table__row:nth-child(3) > dd:nth-child(2)\"]",
+      "[\".govuk-table__row:nth-child(3) > dd:nth-child(3)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dt\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(2)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(1) > dd:nth-child(3)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dt\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(2)\"]",
+      "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > .govuk-table__row:nth-child(2) > dd:nth-child(3)\"]"
+    ],
+    "testTitle": "user management — next page",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "5dfcc752b9720c840088-axe.html",
+    "jsonFileName": "5dfcc752b9720c840088-axe.json",
+    "screenshotFileName": "5dfcc752b9720c840088-axe.png",
+    "assetFileNames": [
+      "5dfcc752b9720c840088-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-3c0aef397740f3a035a9",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "user management",
+    "pageState": "next page",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/users",
+      "http://localhost:4200/coverage/users"
+    ],
+    "testTitle": "user management — next page",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "5dfcc752b9720c840088-screen-reader.html",
+    "jsonFileName": "5dfcc752b9720c840088-screen-reader.json",
+    "screenshotFileName": "5dfcc752b9720c840088-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "5dfcc752b9720c840088-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-3c0aef397740f3a035a9",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "user management",
+    "pageState": "next page",
+    "violationCount": 17,
+    "reviewCount": 4,
+    "reviewRules": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 17 unexpected issue(s), 4 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:dlitem",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/users"
+    ],
+    "testTitle": "user management — next page",
+    "attachmentPrefix": "user-management-next-page-page-summary",
+    "htmlFileName": "5dfcc752b9720c840088-user-management-next-page-page-summary.html",
+    "jsonFileName": "5dfcc752b9720c840088-user-management-next-page-page-summary.json",
+    "screenshotFileName": "5dfcc752b9720c840088-user-management-next-page-page-summary.png",
+    "assetFileNames": [
+      "5dfcc752b9720c840088-user-management-next-page-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-3c0aef397740f3a035a9",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "user management",
+    "pageState": "next page",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "user management — next page",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "5dfcc752b9720c840088-wave-like.html",
+    "jsonFileName": "5dfcc752b9720c840088-wave-like.json",
+    "screenshotFileName": "5dfcc752b9720c840088-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "5dfcc752b9720c840088-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-e4b42f4f9485cf59fdb4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "cookies",
+    "pageState": "accept persisted after reload",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "cookies — accept persisted after reload",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "5e71231c4db52b85c149-axe.html",
+    "jsonFileName": "5e71231c4db52b85c149-axe.json",
+    "screenshotFileName": "5e71231c4db52b85c149-axe.png",
+    "assetFileNames": [
+      "5e71231c4db52b85c149-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-e4b42f4f9485cf59fdb4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "cookies",
+    "pageState": "accept persisted after reload",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=cookie"
+    ],
+    "testTitle": "cookies — accept persisted after reload",
+    "attachmentPrefix": "cookies-accept-persisted-after-reload-page-summary",
+    "htmlFileName": "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.html",
+    "jsonFileName": "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.json",
+    "screenshotFileName": "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.png",
+    "assetFileNames": [
+      "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-e4b42f4f9485cf59fdb4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "cookies",
+    "pageState": "accept persisted after reload",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=cookie",
+      "http://localhost:4200/coverage?feature=cookie"
+    ],
+    "testTitle": "cookies — accept persisted after reload",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "5e71231c4db52b85c149-screen-reader.html",
+    "jsonFileName": "5e71231c4db52b85c149-screen-reader.json",
+    "screenshotFileName": "5e71231c4db52b85c149-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "5e71231c4db52b85c149-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-e4b42f4f9485cf59fdb4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "cookies",
+    "pageState": "accept persisted after reload",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "cookies — accept persisted after reload",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "5e71231c4db52b85c149-wave-like.html",
+    "jsonFileName": "5e71231c4db52b85c149-wave-like.json",
+    "screenshotFileName": "5e71231c4db52b85c149-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "5e71231c4db52b85c149-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-27f57ad1db87b9fcfe76",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "invitation",
+    "pageState": "initial form",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "invitation — initial form",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "5ff7d4ec8c39ab09bc65-axe.html",
+    "jsonFileName": "5ff7d4ec8c39ab09bc65-axe.json",
+    "screenshotFileName": "5ff7d4ec8c39ab09bc65-axe.png",
+    "assetFileNames": [
+      "5ff7d4ec8c39ab09bc65-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-27f57ad1db87b9fcfe76",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "invitation",
+    "pageState": "initial form",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/invitation"
+    ],
+    "testTitle": "invitation — initial form",
+    "attachmentPrefix": "invitation-initial-form-page-summary",
+    "htmlFileName": "5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary.html",
+    "jsonFileName": "5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary.json",
+    "screenshotFileName": "5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary.png",
+    "assetFileNames": [
+      "5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-27f57ad1db87b9fcfe76",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "invitation",
+    "pageState": "initial form",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/invitation",
+      "http://localhost:4200/coverage/invitation"
+    ],
+    "testTitle": "invitation — initial form",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "5ff7d4ec8c39ab09bc65-screen-reader.html",
+    "jsonFileName": "5ff7d4ec8c39ab09bc65-screen-reader.json",
+    "screenshotFileName": "5ff7d4ec8c39ab09bc65-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "5ff7d4ec8c39ab09bc65-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-27f57ad1db87b9fcfe76",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "invitation",
+    "pageState": "initial form",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "invitation — initial form",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "5ff7d4ec8c39ab09bc65-wave-like.html",
+    "jsonFileName": "5ff7d4ec8c39ab09bc65-wave-like.json",
+    "screenshotFileName": "5ff7d4ec8c39ab09bc65-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "5ff7d4ec8c39ab09bc65-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d64b574a9ce882e8687d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "form controls",
+    "pageState": "descriptions errors",
+    "status": "needs-review",
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — descriptions errors",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "610acf473f516a8883a8-axe.html",
+    "jsonFileName": "610acf473f516a8883a8-axe.json",
+    "screenshotFileName": "610acf473f516a8883a8-axe.png",
+    "assetFileNames": [
+      "610acf473f516a8883a8-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d64b574a9ce882e8687d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "form controls",
+    "pageState": "descriptions errors",
+    "violationCount": 4,
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:aria-reference-target",
+      "screen-reader:component-description"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls"
+    ],
+    "testTitle": "form controls — descriptions errors",
+    "attachmentPrefix": "form-controls-descriptions-errors-page-summary",
+    "htmlFileName": "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.html",
+    "jsonFileName": "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.json",
+    "screenshotFileName": "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.png",
+    "assetFileNames": [
+      "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d64b574a9ce882e8687d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "form controls",
+    "pageState": "descriptions errors",
+    "violationCount": 4,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link",
+      "aria-reference-target",
+      "component-description"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls",
+      "http://localhost:4200/coverage/form-controls",
+      "#case-notes",
+      "#case-notes"
+    ],
+    "testTitle": "form controls — descriptions errors",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "610acf473f516a8883a8-screen-reader.html",
+    "jsonFileName": "610acf473f516a8883a8-screen-reader.json",
+    "screenshotFileName": "610acf473f516a8883a8-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "aria-reference-target",
+        "targets": [
+          "#case-notes"
+        ],
+        "summary": "aria-describedby references missing id(s): case-notes-hint.",
+        "anchor": "issue-3"
+      },
+      {
+        "rule": "component-description",
+        "targets": [
+          "#case-notes"
+        ],
+        "summary": "Expected #case-notes-hint text \"Include only synthetic notes.\", received missing target.",
+        "anchor": "issue-4"
+      }
+    ],
+    "assetFileNames": [
+      "610acf473f516a8883a8-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d64b574a9ce882e8687d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "form controls",
+    "pageState": "descriptions errors",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — descriptions errors",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "610acf473f516a8883a8-wave-like.html",
+    "jsonFileName": "610acf473f516a8883a8-wave-like.json",
+    "screenshotFileName": "610acf473f516a8883a8-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "610acf473f516a8883a8-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-8647a7d9592f503b5cf1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "navigation",
+    "pageState": "active destinations",
+    "status": "needs-review",
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "navigation — active destinations",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "735d81156630f818920a-axe.html",
+    "jsonFileName": "735d81156630f818920a-axe.json",
+    "screenshotFileName": "735d81156630f818920a-axe.png",
+    "assetFileNames": [
+      "735d81156630f818920a-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-8647a7d9592f503b5cf1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "navigation",
+    "pageState": "active destinations",
+    "violationCount": 2,
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=navigation"
+    ],
+    "testTitle": "navigation — active destinations",
+    "attachmentPrefix": "navigation-active-destinations-page-summary",
+    "htmlFileName": "735d81156630f818920a-navigation-active-destinations-page-summary.html",
+    "jsonFileName": "735d81156630f818920a-navigation-active-destinations-page-summary.json",
+    "screenshotFileName": "735d81156630f818920a-navigation-active-destinations-page-summary.png",
+    "assetFileNames": [
+      "735d81156630f818920a-navigation-active-destinations-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-8647a7d9592f503b5cf1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "navigation",
+    "pageState": "active destinations",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=navigation",
+      "http://localhost:4200/coverage?feature=navigation"
+    ],
+    "testTitle": "navigation — active destinations",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "735d81156630f818920a-screen-reader.html",
+    "jsonFileName": "735d81156630f818920a-screen-reader.json",
+    "screenshotFileName": "735d81156630f818920a-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "735d81156630f818920a-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-8647a7d9592f503b5cf1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "navigation",
+    "pageState": "active destinations",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "navigation — active destinations",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "735d81156630f818920a-wave-like.html",
+    "jsonFileName": "735d81156630f818920a-wave-like.json",
+    "screenshotFileName": "735d81156630f818920a-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "735d81156630f818920a-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0fc654d208d63f607318",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "case sharing",
+    "pageState": "no-change validation",
+    "status": "issues-found",
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "[\"#title-selected-cases\"]"
+        ],
+        "summary": "Heading levels should only increase by one",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 1,
+    "rules": [
+      "heading-order"
+    ],
+    "targets": [
+      "[\"#title-selected-cases\"]"
+    ],
+    "testTitle": "case sharing — no-change validation",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "7a4203c09c41cce2a0f3-axe.html",
+    "jsonFileName": "7a4203c09c41cce2a0f3-axe.json",
+    "screenshotFileName": "7a4203c09c41cce2a0f3-axe.png",
+    "assetFileNames": [
+      "7a4203c09c41cce2a0f3-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0fc654d208d63f607318",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "case sharing",
+    "pageState": "no-change validation",
+    "violationCount": 6,
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 6 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:heading-order",
+      "wave-like:heading-order",
+      "wave-like:duplicate-id",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing"
+    ],
+    "testTitle": "case sharing — no-change validation",
+    "attachmentPrefix": "case-sharing-no-change-validation-page-summary",
+    "htmlFileName": "7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary.html",
+    "jsonFileName": "7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary.json",
+    "screenshotFileName": "7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary.png",
+    "assetFileNames": [
+      "7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0fc654d208d63f607318",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "case sharing",
+    "pageState": "no-change validation",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing",
+      "http://localhost:4200/coverage/case-sharing"
+    ],
+    "testTitle": "case sharing — no-change validation",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "7a4203c09c41cce2a0f3-screen-reader.html",
+    "jsonFileName": "7a4203c09c41cce2a0f3-screen-reader.json",
+    "screenshotFileName": "7a4203c09c41cce2a0f3-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "7a4203c09c41cce2a0f3-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0fc654d208d63f607318",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "case sharing",
+    "pageState": "no-change validation",
+    "violationCount": 3,
+    "rules": [
+      "heading-order",
+      "duplicate-id",
+      "duplicate-id"
+    ],
+    "targets": [
+      "#title-selected-cases",
+      "#user-full-name-0",
+      "#user-email-0"
+    ],
+    "testTitle": "case sharing — no-change validation",
+    "attachmentPrefix": "wave-like",
+    "status": "issues-found",
+    "htmlFileName": "7a4203c09c41cce2a0f3-wave-like.html",
+    "jsonFileName": "7a4203c09c41cce2a0f3-wave-like.json",
+    "screenshotFileName": "7a4203c09c41cce2a0f3-wave-like.png",
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "#title-selected-cases"
+        ],
+        "summary": "Heading level jumps from h1 to h3.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-full-name-0"
+        ],
+        "summary": "Duplicate id \"user-full-name-0\" appears 2 times.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-email-0"
+        ],
+        "summary": "Duplicate id \"user-email-0\" appears 2 times.",
+        "anchor": "issue-3"
+      }
+    ],
+    "assetFileNames": [
+      "7a4203c09c41cce2a0f3-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-056b10a47fdf03417b59",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "filter",
+    "pageState": "required-service error",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "filter — required-service error",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "7b54a649beda8d1e3985-axe.html",
+    "jsonFileName": "7b54a649beda8d1e3985-axe.json",
+    "screenshotFileName": "7b54a649beda8d1e3985-axe.png",
+    "assetFileNames": [
+      "7b54a649beda8d1e3985-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-056b10a47fdf03417b59",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "filter",
+    "pageState": "required-service error",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "testTitle": "filter — required-service error",
+    "attachmentPrefix": "filter-required-service-error-page-summary",
+    "htmlFileName": "7b54a649beda8d1e3985-filter-required-service-error-page-summary.html",
+    "jsonFileName": "7b54a649beda8d1e3985-filter-required-service-error-page-summary.json",
+    "screenshotFileName": "7b54a649beda8d1e3985-filter-required-service-error-page-summary.png",
+    "assetFileNames": [
+      "7b54a649beda8d1e3985-filter-required-service-error-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-056b10a47fdf03417b59",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "filter",
+    "pageState": "required-service error",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter",
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "testTitle": "filter — required-service error",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "7b54a649beda8d1e3985-screen-reader.html",
+    "jsonFileName": "7b54a649beda8d1e3985-screen-reader.json",
+    "screenshotFileName": "7b54a649beda8d1e3985-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "7b54a649beda8d1e3985-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-056b10a47fdf03417b59",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "filter",
+    "pageState": "required-service error",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "filter — required-service error",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "7b54a649beda8d1e3985-wave-like.html",
+    "jsonFileName": "7b54a649beda8d1e3985-wave-like.json",
+    "screenshotFileName": "7b54a649beda8d1e3985-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "7b54a649beda8d1e3985-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f79177689e7a65fb97a4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "address",
+    "pageState": "initial lookup",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — initial lookup",
+    "attachmentPrefix": "address-initial-lookup-page-summary",
+    "htmlFileName": "802becc148fc110ebb07-address-initial-lookup-page-summary.html",
+    "jsonFileName": "802becc148fc110ebb07-address-initial-lookup-page-summary.json",
+    "screenshotFileName": "802becc148fc110ebb07-address-initial-lookup-page-summary.png",
+    "assetFileNames": [
+      "802becc148fc110ebb07-address-initial-lookup-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f79177689e7a65fb97a4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "address",
+    "pageState": "initial lookup",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — initial lookup",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "802becc148fc110ebb07-axe.html",
+    "jsonFileName": "802becc148fc110ebb07-axe.json",
+    "screenshotFileName": "802becc148fc110ebb07-axe.png",
+    "assetFileNames": [
+      "802becc148fc110ebb07-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f79177689e7a65fb97a4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "address",
+    "pageState": "initial lookup",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address",
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — initial lookup",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "802becc148fc110ebb07-screen-reader.html",
+    "jsonFileName": "802becc148fc110ebb07-screen-reader.json",
+    "screenshotFileName": "802becc148fc110ebb07-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "802becc148fc110ebb07-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f79177689e7a65fb97a4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "address",
+    "pageState": "initial lookup",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — initial lookup",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "802becc148fc110ebb07-wave-like.html",
+    "jsonFileName": "802becc148fc110ebb07-wave-like.json",
+    "screenshotFileName": "802becc148fc110ebb07-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "802becc148fc110ebb07-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "home",
+    "pageState": "initial components",
+    "status": "issues-found",
+    "reviewCount": 1,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "findings": [
+      {
+        "rule": "color-contrast",
+        "targets": [
+          "[\".due-date\"]"
+        ],
+        "summary": "Elements must meet minimum color contrast ratio thresholds",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 1,
+    "rules": [
+      "color-contrast"
+    ],
+    "targets": [
+      "[\".due-date\"]"
+    ],
+    "testTitle": "home — initial components",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "838714d8860b1fe06e80-axe.html",
+    "jsonFileName": "838714d8860b1fe06e80-axe.json",
+    "screenshotFileName": "838714d8860b1fe06e80-axe.png",
+    "assetFileNames": [
+      "838714d8860b1fe06e80-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "home",
+    "pageState": "initial components",
+    "violationCount": 6,
+    "reviewCount": 1,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 6 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:color-contrast",
+      "wave-like:h1-count",
+      "wave-like:table-headers",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:table-headers"
+    ],
+    "targets": [
+      "http://localhost:4200/home"
+    ],
+    "testTitle": "home — initial components",
+    "attachmentPrefix": "home-initial-components-page-summary",
+    "htmlFileName": "838714d8860b1fe06e80-home-initial-components-page-summary.html",
+    "jsonFileName": "838714d8860b1fe06e80-home-initial-components-page-summary.json",
+    "screenshotFileName": "838714d8860b1fe06e80-home-initial-components-page-summary.png",
+    "assetFileNames": [
+      "838714d8860b1fe06e80-home-initial-components-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "home",
+    "pageState": "initial components",
+    "violationCount": 3,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link",
+      "table-headers"
+    ],
+    "targets": [
+      "http://localhost:4200/home",
+      "http://localhost:4200/home",
+      "table"
+    ],
+    "testTitle": "home — initial components",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "838714d8860b1fe06e80-screen-reader.html",
+    "jsonFileName": "838714d8860b1fe06e80-screen-reader.json",
+    "screenshotFileName": "838714d8860b1fe06e80-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "table-headers",
+        "targets": [
+          "table"
+        ],
+        "summary": "Screen-reader users need row or column headers in data tables.",
+        "anchor": "issue-3"
+      }
+    ],
+    "assetFileNames": [
+      "838714d8860b1fe06e80-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "home",
+    "pageState": "initial components",
+    "violationCount": 2,
+    "rules": [
+      "h1-count",
+      "table-headers"
+    ],
+    "targets": [
+      "h1",
+      "table"
+    ],
+    "testTitle": "home — initial components",
+    "attachmentPrefix": "wave-like",
+    "status": "issues-found",
+    "htmlFileName": "838714d8860b1fe06e80-wave-like.html",
+    "jsonFileName": "838714d8860b1fe06e80-wave-like.json",
+    "screenshotFileName": "838714d8860b1fe06e80-wave-like.png",
+    "findings": [
+      {
+        "rule": "h1-count",
+        "targets": [
+          "h1"
+        ],
+        "summary": "Expected exactly one visible h1, found 2.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "table-headers",
+        "targets": [
+          "table"
+        ],
+        "summary": "Data tables should expose row or column headers.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "838714d8860b1fe06e80-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-50df024f1bd0d29d5623",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "address",
+    "pageState": "manual international entry",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — manual international entry",
+    "attachmentPrefix": "address-manual-international-entry-page-summary",
+    "htmlFileName": "88ba56a387682ee99791-address-manual-international-entry-page-summary.html",
+    "jsonFileName": "88ba56a387682ee99791-address-manual-international-entry-page-summary.json",
+    "screenshotFileName": "88ba56a387682ee99791-address-manual-international-entry-page-summary.png",
+    "assetFileNames": [
+      "88ba56a387682ee99791-address-manual-international-entry-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-50df024f1bd0d29d5623",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "address",
+    "pageState": "manual international entry",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — manual international entry",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "88ba56a387682ee99791-axe.html",
+    "jsonFileName": "88ba56a387682ee99791-axe.json",
+    "screenshotFileName": "88ba56a387682ee99791-axe.png",
+    "assetFileNames": [
+      "88ba56a387682ee99791-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-50df024f1bd0d29d5623",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "address",
+    "pageState": "manual international entry",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address",
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — manual international entry",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "88ba56a387682ee99791-screen-reader.html",
+    "jsonFileName": "88ba56a387682ee99791-screen-reader.json",
+    "screenshotFileName": "88ba56a387682ee99791-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "88ba56a387682ee99791-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-50df024f1bd0d29d5623",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "address",
+    "pageState": "manual international entry",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — manual international entry",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "88ba56a387682ee99791-wave-like.html",
+    "jsonFileName": "88ba56a387682ee99791-wave-like.json",
+    "screenshotFileName": "88ba56a387682ee99791-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "88ba56a387682ee99791-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-f9637579684f3bad5122",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "cookies",
+    "pageState": "choice banner",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "cookies — choice banner",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "8b1a0c6c967b14a34e43-axe.html",
+    "jsonFileName": "8b1a0c6c967b14a34e43-axe.json",
+    "screenshotFileName": "8b1a0c6c967b14a34e43-axe.png",
+    "assetFileNames": [
+      "8b1a0c6c967b14a34e43-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-f9637579684f3bad5122",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "cookies",
+    "pageState": "choice banner",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=cookie"
+    ],
+    "testTitle": "cookies — choice banner",
+    "attachmentPrefix": "cookies-choice-banner-page-summary",
+    "htmlFileName": "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.html",
+    "jsonFileName": "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.json",
+    "screenshotFileName": "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.png",
+    "assetFileNames": [
+      "8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-f9637579684f3bad5122",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "cookies",
+    "pageState": "choice banner",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=cookie",
+      "http://localhost:4200/coverage?feature=cookie"
+    ],
+    "testTitle": "cookies — choice banner",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "8b1a0c6c967b14a34e43-screen-reader.html",
+    "jsonFileName": "8b1a0c6c967b14a34e43-screen-reader.json",
+    "screenshotFileName": "8b1a0c6c967b14a34e43-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "8b1a0c6c967b14a34e43-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-f9637579684f3bad5122",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "cookies",
+    "pageState": "choice banner",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "cookies — choice banner",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "8b1a0c6c967b14a34e43-wave-like.html",
+    "jsonFileName": "8b1a0c6c967b14a34e43-wave-like.json",
+    "screenshotFileName": "8b1a0c6c967b14a34e43-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "8b1a0c6c967b14a34e43-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "cf859ece42b60ea1c522-03afd72c21eefb16058e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "Lighthouse /home",
+    "pageState": "representative stable page",
+    "violationCount": 1,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "1 engine(s), 0 known issue(s), 1 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "lighthouse:color-contrast"
+    ],
+    "targets": [
+      "http://localhost:4200/home"
+    ],
+    "testTitle": "Lighthouse /home — representative stable page",
+    "attachmentPrefix": "lighthouse-home-representative-stable-page-page-summary",
+    "htmlFileName": "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.html",
+    "jsonFileName": "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.json",
+    "screenshotFileName": "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.png",
+    "assetFileNames": [
+      "8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "cf859ece42b60ea1c522-03afd72c21eefb16058e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "lighthouse",
+    "feature": "Lighthouse /home",
+    "pageState": "representative stable page",
+    "violationCount": 1,
+    "rules": [
+      "color-contrast"
+    ],
+    "targets": [
+      "http://localhost:4200/home"
+    ],
+    "status": "issues-found",
+    "summary": "Accessibility score 97; WebApp reference threshold 90. All failed audits remain findings even above the threshold.",
+    "testTitle": "Lighthouse /home — representative stable page",
+    "attachmentPrefix": "lighthouse",
+    "htmlFileName": "8da17f1c77d491c4990c-lighthouse.html",
+    "jsonFileName": "8da17f1c77d491c4990c-lighthouse.json",
+    "screenshotFileName": "8da17f1c77d491c4990c-lighthouse.png",
+    "reportFileName": "8da17f1c77d491c4990c-lighthouse-native.html",
+    "assetFileNames": [
+      "8da17f1c77d491c4990c-lighthouse-style-1.css",
+      "8da17f1c77d491c4990c-lighthouse-native-image-1.svg",
+      "8da17f1c77d491c4990c-lighthouse-native-image-2.webp",
+      "8da17f1c77d491c4990c-lighthouse-native-style-1.css",
+      "8da17f1c77d491c4990c-lighthouse-native-script-1.js",
+      "8da17f1c77d491c4990c-lighthouse-native-script-2.js",
+      "8da17f1c77d491c4990c-lighthouse-native-script-3.js"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "cf859ece42b60ea1c522-df67b21a95f8f1723664",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "Lighthouse /coverage?feature=filter",
+    "pageState": "representative stable page",
+    "violationCount": 0,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "passed",
+    "summary": "1 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "testTitle": "Lighthouse /coverage?feature=filter — representative stable page",
+    "attachmentPrefix": "lighthouse-coverage-feature-filter-representative-stable-page-page-summary",
+    "htmlFileName": "901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary.html",
+    "jsonFileName": "901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary.json",
+    "screenshotFileName": "901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary.png",
+    "assetFileNames": [
+      "901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "cf859ece42b60ea1c522-df67b21a95f8f1723664",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "lighthouse",
+    "feature": "Lighthouse /coverage?feature=filter",
+    "pageState": "representative stable page",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [
+      "http://localhost:4200/coverage?feature=filter"
+    ],
+    "status": "passed",
+    "summary": "Accessibility score 100; WebApp reference threshold 90. All failed audits remain findings even above the threshold.",
+    "testTitle": "Lighthouse /coverage?feature=filter — representative stable page",
+    "attachmentPrefix": "lighthouse",
+    "htmlFileName": "901c203740ee70c4db00-lighthouse.html",
+    "jsonFileName": "901c203740ee70c4db00-lighthouse.json",
+    "screenshotFileName": "901c203740ee70c4db00-lighthouse.png",
+    "reportFileName": "901c203740ee70c4db00-lighthouse-native.html",
+    "assetFileNames": [
+      "901c203740ee70c4db00-lighthouse-style-1.css",
+      "901c203740ee70c4db00-lighthouse-native-image-1.svg",
+      "901c203740ee70c4db00-lighthouse-native-image-2.webp",
+      "901c203740ee70c4db00-lighthouse-native-style-1.css",
+      "901c203740ee70c4db00-lighthouse-native-script-1.js",
+      "901c203740ee70c4db00-lighthouse-native-script-2.js",
+      "901c203740ee70c4db00-lighthouse-native-script-3.js"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-e6af87af19912f4654b1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "service selection",
+    "pageState": "expanded suggestions",
+    "status": "issues-found",
+    "reviewCount": 2,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "findings": [
+      {
+        "rule": "aria-required-attr",
+        "targets": [
+          "[\"#inputServiceSearch\"]"
+        ],
+        "summary": "Required ARIA attributes must be provided",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "region",
+        "targets": [
+          "[\".cdk-overlay-container\"]"
+        ],
+        "summary": "All page content should be contained by landmarks",
+        "anchor": "issue-2"
+      }
+    ],
+    "violationCount": 2,
+    "rules": [
+      "aria-required-attr",
+      "region"
+    ],
+    "targets": [
+      "[\"#inputServiceSearch\"]",
+      "[\".cdk-overlay-container\"]"
+    ],
+    "testTitle": "service selection — expanded suggestions",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "917772a02be44daceeb2-axe.html",
+    "jsonFileName": "917772a02be44daceeb2-axe.json",
+    "screenshotFileName": "917772a02be44daceeb2-axe.png",
+    "assetFileNames": [
+      "917772a02be44daceeb2-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-e6af87af19912f4654b1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "service selection",
+    "pageState": "expanded suggestions",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/service-selection",
+      "http://localhost:4200/coverage/service-selection"
+    ],
+    "testTitle": "service selection — expanded suggestions",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "917772a02be44daceeb2-screen-reader.html",
+    "jsonFileName": "917772a02be44daceeb2-screen-reader.json",
+    "screenshotFileName": "917772a02be44daceeb2-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "917772a02be44daceeb2-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-e6af87af19912f4654b1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "service selection",
+    "pageState": "expanded suggestions",
+    "violationCount": 4,
+    "reviewCount": 2,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:aria-required-attr",
+      "axe:region",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/service-selection"
+    ],
+    "testTitle": "service selection — expanded suggestions",
+    "attachmentPrefix": "service-selection-expanded-suggestions-page-summary",
+    "htmlFileName": "917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary.html",
+    "jsonFileName": "917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary.json",
+    "screenshotFileName": "917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary.png",
+    "assetFileNames": [
+      "917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-e6af87af19912f4654b1",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "service selection",
+    "pageState": "expanded suggestions",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "service selection — expanded suggestions",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "917772a02be44daceeb2-wave-like.html",
+    "jsonFileName": "917772a02be44daceeb2-wave-like.json",
+    "screenshotFileName": "917772a02be44daceeb2-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "917772a02be44daceeb2-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d42f6110167cbb95590d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "case sharing",
+    "pageState": "initial assignments",
+    "status": "issues-found",
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "[\"#title-selected-cases\"]"
+        ],
+        "summary": "Heading levels should only increase by one",
+        "anchor": "issue-1"
+      }
+    ],
+    "violationCount": 1,
+    "rules": [
+      "heading-order"
+    ],
+    "targets": [
+      "[\"#title-selected-cases\"]"
+    ],
+    "testTitle": "case sharing — initial assignments",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "94d499437e007773b9cd-axe.html",
+    "jsonFileName": "94d499437e007773b9cd-axe.json",
+    "screenshotFileName": "94d499437e007773b9cd-axe.png",
+    "assetFileNames": [
+      "94d499437e007773b9cd-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d42f6110167cbb95590d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "case sharing",
+    "pageState": "initial assignments",
+    "violationCount": 6,
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 6 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:heading-order",
+      "wave-like:heading-order",
+      "wave-like:duplicate-id",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing"
+    ],
+    "testTitle": "case sharing — initial assignments",
+    "attachmentPrefix": "case-sharing-initial-assignments-page-summary",
+    "htmlFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.html",
+    "jsonFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.json",
+    "screenshotFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.png",
+    "assetFileNames": [
+      "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d42f6110167cbb95590d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "case sharing",
+    "pageState": "initial assignments",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing",
+      "http://localhost:4200/coverage/case-sharing"
+    ],
+    "testTitle": "case sharing — initial assignments",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "94d499437e007773b9cd-screen-reader.html",
+    "jsonFileName": "94d499437e007773b9cd-screen-reader.json",
+    "screenshotFileName": "94d499437e007773b9cd-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "94d499437e007773b9cd-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d42f6110167cbb95590d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "case sharing",
+    "pageState": "initial assignments",
+    "violationCount": 3,
+    "rules": [
+      "heading-order",
+      "duplicate-id",
+      "duplicate-id"
+    ],
+    "targets": [
+      "#title-selected-cases",
+      "#user-full-name-0",
+      "#user-email-0"
+    ],
+    "testTitle": "case sharing — initial assignments",
+    "attachmentPrefix": "wave-like",
+    "status": "issues-found",
+    "htmlFileName": "94d499437e007773b9cd-wave-like.html",
+    "jsonFileName": "94d499437e007773b9cd-wave-like.json",
+    "screenshotFileName": "94d499437e007773b9cd-wave-like.png",
+    "findings": [
+      {
+        "rule": "heading-order",
+        "targets": [
+          "#title-selected-cases"
+        ],
+        "summary": "Heading level jumps from h1 to h3.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-full-name-0"
+        ],
+        "summary": "Duplicate id \"user-full-name-0\" appears 2 times.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "duplicate-id",
+        "targets": [
+          "#user-email-0"
+        ],
+        "summary": "Duplicate id \"user-email-0\" appears 2 times.",
+        "anchor": "issue-3"
+      }
+    ],
+    "assetFileNames": [
+      "94d499437e007773b9cd-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-973e0082bf08095265b4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "feedback",
+    "pageState": "validation summary",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "feedback — validation summary",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "9747289c644b3b6defe8-axe.html",
+    "jsonFileName": "9747289c644b3b6defe8-axe.json",
+    "screenshotFileName": "9747289c644b3b6defe8-axe.png",
+    "assetFileNames": [
+      "9747289c644b3b6defe8-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-973e0082bf08095265b4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "feedback",
+    "pageState": "validation summary",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=feedback"
+    ],
+    "testTitle": "feedback — validation summary",
+    "attachmentPrefix": "feedback-validation-summary-page-summary",
+    "htmlFileName": "9747289c644b3b6defe8-feedback-validation-summary-page-summary.html",
+    "jsonFileName": "9747289c644b3b6defe8-feedback-validation-summary-page-summary.json",
+    "screenshotFileName": "9747289c644b3b6defe8-feedback-validation-summary-page-summary.png",
+    "assetFileNames": [
+      "9747289c644b3b6defe8-feedback-validation-summary-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-973e0082bf08095265b4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "feedback",
+    "pageState": "validation summary",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=feedback",
+      "http://localhost:4200/coverage?feature=feedback"
+    ],
+    "testTitle": "feedback — validation summary",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "9747289c644b3b6defe8-screen-reader.html",
+    "jsonFileName": "9747289c644b3b6defe8-screen-reader.json",
+    "screenshotFileName": "9747289c644b3b6defe8-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "9747289c644b3b6defe8-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-973e0082bf08095265b4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "feedback",
+    "pageState": "validation summary",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "feedback — validation summary",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "9747289c644b3b6defe8-wave-like.html",
+    "jsonFileName": "9747289c644b3b6defe8-wave-like.json",
+    "screenshotFileName": "9747289c644b3b6defe8-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "9747289c644b3b6defe8-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "address",
+    "pageState": "invalid postcode",
+    "violationCount": 3,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:error-describedby"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — invalid postcode",
+    "attachmentPrefix": "address-invalid-postcode-page-summary",
+    "htmlFileName": "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.html",
+    "jsonFileName": "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.json",
+    "screenshotFileName": "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.png",
+    "assetFileNames": [
+      "9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "address",
+    "pageState": "invalid postcode",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — invalid postcode",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "9e91a0dee8cfb5eeaf03-axe.html",
+    "jsonFileName": "9e91a0dee8cfb5eeaf03-axe.json",
+    "screenshotFileName": "9e91a0dee8cfb5eeaf03-axe.png",
+    "assetFileNames": [
+      "9e91a0dee8cfb5eeaf03-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "address",
+    "pageState": "invalid postcode",
+    "violationCount": 3,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link",
+      "error-describedby"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address",
+      "http://localhost:4200/coverage/address",
+      "#postcodeInput"
+    ],
+    "testTitle": "address — invalid postcode",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "9e91a0dee8cfb5eeaf03-screen-reader.html",
+    "jsonFileName": "9e91a0dee8cfb5eeaf03-screen-reader.json",
+    "screenshotFileName": "9e91a0dee8cfb5eeaf03-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "error-describedby",
+        "targets": [
+          "#postcodeInput"
+        ],
+        "summary": "Invalid controls should reference the visible error message.",
+        "anchor": "issue-3"
+      }
+    ],
+    "assetFileNames": [
+      "9e91a0dee8cfb5eeaf03-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "address",
+    "pageState": "invalid postcode",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — invalid postcode",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "9e91a0dee8cfb5eeaf03-wave-like.html",
+    "jsonFileName": "9e91a0dee8cfb5eeaf03-wave-like.json",
+    "screenshotFileName": "9e91a0dee8cfb5eeaf03-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "9e91a0dee8cfb5eeaf03-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-7c59aed91c0fdda2c8e2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "terms",
+    "pageState": "awaiting confirmation",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "terms — awaiting confirmation",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "a50d3acdf580b04a96c5-axe.html",
+    "jsonFileName": "a50d3acdf580b04a96c5-axe.json",
+    "screenshotFileName": "a50d3acdf580b04a96c5-axe.png",
+    "assetFileNames": [
+      "a50d3acdf580b04a96c5-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-7c59aed91c0fdda2c8e2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "terms",
+    "pageState": "awaiting confirmation",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=terms",
+      "http://localhost:4200/coverage?feature=terms"
+    ],
+    "testTitle": "terms — awaiting confirmation",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "a50d3acdf580b04a96c5-screen-reader.html",
+    "jsonFileName": "a50d3acdf580b04a96c5-screen-reader.json",
+    "screenshotFileName": "a50d3acdf580b04a96c5-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "a50d3acdf580b04a96c5-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-7c59aed91c0fdda2c8e2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "terms",
+    "pageState": "awaiting confirmation",
+    "violationCount": 3,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "wave-like:h1-count",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=terms"
+    ],
+    "testTitle": "terms — awaiting confirmation",
+    "attachmentPrefix": "terms-awaiting-confirmation-page-summary",
+    "htmlFileName": "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.html",
+    "jsonFileName": "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.json",
+    "screenshotFileName": "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.png",
+    "assetFileNames": [
+      "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-7c59aed91c0fdda2c8e2",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "terms",
+    "pageState": "awaiting confirmation",
+    "violationCount": 1,
+    "rules": [
+      "h1-count"
+    ],
+    "targets": [
+      "h1"
+    ],
+    "testTitle": "terms — awaiting confirmation",
+    "attachmentPrefix": "wave-like",
+    "status": "issues-found",
+    "htmlFileName": "a50d3acdf580b04a96c5-wave-like.html",
+    "jsonFileName": "a50d3acdf580b04a96c5-wave-like.json",
+    "screenshotFileName": "a50d3acdf580b04a96c5-wave-like.png",
+    "findings": [
+      {
+        "rule": "h1-count",
+        "targets": [
+          "h1"
+        ],
+        "summary": "Expected exactly one visible h1, found 2.",
+        "anchor": "issue-1"
+      }
+    ],
+    "assetFileNames": [
+      "a50d3acdf580b04a96c5-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-61ff57397975ea90b153",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "feedback",
+    "pageState": "success and warning banners",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "feedback — success and warning banners",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "b6d7c4986c371f1daacf-axe.html",
+    "jsonFileName": "b6d7c4986c371f1daacf-axe.json",
+    "screenshotFileName": "b6d7c4986c371f1daacf-axe.png",
+    "assetFileNames": [
+      "b6d7c4986c371f1daacf-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-61ff57397975ea90b153",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "feedback",
+    "pageState": "success and warning banners",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=feedback"
+    ],
+    "testTitle": "feedback — success and warning banners",
+    "attachmentPrefix": "feedback-success-and-warning-banners-page-summary",
+    "htmlFileName": "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.html",
+    "jsonFileName": "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.json",
+    "screenshotFileName": "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.png",
+    "assetFileNames": [
+      "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-61ff57397975ea90b153",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "feedback",
+    "pageState": "success and warning banners",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=feedback",
+      "http://localhost:4200/coverage?feature=feedback"
+    ],
+    "testTitle": "feedback — success and warning banners",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "b6d7c4986c371f1daacf-screen-reader.html",
+    "jsonFileName": "b6d7c4986c371f1daacf-screen-reader.json",
+    "screenshotFileName": "b6d7c4986c371f1daacf-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "b6d7c4986c371f1daacf-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-61ff57397975ea90b153",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "feedback",
+    "pageState": "success and warning banners",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "feedback — success and warning banners",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "b6d7c4986c371f1daacf-wave-like.html",
+    "jsonFileName": "b6d7c4986c371f1daacf-wave-like.json",
+    "screenshotFileName": "b6d7c4986c371f1daacf-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "b6d7c4986c371f1daacf-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-00d15514a1b7ffaf523d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "users",
+    "pageState": "selected user",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "users — selected user",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "c809741a6028f1b4c912-axe.html",
+    "jsonFileName": "c809741a6028f1b4c912-axe.json",
+    "screenshotFileName": "c809741a6028f1b4c912-axe.png",
+    "assetFileNames": [
+      "c809741a6028f1b4c912-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-00d15514a1b7ffaf523d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "users",
+    "pageState": "selected user",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=users",
+      "http://localhost:4200/coverage?feature=users"
+    ],
+    "testTitle": "users — selected user",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "c809741a6028f1b4c912-screen-reader.html",
+    "jsonFileName": "c809741a6028f1b4c912-screen-reader.json",
+    "screenshotFileName": "c809741a6028f1b4c912-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "c809741a6028f1b4c912-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-00d15514a1b7ffaf523d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "users",
+    "pageState": "selected user",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=users"
+    ],
+    "testTitle": "users — selected user",
+    "attachmentPrefix": "users-selected-user-page-summary",
+    "htmlFileName": "c809741a6028f1b4c912-users-selected-user-page-summary.html",
+    "jsonFileName": "c809741a6028f1b4c912-users-selected-user-page-summary.json",
+    "screenshotFileName": "c809741a6028f1b4c912-users-selected-user-page-summary.png",
+    "assetFileNames": [
+      "c809741a6028f1b4c912-users-selected-user-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-00d15514a1b7ffaf523d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "users",
+    "pageState": "selected user",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "users — selected user",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "c809741a6028f1b4c912-wave-like.html",
+    "jsonFileName": "c809741a6028f1b4c912-wave-like.json",
+    "screenshotFileName": "c809741a6028f1b4c912-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "c809741a6028f1b4c912-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9e46ad6c03b1c3cb302b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "terms",
+    "pageState": "accepted",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "terms — accepted",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "cc35fa29bb82b8dab4c2-axe.html",
+    "jsonFileName": "cc35fa29bb82b8dab4c2-axe.json",
+    "screenshotFileName": "cc35fa29bb82b8dab4c2-axe.png",
+    "assetFileNames": [
+      "cc35fa29bb82b8dab4c2-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9e46ad6c03b1c3cb302b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "terms",
+    "pageState": "accepted",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=terms",
+      "http://localhost:4200/coverage?feature=terms"
+    ],
+    "testTitle": "terms — accepted",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "cc35fa29bb82b8dab4c2-screen-reader.html",
+    "jsonFileName": "cc35fa29bb82b8dab4c2-screen-reader.json",
+    "screenshotFileName": "cc35fa29bb82b8dab4c2-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "cc35fa29bb82b8dab4c2-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9e46ad6c03b1c3cb302b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "terms",
+    "pageState": "accepted",
+    "violationCount": 3,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "wave-like:h1-count",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=terms"
+    ],
+    "testTitle": "terms — accepted",
+    "attachmentPrefix": "terms-accepted-page-summary",
+    "htmlFileName": "cc35fa29bb82b8dab4c2-terms-accepted-page-summary.html",
+    "jsonFileName": "cc35fa29bb82b8dab4c2-terms-accepted-page-summary.json",
+    "screenshotFileName": "cc35fa29bb82b8dab4c2-terms-accepted-page-summary.png",
+    "assetFileNames": [
+      "cc35fa29bb82b8dab4c2-terms-accepted-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-9e46ad6c03b1c3cb302b",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "terms",
+    "pageState": "accepted",
+    "violationCount": 1,
+    "rules": [
+      "h1-count"
+    ],
+    "targets": [
+      "h1"
+    ],
+    "testTitle": "terms — accepted",
+    "attachmentPrefix": "wave-like",
+    "status": "issues-found",
+    "htmlFileName": "cc35fa29bb82b8dab4c2-wave-like.html",
+    "jsonFileName": "cc35fa29bb82b8dab4c2-wave-like.json",
+    "screenshotFileName": "cc35fa29bb82b8dab4c2-wave-like.png",
+    "findings": [
+      {
+        "rule": "h1-count",
+        "targets": [
+          "h1"
+        ],
+        "summary": "Expected exactly one visible h1, found 2.",
+        "anchor": "issue-1"
+      }
+    ],
+    "assetFileNames": [
+      "cc35fa29bb82b8dab4c2-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5ed8da5e425765b9bc16",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "cookies",
+    "pageState": "reject persisted after reload",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "cookies — reject persisted after reload",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "cf1626cfaa96ce08dce9-axe.html",
+    "jsonFileName": "cf1626cfaa96ce08dce9-axe.json",
+    "screenshotFileName": "cf1626cfaa96ce08dce9-axe.png",
+    "assetFileNames": [
+      "cf1626cfaa96ce08dce9-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5ed8da5e425765b9bc16",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "cookies",
+    "pageState": "reject persisted after reload",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=cookie"
+    ],
+    "testTitle": "cookies — reject persisted after reload",
+    "attachmentPrefix": "cookies-reject-persisted-after-reload-page-summary",
+    "htmlFileName": "cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary.html",
+    "jsonFileName": "cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary.json",
+    "screenshotFileName": "cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary.png",
+    "assetFileNames": [
+      "cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5ed8da5e425765b9bc16",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "cookies",
+    "pageState": "reject persisted after reload",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage?feature=cookie",
+      "http://localhost:4200/coverage?feature=cookie"
+    ],
+    "testTitle": "cookies — reject persisted after reload",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "cf1626cfaa96ce08dce9-screen-reader.html",
+    "jsonFileName": "cf1626cfaa96ce08dce9-screen-reader.json",
+    "screenshotFileName": "cf1626cfaa96ce08dce9-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "cf1626cfaa96ce08dce9-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "05384557491ebd602dd7-5ed8da5e425765b9bc16",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "cookies",
+    "pageState": "reject persisted after reload",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "cookies — reject persisted after reload",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "cf1626cfaa96ce08dce9-wave-like.html",
+    "jsonFileName": "cf1626cfaa96ce08dce9-wave-like.json",
+    "screenshotFileName": "cf1626cfaa96ce08dce9-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "cf1626cfaa96ce08dce9-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "address",
+    "pageState": "lookup results",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — lookup results",
+    "attachmentPrefix": "address-lookup-results-page-summary",
+    "htmlFileName": "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.html",
+    "jsonFileName": "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.json",
+    "screenshotFileName": "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.png",
+    "assetFileNames": [
+      "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "address",
+    "pageState": "lookup results",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — lookup results",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "d7d8f4f6d08d26e9e6c6-axe.html",
+    "jsonFileName": "d7d8f4f6d08d26e9e6c6-axe.json",
+    "screenshotFileName": "d7d8f4f6d08d26e9e6c6-axe.png",
+    "assetFileNames": [
+      "d7d8f4f6d08d26e9e6c6-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "address",
+    "pageState": "lookup results",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/address",
+      "http://localhost:4200/coverage/address"
+    ],
+    "testTitle": "address — lookup results",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "d7d8f4f6d08d26e9e6c6-screen-reader.html",
+    "jsonFileName": "d7d8f4f6d08d26e9e6c6-screen-reader.json",
+    "screenshotFileName": "d7d8f4f6d08d26e9e6c6-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "d7d8f4f6d08d26e9e6c6-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "address",
+    "pageState": "lookup results",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "address — lookup results",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "d7d8f4f6d08d26e9e6c6-wave-like.html",
+    "jsonFileName": "d7d8f4f6d08d26e9e6c6-wave-like.json",
+    "screenshotFileName": "d7d8f4f6d08d26e9e6c6-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "d7d8f4f6d08d26e9e6c6-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-df081fe6e1186804d46d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "form controls",
+    "pageState": "descriptions cleared",
+    "status": "needs-review",
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-valid-attr-value",
+      "color-contrast"
+    ],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — descriptions cleared",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "d901454d3d02fef54740-axe.html",
+    "jsonFileName": "d901454d3d02fef54740-axe.json",
+    "screenshotFileName": "d901454d3d02fef54740-axe.png",
+    "assetFileNames": [
+      "d901454d3d02fef54740-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-df081fe6e1186804d46d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "form controls",
+    "pageState": "descriptions cleared",
+    "violationCount": 4,
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-valid-attr-value",
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:aria-reference-target",
+      "screen-reader:component-description"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls"
+    ],
+    "testTitle": "form controls — descriptions cleared",
+    "attachmentPrefix": "form-controls-descriptions-cleared-page-summary",
+    "htmlFileName": "d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary.html",
+    "jsonFileName": "d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary.json",
+    "screenshotFileName": "d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary.png",
+    "assetFileNames": [
+      "d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-df081fe6e1186804d46d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "form controls",
+    "pageState": "descriptions cleared",
+    "violationCount": 4,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link",
+      "aria-reference-target",
+      "component-description"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls",
+      "http://localhost:4200/coverage/form-controls",
+      "#case-notes",
+      "#case-notes"
+    ],
+    "testTitle": "form controls — descriptions cleared",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "d901454d3d02fef54740-screen-reader.html",
+    "jsonFileName": "d901454d3d02fef54740-screen-reader.json",
+    "screenshotFileName": "d901454d3d02fef54740-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "aria-reference-target",
+        "targets": [
+          "#case-notes"
+        ],
+        "summary": "aria-describedby references missing id(s): case-notes-hint.",
+        "anchor": "issue-3"
+      },
+      {
+        "rule": "component-description",
+        "targets": [
+          "#case-notes"
+        ],
+        "summary": "Expected #case-notes-hint text \"Include only synthetic notes.\", received missing target.",
+        "anchor": "issue-4"
+      }
+    ],
+    "assetFileNames": [
+      "d901454d3d02fef54740-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-df081fe6e1186804d46d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "form controls",
+    "pageState": "descriptions cleared",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — descriptions cleared",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "d901454d3d02fef54740-wave-like.html",
+    "jsonFileName": "d901454d3d02fef54740-wave-like.json",
+    "screenshotFileName": "d901454d3d02fef54740-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "d901454d3d02fef54740-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "form controls",
+    "pageState": "supplied errors and invalid date",
+    "status": "needs-review",
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — supplied errors and invalid date",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "eedcf68ea3206682aa69-axe.html",
+    "jsonFileName": "eedcf68ea3206682aa69-axe.json",
+    "screenshotFileName": "eedcf68ea3206682aa69-axe.png",
+    "assetFileNames": [
+      "eedcf68ea3206682aa69-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "form controls",
+    "pageState": "supplied errors and invalid date",
+    "violationCount": 7,
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 7 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:aria-reference-target",
+      "screen-reader:error-describedby"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls"
+    ],
+    "testTitle": "form controls — supplied errors and invalid date",
+    "attachmentPrefix": "form-controls-supplied-errors-and-invalid-date-page-summary",
+    "htmlFileName": "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.html",
+    "jsonFileName": "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.json",
+    "screenshotFileName": "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.png",
+    "assetFileNames": [
+      "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "form controls",
+    "pageState": "supplied errors and invalid date",
+    "violationCount": 7,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link",
+      "aria-reference-target",
+      "aria-reference-target",
+      "error-describedby",
+      "error-describedby",
+      "error-describedby"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls",
+      "http://localhost:4200/coverage/form-controls",
+      "#case-notes",
+      "fieldset",
+      "#hearing-day",
+      "#hearing-month",
+      "#hearing-year"
+    ],
+    "testTitle": "form controls — supplied errors and invalid date",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "eedcf68ea3206682aa69-screen-reader.html",
+    "jsonFileName": "eedcf68ea3206682aa69-screen-reader.json",
+    "screenshotFileName": "eedcf68ea3206682aa69-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      },
+      {
+        "rule": "aria-reference-target",
+        "targets": [
+          "#case-notes"
+        ],
+        "summary": "aria-describedby references missing id(s): case-notes-hint.",
+        "anchor": "issue-3"
+      },
+      {
+        "rule": "aria-reference-target",
+        "targets": [
+          "fieldset"
+        ],
+        "summary": "aria-describedby references missing id(s): hearing-error.",
+        "anchor": "issue-4"
+      },
+      {
+        "rule": "error-describedby",
+        "targets": [
+          "#hearing-day"
+        ],
+        "summary": "Invalid controls should reference the visible error message.",
+        "anchor": "issue-5"
+      },
+      {
+        "rule": "error-describedby",
+        "targets": [
+          "#hearing-month"
+        ],
+        "summary": "Invalid controls should reference the visible error message.",
+        "anchor": "issue-6"
+      },
+      {
+        "rule": "error-describedby",
+        "targets": [
+          "#hearing-year"
+        ],
+        "summary": "Invalid controls should reference the visible error message.",
+        "anchor": "issue-7"
+      }
+    ],
+    "assetFileNames": [
+      "eedcf68ea3206682aa69-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "form controls",
+    "pageState": "supplied errors and invalid date",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "form controls — supplied errors and invalid date",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "eedcf68ea3206682aa69-wave-like.html",
+    "jsonFileName": "eedcf68ea3206682aa69-wave-like.json",
+    "screenshotFileName": "eedcf68ea3206682aa69-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "eedcf68ea3206682aa69-wave-like-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-ef06c773769dc256dbe0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "axe",
+    "feature": "invitation",
+    "pageState": "submitted details and permissions",
+    "status": "passed",
+    "reviewCount": 0,
+    "reviewRules": [],
+    "findings": [],
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "invitation — submitted details and permissions",
+    "attachmentPrefix": "axe",
+    "htmlFileName": "ffed1ef861e2871cb550-axe.html",
+    "jsonFileName": "ffed1ef861e2871cb550-axe.json",
+    "screenshotFileName": "ffed1ef861e2871cb550-axe.png",
+    "assetFileNames": [
+      "ffed1ef861e2871cb550-axe-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-ef06c773769dc256dbe0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "invitation",
+    "pageState": "submitted details and permissions",
+    "violationCount": 2,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/invitation"
+    ],
+    "testTitle": "invitation — submitted details and permissions",
+    "attachmentPrefix": "invitation-submitted-details-and-permissions-page-summary",
+    "htmlFileName": "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.html",
+    "jsonFileName": "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.json",
+    "screenshotFileName": "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.png",
+    "assetFileNames": [
+      "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-ef06c773769dc256dbe0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "screen-reader",
+    "feature": "invitation",
+    "pageState": "submitted details and permissions",
+    "violationCount": 2,
+    "status": "issues-found",
+    "rules": [
+      "govuk-template-body",
+      "skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/invitation",
+      "http://localhost:4200/coverage/invitation"
+    ],
+    "testTitle": "invitation — submitted details and permissions",
+    "attachmentPrefix": "screen-reader",
+    "htmlFileName": "ffed1ef861e2871cb550-screen-reader.html",
+    "jsonFileName": "ffed1ef861e2871cb550-screen-reader.json",
+    "screenshotFileName": "ffed1ef861e2871cb550-screen-reader.png",
+    "findings": [
+      {
+        "rule": "govuk-template-body",
+        "targets": [],
+        "summary": "The page should use the GOV.UK template body class during the template migration.",
+        "anchor": "issue-1"
+      },
+      {
+        "rule": "skip-link",
+        "targets": [],
+        "summary": "The page should expose a visible skip-to-main-content link.",
+        "anchor": "issue-2"
+      }
+    ],
+    "assetFileNames": [
+      "ffed1ef861e2871cb550-screen-reader-style-1.css"
+    ]
+  },
+  {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-ef06c773769dc256dbe0",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "wave-like",
+    "feature": "invitation",
+    "pageState": "submitted details and permissions",
+    "violationCount": 0,
+    "rules": [],
+    "targets": [],
+    "testTitle": "invitation — submitted details and permissions",
+    "attachmentPrefix": "wave-like",
+    "status": "passed",
+    "htmlFileName": "ffed1ef861e2871cb550-wave-like.html",
+    "jsonFileName": "ffed1ef861e2871cb550-wave-like.json",
+    "screenshotFileName": "ffed1ef861e2871cb550-wave-like.png",
+    "findings": [],
+    "assetFileNames": [
+      "ffed1ef861e2871cb550-wave-like-style-1.css"
+    ]
+  }
+]

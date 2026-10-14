@@ -1,0 +1,3030 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-14T13:43:11.117Z",
+  "runDir": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility",
+  "status": "issues-found",
+  "expectedTests": 37,
+  "completedTests": 37,
+  "ruleCount": 104,
+  "nodeCount": 140,
+  "incompleteCount": 17,
+  "executionErrors": [],
+  "entries": [
+    {
+      "testId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+      "title": "filter — initial controls",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-initial-controls-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5803c38c5ee18792ce92-filter-initial-controls-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5803c38c5ee18792ce92-filter-initial-controls-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-initial-controls-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-initial-controls-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-filter-%E2%80%94-initial-controls-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/5803c38c5ee18792ce92-filter-initial-controls-page-summary.html",
+        "screenshot": "accessibility-evidence/5803c38c5ee18792ce92-filter-initial-controls-page-summary.png",
+        "screenshot-1": "browser/demo-filter-%E2%80%94-initial-controls-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-filter-%E2%80%94-initial-controls-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=filter",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+      "title": "home — initial components",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 33\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"aria-prohibited-attr\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"color-contrast\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"wave-like\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"h1-count\",\u001b[39m\n\u001b[31m+       \"table-headers\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 3,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+       \"table-headers\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-home-—-initial-components-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/838714d8860b1fe06e80-home-initial-components-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/838714d8860b1fe06e80-home-initial-components-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-home-—-initial-components-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-home-—-initial-components-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 6,
+      "nodeCount": 6,
+      "incompleteCount": 1,
+      "rules": [
+        "axe:color-contrast",
+        "wave-like:h1-count",
+        "wave-like:table-headers",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link",
+        "screen-reader:table-headers"
+      ],
+      "links": {
+        "json": "browser/demo-home-%E2%80%94-initial-components-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/838714d8860b1fe06e80-home-initial-components-page-summary.html",
+        "screenshot": "accessibility-evidence/838714d8860b1fe06e80-home-initial-components-page-summary.png",
+        "screenshot-1": "browser/demo-home-%E2%80%94-initial-components-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-home-%E2%80%94-initial-components-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/home",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 1,
+          "reviewRules": [
+            "aria-prohibited-attr"
+          ],
+          "issueCount": 1,
+          "rules": [
+            "color-contrast"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "h1-count",
+            "table-headers"
+          ]
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 3,
+          "rules": [
+            "govuk-template-body",
+            "skip-link",
+            "table-headers"
+          ]
+        }
+      ],
+      "reviewCount": 1
+    },
+    {
+      "testId": "05384557491ebd602dd7-056b10a47fdf03417b59",
+      "title": "filter — required-service error",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-required-service-error-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/7b54a649beda8d1e3985-filter-required-service-error-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/7b54a649beda8d1e3985-filter-required-service-error-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-required-service-error-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-required-service-error-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-filter-%E2%80%94-required-service-error-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/7b54a649beda8d1e3985-filter-required-service-error-page-summary.html",
+        "screenshot": "accessibility-evidence/7b54a649beda8d1e3985-filter-required-service-error-page-summary.png",
+        "screenshot-1": "browser/demo-filter-%E2%80%94-required-service-error-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-filter-%E2%80%94-required-service-error-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=filter",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-6c64c1cf3e8ef4e3678b",
+      "title": "filter — applied selection",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-applied-selection-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/1e1b191ac765fb45a117-filter-applied-selection-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/1e1b191ac765fb45a117-filter-applied-selection-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-applied-selection-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-filter-—-applied-selection-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-filter-%E2%80%94-applied-selection-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/1e1b191ac765fb45a117-filter-applied-selection-page-summary.html",
+        "screenshot": "accessibility-evidence/1e1b191ac765fb45a117-filter-applied-selection-page-summary.png",
+        "screenshot-1": "browser/demo-filter-%E2%80%94-applied-selection-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-filter-%E2%80%94-applied-selection-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=filter",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-f9637579684f3bad5122",
+      "title": "cookies — choice banner",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-choice-banner-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-choice-banner-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-choice-banner-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-cookies-%E2%80%94-choice-banner-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.html",
+        "screenshot": "accessibility-evidence/8b1a0c6c967b14a34e43-cookies-choice-banner-page-summary.png",
+        "screenshot-1": "browser/demo-cookies-%E2%80%94-choice-banner-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-cookies-%E2%80%94-choice-banner-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=cookie",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-e4b42f4f9485cf59fdb4",
+      "title": "cookies — accept persisted after reload",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-accept-persisted-after-reload-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-accept-persisted-after-reload-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-accept-persisted-after-reload-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-cookies-%E2%80%94-accept-persisted-after-reload-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.html",
+        "screenshot": "accessibility-evidence/5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.png",
+        "screenshot-1": "browser/demo-cookies-%E2%80%94-accept-persisted-after-reload-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-cookies-%E2%80%94-accept-persisted-after-reload-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=cookie",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-5ed8da5e425765b9bc16",
+      "title": "cookies — reject persisted after reload",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-reject-persisted-after-reload-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-reject-persisted-after-reload-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-cookies-—-reject-persisted-after-reload-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-cookies-%E2%80%94-reject-persisted-after-reload-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary.html",
+        "screenshot": "accessibility-evidence/cf1626cfaa96ce08dce9-cookies-reject-persisted-after-reload-page-summary.png",
+        "screenshot-1": "browser/demo-cookies-%E2%80%94-reject-persisted-after-reload-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-cookies-%E2%80%94-reject-persisted-after-reload-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=cookie",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-8647a7d9592f503b5cf1",
+      "title": "navigation — active destinations",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-navigation-—-active-destinations-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/735d81156630f818920a-navigation-active-destinations-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/735d81156630f818920a-navigation-active-destinations-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-navigation-—-active-destinations-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-navigation-—-active-destinations-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 1,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-navigation-%E2%80%94-active-destinations-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/735d81156630f818920a-navigation-active-destinations-page-summary.html",
+        "screenshot": "accessibility-evidence/735d81156630f818920a-navigation-active-destinations-page-summary.png",
+        "screenshot-1": "browser/demo-navigation-%E2%80%94-active-destinations-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-navigation-%E2%80%94-active-destinations-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=navigation",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "needs-review",
+          "reviewCount": 1,
+          "reviewRules": [
+            "color-contrast"
+          ],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 1
+    },
+    {
+      "testId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+      "title": "users — suggestions expanded",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 24\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"reviewCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"color-contrast\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"aria-required-attr\",\u001b[39m\n\u001b[31m+       \"region\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-users-—-suggestions-expanded-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/34e2c591f700e43121e8-users-suggestions-expanded-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/34e2c591f700e43121e8-users-suggestions-expanded-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-users-—-suggestions-expanded-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-users-—-suggestions-expanded-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 4,
+      "nodeCount": 4,
+      "incompleteCount": 1,
+      "rules": [
+        "axe:aria-required-attr",
+        "axe:region",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-users-%E2%80%94-suggestions-expanded-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/34e2c591f700e43121e8-users-suggestions-expanded-page-summary.html",
+        "screenshot": "accessibility-evidence/34e2c591f700e43121e8-users-suggestions-expanded-page-summary.png",
+        "screenshot-1": "browser/demo-users-%E2%80%94-suggestions-expanded-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-users-%E2%80%94-suggestions-expanded-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=users",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 1,
+          "reviewRules": [
+            "color-contrast"
+          ],
+          "issueCount": 2,
+          "rules": [
+            "aria-required-attr",
+            "region"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 1
+    },
+    {
+      "testId": "05384557491ebd602dd7-00d15514a1b7ffaf523d",
+      "title": "users — selected user",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-users-—-selected-user-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/c809741a6028f1b4c912-users-selected-user-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/c809741a6028f1b4c912-users-selected-user-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-users-—-selected-user-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-users-—-selected-user-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-users-%E2%80%94-selected-user-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/c809741a6028f1b4c912-users-selected-user-page-summary.html",
+        "screenshot": "accessibility-evidence/c809741a6028f1b4c912-users-selected-user-page-summary.png",
+        "screenshot-1": "browser/demo-users-%E2%80%94-selected-user-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-users-%E2%80%94-selected-user-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=users",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-7c59aed91c0fdda2c8e2",
+      "title": "terms — awaiting confirmation",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 19\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"wave-like\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"h1-count\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-terms-—-awaiting-confirmation-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-terms-—-awaiting-confirmation-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-terms-—-awaiting-confirmation-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 3,
+      "nodeCount": 3,
+      "incompleteCount": 0,
+      "rules": [
+        "wave-like:h1-count",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-terms-%E2%80%94-awaiting-confirmation-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.html",
+        "screenshot": "accessibility-evidence/a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.png",
+        "screenshot-1": "browser/demo-terms-%E2%80%94-awaiting-confirmation-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-terms-%E2%80%94-awaiting-confirmation-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=terms",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "issues-found",
+          "issueCount": 1,
+          "rules": [
+            "h1-count"
+          ]
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-9e46ad6c03b1c3cb302b",
+      "title": "terms — accepted",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 19\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"wave-like\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"h1-count\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-terms-—-accepted-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/cc35fa29bb82b8dab4c2-terms-accepted-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/cc35fa29bb82b8dab4c2-terms-accepted-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-terms-—-accepted-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-terms-—-accepted-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 3,
+      "nodeCount": 3,
+      "incompleteCount": 0,
+      "rules": [
+        "wave-like:h1-count",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-terms-%E2%80%94-accepted-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/cc35fa29bb82b8dab4c2-terms-accepted-page-summary.html",
+        "screenshot": "accessibility-evidence/cc35fa29bb82b8dab4c2-terms-accepted-page-summary.png",
+        "screenshot-1": "browser/demo-terms-%E2%80%94-accepted-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-terms-%E2%80%94-accepted-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=terms",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "issues-found",
+          "issueCount": 1,
+          "rules": [
+            "h1-count"
+          ]
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-61ff57397975ea90b153",
+      "title": "feedback — success and warning banners",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-feedback-—-success-and-warning-banners-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-feedback-—-success-and-warning-banners-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-feedback-—-success-and-warning-banners-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-feedback-%E2%80%94-success-and-warning-banners-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.html",
+        "screenshot": "accessibility-evidence/b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.png",
+        "screenshot-1": "browser/demo-feedback-%E2%80%94-success-and-warning-banners-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-feedback-%E2%80%94-success-and-warning-banners-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=feedback",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-973e0082bf08095265b4",
+      "title": "feedback — validation summary",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-feedback-—-validation-summary-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/9747289c644b3b6defe8-feedback-validation-summary-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/9747289c644b3b6defe8-feedback-validation-summary-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-feedback-—-validation-summary-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-feedback-—-validation-summary-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-feedback-%E2%80%94-validation-summary-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/9747289c644b3b6defe8-feedback-validation-summary-page-summary.html",
+        "screenshot": "accessibility-evidence/9747289c644b3b6defe8-feedback-validation-summary-page-summary.png",
+        "screenshot-1": "browser/demo-feedback-%E2%80%94-validation-summary-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-feedback-%E2%80%94-validation-summary-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=feedback",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+      "title": "session — visible timeout dialog",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 21\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewCount\": 0,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"aria-dialog-name\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-session-—-visible-timeout-dialog-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-session-—-visible-timeout-dialog-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/demo-session-—-visible-timeout-dialog-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 3,
+      "nodeCount": 3,
+      "incompleteCount": 0,
+      "rules": [
+        "axe:aria-dialog-name",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/demo-session-%E2%80%94-visible-timeout-dialog-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.html",
+        "screenshot": "accessibility-evidence/36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.png",
+        "screenshot-1": "browser/demo-session-%E2%80%94-visible-timeout-dialog-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/demo-session-%E2%80%94-visible-timeout-dialog-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage?feature=dialog",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 1,
+          "rules": [
+            "aria-dialog-name"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-27f57ad1db87b9fcfe76",
+      "title": "invitation — initial form",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation-—-initial-form-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation-—-initial-form-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation-—-initial-form-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-invitation-%E2%80%94-initial-form-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary.html",
+        "screenshot": "accessibility-evidence/5ff7d4ec8c39ab09bc65-invitation-initial-form-page-summary.png",
+        "screenshot-1": "browser/feature-states-invitation-%E2%80%94-initial-form-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-invitation-%E2%80%94-initial-form-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/invitation",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+      "title": "invitation — parent validation errors",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation-—-parent-validation-errors-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation-—-parent-validation-errors-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation-—-parent-validation-errors-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-invitation-%E2%80%94-parent-validation-errors-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.html",
+        "screenshot": "accessibility-evidence/084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.png",
+        "screenshot-1": "browser/feature-states-invitation-%E2%80%94-parent-validation-errors-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-invitation-%E2%80%94-parent-validation-errors-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/invitation",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-ef06c773769dc256dbe0",
+      "title": "invitation — submitted details and permissions",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation--f0452-ted-details-and-permissions-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation--f0452-ted-details-and-permissions-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-invitation--f0452-ted-details-and-permissions-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-invitation--f0452-ted-details-and-permissions-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.html",
+        "screenshot": "accessibility-evidence/ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.png",
+        "screenshot-1": "browser/feature-states-invitation--f0452-ted-details-and-permissions-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-invitation--f0452-ted-details-and-permissions-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/invitation",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+      "title": "form controls — descriptions initial",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 13\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 4,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+       \"aria-reference-target\",\u001b[39m\n\u001b[31m+       \"component-description\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 4,
+      "nodeCount": 4,
+      "incompleteCount": 2,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link",
+        "screen-reader:aria-reference-target",
+        "screen-reader:component-description"
+      ],
+      "links": {
+        "json": "browser/feature-states-form-controls-%E2%80%94-descriptions-initial-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.html",
+        "screenshot": "accessibility-evidence/02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.png",
+        "screenshot-1": "browser/feature-states-form-controls-%E2%80%94-descriptions-initial-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-form-controls-%E2%80%94-descriptions-initial-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/form-controls",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "needs-review",
+          "reviewCount": 2,
+          "reviewRules": [
+            "aria-valid-attr-value",
+            "color-contrast"
+          ],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 4,
+          "rules": [
+            "govuk-template-body",
+            "skip-link",
+            "aria-reference-target",
+            "component-description"
+          ]
+        }
+      ],
+      "reviewCount": 2
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-d64b574a9ce882e8687d",
+      "title": "form controls — descriptions errors",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 13\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 4,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+       \"aria-reference-target\",\u001b[39m\n\u001b[31m+       \"component-description\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 4,
+      "nodeCount": 4,
+      "incompleteCount": 1,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link",
+        "screen-reader:aria-reference-target",
+        "screen-reader:component-description"
+      ],
+      "links": {
+        "json": "browser/feature-states-form-controls-%E2%80%94-descriptions-errors-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.html",
+        "screenshot": "accessibility-evidence/610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.png",
+        "screenshot-1": "browser/feature-states-form-controls-%E2%80%94-descriptions-errors-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-form-controls-%E2%80%94-descriptions-errors-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/form-controls",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "needs-review",
+          "reviewCount": 1,
+          "reviewRules": [
+            "color-contrast"
+          ],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 4,
+          "rules": [
+            "govuk-template-body",
+            "skip-link",
+            "aria-reference-target",
+            "component-description"
+          ]
+        }
+      ],
+      "reviewCount": 1
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-df081fe6e1186804d46d",
+      "title": "form controls — descriptions cleared",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 13\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 4,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+       \"aria-reference-target\",\u001b[39m\n\u001b[31m+       \"component-description\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 4,
+      "nodeCount": 4,
+      "incompleteCount": 2,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link",
+        "screen-reader:aria-reference-target",
+        "screen-reader:component-description"
+      ],
+      "links": {
+        "json": "browser/feature-states-form-controls-%E2%80%94-descriptions-cleared-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary.html",
+        "screenshot": "accessibility-evidence/d901454d3d02fef54740-form-controls-descriptions-cleared-page-summary.png",
+        "screenshot-1": "browser/feature-states-form-controls-%E2%80%94-descriptions-cleared-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-form-controls-%E2%80%94-descriptions-cleared-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/form-controls",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "needs-review",
+          "reviewCount": 2,
+          "reviewRules": [
+            "aria-valid-attr-value",
+            "color-contrast"
+          ],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 4,
+          "rules": [
+            "govuk-template-body",
+            "skip-link",
+            "aria-reference-target",
+            "component-description"
+          ]
+        }
+      ],
+      "reviewCount": 2
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+      "title": "form controls — supplied errors and invalid date",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 13\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 7,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+       \"aria-reference-target\",\u001b[39m\n\u001b[31m+       \"error-describedby\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 4,
+      "nodeCount": 7,
+      "incompleteCount": 1,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link",
+        "screen-reader:aria-reference-target",
+        "screen-reader:error-describedby"
+      ],
+      "links": {
+        "json": "browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.html",
+        "screenshot": "accessibility-evidence/eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.png",
+        "screenshot-1": "browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/form-controls",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "needs-review",
+          "reviewCount": 1,
+          "reviewRules": [
+            "color-contrast"
+          ],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 7,
+          "rules": [
+            "govuk-template-body",
+            "skip-link",
+            "aria-reference-target",
+            "error-describedby"
+          ]
+        }
+      ],
+      "reviewCount": 1
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-e6af87af19912f4654b1",
+      "title": "service selection — expanded suggestions",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 24\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"reviewCount\": 2,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"color-contrast\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"aria-required-attr\",\u001b[39m\n\u001b[31m+       \"region\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 4,
+      "nodeCount": 4,
+      "incompleteCount": 1,
+      "rules": [
+        "axe:aria-required-attr",
+        "axe:region",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-service-selection-%E2%80%94-expanded-suggestions-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary.html",
+        "screenshot": "accessibility-evidence/917772a02be44daceeb2-service-selection-expanded-suggestions-page-summary.png",
+        "screenshot-1": "browser/feature-states-service-selection-%E2%80%94-expanded-suggestions-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-service-selection-%E2%80%94-expanded-suggestions-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/service-selection",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 2,
+          "reviewRules": [
+            "color-contrast"
+          ],
+          "issueCount": 2,
+          "rules": [
+            "aria-required-attr",
+            "region"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 2
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-567fd581dba25dc14f53",
+      "title": "service selection — selected service",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-service-selection-—-selected-service-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-service-selection-—-selected-service-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-service-selection-—-selected-service-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-service-selection-%E2%80%94-selected-service-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.html",
+        "screenshot": "accessibility-evidence/3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.png",
+        "screenshot-1": "browser/feature-states-service-selection-%E2%80%94-selected-service-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-service-selection-%E2%80%94-selected-service-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/service-selection",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-d42f6110167cbb95590d",
+      "title": "case sharing — initial assignments",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 32\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewCount\": 2,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"aria-prohibited-attr\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"wave-like\",\u001b[39m\n\u001b[31m+     \"issueCount\": 3,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+       \"duplicate-id\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 5,
+      "nodeCount": 6,
+      "incompleteCount": 1,
+      "rules": [
+        "axe:heading-order",
+        "wave-like:heading-order",
+        "wave-like:duplicate-id",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-case-sharing-%E2%80%94-initial-assignments-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.html",
+        "screenshot": "accessibility-evidence/94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.png",
+        "screenshot-1": "browser/feature-states-case-sharing-%E2%80%94-initial-assignments-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-case-sharing-%E2%80%94-initial-assignments-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/case-sharing",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 2,
+          "reviewRules": [
+            "aria-prohibited-attr"
+          ],
+          "issueCount": 1,
+          "rules": [
+            "heading-order"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "issues-found",
+          "issueCount": 3,
+          "rules": [
+            "heading-order",
+            "duplicate-id"
+          ]
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 2
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-0fc654d208d63f607318",
+      "title": "case sharing — no-change validation",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 32\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewCount\": 2,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"aria-prohibited-attr\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"wave-like\",\u001b[39m\n\u001b[31m+     \"issueCount\": 3,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+       \"duplicate-id\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 5,
+      "nodeCount": 6,
+      "incompleteCount": 1,
+      "rules": [
+        "axe:heading-order",
+        "wave-like:heading-order",
+        "wave-like:duplicate-id",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-case-sharing-%E2%80%94-no-change-validation-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary.html",
+        "screenshot": "accessibility-evidence/7a4203c09c41cce2a0f3-case-sharing-no-change-validation-page-summary.png",
+        "screenshot-1": "browser/feature-states-case-sharing-%E2%80%94-no-change-validation-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-case-sharing-%E2%80%94-no-change-validation-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/case-sharing",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 2,
+          "reviewRules": [
+            "aria-prohibited-attr"
+          ],
+          "issueCount": 1,
+          "rules": [
+            "heading-order"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "issues-found",
+          "issueCount": 3,
+          "rules": [
+            "heading-order",
+            "duplicate-id"
+          ]
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 2
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+      "title": "case sharing — pending addition",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 32\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewCount\": 2,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"aria-prohibited-attr\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"wave-like\",\u001b[39m\n\u001b[31m+     \"issueCount\": 5,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+       \"duplicate-id\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 5,
+      "nodeCount": 8,
+      "incompleteCount": 1,
+      "rules": [
+        "axe:heading-order",
+        "wave-like:heading-order",
+        "wave-like:duplicate-id",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-case-sharing-%E2%80%94-pending-addition-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.html",
+        "screenshot": "accessibility-evidence/24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.png",
+        "screenshot-1": "browser/feature-states-case-sharing-%E2%80%94-pending-addition-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-case-sharing-%E2%80%94-pending-addition-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/case-sharing",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 2,
+          "reviewRules": [
+            "aria-prohibited-attr"
+          ],
+          "issueCount": 1,
+          "rules": [
+            "heading-order"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "issues-found",
+          "issueCount": 5,
+          "rules": [
+            "heading-order",
+            "duplicate-id"
+          ]
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 2
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-9fffb2b5c16ba1afd367",
+      "title": "case sharing — confirmation",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 29\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"reviewCount\": 0,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"wave-like\",\u001b[39m\n\u001b[31m+     \"issueCount\": 1,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"heading-order\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-confirmation-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/4cd77f65311f1779f180-case-sharing-confirmation-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/4cd77f65311f1779f180-case-sharing-confirmation-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-confirmation-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-case-sharing-—-confirmation-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 4,
+      "nodeCount": 4,
+      "incompleteCount": 0,
+      "rules": [
+        "axe:heading-order",
+        "wave-like:heading-order",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-case-sharing-%E2%80%94-confirmation-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/4cd77f65311f1779f180-case-sharing-confirmation-page-summary.html",
+        "screenshot": "accessibility-evidence/4cd77f65311f1779f180-case-sharing-confirmation-page-summary.png",
+        "screenshot-1": "browser/feature-states-case-sharing-%E2%80%94-confirmation-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-case-sharing-%E2%80%94-confirmation-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/case-sharing/confirmation",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 1,
+          "rules": [
+            "heading-order"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "issues-found",
+          "issueCount": 1,
+          "rules": [
+            "heading-order"
+          ]
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-f79177689e7a65fb97a4",
+      "title": "address — initial lookup",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-initial-lookup-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/802becc148fc110ebb07-address-initial-lookup-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/802becc148fc110ebb07-address-initial-lookup-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-initial-lookup-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-initial-lookup-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-address-%E2%80%94-initial-lookup-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/802becc148fc110ebb07-address-initial-lookup-page-summary.html",
+        "screenshot": "accessibility-evidence/802becc148fc110ebb07-address-initial-lookup-page-summary.png",
+        "screenshot-1": "browser/feature-states-address-%E2%80%94-initial-lookup-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-address-%E2%80%94-initial-lookup-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/address",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+      "title": "address — invalid postcode",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 12\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 3,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+       \"error-describedby\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-invalid-postcode-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-invalid-postcode-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-invalid-postcode-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 3,
+      "nodeCount": 3,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link",
+        "screen-reader:error-describedby"
+      ],
+      "links": {
+        "json": "browser/feature-states-address-%E2%80%94-invalid-postcode-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.html",
+        "screenshot": "accessibility-evidence/9e91a0dee8cfb5eeaf03-address-invalid-postcode-page-summary.png",
+        "screenshot-1": "browser/feature-states-address-%E2%80%94-invalid-postcode-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-address-%E2%80%94-invalid-postcode-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/address",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 3,
+          "rules": [
+            "govuk-template-body",
+            "skip-link",
+            "error-describedby"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+      "title": "address — lookup results",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-lookup-results-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-lookup-results-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-lookup-results-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-address-%E2%80%94-lookup-results-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.html",
+        "screenshot": "accessibility-evidence/d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.png",
+        "screenshot-1": "browser/feature-states-address-%E2%80%94-lookup-results-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-address-%E2%80%94-lookup-results-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/address",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-55374cb42d6f9e462b70",
+      "title": "address — selected address",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-selected-address-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/13687011c46513f92965-address-selected-address-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/13687011c46513f92965-address-selected-address-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-selected-address-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-selected-address-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-address-%E2%80%94-selected-address-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/13687011c46513f92965-address-selected-address-page-summary.html",
+        "screenshot": "accessibility-evidence/13687011c46513f92965-address-selected-address-page-summary.png",
+        "screenshot-1": "browser/feature-states-address-%E2%80%94-selected-address-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-address-%E2%80%94-selected-address-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/address",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-50df024f1bd0d29d5623",
+      "title": "address — manual international entry",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 11\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-manual-international-entry-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/88ba56a387682ee99791-address-manual-international-entry-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/88ba56a387682ee99791-address-manual-international-entry-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-manual-international-entry-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-address-—-manual-international-entry-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 2,
+      "nodeCount": 2,
+      "incompleteCount": 0,
+      "rules": [
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-address-%E2%80%94-manual-international-entry-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/88ba56a387682ee99791-address-manual-international-entry-page-summary.html",
+        "screenshot": "accessibility-evidence/88ba56a387682ee99791-address-manual-international-entry-page-summary.png",
+        "screenshot-1": "browser/feature-states-address-%E2%80%94-manual-international-entry-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-address-%E2%80%94-manual-international-entry-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/address",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "passed",
+          "reviewCount": 0,
+          "reviewRules": [],
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+      "title": "user management — first page and detail panels",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 24\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 15,\u001b[39m\n\u001b[31m+     \"reviewCount\": 4,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"aria-prohibited-attr\",\u001b[39m\n\u001b[31m+       \"color-contrast\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"dlitem\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 3,
+      "nodeCount": 17,
+      "incompleteCount": 2,
+      "rules": [
+        "axe:dlitem",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.html",
+        "screenshot": "accessibility-evidence/00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.png",
+        "screenshot-1": "browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/users",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 4,
+          "reviewRules": [
+            "aria-prohibited-attr",
+            "color-contrast"
+          ],
+          "issueCount": 15,
+          "rules": [
+            "dlitem"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 4
+    },
+    {
+      "testId": "d45d9ddca158fa8a2748-3c0aef397740f3a035a9",
+      "title": "user management — next page",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 24\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"axe\",\u001b[39m\n\u001b[31m+     \"issueCount\": 15,\u001b[39m\n\u001b[31m+     \"reviewCount\": 4,\u001b[39m\n\u001b[31m+     \"reviewRules\": Array [\u001b[39m\n\u001b[31m+       \"aria-prohibited-attr\",\u001b[39m\n\u001b[31m+       \"color-contrast\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"dlitem\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"engine\": \"screen-reader\",\u001b[39m\n\u001b[31m+     \"issueCount\": 2,\u001b[39m\n\u001b[31m+     \"rules\": Array [\u001b[39m\n\u001b[31m+       \"govuk-template-body\",\u001b[39m\n\u001b[31m+       \"skip-link\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"status\": \"issues-found\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-user-management-—-next-page-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5dfcc752b9720c840088-user-management-next-page-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/5dfcc752b9720c840088-user-management-next-page-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-user-management-—-next-page-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/feature-states-user-management-—-next-page-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 3,
+      "nodeCount": 17,
+      "incompleteCount": 2,
+      "rules": [
+        "axe:dlitem",
+        "screen-reader:govuk-template-body",
+        "screen-reader:skip-link"
+      ],
+      "links": {
+        "json": "browser/feature-states-user-management-%E2%80%94-next-page-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/5dfcc752b9720c840088-user-management-next-page-page-summary.html",
+        "screenshot": "accessibility-evidence/5dfcc752b9720c840088-user-management-next-page-page-summary.png",
+        "screenshot-1": "browser/feature-states-user-management-%E2%80%94-next-page-chromium-a11y/test-failed-1.png",
+        "trace-2": "browser/feature-states-user-management-%E2%80%94-next-page-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/coverage/users",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "axe",
+          "status": "issues-found",
+          "reviewCount": 4,
+          "reviewRules": [
+            "aria-prohibited-attr",
+            "color-contrast"
+          ],
+          "issueCount": 15,
+          "rules": [
+            "dlitem"
+          ]
+        },
+        {
+          "engine": "wave-like",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": []
+        },
+        {
+          "engine": "screen-reader",
+          "status": "issues-found",
+          "issueCount": 2,
+          "rules": [
+            "govuk-template-body",
+            "skip-link"
+          ]
+        }
+      ],
+      "reviewCount": 4
+    },
+    {
+      "testId": "cf859ece42b60ea1c522-03afd72c21eefb16058e",
+      "title": "Lighthouse /home — representative stable page",
+      "retry": 0,
+      "playwrightStatus": "failed",
+      "errors": [
+        "Error: A11Y_VIOLATIONS\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m"
+      ],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.png"
+      },
+      "diagnostics": [
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/test-failed-1.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "screenshot",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/test-failed-2.png",
+          "contentType": "image/png"
+        },
+        {
+          "name": "trace",
+          "path": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/trace.zip",
+          "contentType": "application/zip"
+        }
+      ],
+      "status": "issues-found",
+      "ruleCount": 1,
+      "nodeCount": 1,
+      "incompleteCount": 0,
+      "rules": [
+        "lighthouse:color-contrast"
+      ],
+      "links": {
+        "json": "browser/lighthouse-Lighthouse-home-%E2%80%94-representative-stable-page-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.html",
+        "screenshot": "accessibility-evidence/8da17f1c77d491c4990c-lighthouse-home-representative-stable-page-page-summary.png",
+        "screenshot-1": "browser/lighthouse-Lighthouse-home-%E2%80%94-representative-stable-page-chromium-a11y/test-failed-1.png",
+        "screenshot-2": "browser/lighthouse-Lighthouse-home-%E2%80%94-representative-stable-page-chromium-a11y/test-failed-2.png",
+        "trace-3": "browser/lighthouse-Lighthouse-home-%E2%80%94-representative-stable-page-chromium-a11y/trace.zip"
+      },
+      "url": "http://localhost:4200/home",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "lighthouse",
+          "status": "issues-found",
+          "issueCount": 1,
+          "rules": [
+            "color-contrast"
+          ],
+          "message": "Accessibility score 97; WebApp reference threshold 90. All failed audits remain findings even above the threshold."
+        }
+      ],
+      "reviewCount": 0
+    },
+    {
+      "testId": "cf859ece42b60ea1c522-df67b21a95f8f1723664",
+      "title": "Lighthouse /coverage?feature=filter — representative stable page",
+      "retry": 0,
+      "playwrightStatus": "passed",
+      "errors": [],
+      "files": {
+        "json": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/browser/lighthouse-Lighthouse-cove-c8485--representative-stable-page-chromium-a11y/audit.json",
+        "html": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary.html",
+        "screenshot": "/home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/test-results/odhin/accessibility/accessibility-evidence/901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary.png"
+      },
+      "diagnostics": [],
+      "status": "clean",
+      "ruleCount": 0,
+      "nodeCount": 0,
+      "incompleteCount": 0,
+      "rules": [],
+      "links": {
+        "json": "browser/lighthouse-Lighthouse-cove-c8485--representative-stable-page-chromium-a11y/audit.json",
+        "html": "accessibility-evidence/901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary.html",
+        "screenshot": "accessibility-evidence/901c203740ee70c4db00-lighthouse-coverage-feature-filter-representative-stable-page-page-summary.png"
+      },
+      "url": "http://localhost:4200/coverage?feature=filter",
+      "audit": {
+        "project": "chromium-a11y",
+        "browserVersion": "156.0.8078.4",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "retry": 0,
+        "repeatEachIndex": 0,
+        "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+      },
+      "outcomes": [
+        {
+          "engine": "lighthouse",
+          "status": "passed",
+          "issueCount": 0,
+          "rules": [],
+          "message": "Accessibility score 100; WebApp reference threshold 90. All failed audits remain findings even above the threshold."
+        }
+      ],
+      "reviewCount": 0
+    }
+  ],
+  "engineTotals": {
+    "axe": {
+      "states": 35,
+      "issues": 40,
+      "reviewNodes": 25
+    },
+    "wave-like": {
+      "states": 35,
+      "issues": 16,
+      "reviewNodes": 0
+    },
+    "screen-reader": {
+      "states": 35,
+      "issues": 83,
+      "reviewNodes": 0
+    },
+    "lighthouse": {
+      "states": 2,
+      "issues": 1,
+      "reviewNodes": 0
+    }
+  },
+  "limitation": "Automated axe and Lighthouse audits plus WebApp WAVE-like and screen-reader-like heuristics. Not official WAVE, NVDA or JAWS. No automated result establishes WCAG conformance. Advisory product findings remain visible and tracked; execution/report errors block. Incomplete checks need human investigation."
+}
