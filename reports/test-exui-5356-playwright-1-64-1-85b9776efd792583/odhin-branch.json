@@ -1,5 +1,18 @@
 {
   "rawBranch": "test/EXUI-5356-playwright-1-64-1",
   "slug": "test-exui-5356-playwright-1-64-1-85b9776efd792583",
-  "runs": []
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "test/EXUI-5356-playwright-1-64-1",
+      "branchSlug": "test-exui-5356-playwright-1-64-1-85b9776efd792583",
+      "runKey": "38564806305-attempt-1",
+      "runId": "38564806305",
+      "runAttempt": "1",
+      "sha": "6e47319785054a091bfca3fbd57fb0dc7d6ff3d0",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38564806305",
+      "createdAt": "2026-10-14T12:43:56.134Z"
+    }
+  ]
 }
