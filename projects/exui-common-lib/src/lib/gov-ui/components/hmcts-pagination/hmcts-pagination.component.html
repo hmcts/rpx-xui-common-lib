@@ -7,8 +7,7 @@
       <ul class="hmcts-pagination__list">
         <li class="hmcts-pagination__item  hmcts-pagination__item--prev" [class.disabled]="p.isFirstPage()">
           @if (1 < p.getCurrent()) {
-            <a [routerLink]="" class="hmcts-pagination__link" (keyup.enter)="p.previous()"
-              (click)="p.previous()">{{'Previous' | rpxTranslate}} <span class="govuk-visually-hidden">{{'set of pages' | rpxTranslate}}</span></a>
+            <button type="button" class="hmcts-pagination__link" (click)="p.previous()">{{'Previous' | rpxTranslate}} <span class="govuk-visually-hidden">{{'set of pages' | rpxTranslate}}</span></button>
             }
           </li>
           @if (showPageNumbers) {
@@ -16,11 +15,10 @@
               <li class="hmcts-pagination__item" [class.hmcts-pagination__item--active]="p.getCurrent() === page.value"
                 [class.hmcts-pagination__item--dots]="page.label === '...'">
                 @if (p.getCurrent() !== page.value) {
-                  <a class="hmcts-pagination__link" [routerLink]="" (keyup.enter)="p.setCurrent(page.value)"
-                    (click)="p.setCurrent(page.value)">
+                  <button type="button" class="hmcts-pagination__link" (click)="p.setCurrent(page.value)">
                     <span class="govuk-visually-hidden">{{'page' | rpxTranslate}} </span>
                     <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
-                  </a>
+                  </button>
                 }
                 @if (p.getCurrent() === page.value) {
                   <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
@@ -30,8 +28,7 @@
           }
           <li class="hmcts-pagination__item  hmcts-pagination__item--next" [class.disabled]="p.isLastPage()">
             @if (!p.isLastPage()) {
-              <a [routerLink]="" class="hmcts-pagination__link" (keyup.enter)="p.next()"
-                (click)="p.next()">{{'Next' | rpxTranslate}}<span class="govuk-visually-hidden"> {{'page' | rpxTranslate}}</span></a>
+              <button type="button" class="hmcts-pagination__link" (click)="p.next()">{{'Next' | rpxTranslate}}<span class="govuk-visually-hidden"> {{'page' | rpxTranslate}}</span></button>
               }
             </li>
           </ul>

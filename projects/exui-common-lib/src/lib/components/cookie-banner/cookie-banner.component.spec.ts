@@ -41,7 +41,15 @@ describe('CookieBannerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CookieBannerComponent);
     appComponent = fixture.componentInstance;
+    appComponent.appName = 'Test service';
+    cookieService.checkCookie.and.returnValue(false);
     fixture.detectChanges();
+  });
+
+  it('should expose the cookie banner accessible name', () => {
+    const banner = fixture.nativeElement.querySelector('[role="region"]');
+
+    expect(banner.getAttribute('aria-label')).toBe('Cookies on Test service');
   });
 
   describe('acceptCookie()', () => {

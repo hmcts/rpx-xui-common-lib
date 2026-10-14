@@ -1,6 +1,6 @@
 <div class="gem-c-modal-dialogue" data-module="modal-dialogue" id="modal-default" style="display: block;">
   <div class="gem-c-modal-dialogue__overlay"></div>
-  <dialog class="gem-c-modal-dialogue__box" aria-modal="true" role="dialog" tabindex="0" [ngStyle]="{'margin-top': positionTop}">
+  <dialog class="gem-c-modal-dialogue__box" aria-modal="true" role="dialog" aria-labelledby="session-dialog-title" tabindex="0" [ngStyle]="{'margin-top': positionTop}">
     <div class="gem-c-modal-dialogue__header">
       <svg role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" height="33" width="33">
         <style type="text/css">
@@ -19,7 +19,7 @@
           </g>
         </g>
       </svg>
-      <div class="gem-c-modal-dialogue__title">{{'We are about to sign you out' | rpxTranslate}}</div>
+      <div class="gem-c-modal-dialogue__title" id="session-dialog-title">{{'We are about to sign you out' | rpxTranslate}}</div>
     </div>
     <div class="gem-c-modal-dialogue__content">
       <ng-content></ng-content>

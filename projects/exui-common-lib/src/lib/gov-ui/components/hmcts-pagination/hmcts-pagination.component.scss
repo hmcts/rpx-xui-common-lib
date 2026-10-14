@@ -83,7 +83,12 @@ $hmcts-pagination-icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 }
 
 .hmcts-pagination__link {
+  background: transparent;
+  border: 0;
+  color: govuk-colour("blue");
+  cursor: pointer;
   display: block;
+  font: inherit;
   padding: govuk-spacing(1);
   text-align: center;
   text-decoration: none;

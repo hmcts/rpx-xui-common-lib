@@ -37,11 +37,18 @@ export class SelectedCaseComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.opened) {
+      this.opened = changes.opened.currentValue;
+    }
     if (changes.sharedCase) {
       const sharedWith = this.sharedCase.sharedWith ? this.sharedCase.sharedWith : [];
       const pendingShares = this.sharedCase.pendingShares ? this.sharedCase.pendingShares : [];
       this.combinedSortedShares = this.combineAndSortShares(sharedWith, pendingShares);
     }
+  }
+
+  public toggleAccordion(): void {
+    this.opened = !this.opened;
   }
 
   public onDeselect(c: SharedCase): void {

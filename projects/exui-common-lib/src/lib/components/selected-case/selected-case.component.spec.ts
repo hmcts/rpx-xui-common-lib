@@ -81,6 +81,22 @@ describe('SelectedCaseComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should expose an accessible accordion name and synchronized state', () => {
+    const button = fixture.nativeElement.querySelector('.govuk-accordion__section-button');
+    const content = fixture.nativeElement.querySelector('.govuk-accordion__section-content');
+
+    expect(button.getAttribute('aria-label')).toBe('Expand or collapse details for Sarah vs Pete');
+    expect(button.getAttribute('aria-controls')).toBe('accordion-with-summary-sections-content-C111111');
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+    expect(content.hidden).toBeTrue();
+
+    button.click();
+    fixture.detectChanges();
+
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    expect(content.hidden).toBeFalse();
+  });
+
   it('should see page elements', () => {
     expect(
       fixture.debugElement.nativeElement.querySelector('[id^=\'case-title\']')

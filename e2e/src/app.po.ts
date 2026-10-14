@@ -16,7 +16,7 @@ export class AppPage {
   }
 
   public get hideMessageLink(): Locator {
-    return this.serviceMessage.locator('a').filter({ hasText: 'Hide message' });
+    return this.serviceMessage.getByRole('button', { name: 'Hide message' });
   }
 
   public get serviceWarningIcon(): Locator {
