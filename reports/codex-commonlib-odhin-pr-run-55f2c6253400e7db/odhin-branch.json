@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "codex/commonlib-odhin-pr-run",
       "branchSlug": "codex-commonlib-odhin-pr-run-55f2c6253400e7db",
+      "runKey": "38570319941-attempt-1",
+      "runId": "38570319941",
+      "runAttempt": "1",
+      "sha": "93e37271c95ea169a875d5aeb93ce322b17c36c7",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38570319941",
+      "createdAt": "2026-10-14T13:23:51.911Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "codex/commonlib-odhin-pr-run",
+      "branchSlug": "codex-commonlib-odhin-pr-run-55f2c6253400e7db",
       "runKey": "38566022626-attempt-1",
       "runId": "38566022626",
       "runAttempt": "1",
