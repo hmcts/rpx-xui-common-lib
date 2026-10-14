@@ -52,14 +52,16 @@ async function main() {
     assert.match((await modal.locator('.result-tabcontent[style*="display: block"]').textContent()).trim(), /\S/, 'test detail renders native result content');
     await modal.locator('[data-bs-dismiss="modal"]').click();
 
-    const modalWithSteps = page.locator('.modal').filter({ has: page.locator('.stepLine') }).first();
-    if (await modalWithSteps.count()) {
-      const modalId = await modalWithSteps.getAttribute('id');
-      await page.locator(`[data-bs-target="#${modalId}"]`).first().click();
-      await modalWithSteps.locator('.result-tab-header button').filter({ hasText: 'Steps' }).click();
-      assert.equal(await modalWithSteps.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'retained native steps open their result tab');
-      assert.ok(await modalWithSteps.locator('.result-tabcontent[style*="display: block"] .stepLine').count(), 'retained native test steps render');
+    await page.getByRole('button', { name: 'Dashboard', exact: true }).click();
+    const firstFeatureToggle = featureRows.first().locator('.feature-toggle');
+    if (await firstFeatureToggle.getAttribute('aria-expanded') !== 'true') {
+      await firstFeatureToggle.click();
     }
+    const featureSteps = page.locator('#feature-tests-0 .feature-test-steps').first();
+    await featureSteps.click();
+    const modalWithSteps = page.locator('.modal.show').last();
+    await modalWithSteps.waitFor();
+    assert.equal(await modalWithSteps.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'feature View steps opens its native result tab');
     assert.deepEqual(errors, [], 'report JavaScript has no console or page errors');
   } finally {
     await browser.close();

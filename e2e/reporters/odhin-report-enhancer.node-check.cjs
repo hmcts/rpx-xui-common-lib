@@ -139,17 +139,27 @@ test('controlled Odhín failure', async () => {
     const page = await browser.newPage();
     await page.goto(pathToFileURL(report).href);
     await page.locator('#odhin-feature-summary .feature-toggle').click();
-    await page.locator('#feature-tests-0 .test-detail-link').click();
+    await page.locator('#feature-tests-0 .feature-test-steps').click();
     const modal = page.locator('.modal.show').last();
     await modal.waitFor();
     assert.ok(await page.locator('#test-list-table .result-status-failed').count(), 'report retains the failed result');
-    await modal.getByRole('button', { name: 'Steps' }).click();
+    assert.equal(await modal.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'feature drill-down opens the native Steps tab');
     const visibleSteps = modal.locator('.result-tabcontent[style*="display: block"] .stepLine');
     assert.ok(await visibleSteps.count(), 'failed result renders native step evidence');
     assert.match((await visibleSteps.allTextContents()).join(' '), /failure step retained in report/, 'failed result retains the original step');
   } finally {
     await browser.close();
   }
+});
+
+test('dashboard verifier opens feature steps through the feature drill-down', () => {
+  const verifier = fs.readFileSync(path.join(__dirname, 'odhin-report.browser-check.cjs'), 'utf8');
+
+  assert.match(verifier, /#feature-tests-0 \.feature-test-steps/, 'verifier uses the feature drill-down View steps control');
+  assert.match(verifier, /getByRole\('button', \{ name: 'Dashboard', exact: true \}\)\.click\(\)/, 'verifier returns to the dashboard after the native detail link opens the Tests tab');
+  assert.match(verifier, /firstFeatureToggle\.getAttribute\('aria-expanded'\)/, 'verifier reopens the first feature only when the report marks it closed');
+  assert.doesNotMatch(verifier, /page\.locator\(`\[data-bs-target="#\$\{modalId\}"\]`\)/, 'verifier does not depend on a paginated DataTables row');
+  assert.doesNotMatch(verifier, /if \(await featureSteps\.count\(\)\)/, 'verifier requires the retained-steps action');
 });
 
 test('derives grouped features from nested Playwright describe titles', () => {
