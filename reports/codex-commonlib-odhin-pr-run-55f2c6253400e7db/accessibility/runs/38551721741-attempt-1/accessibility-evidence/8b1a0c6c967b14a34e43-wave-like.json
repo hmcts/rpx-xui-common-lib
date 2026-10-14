@@ -1,0 +1,49 @@
+{
+  "url": "http://localhost:4200/coverage?feature=cookie",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Cookie choice"
+      },
+      {
+        "level": 2,
+        "text": "Cookies on CommonLib demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "role": "main",
+        "text": "Cookie choiceCookies on CommonLib demoWe use some essential cookies to make this service work.We'd also like to use analytics cookies so we can understand how y"
+      }
+    ],
+    "order": [
+      {
+        "type": "button",
+        "name": "Accept analytics cookies",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Reject analytics cookies",
+        "selector": "button"
+      },
+      {
+        "type": "link",
+        "name": "View cookies",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": []
+}

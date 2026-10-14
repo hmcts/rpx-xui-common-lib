@@ -1,0 +1,53 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "Form controls demo" [level=1] [ref=e5]
+  - paragraph [ref=e6]: Error messages are supplied by the demo parent. Date validity uses the library's own validator.
+  - generic [ref=e8]:
+    - generic [ref=e11]: Priority
+    - generic [ref=e12]: Choose how soon to review.
+    - generic [ref=e14]:
+      - generic [ref=e15]: "Error:"
+      - text: Choose a priority
+    - combobox "Priority" [ref=e16]:
+      - option "Routine" [selected]
+      - option "Urgent"
+  - generic [ref=e18]:
+    - generic [ref=e21]: Case notes
+    - generic [ref=e22]: Include only synthetic notes.
+    - generic [ref=e24]:
+      - generic [ref=e25]: "Error:"
+      - text: Enter case notes
+    - textbox "Case notes" [ref=e26]
+  - generic [ref=e28]:
+    - generic [ref=e31]: Supporting file
+    - generic [ref=e32]: Choose a synthetic text file.
+    - generic [ref=e34]:
+      - generic [ref=e35]: "Error:"
+      - text: Choose a supporting file
+    - button "Supporting file" [ref=e36]
+  - button "Toggle supplied errors" [ref=e37] [cursor=pointer]
+  - group "Hearing date (optional)" [ref=e42]:
+    - generic [ref=e43]: Hearing date (optional)
+    - generic [ref=e44]: For example, 12 11 2007
+    - generic [ref=e46]:
+      - generic [ref=e47]: "Error:"
+      - text: Enter a valid hearing date
+    - generic [ref=e48]:
+      - generic [ref=e50]:
+        - generic [ref=e53]: Day
+        - textbox "Day" [ref=e54]: "31"
+      - generic [ref=e56]:
+        - generic [ref=e59]: Month
+        - textbox "Month" [active] [ref=e60]: "02"
+      - generic [ref=e62]:
+        - generic [ref=e65]: Year
+        - textbox "Year" [ref=e66]: "2024"
+  - heading "Parent form values" [level=2] [ref=e67]
+  - generic [ref=e68]: "{ \"priority\": \"routine\", \"notes\": \"\", \"supportingFile\": \"\", \"untouched\": \"preserved\" }"
+  - paragraph [ref=e69]:
+    - text: "Date valid:"
+    - status [ref=e70]: "false"
+  - generic [ref=e71]: "{ \"hearing_day\": \"31\", \"hearing_month\": \"02\", \"hearing_year\": \"2024\" }"
+```

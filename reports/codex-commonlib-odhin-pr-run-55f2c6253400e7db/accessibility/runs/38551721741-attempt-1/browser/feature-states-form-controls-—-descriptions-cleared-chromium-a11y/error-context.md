@@ -1,0 +1,41 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "Form controls demo" [level=1] [ref=e5]
+  - paragraph [ref=e6]: Error messages are supplied by the demo parent. Date validity uses the library's own validator.
+  - generic [ref=e8]:
+    - generic [ref=e11]: Priority
+    - generic [ref=e12]: Choose how soon to review.
+    - combobox "Priority" [ref=e13]:
+      - option "Routine" [selected]
+      - option "Urgent"
+  - generic [ref=e15]:
+    - generic [ref=e18]: Case notes
+    - generic [ref=e19]: Include only synthetic notes.
+    - textbox "Case notes" [ref=e20]
+  - generic [ref=e22]:
+    - generic [ref=e25]: Supporting file
+    - generic [ref=e26]: Choose a synthetic text file.
+    - button "Supporting file" [ref=e27]
+  - button "Toggle supplied errors" [active] [ref=e28] [cursor=pointer]
+  - group "Hearing date (optional)" [ref=e33]:
+    - generic [ref=e34]: Hearing date (optional)
+    - generic [ref=e35]: For example, 12 11 2007
+    - generic [ref=e36]:
+      - generic [ref=e38]:
+        - generic [ref=e41]: Day
+        - textbox "Day" [ref=e42]
+      - generic [ref=e44]:
+        - generic [ref=e47]: Month
+        - textbox "Month" [ref=e48]
+      - generic [ref=e50]:
+        - generic [ref=e53]: Year
+        - textbox "Year" [ref=e54]
+  - heading "Parent form values" [level=2] [ref=e55]
+  - generic [ref=e56]: "{ \"priority\": \"routine\", \"notes\": \"\", \"supportingFile\": \"\", \"untouched\": \"preserved\" }"
+  - paragraph [ref=e57]:
+    - text: "Date valid:"
+    - status [ref=e58]: "true"
+  - generic [ref=e59]: "{ \"hearing_day\": \"\", \"hearing_month\": \"\", \"hearing_year\": \"\" }"
+```

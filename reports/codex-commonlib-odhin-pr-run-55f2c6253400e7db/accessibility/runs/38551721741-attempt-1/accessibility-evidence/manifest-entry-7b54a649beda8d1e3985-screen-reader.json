@@ -1,0 +1,44 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-056b10a47fdf03417b59",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "filter",
+  "pageState": "required-service error",
+  "violationCount": 2,
+  "status": "issues-found",
+  "rules": [
+    "govuk-template-body",
+    "skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=filter",
+    "http://localhost:4200/coverage?feature=filter"
+  ],
+  "testTitle": "filter — required-service error",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "7b54a649beda8d1e3985-screen-reader.html",
+  "jsonFileName": "7b54a649beda8d1e3985-screen-reader.json",
+  "screenshotFileName": "7b54a649beda8d1e3985-screen-reader.png",
+  "findings": [
+    {
+      "rule": "govuk-template-body",
+      "targets": [],
+      "summary": "The page should use the GOV.UK template body class during the template migration.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "skip-link",
+      "targets": [],
+      "summary": "The page should expose a visible skip-to-main-content link.",
+      "anchor": "issue-2"
+    }
+  ],
+  "assetFileNames": [
+    "7b54a649beda8d1e3985-screen-reader-style-1.css"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f79177689e7a65fb97a4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "address",
+  "pageState": "initial lookup",
+  "violationCount": 2,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/address"
+  ],
+  "testTitle": "address — initial lookup",
+  "attachmentPrefix": "address-initial-lookup-page-summary",
+  "htmlFileName": "802becc148fc110ebb07-address-initial-lookup-page-summary.html",
+  "jsonFileName": "802becc148fc110ebb07-address-initial-lookup-page-summary.json",
+  "screenshotFileName": "802becc148fc110ebb07-address-initial-lookup-page-summary.png",
+  "assetFileNames": [
+    "802becc148fc110ebb07-address-initial-lookup-page-summary-style-1.css"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "url": "http://localhost:4200/coverage/address",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Address demo"
+      },
+      {
+        "level": 2,
+        "text": "Demo form and event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Address demoProvide address detailsEnter a UK postcodeFind addressSelect an address 2 addresses found 10 Demo Street, Testville 12 Demo Street, Testville I can'"
+      }
+    ],
+    "order": [
+      {
+        "type": "text input",
+        "name": "Enter a UK postcode",
+        "selector": "#postcodeInput"
+      },
+      {
+        "type": "button",
+        "name": "Find address",
+        "selector": "button"
+      },
+      {
+        "type": "select",
+        "name": "Select an address 2 addresses found 10 Demo Street, Testville 12 Demo Street, Testville",
+        "selector": "#addressList"
+      },
+      {
+        "type": "link",
+        "name": "I can't enter a UK postcode",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": []
+}

@@ -1,0 +1,34 @@
+{
+  "context": {
+    "scenarioId": "cf859ece42b60ea1c522-df67b21a95f8f1723664",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "lighthouse",
+  "feature": "Lighthouse /coverage?feature=filter",
+  "pageState": "representative stable page",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage?feature=filter"
+  ],
+  "status": "passed",
+  "summary": "Accessibility score 100; WebApp reference threshold 90. All failed audits remain findings even above the threshold.",
+  "testTitle": "Lighthouse /coverage?feature=filter — representative stable page",
+  "attachmentPrefix": "lighthouse",
+  "htmlFileName": "901c203740ee70c4db00-lighthouse.html",
+  "jsonFileName": "901c203740ee70c4db00-lighthouse.json",
+  "screenshotFileName": "901c203740ee70c4db00-lighthouse.png",
+  "reportFileName": "901c203740ee70c4db00-lighthouse-native.html",
+  "assetFileNames": [
+    "901c203740ee70c4db00-lighthouse-style-1.css",
+    "901c203740ee70c4db00-lighthouse-native-image-1.svg",
+    "901c203740ee70c4db00-lighthouse-native-image-2.webp",
+    "901c203740ee70c4db00-lighthouse-native-style-1.css",
+    "901c203740ee70c4db00-lighthouse-native-script-1.js",
+    "901c203740ee70c4db00-lighthouse-native-script-2.js",
+    "901c203740ee70c4db00-lighthouse-native-script-3.js"
+  ]
+}

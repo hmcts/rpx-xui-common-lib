@@ -1,0 +1,32 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-61ff57397975ea90b153",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "feedback",
+  "pageState": "success and warning banners",
+  "violationCount": 2,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=feedback"
+  ],
+  "testTitle": "feedback — success and warning banners",
+  "attachmentPrefix": "feedback-success-and-warning-banners-page-summary",
+  "htmlFileName": "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.html",
+  "jsonFileName": "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.json",
+  "screenshotFileName": "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary.png",
+  "assetFileNames": [
+    "b6d7c4986c371f1daacf-feedback-success-and-warning-banners-page-summary-style-1.css"
+  ]
+}
