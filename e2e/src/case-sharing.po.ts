@@ -12,6 +12,10 @@ export class CaseSharingPage {
     return this.page.locator(`#user-access-block-${id}`);
   }
 
+  public async openCaseDetails(id: string): Promise<void> {
+    await this.case(id).getByRole('button', { name: /^Expand or collapse details for / }).click();
+  }
+
   public async addSam(): Promise<void> {
     await this.page.locator('#add-user-input input').fill('Sam');
     await this.page.getByRole('listbox').getByRole('option', { name: 'Sam Morgan - sam@example.test', exact: true }).click();
