@@ -78,11 +78,12 @@ test('Odhín source jobs are read-only and upload exact evidence only', () => {
   assert.match(crossBrowserWorkflow, /steps\.odhin_browser\.outcome == 'success'/);
 });
 
-test('publisher is a trusted workflow_run with scoped write permissions', () => {
+test('publisher is a trusted workflow_run with a validated manual recovery path and scoped write permissions', () => {
   assert.match(publisherWorkflow, /^  workflow_run:/m);
+  assert.match(publisherWorkflow, /^  workflow_dispatch:\r?\n    inputs:\r?\n      source_run_id:/m);
   assert.match(publisherWorkflow, /workflows:\r?\n      - Node\.js Package\r?\n      - CommonLib accessibility \(advisory\)\r?\n      - CommonLib cross-browser \(advisory\)/);
   assert.match(publisherWorkflow, /types:\r?\n      - completed/);
-  assert.doesNotMatch(publisherWorkflow, /workflow_call|inputs\./);
+  assert.doesNotMatch(publisherWorkflow, /workflow_call/);
   assert.match(publisherWorkflow, /^permissions:\r?\n  contents: read/m);
   assert.match(publisherJob, /actions: read/);
   assert.match(publisherJob, /contents: write/);
@@ -92,12 +93,22 @@ test('publisher is a trusted workflow_run with scoped write permissions', () => 
   const checkout = publisherJob.match(/- uses: actions\/checkout@v7[\s\S]*?(?=      - uses: actions\/setup-node@v7)/)?.[0] ?? '';
   assert.match(checkout, /ref: \$\{\{ github\.event\.repository\.default_branch \}\}/);
   assert.match(checkout, /persist-credentials: false/);
-  assert.doesNotMatch(checkout, /pull_request|head_ref|workflow_run\.head_branch/);
+  assert.doesNotMatch(checkout, /pull_request|head_ref/);
+
+  const resolver = publisherJob.match(/- name: Resolve and validate exact source run[\s\S]*?(?=      - name: Check exact upstream report)/)?.[0] ?? '';
+  assert.match(resolver, /SOURCE_RUN_ID: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.source_run_id \|\| github\.event\.workflow_run\.id \}\}/);
+  assert.match(resolver, /actions\/runs\/\$SOURCE_RUN_ID/);
+  assert.match(resolver, /run\.head_repository\?\.full_name !== process\.env\.GITHUB_REPOSITORY/);
+  assert.match(resolver, /Unsupported Odhín source workflow/);
+  assert.match(resolver, /\["success", "failure"\]\.includes\(run\.conclusion\)/);
+  assert.match(resolver, /common-lib-functional-report/);
+  assert.match(resolver, /common-lib-accessibility-report/);
+  assert.match(resolver, /common-lib-cross-browser-report/);
 
   const download = publisherJob.match(/- name: Download exact upstream report[\s\S]*?(?=      - name: Prepare)/)?.[0] ?? '';
-  assert.match(download, /name: \$\{\{ steps\.report\.outputs\.artifact_name \}\}/);
+  assert.match(download, /name: \$\{\{ steps\.source\.outputs\.artifact_name \}\}/);
   assert.match(download, /repository: \$\{\{ github\.repository \}\}/);
-  assert.match(download, /run-id: \$\{\{ github\.event\.workflow_run\.id \}\}/);
+  assert.match(download, /run-id: \$\{\{ steps\.source\.outputs\.source_run_id \}\}/);
   assert.match(download, /github-token: \$\{\{ github\.token \}\}/);
   assert.doesNotMatch(download, /continue-on-error:\s*true/);
   assert.match(publisherJob, /- name: Check exact upstream report is available/);
@@ -115,20 +126,19 @@ test('publisher is a trusted workflow_run with scoped write permissions', () => 
   }
   assert.ok(publisherJob.indexOf('Download exact upstream report') < publisherJob.indexOf('Prepare and persist immutable Odhín history'));
 
-  assert.match(publisherJob, /ODHIN_BRANCH: \$\{\{ github\.event\.workflow_run\.head_branch \}\}/);
-  assert.match(publisherJob, /ODHIN_SHA: \$\{\{ github\.event\.workflow_run\.head_sha \}\}/);
-  assert.match(publisherJob, /ODHIN_RUN_KEY: \$\{\{ github\.event\.workflow_run\.id \}\}-attempt-\$\{\{ github\.event\.workflow_run\.run_attempt \}\}/);
-  assert.match(publisherJob, /ODHIN_SOURCE_RUN_ID: \$\{\{ github\.event\.workflow_run\.id \}\}/);
-  assert.match(publisherJob, /ODHIN_SOURCE_RUN_ATTEMPT: \$\{\{ github\.event\.workflow_run\.run_attempt \}\}/);
-  assert.match(publisherJob, /ODHIN_RUN_URL: \$\{\{ github\.server_url \}\}\/\$\{\{ github\.repository \}\}\/actions\/runs\/\$\{\{ github\.event\.workflow_run\.id \}\}\/attempts\/\$\{\{ github\.event\.workflow_run\.run_attempt \}\}/);
-  assert.match(publisherJob, /UPSTREAM_URL: \$\{\{ github\.server_url \}\}\/\$\{\{ github\.repository \}\}\/actions\/runs\/\$\{\{ github\.event\.workflow_run\.id \}\}\/attempts\/\$\{\{ github\.event\.workflow_run\.run_attempt \}\}/);
+  assert.match(publisherJob, /ODHIN_BRANCH: \$\{\{ steps\.source\.outputs\.source_branch \}\}/);
+  assert.match(publisherJob, /ODHIN_SHA: \$\{\{ steps\.source\.outputs\.source_sha \}\}/);
+  assert.match(publisherJob, /ODHIN_RUN_KEY: \$\{\{ steps\.source\.outputs\.source_run_id \}\}-attempt-\$\{\{ steps\.source\.outputs\.source_run_attempt \}\}/);
+  assert.match(publisherJob, /ODHIN_SOURCE_RUN_ID: \$\{\{ steps\.source\.outputs\.source_run_id \}\}/);
+  assert.match(publisherJob, /ODHIN_SOURCE_RUN_ATTEMPT: \$\{\{ steps\.source\.outputs\.source_run_attempt \}\}/);
+  assert.match(publisherJob, /ODHIN_RUN_URL: \$\{\{ steps\.source\.outputs\.source_url \}\}/);
+  assert.match(publisherJob, /UPSTREAM_URL: \$\{\{ steps\.source\.outputs\.source_url \}\}/);
   assert.match(publisherJob, /--run-id "\$ODHIN_SOURCE_RUN_ID"/);
   assert.match(publisherJob, /--run-attempt "\$ODHIN_SOURCE_RUN_ATTEMPT"/);
   assert.match(publisherJob, /--report-type "\$ODHIN_REPORT_TYPE"/);
   assert.match(publisherJob, /evidence\/odhin-source\.json/);
   assert.match(publisherJob, /if \[ "\$ODHIN_REPORT_TYPE" != 'functional' \]; then/);
   assert.match(publisherJob, /common-lib-cross-browser-report/);
-  assert.match(publisherJob, /report_type=cross-browser/);
 });
 
 const cases = [
@@ -150,6 +160,8 @@ const cases = [
   { name: 'manual cross-browser from a feature workflow does not publish', workflow: 'CommonLib cross-browser (advisory)', event: 'workflow_dispatch', conclusion: 'success', workflowBranch: 'test/untrusted', want: false },
   { name: 'cross-browser push cannot publish', workflow: 'CommonLib cross-browser (advisory)', event: 'push', conclusion: 'success', want: false },
   { name: 'unrelated workflow cannot publish', workflow: 'anything else', event: 'workflow_dispatch', conclusion: 'success', want: false },
+  { name: 'manual publisher enters the validated recovery path from master', eventName: 'workflow_dispatch', refName: 'master', want: true },
+  { name: 'manual publisher cannot execute a feature branch', eventName: 'workflow_dispatch', refName: 'test/untrusted', want: false },
 ];
 
 for (const scenario of cases) {
@@ -157,6 +169,8 @@ for (const scenario of cases) {
     const context = {
       github: {
         repository: 'hmcts/rpx-xui-common-lib',
+        event_name: scenario.eventName,
+        ref_name: scenario.refName,
         event: {
           workflow_run: {
             name: scenario.workflow,
