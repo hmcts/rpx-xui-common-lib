@@ -143,6 +143,17 @@ jobs:
             --run-url "$ODHIN_RUN_URL" \
             --report-type "$ODHIN_REPORT_TYPE")
           printf '%s\n' "$publisher_result"
+          node e2e/reporters/odhin-site-publisher.cjs \
+            --source evidence \
+            --site pages-site \
+            --branch "$ODHIN_BRANCH" \
+            --run-key "$ODHIN_RUN_KEY" \
+            --run-id "$ODHIN_SOURCE_RUN_ID" \
+            --run-attempt "$ODHIN_SOURCE_RUN_ATTEMPT" \
+            --sha "$ODHIN_SHA" \
+            --run-url "$ODHIN_RUN_URL" \
+            --report-type "$ODHIN_REPORT_TYPE" \
+            --latest-only true >/dev/null
           printf '%s' "$publisher_result" | node -e '
             let input = "";
             process.stdin.on("data", chunk => { input += chunk; });
@@ -156,9 +167,6 @@ jobs:
           git -C odhin-site add .nojekyll reports index.html
           git -C odhin-site commit -m "ci: publish Odhín $ODHIN_BRANCH $ODHIN_RUN_KEY"
           git -c http.extraheader="$auth_header" -C odhin-site push origin HEAD:odhin-reports
-          mkdir pages-site
-          cp -R odhin-site/. pages-site/
-          rm -rf pages-site/.git
       - name: Configure GitHub Pages
         if: ${{ steps.upstream_report.outputs.available == 'true' }}
         id: configure_pages
@@ -183,6 +191,6 @@ jobs:
         run: |
           pages_url="${PAGES_URL%/}"
           printf '### Published %s Odhín evidence\n\n' "$REPORT_TYPE" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open this immutable report](%s/%s)\n\n' "$pages_url" "$RUN_PATH" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open this report type’s branch history](%s/%s)\n\n' "$pages_url" "$BRANCH_PATH" >> "$GITHUB_STEP_SUMMARY"
+          printf '[Open current public report](%s/%s)\n\n' "$pages_url" "$RUN_PATH" >> "$GITHUB_STEP_SUMMARY"
+          printf '[Open immutable report archive](%s/%s)\n\n' "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/tree/odhin-reports" "$RUN_PATH" >> "$GITHUB_STEP_SUMMARY"
           printf '[Open the triggering workflow evidence](%s).\n' "$UPSTREAM_URL" >> "$GITHUB_STEP_SUMMARY"

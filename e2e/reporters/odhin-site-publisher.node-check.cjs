@@ -51,6 +51,43 @@ function publish({ source, site, branch, reportType = 'functional', runId, runAt
   });
 }
 
+test('builds a current-run Pages projection without copying immutable archive history', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-odhin-pages-'));
+  const source = path.join(root, 'source');
+  const archive = path.join(root, 'archive');
+  const pages = path.join(root, 'pages');
+  try {
+    createSource(source, 'older archived run');
+    publish({ source, site: archive, branch: 'master', runId: '30' });
+    createSource(source, 'current public run');
+    publish({ source, site: archive, branch: 'master', runId: '31' });
+
+    publishReport({
+      sourceDir: source,
+      siteDir: pages,
+      rawBranch: 'master',
+      reportType: 'functional',
+      runKey: '31-attempt-1',
+      runId: '31',
+      runAttempt: '1',
+      sha: 'a'.repeat(40),
+      runUrl: 'https://github.com/hmcts/rpx-xui-common-lib/actions/runs/31/attempts/1',
+      latestOnly: true
+    });
+
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/30-attempt-1')), 'peer archive retains older evidence');
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/31-attempt-1')), 'peer archive retains the current evidence');
+    assert.equal(fs.existsSync(path.join(pages, 'reports/master/runs/30-attempt-1')), false, 'Pages omits older archive evidence');
+    assert.ok(fs.existsSync(path.join(pages, 'reports/master/runs/31-attempt-1/index.html')), 'Pages retains the current report');
+    assert.match(fs.readFileSync(path.join(pages, 'index.html'), 'utf8'), /Only the current report is published on this Pages site/);
+    const publicReport = fs.readFileSync(path.join(pages, 'reports/master/runs/31-attempt-1/index.html'), 'utf8');
+    assert.match(publicReport, /Current public Functional Odhín report/);
+    assert.doesNotMatch(publicReport, /This report is immutable|Open Accessibility Odhín history|Open Cross-browser Odhín history/);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 function assertHistoryLinkResolves(runFile, html, label, expectedHistoryFile) {
   const match = html.match(new RegExp(`href="([^"]+)"[^>]*>Open ${label} history`));
   assert.ok(match, `missing ${label} history link`);
