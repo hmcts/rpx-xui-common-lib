@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "renovate/launchdarkly-js-client-sdk-3.x",
+  "branchSlug": "renovate-launchdarkly-js-client-sdk-3.x-50b5a51d3ba2f7d0",
+  "runKey": "38546331319-attempt-1",
+  "runId": "38546331319",
+  "runAttempt": "1",
+  "sha": "365ea4d353fe4ee4e3f26017b586cde6813bebd7",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38546331319",
+  "createdAt": "2026-10-14T10:06:10.946Z"
+}
