@@ -1,0 +1,91 @@
+{
+  "url": "http://localhost:4200/coverage?feature=cookie",
+  "violations": [
+    {
+      "rule": "govuk-template-body",
+      "message": "The page should use the GOV.UK template body class during the template migration."
+    },
+    {
+      "rule": "skip-link",
+      "message": "The page should expose a visible skip-to-main-content link."
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Cookie choice"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "Cookie choice",
+        "selector": "div"
+      }
+    ],
+    "keyboardOrder": [],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage?feature=cookie",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "heading",
+        "name": "Cookie choice"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Cookie choice"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cookie choice"
+      }
+    ]
+  }
+}

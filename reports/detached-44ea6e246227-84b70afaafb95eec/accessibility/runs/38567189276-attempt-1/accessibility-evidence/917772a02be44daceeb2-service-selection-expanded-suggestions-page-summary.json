@@ -1,0 +1,352 @@
+{
+  "feature": "service selection",
+  "pageState": "expanded suggestions",
+  "strict": true,
+  "url": "http://localhost:4200/coverage/service-selection",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "issues-found",
+      "reviewCount": 2,
+      "reviewRules": [
+        "color-contrast"
+      ],
+      "issueCount": 2,
+      "rules": [
+        "aria-required-attr",
+        "region"
+      ]
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "govuk-template-body",
+        "skip-link"
+      ]
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Service selection demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form and emitted events"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Service selection demo Choose services Add serviceDisable service searchParent form and emitted events[]Change events: 0",
+        "selector": "main"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "text input",
+        "name": "Choose services",
+        "selector": "#inputServiceSearch",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Add service",
+        "selector": "#add-service",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Disable service search",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "mat-option",
+        "name": "Civil damages",
+        "selector": "#mat-option-1",
+        "tabIndex": 0
+      },
+      {
+        "type": "mat-option",
+        "name": "Civil enforcement",
+        "selector": "#mat-option-2",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/service-selection",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Service selection demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Disable service search"
+      },
+      {
+        "role": "heading",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "listbox",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Service selection demo"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Add  service "
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Disable service search"
+      },
+      {
+        "role": "StaticText",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "StaticText",
+        "name": "Change events: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "option",
+        "name": "Civil damages"
+      },
+      {
+        "role": "option",
+        "name": "Civil enforcement"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Service selection demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Choose services"
+      },
+      {
+        "role": "combobox",
+        "name": "Choose services"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Add"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "service"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Disable service search"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "[]"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Change events: "
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Civil damages"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Civil enforcement"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Choose services"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Add"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "service"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Civil damages"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Civil enforcement"
+      },
+      {
+        "role": "StaticText",
+        "name": "Civil"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Civil"
+      }
+    ]
+  }
+}

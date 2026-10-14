@@ -1,0 +1,83 @@
+{
+  "title": "form controls — descriptions initial",
+  "url": "http://localhost:4200/coverage/form-controls",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "140.0.7339.186",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "needs-review",
+      "reviewCount": 2,
+      "reviewRules": [
+        "aria-valid-attr-value",
+        "color-contrast"
+      ],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 4,
+      "rules": [
+        "govuk-template-body",
+        "skip-link",
+        "aria-reference-target",
+        "component-description"
+      ]
+    }
+  ],
+  "incompleteCount": 2,
+  "published": {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "form controls",
+    "pageState": "descriptions initial",
+    "violationCount": 4,
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-valid-attr-value",
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link",
+      "screen-reader:aria-reference-target",
+      "screen-reader:component-description"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/form-controls"
+    ],
+    "testTitle": "form controls — descriptions initial",
+    "attachmentPrefix": "form-controls-descriptions-initial-page-summary",
+    "htmlFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.html",
+    "jsonFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.json",
+    "screenshotFileName": "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary.png",
+    "assetFileNames": [
+      "02e484a79f46c4bf77bb-form-controls-descriptions-initial-page-summary-style-1.css"
+    ]
+  }
+}

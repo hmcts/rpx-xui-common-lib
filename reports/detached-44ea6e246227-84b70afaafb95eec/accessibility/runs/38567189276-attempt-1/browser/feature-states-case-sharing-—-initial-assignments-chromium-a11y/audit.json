@@ -1,0 +1,85 @@
+{
+  "title": "case sharing — initial assignments",
+  "url": "http://localhost:4200/coverage/case-sharing",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "140.0.7339.186",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "issues-found",
+      "reviewCount": 2,
+      "reviewRules": [
+        "aria-prohibited-attr"
+      ],
+      "issueCount": 1,
+      "rules": [
+        "heading-order"
+      ]
+    },
+    {
+      "engine": "wave-like",
+      "status": "issues-found",
+      "issueCount": 3,
+      "rules": [
+        "heading-order",
+        "duplicate-id"
+      ]
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "govuk-template-body",
+        "skip-link"
+      ]
+    }
+  ],
+  "incompleteCount": 1,
+  "published": {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-d42f6110167cbb95590d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "case sharing",
+    "pageState": "initial assignments",
+    "violationCount": 6,
+    "reviewCount": 2,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 6 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:heading-order",
+      "wave-like:heading-order",
+      "wave-like:duplicate-id",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/case-sharing"
+    ],
+    "testTitle": "case sharing — initial assignments",
+    "attachmentPrefix": "case-sharing-initial-assignments-page-summary",
+    "htmlFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.html",
+    "jsonFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.json",
+    "screenshotFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.png",
+    "assetFileNames": [
+      "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary-style-1.css"
+    ]
+  }
+}

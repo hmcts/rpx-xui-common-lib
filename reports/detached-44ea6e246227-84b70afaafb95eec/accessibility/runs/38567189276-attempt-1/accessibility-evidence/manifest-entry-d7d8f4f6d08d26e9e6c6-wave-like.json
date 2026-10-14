@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "address",
+  "pageState": "lookup results",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — lookup results",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "d7d8f4f6d08d26e9e6c6-wave-like.html",
+  "jsonFileName": "d7d8f4f6d08d26e9e6c6-wave-like.json",
+  "screenshotFileName": "d7d8f4f6d08d26e9e6c6-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "d7d8f4f6d08d26e9e6c6-wave-like-style-1.css"
+  ]
+}

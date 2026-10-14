@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "accessibility",
+  "rawBranch": "detached-44ea6e246227",
+  "branchSlug": "detached-44ea6e246227-84b70afaafb95eec",
+  "runKey": "38567189276-attempt-1",
+  "runId": "38567189276",
+  "runAttempt": "1",
+  "sha": "44ea6e246227f664bd30c205d943efd8507c7bc9",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38567189276",
+  "createdAt": "2026-10-14T12:57:15.749Z"
+}
