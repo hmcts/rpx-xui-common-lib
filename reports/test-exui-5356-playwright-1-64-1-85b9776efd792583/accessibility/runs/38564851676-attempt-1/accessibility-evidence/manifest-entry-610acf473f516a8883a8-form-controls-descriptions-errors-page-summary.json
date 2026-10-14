@@ -1,0 +1,36 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-d64b574a9ce882e8687d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "form controls",
+  "pageState": "descriptions errors",
+  "violationCount": 4,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link",
+    "screen-reader:aria-reference-target",
+    "screen-reader:component-description"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls"
+  ],
+  "testTitle": "form controls — descriptions errors",
+  "attachmentPrefix": "form-controls-descriptions-errors-page-summary",
+  "htmlFileName": "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.html",
+  "jsonFileName": "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.json",
+  "screenshotFileName": "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary.png",
+  "assetFileNames": [
+    "610acf473f516a8883a8-form-controls-descriptions-errors-page-summary-style-1.css"
+  ]
+}

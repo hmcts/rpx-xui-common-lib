@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-8647a7d9592f503b5cf1",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "navigation",
+  "pageState": "active destinations",
+  "status": "needs-review",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "navigation — active destinations",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "735d81156630f818920a-axe.html",
+  "jsonFileName": "735d81156630f818920a-axe.json",
+  "screenshotFileName": "735d81156630f818920a-axe.png",
+  "assetFileNames": [
+    "735d81156630f818920a-axe-style-1.css"
+  ]
+}

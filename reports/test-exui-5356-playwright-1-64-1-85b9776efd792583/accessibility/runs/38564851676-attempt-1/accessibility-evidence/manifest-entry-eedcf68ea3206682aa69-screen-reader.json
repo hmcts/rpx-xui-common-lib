@@ -1,0 +1,94 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "form controls",
+  "pageState": "supplied errors and invalid date",
+  "violationCount": 7,
+  "status": "issues-found",
+  "rules": [
+    "govuk-template-body",
+    "skip-link",
+    "aria-reference-target",
+    "aria-reference-target",
+    "error-describedby",
+    "error-describedby",
+    "error-describedby"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls",
+    "http://localhost:4200/coverage/form-controls",
+    "#case-notes",
+    "fieldset",
+    "#hearing-day",
+    "#hearing-month",
+    "#hearing-year"
+  ],
+  "testTitle": "form controls — supplied errors and invalid date",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "eedcf68ea3206682aa69-screen-reader.html",
+  "jsonFileName": "eedcf68ea3206682aa69-screen-reader.json",
+  "screenshotFileName": "eedcf68ea3206682aa69-screen-reader.png",
+  "findings": [
+    {
+      "rule": "govuk-template-body",
+      "targets": [],
+      "summary": "The page should use the GOV.UK template body class during the template migration.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "skip-link",
+      "targets": [],
+      "summary": "The page should expose a visible skip-to-main-content link.",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "aria-reference-target",
+      "targets": [
+        "#case-notes"
+      ],
+      "summary": "aria-describedby references missing id(s): case-notes-hint.",
+      "anchor": "issue-3"
+    },
+    {
+      "rule": "aria-reference-target",
+      "targets": [
+        "fieldset"
+      ],
+      "summary": "aria-describedby references missing id(s): hearing-error.",
+      "anchor": "issue-4"
+    },
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#hearing-day"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-5"
+    },
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#hearing-month"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-6"
+    },
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#hearing-year"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-7"
+    }
+  ],
+  "assetFileNames": [
+    "eedcf68ea3206682aa69-screen-reader-style-1.css"
+  ]
+}

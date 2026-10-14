@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "form controls",
+  "pageState": "supplied errors and invalid date",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "form controls — supplied errors and invalid date",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "eedcf68ea3206682aa69-wave-like.html",
+  "jsonFileName": "eedcf68ea3206682aa69-wave-like.json",
+  "screenshotFileName": "eedcf68ea3206682aa69-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "eedcf68ea3206682aa69-wave-like-style-1.css"
+  ]
+}

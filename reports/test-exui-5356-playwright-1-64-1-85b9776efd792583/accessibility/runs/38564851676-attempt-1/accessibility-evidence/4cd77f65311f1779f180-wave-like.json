@@ -1,0 +1,69 @@
+{
+  "url": "http://localhost:4200/coverage/case-sharing/confirmation",
+  "violationCount": 1,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Check case sharing changes"
+      },
+      {
+        "level": 3,
+        "text": "Cases"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic case Alpha"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic case Beta"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Check case sharing changesCasesSynthetic case Alpha DEMO-001 Change selected caseNameEmail addressActionsSam Morgansam@example.testTo be addedSynthetic case Bet"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Change selected case",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Change selected case",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Confirm Confirm",
+        "selector": "button"
+      },
+      {
+        "type": "link",
+        "name": "Cancel confirmation",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "heading-order",
+      "message": "Heading level jumps from h1 to h3.",
+      "selector": "h3",
+      "html": "<h3 class=\"govuk-heading-l\">Cases</h3>",
+      "codeLocation": {
+        "tag": "h3",
+        "classes": "govuk-heading-l",
+        "accessibleName": "Cases",
+        "nearestHeading": "h1: Check case sharing changes",
+        "nearestLandmark": "main .govuk-width-container"
+      },
+      "advice": "Check whether the heading hierarchy represents the content. Use nested levels for subsections; do not insert empty headings just to satisfy the check."
+    }
+  ]
+}

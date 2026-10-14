@@ -1,0 +1,58 @@
+{
+  "url": "http://localhost:4200/coverage?feature=navigation",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Navigation"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "role": "main",
+        "text": "NavigationCoverage examplesHome demo Current section 2 Other section"
+      },
+      {
+        "role": "nav",
+        "text": "Primary demo navigation"
+      },
+      {
+        "role": "navigation",
+        "text": "Secondary demo navigation"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Coverage examples",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Home demo",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Current section 2",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Other section",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": []
+}

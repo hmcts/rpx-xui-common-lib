@@ -1,0 +1,33 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "session",
+  "pageState": "visible timeout dialog",
+  "violationCount": 3,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:aria-dialog-name",
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=dialog"
+  ],
+  "testTitle": "session — visible timeout dialog",
+  "attachmentPrefix": "session-visible-timeout-dialog-page-summary",
+  "htmlFileName": "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.html",
+  "jsonFileName": "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.json",
+  "screenshotFileName": "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary.png",
+  "assetFileNames": [
+    "36235189ae7825a5075c-session-visible-timeout-dialog-page-summary-style-1.css"
+  ]
+}
