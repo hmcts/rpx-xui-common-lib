@@ -1,0 +1,37 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "case sharing",
+  "pageState": "pending addition",
+  "violationCount": 8,
+  "reviewCount": 2,
+  "reviewRules": [
+    "aria-prohibited-attr"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 8 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:heading-order",
+    "wave-like:heading-order",
+    "wave-like:duplicate-id",
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/case-sharing"
+  ],
+  "testTitle": "case sharing — pending addition",
+  "attachmentPrefix": "case-sharing-pending-addition-page-summary",
+  "htmlFileName": "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.html",
+  "jsonFileName": "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.json",
+  "screenshotFileName": "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary.png",
+  "assetFileNames": [
+    "24ab5b5fa557be97908c-case-sharing-pending-addition-page-summary-style-1.css"
+  ]
+}

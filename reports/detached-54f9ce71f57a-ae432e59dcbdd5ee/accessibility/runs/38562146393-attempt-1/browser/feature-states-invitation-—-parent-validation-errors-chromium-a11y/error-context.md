@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- main [ref=e4]:
+  - heading "Invitation form demo" [level=1] [ref=e5]
+  - paragraph [ref=e6]: Synthetic data only. Validation is supplied by the demo parent; no invitation is sent.
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e13]: First name
+      - generic [ref=e14]: Include all middle names.
+      - generic [ref=e16]:
+        - generic [ref=e17]: "Error:"
+        - text: Enter a first name
+      - textbox "First name" [ref=e18]
+    - generic [ref=e20]:
+      - generic [ref=e23]: Last name
+      - generic [ref=e25]:
+        - generic [ref=e26]: "Error:"
+        - text: Enter a last name
+      - textbox "Last name" [ref=e27]
+    - generic [ref=e29]:
+      - generic [ref=e32]: Email address
+      - generic [ref=e34]:
+        - generic [ref=e35]: "Error:"
+        - text: Enter a valid email address
+      - textbox "Email address" [ref=e36]
+    - group "Permissions" [ref=e41]:
+      - generic [ref=e42]: Permissions
+      - generic [ref=e43]: Choose what the user will be able to do. You can change this later.
+      - generic [ref=e44]:
+        - generic [ref=e46]:
+          - checkbox "Manage Cases" [ref=e47] [cursor=pointer]
+          - generic [ref=e49] [cursor=pointer]: Manage Cases
+          - generic [ref=e50]: View, create and progress cases.
+        - generic [ref=e52]:
+          - checkbox "Manage Users" [ref=e53] [cursor=pointer]
+          - generic [ref=e55] [cursor=pointer]: Manage Users
+          - generic [ref=e56]: Invite users.
+        - generic [ref=e58]:
+          - checkbox "Manage Organisation" [ref=e59] [cursor=pointer]
+          - generic [ref=e61] [cursor=pointer]: Manage Organisation
+          - generic [ref=e62]: View organisation name and addresses.
+    - button "Send invitation" [active] [ref=e63] [cursor=pointer]
+  - heading "Parent form and emitted events" [level=2] [ref=e64]
+  - paragraph [ref=e65]:
+    - text: "Form valid:"
+    - status [ref=e66]: "false"
+  - paragraph [ref=e67]:
+    - text: "Submit events:"
+    - status [ref=e68]: "1"
+  - generic [ref=e69]: "{ \"firstName\": \"\", \"lastName\": \"\", \"email\": \"\", \"roles\": { \"pui-case-manager\": false, \"pui-user-manager\": false, \"pui-organisation-manager\": false } }"
+```

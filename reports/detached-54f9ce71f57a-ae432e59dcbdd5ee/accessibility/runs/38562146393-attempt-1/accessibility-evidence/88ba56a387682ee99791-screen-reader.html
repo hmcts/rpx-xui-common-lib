@@ -1,0 +1,81 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Screen-reader-like accessibility evidence</title>
+        <link rel="stylesheet" href="88ba56a387682ee99791-screen-reader-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Page structure</h2>
+            <div class="scorecard">
+              <p><strong>RpxXuiCommonLib</strong></p>
+              <div class="score-grid">
+                <div class="score"><strong>2</strong><br/>Headings</div>
+                <div class="score"><strong>1</strong><br/>Landmarks</div>
+                <div class="score"><strong>9</strong><br/>Potential focus targets</div>
+                <div class="score"><strong>80</strong><br/>AX nodes</div>
+              </div>
+            </div>
+            <details>
+              <summary>Headings</summary>
+              <ol><li><span class="token">h1</span>Address demo</li><li><span class="token">h2</span>Demo form and event outputs</li></ol>
+            </details>
+            <details>
+              <summary>Landmarks</summary>
+              <ol><li><span class="token">main</span>Address demo Yes No Enter address details Building and Street Address line 2 (Optional) Address line 3 (Optional) Town or City County/ State/ Province (Optional) Country Postcode ( <code>main</code></li></ol>
+            </details>
+            <details>
+              <summary>Potential focus targets in DOM order</summary>
+              <ol><li><span class="marker">1</span><strong>radio input</strong>: Yes <code>#yes</code></li><li><span class="marker">2</span><strong>radio input</strong>: No <code>#no</code></li><li><span class="marker">3</span><strong>text input</strong>: Building and Street <code>#addressLine1</code></li><li><span class="marker">4</span><strong>text input</strong>: Address line 2 (Optional) <code>#addressLine2</code></li><li><span class="marker">5</span><strong>text input</strong>: Address line 3 (Optional) <code>#addressLine3</code></li><li><span class="marker">6</span><strong>text input</strong>: Town or City <code>#postTown</code></li><li><span class="marker">7</span><strong>text input</strong>: County/ State/ Province (Optional) <code>#county</code></li><li><span class="marker">8</span><strong>text input</strong>: Country <code>#country</code></li><li><span class="marker">9</span><strong>text input</strong>: Postcode (Optional) <code>#postCode</code></li></ol>
+            </details>
+            <details>
+              <summary>Accessibility tree sample</summary>
+              <ol><li><span class="token">RootWebArea</span>RpxXuiCommonLib</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">main</span>(unnamed)</li><li><span class="token">heading</span>Address demo</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">heading</span>Demo form and event outputs</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">paragraph</span>(unnamed)</li><li><span class="token">paragraph</span>(unnamed)</li><li><span class="token">StaticText</span>Address demo</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">StaticText</span>Demo form and event outputs</li><li><span class="token">StaticText</span>{
+  &quot;address&quot;: {
+    &quot;addressLine1&quot;: &quot;&quot;,
+    &quot;addressLine2&quot;: &quot;&quot;,
+    &quot;addressLine3&quot;: &quot;&quot;,
+    &quot;postTown&quot;: &quot;&quot;,
+    &quot;county&quot;: &quot;&quot;,
+    &quot;postCode&quot;: &quot;&quot;,
+    &quot;country&quot;: &quot;&quot;
+  }
+}</li><li><span class="token">StaticText</span>Selection events: </li><li><span class="token">StaticText</span>0</li><li><span class="token">StaticText</span>Addresses available: </li><li><span class="token">StaticText</span>false</li><li><span class="token">InlineTextBox</span>Address demo</li><li><span class="token">radio</span>Yes</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">radio</span>No</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li></ol>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <p><a href="../index.html">Back to Odhín report</a></p>
+            <div class="banner issue-banner">
+              <h1>Screen-reader-like accessibility evidence</h1>
+              <p>2 screen-reader-like issue(s) on http://localhost:4200/coverage/address</p>
+            </div>
+            <p>Automated heuristics support investigation; they do not replace screen-reader testing or establish WCAG conformance.</p>
+            <details class="visual">
+              <summary>View page screenshot</summary>
+              <img alt="Accessibility evidence screenshot" src="88ba56a387682ee99791-screen-reader.png" />
+            </details>
+            
+        <section class="issue" id="issue-1">
+          <h2>1. govuk-template-body</h2>
+          <p><strong>The page should use the GOV.UK template body class during the template migration.</strong></p>
+          <p><strong>Selector:</strong> <code>page</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre></pre></details>
+        </section>
+      
+        <section class="issue" id="issue-2">
+          <h2>2. skip-link</h2>
+          <p><strong>The page should expose a visible skip-to-main-content link.</strong></p>
+          <p><strong>Selector:</strong> <code>page</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre></pre></details>
+        </section>
+      
+          </main>
+        </div>
+      </body>
+    </html>
+  

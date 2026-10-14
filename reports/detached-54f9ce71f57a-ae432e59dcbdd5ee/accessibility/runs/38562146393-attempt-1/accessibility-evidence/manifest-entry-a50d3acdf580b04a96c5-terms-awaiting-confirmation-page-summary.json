@@ -1,0 +1,33 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-7c59aed91c0fdda2c8e2",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "terms",
+  "pageState": "awaiting confirmation",
+  "violationCount": 3,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "wave-like:h1-count",
+    "screen-reader:govuk-template-body",
+    "screen-reader:skip-link"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=terms"
+  ],
+  "testTitle": "terms — awaiting confirmation",
+  "attachmentPrefix": "terms-awaiting-confirmation-page-summary",
+  "htmlFileName": "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.html",
+  "jsonFileName": "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.json",
+  "screenshotFileName": "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary.png",
+  "assetFileNames": [
+    "a50d3acdf580b04a96c5-terms-awaiting-confirmation-page-summary-style-1.css"
+  ]
+}

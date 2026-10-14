@@ -1,0 +1,56 @@
+{
+  "url": "http://localhost:4200/coverage/address",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Address demo"
+      },
+      {
+        "level": 2,
+        "text": "Demo form and event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Address demo Enter address details Building and Street Address line 2 (Optional) Address line 3 (Optional) Town or City County (Optional) Postcode Demo form and"
+      }
+    ],
+    "order": [
+      {
+        "type": "text input",
+        "name": "Building and Street",
+        "selector": "#addressLine1"
+      },
+      {
+        "type": "text input",
+        "name": "Address line 2 (Optional)",
+        "selector": "#addressLine2"
+      },
+      {
+        "type": "text input",
+        "name": "Address line 3 (Optional)",
+        "selector": "#addressLine3"
+      },
+      {
+        "type": "text input",
+        "name": "Town or City",
+        "selector": "#postTown"
+      },
+      {
+        "type": "text input",
+        "name": "County (Optional)",
+        "selector": "#county"
+      },
+      {
+        "type": "text input",
+        "name": "Postcode",
+        "selector": "#postCode"
+      }
+    ]
+  },
+  "violations": []
+}

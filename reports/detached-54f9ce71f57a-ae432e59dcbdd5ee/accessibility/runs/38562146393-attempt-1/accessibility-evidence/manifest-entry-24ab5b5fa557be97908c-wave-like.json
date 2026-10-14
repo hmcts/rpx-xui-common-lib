@@ -1,0 +1,78 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "case sharing",
+  "pageState": "pending addition",
+  "violationCount": 5,
+  "rules": [
+    "heading-order",
+    "duplicate-id",
+    "duplicate-id",
+    "duplicate-id",
+    "duplicate-id"
+  ],
+  "targets": [
+    "#title-selected-cases",
+    "#user-full-name-0",
+    "#user-email-0",
+    "#user-full-name-pendingShares-1",
+    "#user-email-pendingShares-1"
+  ],
+  "testTitle": "case sharing — pending addition",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "24ab5b5fa557be97908c-wave-like.html",
+  "jsonFileName": "24ab5b5fa557be97908c-wave-like.json",
+  "screenshotFileName": "24ab5b5fa557be97908c-wave-like.png",
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "#title-selected-cases"
+      ],
+      "summary": "Heading level jumps from h1 to h3.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "duplicate-id",
+      "targets": [
+        "#user-full-name-0"
+      ],
+      "summary": "Duplicate id \"user-full-name-0\" appears 2 times.",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "duplicate-id",
+      "targets": [
+        "#user-email-0"
+      ],
+      "summary": "Duplicate id \"user-email-0\" appears 2 times.",
+      "anchor": "issue-3"
+    },
+    {
+      "rule": "duplicate-id",
+      "targets": [
+        "#user-full-name-pendingShares-1"
+      ],
+      "summary": "Duplicate id \"user-full-name-pendingShares-1\" appears 2 times.",
+      "anchor": "issue-4"
+    },
+    {
+      "rule": "duplicate-id",
+      "targets": [
+        "#user-email-pendingShares-1"
+      ],
+      "summary": "Duplicate id \"user-email-pendingShares-1\" appears 2 times.",
+      "anchor": "issue-5"
+    }
+  ],
+  "assetFileNames": [
+    "24ab5b5fa557be97908c-wave-like-style-1.css"
+  ]
+}

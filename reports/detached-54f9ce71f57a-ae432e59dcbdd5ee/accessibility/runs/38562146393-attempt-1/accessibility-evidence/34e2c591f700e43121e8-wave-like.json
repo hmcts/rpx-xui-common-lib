@@ -1,0 +1,40 @@
+{
+  "url": "http://localhost:4200/coverage?feature=users",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "User selection"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "role": "main",
+        "text": "User selectionSelect a userNo user selected"
+      }
+    ],
+    "order": [
+      {
+        "type": "text input",
+        "name": "Select a user",
+        "selector": "input"
+      },
+      {
+        "type": "mat-option",
+        "name": "Alex Taylor - alex@example.test",
+        "selector": "#mat-option-0"
+      }
+    ]
+  },
+  "violations": []
+}

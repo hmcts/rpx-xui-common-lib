@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "user management",
+  "pageState": "first page and detail panels",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "user management — first page and detail panels",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "00dc10493abfdc16111d-wave-like.html",
+  "jsonFileName": "00dc10493abfdc16111d-wave-like.json",
+  "screenshotFileName": "00dc10493abfdc16111d-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "00dc10493abfdc16111d-wave-like-style-1.css"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "title": "user management — first page and detail panels",
+  "url": "http://localhost:4200/coverage/users",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "140.0.7339.186",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "issues-found",
+      "reviewCount": 4,
+      "reviewRules": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "issueCount": 15,
+      "rules": [
+        "dlitem"
+      ]
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "govuk-template-body",
+        "skip-link"
+      ]
+    }
+  ],
+  "incompleteCount": 2,
+  "published": {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "user management",
+    "pageState": "first page and detail panels",
+    "violationCount": 17,
+    "reviewCount": 4,
+    "reviewRules": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 17 unexpected issue(s), 4 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:dlitem",
+      "screen-reader:govuk-template-body",
+      "screen-reader:skip-link"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/users"
+    ],
+    "testTitle": "user management — first page and detail panels",
+    "attachmentPrefix": "user-management-first-page-and-detail-panels-page-summary",
+    "htmlFileName": "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.html",
+    "jsonFileName": "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.json",
+    "screenshotFileName": "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary.png",
+    "assetFileNames": [
+      "00dc10493abfdc16111d-user-management-first-page-and-detail-panels-page-summary-style-1.css"
+    ]
+  }
+}

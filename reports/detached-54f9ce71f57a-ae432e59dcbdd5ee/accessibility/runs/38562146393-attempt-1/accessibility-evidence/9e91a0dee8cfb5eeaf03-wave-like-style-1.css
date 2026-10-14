@@ -1,0 +1,38 @@
+
+          * { box-sizing: border-box; }
+          body { font: 16px/1.5 Arial, sans-serif; margin: 0; color: #0b0c0c; background: #f3f2f1; overflow-wrap: anywhere; }
+          a { color: #1d70b8; text-underline-offset: .15em; }
+          .skip-link { position: absolute; left: 12px; top: -100px; padding: 12px; background: #ffdd00; color: #0b0c0c; z-index: 1; }
+          .skip-link:focus { top: 12px; }
+          a:focus-visible, summary:focus-visible, .issue:focus { outline: 3px solid #ffdd00; outline-offset: 3px; box-shadow: 0 0 0 6px #0b0c0c; }
+          .layout { display: grid; grid-template-columns: minmax(260px, 320px) minmax(0, 1fr); min-height: 100vh; }
+          .panel { background: #d5dce0; border-right: 1px solid #b1b4b6; padding: 12px; position: sticky; top: 0; height: 100vh; overflow: auto; }
+          .panel h2 { font-size: 22px; margin: 0 0 12px; }
+          .toolbar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-bottom: 12px; }
+          .toolbar a { background: #fff; border-bottom: 3px solid #1d70b8; padding: 8px 4px; text-align: center; font-weight: bold; }
+          .scorecard { background: #fff; border-radius: 4px; padding: 12px; margin-bottom: 12px; }
+          .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+          .metric { border-left: 6px solid #f47738; padding-left: 8px; font-size: 14px; }
+          .metric strong { display: block; font-size: 26px; }
+          .marker { display: inline-block; min-width: 24px; margin-right: 8px; background: #1d70b8; color: #fff; border-radius: 3px; text-align: center; font-weight: bold; }
+          .structure-token { display: inline-block; min-width: 42px; margin-right: 8px; background: #4c2c92; color: #fff; border-radius: 3px; text-align: center; font-weight: bold; }
+          .content { background: #fff; padding: 24px; min-width: 0; }
+          .banner { background: #0b0c0c; color: #fff; padding: 16px; margin-bottom: 24px; }
+          .visual { border: 1px solid #b1b4b6; margin-bottom: 24px; background: #f3f2f1; }
+          .visual img { display: block; max-width: 100%; height: auto; }
+          .issue { border: 1px solid #b1b4b6; border-left: 6px solid #1d70b8; padding: 20px; margin-bottom: 24px; background: #fff; scroll-margin-top: 16px; }
+          .issue h2 { margin-top: 0; }
+          .report-nav { margin: 0 0 18px; }
+          .report-nav a { color: #1d70b8; font-weight: bold; }
+          .advice { background: #f3f2f1; border-left: 8px solid #1d70b8; padding: 12px 16px; margin: 12px 0; }
+          .advice dt { font-weight: bold; margin-top: 8px; }
+          .advice dd { margin-left: 0; }
+          code, pre { font: .95em/1.5 monospace; background: #f3f2f1; padding: 4px; white-space: pre-wrap; overflow-wrap: anywhere; }
+          .location { display: grid; grid-template-columns: minmax(100px, 150px) minmax(0, 1fr); gap: 8px 16px; }
+          .location dt, .location dd { margin: 0; }
+          .advice p, .advice dl { max-width: 85ch; }
+          @media (max-width: 760px) { .layout { display: block; } .panel { position: static; height: auto; } .content { padding: 16px; } .location { display: block; } .location dd { margin-bottom: 12px; } .issue { padding: 12px; } }
+          li { margin-bottom: 8px; }
+          details { background: #fff; border: 1px solid #b1b4b6; margin-bottom: 12px; padding: 8px; }
+          summary { cursor: pointer; font-weight: bold; }
+        
