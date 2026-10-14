@@ -1,0 +1,40 @@
+{
+  "url": "http://localhost:4200/coverage?feature=feedback",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Feedback"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "role": "main",
+        "text": "Feedback Completed successThe action was savedwarningAction needs attentionEmail addressShow validation errors"
+      }
+    ],
+    "order": [
+      {
+        "type": "email input",
+        "name": "Email address",
+        "selector": "#coverage-email"
+      },
+      {
+        "type": "button",
+        "name": "Show validation errors",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

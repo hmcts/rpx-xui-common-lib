@@ -1,0 +1,64 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "form controls",
+  "pageState": "descriptions initial",
+  "violationCount": 4,
+  "status": "issues-found",
+  "rules": [
+    "govuk-template-body",
+    "skip-link",
+    "aria-reference-target",
+    "component-description"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls",
+    "http://localhost:4200/coverage/form-controls",
+    "#case-notes",
+    "#case-notes"
+  ],
+  "testTitle": "form controls — descriptions initial",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "02e484a79f46c4bf77bb-screen-reader.html",
+  "jsonFileName": "02e484a79f46c4bf77bb-screen-reader.json",
+  "screenshotFileName": "02e484a79f46c4bf77bb-screen-reader.png",
+  "findings": [
+    {
+      "rule": "govuk-template-body",
+      "targets": [],
+      "summary": "The page should use the GOV.UK template body class during the template migration.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "skip-link",
+      "targets": [],
+      "summary": "The page should expose a visible skip-to-main-content link.",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "aria-reference-target",
+      "targets": [
+        "#case-notes"
+      ],
+      "summary": "aria-describedby references missing id(s): case-notes-hint.",
+      "anchor": "issue-3"
+    },
+    {
+      "rule": "component-description",
+      "targets": [
+        "#case-notes"
+      ],
+      "summary": "Expected #case-notes-hint text \"Include only synthetic notes.\", received missing target.",
+      "anchor": "issue-4"
+    }
+  ],
+  "assetFileNames": [
+    "02e484a79f46c4bf77bb-screen-reader-style-1.css"
+  ]
+}

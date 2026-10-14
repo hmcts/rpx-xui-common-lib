@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-61ff57397975ea90b153",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "feedback",
+  "pageState": "success and warning banners",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "feedback — success and warning banners",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "b6d7c4986c371f1daacf-axe.html",
+  "jsonFileName": "b6d7c4986c371f1daacf-axe.json",
+  "screenshotFileName": "b6d7c4986c371f1daacf-axe.png",
+  "assetFileNames": [
+    "b6d7c4986c371f1daacf-axe-style-1.css"
+  ]
+}

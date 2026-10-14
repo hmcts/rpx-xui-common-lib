@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "address",
+  "pageState": "lookup results",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — lookup results",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "d7d8f4f6d08d26e9e6c6-axe.html",
+  "jsonFileName": "d7d8f4f6d08d26e9e6c6-axe.json",
+  "screenshotFileName": "d7d8f4f6d08d26e9e6c6-axe.png",
+  "assetFileNames": [
+    "d7d8f4f6d08d26e9e6c6-axe-style-1.css"
+  ]
+}

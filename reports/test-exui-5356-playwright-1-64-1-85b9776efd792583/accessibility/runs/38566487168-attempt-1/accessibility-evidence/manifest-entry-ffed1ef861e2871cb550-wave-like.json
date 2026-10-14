@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-ef06c773769dc256dbe0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "invitation",
+  "pageState": "submitted details and permissions",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "invitation — submitted details and permissions",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "ffed1ef861e2871cb550-wave-like.html",
+  "jsonFileName": "ffed1ef861e2871cb550-wave-like.json",
+  "screenshotFileName": "ffed1ef861e2871cb550-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "ffed1ef861e2871cb550-wave-like-style-1.css"
+  ]
+}
