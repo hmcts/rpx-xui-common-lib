@@ -91,6 +91,25 @@ test('Pages publication uses a fresh latest-only site instead of copying the arc
   assert.match(publisherJob, /--site pages-site/);
   assert.match(publisherJob, /--latest-only true/);
   assert.doesNotMatch(publisherJob, /cp -R odhin-site\/\. pages-site/);
+
+  const pagesInvocation = publisherJob.match(
+    /^[ \t]+node e2e\/reporters\/odhin-site-publisher\.cjs \\\r?\n(?:(?:[ \t]+--[^\r\n]+)\\\r?\n)*[ \t]+--site pages-site \\\r?\n(?:(?:[ \t]+--[^\r\n]+)\\\r?\n)*[ \t]+--latest-only true >\/dev\/null$/m
+  )?.[0] ?? '';
+  assert.match(pagesInvocation, /--report-type "\$ODHIN_REPORT_TYPE"/);
+});
+
+test('Actions summary links use the current Pages report, immutable archive, and triggering workflow', () => {
+  const linkStep = publisherJob.match(
+    /^      - name: Link report in Actions\r?\n[\s\S]*?(?=^      - (?:name|uses):|^  [\w-]+:|(?![\s\S]))/m
+  )?.[0] ?? '';
+
+  assert.match(linkStep, /pages_url="\$\{PAGES_URL%\/\}"/);
+  assert.match(linkStep, /PAGES_URL: \$\{\{ steps\.deployment\.outputs\.page_url \}\}/);
+  assert.match(linkStep, /RUN_PATH: \$\{\{ steps\.publish_report\.outputs\.run_url_path \}\}/);
+  assert.match(linkStep, /UPSTREAM_URL: \$\{\{ github\.server_url \}\}\/\$\{\{ github\.repository \}\}\/actions\/runs\/\$\{\{ github\.event\.workflow_run\.id \}\}\/attempts\/\$\{\{ github\.event\.workflow_run\.run_attempt \}\}/);
+  assert.match(linkStep, /printf [^\n]*\[Open current Pages report\]\(%s\/%s\)[^\n]*"\$pages_url" "\$RUN_PATH" >> "\$GITHUB_STEP_SUMMARY"/);
+  assert.match(linkStep, /printf [^\n]*\[Open full immutable archive\]\(%s\/%s\)[^\n]*"\$GITHUB_SERVER_URL\/\$GITHUB_REPOSITORY\/tree\/odhin-reports" "\$RUN_PATH" >> "\$GITHUB_STEP_SUMMARY"/);
+  assert.match(linkStep, /printf [^\n]*\[Open the triggering workflow evidence\]\(%s\)[^\n]*"\$UPSTREAM_URL" >> "\$GITHUB_STEP_SUMMARY"/);
 });
 
 const cases = [
