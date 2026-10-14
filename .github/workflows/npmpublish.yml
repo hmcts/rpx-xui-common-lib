@@ -36,9 +36,9 @@ jobs:
       - run: yarn build:library
       - run: yarn test
       - run: yarn test:e2e:typecheck
-      - run: yarn node --test e2e/reporters/*.node-check.cjs
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium
+      - run: yarn node --test e2e/reporters/*.node-check.cjs
       - name: Run Playwright functional coverage
         id: functional
         env:

@@ -38,6 +38,10 @@ test('Odhín source jobs are read-only and upload exact evidence only', () => {
   assert.match(functionalWorkflow, /name: common-lib-functional-report/);
   assert.match(functionalWorkflow, /name: common-lib-playwright-evidence/);
   assert.match(functionalBuildJob, /yarn playwright install --with-deps chromium\r?\n/);
+  assert.ok(
+    functionalBuildJob.indexOf('Install Playwright browsers') < functionalBuildJob.indexOf('yarn node --test e2e/reporters/*.node-check.cjs'),
+    'browser-backed Odhín checks must run after Chromium is installed'
+  );
   assert.doesNotMatch(functionalBuildJob, /yarn playwright install --with-deps chromium firefox webkit/);
   assert.match(functionalBuildJob, /yarn playwright test --project=chromium/);
   assert.doesNotMatch(functionalWorkflow, /outputs:|evidence_url|odhin_artifact_ready|odhin_prepare/);
@@ -96,6 +100,19 @@ test('publisher is a trusted workflow_run with scoped write permissions', () => 
   assert.match(download, /run-id: \$\{\{ github\.event\.workflow_run\.id \}\}/);
   assert.match(download, /github-token: \$\{\{ github\.token \}\}/);
   assert.doesNotMatch(download, /continue-on-error:\s*true/);
+  assert.match(publisherJob, /- name: Check exact upstream report is available/);
+  assert.match(publisherJob, /No publishable `%s` artifact was produced/);
+  for (const stepName of [
+    'Download exact upstream report',
+    'Prepare and persist immutable Odhín history',
+    'Configure GitHub Pages',
+    'Upload Odhín site',
+    'Publish Odhín report',
+    'Link report in Actions'
+  ]) {
+    const step = publisherJob.match(new RegExp(`- name: ${stepName}[\\s\\S]*?(?=      - name:|$)`))?.[0] ?? '';
+    assert.match(step, /if: \$\{\{ steps\.upstream_report\.outputs\.available == 'true' \}\}/, `${stepName} must be skipped without exact evidence`);
+  }
   assert.ok(publisherJob.indexOf('Download exact upstream report') < publisherJob.indexOf('Prepare and persist immutable Odhín history'));
 
   assert.match(publisherJob, /ODHIN_BRANCH: \$\{\{ github\.event\.workflow_run\.head_branch \}\}/);
