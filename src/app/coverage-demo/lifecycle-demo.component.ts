@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { FeatureToggleService } from 'projects/exui-common-lib/src/lib/services';
+import { FeatureToggleService } from 'projects/exui-common-lib/src/public-api';
 import {
   initialFeatureKey,
   lifecycleMessageCookie,
