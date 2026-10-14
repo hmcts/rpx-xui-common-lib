@@ -87,6 +87,12 @@ test('publisher is a trusted workflow_run with scoped write permissions', () => 
   assert.match(publisherJob, /evidence\/odhin-source\.json/);
 });
 
+test('Pages publication uses a fresh latest-only site instead of copying the archive', () => {
+  assert.match(publisherJob, /--site pages-site/);
+  assert.match(publisherJob, /--latest-only true/);
+  assert.doesNotMatch(publisherJob, /cp -R odhin-site\/\. pages-site/);
+});
+
 const cases = [
   { name: 'same-repository PR success publishes', workflow: 'Node.js Package', event: 'pull_request', conclusion: 'success', want: true },
   { name: 'same-repository PR failure publishes its valid report', workflow: 'Node.js Package', event: 'pull_request', conclusion: 'failure', want: true },

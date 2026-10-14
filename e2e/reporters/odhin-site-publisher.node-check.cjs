@@ -37,7 +37,7 @@ function createSource(root, label, { includeIndex = true } = {}) {
   assetPaths.forEach((assetPath) => fs.writeFileSync(path.join(root, assetPath), `${label}:${assetPath}`));
 }
 
-function publish({ source, site, branch, reportType = 'functional', runId, runAttempt = '1', sha = 'a'.repeat(40) }) {
+function publish({ source, site, branch, reportType = 'functional', runId, runAttempt = '1', sha = 'a'.repeat(40), latestOnly = false }) {
   return publishReport({
     sourceDir: source,
     siteDir: site,
@@ -47,7 +47,8 @@ function publish({ source, site, branch, reportType = 'functional', runId, runAt
     runId,
     runAttempt,
     sha,
-    runUrl: `https://github.com/hmcts/rpx-xui-common-lib/actions/runs/${runId}/attempts/${runAttempt}`
+    runUrl: `https://github.com/hmcts/rpx-xui-common-lib/actions/runs/${runId}/attempts/${runAttempt}`,
+    latestOnly
   });
 }
 
@@ -132,6 +133,34 @@ test('rejects an incomplete report before creating public history', () => {
     createSource(source, 'invalid', { includeIndex: false });
     assert.throws(() => publish({ source, site, branch: 'broken', runId: '99' }), /HTML index is missing/);
     assert.equal(fs.existsSync(path.join(site, 'reports')), false);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('builds a latest-only Pages projection without copying archive history', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-odhin-latest-'));
+  const source = path.join(root, 'source');
+  const archive = path.join(root, 'archive');
+  const pages = path.join(root, 'pages');
+  try {
+    createSource(source, 'old');
+    publish({ source, site: archive, branch: 'master', runId: '30' });
+    createSource(source, 'current');
+    publish({ source, site: archive, branch: 'master', runId: '31' });
+    publish({ source, site: pages, branch: 'master', runId: '31', latestOnly: true });
+
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/30-attempt-1')));
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/31-attempt-1')));
+    assert.ok(fs.existsSync(path.join(pages, 'reports/master/runs/31-attempt-1')));
+    assert.equal(fs.existsSync(path.join(pages, 'reports/master/runs/30-attempt-1')), false);
+    assert.doesNotMatch(fs.readFileSync(path.join(pages, 'reports/master/index.html'), 'utf8'), /30-attempt-1|Run history/);
+    assert.match(fs.readFileSync(path.join(pages, 'index.html'), 'utf8'), /Only the current report is published on this Pages site/);
+    assert.ok(fs.existsSync(path.join(pages, 'reports/master/runs/31-attempt-1/presentation/report.css')));
+    assert.throws(
+      () => publish({ source, site: pages, branch: 'master', runId: '32', latestOnly: true }),
+      /must start empty/
+    );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

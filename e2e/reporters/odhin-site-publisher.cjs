@@ -82,12 +82,12 @@ function counterpartRunHref(reportType, run) {
     : `../runs/${encodeURIComponent(run.runKey)}/`;
 }
 
-function renderHistoryIndex(branch, reportType, counterpartRuns) {
+function renderHistoryIndex(branch, reportType, counterpartRuns, latestOnly = false) {
   const definition = reportDefinition(reportType);
   const counterpartType = reportType === 'functional' ? 'accessibility' : 'functional';
   const counterpartDefinition = reportDefinition(counterpartType);
   const latest = branch.runs[0];
-  const rows = branch.runs.map((run) => {
+  const rows = latestOnly ? '' : branch.runs.map((run) => {
     const counterpart = findRunBySha(counterpartRuns, run.sha);
     const exactMatch = counterpart
       ? ` · <a href="${counterpartRunHref(reportType, counterpart)}">Open matching ${escapeHtml(counterpartDefinition.label)} report</a>`
@@ -95,18 +95,22 @@ function renderHistoryIndex(branch, reportType, counterpartRuns) {
     return `<li><a href="./runs/${encodeURIComponent(run.runKey)}/">Run ${escapeHtml(run.runKey)}</a>
       <span>${escapeHtml(run.sha.slice(0, 8))} · ${escapeHtml(run.createdAt)}${exactMatch}</span></li>`;
   }).join('');
+  const description = latestOnly
+    ? 'Only the current report is published on this Pages site.'
+    : `Branch history for <code>${escapeHtml(branch.rawBranch)}</code>.`;
+  const history = latestOnly ? '' : `<h2>Run history</h2><ul>${rows || '<li>No reports published.</li>'}</ul>`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>${escapeHtml(definition.label)} · ${escapeHtml(branch.rawBranch)}</title></head>
 <body><main><h1>${escapeHtml(definition.label)} reports · ${escapeHtml(branch.rawBranch)}</h1>
-<p>Branch history for <code>${escapeHtml(branch.rawBranch)}</code>.</p>
+<p>${description}</p>
 <p><a href="${historyHref(reportType)}">Open ${escapeHtml(counterpartDefinition.label)} history</a></p>
 ${latest ? `<p><a href="./runs/${encodeURIComponent(latest.runKey)}/">Open latest ${escapeHtml(definition.label)} report</a></p>` : ''}
-<h2>Run history</h2><ul>${rows || '<li>No reports published.</li>'}</ul>
+${history}
 </main></body></html>
 `;
 }
 
-function renderRootIndex(branches) {
+function renderRootIndex(branches, latestOnly = false) {
   const master = branches.find((branch) => branch.rawBranch === 'master');
   const rows = branches.map((branch) => {
     const functional = branch.functionalRuns[0];
@@ -115,11 +119,17 @@ function renderRootIndex(branches) {
     const accessibilityLink = accessibility ? ` · <a href="./reports/${encodeURIComponent(branch.slug)}/accessibility/runs/${encodeURIComponent(accessibility.runKey)}/">latest accessibility</a>` : '';
     return `<li><a href="./reports/${encodeURIComponent(branch.slug)}/">${escapeHtml(branch.rawBranch)}</a>${functionalLink}${accessibilityLink}</li>`;
   }).join('');
-  const masterLink = master ? `<a href="./reports/${encodeURIComponent(master.slug)}/">Open master history</a>` : 'Master history will appear after the next master publication.';
+  const masterLink = master
+    ? `<a href="./reports/${encodeURIComponent(master.slug)}/">Open master ${latestOnly ? 'report' : 'history'}</a>`
+    : `Master ${latestOnly ? 'report' : 'history'} will appear after the next master publication.`;
+  const description = latestOnly
+    ? 'Only the current report is published on this Pages site.'
+    : 'Functional and accessibility reports are retained separately per source branch.';
+  const title = latestOnly ? 'CommonLib latest Odhín report' : 'CommonLib Odhín report history';
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>CommonLib Odhín report history</title></head>
-<body><main><h1>CommonLib Odhín report history</h1>
-<p>Functional and accessibility reports are retained separately per source branch. ${masterLink}</p>
+<html lang="en"><head><meta charset="utf-8"><title>${title}</title></head>
+<body><main><h1>${title}</h1>
+<p>${description} ${masterLink}</p>
 <ul>${rows || '<li>No reports published.</li>'}</ul>
 </main></body></html>
 `;
@@ -172,7 +182,7 @@ function readBranches(reportsDir) {
     }).filter(Boolean).sort((left, right) => left.rawBranch.localeCompare(right.rawBranch));
 }
 
-function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttempt, sha, runUrl, reportType = 'functional' }) {
+function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttempt, sha, runUrl, reportType = 'functional', latestOnly = false }) {
   const type = normaliseReportType(reportType);
   const definition = reportDefinition(type);
   if (!fs.existsSync(sourceDir)) throw new Error(`Odhín source directory does not exist: ${sourceDir}`);
@@ -184,6 +194,9 @@ function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttemp
   const branchDir = path.join(reportsDir, branchSlug);
   const typeDir = historyDirectory(branchDir, type);
   const runDir = path.join(typeDir, 'runs', safeRunKey);
+  if (latestOnly && fs.existsSync(siteDir) && fs.readdirSync(siteDir).length > 0) {
+    throw new Error(`Latest-only Odhín site must start empty: ${siteDir}`);
+  }
   fs.mkdirSync(siteDir, { recursive: true });
   ensureBranchIdentity(branchDir, rawBranch, branchSlug);
   if (fs.existsSync(runDir)) throw new Error(`Odhín run already exists and will not be overwritten: ${runDir}`);
@@ -220,10 +233,10 @@ function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttemp
   const branch = { rawBranch: String(rawBranch), slug: branchSlug, runs: functionalRuns };
   writeJson(path.join(branchDir, 'odhin-branch.json'), branch);
   writeJson(path.join(accessibilityDir, 'odhin-branch.json'), { rawBranch: String(rawBranch), slug: branchSlug, reportType: 'accessibility', runs: accessibilityRuns });
-  fs.writeFileSync(path.join(branchDir, 'index.html'), renderHistoryIndex(branch, 'functional', accessibilityRuns));
-  fs.writeFileSync(path.join(accessibilityDir, 'index.html'), renderHistoryIndex({ rawBranch: String(rawBranch), slug: branchSlug, runs: accessibilityRuns }, 'accessibility', functionalRuns));
+  fs.writeFileSync(path.join(branchDir, 'index.html'), renderHistoryIndex(branch, 'functional', accessibilityRuns, latestOnly));
+  fs.writeFileSync(path.join(accessibilityDir, 'index.html'), renderHistoryIndex({ rawBranch: String(rawBranch), slug: branchSlug, runs: accessibilityRuns }, 'accessibility', functionalRuns, latestOnly));
   fs.writeFileSync(path.join(siteDir, '.nojekyll'), '');
-  fs.writeFileSync(path.join(siteDir, 'index.html'), renderRootIndex(readBranches(reportsDir)));
+  fs.writeFileSync(path.join(siteDir, 'index.html'), renderRootIndex(readBranches(reportsDir), latestOnly));
   const relativeHistory = definition.historyDirectory ? `${definition.historyDirectory}/` : '';
   return { reportType: type, branchSlug, branchUrlPath: `reports/${branchSlug}/${relativeHistory}`,
     runUrlPath: `reports/${branchSlug}/${relativeHistory}runs/${safeRunKey}/` };
@@ -247,7 +260,7 @@ if (require.main === module) {
       const args = parseArgs(process.argv.slice(2));
       console.log(JSON.stringify(publishReport({ sourceDir: args.source, siteDir: args.site, rawBranch: args.branch,
         runKey: args['run-key'], runId: args['run-id'], runAttempt: args['run-attempt'], sha: args.sha,
-        runUrl: args['run-url'], reportType: args['report-type'] })));
+        runUrl: args['run-url'], reportType: args['report-type'], latestOnly: args['latest-only'] === 'true' })));
     }
   } catch (error) {
     console.error(error.message);
