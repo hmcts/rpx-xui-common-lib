@@ -1,3 +1,11 @@
 .govuk-link--no-visited-state {
     cursor: pointer;
 }
+
+.service-message__hide-button {
+    appearance: none;
+    background: none;
+    border: 0;
+    font: inherit;
+    padding: 0;
+}
