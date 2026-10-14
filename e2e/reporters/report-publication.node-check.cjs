@@ -7,6 +7,7 @@ const { Script } = require('node:vm');
 const workflows = path.join(__dirname, '../../.github/workflows');
 const functionalWorkflow = fs.readFileSync(path.join(workflows, 'npmpublish.yml'), 'utf8');
 const accessibilityWorkflow = fs.readFileSync(path.join(workflows, 'accessibility-odhin.yml'), 'utf8');
+const crossBrowserWorkflow = fs.readFileSync(path.join(workflows, 'cross-browser-odhin.yml'), 'utf8');
 const publisherWorkflow = fs.readFileSync(path.join(workflows, 'publish-odhin.yml'), 'utf8');
 
 function jobBlock(workflow, name) {
@@ -26,13 +27,19 @@ const publisherCondition = new Script(`(${foldedCondition(publisherJob)})`);
 test('Odhín source jobs are read-only and upload exact evidence only', () => {
   assert.match(functionalWorkflow, /^permissions:\r?\n  contents: read/m);
   assert.match(accessibilityWorkflow, /^permissions:\r?\n  contents: read/m);
+  assert.match(crossBrowserWorkflow, /^permissions:\r?\n  contents: read/m);
   assert.doesNotMatch(functionalBuildJob, /contents: write|pages: write|id-token: write/);
   assert.doesNotMatch(accessibilityWorkflow, /contents: write|pages: write|id-token: write/);
+  assert.doesNotMatch(crossBrowserWorkflow, /contents: write|pages: write|id-token: write/);
   assert.doesNotMatch(functionalWorkflow, /  publish-odhin:|workflow_call/);
   assert.doesNotMatch(accessibilityWorkflow, /publish-odhin|workflow_call/);
+  assert.doesNotMatch(crossBrowserWorkflow, /publish-odhin|workflow_call/);
 
   assert.match(functionalWorkflow, /name: common-lib-functional-report/);
   assert.match(functionalWorkflow, /name: common-lib-playwright-evidence/);
+  assert.match(functionalBuildJob, /yarn playwright install --with-deps chromium\r?\n/);
+  assert.doesNotMatch(functionalBuildJob, /yarn playwright install --with-deps chromium firefox webkit/);
+  assert.match(functionalBuildJob, /yarn playwright test --project=chromium/);
   assert.doesNotMatch(functionalWorkflow, /outputs:|evidence_url|odhin_artifact_ready|odhin_prepare/);
 
   assert.match(accessibilityWorkflow, /^  workflow_dispatch:/m);
@@ -48,11 +55,28 @@ test('Odhín source jobs are read-only and upload exact evidence only', () => {
   assert.match(accessibilityWorkflow, /name: common-lib-accessibility-report/);
   assert.match(accessibilityWorkflow, /odhin-source\.json/);
   assert.match(accessibilityWorkflow, /path: accessibility-odhin-artifact\//);
+
+  assert.match(crossBrowserWorkflow, /^  workflow_dispatch:/m);
+  assert.doesNotMatch(crossBrowserWorkflow, /^  (pull_request|push):/m);
+  assert.match(crossBrowserWorkflow, /ref:\r?\n\s+description: Branch, tag, or commit SHA to test/);
+  assert.match(crossBrowserWorkflow, /ref: \$\{\{ inputs\.ref \}\}/);
+  assert.match(crossBrowserWorkflow, /fetch-depth: 0/);
+  assert.match(crossBrowserWorkflow, /persist-credentials: false/);
+  assert.match(crossBrowserWorkflow, /yarn playwright install --with-deps chromium firefox webkit/);
+  assert.match(crossBrowserWorkflow, /yarn playwright test --project=firefox --project=webkit/);
+  assert.doesNotMatch(crossBrowserWorkflow, /yarn playwright test --project=chromium/);
+  assert.match(crossBrowserWorkflow, /name: common-lib-cross-browser-report/);
+  assert.match(crossBrowserWorkflow, /name: common-lib-cross-browser-evidence/);
+  assert.match(crossBrowserWorkflow, /odhin-source\.json/);
+  assert.match(crossBrowserWorkflow, /path: cross-browser-odhin-artifact\//);
+  assert.match(crossBrowserWorkflow, /TARGET_SHA="\$\(git rev-parse HEAD\)"/);
+  assert.match(crossBrowserWorkflow, /steps\.cross_browser\.outcome == 'success' \|\| steps\.cross_browser\.outcome == 'failure'/);
+  assert.match(crossBrowserWorkflow, /steps\.odhin_browser\.outcome == 'success'/);
 });
 
 test('publisher is a trusted workflow_run with scoped write permissions', () => {
   assert.match(publisherWorkflow, /^  workflow_run:/m);
-  assert.match(publisherWorkflow, /workflows:\r?\n      - Node\.js Package\r?\n      - CommonLib accessibility \(advisory\)/);
+  assert.match(publisherWorkflow, /workflows:\r?\n      - Node\.js Package\r?\n      - CommonLib accessibility \(advisory\)\r?\n      - CommonLib cross-browser \(advisory\)/);
   assert.match(publisherWorkflow, /types:\r?\n      - completed/);
   assert.doesNotMatch(publisherWorkflow, /workflow_call|inputs\./);
   assert.match(publisherWorkflow, /^permissions:\r?\n  contents: read/m);
@@ -85,6 +109,9 @@ test('publisher is a trusted workflow_run with scoped write permissions', () => 
   assert.match(publisherJob, /--run-attempt "\$ODHIN_SOURCE_RUN_ATTEMPT"/);
   assert.match(publisherJob, /--report-type "\$ODHIN_REPORT_TYPE"/);
   assert.match(publisherJob, /evidence\/odhin-source\.json/);
+  assert.match(publisherJob, /if \[ "\$ODHIN_REPORT_TYPE" != 'functional' \]; then/);
+  assert.match(publisherJob, /common-lib-cross-browser-report/);
+  assert.match(publisherJob, /report_type=cross-browser/);
 });
 
 const cases = [
@@ -96,9 +123,15 @@ const cases = [
   { name: 'feature push does not publish', workflow: 'Node.js Package', event: 'push', branch: 'test/private', conclusion: 'success', want: false },
   { name: 'foreign repository PR never publishes', workflow: 'Node.js Package', event: 'pull_request', conclusion: 'success', sourceRepo: 'outside/fork', want: false },
   { name: 'manual dispatch of the functional workflow cannot bypass its trigger policy', workflow: 'Node.js Package', event: 'workflow_dispatch', want: false },
-  { name: 'manual accessibility success publishes', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'success', want: true },
-  { name: 'manual accessibility failure does not publish', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'failure', want: false },
+  { name: 'manual accessibility success publishes', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'success', workflowBranch: 'master', want: true },
+  { name: 'manual accessibility failure does not publish', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'failure', workflowBranch: 'master', want: false },
+  { name: 'manual accessibility from a feature workflow does not publish', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'success', workflowBranch: 'test/untrusted', want: false },
   { name: 'accessibility push cannot publish', workflow: 'CommonLib accessibility (advisory)', event: 'push', conclusion: 'success', want: false },
+  { name: 'manual cross-browser success publishes', workflow: 'CommonLib cross-browser (advisory)', event: 'workflow_dispatch', conclusion: 'success', workflowBranch: 'master', want: true },
+  { name: 'manual cross-browser failure publishes its valid report', workflow: 'CommonLib cross-browser (advisory)', event: 'workflow_dispatch', conclusion: 'failure', workflowBranch: 'master', want: true },
+  { name: 'manual cross-browser cancellation does not publish', workflow: 'CommonLib cross-browser (advisory)', event: 'workflow_dispatch', conclusion: 'cancelled', workflowBranch: 'master', want: false },
+  { name: 'manual cross-browser from a feature workflow does not publish', workflow: 'CommonLib cross-browser (advisory)', event: 'workflow_dispatch', conclusion: 'success', workflowBranch: 'test/untrusted', want: false },
+  { name: 'cross-browser push cannot publish', workflow: 'CommonLib cross-browser (advisory)', event: 'push', conclusion: 'success', want: false },
   { name: 'unrelated workflow cannot publish', workflow: 'anything else', event: 'workflow_dispatch', conclusion: 'success', want: false },
 ];
 
@@ -112,9 +145,10 @@ for (const scenario of cases) {
             name: scenario.workflow,
             event: scenario.event,
             conclusion: scenario.conclusion,
-            head_branch: scenario.branch ?? 'feature/example',
+            head_branch: scenario.workflowBranch ?? scenario.branch ?? 'feature/example',
             head_repository: { full_name: scenario.sourceRepo ?? 'hmcts/rpx-xui-common-lib' },
           },
+          repository: { default_branch: 'master' },
         },
       },
     };

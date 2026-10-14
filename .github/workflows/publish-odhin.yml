@@ -5,6 +5,7 @@ on:
     workflows:
       - Node.js Package
       - CommonLib accessibility (advisory)
+      - CommonLib cross-browser (advisory)
     types:
       - completed
 
@@ -26,7 +27,12 @@ jobs:
       (github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'Release')))) ||
       (github.event.workflow_run.name == 'CommonLib accessibility (advisory)' &&
       github.event.workflow_run.event == 'workflow_dispatch' &&
-      github.event.workflow_run.conclusion == 'success') ) }}
+      github.event.workflow_run.head_branch == github.event.repository.default_branch &&
+      github.event.workflow_run.conclusion == 'success') ||
+      (github.event.workflow_run.name == 'CommonLib cross-browser (advisory)' &&
+      github.event.workflow_run.event == 'workflow_dispatch' &&
+      github.event.workflow_run.head_branch == github.event.repository.default_branch &&
+      (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure') ) ) }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -50,13 +56,24 @@ jobs:
         env:
           SOURCE_WORKFLOW: ${{ github.event.workflow_run.name }}
         run: |
-          if [ "$SOURCE_WORKFLOW" = 'Node.js Package' ]; then
-            echo 'artifact_name=common-lib-functional-report' >> "$GITHUB_OUTPUT"
-            echo 'report_type=functional' >> "$GITHUB_OUTPUT"
-          else
-            echo 'artifact_name=common-lib-accessibility-report' >> "$GITHUB_OUTPUT"
-            echo 'report_type=accessibility' >> "$GITHUB_OUTPUT"
-          fi
+          case "$SOURCE_WORKFLOW" in
+            'Node.js Package')
+              echo 'artifact_name=common-lib-functional-report' >> "$GITHUB_OUTPUT"
+              echo 'report_type=functional' >> "$GITHUB_OUTPUT"
+              ;;
+            'CommonLib accessibility (advisory)')
+              echo 'artifact_name=common-lib-accessibility-report' >> "$GITHUB_OUTPUT"
+              echo 'report_type=accessibility' >> "$GITHUB_OUTPUT"
+              ;;
+            'CommonLib cross-browser (advisory)')
+              echo 'artifact_name=common-lib-cross-browser-report' >> "$GITHUB_OUTPUT"
+              echo 'report_type=cross-browser' >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "Unsupported Odhín source workflow: $SOURCE_WORKFLOW" >&2
+              exit 1
+              ;;
+          esac
       - name: Download exact upstream report
         uses: actions/download-artifact@v8
         with:
@@ -78,7 +95,7 @@ jobs:
           ODHIN_REPORT_TYPE: ${{ steps.report.outputs.report_type }}
         run: |
           set -euo pipefail
-          if [ "$ODHIN_REPORT_TYPE" = 'accessibility' ]; then
+          if [ "$ODHIN_REPORT_TYPE" != 'functional' ]; then
             test -s evidence/odhin-source.json
             ODHIN_BRANCH="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).rawBranch)' < evidence/odhin-source.json)"
             ODHIN_SHA="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).sha)' < evidence/odhin-source.json)"

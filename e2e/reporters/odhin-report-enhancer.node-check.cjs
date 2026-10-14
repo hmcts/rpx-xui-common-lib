@@ -2,8 +2,11 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { spawnSync } = require('node:child_process');
 const test = require('node:test');
 const { parse } = require('node-html-parser');
+const { chromium } = require('@playwright/test');
+const { pathToFileURL } = require('node:url');
 
 const { createEmptyFeatureStat, deriveFeatureName, enhanceGeneratedReport } = require('./odhin-report-enhancer.cjs');
 
@@ -73,7 +76,6 @@ test('finalisation timeout and enhancement errors fail the run', async (t) => {
 });
 
 test('Playwright CLI exits nonzero for a report failure despite a passing test', () => {
-  const { spawnSync } = require('node:child_process');
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'odhin-exit-proof-'));
   try {
     const reporterPath = require.resolve('./odhin-adaptive.reporter.cjs');
@@ -88,6 +90,65 @@ test('Playwright CLI exits nonzero for a report failure despite a passing test',
     }
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('a real failed Odhín report keeps native step evidence operable', async (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'odhin-failed-steps-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const outputFolder = path.join(root, 'report');
+  const report = path.join(outputFolder, 'failed-steps.html');
+  const reporterPath = require.resolve('./odhin-adaptive.reporter.cjs');
+  const testPath = require.resolve('@playwright/test');
+
+  fs.writeFileSync(
+    path.join(root, 'failed-steps.spec.cjs'),
+    `const { test, expect } = require(${JSON.stringify(testPath)});
+test('controlled Odhín failure', async () => {
+  await test.step('failure step retained in report', async () => {
+    expect('actual').toBe('expected');
+  });
+});`
+  );
+  fs.writeFileSync(
+    path.join(root, 'playwright.config.cjs'),
+    `module.exports = {
+  testDir: ${JSON.stringify(root)},
+  testMatch: 'failed-steps.spec.cjs',
+  reporter: [[${JSON.stringify(reporterPath)}, {
+    outputFolder: ${JSON.stringify(outputFolder)},
+    indexFilename: 'failed-steps.html',
+    profile: false,
+    lightweight: true,
+    embedAssets: false,
+    startServer: false
+  }]]
+};`
+  );
+
+  const result = spawnSync(
+    process.execPath,
+    [require.resolve('@playwright/test/cli'), 'test', '-c', path.join(root, 'playwright.config.cjs')],
+    { cwd: root, encoding: 'utf8' }
+  );
+  assert.equal(result.status, 1, result.stdout + result.stderr);
+  assert.ok(fs.statSync(report).size > 0, 'real failed Odhín report is emitted');
+
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage();
+    await page.goto(pathToFileURL(report).href);
+    await page.locator('#odhin-feature-summary .feature-toggle').click();
+    await page.locator('#feature-tests-0 .test-detail-link').click();
+    const modal = page.locator('.modal.show').last();
+    await modal.waitFor();
+    assert.ok(await page.locator('#test-list-table .result-status-failed').count(), 'report retains the failed result');
+    await modal.getByRole('button', { name: 'Steps' }).click();
+    const visibleSteps = modal.locator('.result-tabcontent[style*="display: block"] .stepLine');
+    assert.ok(await visibleSteps.count(), 'failed result renders native step evidence');
+    assert.match((await visibleSteps.allTextContents()).join(' '), /failure step retained in report/, 'failed result retains the original step');
+  } finally {
+    await browser.close();
   }
 });
 
@@ -160,6 +221,28 @@ test('writes failed stdout and stderr beside Odhín instead of embedding them', 
   } finally {
     fs.rmSync(outputFolder, { recursive: true, force: true });
   }
+});
+
+test('lightweight Odhín trims green steps but preserves failed step evidence', async () => {
+  const Reporter = require('./odhin-adaptive.reporter.cjs');
+  const forwarded = [];
+  const reporter = new Reporter({
+    lightweight: true,
+    profile: false,
+    createInnerReporter: () => ({
+      onTestEnd(_test, result) {
+        forwarded.push(result);
+      },
+    }),
+  });
+  const testRecord = { id: 'test-id', location: { file: '/tests/app.spec.ts' }, retries: 0, titlePath: () => ['app', 'test'] };
+  const retainedStep = { title: 'meaningful failure evidence' };
+
+  await reporter.onTestEnd(testRecord, { status: 'passed', retry: 0, duration: 1, steps: [retainedStep], attachments: [] });
+  await reporter.onTestEnd(testRecord, { status: 'failed', retry: 0, duration: 1, steps: [retainedStep], attachments: [], errors: [] });
+  await reporter.flushInnerCallbacks();
+
+  assert.deepEqual(forwarded.map((result) => result.steps), [[], [retainedStep]]);
 });
 
 test('keeps dashboard blocks separate for the fluid WebApp layout', () => {

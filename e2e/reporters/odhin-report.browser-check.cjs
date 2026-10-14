@@ -41,15 +41,25 @@ async function main() {
       const details = page.locator(`#feature-tests-${index}`);
       const tests = await details.locator('li').count();
       assert.ok(tests > 0, `feature ${index + 1} drill-down exposes tests`);
-      assert.equal(await details.locator('.feature-test-steps').count(), tests, `feature ${index + 1} exposes step links`);
+      assert.equal(await details.locator('.test-detail-link').count(), tests, `feature ${index + 1} exposes every test detail`);
       groupedTests += tests;
     }
     assert.equal(groupedTests, reportedRows, 'feature groups account for every rendered report result row');
-    await page.locator('#feature-tests-0 .feature-test-steps').first().click();
+    await page.locator('#feature-tests-0 .test-detail-link').first().click();
     const modal = page.locator('.modal.show').last();
     await modal.waitFor();
-    assert.equal(await modal.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'View steps opens the native test steps tab');
-    assert.ok(await modal.locator('.result-tabcontent[style*="display: block"] .stepLine').count(), 'native test steps render');
+    assert.equal(await modal.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Info', 'test detail opens the native result information');
+    assert.match((await modal.locator('.result-tabcontent[style*="display: block"]').textContent()).trim(), /\S/, 'test detail renders native result content');
+    await modal.locator('[data-bs-dismiss="modal"]').click();
+
+    const modalWithSteps = page.locator('.modal').filter({ has: page.locator('.stepLine') }).first();
+    if (await modalWithSteps.count()) {
+      const modalId = await modalWithSteps.getAttribute('id');
+      await page.locator(`[data-bs-target="#${modalId}"]`).first().click();
+      await modalWithSteps.locator('.result-tab-header button').filter({ hasText: 'Steps' }).click();
+      assert.equal(await modalWithSteps.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'retained native steps open their result tab');
+      assert.ok(await modalWithSteps.locator('.result-tabcontent[style*="display: block"] .stepLine').count(), 'retained native test steps render');
+    }
     assert.deepEqual(errors, [], 'report JavaScript has no console or page errors');
   } finally {
     await browser.close();
