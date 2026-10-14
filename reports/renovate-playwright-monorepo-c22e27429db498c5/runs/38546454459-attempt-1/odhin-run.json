@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "renovate/playwright-monorepo",
+  "branchSlug": "renovate-playwright-monorepo-c22e27429db498c5",
+  "runKey": "38546454459-attempt-1",
+  "runId": "38546454459",
+  "runAttempt": "1",
+  "sha": "47e03ed45b4b8283f5faf6da184acf334bd9edbb",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38546454459",
+  "createdAt": "2026-10-14T10:07:07.876Z"
+}
