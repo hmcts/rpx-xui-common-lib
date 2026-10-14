@@ -99,11 +99,14 @@ function renderHistoryIndex(branch, reportType, counterpartRuns, latestOnly = fa
     ? 'Only the current report is published on this Pages site.'
     : `Branch history for <code>${escapeHtml(branch.rawBranch)}</code>.`;
   const history = latestOnly ? '' : `<h2>Run history</h2><ul>${rows || '<li>No reports published.</li>'}</ul>`;
+  const counterpartHistory = latestOnly && counterpartRuns.length === 0
+    ? ''
+    : `<p><a href="${historyHref(reportType)}">Open ${escapeHtml(counterpartDefinition.label)} history</a></p>`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>${escapeHtml(definition.label)} · ${escapeHtml(branch.rawBranch)}</title></head>
 <body><main><h1>${escapeHtml(definition.label)} reports · ${escapeHtml(branch.rawBranch)}</h1>
 <p>${description}</p>
-<p><a href="${historyHref(reportType)}">Open ${escapeHtml(counterpartDefinition.label)} history</a></p>
+${counterpartHistory}
 ${latest ? `<p><a href="./runs/${encodeURIComponent(latest.runKey)}/">Open latest ${escapeHtml(definition.label)} report</a></p>` : ''}
 ${history}
 </main></body></html>
@@ -153,17 +156,20 @@ function addCombinedReportNavigation(file, accessibility = false) {
   fs.writeFileSync(file, html.replace(body, `$&${navigation}`));
 }
 
-function addHistoryNavigation(file, reportType) {
+function addHistoryNavigation(file, reportType, latestOnly = false) {
   const html = fs.readFileSync(file, 'utf8');
   const body = /<body\b[^>]*>/i;
   if (!body.test(html)) throw new Error('Odhín HTML body is missing');
   const counterpart = reportType === 'functional' ? 'Accessibility' : 'Functional';
   const href = reportType === 'functional' ? '../../accessibility/' : '../../../';
+  const counterpartLink = latestOnly
+    ? ''
+    : `<a class="odhin-report-navigation-link" href="${href}">Open ${counterpart} Odhín history</a>`;
   const navigation = `
 <link rel="stylesheet" href="./presentation/report-navigation.css">
 <nav class="odhin-report-navigation" aria-label="Odhín reports">
   <div><strong>${reportType === 'functional' ? 'Functional' : 'Accessibility'} Odhín report</strong><span aria-current="page">This report is immutable</span></div>
-  <a class="odhin-report-navigation-link" href="${href}">Open ${counterpart} Odhín history</a>
+  ${counterpartLink}
   <p>Reports are linked only when the history confirms the same revision.</p>
 </nav>`;
   fs.writeFileSync(file, html.replace(body, `$&${navigation}`));
@@ -214,7 +220,7 @@ function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttemp
       addCombinedReportNavigation(stagedIndex);
       addCombinedReportNavigation(nestedAccessibilityIndex, true);
     } else {
-      addHistoryNavigation(stagedIndex, type);
+      addHistoryNavigation(stagedIndex, type, latestOnly);
     }
     if (definition.sourceIndex !== 'index.html') fs.copyFileSync(stagedIndex, path.join(stagingDir, 'index.html'));
     writeJson(path.join(stagingDir, 'odhin-run.json'), {
