@@ -1,0 +1,69 @@
+name: CommonLib accessibility (advisory)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag, or commit SHA to test
+        required: true
+        default: master
+
+concurrency:
+  group: commonlib-accessibility-${{ inputs.ref || github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.18.0
+      - run: corepack enable && yarn --version
+      - run: yarn install
+      - run: yarn test:e2e:typecheck
+      - run: yarn test:a11y:report
+      - name: Install Playwright Chromium
+        run: yarn playwright install --with-deps chromium
+      - name: Verify accessibility scanner
+        run: yarn test:a11y:self-check
+      - name: Verify accessibility report UI
+        run: yarn node e2e/reporters/presentation/accessibility.browser-check.cjs
+      - name: Record advisory accessibility findings
+        env:
+          COMMONLIB_A11Y_RUN_DIR: test-results/odhin/accessibility
+        # Product findings are advisory by explicit approval; execution/report errors still fail.
+        run: yarn test:a11y:advisory
+      - name: Verify rendered accessibility Odhín dashboard
+        run: yarn node e2e/accessibility/verify-report.cjs test-results/odhin/accessibility
+      - name: Package exact accessibility report and target identity
+        env:
+          TARGET_REF: ${{ inputs.ref }}
+        run: |
+          set -euo pipefail
+          rm -rf accessibility-odhin-artifact
+          mkdir -p accessibility-odhin-artifact
+          cp -R test-results/odhin/accessibility/. accessibility-odhin-artifact/
+          TARGET_SHA="$(git rev-parse HEAD)" node <<'NODE'
+          const fs = require('node:fs');
+          const ref = String(process.env.TARGET_REF || 'master');
+          const sha = String(process.env.TARGET_SHA);
+          const rawBranch = /^[0-9a-f]{7,40}$/i.test(ref)
+            ? `detached-${sha.slice(0, 12)}`
+            : ref.replace(/^refs\/(?:heads|tags)\//, '');
+          fs.writeFileSync('accessibility-odhin-artifact/odhin-source.json', `${JSON.stringify({ rawBranch, sha })}\n`);
+          NODE
+      - name: Upload exact accessibility Odhín report
+        uses: actions/upload-artifact@v7
+        with:
+          name: common-lib-accessibility-report
+          path: accessibility-odhin-artifact/
+          if-no-files-found: error

@@ -1,0 +1,20 @@
+<main class="govuk-width-container">
+  <h1 class="govuk-heading-xl">User management demo</h1>
+  <xuilib-user-list [users]="users" [currentPageNumber]="1" [pageTotalSize]="users.length"
+    (userClick)="selectUser($event)" (pageChange)="pageEvents.push($event)"></xuilib-user-list>
+  <h2 class="govuk-heading-m">Selected user</h2>
+  <button class="govuk-button govuk-button--secondary" (click)="showActions = !showActions">Toggle account actions</button>
+  <section aria-label="Selected user details">
+    <xuilib-user-details [user]="selected" [showEditLink]="showActions" [showSuspendUserButton]="showActions"
+      editPermissionRouterLink="/coverage/users" (suspendUserEvent)="suspendEvents.push($event)"></xuilib-user-details>
+  </section>
+  <h2 class="govuk-heading-m">Pending invitation</h2>
+  <section aria-label="Invited user details">
+    <xuilib-user-details [user]="invitedUser" (reinvite)="reinviteEvents.push($event)"></xuilib-user-details>
+  </section>
+  <h2 class="govuk-heading-m">Demo event outputs</h2>
+  <pre data-testid="user-page-events">{{ pageEvents | json }}</pre>
+  <pre data-testid="user-click-events">{{ userEvents | json }}</pre>
+  <pre data-testid="user-suspend-events">{{ suspendEvents | json }}</pre>
+  <pre data-testid="user-reinvite-events">{{ reinviteEvents | json }}</pre>
+</main>

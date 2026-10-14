@@ -28,6 +28,7 @@ const odhinOutput = process.env.PW_ODHIN_OUTPUT ?? 'test-results/odhin';
  */
 export default defineConfig({
   testDir: './e2e',
+  testIgnore: '**/accessibility/**',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
