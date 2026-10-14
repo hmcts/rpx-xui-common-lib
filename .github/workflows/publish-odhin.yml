@@ -20,6 +20,7 @@ jobs:
     if: >-
       ${{ github.event.workflow_run.head_repository.full_name == github.repository &&
       ((github.event.workflow_run.name == 'Node.js Package' &&
+      (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure') &&
       (github.event.workflow_run.event == 'pull_request' ||
       (github.event.workflow_run.event == 'push' &&
       (github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'Release')))) ||
@@ -36,10 +37,10 @@ jobs:
       url: ${{ format('{0}{1}', steps.deployment.outputs.page_url, steps.publish_report.outputs.run_url_path) }}
     steps:
       # workflow_run always checks out trusted default-branch publisher code, never the triggering ref.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.18.0
           package-manager-cache: false
@@ -56,7 +57,7 @@ jobs:
             echo 'report_type=accessibility' >> "$GITHUB_OUTPUT"
           fi
       - name: Download exact upstream report
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: ${{ steps.report.outputs.artifact_name }}
           path: evidence
@@ -74,8 +75,18 @@ jobs:
           ODHIN_SOURCE_RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
           ODHIN_RUN_URL: ${{ github.event.workflow_run.html_url }}
           ODHIN_REPORT_TYPE: ${{ steps.report.outputs.report_type }}
+          ODHIN_DEFAULT_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          ODHIN_DEFAULT_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           set -euo pipefail
+          ODHIN_BRANCH="$ODHIN_DEFAULT_BRANCH"
+          ODHIN_SHA="$ODHIN_DEFAULT_SHA"
+          if [ "$ODHIN_REPORT_TYPE" = 'accessibility' ]; then
+            test -s evidence/odhin-source.json
+            ODHIN_BRANCH="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).rawBranch)' < evidence/odhin-source.json)"
+            ODHIN_SHA="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).sha)' < evidence/odhin-source.json)"
+            rm evidence/odhin-source.json
+          fi
           report_repo_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
           auth_header="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n')"
           if git -c http.extraheader="$auth_header" ls-remote --exit-code --heads "$report_repo_url" odhin-reports >/dev/null 2>&1; then
@@ -113,14 +124,14 @@ jobs:
           rm -rf pages-site/.git
       - name: Configure GitHub Pages
         id: configure_pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload Odhín site
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: pages-site
       - name: Publish Odhín report
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
       - name: Link report in Actions
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}

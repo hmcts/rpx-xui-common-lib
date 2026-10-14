@@ -33,6 +33,8 @@ test('functional workflow remains read-only and publishes only functional eviden
 
 test('manual accessibility workflow keeps product findings advisory but report execution blocking', () => {
   assert.match(accessibilityWorkflow, /^  workflow_dispatch:/m);
+  assert.match(accessibilityWorkflow, /ref:\r?\n\s+description: Branch, tag, or commit SHA to test/);
+  assert.match(accessibilityWorkflow, /ref: \$\{\{ inputs\.ref \}\}/);
   assert.match(accessibilityWorkflow, /^permissions:\r?\n  contents: read/m);
   assert.doesNotMatch(accessibilityWorkflow, /pages: write|contents: write|id-token: write/);
   for (const command of [
@@ -42,6 +44,8 @@ test('manual accessibility workflow keeps product findings advisory but report e
     'yarn node e2e/accessibility/verify-report.cjs test-results/odhin/accessibility'
   ]) assert.match(accessibilityWorkflow, new RegExp(command.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   assert.match(accessibilityWorkflow, /name: common-lib-accessibility-report/);
+  assert.match(accessibilityWorkflow, /odhin-source\.json/);
+  assert.match(accessibilityWorkflow, /path: accessibility-odhin-artifact\//);
 });
 
 test('only trusted default-branch workflow code receives publication permissions', () => {
@@ -54,7 +58,7 @@ test('only trusted default-branch workflow code receives publication permissions
   assert.match(publisherJob, /id-token: write/);
   assert.match(publisherJob, /head_repository\.full_name == github\.repository/);
   assert.match(publisherJob, /workflow_run\.event == 'workflow_dispatch'/);
-  const checkout = publisherJob.match(/- uses: actions\/checkout@v5[\s\S]*?(?=      - uses: actions\/setup-node@v5)/)?.[0];
+  const checkout = publisherJob.match(/- uses: actions\/checkout@v7[\s\S]*?(?=      - uses: actions\/setup-node@v7)/)?.[0];
   assert.match(checkout || '', /persist-credentials: false/);
   assert.doesNotMatch(checkout || '', /ref:/);
   assert.match(publisherJob, /report-type "\$ODHIN_REPORT_TYPE"/);
@@ -64,6 +68,7 @@ test('only trusted default-branch workflow code receives publication permissions
 
 const cases = [
   { name: 'same-repository PR functional report publishes even when its functional suite failed', workflow: 'Node.js Package', event: 'pull_request', conclusion: 'failure', want: true },
+  { name: 'cancelled functional workflow does not start a publication job', workflow: 'Node.js Package', event: 'pull_request', conclusion: 'cancelled', want: false },
   { name: 'master functional report publishes', workflow: 'Node.js Package', event: 'push', branch: 'master', want: true },
   { name: 'Release functional report publishes', workflow: 'Node.js Package', event: 'push', branch: 'Release', want: true },
   { name: 'feature push functional report does not publish', workflow: 'Node.js Package', event: 'push', branch: 'test/private', want: false },
