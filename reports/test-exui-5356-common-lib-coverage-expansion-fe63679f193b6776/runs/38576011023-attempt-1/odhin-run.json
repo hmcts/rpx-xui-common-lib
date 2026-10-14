@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "test/EXUI-5356-common-lib-coverage-expansion",
+  "branchSlug": "test-exui-5356-common-lib-coverage-expansion-fe63679f193b6776",
+  "runKey": "38576011023-attempt-1",
+  "runId": "38576011023",
+  "runAttempt": "1",
+  "sha": "5914f3ddf26b45a8a00e911a9ffd00f3398854ef",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38576011023/attempts/1",
+  "createdAt": "2026-10-14T14:09:08.653Z"
+}
