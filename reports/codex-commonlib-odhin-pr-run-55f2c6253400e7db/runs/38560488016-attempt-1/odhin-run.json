@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "codex/commonlib-odhin-pr-run",
+  "branchSlug": "codex-commonlib-odhin-pr-run-55f2c6253400e7db",
+  "runKey": "38560488016-attempt-1",
+  "runId": "38560488016",
+  "runAttempt": "1",
+  "sha": "54f9ce71f57aafd70b841c107948f282a83f69eb",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38560488016",
+  "createdAt": "2026-10-14T12:09:04.575Z"
+}
