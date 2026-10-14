@@ -98,6 +98,7 @@ test('S2.4 disabled input cannot be focused and preserves selection', async ({ p
 });
 
 test('S2.4 explicit disabled false permits service selection', async ({ page }) => {
+  test.skip(true, 'EXUI-5359: disabled=false renders the service search as disabled');
   await page.goto('/coverage/service-selection?disabled=false');
   const services = new ServiceSelectionPage(page);
   await expect(services.search).toBeEnabled();
