@@ -95,6 +95,7 @@ const cases = [
   { name: 'Release push success publishes', workflow: 'Node.js Package', event: 'push', branch: 'Release', conclusion: 'success', want: true },
   { name: 'feature push does not publish', workflow: 'Node.js Package', event: 'push', branch: 'test/private', conclusion: 'success', want: false },
   { name: 'foreign repository PR never publishes', workflow: 'Node.js Package', event: 'pull_request', conclusion: 'success', sourceRepo: 'outside/fork', want: false },
+  { name: 'manual dispatch of the functional workflow cannot bypass its trigger policy', workflow: 'Node.js Package', event: 'workflow_dispatch', want: false },
   { name: 'manual accessibility success publishes', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'success', want: true },
   { name: 'manual accessibility failure does not publish', workflow: 'CommonLib accessibility (advisory)', event: 'workflow_dispatch', conclusion: 'failure', want: false },
   { name: 'accessibility push cannot publish', workflow: 'CommonLib accessibility (advisory)', event: 'push', conclusion: 'success', want: false },
