@@ -1,0 +1,18 @@
+{
+  "rawBranch": "exui-4454-local-storage",
+  "slug": "exui-4454-local-storage-e19edd438d8d4ef6",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "exui-4454-local-storage",
+      "branchSlug": "exui-4454-local-storage-e19edd438d8d4ef6",
+      "runKey": "38706503074-attempt-1",
+      "runId": "38706503074",
+      "runAttempt": "1",
+      "sha": "1c99b659d4e116d63c1f9e0944abeaa02755172f",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38706503074/attempts/1",
+      "createdAt": "2026-10-15T08:42:16.617Z"
+    }
+  ]
+}
