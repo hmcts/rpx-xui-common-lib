@@ -13,12 +13,21 @@ on:
     types:
       - created
 
+concurrency:
+  group: commonlib-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name || github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.18.0
       - run: corepack enable && yarn --version
@@ -26,6 +35,40 @@ jobs:
       - run: yarn lint
       - run: yarn build:library
       - run: yarn test
+      - run: yarn test:e2e:typecheck
+      - run: yarn node --test e2e/reporters/*.node-check.cjs
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps chromium firefox webkit
+      - name: Run Playwright functional coverage
+        id: functional
+        env:
+          PLAYWRIGHT_REPORTERS: dot,html,junit,odhin
+          PW_ODHIN_OUTPUT: test-results/odhin
+          PW_ODHIN_INDEX: common-lib-playwright.html
+        run: yarn playwright test
+      - name: Verify rendered Odhín dashboard
+        id: odhin_browser
+        if: ${{ !cancelled() && (steps.functional.outcome == 'success' || steps.functional.outcome == 'failure') }}
+        run: yarn node e2e/reporters/odhin-report.browser-check.cjs
+      - name: Upload Playwright evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: common-lib-playwright-evidence
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: warn
+
+      - name: Upload functional report
+        if: ${{ !cancelled() && steps.odhin_browser.outcome == 'success' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: common-lib-functional-report
+          path: |
+            test-results/odhin/
+            !test-results/odhin/accessibility/
+          if-no-files-found: error
 
   publish-npm:
     if: github.event_name == 'release'
@@ -35,8 +78,8 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22.14.0
           registry-url: https://registry.npmjs.org/
@@ -83,8 +126,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.18.0
           registry-url: https://npm.pkg.github.com/
@@ -99,7 +142,7 @@ jobs:
           TAR=$(npm pack)
           echo "tarball=dist/exui-common-lib/$TAR" >> $GITHUB_OUTPUT
       - name: Attach tarball to GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: ${{ steps.pack.outputs.tarball }}
         env:

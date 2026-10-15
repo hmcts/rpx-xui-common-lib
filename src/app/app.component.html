@@ -1,3 +1,4 @@
+<main>
 <h1>ExUI Common Lib Test Page</h1>
 <xuilib-service-message [key]="'test'" [message_en]="'This is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden.'"></xuilib-service-message>
 
@@ -9,6 +10,7 @@
   [document]="testDocumentHtml"
 ></xuilib-terms-and-conditions>
 
+<h2>Contact details example</h2>
 <xuilib-contact-details
   [data]="contactDetailsData"
 ></xuilib-contact-details>
@@ -55,9 +57,9 @@
     <td>Orange threshold</td>
   </tr>
   <tr>
-    <td><input type="text" [value]="dueDateText" (input)="updateDueDate($event.target.value)" /></td>
-    <td><input type="number" [value]="highUrgencyCutoffText" (input)="updateHighUrgencyCutoff($event.target.value)" /></td>
-    <td><input type="number" [value]="mediumUrgencyCutoffText" (input)="updateMediumUrgencyCutoff($event.target.value)" /></td>
+    <td><input type="text" aria-label="Due date" [value]="dueDateText" (input)="updateDueDate($event.target.value)" /></td>
+    <td><input type="number" aria-label="Red threshold" [value]="highUrgencyCutoffText" (input)="updateHighUrgencyCutoff($event.target.value)" /></td>
+    <td><input type="number" aria-label="Orange threshold" [value]="mediumUrgencyCutoffText" (input)="updateMediumUrgencyCutoff($event.target.value)" /></td>
   </tr>
 </table>
 
@@ -65,7 +67,7 @@
 <h2>
   Checkbox list component:
 </h2>
-List height:
+<label for="checkbox_list_height">List height:</label>
 <select id="checkbox_list_height" [value]="listHeight" (change)="listHeight = $event.target.value">
   <option value="000">Default (no limt)</option>
   <option value="100">100px</option>
@@ -105,3 +107,4 @@ List height:
     <xuilib-loading-spinner></xuilib-loading-spinner>
   }
 </div>
+</main>
