@@ -102,21 +102,23 @@ function renderHistoryIndex(branch, reportType, runsByType, latestOnly = false) 
     return `<li><a href="./runs/${encodeURIComponent(run.runKey)}/">Run ${escapeHtml(run.runKey)}</a>
       <span>${escapeHtml(run.sha.slice(0, 8))} · ${escapeHtml(run.createdAt)}${exactMatch}</span></li>`;
   }).join('');
-  const histories = REPORT_TYPE_NAMES.filter((type) => type !== reportType)
+  const histories = latestOnly ? '' : REPORT_TYPE_NAMES.filter((type) => type !== reportType)
     .map((type) => `<a href="${historyHref(reportType, type)}">Open ${escapeHtml(reportDefinition(type).label)} history</a>`).join(' · ');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>${escapeHtml(definition.label)} · ${escapeHtml(branch.rawBranch)}</title></head>
 <body><main><h1>${escapeHtml(definition.label)} reports · ${escapeHtml(branch.rawBranch)}</h1>
 <p>${latestOnly ? 'Only the current report is published on this Pages site.' : `Branch history for <code>${escapeHtml(branch.rawBranch)}</code>.`}</p>
-<p>${histories}</p>
+${histories ? `<p>${histories}</p>` : ''}
 ${latest ? `<p><a href="./runs/${encodeURIComponent(latest.runKey)}/">Open latest ${escapeHtml(definition.label)} report</a></p>` : ''}
 ${latestOnly ? '' : `<h2>Run history</h2><ul>${rows || '<li>No reports published.</li>'}</ul>`}
 </main></body></html>
 `;
 }
 
-function renderRootIndex(branches, latestOnly = false) {
+function renderRootIndex(branches, latestOnly = false, reportType = 'functional') {
   const master = branches.find((branch) => branch.rawBranch === 'master');
+  const latestReportPath = latestOnly && reportDefinition(reportType).historyDirectory
+    ? `${reportDefinition(reportType).historyDirectory}/` : '';
   const rows = branches.map((branch) => {
     const reportLinks = REPORT_TYPE_NAMES.map((type) => {
       const run = branch.runsByType[type][0];
@@ -125,13 +127,19 @@ function renderRootIndex(branches, latestOnly = false) {
       const prefix = directory ? `${directory}/` : '';
       return ` · <a href="./reports/${encodeURIComponent(branch.slug)}/${prefix}runs/${encodeURIComponent(run.runKey)}/">latest ${escapeHtml(reportDefinition(type).label)}</a>`;
     }).join('');
-    return `<li><a href="./reports/${encodeURIComponent(branch.slug)}/">${escapeHtml(branch.rawBranch)}</a>${reportLinks}</li>`;
+    const branchReportPath = latestOnly && reportDefinition(reportType).historyDirectory
+      ? `${reportDefinition(reportType).historyDirectory}/` : '';
+    return `<li><a href="./reports/${encodeURIComponent(branch.slug)}/${branchReportPath}">${escapeHtml(branch.rawBranch)}</a>${reportLinks}</li>`;
   }).join('');
-  const masterLink = master ? `<a href="./reports/${encodeURIComponent(master.slug)}/">Open master history</a>` : 'Master history will appear after the next master publication.';
+  const masterLink = master ? `<a href="./reports/${encodeURIComponent(master.slug)}/${latestReportPath}">Open master ${latestOnly ? 'report' : 'history'}</a>` : `Master ${latestOnly ? 'report' : 'history'} will appear after the next master publication.`;
+  const description = latestOnly
+    ? 'Only the current report is published on this Pages site.'
+    : 'Functional, cross-browser, and accessibility reports are retained separately per source branch.';
+  const title = latestOnly ? 'CommonLib latest Odhín report' : 'CommonLib Odhín report history';
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>CommonLib Odhín report history</title></head>
-<body><main><h1>CommonLib Odhín report history</h1>
-<p>${latestOnly ? 'Only the current report is published on this Pages site.' : 'Functional, cross-browser, and accessibility reports are retained separately per source branch.'} ${masterLink}</p>
+<html lang="en"><head><meta charset="utf-8"><title>${title}</title></head>
+<body><main><h1>${title}</h1>
+<p>${description} ${masterLink}</p>
 <ul>${rows || '<li>No reports published.</li>'}</ul>
 </main></body></html>
 `;
@@ -245,7 +253,7 @@ function publishReport({ sourceDir, siteDir, rawBranch, runKey, runId, runAttemp
     }, typeName, runsByType, latestOnly));
   });
   fs.writeFileSync(path.join(siteDir, '.nojekyll'), '');
-  fs.writeFileSync(path.join(siteDir, 'index.html'), renderRootIndex(readBranches(reportsDir), latestOnly));
+  fs.writeFileSync(path.join(siteDir, 'index.html'), renderRootIndex(readBranches(reportsDir), latestOnly, type));
   const relativeHistory = definition.historyDirectory ? `${definition.historyDirectory}/` : '';
   return { reportType: type, branchSlug, branchUrlPath: `reports/${branchSlug}/${relativeHistory}`,
     runUrlPath: `reports/${branchSlug}/${relativeHistory}runs/${safeRunKey}/` };

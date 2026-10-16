@@ -37,7 +37,7 @@ function createSource(root, label, { includeIndex = true } = {}) {
   assetPaths.forEach((assetPath) => fs.writeFileSync(path.join(root, assetPath), `${label}:${assetPath}`));
 }
 
-function publish({ source, site, branch, reportType = 'functional', runId, runAttempt = '1', sha = 'a'.repeat(40) }) {
+function publish({ source, site, branch, reportType = 'functional', runId, runAttempt = '1', sha = 'a'.repeat(40), latestOnly = false }) {
   return publishReport({
     sourceDir: source,
     siteDir: site,
@@ -47,7 +47,8 @@ function publish({ source, site, branch, reportType = 'functional', runId, runAt
     runId,
     runAttempt,
     sha,
-    runUrl: `https://github.com/hmcts/rpx-xui-common-lib/actions/runs/${runId}/attempts/${runAttempt}`
+    runUrl: `https://github.com/hmcts/rpx-xui-common-lib/actions/runs/${runId}/attempts/${runAttempt}`,
+    latestOnly
   });
 }
 
@@ -176,6 +177,68 @@ test('rejects an incomplete report before creating public history', () => {
     createSource(source, 'invalid', { includeIndex: false });
     assert.throws(() => publish({ source, site, branch: 'broken', runId: '99' }), /HTML index is missing/);
     assert.equal(fs.existsSync(path.join(site, 'reports')), false);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('builds a latest-only Pages projection without copying archive history', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-odhin-latest-'));
+  const source = path.join(root, 'source');
+  const archive = path.join(root, 'archive');
+  const pages = path.join(root, 'pages');
+  try {
+    createSource(source, 'old');
+    publish({ source, site: archive, branch: 'master', runId: '30' });
+    createSource(source, 'current');
+    publish({ source, site: archive, branch: 'master', runId: '31' });
+    publish({ source, site: pages, branch: 'master', runId: '31', latestOnly: true });
+
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/30-attempt-1')));
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/31-attempt-1')));
+    assert.ok(fs.existsSync(path.join(pages, 'reports/master/runs/31-attempt-1')));
+    assert.equal(fs.existsSync(path.join(pages, 'reports/master/runs/30-attempt-1')), false);
+    const latestFunctionalIndex = fs.readFileSync(path.join(pages, 'reports/master/index.html'), 'utf8');
+    const latestAccessibilityIndex = fs.readFileSync(path.join(pages, 'reports/master/accessibility/index.html'), 'utf8');
+    const latestFunctionalReport = fs.readFileSync(path.join(pages, 'reports/master/runs/31-attempt-1/index.html'), 'utf8');
+    assert.doesNotMatch(latestFunctionalIndex, /30-attempt-1|Run history/);
+    assert.match(latestFunctionalIndex, /href="\.\/runs\/31-attempt-1\/">Open latest Functional Odhín report/);
+    assert.doesNotMatch(latestFunctionalIndex, /Open Accessibility Odhín history/);
+    assert.doesNotMatch(latestAccessibilityIndex, /Open Functional Odhín history/);
+    assert.doesNotMatch(latestFunctionalReport, /Open Accessibility Odhín history/);
+    const latestFunctionalRoot = fs.readFileSync(path.join(pages, 'index.html'), 'utf8');
+    assert.match(latestFunctionalRoot, /Only the current report is published on this Pages site/);
+    assert.match(latestFunctionalRoot, /<a href="\.\/reports\/master\/">Open master report<\/a>/);
+    assert.match(latestFunctionalRoot, /<li><a href="\.\/reports\/master\/">master<\/a>/);
+    assert.ok(fs.existsSync(path.join(pages, 'reports/master/runs/31-attempt-1/presentation/report.css')));
+    assert.throws(
+      () => publish({ source, site: pages, branch: 'master', runId: '32', latestOnly: true }),
+      /must start empty/
+    );
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('builds a latest-only accessibility Pages projection without an empty functional-history link', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-odhin-latest-a11y-'));
+  const source = path.join(root, 'source');
+  const pages = path.join(root, 'pages');
+  try {
+    fs.mkdirSync(source, { recursive: true });
+    fs.writeFileSync(path.join(source, 'index.html'), '<!doctype html><html><body><h1>Accessibility findings</h1></body></html>');
+    publish({ source, site: pages, branch: 'master', reportType: 'accessibility', runId: '41', latestOnly: true });
+
+    const latestFunctionalIndex = fs.readFileSync(path.join(pages, 'reports/master/index.html'), 'utf8');
+    const latestAccessibilityIndex = fs.readFileSync(path.join(pages, 'reports/master/accessibility/index.html'), 'utf8');
+    const latestAccessibilityReport = fs.readFileSync(path.join(pages, 'reports/master/accessibility/runs/41-attempt-1/index.html'), 'utf8');
+    const latestAccessibilityRoot = fs.readFileSync(path.join(pages, 'index.html'), 'utf8');
+    assert.doesNotMatch(latestFunctionalIndex, /Open Accessibility Odhín history/);
+    assert.match(latestAccessibilityIndex, /href="\.\/runs\/41-attempt-1\/">Open latest Accessibility Odhín report/);
+    assert.doesNotMatch(latestAccessibilityIndex, /Open Functional Odhín history/);
+    assert.doesNotMatch(latestAccessibilityReport, /Open Functional Odhín history/);
+    assert.match(latestAccessibilityRoot, /<a href="\.\/reports\/master\/accessibility\/">Open master report<\/a>/);
+    assert.match(latestAccessibilityRoot, /<li><a href="\.\/reports\/master\/accessibility\/">master<\/a>/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

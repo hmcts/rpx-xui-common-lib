@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Publish CommonLib Odhín reports under branch-scoped Pages paths while retaining every run and keeping `master` history stable.
+**Goal:** Publish the current CommonLib Odhín report under a branch-scoped Pages path while retaining every run in the `odhin-reports` archive and keeping `master` history stable.
 
-**Architecture:** A small Node publisher copies the complete Odhín output into `reports/<branch-slug>/runs/<run-key>/`, writes branch/root indexes, and is exercised by direct Node tests. GitHub Actions serialises publication through a dedicated `odhin-reports` peer branch, uploads the assembled history tree to Pages, and links branch-latest, immutable-run, and exact artifact URLs.
+**Architecture:** A small Node publisher copies the complete Odhín output into the type-specific `reports/<branch-slug>/` history, writes branch/root indexes, and is exercised by direct Node tests. GitHub Actions serialises archive publication through a dedicated `odhin-reports` peer branch, builds a fresh latest-only Pages projection, and links the current Pages report, immutable archive, and exact artifact URL.
 
 **Tech Stack:** GitHub Actions YAML, Node.js built-ins, `node:test`, Odhín Playwright output, GitHub Pages.
 
@@ -71,7 +71,7 @@ Expected: exit code 0.
 ### Task 2: Change GitHub Actions to publish branch-scoped history
 
 **Files:**
-- Modify: `.github/workflows/npmpublish.yml`
+- Modify: `.github/workflows/publish-odhin.yml`
 
 **Interfaces:**
 - `build.outputs.branch_slug` and `build.outputs.run_key` are consumed by `publish-odhin` for stable summary links.
@@ -95,7 +95,7 @@ In `publish-odhin`, check out the source branch, download `common-lib-playwright
 
 - [ ] **Step 5: Deploy the assembled tree and link all URLs**
 
-Upload a copy without `.git` using `actions/upload-pages-artifact`. Keep `actions/deploy-pages`. In the Actions summary link the branch-latest path, immutable run path, and exact evidence artifact. Do not describe Pages as “latest PR #568”; describe its branch-scoped history.
+Build a fresh latest-only Pages projection without copying the archive tree, then upload it using `actions/upload-pages-artifact`. Keep `actions/deploy-pages`. In the Actions summary link the current Pages report, immutable archive path, and exact evidence artifact.
 
 - [ ] **Step 6: Validate workflow text statically**
 
