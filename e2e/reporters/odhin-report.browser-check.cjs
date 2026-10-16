@@ -41,15 +41,27 @@ async function main() {
       const details = page.locator(`#feature-tests-${index}`);
       const tests = await details.locator('li').count();
       assert.ok(tests > 0, `feature ${index + 1} drill-down exposes tests`);
-      assert.equal(await details.locator('.feature-test-steps').count(), tests, `feature ${index + 1} exposes step links`);
+      assert.equal(await details.locator('.test-detail-link').count(), tests, `feature ${index + 1} exposes every test detail`);
       groupedTests += tests;
     }
     assert.equal(groupedTests, reportedRows, 'feature groups account for every rendered report result row');
-    await page.locator('#feature-tests-0 .feature-test-steps').first().click();
+    await page.locator('#feature-tests-0 .test-detail-link').first().click();
     const modal = page.locator('.modal.show').last();
     await modal.waitFor();
-    assert.equal(await modal.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'View steps opens the native test steps tab');
-    assert.ok(await modal.locator('.result-tabcontent[style*="display: block"] .stepLine').count(), 'native test steps render');
+    assert.equal(await modal.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Info', 'test detail opens the native result information');
+    assert.match((await modal.locator('.result-tabcontent[style*="display: block"]').textContent()).trim(), /\S/, 'test detail renders native result content');
+    await modal.locator('[data-bs-dismiss="modal"]').click();
+
+    await page.getByRole('button', { name: 'Dashboard', exact: true }).click();
+    const firstFeatureToggle = featureRows.first().locator('.feature-toggle');
+    if (await firstFeatureToggle.getAttribute('aria-expanded') !== 'true') {
+      await firstFeatureToggle.click();
+    }
+    const featureSteps = page.locator('#feature-tests-0 .feature-test-steps').first();
+    await featureSteps.click();
+    const modalWithSteps = page.locator('.modal.show').last();
+    await modalWithSteps.waitFor();
+    assert.equal(await modalWithSteps.locator('.result-tab-header button.active').textContent().then((text) => text.trim()), 'Steps', 'feature View steps opens its native result tab');
     assert.deepEqual(errors, [], 'report JavaScript has no console or page errors');
   } finally {
     await browser.close();

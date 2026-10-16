@@ -52,6 +52,50 @@ function publish({ source, site, branch, reportType = 'functional', runId, runAt
   });
 }
 
+test('builds a current-run Pages projection without copying immutable archive history', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-odhin-pages-'));
+  const source = path.join(root, 'source');
+  const archive = path.join(root, 'archive');
+  const pages = path.join(root, 'pages');
+  try {
+    createSource(source, 'older archived run');
+    publish({ source, site: archive, branch: 'master', runId: '30' });
+    createSource(source, 'current public run');
+    publish({ source, site: archive, branch: 'master', runId: '31' });
+
+    publishReport({
+      sourceDir: source,
+      siteDir: pages,
+      rawBranch: 'master',
+      reportType: 'functional',
+      runKey: '31-attempt-1',
+      runId: '31',
+      runAttempt: '1',
+      sha: 'a'.repeat(40),
+      runUrl: 'https://github.com/hmcts/rpx-xui-common-lib/actions/runs/31/attempts/1',
+      latestOnly: true
+    });
+
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/30-attempt-1')), 'peer archive retains older evidence');
+    assert.ok(fs.existsSync(path.join(archive, 'reports/master/runs/31-attempt-1')), 'peer archive retains the current evidence');
+    assert.equal(fs.existsSync(path.join(pages, 'reports/master/runs/30-attempt-1')), false, 'Pages omits older archive evidence');
+    assert.ok(fs.existsSync(path.join(pages, 'reports/master/runs/31-attempt-1/index.html')), 'Pages retains the current report');
+    assert.match(fs.readFileSync(path.join(pages, 'index.html'), 'utf8'), /Only the current report is published on this Pages site/);
+    const publicReport = fs.readFileSync(path.join(pages, 'reports/master/runs/31-attempt-1/index.html'), 'utf8');
+    assert.match(publicReport, /Current public Functional Odhín report/);
+    assert.doesNotMatch(publicReport, /This report is immutable|Open Accessibility Odhín history|Open Cross-browser Odhín history/);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+function assertHistoryLinkResolves(runFile, html, label, expectedHistoryFile) {
+  const match = html.match(new RegExp(`href="([^"]+)"[^>]*>Open ${label} history`));
+  assert.ok(match, `missing ${label} history link`);
+  assert.equal(path.resolve(path.dirname(runFile), match[1]), path.dirname(expectedHistoryFile));
+  assert.ok(fs.existsSync(expectedHistoryFile), `missing ${label} history index`);
+}
+
 test('retains immutable branch history, external assets and master links', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-odhin-'));
   const source = path.join(root, 'source');
@@ -245,7 +289,7 @@ test('links the matching accessibility evidence without changing the source or o
   }
 });
 
-test('keeps type-specific histories separate and links only matching report revisions', () => {
+test('keeps three type-specific histories separate and links only matching report revisions', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'common-lib-odhin-report-types-'));
   const functional = path.join(root, 'functional');
   const accessibility = path.join(root, 'accessibility');
@@ -259,30 +303,51 @@ test('keeps type-specific histories separate and links only matching report revi
     fs.writeFileSync(path.join(accessibility, 'index.html'), '<!doctype html><html><body><h1>Accessibility findings</h1></body></html>');
     fs.writeFileSync(path.join(accessibility, 'presentation', 'accessibility.js'), 'window.report = true;');
     const accessibilityResult = publish({ source: accessibility, site, branch: 'test/EXUI-5356-a11y-on-demand', reportType: 'accessibility', runId: '101', sha: matchingSha });
+    createSource(functional, 'cross-browser');
+    const crossBrowserResult = publish({ source: functional, site, branch: 'test/EXUI-5356-a11y-on-demand', reportType: 'cross-browser', runId: '102', sha: matchingSha });
     const branchDir = path.join(site, 'reports', functionalResult.branchSlug);
 
     assert.equal(accessibilityResult.branchSlug, functionalResult.branchSlug);
+    assert.equal(crossBrowserResult.branchSlug, functionalResult.branchSlug);
     assert.equal(functionalResult.runUrlPath, `reports/${functionalResult.branchSlug}/runs/100-attempt-1/`);
     assert.equal(accessibilityResult.runUrlPath, `reports/${functionalResult.branchSlug}/accessibility/runs/101-attempt-1/`);
+    assert.equal(crossBrowserResult.runUrlPath, `reports/${functionalResult.branchSlug}/cross-browser/runs/102-attempt-1/`);
     assert.ok(fs.existsSync(path.join(branchDir, 'runs', '100-attempt-1', 'index.html')));
     assert.ok(fs.existsSync(path.join(branchDir, 'accessibility', 'runs', '101-attempt-1', 'index.html')));
+    assert.ok(fs.existsSync(path.join(branchDir, 'cross-browser', 'runs', '102-attempt-1', 'index.html')));
     const functionalHistory = fs.readFileSync(path.join(branchDir, 'index.html'), 'utf8');
     const accessibilityHistory = fs.readFileSync(path.join(branchDir, 'accessibility', 'index.html'), 'utf8');
+    const crossBrowserHistory = fs.readFileSync(path.join(branchDir, 'cross-browser', 'index.html'), 'utf8');
+    const functionalRun = fs.readFileSync(path.join(branchDir, 'runs', '100-attempt-1', 'index.html'), 'utf8');
+    const accessibilityRun = fs.readFileSync(path.join(branchDir, 'accessibility', 'runs', '101-attempt-1', 'index.html'), 'utf8');
+    const crossBrowserRun = fs.readFileSync(path.join(branchDir, 'cross-browser', 'runs', '102-attempt-1', 'index.html'), 'utf8');
     assert.match(functionalHistory, /href="\.\/accessibility\/runs\/101-attempt-1\/">Open matching Accessibility Odhín report/);
+    assert.match(functionalHistory, /href="\.\/cross-browser\/runs\/102-attempt-1\/">Open matching Cross-browser Odhín report/);
     assert.match(accessibilityHistory, /href="\.\.\/runs\/100-attempt-1\/">Open matching Functional Odhín report/);
+    assert.match(accessibilityHistory, /href="\.\.\/cross-browser\/runs\/102-attempt-1\/">Open matching Cross-browser Odhín report/);
+    assert.match(crossBrowserHistory, /href="\.\.\/runs\/100-attempt-1\/">Open matching Functional Odhín report/);
+    assert.match(crossBrowserHistory, /href="\.\.\/accessibility\/runs\/101-attempt-1\/">Open matching Accessibility Odhín report/);
+    assertHistoryLinkResolves(path.join(branchDir, 'runs', '100-attempt-1', 'index.html'), functionalRun, 'Accessibility Odhín', path.join(branchDir, 'accessibility', 'index.html'));
+    assertHistoryLinkResolves(path.join(branchDir, 'runs', '100-attempt-1', 'index.html'), functionalRun, 'Cross-browser Odhín', path.join(branchDir, 'cross-browser', 'index.html'));
+    assertHistoryLinkResolves(path.join(branchDir, 'accessibility', 'runs', '101-attempt-1', 'index.html'), accessibilityRun, 'Functional Odhín', path.join(branchDir, 'index.html'));
+    assertHistoryLinkResolves(path.join(branchDir, 'accessibility', 'runs', '101-attempt-1', 'index.html'), accessibilityRun, 'Cross-browser Odhín', path.join(branchDir, 'cross-browser', 'index.html'));
+    assertHistoryLinkResolves(path.join(branchDir, 'cross-browser', 'runs', '102-attempt-1', 'index.html'), crossBrowserRun, 'Functional Odhín', path.join(branchDir, 'index.html'));
+    assertHistoryLinkResolves(path.join(branchDir, 'cross-browser', 'runs', '102-attempt-1', 'index.html'), crossBrowserRun, 'Accessibility Odhín', path.join(branchDir, 'accessibility', 'index.html'));
+    assert.match(fs.readFileSync(path.join(site, 'index.html'), 'utf8'), /latest Cross-browser Odhín/);
 
     createSource(functional, 'functional-different-sha');
-    publish({ source: functional, site, branch: 'test/EXUI-5356-a11y-on-demand', reportType: 'functional', runId: '102', sha: differentSha });
+    publish({ source: functional, site, branch: 'test/EXUI-5356-a11y-on-demand', reportType: 'functional', runId: '103', sha: differentSha });
     const differentFunctionalHistory = fs.readFileSync(path.join(branchDir, 'index.html'), 'utf8');
-    assert.match(differentFunctionalHistory, /Run 102-attempt-1[\s\S]*No matching report for this revision/);
+    assert.match(differentFunctionalHistory, /Run 103-attempt-1[\s\S]*No matching report for this revision/);
 
     const reverseBranch = 'test/EXUI-5356-a11y-first';
     const reverseSha = 'c'.repeat(40);
-    publish({ source: accessibility, site, branch: reverseBranch, reportType: 'accessibility', runId: '103', sha: reverseSha });
-    publish({ source: functional, site, branch: reverseBranch, reportType: 'functional', runId: '104', sha: reverseSha });
+    publish({ source: accessibility, site, branch: reverseBranch, reportType: 'accessibility', runId: '104', sha: reverseSha });
+    publish({ source: functional, site, branch: reverseBranch, reportType: 'functional', runId: '105', sha: reverseSha });
     const reverseDir = path.join(site, 'reports', slugifyBranch(reverseBranch));
-    assert.match(fs.readFileSync(path.join(reverseDir, 'index.html'), 'utf8'), /href="\.\/accessibility\/runs\/103-attempt-1\/">Open matching Accessibility Odhín report/);
-    assert.match(fs.readFileSync(path.join(reverseDir, 'accessibility', 'index.html'), 'utf8'), /href="\.\.\/runs\/104-attempt-1\/">Open matching Functional Odhín report/);
+    assert.match(fs.readFileSync(path.join(reverseDir, 'index.html'), 'utf8'), /href="\.\/accessibility\/runs\/104-attempt-1\/">Open matching Accessibility Odhín report/);
+    assert.match(fs.readFileSync(path.join(reverseDir, 'accessibility', 'index.html'), 'utf8'), /href="\.\.\/runs\/105-attempt-1\/">Open matching Functional Odhín report/);
+    assert.throws(() => publish({ source: functional, site, branch: reverseBranch, reportType: 'unsupported', runId: '106', sha: reverseSha }), /Unsupported Odhín report type/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

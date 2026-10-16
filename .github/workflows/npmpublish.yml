@@ -36,16 +36,16 @@ jobs:
       - run: yarn build:library
       - run: yarn test
       - run: yarn test:e2e:typecheck
-      - run: yarn node --test e2e/reporters/*.node-check.cjs
       - name: Install Playwright browsers
-        run: yarn playwright install --with-deps chromium firefox webkit
+        run: yarn playwright install --with-deps chromium
+      - run: yarn node --test e2e/reporters/*.node-check.cjs
       - name: Run Playwright functional coverage
         id: functional
         env:
           PLAYWRIGHT_REPORTERS: dot,html,junit,odhin
           PW_ODHIN_OUTPUT: test-results/odhin
           PW_ODHIN_INDEX: common-lib-playwright.html
-        run: yarn playwright test
+        run: yarn playwright test --project=chromium
       - name: Verify rendered Odhín dashboard
         id: odhin_browser
         if: ${{ !cancelled() && (steps.functional.outcome == 'success' || steps.functional.outcome == 'failure') }}

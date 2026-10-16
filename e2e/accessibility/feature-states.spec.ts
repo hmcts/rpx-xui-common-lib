@@ -6,6 +6,9 @@ import { ServiceSelectionPage } from '../src/service-selection.po';
 import { CaseSharingPage } from '../src/case-sharing.po';
 import { AddressPage } from '../src/address.po';
 import { UserManagementPage } from '../src/user-management.po';
+import { AdvancedFilterPage } from '../src/advanced-filter.po';
+import { LifecyclePage } from '../src/lifecycle.po';
+import { SearchPage } from '../src/search.po';
 import { collectAccessibilityEvidence } from './accessibilityAudit';
 import { ASSERTION_MARKER } from './report.cjs';
 import { formDescriptions, formDescriptionStates } from './form-description.data';
@@ -188,6 +191,44 @@ test('user management — next page', async ({ page }, testInfo) => {
   await new UserManagementPage(page).next.click();
   await expect(page.getByRole('link', { name: 'Demo User 51', exact: true })).toBeVisible();
   await expect(page.locator('.hmcts-pagination__results')).toHaveText('Showing 51 to 51 of 51 results');
+  const outcomes = await collectAccessibilityEvidence(page, testInfo);
+  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+});
+
+test('advanced filter — conditional detail visible', async ({ page }, testInfo) => {
+  const filter = new AdvancedFilterPage(page);
+  await filter.openConditional();
+  await filter.enableDetail();
+  await expect(filter.detail).toBeVisible();
+  const outcomes = await collectAccessibilityEvidence(page, testInfo);
+  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+});
+
+test('find person — expanded judicial suggestions', async ({ page }, testInfo) => {
+  const search = new SearchPage(page);
+  await search.openPerson('judicial', true);
+  await search.search('Alex');
+  await expect(search.options).toHaveText(['Judge Alex Taylor (alex@example.test)']);
+  const outcomes = await collectAccessibilityEvidence(page, testInfo);
+  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+});
+
+test('search judicials — expanded suggestions', async ({ page }, testInfo) => {
+  const search = new SearchPage(page);
+  await search.openJudicials();
+  await search.search('Alex');
+  await expect(search.options).toHaveText(['Judge Alex Taylor (alex@example.test)']);
+  const outcomes = await collectAccessibilityEvidence(page, testInfo);
+  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+});
+
+test('lifecycle — service messages and enabled feature content', async ({ page, context }, testInfo) => {
+  const lifecycle = new LifecyclePage(page, context);
+  await lifecycle.open();
+  await expect(lifecycle.firstEnglishHeading).toBeVisible();
+  await expect(lifecycle.secondMessage).toBeVisible();
+  await lifecycle.enableCurrentFeature();
+  await expect(lifecycle.featureContent).toHaveCount(1);
   const outcomes = await collectAccessibilityEvidence(page, testInfo);
   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
 });

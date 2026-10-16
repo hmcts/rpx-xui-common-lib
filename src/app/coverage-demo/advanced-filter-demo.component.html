@@ -1,0 +1,5 @@
+<main class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Advanced filter contracts</h1>
+  <xuilib-generic-filter [config]="config"></xuilib-generic-filter>
+  <output data-testid="advanced-filter-settings">{{ settings$ | async | json }}</output>
+</main>
