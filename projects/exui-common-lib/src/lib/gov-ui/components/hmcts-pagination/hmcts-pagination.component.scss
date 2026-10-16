@@ -1,5 +1,118 @@
-// have to add this in addition to the HMCTS Guidelines - it appears text-align:justify
-// does not work (perhaps it is in cases where we put the pagination inside a tabbed component?)
+@use "govuk-frontend/dist/govuk/base" as *;
+
+// Sprite ported from @hmcts/frontend's icon-pagination.svg (22x36 viewBox,
+// two 11x18 chevrons stacked: prev top-left, next bottom-right).
+$hmcts-pagination-icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 36'%3E%3Cpath fill='%231d70b8' fill-rule='evenodd' clip-rule='evenodd' d='M8.9 18L0 9l8.9-9L11 2.1 4.2 9l6.8 6.9L8.9 18zM11 33.9l6.8-6.9-6.8-6.9 2.1-2.1 8.9 9-8.9 9-2.1-2.1z'/%3E%3C/svg%3E";
+
+.hmcts-pagination {
+  @include govuk-media-query($from: desktop) {
+    margin-left: -govuk-spacing(1);
+    margin-right: -govuk-spacing(1);
+    font-size: 0;
+    text-align: justify;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+.hmcts-pagination__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include govuk-media-query($from: desktop) {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+}
+
+.hmcts-pagination__item {
+  @include govuk-font(19);
+  display: inline-block;
+
+  &--active,
+  &--dots {
+    font-weight: bold;
+    height: 25px;
+    padding: govuk-spacing(1) govuk-spacing(2);
+    text-align: center;
+  }
+
+  &--dots {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &--prev .hmcts-pagination__link,
+  &--next .hmcts-pagination__link {
+    &:before,
+    &:after {
+      background-image: url($hmcts-pagination-icon);
+      background-repeat: no-repeat;
+      background-size: 22px 36px;
+      background-position: 0 0;
+      display: inline-block;
+      height: 18px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+      width: 11px;
+    }
+  }
+
+  &--prev .hmcts-pagination__link {
+    &:before {
+      background-position: 0 0;
+      content: "";
+      margin-right: govuk-spacing(2);
+    }
+  }
+
+  &--next .hmcts-pagination__link {
+    &:after {
+      background-position: -11px -18px;
+      content: "";
+      margin-left: govuk-spacing(2);
+    }
+  }
+}
+
+.hmcts-pagination__link {
+  display: block;
+  padding: govuk-spacing(1);
+  text-align: center;
+  text-decoration: none;
+  min-width: 25px;
+
+  &:link,
+  &:visited {
+    color: govuk-colour("blue");
+  }
+
+  &:hover {
+    color: govuk-colour("light-blue");
+  }
+
+  &:focus {
+    color: govuk-colour("black");
+  }
+}
+
 .hmcts-pagination__results {
+  padding: govuk-spacing(1);
+
+  @include govuk-media-query($from: desktop) {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+  // have to add this in addition to the HMCTS Guidelines - it appears text-align:justify
+  // does not work (perhaps it is in cases where we put the pagination inside a tabbed component?)
   float: right;
 }

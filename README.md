@@ -24,14 +24,50 @@ It will run the tests for exui-common-lib.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Playwright](https://playwright.dev/).
+The Playwright tests in `e2e/src/` exercise the demo host (`src/`) in Chromium, Firefox and WebKit locally and in CI. Discovery lists 88 distinct functional scenarios (264 browser executions): the original 51 scenarios plus 37 additional contracts. Accessibility-only hint associations run in the separate advisory lane, not the functional gate. This is a scenario count, not a pass rate or percentage of library functionality. Run `yarn playwright test --list` to inspect the current inventory and use the matching run's reports for its actual results.
 
-You can also run Playwright tests directly:
-- `npx playwright test` - Run all tests
-- `npx playwright test --ui` - Run tests with UI mode
-- `npx playwright show-report` - View the last test report
+The functional inventory reaches at least one directly asserted contract in 40 of 60 public components (previously 19); every component remains partially tested. This includes retained failing assertions, not 40 proven-correct components. Twenty components still have no credited functional browser contract, including location/work-type/venue/judicial/person/task lookups, plural service messages, the accessibility statement and page wrapper. Services, directives, exhaustive input combinations, live integrations and manual assistive-technology testing are separate gaps; neither browser repetition nor automated scanning closes them.
 
-The e2e tests are located in the `e2e/` directory and use Playwright's modern testing framework for reliable, fast end-to-end testing across multiple browsers (Chromium, Firefox, and WebKit).
+The additional `/coverage/*` routes are explicitly demo/test-host code. They compose real exported library components and expose parent form values and emitted events for assertions; they do not replace library implementations. Production library code under `projects/exui-common-lib/` is unchanged.
+
+| Demo route | Contracts exercised | Boundary |
+| --- | --- | --- |
+| `/home`, `/coverage` | Existing checkbox, date badge, loading, contact, filter, pagination, cookies, navigation, terms, feedback and session-dialog scenarios | Session-dialog markup is not authenticated session-expiry coverage |
+| `/coverage/invitation` | Exact submitted form/permissions, parent-provided errors and correction | No email delivery or live invitation API |
+| `/coverage/form-controls` | Select/textarea values and error relationships, date validity, file chooser clear/reselect | Parent forms are demo-owned; file selection is not upload or drag/drop |
+| `/coverage/service-selection` | Filtering, keyboard selection, exact values, removal/replacement, disabled inputs | Synthetic local service options |
+| `/coverage/case-sharing` | Pending additions/removals, duplicate protection, cancellation, validation and confirmation state continuity | Real sharing state service; no persisted CCD access change |
+| `/coverage/address` | Postcode normalization, parsed lookup selection, empty results and manual/international controls | Real address service with synthetic intercepted HTTP responses |
+| `/coverage/users` | 50/1 pagination, user selection, permission/action visibility and click/keyboard event payloads | Synthetic users; no live suspension or invitation delivery |
+
+These tests do not imply 100% coverage of CommonLib's APIs, behavior or consumer journeys. Library unit tests still run separately through `yarn test`. A failing intended-contract test is evidence to investigate, not permission to change the library or weaken the assertion.
+
+- `yarn e2e` (`ng e2e`) - Angular starts the demo dev server and passes its URL to Playwright via `PLAYWRIGHT_TEST_BASE_URL`, so Playwright does not start a second server.
+- `yarn playwright test` - Playwright starts the demo itself (`yarn start:no-open` on http://localhost:4200), reusing an already running server outside CI. Add `--ui` for UI mode.
+- `yarn test:e2e:typecheck` - typecheck the Playwright config and test sources without starting a browser.
+- `PLAYWRIGHT_TEST_BASE_URL=<url> yarn playwright test` - run against an already running host; no server is started.
+- `PLAYWRIGHT_REPORTERS=list,html,junit,odhin` - choose reporters (default `list,odhin` locally and `dot,odhin` in CI; JUnit is written to `test-results/junit.xml`).
+- Odhín writes its HTML index to `test-results/odhin/common-lib-playwright.html` and keeps assets/attachments beside it. Set `PW_ODHIN_OUTPUT`, `PW_ODHIN_INDEX`, `PW_ODHIN_TITLE`, `PW_ODHIN_ENV`, `PW_ODHIN_PROJECT` or `PW_ODHIN_RELEASE` to override metadata and output paths.
+- GitHub Actions keeps Odhín history on the `odhin-reports` peer branch. Functional reports are uploaded by the read-only `Node.js Package` workflow and published by the separate trusted `Publish CommonLib Odhín evidence` `workflow_run` after a same-repository PR, `master`, or `Release` run when the exact report artifact was produced, at `reports/<branch-slug>/runs/<run-id>-attempt-<attempt>/`. This includes failed functional runs whose dashboard verifier succeeded; cancelled runs, missing artifacts, and fork pull requests remain unpublished.
+- Accessibility is off by default and runs only on demand. In **Actions**, choose **CommonLib accessibility (advisory)**, set `ref` to the branch, tag, or commit SHA you want to test, then choose **Run workflow**. The manual workflow uploads exact evidence only; the separate trusted `Publish CommonLib Odhín evidence` run publishes successful results at `reports/<branch-slug>/accessibility/runs/<run-id>-attempt-<attempt>/`. From the CLI, use `gh workflow run accessibility-odhin.yml -R hmcts/rpx-xui-common-lib --ref master -f ref=feature/my-branch`; `--ref master` selects the trusted workflow definition and `-f ref=...` selects the code under test. For an exact commit use `-f ref=<40-character-sha>`.
+- Each report type has its own immutable branch history. A history page links directly to the other report only when both were produced from the exact same commit SHA; otherwise it says that no matching report exists. This prevents a functional report from being presented as the counterpart of a different accessibility run.
+- Downloads are separate: the functional workflow uploads `common-lib-functional-report` (open `common-lib-playwright.html`) and the manual accessibility workflow uploads `common-lib-accessibility-report` (open `index.html`). Extract the complete ZIP so external assets work. `common-lib-playwright-evidence` retains the raw functional diagnostics.
+- `yarn playwright show-report` - view the last HTML report.
+
+Install the browsers once with `yarn playwright install chromium firefox webkit`.
+
+## Accessibility evidence
+
+The separate accessibility lane reuses the WebApp combined Odhín reporting approach: page/state summaries, axe results, WAVE-like DOM checks, screen-reader heuristics and scoped Lighthouse audits. Findings link to their HTML/JSON evidence and screenshots; these assets remain separate from the report index. WAVE-like checks are not the WebAIM WAVE service, and screen-reader heuristics do not execute NVDA, JAWS or VoiceOver. Automated checks cannot establish accessibility conformance.
+
+- `yarn test:a11y` runs the strict accessibility lane. Product findings remain visible as failed tests.
+- `yarn test:a11y:advisory` permits complete product-finding evidence, as explicitly agreed for this test-only work. Setup, scanner, missing-evidence and reporting errors remain blocking; an absent result is never a pass.
+- `yarn test:a11y:self-check` verifies the scanner against a clean synthetic page; `yarn test:a11y:report` checks report classification and evidence integrity.
+- `yarn node e2e/reporters/presentation/accessibility.browser-check.cjs` verifies the reused report UI with synthetic records. These checks validate reporting, not CommonLib functionality.
+- `yarn node e2e/accessibility/verify-report.cjs <report-directory>` opens an actual generated accessibility report and checks its linked evidence. In CI it runs after the advisory scan, so a scanner/setup/report/evidence fault fails the manual workflow even though product findings remain advisory.
+- Accessibility findings, including EXUI-5358's missing textarea hint association, are advisory and do not fail functional acceptance. Scanner/setup/reporting errors remain execution failures, not accessibility findings. Local runs reserve their own output directory to avoid stale or overwritten evidence.
+
+Existing library findings must remain visible and be tracked as defects. Only demo-owned markup may be repaired in this work; no library rules are disabled and no library DOM is rewritten to manufacture a clean scan.
 
 ## Further help
 

@@ -10,20 +10,12 @@ describe('FilterService', () => {
       value: ['value1', 'value2', 'value3']
     }]
   };
-  const filterSetting1: FilterSetting = {
-    id: 'testId1',
-    idamId: '1234',
-    fields: [{
-      name: 'field_11',
-      value: ['value11', 'value12', 'value13']
-    }]
-  };
-
   let service: FilterService;
 
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
+    sessionStorage.clear();
     service = TestBed.inject(FilterService);
   });
 
@@ -31,18 +23,30 @@ describe('FilterService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('persist local', () => {
+  it('persists legacy local settings in session storage', () => {
     const persistence: FilterPersistence = 'local';
-    service.persist(filterSetting, persistence);
-    service.get(filterSetting.id);
-    expect(service.get(filterSetting.id)).toEqual(filterSetting);
+    const setting = { ...filterSetting };
+    spyOn(sessionStorage, 'setItem').and.callThrough();
+    spyOn(localStorage, 'setItem');
+
+    service.persist(setting, persistence);
+
+    expect(sessionStorage.setItem).toHaveBeenCalledWith(setting.id, JSON.stringify(setting));
+    expect(localStorage.setItem).not.toHaveBeenCalled();
+    expect(service.get(setting.id)).toEqual(setting);
   });
 
-  it('persist session', () => {
+  it('persists session settings in session storage', () => {
     const persistence: FilterPersistence = 'session';
-    service.persist(filterSetting, persistence);
-    service.get(filterSetting.id);
-    expect(service.get(filterSetting.id)).toEqual(filterSetting);
+    const setting = { ...filterSetting };
+    spyOn(sessionStorage, 'setItem').and.callThrough();
+    spyOn(localStorage, 'setItem');
+
+    service.persist(setting, persistence);
+
+    expect(sessionStorage.setItem).toHaveBeenCalledWith(setting.id, JSON.stringify(setting));
+    expect(localStorage.setItem).not.toHaveBeenCalled();
+    expect(service.get(setting.id)).toEqual(setting);
   });
 
   it('getStream', () => {
@@ -54,28 +58,31 @@ describe('FilterService', () => {
     });
   });
 
-  it('isSameUser - return false if filter idamId is not defined', () => {
-    const persistence: FilterPersistence = 'local';
-    service.persist(filterSetting, persistence);
-    spyOn(service, 'getUserId').and.returnValue('1234');
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting));
-    expect(service.isSameUser('testId')).toEqual(false);
+  it('does not restore filters after session storage is cleared on logout', () => {
+    service.persist(filterSetting, 'local');
+    sessionStorage.clear();
+
+    expect(new FilterService().get(filterSetting.id)).toBeNull();
   });
 
-  it('isSameUser - return false if filter idamId is not sane as the user id', () => {
-    const persistence: FilterPersistence = 'local';
-    service.persist(filterSetting, persistence);
-    spyOn(service, 'getUserId').and.returnValue('5678');
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting));
-    expect(service.isSameUser('testId')).toEqual(false);
+  it('reads persisted filters without accessing local storage', () => {
+    sessionStorage.setItem(filterSetting.id, JSON.stringify(filterSetting));
+    spyOn(localStorage, 'getItem');
+
+    expect(new FilterService().get(filterSetting.id)).toEqual(filterSetting);
+    expect(localStorage.getItem).not.toHaveBeenCalled();
   });
 
-  it('isSameUser - return true if filter idamId is same as user id', () => {
-    const persistence: FilterPersistence = 'local';
-    service.persist(filterSetting1, persistence);
-    spyOn(service, 'getUserId').and.returnValue('1234');
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(filterSetting1));
-    expect(service.isSameUser('testId1')).toEqual(false);
+  it('clears session persistence without accessing local storage', () => {
+    sessionStorage.setItem(filterSetting.id, JSON.stringify(filterSetting));
+    spyOn(sessionStorage, 'removeItem').and.callThrough();
+    spyOn(localStorage, 'removeItem');
+
+    service.clearSessionAndLocalPersistance(filterSetting.id);
+
+    expect(sessionStorage.removeItem).toHaveBeenCalledWith(filterSetting.id);
+    expect(localStorage.removeItem).not.toHaveBeenCalled();
+    expect(sessionStorage.getItem(filterSetting.id)).toBeNull();
   });
 
 });

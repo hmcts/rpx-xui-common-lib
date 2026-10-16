@@ -1,0 +1,12 @@
+<main class="govuk-width-container">
+  <h1 class="govuk-heading-xl">Address demo</h1>
+  <xuilib-write-address-field [formGroup]="form" [internationalMode]="true"
+    [startedInternational]="startedInternational" [isInternational]="isInternational"
+    (internationalModeStart)="startedInternational = true" (ukAddressOptionSelected)="isInternational = $event"
+    (postcodeOptionSelected)="selectedCount = selectedCount + 1" (canSelectAddress)="selectable = $event">
+  </xuilib-write-address-field>
+  <h2 class="govuk-heading-m">Demo form and event outputs</h2>
+  <pre data-testid="address-value">{{ form.value | json }}</pre>
+  <p>Selection events: <span data-testid="address-selected-count">{{ selectedCount }}</span></p>
+  <p>Addresses available: <span data-testid="address-selectable">{{ selectable }}</span></p>
+</main>
