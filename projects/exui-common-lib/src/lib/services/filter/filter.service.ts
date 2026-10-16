@@ -14,8 +14,6 @@ export class FilterService {
   public persist(setting: FilterSetting, persistence: FilterPersistence): void {
     switch (persistence) {
       case 'local':
-        this.persistLocal(setting);
-        break;
       case 'session':
         this.persistSession(setting);
         break;
@@ -30,22 +28,11 @@ export class FilterService {
     if (this.filterSettings[id]) {
       return this.filterSettings[id];
     }
-    if (sessionStorage.getItem(id)) {
-      return JSON.parse(sessionStorage.getItem(id));
-    }
-    if (localStorage.getItem(id)) {
-      if (this.isSameUser(id)) {
-        return JSON.parse(window.localStorage.getItem(id));
-      } else {
-        return null;
-      }
+    const storedSetting = sessionStorage.getItem(id);
+    if (storedSetting) {
+      return JSON.parse(storedSetting);
     }
     return null;
-  }
-
-  public isSameUser(id: string): boolean {
-    const filterSetting: FilterSetting = JSON.parse(window.localStorage.getItem(id));
-    return !!filterSetting.idamId && filterSetting.idamId === this.getUserId();
   }
 
   public getStream(id: string): Observable<FilterSetting> {
@@ -57,18 +44,12 @@ export class FilterService {
 
   public clearSessionAndLocalPersistance(id: string) {
     sessionStorage.removeItem(id);
-    localStorage.removeItem(id);
     if (this.filterSettings[id] !== undefined) {
       this.filterSettings[id] = null;
     }
     if (this.streams[id] !== undefined) {
       this.streams[id].next(null);
     }
-  }
-
-  private persistLocal(setting: FilterSetting): void {
-    setting.idamId = this.getUserId();
-    window.localStorage.setItem(setting.id, JSON.stringify(setting));
   }
 
   private persistSession(setting: FilterSetting): void {
@@ -94,4 +75,5 @@ export class FilterService {
     }
     return userId;
   }
+
 }
