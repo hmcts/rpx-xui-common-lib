@@ -1,10 +1,17 @@
 name: Publish CommonLib Odhín evidence
 
 on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Exact successful or failed Playwright source run to publish
+        required: true
+        type: string
   workflow_run:
     workflows:
       - Node.js Package
       - CommonLib accessibility (advisory)
+      - CommonLib cross-browser (advisory)
     types:
       - completed
 
@@ -18,7 +25,8 @@ permissions:
 jobs:
   publish-odhin:
     if: >-
-      ${{ github.event.workflow_run.head_repository.full_name == github.repository &&
+      ${{ (github.event_name == 'workflow_dispatch' && github.ref_name == github.event.repository.default_branch) ||
+      (github.event.workflow_run.head_repository.full_name == github.repository &&
       ( (github.event.workflow_run.name == 'Node.js Package' &&
       (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure') &&
       (github.event.workflow_run.event == 'pull_request' ||
@@ -26,7 +34,12 @@ jobs:
       (github.event.workflow_run.head_branch == 'master' || github.event.workflow_run.head_branch == 'Release')))) ||
       (github.event.workflow_run.name == 'CommonLib accessibility (advisory)' &&
       github.event.workflow_run.event == 'workflow_dispatch' &&
-      github.event.workflow_run.conclusion == 'success') ) }}
+      github.event.workflow_run.head_branch == github.event.repository.default_branch &&
+      github.event.workflow_run.conclusion == 'success') ||
+      (github.event.workflow_run.name == 'CommonLib cross-browser (advisory)' &&
+      github.event.workflow_run.event == 'workflow_dispatch' &&
+      github.event.workflow_run.head_branch == github.event.repository.default_branch &&
+      (github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure') ) ) ) }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -45,40 +58,85 @@ jobs:
         with:
           node-version: 24.18.0
           package-manager-cache: false
-      - name: Select exact report artifact
-        id: report
+      - name: Resolve and validate exact source run
+        id: source
         env:
-          SOURCE_WORKFLOW: ${{ github.event.workflow_run.name }}
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.source_run_id || github.event.workflow_run.id }}
         run: |
-          if [ "$SOURCE_WORKFLOW" = 'Node.js Package' ]; then
-            echo 'artifact_name=common-lib-functional-report' >> "$GITHUB_OUTPUT"
-            echo 'report_type=functional' >> "$GITHUB_OUTPUT"
-          else
-            echo 'artifact_name=common-lib-accessibility-report' >> "$GITHUB_OUTPUT"
-            echo 'report_type=accessibility' >> "$GITHUB_OUTPUT"
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID" | node -e '
+            const fs = require("node:fs");
+            const run = JSON.parse(fs.readFileSync(0, "utf8"));
+            const reports = {
+              "Node.js Package": ["functional", "common-lib-functional-report"],
+              "CommonLib accessibility (advisory)": ["accessibility", "common-lib-accessibility-report"],
+              "CommonLib cross-browser (advisory)": ["cross-browser", "common-lib-cross-browser-report"],
+            };
+            const report = reports[run.name];
+            if (run.head_repository?.full_name !== process.env.GITHUB_REPOSITORY) {
+              throw new Error("Source run must belong to this repository");
+            }
+            if (!report) throw new Error(`Unsupported Odhín source workflow: ${run.name}`);
+            if (!["success", "failure"].includes(run.conclusion)) {
+              throw new Error(`Source run must be completed with success or failure, got: ${run.conclusion}`);
+            }
+            const output = {
+              source_run_id: run.id,
+              source_run_attempt: run.run_attempt,
+              source_branch: run.head_branch,
+              source_sha: run.head_sha,
+              source_url: `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${run.id}/attempts/${run.run_attempt}`,
+              report_type: report[0],
+              artifact_name: report[1],
+            };
+            for (const [key, value] of Object.entries(output)) console.log(`${key}=${value}`);
+          ' >> "$GITHUB_OUTPUT"
+      - name: Check exact upstream report is available
+        id: upstream_report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPORT_ARTIFACT: ${{ steps.source.outputs.artifact_name }}
+          SOURCE_RUN_ID: ${{ steps.source.outputs.source_run_id }}
+        run: |
+          set -euo pipefail
+          artifact_id="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID/artifacts?per_page=100" | node -e '
+            const fs = require("node:fs");
+            const report = JSON.parse(fs.readFileSync(0, "utf8"));
+            const artifact = report.artifacts.find(({ name, expired }) => name === process.env.REPORT_ARTIFACT && !expired);
+            if (artifact) process.stdout.write(String(artifact.id));
+          ')"
+          if [ -z "$artifact_id" ]; then
+            echo 'available=false' >> "$GITHUB_OUTPUT"
+            printf '### Odhín publication skipped\n\nNo publishable `%s` artifact was produced by [the triggering run](%s/%s/actions/runs/%s).\n' \
+              "$REPORT_ARTIFACT" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$SOURCE_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
+          echo 'available=true' >> "$GITHUB_OUTPUT"
       - name: Download exact upstream report
+        if: ${{ steps.upstream_report.outputs.available == 'true' }}
         uses: actions/download-artifact@v8
         with:
-          name: ${{ steps.report.outputs.artifact_name }}
+          name: ${{ steps.source.outputs.artifact_name }}
           path: evidence
           repository: ${{ github.repository }}
-          run-id: ${{ github.event.workflow_run.id }}
+          run-id: ${{ steps.source.outputs.source_run_id }}
           github-token: ${{ github.token }}
       - name: Prepare and persist immutable Odhín history
+        if: ${{ steps.upstream_report.outputs.available == 'true' }}
         id: publish_report
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          ODHIN_BRANCH: ${{ github.event.workflow_run.head_branch }}
-          ODHIN_SHA: ${{ github.event.workflow_run.head_sha }}
-          ODHIN_RUN_KEY: ${{ github.event.workflow_run.id }}-attempt-${{ github.event.workflow_run.run_attempt }}
-          ODHIN_SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
-          ODHIN_SOURCE_RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
-          ODHIN_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/attempts/${{ github.event.workflow_run.run_attempt }}
-          ODHIN_REPORT_TYPE: ${{ steps.report.outputs.report_type }}
+          ODHIN_BRANCH: ${{ steps.source.outputs.source_branch }}
+          ODHIN_SHA: ${{ steps.source.outputs.source_sha }}
+          ODHIN_RUN_KEY: ${{ steps.source.outputs.source_run_id }}-attempt-${{ steps.source.outputs.source_run_attempt }}
+          ODHIN_SOURCE_RUN_ID: ${{ steps.source.outputs.source_run_id }}
+          ODHIN_SOURCE_RUN_ATTEMPT: ${{ steps.source.outputs.source_run_attempt }}
+          ODHIN_RUN_URL: ${{ steps.source.outputs.source_url }}
+          ODHIN_REPORT_TYPE: ${{ steps.source.outputs.report_type }}
         run: |
           set -euo pipefail
-          if [ "$ODHIN_REPORT_TYPE" = 'accessibility' ]; then
+          if [ "$ODHIN_REPORT_TYPE" != 'functional' ]; then
             test -s evidence/odhin-source.json
             ODHIN_BRANCH="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).rawBranch)' < evidence/odhin-source.json)"
             ODHIN_SHA="$(node -e 'const fs = require("node:fs"); process.stdout.write(JSON.parse(fs.readFileSync(0, "utf8")).sha)' < evidence/odhin-source.json)"
@@ -103,6 +161,17 @@ jobs:
             --run-url "$ODHIN_RUN_URL" \
             --report-type "$ODHIN_REPORT_TYPE")
           printf '%s\n' "$publisher_result"
+          node e2e/reporters/odhin-site-publisher.cjs \
+            --source evidence \
+            --site pages-site \
+            --branch "$ODHIN_BRANCH" \
+            --run-key "$ODHIN_RUN_KEY" \
+            --run-id "$ODHIN_SOURCE_RUN_ID" \
+            --run-attempt "$ODHIN_SOURCE_RUN_ATTEMPT" \
+            --sha "$ODHIN_SHA" \
+            --run-url "$ODHIN_RUN_URL" \
+            --report-type "$ODHIN_REPORT_TYPE" \
+            --latest-only true >/dev/null
           printf '%s' "$publisher_result" | node -e '
             let input = "";
             process.stdin.on("data", chunk => { input += chunk; });
@@ -116,29 +185,30 @@ jobs:
           git -C odhin-site add .nojekyll reports index.html
           git -C odhin-site commit -m "ci: publish Odhín $ODHIN_BRANCH $ODHIN_RUN_KEY"
           git -c http.extraheader="$auth_header" -C odhin-site push origin HEAD:odhin-reports
-          mkdir pages-site
-          cp -R odhin-site/. pages-site/
-          rm -rf pages-site/.git
       - name: Configure GitHub Pages
+        if: ${{ steps.upstream_report.outputs.available == 'true' }}
         id: configure_pages
         uses: actions/configure-pages@v6
       - name: Upload Odhín site
+        if: ${{ steps.upstream_report.outputs.available == 'true' }}
         uses: actions/upload-pages-artifact@v5
         with:
           path: pages-site
       - name: Publish Odhín report
+        if: ${{ steps.upstream_report.outputs.available == 'true' }}
         id: deployment
         uses: actions/deploy-pages@v5
       - name: Link report in Actions
+        if: ${{ steps.upstream_report.outputs.available == 'true' }}
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
-          REPORT_TYPE: ${{ steps.report.outputs.report_type }}
+          REPORT_TYPE: ${{ steps.source.outputs.report_type }}
           BRANCH_PATH: ${{ steps.publish_report.outputs.branch_url_path }}
           RUN_PATH: ${{ steps.publish_report.outputs.run_url_path }}
-          UPSTREAM_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/attempts/${{ github.event.workflow_run.run_attempt }}
+          UPSTREAM_URL: ${{ steps.source.outputs.source_url }}
         run: |
           pages_url="${PAGES_URL%/}"
           printf '### Published %s Odhín evidence\n\n' "$REPORT_TYPE" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open this immutable report](%s/%s)\n\n' "$pages_url" "$RUN_PATH" >> "$GITHUB_STEP_SUMMARY"
-          printf '[Open this report type’s branch history](%s/%s)\n\n' "$pages_url" "$BRANCH_PATH" >> "$GITHUB_STEP_SUMMARY"
+          printf '[Open current public report](%s/%s)\n\n' "$pages_url" "$RUN_PATH" >> "$GITHUB_STEP_SUMMARY"
+          printf '[Open immutable report archive](%s/%s)\n\n' "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/tree/odhin-reports" "$RUN_PATH" >> "$GITHUB_STEP_SUMMARY"
           printf '[Open the triggering workflow evidence](%s).\n' "$UPSTREAM_URL" >> "$GITHUB_STEP_SUMMARY"
