@@ -1,0 +1,87 @@
+<div class="govuk-width-container" [formGroup]="form">
+  <h1 class="govuk-heading-xl">Primitives coverage demo</h1>
+
+  <xuilib-gov-uk-textarea [group]="form"
+    [config]="{id: 'notes', key: 'notes', label: 'Notes', hint: 'Synthetic notes.', rows: 3}"
+    [errorMessage]="suppliedError('Enter notes')"></xuilib-gov-uk-textarea>
+
+  <xuilib-gov-uk-checkboxes [group]="form"
+    [config]="{id: 'notifications', name: 'notifications', label: 'Notification channels'}"
+    [items]="checkboxes" [errorMessage]="suppliedError('Choose a notification channel')">
+  </xuilib-gov-uk-checkboxes>
+
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-label--m">Urgency</legend>
+    <div class="govuk-radios">
+      @for (radio of radios; track radio.id) {
+        <xuilib-gov-radio [group]="form" [config]="radio"></xuilib-gov-radio>
+      }
+    </div>
+  </fieldset>
+
+  <section data-testid="primitives-errors">
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="suppliedErrors = !suppliedErrors">
+      Toggle supplied errors
+    </button>
+    <div data-testid="supplied-error-messages">
+      <xuilib-gov-uk-error-message [config]="{id: 'notes'}"
+        [errorMessage]="suppliedError('Enter notes')"></xuilib-gov-uk-error-message>
+      <xuilib-gov-uk-error-message [config]="{id: 'priority'}"
+        [errorMessage]="suppliedError('Choose a priority')"></xuilib-gov-uk-error-message>
+    </div>
+  </section>
+
+  <xuilib-gov-uk-input [group]="form"
+    [config]="{id: 'disabled-field', name: 'disabledField', label: 'Disabled value', type: 'text'}">
+  </xuilib-gov-uk-input>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleDisabledControl()">
+    Toggle disabled control
+  </button>
+
+  <h2 class="govuk-heading-m">Parent form value</h2>
+  <pre data-testid="primitives-form-value">{{ form.getRawValue() | json }}</pre>
+
+  <section aria-label="Projected fieldsets">
+    <xuilib-gov-uk-fieldset
+      [config]="{id: 'contact', legend: 'Contact details', classes: 'govuk-fieldset__legend--m'}">
+      <p>Projected fieldset content</p>
+    </xuilib-gov-uk-fieldset>
+    <xuilib-gov-uk-fieldset
+      [config]="{id: 'choice', legend: 'Choice details', classes: 'govuk-fieldset__legend--m', isPageHeading: true}">
+      <p>Projected fieldset content</p>
+    </xuilib-gov-uk-fieldset>
+  </section>
+
+  <xuilib-gov-uk-table data-testid="primitives-table" [caption]="'Primitive records'" [rows]="tableRows"
+    [columnConfig]="[
+      {header: 'Case', key: 'caseId', type: 'link'},
+      {header: 'Opened', key: 'opened', type: 'date'},
+      {header: 'Status', key: 'status', type: 'text'}
+    ]">
+  </xuilib-gov-uk-table>
+
+  <xuilib-hmcts-identity-bar [content]="identityContent"></xuilib-hmcts-identity-bar>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleIdentity()">Toggle identity</button>
+
+  <xuilib-hmcts-main-wrapper [title]="'Main wrapper'" [backLink]="null" (backEvent)="backEventCount = backEventCount + 1">
+    <p>Projected main-wrapper content</p>
+  </xuilib-hmcts-main-wrapper>
+  <output data-testid="back-events">{{ backEventCount }}</output>
+
+  <h2 class="govuk-heading-m">Paginated records</h2>
+  <ul data-testid="paged-records">
+    @for (record of records | paginate: { itemsPerPage: 2, currentPage: currentPage, id: paginationId, totalItems: records.length }; track record) {
+      <li>{{ record }}</li>
+    }
+  </ul>
+  <xuilib-hmcts-pagination [id]="paginationId" [pageSize]="2" [maxSize]="5"
+    [showPageNumbers]="showPageNumbers" [showResultCount]="showResultCount"
+    (pageChange)="pageChanged($event)" (pageBoundsCorrection)="pageBoundsCorrected($event)">
+  </xuilib-hmcts-pagination>
+  <output data-testid="primitive-page-number">Page {{ currentPage }}</output>
+  <output data-testid="pagination-bounds">{{ boundsCorrections[boundsCorrections.length - 1] || '' }}</output>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="reduceRecords()">Reduce records</button>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="togglePaginationDisplays()">
+    Toggle pagination displays
+  </button>
+</div>

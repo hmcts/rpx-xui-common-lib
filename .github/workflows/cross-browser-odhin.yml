@@ -1,0 +1,80 @@
+name: CommonLib cross-browser (advisory)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag, or commit SHA to test
+        required: true
+        default: master
+
+concurrency:
+  group: commonlib-cross-browser-${{ inputs.ref || github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  cross-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.18.0
+      - run: corepack enable && yarn --version
+      - run: yarn install
+      - run: yarn test:e2e:typecheck
+      - run: yarn node --test e2e/reporters/*.node-check.cjs
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps chromium firefox webkit
+      - name: Run Playwright Firefox and WebKit coverage
+        id: cross_browser
+        env:
+          PLAYWRIGHT_REPORTERS: dot,html,junit,odhin
+          PW_ODHIN_OUTPUT: test-results/odhin
+          PW_ODHIN_INDEX: common-lib-playwright.html
+        run: yarn playwright test --project=firefox --project=webkit
+      - name: Verify rendered Odhín dashboard
+        id: odhin_browser
+        if: ${{ !cancelled() && (steps.cross_browser.outcome == 'success' || steps.cross_browser.outcome == 'failure') }}
+        run: yarn node e2e/reporters/odhin-report.browser-check.cjs
+      - name: Package exact cross-browser report and target identity
+        if: ${{ !cancelled() && steps.odhin_browser.outcome == 'success' }}
+        env:
+          TARGET_REF: ${{ inputs.ref }}
+        run: |
+          set -euo pipefail
+          rm -rf cross-browser-odhin-artifact
+          mkdir -p cross-browser-odhin-artifact
+          cp -R test-results/odhin/. cross-browser-odhin-artifact/
+          TARGET_SHA="$(git rev-parse HEAD)" node <<'NODE'
+          const fs = require('node:fs');
+          const ref = String(process.env.TARGET_REF || 'master');
+          const sha = String(process.env.TARGET_SHA);
+          const rawBranch = /^[0-9a-f]{7,40}$/i.test(ref)
+            ? `detached-${sha.slice(0, 12)}`
+            : ref.replace(/^refs\/(?:heads|tags)\//, '');
+          fs.writeFileSync('cross-browser-odhin-artifact/odhin-source.json', `${JSON.stringify({ rawBranch, sha })}\n`);
+          NODE
+      - name: Upload Playwright evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: common-lib-cross-browser-evidence
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: warn
+      - name: Upload cross-browser report
+        if: ${{ !cancelled() && steps.odhin_browser.outcome == 'success' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: common-lib-cross-browser-report
+          path: cross-browser-odhin-artifact/
+          if-no-files-found: error

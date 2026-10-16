@@ -1,0 +1,26 @@
+<main class="govuk-width-container">
+  <h1 class="govuk-heading-xl">Lifecycle behaviour coverage</h1>
+
+  <section aria-labelledby="service-messages-heading">
+    <h2 id="service-messages-heading" class="govuk-heading-l">Service messages</h2>
+    <xuilib-service-messages
+      [userRoles]="userRoles"
+      [featureToggleKey]="messageKey"
+      [serviceMessageCookie]="messageCookie">
+    </xuilib-service-messages>
+  </section>
+
+  <section aria-labelledby="feature-toggle-heading">
+    <h2 id="feature-toggle-heading" class="govuk-heading-l">Feature toggle</h2>
+    <p>Active feature: <output data-testid="active-feature-key">{{ featureKey }}</output></p>
+    <button type="button" class="govuk-button" (click)="emitCurrentFeature(true)">Enable current feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="emitCurrentFeature(false)">Disable current feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="rebindFeature()">Rebind feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="emitOriginalFeature(true)">Enable original feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="emitOriginalFeature(false)">Disable original feature</button>
+
+    <p *xuilibFeatureToggle="featureKey" data-testid="feature-toggle-content">
+      Feature content for {{ featureKey }}
+    </p>
+  </section>
+</main>
