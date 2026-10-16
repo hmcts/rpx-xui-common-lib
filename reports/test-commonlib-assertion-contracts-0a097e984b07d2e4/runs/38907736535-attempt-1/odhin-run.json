@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "test/commonlib-assertion-contracts",
+  "branchSlug": "test-commonlib-assertion-contracts-0a097e984b07d2e4",
+  "runKey": "38907736535-attempt-1",
+  "runId": "38907736535",
+  "runAttempt": "1",
+  "sha": "954dc24726aa6ab5bc42f7f44c81e5b1460c59a4",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38907736535/attempts/1",
+  "createdAt": "2026-10-16T13:29:43.676Z"
+}
