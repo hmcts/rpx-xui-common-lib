@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "CME-1008-Angular-20-post-upgrade-action---Dart-Sass-depricated",
+  "branchSlug": "cme-1008-angular-20-post-upgrade-action-dart-sass-depricated-69e696105f667c23",
+  "runKey": "38892432121-attempt-1",
+  "runId": "38892432121",
+  "runAttempt": "1",
+  "sha": "02afacbf1099f9fb6c898a3a469cf3686b8e663e",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/38892432121/attempts/1",
+  "createdAt": "2026-10-16T11:18:09.601Z"
+}
