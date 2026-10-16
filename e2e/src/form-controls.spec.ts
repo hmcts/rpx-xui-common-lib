@@ -37,10 +37,28 @@ test('S1.4 valid date updates parent controls and validity', async ({ page }) =>
   await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
 });
 
+test('S1.4 last day of a 30-day month is valid', async ({ page }) => {
+  const controls = new FormControlsPage(page);
+  await controls.fillDate('30', '04', '2024');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '30', hearing_month: '04', hearing_year: '2024' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
+});
+
 test('S1.4 impossible date renders the library validator error', async ({ page }) => {
   const controls = new FormControlsPage(page);
   await controls.fillDate('31', '02', '2024');
   await expect(controls.dateValid).toHaveText('false');
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveText('Error:Enter a valid hearing date');
+});
+
+test('S1.4 day beyond a 30-day month remains invalid with the submitted values', async ({ page }) => {
+  const controls = new FormControlsPage(page);
+  await controls.fillDate('31', '04', '2024');
+  await expect(controls.dateValid).toHaveText('false');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '31', hearing_month: '04', hearing_year: '2024' });
   await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveText('Error:Enter a valid hearing date');
 });
 

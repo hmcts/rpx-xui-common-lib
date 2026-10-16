@@ -4,6 +4,7 @@ import { LifecyclePage } from './lifecycle.po';
 
 const messageCookie = 'commonlib-lifecycle-hidden-messages';
 const firstEnglishMessage = 'English <strong>planned maintenance</strong> is available.<script>window.__unsafeEnglish = true</script>';
+const secondEnglishMessage = 'English unaffected service message.';
 
 test('L1 service messages preserve safe bilingual markup and strip unsafe markup', async ({ page, context }) => {
   const lifecycle = new LifecyclePage(page, context);
@@ -44,6 +45,22 @@ test('L1 keyboard dismissal persists only the selected message in the session co
     value: encodeURIComponent(JSON.stringify([firstEnglishMessage])),
     expires: -1
   });
+});
+
+test('L1 dismissing both service messages leaves no visible banners after reload', async ({ page, context }) => {
+  const lifecycle = new LifecyclePage(page, context);
+  await lifecycle.open();
+
+  await lifecycle.firstDismissLink.click();
+  await expect(lifecycle.firstMessage).toHaveCount(0);
+  await lifecycle.secondMessage.getByText('Hide message', { exact: true }).click();
+  await expect(lifecycle.serviceMessages).toHaveCount(0);
+  expect(await lifecycle.sessionCookie(messageCookie)).toMatchObject({
+    value: encodeURIComponent(JSON.stringify([firstEnglishMessage, secondEnglishMessage]))
+  });
+
+  await lifecycle.reload();
+  await expect(lifecycle.serviceMessages).toHaveCount(0);
 });
 
 test('L2 disabling removes feature content and re-enabling recreates it once', async ({ page, context }) => {

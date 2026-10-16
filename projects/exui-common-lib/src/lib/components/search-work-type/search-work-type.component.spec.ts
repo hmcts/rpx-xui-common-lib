@@ -1,6 +1,6 @@
 import { fakeAsync, tick } from '@angular/core/testing';
 import { FormGroup } from '@angular/forms';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { FilterFieldConfig } from '../../models/filter.model';
 import { WorkType } from '../../models/work-type.model';
 import { SearchWorkTypeComponent } from './search-work-type.component';
@@ -70,7 +70,7 @@ describe('SearchWorkTypeComponent', () => {
     mockService.searchWorkTypes.and.callFake(() => of(results));
 
     let last: WorkType[] | null = undefined;
-    component.filteredList$.subscribe(v => (last = v as WorkType[] | null));
+    component.filteredList$.subscribe((v) => (last = v as WorkType[] | null));
 
     component.searchTermFormControl.setValue('abc');
     tick(300);
@@ -93,7 +93,7 @@ describe('SearchWorkTypeComponent', () => {
     mockService.searchWorkTypes.and.callFake(() => of(results));
 
     let last: WorkType[] | null = undefined;
-    component.filteredList$.subscribe(v => (last = v as WorkType[] | null));
+    component.filteredList$.subscribe((v) => (last = v as WorkType[] | null));
 
     component.searchTermFormControl.setValue('abc');
     tick(300);
@@ -128,5 +128,66 @@ describe('SearchWorkTypeComponent', () => {
     component.reset = true;
 
     expect(component.searchTermFormControl.value).toBe('');
+  });
+
+  it('searches immediately when the field has a services field', () => {
+    const { component, mockService } = setupComponent({ field: buildField(true) });
+    let last: WorkType[] | null = undefined;
+    const sub = component.filteredList$.subscribe((value) => last = value as WorkType[] | null);
+
+    component.searchTermFormControl.setValue('a');
+
+    expect(mockService.searchWorkTypes).toHaveBeenCalledWith('a');
+    expect(last).toEqual([]);
+    sub.unsubscribe();
+  });
+
+  it('drops results from an older request after a newer term is entered', fakeAsync(() => {
+    const { component, mockService } = setupComponent();
+    const firstResponse = new Subject<WorkType[]>();
+    const secondResponse = new Subject<WorkType[]>();
+    mockService.searchWorkTypes.and.returnValues(firstResponse.asObservable(), secondResponse.asObservable());
+    let last: WorkType[] | null = undefined;
+    const sub = component.filteredList$.subscribe((value) => last = value as WorkType[] | null);
+
+    component.searchTermFormControl.setValue('old');
+    tick(300);
+    component.searchTermFormControl.setValue('new');
+    tick(300);
+
+    firstResponse.next([{ key: 'old', label: 'Old' }]);
+    expect(last).not.toEqual([{ key: 'old', label: 'Old' }]);
+    secondResponse.next([{ key: 'new', label: 'New' }]);
+
+    expect(last).toEqual([{ key: 'new', label: 'New' }]);
+    sub.unsubscribe();
+  }));
+
+  it('allows letters and blocks invalid characters through the keyboard guard', () => {
+    const { component } = setupComponent();
+    const validEvent = { key: 'A', preventDefault: jasmine.createSpy('preventDefault') } as any as KeyboardEvent;
+    const invalidEvent = { key: '1', preventDefault: jasmine.createSpy('preventDefault') } as any as KeyboardEvent;
+
+    component.removeInvalidString(validEvent);
+    component.removeInvalidString(invalidEvent);
+
+    expect(validEvent.preventDefault).not.toHaveBeenCalled();
+    expect(invalidEvent.preventDefault).toHaveBeenCalledTimes(1);
+  });
+
+  it('allows navigation and editing keys', () => {
+    const { component } = setupComponent();
+
+    expect(component.isCharacterValid({ key: 'Tab' } as KeyboardEvent)).toBeTrue();
+    expect(component.isCharacterValid({ key: 'ArrowLeft' } as KeyboardEvent)).toBeTrue();
+    expect(component.isCharacterValid({ key: 'Backspace' } as KeyboardEvent)).toBeTrue();
+    expect(component.isCharacterValid({ key: 'Enter' } as KeyboardEvent)).toBeTrue();
+  });
+
+  it('accepts alphabetic key codes and rejects numeric key codes', () => {
+    const { component } = setupComponent();
+
+    expect(component.isCharacterValid({ key: undefined, keyCode: 65 } as KeyboardEvent)).toBeTrue();
+    expect(component.isCharacterValid({ key: undefined, keyCode: 49 } as KeyboardEvent)).toBeFalse();
   });
 });
