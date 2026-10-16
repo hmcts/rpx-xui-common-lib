@@ -16,7 +16,7 @@ test('conditional detail is shown only while its controlling radio enables it', 
   await expect(filter.detail).toBeHidden();
 });
 
-test('local settings reload for the same user while another session or key inherits nothing', async ({ page, browser }) => {
+test('session settings reload while another session or key inherits nothing', async ({ page, browser }) => {
   const filter = new AdvancedFilterPage(page);
   await filter.openPersistence('synthetic-owner', 'primary');
   await filter.selectFamilyPreference();
