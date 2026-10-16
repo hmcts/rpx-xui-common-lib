@@ -84,6 +84,17 @@ test('S2.4 single selection auto replaces the previous value without an Add butt
   await expect(services.changes).toHaveText('2');
 });
 
+test('S2.4 single selection replacement restores the displaced option', async ({ page }) => {
+  await page.goto('/coverage/service-selection?mode=single');
+  const services = new ServiceSelectionPage(page);
+  await services.choose('Family');
+  await services.choose('Civil damages');
+  await expect.poll(async () => JSON.parse(await services.value.innerText()))
+    .toEqual([{ key: 'civil-damages', label: 'Civil damages' }]);
+  await services.search.fill('Family');
+  await expect(services.options).toHaveText(['Family']);
+});
+
 test('S2.4 disabled input cannot be focused and preserves selection', async ({ page }) => {
   await page.goto('/coverage/service-selection?mode=single');
   const services = new ServiceSelectionPage(page);
