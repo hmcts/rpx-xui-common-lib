@@ -91,3 +91,60 @@ test('FindPerson empty results recover to a new selection', async ({ page }) => 
     await expect.poll(async () => JSON.parse(await search.personSelections.innerText())).toEqual([recoveryPerson]);
   });
 });
+
+test('SearchJudicials selects the visible result with a pointer action and records the exact model', async ({ page }) => {
+  const search = new SearchPage(page);
+  await search.openJudicials();
+  const response = page.waitForResponse('**/api/prd/judicial/getJudicialUsersSearch');
+  await search.search('Alex');
+  await response;
+
+  const option = search.option('Judge Alex Taylor (alex@example.test)');
+  await expect(option).toBeVisible();
+  await expect(option).toBeEnabled();
+  await option.click();
+
+  await expect.poll(async () => JSON.parse(await search.judicialControl.innerText())).toEqual({
+    idamId: 'demo-judge',
+    fullName: 'Judge Alex Taylor',
+    emailId: 'alex@example.test',
+    isJudge: 'Y',
+    isMagistrate: 'N',
+    isPanelMember: 'N',
+    knownAs: 'Alex',
+    personalCode: 'demo-code',
+    surname: 'Taylor',
+    title: 'Judge'
+  });
+  await expect.poll(async () => JSON.parse(await search.judicialSelections.innerText())).toEqual([{
+    idamId: 'demo-judge',
+    fullName: 'Judge Alex Taylor',
+    emailId: 'alex@example.test',
+    isJudge: 'Y',
+    isMagistrate: 'N',
+    isPanelMember: 'N',
+    knownAs: 'Alex',
+    personalCode: 'demo-code',
+    surname: 'Taylor',
+    title: 'Judge'
+  }]);
+});
+
+test('SearchJudicials does not query or show suggestions below the minimum search length', async ({ page }) => {
+  const search = new SearchPage(page);
+  await search.openJudicials();
+  const requests: string[] = [];
+  page.on('request', (request) => {
+    if (request.url().includes('/api/prd/judicial/getJudicialUsersSearch')) {
+      requests.push(request.url());
+    }
+  });
+
+  await search.search('ab');
+
+  // SearchJudicials debounces requests by 500 ms; wait past that boundary before proving no request.
+  await page.waitForTimeout(600);
+  await expect(search.options).toHaveCount(0);
+  await expect.poll(async () => JSON.parse(await search.judicialControl.innerText())).toBeNull();
+  expect(requests).toEqual([]);
+});

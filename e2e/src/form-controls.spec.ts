@@ -80,6 +80,8 @@ test('S1.4 correcting an impossible date restores validity', async ({ page }) =>
   await expect(controls.dateValid).toHaveText('false');
   await controls.day.fill('29');
   await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '29', hearing_month: '02', hearing_year: '2024' });
   await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
 });
 
@@ -99,18 +101,37 @@ test('S1.4 optional empty date remains valid after clearing all fields', async (
   await expect(controls.dateValid).toHaveText('true');
   await controls.fillDate('', '', '');
   await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText())).toEqual({
+    hearing_day: '', hearing_month: '', hearing_year: ''
+  });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
+});
+
+test('S1.4 clearing an invalid date restores optional validity and clears the parent value', async ({ page }) => {
+  const controls = new FormControlsPage(page);
+  await controls.fillDate('31', '02', '2024');
+  await expect(controls.dateValid).toHaveText('false');
+
+  await controls.fillDate('', '', '');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText())).toEqual({
+    hearing_day: '', hearing_month: '', hearing_year: ''
+  });
   await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
 });
 
 test('S1.5 file chooser exposes exact metadata, clear and reselect', async ({ page }) => {
   const controls = new FormControlsPage(page);
   await controls.file.setInputFiles({ name: 'evidence.txt', mimeType: 'text/plain', buffer: Buffer.from('proof') });
+  await expect(controls.file).toHaveValue(/evidence\.txt$/);
   await expect.poll(() => controls.file.evaluate((input: HTMLInputElement) =>
     Array.from(input.files, (file) => ({ name: file.name, type: file.type, size: file.size }))))
     .toEqual([{ name: 'evidence.txt', type: 'text/plain', size: 5 }]);
   await controls.file.setInputFiles([]);
+  await expect(controls.file).toHaveValue('');
   await expect.poll(() => controls.file.evaluate((input: HTMLInputElement) => input.files.length)).toBe(0);
   await controls.file.setInputFiles({ name: 'replacement.txt', mimeType: 'text/plain', buffer: Buffer.from('new') });
+  await expect(controls.file).toHaveValue(/replacement\.txt$/);
   await expect.poll(() => controls.file.evaluate((input: HTMLInputElement) =>
     Array.from(input.files, (file) => ({ name: file.name, type: file.type, size: file.size }))))
     .toEqual([{ name: 'replacement.txt', type: 'text/plain', size: 3 }]);
