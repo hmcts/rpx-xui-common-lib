@@ -1,0 +1,46 @@
+<h1>Lookup component demo</h1>
+
+@if (feature === 'location') {
+  <xuilib-find-location
+    [form]="locationForm"
+    [field]="locationField"
+    [fields]="locationFields"
+    [enableAddLocationButton]="!singleMode">
+  </xuilib-find-location>
+  <button type="button" (click)="applyLocations()">Apply filters</button>
+  <pre data-testid="location-value">{{ locationForm.controls.locations.value | json }}</pre>
+  <pre data-testid="location-applied">{{ locationApplied | json }}</pre>
+}
+
+@if (feature === 'venue') {
+  <xuilib-search-venue
+    [control]="venueControl"
+    [selectedLocations]="venueSelectedLocations"
+    serviceIds="IA"
+    locationType="hearing"
+    (locationChanged)="venueSelection = $event">
+  </xuilib-search-venue>
+  <pre data-testid="venue-control">{{ venueControl.value | json }}</pre>
+  <pre data-testid="venue-selection">{{ venueSelection | json }}</pre>
+}
+
+@if (feature === 'work-type') {
+  <xuilib-find-work-type
+    [form]="workTypeForm"
+    [field]="workTypeField"
+    [fields]="workTypeFields"
+    [enableAddWorkTypeButton]="!singleMode">
+  </xuilib-find-work-type>
+  <button type="button" (click)="applyWorkTypes()">Apply filters</button>
+  <pre data-testid="work-type-value">{{ workTypeForm.controls.workTypes.value | json }}</pre>
+  <pre data-testid="work-type-applied">{{ workTypeApplied | json }}</pre>
+}
+
+@if (feature === 'task-name') {
+  <xuilib-find-task-name
+    [findTaskNameGroup]="taskNameForm"
+    services="IA"
+    (taskNameSelected)="taskNameSelection = $event">
+  </xuilib-find-task-name>
+  <pre data-testid="task-name-selection">{{ taskNameSelection | json }}</pre>
+}

@@ -12,8 +12,10 @@ import { AdvancedFilterDemoComponent } from './coverage-demo/advanced-filter-dem
 import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component';
 import { SearchDemoComponent } from './coverage-demo/search-demo.component';
 import { PrimitivesDemoComponent } from './coverage-demo/primitives-demo.component';
+import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
 
 const routes: Routes = [
+  { path: 'coverage/lookups', component: LookupsDemoComponent },
   { path: 'coverage/advanced-filter', component: AdvancedFilterDemoComponent },
   { path: 'coverage/lifecycle', component: LifecycleDemoComponent },
   { path: 'coverage/searches', component: SearchDemoComponent },

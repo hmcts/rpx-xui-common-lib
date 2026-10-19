@@ -19,6 +19,7 @@ import { AdvancedFilterDemoComponent } from './coverage-demo/advanced-filter-dem
 import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component';
 import { SearchDemoComponent } from './coverage-demo/search-demo.component';
 import { PrimitivesDemoComponent } from './coverage-demo/primitives-demo.component';
+import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,8 @@ export class AppShellComponent { }
     AdvancedFilterDemoComponent,
     LifecycleDemoComponent,
     SearchDemoComponent,
-    PrimitivesDemoComponent
+    PrimitivesDemoComponent,
+    LookupsDemoComponent
   ],
   imports: [
     CommonModule,
