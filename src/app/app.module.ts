@@ -19,6 +19,12 @@ import { AdvancedFilterDemoComponent } from './coverage-demo/advanced-filter-dem
 import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component';
 import { SearchDemoComponent } from './coverage-demo/search-demo.component';
 import { PrimitivesDemoComponent } from './coverage-demo/primitives-demo.component';
+import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
+import { AccessibilityDemoComponent } from './coverage-demo/accessibility-demo.component';
+import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-components-demo.component';
+import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
+import { SelectedCaseDemoComponent } from './coverage-demo/selected-case-demo.component';
+import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-demo.component';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +49,13 @@ export class AppShellComponent { }
     AdvancedFilterDemoComponent,
     LifecycleDemoComponent,
     SearchDemoComponent,
-    PrimitivesDemoComponent
+    PrimitivesDemoComponent,
+    LookupsDemoComponent,
+    AccessibilityDemoComponent,
+    StandaloneComponentsDemoComponent,
+    ExtendedControlsDemoComponent,
+    SelectedCaseDemoComponent,
+    PublicContractsDemoComponent
   ],
   imports: [
     CommonModule,
