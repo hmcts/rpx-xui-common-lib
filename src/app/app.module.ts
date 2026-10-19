@@ -20,6 +20,9 @@ import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component
 import { SearchDemoComponent } from './coverage-demo/search-demo.component';
 import { PrimitivesDemoComponent } from './coverage-demo/primitives-demo.component';
 import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
+import { AccessibilityDemoComponent } from './coverage-demo/accessibility-demo.component';
+import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-components-demo.component';
+import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +48,10 @@ export class AppShellComponent { }
     LifecycleDemoComponent,
     SearchDemoComponent,
     PrimitivesDemoComponent,
-    LookupsDemoComponent
+    LookupsDemoComponent,
+    AccessibilityDemoComponent,
+    StandaloneComponentsDemoComponent,
+    ExtendedControlsDemoComponent
   ],
   imports: [
     CommonModule,
