@@ -16,6 +16,8 @@ import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
 import { AccessibilityDemoComponent } from './coverage-demo/accessibility-demo.component';
 import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-components-demo.component';
 import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
+import { SelectedCaseDemoComponent } from './coverage-demo/selected-case-demo.component';
+import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-demo.component';
 
 const routes: Routes = [
   { path: 'coverage/accessibility/manage-case', component: AccessibilityDemoComponent },
@@ -37,6 +39,8 @@ const routes: Routes = [
     ]
   },
   { path: 'coverage/address', component: AddressDemoComponent },
+  { path: 'coverage/selected-cases', component: SelectedCaseDemoComponent },
+  { path: 'coverage/public-contracts', component: PublicContractsDemoComponent },
   { path: 'coverage/users', component: UserManagementDemoComponent, children: [{ path: ':id', children: [] }] },
   {
     path: 'coverage',

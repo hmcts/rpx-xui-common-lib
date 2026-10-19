@@ -1,0 +1,22 @@
+<main class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Public component contract demo</h1>
+  @if (feature === 'service') {
+    <label class="govuk-label" for="inputServiceSearch">Choose a service</label>
+    <exui-search-service [options]="services" [selectedOptions]="selectedServices" [showAutocomplete]="true"
+      (optionChanged)="selectService($event)"></exui-search-service>
+    <pre data-testid="service-selection">{{ serviceSelection | json }}</pre>
+  }
+  @if (feature === 'permission') {
+    <xuilib-invite-permission-form [inviteUserForm]="inviteForm"></xuilib-invite-permission-form>
+    <pre data-testid="permission-value">{{ inviteForm.value | json }}</pre>
+  }
+  @if (feature === 'location') {
+    <label class="govuk-label" for="inputLocationSearch">Choose a location</label>
+    <exui-search-location [form]="inviteForm" [singleMode]="true" serviceIds="IA"
+      locationType="case-management" (locationSelected)="selectLocation($event)"></exui-search-location>
+    <pre data-testid="location-selection">{{ locationSelection | json }}</pre>
+  }
+  @if (feature === 'label') {
+    <xuilib-gov-label [config]="labelConfig"></xuilib-gov-label>
+  }
+</main>

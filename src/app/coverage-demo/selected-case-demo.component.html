@@ -1,0 +1,23 @@
+<main class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Selected case component demo</h1>
+  <xuilib-gov-label [config]="labelConfig"></xuilib-gov-label>
+  @if (mode === 'direct') {
+    <xuilib-selected-case [sharedCase]="directCase" [caseCount]="2" [removeUserFromCaseToggleOn]="true"
+      (unselect)="unselectCase($event)" (synchronizeStore)="synchronize($event)">
+    </xuilib-selected-case>
+  } @else if (mode === 'confirm-direct') {
+    <xuilib-selected-case-confirm [sharedCase]="directCase"
+      [changeLink]="'/coverage/selected-cases?mode=list'"></xuilib-selected-case-confirm>
+  } @else {
+    <xuilib-selected-case-list [shareCases$]="cases$" [toConfirm]="mode === 'confirm'"
+      [changeLink]="'/coverage/selected-cases?mode=list'" [removeUserFromCaseToggleOn]="true"
+      (unselect)="unselectCase($event)" (synchronizeStore)="synchronize($event)">
+    </xuilib-selected-case-list>
+  }
+  <p data-testid="selected-case-mode">{{ mode }}</p>
+  <pre data-testid="selected-case-unselected">{{ unselected | json }}</pre>
+  <pre data-testid="selected-case-synchronized">{{ synchronized | json }}</pre>
+  @if (mode === 'pending') {
+    <p data-testid="selected-case-pending">A pending user is shown for confirmation.</p>
+  }
+</main>

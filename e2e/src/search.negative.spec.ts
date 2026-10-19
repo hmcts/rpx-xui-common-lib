@@ -130,6 +130,22 @@ test('SearchJudicials selects the visible result with a pointer action and recor
   }]);
 });
 
+test('FindPerson HTTP 500 replaces stale results with the empty contract', async ({ page, allowBrowserDiagnostic }) => {
+  allowBrowserDiagnostic({ message: 'Failed to load resource: the server responded with a status of 500', url: '/workallocation/findPerson' });
+  const search = new SearchPage(page);
+  await search.openPerson('judicial');
+  await mockFindPersonRecovery(page);
+  await search.replaceSearch('Taylor');
+  await expect(search.option('Judge Alex Taylor (alex@example.test)')).toBeVisible();
+  await page.unroute('**/workallocation/findPerson');
+  await page.route('**/workallocation/findPerson', (route) => route.fulfill({ status: 500, body: 'controlled failure' }));
+  const response = page.waitForResponse((candidate) => new URL(candidate.url()).pathname === '/workallocation/findPerson');
+  await search.replaceSearch('Nobody');
+  expect((await response).status()).toBe(500);
+  await expect(search.options).toHaveCount(0);
+  await expect(search.option('Judge Alex Taylor (alex@example.test)')).toHaveCount(0);
+});
+
 test('SearchJudicials does not query or show suggestions below the minimum search length', async ({ page }) => {
   const search = new SearchPage(page);
   await search.openJudicials();

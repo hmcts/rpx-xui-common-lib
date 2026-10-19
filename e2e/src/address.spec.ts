@@ -53,6 +53,21 @@ test('empty lookup has no selectable address and emits no selection', async ({ p
   await expect.poll(() => address.value()).toEqual({ address: { addressLine1: null, addressLine2: null, addressLine3: null, postTown: null, county: null, postCode: null, country: null } });
 });
 
+test('HTTP 500 lookup clears address options and preserves the empty contract', async ({ page, allowBrowserDiagnostic }) => {
+  allowBrowserDiagnostic({ message: 'Failed to load resource: the server responded with a status of 500', url: '/external/addresses' });
+  await page.goto('/coverage/address');
+  const address = new AddressPage(page);
+  await address.lookup();
+  await expect(page.locator('#addressList option')).toHaveText(['2 addresses found', '10 Demo Street, Testville', '12 Demo Street, Testville']);
+  const response = page.waitForResponse((candidate) => candidate.url().includes('/external/addresses?'));
+  await address.lookupFailure();
+  expect((await response).status()).toBe(500);
+  await expect(page.locator('#addressList option')).toHaveText(['No address found']);
+  await expect(page.getByTestId('address-selectable')).toHaveText('false');
+  await expect(page.getByTestId('address-selected-count')).toHaveText('0');
+  await expect.poll(() => address.value()).toEqual({ address: { addressLine1: null, addressLine2: null, addressLine3: null, postTown: null, county: null, postCode: null, country: null } });
+});
+
 test('manual international entry updates real nested controls and toggles country and postcode labels', async ({ page }) => {
   await page.goto('/coverage/address');
   const address = new AddressPage(page);

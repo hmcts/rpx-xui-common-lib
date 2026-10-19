@@ -23,6 +23,8 @@ import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
 import { AccessibilityDemoComponent } from './coverage-demo/accessibility-demo.component';
 import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-components-demo.component';
 import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
+import { SelectedCaseDemoComponent } from './coverage-demo/selected-case-demo.component';
+import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-demo.component';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +53,9 @@ export class AppShellComponent { }
     LookupsDemoComponent,
     AccessibilityDemoComponent,
     StandaloneComponentsDemoComponent,
-    ExtendedControlsDemoComponent
+    ExtendedControlsDemoComponent,
+    SelectedCaseDemoComponent,
+    PublicContractsDemoComponent
   ],
   imports: [
     CommonModule,

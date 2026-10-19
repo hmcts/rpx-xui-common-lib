@@ -24,6 +24,21 @@ test('location empty results recover to a new keyboard selection', async ({ page
   await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([manchesterLocation]);
 });
 
+test('location HTTP 500 clears stale results without exposing stale options', async ({ page, allowBrowserDiagnostic }) => {
+  allowBrowserDiagnostic({ message: 'Failed to load resource: the server responded with a status of 500', url: '/api/locations/getLocations' });
+  const lookups = new LookupsPage(page);
+  await lookups.openLocation('single');
+  await lookups.searchLocation('London');
+  await expect(lookups.options).toHaveText(['Central London Hearing Centre']);
+  const response = page.waitForResponse((candidate) => new URL(candidate.url()).pathname === '/api/locations/getLocations');
+  await page.unroute('**/api/locations/getLocations');
+  await page.route('**/api/locations/getLocations', (route) => route.fulfill({ status: 500, body: 'controlled failure' }));
+  await lookups.searchLocation('Nobody');
+  expect((await response).status()).toBe(500);
+  await expect(lookups.options).toHaveCount(0);
+  await expect(lookups.option('Central London Hearing Centre')).toHaveCount(0);
+});
+
 test('venue filters selected, duplicate and nameless records, then recovers from empty results', async ({ page }) => {
   const lookups = new LookupsPage(page);
   await lookups.openVenue(true);
