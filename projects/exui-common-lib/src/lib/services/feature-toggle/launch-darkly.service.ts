@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { initialize, LDClient, LDContext } from 'launchdarkly-js-client-sdk';
+import { LDClient, LDContext } from 'launchdarkly-js-client-sdk';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { FeatureUser } from '../../models/feature-user';
+import { launchDarklyClient } from './launch-darkly-client';
 import { FeatureToggleService } from './feature-toggle.service';
 
 @Injectable({
@@ -15,20 +16,25 @@ export class LaunchDarklyService implements FeatureToggleService {
   private context: LDContext = { kind: 'user', anonymous: true };
   private clientId: string = '';
 
+  protected createClient(clientId: string, context: LDContext): LDClient {
+    return launchDarklyClient.initialize(clientId, context, { useReport: true });
+  }
+
   public initialize(user: FeatureUser = { anonymous: true }, clientId: string): void {
     this.ready.next(false);
     this.context = { kind: 'user', ...user };
     this.clientId = clientId;
-    this.client = initialize(this.clientId, this.context, { useReport: true });
+    this.client = this.createClient(this.clientId, this.context);
+    const handleError = (err: any): void => {
+      console.error('LaunchDarkly client network error:', err);
+      // Allow the app to proceed by emitting true, so subscribers are not blocked
+      this.ready.next(true);
+    };
     this.client.on('ready', () => {
-      this.client.identify(this.context).then(() => this.ready.next(true));
+      this.client.identify(this.context).then(() => this.ready.next(true)).catch(handleError);
     });
 
-    this.client.on('error', (err: any) => {
-        console.error('LaunchDarkly client network error:', err);
-        // Allow the app to proceed by emitting true, so subscribers are not blocked
-        this.ready.next(true);
-      });
+    this.client.on('error', handleError);
   }
 
   public isEnabled(feature: string, defaultValue: boolean = false): Observable<boolean> {
