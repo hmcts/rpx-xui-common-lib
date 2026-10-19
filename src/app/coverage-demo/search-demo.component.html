@@ -1,0 +1,29 @@
+<main class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Search component demo</h1>
+
+  @if (feature === 'person') {
+    <xuilib-find-person
+      [findPersonGroup]="personGroup"
+      [domain]="domain"
+      [services]="'IA'"
+      [userIncluded]="false"
+      [assignedUser]="'demo-assigned'"
+      [selectedPersons]="excludeSelected ? selectedPeople : []"
+      (personSelected)="recordPerson($event)">
+    </xuilib-find-person>
+    <pre data-testid="person-selections">{{ peopleSelected | json }}</pre>
+  }
+
+  @if (feature === 'judicials') {
+    <label class="govuk-label" for="inputSelectPersonjudicials">Choose a judicial user</label>
+    <xuilib-search-judicials
+      [control]="judicialControl"
+      [serviceId]="'IA'"
+      [idValue]="'judicials'"
+      [selectedJudicials]="selectedJudicials"
+      (judicialChanged)="recordJudicial($event)">
+    </xuilib-search-judicials>
+    <pre data-testid="judicial-control">{{ judicialControl.value | json }}</pre>
+    <pre data-testid="judicial-selections">{{ judicialsSelected | json }}</pre>
+  }
+</main>

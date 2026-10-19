@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.21-exui-5239",
+  "version": "3.2.22-exui-5239",
   "engines": {
     "node": ">=24.18.0"
   },
@@ -15,6 +15,11 @@
     "build": "ng build exui-common-lib && node ./scripts/sync-library-package.mjs",
     "build:dev": "ng build --watch exui-common-lib",
     "test": "ng test exui-common-lib",
+    "test:e2e:typecheck": "tsc -p tsconfig.playwright.json --noEmit",
+    "test:a11y": "playwright test -c playwright.accessibility.config.ts",
+    "test:a11y:advisory": "node e2e/accessibility/run-advisory.cjs",
+    "test:a11y:report": "node --test e2e/accessibility/*.test.cjs",
+    "test:a11y:self-check": "playwright test -c e2e/accessibility/self-check/playwright.config.ts",
     "lint": "ng lint rpx-xui-common-lib",
     "e2e": "ng e2e"
   },
@@ -57,7 +62,8 @@
     "@angular/compiler": "20.3.31",
     "@angular/compiler-cli": "20.3.31",
     "@angular/language-service": "20.3.31",
-    "@playwright/test": "1.55.1",
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.64.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.19.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
@@ -74,7 +80,11 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lighthouse": "12.8.2",
     "ng-packagr": "20.3.2",
+    "node-html-parser": "^7.0.0",
+    "odhin-reports-playwright": "patch:odhin-reports-playwright@npm%3A1.1.8#~/.yarn/patches/odhin-reports-playwright-npm-1.1.8-a445ed88b7.patch",
+    "playwright-core": "1.64.1",
     "playwright-ng-schematics": "2.0.3",
     "ts-node": "10.8.1",
     "tslint": "~6.1.0",

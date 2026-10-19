@@ -1,0 +1,71 @@
+<header><h1>CommonLib component coverage examples</h1></header>
+
+<!-- Terms confirmation supplies its own main landmark. -->
+<div [attr.role]="feature === 'terms' ? null : 'main'">
+@switch (feature) {
+  @case ('filter') {
+    <section data-testid="generic-filter-demo">
+      <h2>Generic filter</h2>
+      <xuilib-generic-filter [config]="filterConfig"></xuilib-generic-filter>
+      <output data-testid="filter-result">{{ (filterSettings$ | async)?.fields | json }}</output>
+    </section>
+  }
+  @case ('pagination') {
+    <section data-testid="pagination-demo">
+      <h2>Pagination</h2>
+      <xuilib-pagination [firstRecord]="firstRecord" [moreItems]="moreItems"
+        (nextPage)="nextPage()" (previousPage)="previousPage()"></xuilib-pagination>
+      <output data-testid="page-number">Page {{ (firstRecord - 1) / 10 + 1 }}</output>
+    </section>
+  }
+  @case ('cookie') {
+    <section data-testid="cookie-demo">
+      <h2>Cookie choice</h2>
+      <xuilib-cookie-banner [identifier]="cookieIdentifier" appName="CommonLib demo"></xuilib-cookie-banner>
+    </section>
+  }
+  @case ('users') {
+    <section data-testid="user-select-demo">
+      <h2>User selection</h2>
+      <p id="add-user-hint">Select a user</p>
+      <xuilib-user-select [users]="users" (selected)="selectUser($event)"></xuilib-user-select>
+      <output data-testid="selected-user">{{ selectedUserEmail }}</output>
+    </section>
+  }
+  @case ('terms') {
+    <section data-testid="terms-confirm-demo">
+      <xuilib-tc-confirm buttonText="Accept terms" (confirm)="termsConfirmed = true"></xuilib-tc-confirm>
+      <output data-testid="terms-result">{{ termsConfirmed ? 'Terms accepted' : 'Terms not accepted' }}</output>
+    </section>
+  }
+  @case ('navigation') {
+    <section data-testid="navigation-demo">
+      <h2>Navigation</h2>
+      <xuilib-hmcts-primary-navigation label="Primary demo navigation" [userLoggedIn]="true"
+        [items]="primaryNavigationItems"></xuilib-hmcts-primary-navigation>
+      <xuilib-hmcts-sub-navigation label="Secondary demo navigation"
+        [items]="subNavigationItems"></xuilib-hmcts-sub-navigation>
+    </section>
+  }
+  @case ('feedback') {
+    <section data-testid="feedback-demo">
+      <h2>Feedback</h2>
+      <xuilib-hmcts-banner type="success" title="Completed" message="The action was saved"
+        [showMessageIcon]="true"></xuilib-hmcts-banner>
+      <xuilib-hmcts-banner type="warning" message="Action needs attention"></xuilib-hmcts-banner>
+      <label for="coverage-email">Email address</label>
+      <input id="coverage-email" type="email">
+      <button type="button" (click)="showErrors()">Show validation errors</button>
+      <xuilib-hmcts-error-summary header="There is a problem" [errorMessages]="errorMessages"
+        [showWarningMessage]="false"></xuilib-hmcts-error-summary>
+    </section>
+  }
+  @case ('dialog') {
+    <section data-testid="dialog-demo">
+      <xuilib-session-dialog positionTop="40px">
+        <p>Your session will end soon.</p>
+      </xuilib-session-dialog>
+    </section>
+  }
+}
+</div>
