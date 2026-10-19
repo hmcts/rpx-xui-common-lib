@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "test/common-lib-major-family-playwright-coverage",
+  "branchSlug": "test-common-lib-major-family-playwright-coverage-b16d72c902a4313e",
+  "runKey": "39312189323-attempt-1",
+  "runId": "39312189323",
+  "runAttempt": "1",
+  "sha": "c7aef75d48e1e80e271e9e05668a0b30f013944d",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/39312189323/attempts/1",
+  "createdAt": "2026-10-19T19:39:40.676Z"
+}
