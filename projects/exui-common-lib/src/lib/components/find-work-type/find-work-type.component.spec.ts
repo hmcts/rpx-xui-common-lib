@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Pipe, PipeTransform } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
@@ -9,11 +10,9 @@ import { TaskService } from '../../services/task/task.service';
 import { SearchWorkTypeComponent } from '../search-work-type/search-work-type.component';
 import { FindWorkTypeComponent } from './find-work-type.component';
 
-import { Pipe, PipeTransform } from '@angular/core';
-
 @Pipe({ name: 'rpxTranslate', standalone: true })
 class RpxTranslateMockPipe implements PipeTransform {
-  transform(value: string): string { return value; }
+  public transform(value: string): string { return value; }
 }
 
 describe('FindWorkTypeComponent', () => {
@@ -51,7 +50,7 @@ describe('FindWorkTypeComponent', () => {
     } as FilterFieldConfig;
 
     component.form = new FormGroup({
-      'work-types': new FormArray([]),
+      'work-types': new FormArray([])
     });
 
     // fields array is used by the 'services' setter; keep minimal here
@@ -125,6 +124,62 @@ describe('FindWorkTypeComponent', () => {
     expect(keys).toEqual(['B']);
   });
 
+  it('does not stage a duplicate work type in multi-select mode', () => {
+    const existing = { key: 'A', label: 'Alpha' } as WorkType;
+    component.field.maxSelected = 3;
+    component.form.setControl(component.field.name, new FormArray([new FormControl(existing)]));
+
+    component.onWorkTypeSelected(existing);
+
+    expect(component.tempSelectedWorkType).toBeNull();
+    expect(formArray().value).toEqual([existing]);
+  });
+
+  it('does not stage a work type without a key', () => {
+    component.field.maxSelected = 3;
+
+    component.onWorkTypeSelected({ label: 'Missing key' } as WorkType);
+
+    expect(component.tempSelectedWorkType).toBeNull();
+    expect(formArray().length).toBe(0);
+  });
+
+  it('maps selected service options to service ids and excludes services_all', () => {
+    const servicesField = {
+      name: 'services',
+      options: [
+        { key: 'services_all', label: 'All services' },
+        { key: 'IA', label: 'Immigration and Asylum' },
+        { key: 'SSCS', label: 'Social Security and Child Support' }
+      ],
+      minSelected: 0,
+      maxSelected: 3,
+      type: 'checkbox'
+    } as FilterFieldConfig;
+    component.field.findLocationField = servicesField.name;
+    component.fields = [component.field, servicesField];
+
+    component.services = ['services_all', 'IA'];
+
+    expect(component.serviceIds).toBe('IA');
+  });
+
+  it('accepts a direct service id string from the services input', () => {
+    const servicesField = {
+      name: 'services',
+      options: [],
+      minSelected: 0,
+      maxSelected: 3,
+      type: 'checkbox'
+    } as FilterFieldConfig;
+    component.field.findLocationField = servicesField.name;
+    component.fields = [component.field, servicesField];
+
+    component.services = 'CIVIL' as unknown as string[];
+
+    expect(component.serviceIds).toBe('CIVIL');
+  });
+
   describe('resetting term search', () => {
     beforeEach(() => {
       component.formSubmissionEvent$ = new Subject<void>();
@@ -148,6 +203,18 @@ describe('FindWorkTypeComponent', () => {
       // @ts-expect-error reading private for test
       expect(component.formSubmissionEventSubscription.unsubscribe).toHaveBeenCalledTimes(1);
     });
+
+    it('does not reset a populated single-select search on submission', () => {
+      component.field.maxSelected = 1;
+      component.form.setControl(
+        component.field.name,
+        new FormArray([new FormControl({ key: 'A', label: 'Alpha' } as WorkType)])
+      );
+
+      component.formSubmissionEvent$.next();
+
+      expect(component.searchWorkTypeComponent.resetSearchTerm).not.toHaveBeenCalled();
+    });
   });
 
   it('onInputChanged clears selection in single-select when term is a string', () => {
@@ -160,5 +227,27 @@ describe('FindWorkTypeComponent', () => {
     component.onInputChanged('abc');
 
     expect(formArray().length).toBe(0);
+  });
+
+  it('should emit workTypeFieldChanged when search input changes', () => {
+    const workTypeFieldChangedSpy = spyOn(component.workTypeFieldChanged, 'emit');
+
+    component.onSearchInputChanged();
+
+    expect(workTypeFieldChangedSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should clear the selected value and reset the search when disabled', () => {
+    component.form.setControl(
+      component.field.name,
+      new FormArray([new FormControl({ key: 'A', label: 'Alpha' } as WorkType)])
+    );
+    const resetSearchTermSpy = spyOn(component.searchWorkTypeComponent, 'resetSearchTerm');
+
+    component.disabled = true;
+
+    expect(resetSearchTermSpy).toHaveBeenCalledTimes(1);
+    expect(formArray().length).toBe(0);
+    expect(component.disabled).toBeNull();
   });
 });

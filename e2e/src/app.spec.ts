@@ -26,6 +26,14 @@ test.describe('workspace-project App', () => {
       await expect(appPage.hideMessageLink).toBeVisible();
     });
 
+    test('should retain a non-dismissible service warning after the hide action', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.hideMessageLink.click();
+      await expect(appPage.serviceMessage).toBeVisible();
+      await expect(appPage.hideMessageLink).toBeVisible();
+    });
+
     test('should expose warning semantics for the service message', async ({ page }) => {
       const appPage = new AppPage(page);
 
@@ -198,6 +206,17 @@ test.describe('workspace-project App', () => {
       await expect(appPage.dueDateBadge).not.toHaveClass(/hmcts-badge--red/);
     });
 
+    test('should keep a date at the medium cutoff out of the orange state', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.highUrgencyCutoffInput.fill('0');
+      await appPage.mediumUrgencyCutoffInput.fill('2');
+      await appPage.dueDateInput.fill(dateAfterDays(2));
+
+      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--green/);
+      await expect(appPage.dueDateBadge).not.toHaveClass(/hmcts-badge--orange/);
+    });
+
     test('should retain the last valid due date when invalid input is entered', async ({ page }) => {
       const appPage = new AppPage(page);
 
@@ -292,6 +311,18 @@ test.describe('workspace-project App', () => {
       await expect(checkbox).toHaveCount(0);
     });
 
+    test('should hide dynamic option actions after each state transition', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.addWimbledonButton.click();
+      await expect(appPage.addWimbledonButton).toHaveCount(0);
+      await expect(appPage.checkboxOptions).toHaveCount(8);
+
+      await appPage.removeWimbledonButton.click();
+      await expect(appPage.removeWimbledonButton).toHaveCount(0);
+      await expect(appPage.checkboxOptions).toHaveCount(7);
+    });
+
     test('should select a dynamically added location', async ({ page }) => {
       const appPage = new AppPage(page);
 
@@ -300,6 +331,35 @@ test.describe('workspace-project App', () => {
       await appPage.wimbledonCheckbox.check();
       await expect(appPage.wimbledonCheckbox).toBeChecked();
       await expect(appPage.checkboxEvents).toContainText('Wimbledon');
+    });
+
+    test('should remove a selected dynamic option from the emitted selection', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.addWimbledonButton.click();
+      await appPage.wimbledonCheckbox.check();
+      await appPage.removeWimbledonButton.click();
+
+      await expect(appPage.wimbledonCheckbox).toHaveCount(0);
+      await expect.poll(async () => {
+        const events = (await appPage.checkboxEvents.innerText()).split('Selection changed to:');
+        return events[events.length - 1];
+      }).toContain('Twickenham');
+      await expect.poll(async () => {
+        const events = (await appPage.checkboxEvents.innerText()).split('Selection changed to:');
+        return events[events.length - 1];
+      }).not.toContain('Wimbledon');
+    });
+
+    test('should keep a selected checkbox checked while changing its visible label', async ({ page }) => {
+      const appPage = new AppPage(page);
+
+      await appPage.checkbox('Baker Street').check();
+      await page.getByRole('button', { name: 'Use borough for label' }).click();
+      await expect(appPage.checkbox('Westminster')).toBeChecked();
+
+      await page.getByRole('button', { name: 'Use name for label' }).click();
+      await expect(appPage.checkbox('Baker Street')).toBeChecked();
     });
 
     test('should switch checkbox labels between names and boroughs', async ({ page }) => {

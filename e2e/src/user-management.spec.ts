@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from './browser-diagnostics.fixture';
 import { UserManagementPage } from './user-management.po';
-import { expectedInvitedUser, expectedSelectedUser, expectedSuspendedUser } from './user-management.data';
+import { expectedFirstUser, expectedInvitedUser, expectedSelectedUser } from './user-management.data';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/coverage/users');
@@ -36,6 +36,17 @@ test('selecting a user emits its exact record and navigates to its demo route', 
   await expect.poll(async () => JSON.parse(await page.getByTestId('user-click-events').innerText())).toEqual([expectedSelectedUser]);
 });
 
+test('selecting the first user updates the detail view and emits the selected record', async ({ page }) => {
+  const users = new UserManagementPage(page);
+
+  await users.userLink(1).click();
+
+  await expect(page).toHaveURL(/\/coverage\/users\/user-1$/);
+  await expect(users.selectedDetails).toContainText('Demo User 1');
+  await expect(users.selectedDetails).toContainText('user1@example.test');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('user-click-events').innerText())).toEqual([expectedFirstUser]);
+});
+
 test('details show only granted permissions and respect action visibility inputs', async ({ page }) => {
   const users = new UserManagementPage(page);
   await expect(users.selectedDetails.locator('dd').filter({ hasText: 'Manage users' }).locator('div')).toHaveText(['Manage users', 'Manage cases', 'Case access administrator']);
@@ -68,7 +79,7 @@ for (const activation of ['click', 'Enter'] as const) {
     } else {
       await users.suspend.press('Enter');
     }
-    await expect.poll(async () => JSON.parse(await page.getByTestId('user-suspend-events').innerText())).toEqual([expectedSuspendedUser]);
+    await expect.poll(async () => JSON.parse(await page.getByTestId('user-suspend-events').innerText())).toEqual([expectedFirstUser]);
   });
 
   test(`reinvite emits the exact user once on ${activation}`, async ({ page }) => {

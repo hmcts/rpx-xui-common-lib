@@ -29,6 +29,20 @@ test('lookup normalizes postcode and emits the parsed selected address once', as
   await expect(page.getByTestId('address-selected-count')).toHaveText('1');
 });
 
+test('successful lookup marks the address list selectable and maps the first result', async ({ page }) => {
+  await page.goto('/coverage/address');
+  const address = new AddressPage(page);
+  await address.lookup();
+
+  await expect(page.getByTestId('address-selectable')).toHaveText('true');
+  await page.getByLabel('Select an address', { exact: true }).selectOption({ label: '10 Demo Street, Testville' });
+  await expect.poll(() => address.value()).toEqual({ address: {
+    addressLine1: '10 Demo Street', addressLine2: '', addressLine3: '', postTown: 'Testville',
+    county: null, postCode: 'AB1 2CD', country: 'United Kingdom'
+  } });
+  await expect(page.getByTestId('address-selected-count')).toHaveText('1');
+});
+
 test('empty lookup has no selectable address and emits no selection', async ({ page }) => {
   await page.goto('/coverage/address');
   const address = new AddressPage(page);
