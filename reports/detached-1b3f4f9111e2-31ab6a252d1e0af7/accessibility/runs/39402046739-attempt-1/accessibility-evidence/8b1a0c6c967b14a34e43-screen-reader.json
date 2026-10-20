@@ -1,0 +1,227 @@
+{
+  "url": "http://localhost:4200/coverage?feature=cookie",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Cookie choice"
+      },
+      {
+        "level": 2,
+        "text": "Cookies on CommonLib demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "Cookie choiceCookies on CommonLib demoWe use some essential cookies to make this service work.We'd also like to use analytics cookies so we can understand how you use the service a",
+        "selector": "div"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Accept analytics cookies",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Reject analytics cookies",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "View cookies",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage?feature=cookie",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "heading",
+        "name": "Cookie choice"
+      },
+      {
+        "role": "region",
+        "name": "'Cookies on CommonLib demo'"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Cookie choice"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Cookies on CommonLib demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Accept analytics cookies"
+      },
+      {
+        "role": "button",
+        "name": "Reject analytics cookies"
+      },
+      {
+        "role": "link",
+        "name": "View cookies"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cookie choice"
+      },
+      {
+        "role": "StaticText",
+        "name": "Cookies on CommonLib demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "We use some essential cookies to make this service work."
+      },
+      {
+        "role": "StaticText",
+        "name": "We'd also like to use analytics cookies so we can understand how you use the service and make improvements."
+      },
+      {
+        "role": "StaticText",
+        "name": "Accept analytics cookies"
+      },
+      {
+        "role": "StaticText",
+        "name": "Reject analytics cookies"
+      },
+      {
+        "role": "StaticText",
+        "name": "View cookies"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cookies on CommonLib demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "We use some essential cookies to make this service work."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "We'd also like to use analytics cookies so we can understand how you use the service and make "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "improvements."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Accept analytics cookies"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Reject analytics cookies"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "View cookies"
+      }
+    ]
+  }
+}

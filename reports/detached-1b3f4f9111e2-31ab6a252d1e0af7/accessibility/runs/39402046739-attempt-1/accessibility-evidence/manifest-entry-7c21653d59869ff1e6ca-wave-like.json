@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-b78b2fd6f88136efaabe",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "pageState": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "7c21653d59869ff1e6ca-wave-like.html",
+  "jsonFileName": "7c21653d59869ff1e6ca-wave-like.json",
+  "screenshotFileName": "7c21653d59869ff1e6ca-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "7c21653d59869ff1e6ca-wave-like-style-1.css"
+  ]
+}

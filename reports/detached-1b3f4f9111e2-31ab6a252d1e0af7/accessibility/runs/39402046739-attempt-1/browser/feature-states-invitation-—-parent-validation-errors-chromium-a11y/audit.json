@@ -1,0 +1,67 @@
+{
+  "title": "invitation — parent validation errors",
+  "url": "http://localhost:4200/coverage/invitation",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "incompleteCount": 0,
+  "published": {
+    "context": {
+      "scenarioId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "invitation",
+    "pageState": "parent validation errors",
+    "violationCount": 0,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "passed",
+    "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [],
+    "targets": [
+      "http://localhost:4200/coverage/invitation"
+    ],
+    "testTitle": "invitation — parent validation errors",
+    "attachmentPrefix": "invitation-parent-validation-errors-page-summary",
+    "htmlFileName": "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.html",
+    "jsonFileName": "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.json",
+    "screenshotFileName": "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary.png",
+    "assetFileNames": [
+      "084e7985cdee6a829b25-invitation-parent-validation-errors-page-summary-style-1.css"
+    ]
+  }
+}

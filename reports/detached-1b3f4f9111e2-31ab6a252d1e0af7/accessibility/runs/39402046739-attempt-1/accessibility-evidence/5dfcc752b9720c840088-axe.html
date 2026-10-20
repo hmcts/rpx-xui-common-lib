@@ -1,0 +1,195 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Axe accessibility evidence</title><link rel="stylesheet" href="5dfcc752b9720c840088-axe-style-1.css"></head><body><a class="skip-link" href="#evidence-content">Skip to evidence</a>
+    <header><h1>Axe accessibility evidence</h1><p>1 violated rule(s); 2 rule(s) need investigation.</p></header>
+    <main id="evidence-content" tabindex="-1"><p><a href="../index.html">Back to Odhín report</a></p>
+      <p><strong>Page:</strong> http://localhost:4200/coverage/users</p><p>Automated checks cover part of WCAG 2.2 A/AA, including retained WCAG 2.0 and 2.1 criteria. This is not a conformance verdict. DOM targets are evidence clues, not verified source-file locations.</p>
+      <nav aria-label="Findings"><ul><li><a href="#issue-1">1. &lt;dt&gt; and &lt;dd&gt; elements must be contained by a &lt;dl&gt;</a></li><li><a href="#issue-2">2. Elements must only use permitted ARIA attributes</a></li><li><a href="#issue-3">3. Elements must meet minimum color contrast ratio thresholds</a></li></ul></nav>
+      <section class="issue " id="issue-1" tabindex="-1">
+      <h2>1. &lt;dt&gt; and &lt;dd&gt; elements must be contained by a &lt;dl&gt;</h2>
+      <p><strong>Automatically detected violation</strong> · serious</p>
+      <p>Ensure &lt;dt&gt; and &lt;dd&gt; elements are contained by a &lt;dl&gt;</p>
+      <p><strong>Rule:</strong> dlitem. <strong>WCAG criterion number(s):</strong> 1.3.1. <strong>Engine version/level tags:</strong> WCAG 2.0 A</p>
+      <p><strong>Potential solution:</strong> Use the failing check details and rule-specific examples to correct the affected markup, styles or interaction.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/dlitem?application=playwright">dlitem: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.1</dd>
+          <dt>Where to look</dt><dd><code>xuilib-user-details[editpermissionrouterlink=&quot;/coverage/users&quot;] &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(1) &gt; dt</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dt _ngcontent-ng-c1602072558=&quot;&quot; scope=&quot;row&quot; class=&quot;govuk-table__header&quot;&gt;Name&lt;/dt&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.2</dd>
+          <dt>Where to look</dt><dd><code>xuilib-user-details[editpermissionrouterlink=&quot;/coverage/users&quot;] &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(1) &gt; dd:nth-child(2)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;Demo User 1&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.3</dd>
+          <dt>Where to look</dt><dd><code>xuilib-user-details[editpermissionrouterlink=&quot;/coverage/users&quot;] &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(1) &gt; dd:nth-child(3)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.4</dd>
+          <dt>Where to look</dt><dd><code>xuilib-user-details[editpermissionrouterlink=&quot;/coverage/users&quot;] &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(2) &gt; dt</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dt _ngcontent-ng-c1602072558=&quot;&quot; scope=&quot;row&quot; class=&quot;govuk-table__header&quot;&gt;Email address&lt;/dt&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.5</dd>
+          <dt>Where to look</dt><dd><code>xuilib-user-details[editpermissionrouterlink=&quot;/coverage/users&quot;] &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(2) &gt; dd:nth-child(2)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;user1@example.test&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.6</dd>
+          <dt>Where to look</dt><dd><code>xuilib-user-details[editpermissionrouterlink=&quot;/coverage/users&quot;] &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(2) &gt; dd:nth-child(3)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.7</dd>
+          <dt>Where to look</dt><dd><code>.govuk-table__row:nth-child(3) &gt; dt</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dt _ngcontent-ng-c1602072558=&quot;&quot; scope=&quot;row&quot; class=&quot;govuk-table__header&quot;&gt;Permissions&lt;/dt&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.8</dd>
+          <dt>Where to look</dt><dd><code>.govuk-table__row:nth-child(3) &gt; dd:nth-child(2)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.9</dd>
+          <dt>Where to look</dt><dd><code>.govuk-table__row:nth-child(3) &gt; dd:nth-child(3)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;&lt;a _ngcontent-ng-c1602072558=&quot;&quot; role=&quot;link&quot; href=&quot;/coverage/users&quot;&gt;Change &lt;span _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-visually-hidden&quot;&gt;roles&lt;/span&gt;&lt;/a&gt;&lt;!--container--&gt;&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.10</dd>
+          <dt>Where to look</dt><dd><code>section[aria-label=&quot;Invited user details&quot;] &gt; xuilib-user-details &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(1) &gt; dt</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dt _ngcontent-ng-c1602072558=&quot;&quot; scope=&quot;row&quot; class=&quot;govuk-table__header&quot;&gt;Name&lt;/dt&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.11</dd>
+          <dt>Where to look</dt><dd><code>section[aria-label=&quot;Invited user details&quot;] &gt; xuilib-user-details &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(1) &gt; dd:nth-child(2)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;Invited Demo User&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.12</dd>
+          <dt>Where to look</dt><dd><code>section[aria-label=&quot;Invited user details&quot;] &gt; xuilib-user-details &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(1) &gt; dd:nth-child(3)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.13</dd>
+          <dt>Where to look</dt><dd><code>section[aria-label=&quot;Invited user details&quot;] &gt; xuilib-user-details &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(2) &gt; dt</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dt _ngcontent-ng-c1602072558=&quot;&quot; scope=&quot;row&quot; class=&quot;govuk-table__header&quot;&gt;Email address&lt;/dt&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.14</dd>
+          <dt>Where to look</dt><dd><code>section[aria-label=&quot;Invited user details&quot;] &gt; xuilib-user-details &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(2) &gt; dd:nth-child(2)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;invited@example.test&lt;/dd&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.15</dd>
+          <dt>Where to look</dt><dd><code>section[aria-label=&quot;Invited user details&quot;] &gt; xuilib-user-details &gt; dl &gt; .govuk-table__body &gt; .govuk-table__row:nth-child(2) &gt; dd:nth-child(3)</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Description list item does not have a &lt;dl&gt; parent element</dd></dl>
+        <ul><li>Description list item does not have a &lt;dl&gt; parent element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;dd _ngcontent-ng-c1602072558=&quot;&quot; class=&quot;govuk-table__cell&quot;&gt;&lt;/dd&gt;</pre></details>
+      </li></ol>
+    </section><section class="issue review" id="issue-2" tabindex="-1">
+      <h2>2. Elements must only use permitted ARIA attributes</h2>
+      <p><strong>Needs investigation — not a confirmed failure</strong> · serious</p>
+      <p>Ensure ARIA attributes are not prohibited for an element&#39;s role</p>
+      <p><strong>Rule:</strong> aria-prohibited-attr. <strong>WCAG criterion number(s):</strong> 4.1.2. <strong>Engine version/level tags:</strong> WCAG 2.0 A</p>
+      <p><strong>Potential solution:</strong> Determine whether the reported condition is a failure before changing the page. Use the check details and rule-specific examples.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr?application=playwright">aria-prohibited-attr: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>2.1</dd>
+          <dt>Where to look</dt><dd><code>p[aria-labelledby=&quot;pagination-label&quot;]</code></dd>
+          <dt>What needs checking</dt><dd>Fix all of the following:
+  aria-labelledby attribute is not well supported on a p with no valid role attribute.</dd></dl>
+        <ul><li>aria-labelledby attribute is not well supported on a p with no valid role attribute.</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;p _ngcontent-ng-c1027548479=&quot;&quot; aria-labelledby=&quot;pagination-label&quot; class=&quot;govuk-visually-hidden&quot;&gt;Pagination navigation&lt;/p&gt;</pre></details>
+      </li></ol>
+    </section><section class="issue review" id="issue-3" tabindex="-1">
+      <h2>3. Elements must meet minimum color contrast ratio thresholds</h2>
+      <p><strong>Needs investigation — not a confirmed failure</strong> · serious</p>
+      <p>Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds</p>
+      <p><strong>Rule:</strong> color-contrast. <strong>WCAG criterion number(s):</strong> 1.4.3. <strong>Engine version/level tags:</strong> WCAG 2.0 AA</p>
+      <p><strong>Potential solution:</strong> Determine whether the reported condition is a failure before changing the page. Use the check details and rule-specific examples.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright">color-contrast: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>3.1</dd>
+          <dt>Where to look</dt><dd><code>h1</code></dd>
+          <dt>What needs checking</dt><dd>Fix any of the following:
+  Element&#39;s background color could not be determined because it&#39;s partially obscured by another element</dd></dl>
+        <ul><li>Element&#39;s background color could not be determined because it&#39;s partially obscured by another element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;h1 class=&quot;govuk-heading-xl&quot;&gt;User management demo&lt;/h1&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>3.2</dd>
+          <dt>Where to look</dt><dd><code>b:nth-child(1)</code></dd>
+          <dt>What needs checking</dt><dd>Fix any of the following:
+  Unable to determine contrast ratio</dd></dl>
+        <ul><li>Unable to determine contrast ratio</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;b _ngcontent-ng-c1027548479=&quot;&quot;&gt;51&lt;/b&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>3.3</dd>
+          <dt>Where to look</dt><dd><code>b:nth-child(2)</code></dd>
+          <dt>What needs checking</dt><dd>Fix any of the following:
+  Unable to determine contrast ratio</dd></dl>
+        <ul><li>Unable to determine contrast ratio</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;b _ngcontent-ng-c1027548479=&quot;&quot;&gt;51&lt;/b&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>3.4</dd>
+          <dt>Where to look</dt><dd><code>b:nth-child(3)</code></dd>
+          <dt>What needs checking</dt><dd>Fix any of the following:
+  Unable to determine contrast ratio</dd></dl>
+        <ul><li>Unable to determine contrast ratio</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;b _ngcontent-ng-c1027548479=&quot;&quot;&gt;51&lt;/b&gt;</pre></details>
+      </li></ol>
+    </section><p><a href="../index.html">Back to Odhín report</a></p>
+    </main></body></html>

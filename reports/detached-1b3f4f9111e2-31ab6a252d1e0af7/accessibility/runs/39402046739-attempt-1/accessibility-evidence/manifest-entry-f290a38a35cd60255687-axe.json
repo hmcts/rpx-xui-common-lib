@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-08d356c556f572b4b3f9",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "direct SearchWorkType exposes options and a keyboard selection contract",
+  "pageState": "direct SearchWorkType exposes options and a keyboard selection contract",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "direct SearchWorkType exposes options and a keyboard selection contract",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "f290a38a35cd60255687-axe.html",
+  "jsonFileName": "f290a38a35cd60255687-axe.json",
+  "screenshotFileName": "f290a38a35cd60255687-axe.png",
+  "assetFileNames": [
+    "f290a38a35cd60255687-axe-style-1.css"
+  ]
+}

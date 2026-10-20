@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "filter",
+  "pageState": "initial controls",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "filter — initial controls",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "5803c38c5ee18792ce92-screen-reader.html",
+  "jsonFileName": "5803c38c5ee18792ce92-screen-reader.json",
+  "screenshotFileName": "5803c38c5ee18792ce92-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "5803c38c5ee18792ce92-screen-reader-style-1.css"
+  ]
+}

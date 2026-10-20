@@ -1,0 +1,184 @@
+{
+  "url": "http://localhost:4200/coverage/searches?feature=judicials",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Search component demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Search component demoChoose a judicial usernull[]",
+        "selector": "main"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Choose a judicial user",
+        "selector": "#inputSelectPersonjudicials",
+        "tabIndex": 0
+      },
+      {
+        "type": "mat-option",
+        "name": "Judge Alex Taylor (alex@example.test)",
+        "selector": "#mat-option-0",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/searches?feature=judicials",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "listbox",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Search component demo"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "combobox",
+        "name": "Choose a judicial user"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "option",
+        "name": "Judge Alex Taylor (alex@example.test)"
+      },
+      {
+        "role": "StaticText",
+        "name": "Search component demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Choose a judicial user"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "null"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Judge Alex Taylor (alex@example.test)"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Search component demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Choose a judicial user"
+      },
+      {
+        "role": "StaticText",
+        "name": "Alex"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "null"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "[]"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Judge Alex Taylor (alex@example.test)"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Alex"
+      }
+    ]
+  }
+}

@@ -1,0 +1,399 @@
+{
+  "url": "http://localhost:4200/coverage/users",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "User management demo"
+      },
+      {
+        "level": 2,
+        "text": "Selected user"
+      },
+      {
+        "level": 2,
+        "text": "Pending invitation"
+      },
+      {
+        "level": 2,
+        "text": "Demo event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "User management demoNameEmailStatusDemo User 51user51@example.testActivePagination navigationPrevious set of pagespage 12Showing 51 to 51 of 51 resultsSelected userToggle account a",
+        "selector": "main"
+      },
+      {
+        "role": "nav",
+        "name": "Pagination navigationPrevious set of pagespage 12Showing 51 to 51 of 51 results",
+        "selector": "#pagination-label"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "View Demo User 51 Demo User 51",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle account actions",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Change roles",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Suspend account",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Resend invitation",
+        "selector": "#resend-invite-button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/users",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "User management demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "table",
+        "name": ""
+      },
+      {
+        "role": "navigation",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Selected user"
+      },
+      {
+        "role": "button",
+        "name": "Toggle account actions"
+      },
+      {
+        "role": "region",
+        "name": "Selected user details"
+      },
+      {
+        "role": "heading",
+        "name": "Pending invitation"
+      },
+      {
+        "role": "region",
+        "name": "Invited user details"
+      },
+      {
+        "role": "heading",
+        "name": "Demo event outputs"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "User management demo"
+      },
+      {
+        "role": "rowgroup",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": " Pagination navigation  Previous  set of pages   page   1 2 Showing 51 to 51 of 51 results"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Selected user"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle account actions"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "term",
+        "name": "Name"
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "term",
+        "name": "Email address"
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "term",
+        "name": "Permissions"
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Suspend account"
+      },
+      {
+        "role": "StaticText",
+        "name": "Pending invitation"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "term",
+        "name": "Name"
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "term",
+        "name": "Email address"
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "definition",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Resend invitation"
+      },
+      {
+        "role": "StaticText",
+        "name": "Demo event outputs"
+      },
+      {
+        "role": "StaticText",
+        "name": "[\n  2\n]"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "User management demo"
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "cell",
+        "name": "Demo User 51"
+      },
+      {
+        "role": "cell",
+        "name": "user51@example.test"
+      },
+      {
+        "role": "cell",
+        "name": "Active"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Pagination navigation"
+      },
+      {
+        "role": "none",
+        "name": ""
+      }
+    ]
+  }
+}

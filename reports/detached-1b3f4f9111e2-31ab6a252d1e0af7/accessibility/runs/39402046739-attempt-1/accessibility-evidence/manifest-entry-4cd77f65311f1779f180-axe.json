@@ -1,0 +1,42 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-9fffb2b5c16ba1afd367",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "case sharing",
+  "pageState": "confirmation",
+  "status": "issues-found",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "[\"h3\"]"
+      ],
+      "summary": "Heading levels should only increase by one",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 1,
+  "rules": [
+    "heading-order"
+  ],
+  "targets": [
+    "[\"h3\"]"
+  ],
+  "testTitle": "case sharing — confirmation",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "4cd77f65311f1779f180-axe.html",
+  "jsonFileName": "4cd77f65311f1779f180-axe.json",
+  "screenshotFileName": "4cd77f65311f1779f180-axe.png",
+  "assetFileNames": [
+    "4cd77f65311f1779f180-axe-style-1.css"
+  ]
+}

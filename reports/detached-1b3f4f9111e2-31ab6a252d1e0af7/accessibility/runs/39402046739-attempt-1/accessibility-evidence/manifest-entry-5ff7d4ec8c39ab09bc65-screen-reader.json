@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-27f57ad1db87b9fcfe76",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "invitation",
+  "pageState": "initial form",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "invitation — initial form",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "5ff7d4ec8c39ab09bc65-screen-reader.html",
+  "jsonFileName": "5ff7d4ec8c39ab09bc65-screen-reader.json",
+  "screenshotFileName": "5ff7d4ec8c39ab09bc65-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "5ff7d4ec8c39ab09bc65-screen-reader-style-1.css"
+  ]
+}

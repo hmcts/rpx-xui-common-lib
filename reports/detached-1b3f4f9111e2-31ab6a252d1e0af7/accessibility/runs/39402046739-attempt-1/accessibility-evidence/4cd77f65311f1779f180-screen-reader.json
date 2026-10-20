@@ -1,0 +1,388 @@
+{
+  "url": "http://localhost:4200/coverage/case-sharing/confirmation",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Check case sharing changes"
+      },
+      {
+        "level": 3,
+        "text": "Cases"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic case Alpha"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic case Beta"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Check case sharing changesCasesSynthetic case Alpha DEMO-001 Change selected caseNameEmail addressActionsSam Morgansam@example.testTo be addedSynthetic case Beta DEMO-002 Change se",
+        "selector": "main"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Change selected case",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Change selected case",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Confirm Confirm",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Cancel confirmation",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/case-sharing/confirmation",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Check case sharing changes"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Cancel confirmation"
+      },
+      {
+        "role": "StaticText",
+        "name": "Check case sharing changes"
+      },
+      {
+        "role": "heading",
+        "name": "Cases"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Confirm"
+      },
+      {
+        "role": "StaticText",
+        "name": "Cancel confirmation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Check case sharing changes"
+      },
+      {
+        "role": "StaticText",
+        "name": "Cases"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Confirm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cancel confirmation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cases"
+      },
+      {
+        "role": "heading",
+        "name": "Synthetic case Alpha"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "table",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Synthetic case Beta"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "table",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Confirm"
+      },
+      {
+        "role": "StaticText",
+        "name": "Synthetic case Alpha"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Change  selected case "
+      },
+      {
+        "role": "rowgroup",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Synthetic case Beta"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Change  selected case "
+      },
+      {
+        "role": "rowgroup",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Synthetic case Alpha"
+      },
+      {
+        "role": "StaticText",
+        "name": "DEMO-001"
+      },
+      {
+        "role": "StaticText",
+        "name": "Change"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "selected case"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "cell",
+        "name": "Sam Morgan"
+      },
+      {
+        "role": "cell",
+        "name": "sam@example.test"
+      },
+      {
+        "role": "cell",
+        "name": "To be added"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Synthetic case Beta"
+      },
+      {
+        "role": "StaticText",
+        "name": "DEMO-002"
+      },
+      {
+        "role": "StaticText",
+        "name": "Change"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "selected case"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "cell",
+        "name": "Sam Morgan"
+      },
+      {
+        "role": "cell",
+        "name": "sam@example.test"
+      },
+      {
+        "role": "cell",
+        "name": "To be added"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "DEMO-001"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Change"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "selected case"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      }
+    ]
+  }
+}

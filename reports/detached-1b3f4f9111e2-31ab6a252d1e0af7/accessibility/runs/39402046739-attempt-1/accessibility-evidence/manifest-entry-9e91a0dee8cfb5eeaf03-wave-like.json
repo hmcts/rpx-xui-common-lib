@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "address",
+  "pageState": "invalid postcode",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — invalid postcode",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "9e91a0dee8cfb5eeaf03-wave-like.html",
+  "jsonFileName": "9e91a0dee8cfb5eeaf03-wave-like.json",
+  "screenshotFileName": "9e91a0dee8cfb5eeaf03-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "9e91a0dee8cfb5eeaf03-wave-like-style-1.css"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-08d356c556f572b4b3f9",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "direct SearchWorkType exposes options and a keyboard selection contract",
+  "pageState": "direct SearchWorkType exposes options and a keyboard selection contract",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "direct SearchWorkType exposes options and a keyboard selection contract",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "f290a38a35cd60255687-wave-like.html",
+  "jsonFileName": "f290a38a35cd60255687-wave-like.json",
+  "screenshotFileName": "f290a38a35cd60255687-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "f290a38a35cd60255687-wave-like-style-1.css"
+  ]
+}

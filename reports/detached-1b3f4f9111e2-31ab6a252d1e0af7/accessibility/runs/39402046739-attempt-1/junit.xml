@@ -1,0 +1,1490 @@
+<testsuites id="" name="" tests="46" failures="23" skipped="0" errors="0" time="98.541022">
+<testsuite name="demo.spec.ts" timestamp="2026-10-20T09:39:04.907Z" hostname="chromium-a11y" tests="15" failures="5" skipped="0" time="41.774" errors="0">
+<testcase name="home — initial components" classname="demo.spec.ts" time="3.37">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/demo-home-—-initial-components-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/demo-home-—-initial-components-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/demo-home-—-initial-components-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › demo.spec.ts:7:5 › home — initial components ───────────────────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 31
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 1,
+    +     "reviewRules": Array [
+    +       "aria-prohibited-attr",
+    +     ],
+    +     "rules": Array [
+    +       "color-contrast",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 2,
+    +     "rules": Array [
+    +       "h1-count",
+    +       "table-headers",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "screen-reader",
+    +     "issueCount": 1,
+    +     "rules": Array [
+    +       "table-headers",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      10 |   await expect(new AppPage(page).checkboxList).toBeVisible();
+      11 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 12 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                  ^
+      13 | });
+      14 |
+      15 | test('filter — initial controls', async ({ demo, page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/demo.spec.ts:12:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-home-—-initial-components-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/demo-home-—-initial-components-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-home-—-initial-components-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/demo-home-—-initial-components-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="filter — initial controls" classname="demo.spec.ts" time="2.712">
+</testcase>
+<testcase name="filter — required-service error" classname="demo.spec.ts" time="2.574">
+</testcase>
+<testcase name="filter — applied selection" classname="demo.spec.ts" time="2.805">
+</testcase>
+<testcase name="cookies — choice banner" classname="demo.spec.ts" time="2.308">
+</testcase>
+<testcase name="cookies — accept persisted after reload" classname="demo.spec.ts" time="2.81">
+</testcase>
+<testcase name="cookies — reject persisted after reload" classname="demo.spec.ts" time="2.683">
+</testcase>
+<testcase name="navigation — active destinations" classname="demo.spec.ts" time="2.276">
+</testcase>
+<testcase name="users — suggestions expanded" classname="demo.spec.ts" time="2.575">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/demo-users-—-suggestions-expanded-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/demo-users-—-suggestions-expanded-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/demo-users-—-suggestions-expanded-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › demo.spec.ts:76:5 › users — suggestions expanded ───────────────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 15
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 2,
+    +     "reviewCount": 1,
+    +     "reviewRules": Array [
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "aria-required-attr",
+    +       "region",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      79 |   await expect(demo.alexOption).toBeVisible();
+      80 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 81 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                  ^
+      82 | });
+      83 |
+      84 | test('users — selected user', async ({ demo, page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/demo.spec.ts:81:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-users-—-suggestions-expanded-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/demo-users-—-suggestions-expanded-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-users-—-suggestions-expanded-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/demo-users-—-suggestions-expanded-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="users — selected user" classname="demo.spec.ts" time="2.674">
+</testcase>
+<testcase name="terms — awaiting confirmation" classname="demo.spec.ts" time="3.404">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/demo-terms-—-awaiting-confirmation-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/demo-terms-—-awaiting-confirmation-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/demo-terms-—-awaiting-confirmation-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › demo.spec.ts:95:7 › terms — awaiting confirmation ──────────────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 10
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 1,
+    +     "rules": Array [
+    +       "h1-count",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      101 |     await expect(demo.termsResult).toHaveText(accepted ? 'Terms accepted' : 'Terms not accepted');
+      102 |     const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 103 |     expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                    ^
+      104 |   });
+      105 | }
+      106 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/demo.spec.ts:103:84
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-terms-—-awaiting-confirmation-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/demo-terms-—-awaiting-confirmation-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-terms-—-awaiting-confirmation-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/demo-terms-—-awaiting-confirmation-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="terms — accepted" classname="demo.spec.ts" time="2.931">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/demo-terms-—-accepted-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/demo-terms-—-accepted-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/demo-terms-—-accepted-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › demo.spec.ts:95:7 › terms — accepted ───────────────────────────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 10
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 1,
+    +     "rules": Array [
+    +       "h1-count",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      101 |     await expect(demo.termsResult).toHaveText(accepted ? 'Terms accepted' : 'Terms not accepted');
+      102 |     const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 103 |     expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                    ^
+      104 |   });
+      105 | }
+      106 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/demo.spec.ts:103:84
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-terms-—-accepted-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/demo-terms-—-accepted-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-terms-—-accepted-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/demo-terms-—-accepted-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="feedback — success and warning banners" classname="demo.spec.ts" time="2.944">
+</testcase>
+<testcase name="feedback — validation summary" classname="demo.spec.ts" time="3.142">
+</testcase>
+<testcase name="session — visible timeout dialog" classname="demo.spec.ts" time="2.566">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/demo-session-—-visible-timeout-dialog-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/demo-session-—-visible-timeout-dialog-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/demo-session-—-visible-timeout-dialog-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › demo.spec.ts:125:5 › session — visible timeout dialog ──────────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 12
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 0,
+    +     "reviewRules": Array [],
+    +     "rules": Array [
+    +       "aria-dialog-name",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      131 |   await expect(dialog).toContainText('Your session will end soon.');
+      132 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 133 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      134 | });
+      135 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/demo.spec.ts:133:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-session-—-visible-timeout-dialog-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/demo-session-—-visible-timeout-dialog-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/demo-session-—-visible-timeout-dialog-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/demo-session-—-visible-timeout-dialog-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="feature-states.spec.ts" timestamp="2026-10-20T09:39:04.907Z" hostname="chromium-a11y" tests="24" failures="15" skipped="0" time="72.562" errors="0">
+<testcase name="invitation — initial form" classname="feature-states.spec.ts" time="2.59">
+</testcase>
+<testcase name="invitation — parent validation errors" classname="feature-states.spec.ts" time="2.91">
+</testcase>
+<testcase name="invitation — submitted details and permissions" classname="feature-states.spec.ts" time="3.018">
+</testcase>
+<testcase name="form controls — descriptions initial" classname="feature-states.spec.ts" time="2.87">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:47:7 › form controls — descriptions initial ─────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 11
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "screen-reader",
+    +     "issueCount": 2,
+    +     "rules": Array [
+    +       "aria-reference-target",
+    +       "component-description",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      60 |     }
+      61 |     const outcomes = await collectAccessibilityEvidence(page, testInfo, formDescriptions(state));
+    > 62 |     expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                    ^
+      63 |   });
+      64 | }
+      65 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:62:84
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-initial-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="form controls — descriptions errors" classname="feature-states.spec.ts" time="3.032">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:47:7 › form controls — descriptions errors ──────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 11
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "screen-reader",
+    +     "issueCount": 2,
+    +     "rules": Array [
+    +       "aria-reference-target",
+    +       "component-description",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      60 |     }
+      61 |     const outcomes = await collectAccessibilityEvidence(page, testInfo, formDescriptions(state));
+    > 62 |     expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                    ^
+      63 |   });
+      64 | }
+      65 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:62:84
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-errors-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="form controls — descriptions cleared" classname="feature-states.spec.ts" time="3.12">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:47:7 › form controls — descriptions cleared ─────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 11
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "screen-reader",
+    +     "issueCount": 2,
+    +     "rules": Array [
+    +       "aria-reference-target",
+    +       "component-description",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      60 |     }
+      61 |     const outcomes = await collectAccessibilityEvidence(page, testInfo, formDescriptions(state));
+    > 62 |     expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                    ^
+      63 |   });
+      64 | }
+      65 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:62:84
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-form-controls-—-descriptions-cleared-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="form controls — supplied errors and invalid date" classname="feature-states.spec.ts" time="3.19">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:66:5 › form controls — supplied errors and invalid date ─
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 11
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "screen-reader",
+    +     "issueCount": 5,
+    +     "rules": Array [
+    +       "aria-reference-target",
+    +       "error-describedby",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      74 |   await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveText('Error:Enter a valid hearing date');
+      75 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 76 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                  ^
+      77 | });
+      78 |
+      79 | test('service selection — expanded suggestions', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:76:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-form-contro-1e51a-ied-errors-and-invalid-date-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="service selection — expanded suggestions" classname="feature-states.spec.ts" time="2.725">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:79:5 › service selection — expanded suggestions ─────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 15
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 2,
+    +     "reviewCount": 2,
+    +     "reviewRules": Array [
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "aria-required-attr",
+    +       "region",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      83 |   await expect(services.options).toHaveText(['Civil damages', 'Civil enforcement']);
+      84 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 85 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                  ^
+      86 | });
+      87 |
+      88 | test('service selection — selected service', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:85:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-service-selection-—-expanded-suggestions-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="service selection — selected service" classname="feature-states.spec.ts" time="2.553">
+</testcase>
+<testcase name="case sharing — initial assignments" classname="feature-states.spec.ts" time="3.242">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:99:5 › case sharing — initial assignments ───────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 24
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 3,
+    +     "reviewRules": Array [
+    +       "aria-prohibited-attr",
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "heading-order",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 3,
+    +     "rules": Array [
+    +       "heading-order",
+    +       "duplicate-id",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      103 |   await expect(page.getByRole('button', { name: 'Continue', exact: true })).toBeEnabled();
+      104 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 105 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      106 | });
+      107 |
+      108 | test('case sharing — no-change validation', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:105:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-initial-assignments-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="case sharing — no-change validation" classname="feature-states.spec.ts" time="3.47">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:108:5 › case sharing — no-change validation ─────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 23
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 2,
+    +     "reviewRules": Array [
+    +       "aria-prohibited-attr",
+    +     ],
+    +     "rules": Array [
+    +       "heading-order",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 3,
+    +     "rules": Array [
+    +       "heading-order",
+    +       "duplicate-id",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      111 |   await expect(page.getByRole('alert')).toContainText('You have not requested any changes to case sharing');
+      112 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 113 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      114 | });
+      115 |
+      116 | test('case sharing — pending addition', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:113:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-no-change-validation-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="case sharing — pending addition" classname="feature-states.spec.ts" time="3.686">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:116:5 › case sharing — pending addition ─────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 24
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 3,
+    +     "reviewRules": Array [
+    +       "aria-prohibited-attr",
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "heading-order",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 5,
+    +     "rules": Array [
+    +       "heading-order",
+    +       "duplicate-id",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      121 |   await expect(sharing.case('DEMO-002').getByRole('row', { name: /Sam Morgan/ })).toContainText('To be added');
+      122 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 123 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      124 | });
+      125 |
+      126 | test('case sharing — confirmation', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:123:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-pending-addition-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="case sharing — confirmation" classname="feature-states.spec.ts" time="2.966">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-case-sharing-—-confirmation-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-confirmation-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-case-sharing-—-confirmation-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:126:5 › case sharing — confirmation ─────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 22
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 1,
+    +     "reviewRules": Array [
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "heading-order",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 1,
+    +     "rules": Array [
+    +       "heading-order",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      132 |   await expect(sharing.confirmation('DEMO-001').getByRole('row', { name: /Sam Morgan/ })).toContainText('To be added');
+      133 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 134 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      135 | });
+      136 |
+      137 | test('address — initial lookup', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:134:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-confirmation-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-confirmation-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-confirmation-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-case-sharing-—-confirmation-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="address — initial lookup" classname="feature-states.spec.ts" time="2.588">
+</testcase>
+<testcase name="address — invalid postcode" classname="feature-states.spec.ts" time="2.896">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-address-—-invalid-postcode-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-address-—-invalid-postcode-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-address-—-invalid-postcode-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:145:5 › address — invalid postcode ──────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 10
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "screen-reader",
+    +     "issueCount": 1,
+    +     "rules": Array [
+    +       "error-describedby",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      148 |   await expect(page.locator('#addressLookup')).toContainText('Enter a valid postcode');
+      149 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 150 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      151 | });
+      152 |
+      153 | test('address — lookup results', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:150:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-address-—-invalid-postcode-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-address-—-invalid-postcode-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-address-—-invalid-postcode-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-address-—-invalid-postcode-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="address — lookup results" classname="feature-states.spec.ts" time="2.542">
+</testcase>
+<testcase name="address — selected address" classname="feature-states.spec.ts" time="2.874">
+</testcase>
+<testcase name="address — manual international entry" classname="feature-states.spec.ts" time="2.678">
+</testcase>
+<testcase name="user management — first page and detail panels" classname="feature-states.spec.ts" time="4.099">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:180:5 › user management — first page and detail panels ──
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 15
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 15,
+    +     "reviewCount": 5,
+    +     "reviewRules": Array [
+    +       "aria-prohibited-attr",
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "dlitem",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      184 |   await expect(page.getByRole('region', { name: 'Invited user details', exact: true })).toBeVisible();
+      185 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 186 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      187 | });
+      188 |
+      189 | test('user management — next page', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:186:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-user-manage-1a46e-irst-page-and-detail-panels-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="user management — next page" classname="feature-states.spec.ts" time="3.022">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-user-management-—-next-page-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-user-management-—-next-page-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-user-management-—-next-page-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:189:5 › user management — next page ─────────────────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 15
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 15,
+    +     "reviewCount": 5,
+    +     "reviewRules": Array [
+    +       "aria-prohibited-attr",
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "dlitem",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      193 |   await expect(page.locator('.hmcts-pagination__results')).toHaveText('Showing 51 to 51 of 51 results');
+      194 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 195 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      196 | });
+      197 |
+      198 | test('advanced filter — conditional detail visible', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:195:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-user-management-—-next-page-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-user-management-—-next-page-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-user-management-—-next-page-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-user-management-—-next-page-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="advanced filter — conditional detail visible" classname="feature-states.spec.ts" time="2.621">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-advanced-filter-—-conditional-detail-visible-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-advanced-filter-—-conditional-detail-visible-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-advanced-filter-—-conditional-detail-visible-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:198:5 › advanced filter — conditional detail visible ────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 21
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 0,
+    +     "reviewRules": Array [],
+    +     "rules": Array [
+    +       "heading-order",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 2,
+    +     "rules": Array [
+    +       "heading-order",
+    +       "duplicate-id",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      202 |   await expect(filter.detail).toBeVisible();
+      203 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 204 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      205 | });
+      206 |
+      207 | test('find person — expanded judicial suggestions', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:204:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-advanced-filter-—-conditional-detail-visible-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-advanced-filter-—-conditional-detail-visible-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-advanced-filter-—-conditional-detail-visible-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-advanced-filter-—-conditional-detail-visible-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="find person — expanded judicial suggestions" classname="feature-states.spec.ts" time="3.651">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-find-person-—-expanded-judicial-suggestions-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-find-person-—-expanded-judicial-suggestions-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-find-person-—-expanded-judicial-suggestions-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:207:5 › find person — expanded judicial suggestions ─────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 23
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 2,
+    +     "reviewCount": 1,
+    +     "reviewRules": Array [
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "aria-required-attr",
+    +       "region",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    +   Object {
+    +     "engine": "wave-like",
+    +     "issueCount": 1,
+    +     "rules": Array [
+    +       "text-spacing-clipping",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      211 |   await expect(search.options).toHaveText(['Judge Alex Taylor (alex@example.test)']);
+      212 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 213 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      214 | });
+      215 |
+      216 | test('search judicials — expanded suggestions', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:213:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-find-person-—-expanded-judicial-suggestions-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-find-person-—-expanded-judicial-suggestions-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-find-person-—-expanded-judicial-suggestions-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-find-person-—-expanded-judicial-suggestions-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="search judicials — expanded suggestions" classname="feature-states.spec.ts" time="3.612">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/feature-states-search-judicials-—-expanded-suggestions-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/feature-states-search-judicials-—-expanded-suggestions-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/feature-states-search-judicials-—-expanded-suggestions-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › feature-states.spec.ts:216:5 › search judicials — expanded suggestions ─────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 15
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 2,
+    +     "reviewCount": 1,
+    +     "reviewRules": Array [
+    +       "color-contrast",
+    +     ],
+    +     "rules": Array [
+    +       "aria-required-attr",
+    +       "region",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      220 |   await expect(search.options).toHaveText(['Judge Alex Taylor (alex@example.test)']);
+      221 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 222 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+          |                                                                                  ^
+      223 | });
+      224 |
+      225 | test('lifecycle — service messages and enabled feature content', async ({ page, context }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/feature-states.spec.ts:222:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-search-judicials-—-expanded-suggestions-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/feature-states-search-judicials-—-expanded-suggestions-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/feature-states-search-judicials-—-expanded-suggestions-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/feature-states-search-judicials-—-expanded-suggestions-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="lifecycle — service messages and enabled feature content" classname="feature-states.spec.ts" time="2.607">
+</testcase>
+</testsuite>
+<testsuite name="lighthouse.spec.ts" timestamp="2026-10-20T09:39:04.907Z" hostname="chromium-a11y" tests="2" failures="1" skipped="0" time="26.845" errors="0">
+<testcase name="Lighthouse /home — representative stable page" classname="lighthouse.spec.ts" time="13.58">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/test-failed-2.png]]
+
+[[ATTACHMENT|browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toBe">
+<![CDATA[  [chromium-a11y] › lighthouse.spec.ts:9:7 › Lighthouse /home — representative stable page ─────────
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      16 |     }
+      17 |     const outcome = await collectLighthouseEvidence(page, lighthousePort, testInfo);
+    > 18 |     expect(outcome.issueCount, ASSERTION_MARKER).toBe(0);
+         |                                                  ^
+      19 |   });
+      20 | }
+      21 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/lighthouse.spec.ts:18:50
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/lighthouse-Lighthouse-home-—-representative-stable-page-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="Lighthouse /coverage?feature=filter — representative stable page" classname="lighthouse.spec.ts" time="13.265">
+</testcase>
+</testsuite>
+<testsuite name="remaining-states.spec.ts" timestamp="2026-10-20T09:39:04.907Z" hostname="chromium-a11y" tests="5" failures="2" skipped="0" time="12.653" errors="0">
+<testcase name="remaining terms states expose the selected content in the browser accessibility tree" classname="remaining-states.spec.ts" time="2.245">
+</testcase>
+<testcase name="form-group wrapper exposes its group name, descriptions and keyboard target" classname="remaining-states.spec.ts" time="2.434">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/remaining-states-form-grou-815e7-iptions-and-keyboard-target-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/remaining-states-form-grou-815e7-iptions-and-keyboard-target-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/remaining-states-form-grou-815e7-iptions-and-keyboard-target-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › remaining-states.spec.ts:18:5 › form-group wrapper exposes its group name, descriptions and keyboard target 
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 10
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "screen-reader",
+    +     "issueCount": 1,
+    +     "rules": Array [
+    +       "error-describedby",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      31 |
+      32 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 33 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                  ^
+      34 | });
+      35 |
+      36 | test('direct SearchWorkType exposes options and a keyboard selection contract', async ({ page }, testInfo) => {
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/remaining-states.spec.ts:33:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/remaining-states-form-grou-815e7-iptions-and-keyboard-target-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/remaining-states-form-grou-815e7-iptions-and-keyboard-target-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/remaining-states-form-grou-815e7-iptions-and-keyboard-target-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/remaining-states-form-grou-815e7-iptions-and-keyboard-target-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="direct SearchWorkType exposes options and a keyboard selection contract" classname="remaining-states.spec.ts" time="3.241">
+</testcase>
+<testcase name="validator states retain semantic headings and keyboard-accessible transitions" classname="remaining-states.spec.ts" time="2.412">
+</testcase>
+<testcase name="session dialog exposes a modal dialog and accepts keyboard focus" classname="remaining-states.spec.ts" time="2.321">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|browser/remaining-states-session-d-64e0f--and-accepts-keyboard-focus-chromium-a11y/test-failed-1.png]]
+
+[[ATTACHMENT|browser/remaining-states-session-d-64e0f--and-accepts-keyboard-focus-chromium-a11y/error-context.md]]
+
+[[ATTACHMENT|browser/remaining-states-session-d-64e0f--and-accepts-keyboard-focus-chromium-a11y/trace.zip]]
+]]>
+</system-out>
+<failure message="A11Y_VIOLATIONS" type="expect.toEqual">
+<![CDATA[  [chromium-a11y] › remaining-states.spec.ts:69:5 › session dialog exposes a modal dialog and accepts keyboard focus 
+
+    Error: A11Y_VIOLATIONS
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 12
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "engine": "axe",
+    +     "issueCount": 1,
+    +     "reviewCount": 0,
+    +     "reviewRules": Array [],
+    +     "rules": Array [
+    +       "aria-dialog-name",
+    +     ],
+    +     "status": "issues-found",
+    +   },
+    + ]
+
+      77 |   await expect(await dialog.ariaSnapshot()).toContain('We are about to sign you out');
+      78 |   const outcomes = await collectAccessibilityEvidence(page, testInfo);
+    > 79 |   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+         |                                                                                  ^
+      80 | });
+      81 |
+        at /home/runner/work/rpx-xui-common-lib/rpx-xui-common-lib/e2e/accessibility/remaining-states.spec.ts:79:82
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/remaining-states-session-d-64e0f--and-accepts-keyboard-focus-chromium-a11y/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/odhin/accessibility/browser/remaining-states-session-d-64e0f--and-accepts-keyboard-focus-chromium-a11y/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../test-results/odhin/accessibility/browser/remaining-states-session-d-64e0f--and-accepts-keyboard-focus-chromium-a11y/trace.zip
+    Usage:
+
+        yarn playwright show-trace ../../test-results/odhin/accessibility/browser/remaining-states-session-d-64e0f--and-accepts-keyboard-focus-chromium-a11y/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>

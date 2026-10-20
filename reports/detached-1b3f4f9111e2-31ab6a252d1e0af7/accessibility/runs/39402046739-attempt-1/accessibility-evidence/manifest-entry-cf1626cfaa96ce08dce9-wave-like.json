@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-5ed8da5e425765b9bc16",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "cookies",
+  "pageState": "reject persisted after reload",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "cookies — reject persisted after reload",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "cf1626cfaa96ce08dce9-wave-like.html",
+  "jsonFileName": "cf1626cfaa96ce08dce9-wave-like.json",
+  "screenshotFileName": "cf1626cfaa96ce08dce9-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "cf1626cfaa96ce08dce9-wave-like-style-1.css"
+  ]
+}

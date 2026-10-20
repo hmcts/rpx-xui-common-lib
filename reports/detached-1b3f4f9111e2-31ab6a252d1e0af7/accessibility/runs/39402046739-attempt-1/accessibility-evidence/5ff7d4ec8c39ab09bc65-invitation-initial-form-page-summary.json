@@ -1,0 +1,422 @@
+{
+  "feature": "invitation",
+  "pageState": "initial form",
+  "strict": true,
+  "url": "http://localhost:4200/coverage/invitation",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Invitation form demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form and emitted events"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Invitation form demoSynthetic data only. Validation is supplied by the demo parent; no invitation is sent.First name Include all middle names. Last nameEmail address Permissions Ch",
+        "selector": "main"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "First name",
+        "selector": "#firstName",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Last name",
+        "selector": "#lastName",
+        "tabIndex": 0
+      },
+      {
+        "type": "email input",
+        "name": "Email address",
+        "selector": "#email",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Cases",
+        "selector": "#roles",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Users",
+        "selector": "#pui-user-manager",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Organisation",
+        "selector": "#pui-organisation-manager",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Send invitation",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/invitation",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Invitation form demo"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "form",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Invitation form demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Synthetic data only. Validation is supplied by the demo parent; no invitation is sent."
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "First name"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Last name"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Email address"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Permissions"
+      },
+      {
+        "role": "button",
+        "name": "Send invitation"
+      },
+      {
+        "role": "StaticText",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "StaticText",
+        "name": "Form valid: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Submit events: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "null"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Invitation form demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Synthetic data only. Validation is supplied by the demo parent; no invitation is sent."
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "First name"
+      },
+      {
+        "role": "StaticText",
+        "name": "Include all middle names. "
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Last name"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Email address"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Send invitation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Form valid: "
+      },
+      {
+        "role": "StaticText",
+        "name": "false"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Submit events: "
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "null"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "First name"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Include all middle names. "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Last name"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Email address"
+      },
+      {
+        "role": "StaticText",
+        "name": "Permissions"
+      },
+      {
+        "role": "StaticText",
+        "name": "Choose what the user will be able to do. You can change this later."
+      },
+      {
+        "role": "checkbox",
+        "name": "Manage Cases"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "checkbox",
+        "name": "Manage Users"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "checkbox",
+        "name": "Manage Organisation"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      }
+    ]
+  }
+}

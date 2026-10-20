@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-9e46ad6c03b1c3cb302b",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "terms",
+  "pageState": "accepted",
+  "violationCount": 1,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 1 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "wave-like:h1-count"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=terms"
+  ],
+  "testTitle": "terms — accepted",
+  "attachmentPrefix": "terms-accepted-page-summary",
+  "htmlFileName": "cc35fa29bb82b8dab4c2-terms-accepted-page-summary.html",
+  "jsonFileName": "cc35fa29bb82b8dab4c2-terms-accepted-page-summary.json",
+  "screenshotFileName": "cc35fa29bb82b8dab4c2-terms-accepted-page-summary.png",
+  "assetFileNames": [
+    "cc35fa29bb82b8dab4c2-terms-accepted-page-summary-style-1.css"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "address",
+  "pageState": "lookup results",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — lookup results",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "d7d8f4f6d08d26e9e6c6-screen-reader.html",
+  "jsonFileName": "d7d8f4f6d08d26e9e6c6-screen-reader.json",
+  "screenshotFileName": "d7d8f4f6d08d26e9e6c6-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "d7d8f4f6d08d26e9e6c6-screen-reader-style-1.css"
+  ]
+}

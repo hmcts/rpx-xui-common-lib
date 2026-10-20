@@ -1,0 +1,51 @@
+{
+  "url": "http://localhost:4200/coverage/service-selection",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Service selection demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form and emitted events"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Service selection demo Choose services Add service Family Disable service searchParent form and emitted events[ { \"key\": \"family\", \"label\": \"Family\" } ]Change e"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "Choose services",
+        "selector": "#inputServiceSearch"
+      },
+      {
+        "type": "link",
+        "name": "Add service",
+        "selector": "#add-service"
+      },
+      {
+        "type": "link",
+        "name": "Family",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Disable service search",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

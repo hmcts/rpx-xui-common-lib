@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "filter",
+  "pageState": "initial controls",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage?feature=filter"
+  ],
+  "testTitle": "filter — initial controls",
+  "attachmentPrefix": "filter-initial-controls-page-summary",
+  "htmlFileName": "5803c38c5ee18792ce92-filter-initial-controls-page-summary.html",
+  "jsonFileName": "5803c38c5ee18792ce92-filter-initial-controls-page-summary.json",
+  "screenshotFileName": "5803c38c5ee18792ce92-filter-initial-controls-page-summary.png",
+  "assetFileNames": [
+    "5803c38c5ee18792ce92-filter-initial-controls-page-summary-style-1.css"
+  ]
+}

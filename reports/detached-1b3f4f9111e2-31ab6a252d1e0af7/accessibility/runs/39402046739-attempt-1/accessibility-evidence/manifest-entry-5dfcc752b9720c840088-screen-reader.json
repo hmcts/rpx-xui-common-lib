@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-3c0aef397740f3a035a9",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "user management",
+  "pageState": "next page",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "user management — next page",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "5dfcc752b9720c840088-screen-reader.html",
+  "jsonFileName": "5dfcc752b9720c840088-screen-reader.json",
+  "screenshotFileName": "5dfcc752b9720c840088-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "5dfcc752b9720c840088-screen-reader-style-1.css"
+  ]
+}

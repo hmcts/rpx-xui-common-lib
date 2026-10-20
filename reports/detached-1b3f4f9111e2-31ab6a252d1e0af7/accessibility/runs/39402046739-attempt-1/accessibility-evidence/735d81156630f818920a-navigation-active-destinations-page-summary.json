@@ -1,0 +1,261 @@
+{
+  "feature": "navigation",
+  "pageState": "active destinations",
+  "strict": true,
+  "url": "http://localhost:4200/coverage?feature=navigation",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "needs-review",
+      "reviewCount": 1,
+      "reviewRules": [
+        "color-contrast"
+      ],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Navigation"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "NavigationCoverage examplesHome demo Current section 2 Other section",
+        "selector": "div"
+      },
+      {
+        "role": "nav",
+        "name": "Primary demo navigation",
+        "selector": "nav"
+      },
+      {
+        "role": "navigation",
+        "name": "Secondary demo navigation",
+        "selector": "nav"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Coverage examples",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Home demo",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Current section 2",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Other section",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage?feature=navigation",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "heading",
+        "name": "Navigation"
+      },
+      {
+        "role": "navigation",
+        "name": "Primary demo navigation"
+      },
+      {
+        "role": "navigation",
+        "name": "Secondary demo navigation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Navigation"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Navigation"
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Coverage examples"
+      },
+      {
+        "role": "link",
+        "name": "Home demo"
+      },
+      {
+        "role": "link",
+        "name": "Current section 2"
+      },
+      {
+        "role": "link",
+        "name": "Other section"
+      },
+      {
+        "role": "StaticText",
+        "name": "Coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Home demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Current section "
+      },
+      {
+        "role": "StaticText",
+        "name": "2"
+      },
+      {
+        "role": "StaticText",
+        "name": "Other section"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Coverage examples"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Home demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Current section "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "2"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Other section"
+      }
+    ]
+  }
+}

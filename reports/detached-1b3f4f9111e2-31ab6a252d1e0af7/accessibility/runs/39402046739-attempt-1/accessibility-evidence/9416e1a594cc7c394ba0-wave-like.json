@@ -1,0 +1,48 @@
+{
+  "url": "http://localhost:4200/coverage/searches?feature=person&domain=judicial&exclude=true",
+  "violationCount": 1,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Search component demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Search component demoFind the person Type the name of the person and select them. []"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "select a person",
+        "selector": "#inputSelectPerson"
+      },
+      {
+        "type": "mat-option",
+        "name": "Judge Alex Taylor (alex@example.test)",
+        "selector": "#mat-option-0"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "text-spacing-clipping",
+      "message": "Text becomes clipped by overflow:hidden/clip after WCAG 1.4.12 spacing overrides (layout heuristic; confirm visually).",
+      "advice": "Allow the container to grow or wrap text. Recheck with line height 1.5, paragraph spacing 2em, letter spacing 0.12em and word spacing 0.16em. The highlighted screenshot shows the restored layout.",
+      "selector": "#mat-option-0 > span:nth-of-type(1)",
+      "html": "<span class=\"mat-option-text\"> Judge Alex Taylor (alex@example.test) </span>",
+      "codeLocation": {
+        "tag": "span"
+      }
+    }
+  ]
+}

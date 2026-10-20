@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-588cd3d99e2d83442802",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "lifecycle",
+  "pageState": "service messages and enabled feature content",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "lifecycle — service messages and enabled feature content",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "da6c18905e7f6ac7faa6-screen-reader.html",
+  "jsonFileName": "da6c18905e7f6ac7faa6-screen-reader.json",
+  "screenshotFileName": "da6c18905e7f6ac7faa6-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "da6c18905e7f6ac7faa6-screen-reader-style-1.css"
+  ]
+}

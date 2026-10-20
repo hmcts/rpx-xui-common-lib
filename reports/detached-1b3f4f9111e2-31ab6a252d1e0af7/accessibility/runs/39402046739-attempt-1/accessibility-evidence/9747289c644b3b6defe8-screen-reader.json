@@ -1,0 +1,347 @@
+{
+  "url": "http://localhost:4200/coverage?feature=feedback",
+  "violations": [],
+  "snapshot": {
+    "title": "Error: RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Feedback"
+      },
+      {
+        "level": 2,
+        "text": "There is a problem"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "Feedback Completed successThe action was savedwarningAction needs attentionEmail addressShow validation errors There is a problem Enter an email addressCheck your details",
+        "selector": "div"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "email input",
+        "name": "Email address",
+        "selector": "#coverage-email",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Show validation errors",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [
+      {
+        "role": "alert",
+        "name": "There is a problem There is a problem Enter an email addressCheck your details",
+        "selector": "#errorSummary"
+      }
+    ],
+    "url": "http://localhost:4200/coverage?feature=feedback",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "Error: RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "heading",
+        "name": "Feedback"
+      },
+      {
+        "role": "generic",
+        "name": "Completed"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Email address"
+      },
+      {
+        "role": "button",
+        "name": "Show validation errors"
+      },
+      {
+        "role": "alert",
+        "name": "There is a problem"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Feedback"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "warning"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Action needs attention"
+      },
+      {
+        "role": "StaticText",
+        "name": "Email address"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Show validation errors"
+      },
+      {
+        "role": "heading",
+        "name": "There is a problem"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Feedback"
+      },
+      {
+        "role": "StaticText",
+        "name": "Completed"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "success"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "The action was saved"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "warning"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Action needs attention"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Email address"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Show validation errors"
+      },
+      {
+        "role": "StaticText",
+        "name": "There is a problem"
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Completed"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "success"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "The action was saved"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "There is a problem"
+      },
+      {
+        "role": "link",
+        "name": "Enter an email address"
+      },
+      {
+        "role": "StaticText",
+        "name": "Check your details"
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter an email address"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Check your details"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Enter an email address"
+      }
+    ]
+  }
+}

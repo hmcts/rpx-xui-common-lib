@@ -1,0 +1,395 @@
+{
+  "url": "http://localhost:4200/coverage?feature=filter",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Generic filter"
+      },
+      {
+        "level": 3,
+        "text": "Service"
+      },
+      {
+        "level": 3,
+        "text": "Priority"
+      },
+      {
+        "level": 3,
+        "text": "Region"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "Generic filter Service CivilFamily Priority UrgentNormal Region LondonNorthApply filtersCancel changesnull",
+        "selector": "div"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Civil",
+        "selector": "#checkbox_servicecivil",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Family",
+        "selector": "#checkbox_servicefamily",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "Urgent",
+        "selector": "#radio_urgent",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "Normal",
+        "selector": "#radio_normal",
+        "tabIndex": 0
+      },
+      {
+        "type": "select",
+        "name": "Region LondonNorth",
+        "selector": "#select_region",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Apply filters",
+        "selector": "#applyFilter",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Cancel changes",
+        "selector": "#cancelFilter",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage?feature=filter",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "heading",
+        "name": "Generic filter"
+      },
+      {
+        "role": "form",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Generic filter"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "separator",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "null"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Generic filter"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Service"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Service"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Priority"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Priority"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Region"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Apply filters"
+      },
+      {
+        "role": "button",
+        "name": "Cancel changes"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "null"
+      },
+      {
+        "role": "StaticText",
+        "name": "Service"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Priority"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Region"
+      },
+      {
+        "role": "combobox",
+        "name": "Region"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Apply filters"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Cancel changes"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Service"
+      },
+      {
+        "role": "checkbox",
+        "name": "Civil"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "checkbox",
+        "name": "Family"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Priority"
+      },
+      {
+        "role": "radio",
+        "name": "Urgent"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "radio",
+        "name": "Normal"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Region"
+      },
+      {
+        "role": "MenuListPopup",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Apply filters"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cancel changes"
+      },
+      {
+        "role": "option",
+        "name": ""
+      },
+      {
+        "role": "option",
+        "name": "London"
+      },
+      {
+        "role": "option",
+        "name": "North"
+      }
+    ]
+  }
+}

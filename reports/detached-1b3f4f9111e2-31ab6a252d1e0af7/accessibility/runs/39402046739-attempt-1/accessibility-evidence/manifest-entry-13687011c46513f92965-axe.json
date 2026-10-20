@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-55374cb42d6f9e462b70",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "address",
+  "pageState": "selected address",
+  "status": "needs-review",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — selected address",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "13687011c46513f92965-axe.html",
+  "jsonFileName": "13687011c46513f92965-axe.json",
+  "screenshotFileName": "13687011c46513f92965-axe.png",
+  "assetFileNames": [
+    "13687011c46513f92965-axe-style-1.css"
+  ]
+}

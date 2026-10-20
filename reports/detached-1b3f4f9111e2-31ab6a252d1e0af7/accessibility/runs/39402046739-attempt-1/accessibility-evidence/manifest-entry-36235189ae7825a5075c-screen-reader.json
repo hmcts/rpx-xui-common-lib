@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "session",
+  "pageState": "visible timeout dialog",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "session — visible timeout dialog",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "36235189ae7825a5075c-screen-reader.html",
+  "jsonFileName": "36235189ae7825a5075c-screen-reader.json",
+  "screenshotFileName": "36235189ae7825a5075c-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "36235189ae7825a5075c-screen-reader-style-1.css"
+  ]
+}
