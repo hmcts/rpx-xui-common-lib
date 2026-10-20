@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-9fffb2b5c16ba1afd367",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "case sharing",
+  "pageState": "confirmation",
+  "violationCount": 1,
+  "rules": [
+    "heading-order"
+  ],
+  "targets": [
+    "h3"
+  ],
+  "testTitle": "case sharing — confirmation",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "4cd77f65311f1779f180-wave-like.html",
+  "jsonFileName": "4cd77f65311f1779f180-wave-like.json",
+  "screenshotFileName": "4cd77f65311f1779f180-wave-like.png",
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "h3"
+      ],
+      "summary": "Heading level jumps from h1 to h3.",
+      "anchor": "issue-1"
+    }
+  ],
+  "assetFileNames": [
+    "4cd77f65311f1779f180-wave-like-style-1.css"
+  ]
+}

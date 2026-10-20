@@ -1,0 +1,36 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-1eaa16255ec8f38bd587",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/case-sharing",
+  "pageState": "skip link moves focus to the main-content target for /coverage/case-sharing",
+  "violationCount": 4,
+  "reviewCount": 3,
+  "reviewRules": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 3 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:heading-order",
+    "wave-like:heading-order",
+    "wave-like:duplicate-id"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/case-sharing"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/case-sharing",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-page-summary",
+  "htmlFileName": "78333f4cd0b483aae600-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-skip-link-moves-focus-to-.html",
+  "jsonFileName": "78333f4cd0b483aae600-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-skip-link-moves-focus-to-.json",
+  "screenshotFileName": "78333f4cd0b483aae600-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-skip-link-moves-focus-to-.png",
+  "assetFileNames": [
+    "78333f4cd0b483aae600-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-skip-link-moves-focus-to--style-1.css"
+  ]
+}

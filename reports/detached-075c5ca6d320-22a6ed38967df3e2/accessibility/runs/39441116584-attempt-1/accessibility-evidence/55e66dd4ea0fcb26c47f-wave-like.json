@@ -1,0 +1,32 @@
+{
+  "url": "http://localhost:4200/coverage/searches",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Search component demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Search component demoFind the person Type the name of the person and select them. []"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "select a person",
+        "selector": "#inputSelectPerson"
+      }
+    ]
+  },
+  "violations": []
+}

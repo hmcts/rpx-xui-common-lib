@@ -1,0 +1,40 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-1c714c3c3bfc910489db",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "advanced filter",
+  "pageState": "conditional detail visible",
+  "status": "issues-found",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "[\"#include-label\"]"
+      ],
+      "summary": "Heading levels should only increase by one",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 1,
+  "rules": [
+    "heading-order"
+  ],
+  "targets": [
+    "[\"#include-label\"]"
+  ],
+  "testTitle": "advanced filter — conditional detail visible",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "053dbb7a83059ac33f39-axe.html",
+  "jsonFileName": "053dbb7a83059ac33f39-axe.json",
+  "screenshotFileName": "053dbb7a83059ac33f39-axe.png",
+  "assetFileNames": [
+    "053dbb7a83059ac33f39-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,64 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Screen-reader-like accessibility evidence</title>
+        <link rel="stylesheet" href="8830f025959562d21f03-screen-reader-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Page structure</h2>
+            <div class="scorecard">
+              <p><strong>RpxXuiCommonLib</strong></p>
+              <div class="score-grid">
+                <div class="score"><strong>2</strong><br/>Headings</div>
+                <div class="score"><strong>1</strong><br/>Landmarks</div>
+                <div class="score"><strong>8</strong><br/>Potential focus targets</div>
+                <div class="score"><strong>80</strong><br/>AX nodes</div>
+              </div>
+            </div>
+            <details>
+              <summary>Headings</summary>
+              <ol><li><span class="token">h1</span>Form controls demo</li><li><span class="token">h2</span>Parent form values</li></ol>
+            </details>
+            <details>
+              <summary>Landmarks</summary>
+              <ol><li><span class="token">main</span>Form controls demoError messages are supplied by the demo parent. Date validity uses the library&#39;s own validator.Priority Choose how soon to review. RoutineUrgentCase notes Include <code>#main-content</code></li></ol>
+            </details>
+            <details>
+              <summary>Potential focus targets in DOM order</summary>
+              <ol><li><span class="marker">1</span><strong>link</strong>: Skip to main content <code>a</code></li><li><span class="marker">2</span><strong>select</strong>: Priority RoutineUrgent <code>#priority</code></li><li><span class="marker">3</span><strong>textarea</strong>: Case notes <code>#case-notes</code></li><li><span class="marker">4</span><strong>file input</strong>: Supporting file <code>#supportingFile</code></li><li><span class="marker">5</span><strong>button</strong>: Toggle supplied errors <code>button</code></li><li><span class="marker">6</span><strong>text input</strong>: Day <code>#hearing-day</code></li><li><span class="marker">7</span><strong>text input</strong>: Month <code>#hearing-month</code></li><li><span class="marker">8</span><strong>text input</strong>: Year <code>#hearing-year</code></li></ol>
+            </details>
+            <details>
+              <summary>Accessibility tree sample</summary>
+              <ol><li><span class="token">RootWebArea</span>RpxXuiCommonLib</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">link</span>Skip to main content</li><li><span class="token">main</span>(unnamed)</li><li><span class="token">StaticText</span>Skip to main content</li><li><span class="token">heading</span>Form controls demo</li><li><span class="token">paragraph</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">combobox</span>Priority</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">textbox</span>Case notes</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">button</span>Supporting file</li><li><span class="token">button</span>Toggle supplied errors</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">heading</span>Parent form values</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">paragraph</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">InlineTextBox</span>Skip to main content</li><li><span class="token">StaticText</span>Form controls demo</li><li><span class="token">StaticText</span>Error messages are supplied by the demo parent. Date validity uses the library&#39;s own validator.</li></ol>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <p><a href="../index.html">Back to Odhín report</a></p>
+            <div class="banner issue-banner">
+              <h1>Screen-reader-like accessibility evidence</h1>
+              <p>1 screen-reader-like issue(s) on http://localhost:4200/coverage/form-controls</p>
+            </div>
+            <p>Automated heuristics support investigation; they do not replace screen-reader testing or establish WCAG conformance.</p>
+            <details class="visual">
+              <summary>View page screenshot</summary>
+              <img alt="Accessibility evidence screenshot" src="8830f025959562d21f03-screen-reader.png" />
+            </details>
+            
+        <section class="issue" id="issue-1">
+          <h2>1. aria-reference-target</h2>
+          <p><strong>aria-describedby references missing id(s): case-notes-hint.</strong></p>
+          <p><strong>Selector:</strong> <code>#case-notes</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre>&lt;textarea name=&quot;more-detail&quot; class=&quot;govuk-textarea ng-untouched ng-pristine ng-valid&quot; id=&quot;case-notes&quot; rows=&quot;3&quot; aria-describedby=&quot;case-notes-hint&quot; style=&quot;&quot;&gt;&lt;/textarea&gt;</pre></details>
+        </section>
+      
+          </main>
+        </div>
+      </body>
+    </html>
+  

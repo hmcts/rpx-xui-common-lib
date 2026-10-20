@@ -1,0 +1,194 @@
+{
+  "feature": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "pageState": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "strict": true,
+  "url": "http://localhost:4200/coverage/service-contract-a",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Service contract A demo"
+      },
+      {
+        "level": 2,
+        "text": "Role guard and role service"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Service contract A demoRole guard and role serviceAllow any roleDeny missing roleAllow all rolesnot evaluated",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Allow any role",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Deny missing role",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Allow all roles",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/service-contract-a",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Service contract A demo"
+      },
+      {
+        "role": "region",
+        "name": "Role guard and role service"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Service contract A demo"
+      },
+      {
+        "role": "heading",
+        "name": "Role guard and role service"
+      },
+      {
+        "role": "button",
+        "name": "Allow any role"
+      },
+      {
+        "role": "button",
+        "name": "Deny missing role"
+      },
+      {
+        "role": "button",
+        "name": "Allow all roles"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Service contract A demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Role guard and role service"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Allow any role"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Deny missing role"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Allow all roles"
+      },
+      {
+        "role": "StaticText",
+        "name": "not evaluated"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Role guard and role service"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Allow any role"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Deny missing role"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Allow all roles"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "not evaluated"
+      }
+    ]
+  }
+}

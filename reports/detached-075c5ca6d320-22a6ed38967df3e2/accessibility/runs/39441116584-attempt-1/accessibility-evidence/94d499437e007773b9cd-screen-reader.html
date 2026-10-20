@@ -1,0 +1,86 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Screen-reader-like accessibility evidence</title>
+        <link rel="stylesheet" href="94d499437e007773b9cd-screen-reader-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Page structure</h2>
+            <div class="scorecard">
+              <p><strong>RpxXuiCommonLib</strong></p>
+              <div class="score-grid">
+                <div class="score"><strong>7</strong><br/>Headings</div>
+                <div class="score"><strong>1</strong><br/>Landmarks</div>
+                <div class="score"><strong>14</strong><br/>Potential focus targets</div>
+                <div class="score"><strong>80</strong><br/>AX nodes</div>
+              </div>
+            </div>
+            <details>
+              <summary>Headings</summary>
+              <ol><li><span class="token">h1</span>Share synthetic cases</li><li><span class="token">h3</span>Selected cases</li><li><span class="token">h3</span>Synthetic case Alpha</li><li><span class="token">h3</span>DEMO-001</li><li><span class="token">h3</span>Synthetic case Beta</li><li><span class="token">h3</span>DEMO-002</li><li><span class="token">h2</span>Demo event outputs</li></ol>
+            </details>
+            <details>
+              <summary>Landmarks</summary>
+              <ol><li><span class="token">main</span>Share synthetic cases Add a person to all cases Search by name or email address. You can share access with as many people as you need. Add user Can&#39;t find an email address? If you  <code>#main-content</code></li></ol>
+            </details>
+            <details>
+              <summary>Potential focus targets in DOM order</summary>
+              <ol><li><span class="marker">1</span><strong>link</strong>: Skip to main content <code>a</code></li><li><span class="marker">2</span><strong>text input</strong>: Search by name or email address. You can share access with as many people as you need. <code>input</code></li><li><span class="marker">3</span><strong>button</strong>: Add user to selected cases Add user <code>#btn-add-user</code></li><li><span class="marker">4</span><strong>summary</strong>: Can&#39;t find an email address? <code>summary</code></li><li><span class="marker">5</span><strong>select</strong>: Remove a person from all cases Select a personAlex Taylor - alex@example.test <code>#remove-user-input</code></li><li><span class="marker">6</span><strong>button</strong>: Remove user from selected cases Remove user <code>#btn-remove-user</code></li><li><span class="marker">7</span><strong>button</strong>: Deselect case Deselect case <code>#btn-deselect-case-DEMO-001</code></li><li><span class="marker">8</span><strong>button</strong>: Expand or Collapse <code>#accordion-with-summary-sections-heading-DEMO-001</code></li><li><span class="marker">9</span><strong>link</strong>: Remove Alex Taylor from case <code>a</code></li><li><span class="marker">10</span><strong>button</strong>: Deselect case Deselect case <code>#btn-deselect-case-DEMO-002</code></li><li><span class="marker">11</span><strong>button</strong>: Expand or Collapse <code>#accordion-with-summary-sections-heading-DEMO-002</code></li><li><span class="marker">12</span><strong>link</strong>: Remove Alex Taylor from case <code>a</code></li><li><span class="marker">13</span><strong>button</strong>: Continue Continue <code>#btn-continue</code></li><li><span class="marker">14</span><strong>button</strong>: Cancel Cancel <code>#btn-cancel</code></li></ol>
+            </details>
+            <details>
+              <summary>Accessibility tree sample</summary>
+              <ol><li><span class="token">RootWebArea</span>RpxXuiCommonLib</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">link</span>Skip to main content</li><li><span class="token">main</span>(unnamed)</li><li><span class="token">StaticText</span>Skip to main content</li><li><span class="token">generic</span>Share synthetic cases</li><li><span class="token">heading</span>Demo event outputs</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">InlineTextBox</span>Skip to main content</li><li><span class="token">heading</span>Share synthetic cases</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">StaticText</span>Demo event outputs</li><li><span class="token">StaticText</span>[]</li><li><span class="token">StaticText</span>[]</li><li><span class="token">StaticText</span>[
+  {
+    &quot;caseId&quot;: &quot;DEMO-001&quot;,
+    &quot;caseTitle&quot;: &quot;Synthetic case Alpha&quot;,
+    &quot;sharedWith&quot;: [
+      {
+        &quot;idamId&quot;: &quot;demo-alex&quot;,
+        &quot;firstName&quot;: &quot;Alex&quot;,
+        &quot;lastName&quot;: &quot;Taylor&quot;,
+        &quot;email&quot;: &quot;alex@example.test&quot;
+      }
+    ],
+    &quot;pendingShares&quot;: [],
+    &quot;pendingUnshares&quot;: []
+  },
+  {
+    &quot;caseId&quot;: &quot;DEMO-002&quot;,
+    &quot;caseTitle&quot;: &quot;Synthetic case Beta&quot;,
+    &quot;sharedWith&quot;: [
+      {
+        &quot;idamId&quot;: &quot;demo-alex&quot;,
+        &quot;firstName&quot;: &quot;Alex&quot;,
+        &quot;lastName&quot;: &quot;Taylor&quot;,
+        &quot;email&quot;: &quot;alex@example.test&quot;
+      }
+    ],
+    &quot;pendingShares&quot;: [],
+    &quot;pendingUnshares&quot;: []
+  }
+]</li><li><span class="token">StaticText</span>Share synthetic cases</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">group</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li></ol>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <p><a href="../index.html">Back to Odhín report</a></p>
+            <div class="banner pass-banner">
+              <h1>Screen-reader-like accessibility evidence</h1>
+              <p>0 screen-reader-like issue(s) on http://localhost:4200/coverage/case-sharing</p>
+            </div>
+            <p>Automated heuristics support investigation; they do not replace screen-reader testing or establish WCAG conformance.</p>
+            <details class="visual">
+              <summary>View page screenshot</summary>
+              <img alt="Accessibility evidence screenshot" src="94d499437e007773b9cd-screen-reader.png" />
+            </details>
+            <section class="issue pass"><h2>No screen-reader-like issues found</h2><p>No issues were found by the static heuristics for naming, landmarks, template structure, or recorded announcement contracts. Potential focus targets are listed in DOM order; this lane does not observe keyboard traversal or spoken output.</p></section>
+          </main>
+        </div>
+      </body>
+    </html>
+  

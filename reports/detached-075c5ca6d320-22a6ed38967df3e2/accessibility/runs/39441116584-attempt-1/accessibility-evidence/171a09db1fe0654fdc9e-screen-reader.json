@@ -1,0 +1,218 @@
+{
+  "url": "http://localhost:4200/coverage/advanced-filter",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Advanced filter contracts"
+      },
+      {
+        "level": 3,
+        "text": "Include details"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Advanced filter contracts Include details No detailInclude detail Detail Apply advanced filtersnull",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "No detail",
+        "selector": "#radio_no",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "Include detail",
+        "selector": "#radio_yes",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Apply advanced filters",
+        "selector": "#applyFilter",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/advanced-filter",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Advanced filter contracts"
+      },
+      {
+        "role": "form",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Advanced filter contracts"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "separator",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "null"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Advanced filter contracts"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Include details"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Include details"
+      },
+      {
+        "role": "button",
+        "name": "Apply advanced filters"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "null"
+      },
+      {
+        "role": "StaticText",
+        "name": "Include details"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Apply advanced filters"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Include details"
+      },
+      {
+        "role": "radio",
+        "name": "No detail"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "radio",
+        "name": "Include detail"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Apply advanced filters"
+      }
+    ]
+  }
+}

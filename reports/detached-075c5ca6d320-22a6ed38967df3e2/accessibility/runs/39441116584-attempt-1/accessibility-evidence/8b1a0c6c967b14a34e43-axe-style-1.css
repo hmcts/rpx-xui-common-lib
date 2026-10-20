@@ -1,0 +1,10 @@
+
+      * { box-sizing: border-box; } body { font: 16px/1.5 Arial, sans-serif; margin: 0; color: #0b0c0c; overflow-wrap: anywhere; }
+      main { max-width: 76rem; margin: auto; padding: 1rem; } header { background: #0b0c0c; color: white; padding: 1rem; }
+      .issue { border: 2px solid #d4351c; padding: 1rem; margin: 1rem 0; } .review { border-color: #b58800; }
+      h2 { margin-top: 0; } dt { font-weight: bold; } dd { margin: 0 0 .6rem; }
+      code, pre { font-size: .95rem; background: #f3f2f1; white-space: pre-wrap; overflow-wrap: anywhere; }
+      pre { padding: .75rem; } a { color: #1d70b8; } :focus-visible { outline: 3px solid #ffdd00; box-shadow: 0 0 0 5px #0b0c0c; }
+      .skip-link { position: absolute; left: -10000px; } .skip-link:focus { position: static; }
+      summary { cursor: pointer; } li { margin-bottom: .75rem; }
+    

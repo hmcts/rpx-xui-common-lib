@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-55290f0039ce60efb2e0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "session dialog exposes a modal dialog and accepts keyboard focus",
+  "pageState": "session dialog exposes a modal dialog and accepts keyboard focus",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "session dialog exposes a modal dialog and accepts keyboard focus",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "735a5686b0b1bb4d5620-screen-reader.html",
+  "jsonFileName": "735a5686b0b1bb4d5620-screen-reader.json",
+  "screenshotFileName": "735a5686b0b1bb4d5620-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "735a5686b0b1bb4d5620-screen-reader-style-1.css"
+  ]
+}

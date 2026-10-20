@@ -1,0 +1,202 @@
+{
+  "url": "http://localhost:4200/coverage/case-sharing",
+  "violationCount": 5,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Share synthetic cases"
+      },
+      {
+        "level": 3,
+        "text": "Selected cases"
+      },
+      {
+        "level": 3,
+        "text": "Synthetic case Alpha"
+      },
+      {
+        "level": 3,
+        "text": "DEMO-001"
+      },
+      {
+        "level": 3,
+        "text": "Synthetic case Beta"
+      },
+      {
+        "level": 3,
+        "text": "DEMO-002"
+      },
+      {
+        "level": 2,
+        "text": "Demo event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Share synthetic cases Add a person to all cases Search by name or email address. You can share access with as many people as you need. Add user Can't find an em"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "Search by name or email address. You can share access with as many people as you need.",
+        "selector": "input"
+      },
+      {
+        "type": "button",
+        "name": "Add user to selected cases Add user",
+        "selector": "#btn-add-user"
+      },
+      {
+        "type": "select",
+        "name": "Remove a person from all cases Select a personAlex Taylor - alex@example.testSam Morgan - sam@example.test",
+        "selector": "#remove-user-input"
+      },
+      {
+        "type": "button",
+        "name": "Remove user from selected cases Remove user",
+        "selector": "#btn-remove-user"
+      },
+      {
+        "type": "button",
+        "name": "Deselect case Deselect case",
+        "selector": "#btn-deselect-case-DEMO-001"
+      },
+      {
+        "type": "button",
+        "name": "Expand or Collapse",
+        "selector": "#accordion-with-summary-sections-heading-DEMO-001"
+      },
+      {
+        "type": "link",
+        "name": "Remove Alex Taylor from case",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Cancel adding Sam Morgan to case",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Deselect case Deselect case",
+        "selector": "#btn-deselect-case-DEMO-002"
+      },
+      {
+        "type": "button",
+        "name": "Expand or Collapse",
+        "selector": "#accordion-with-summary-sections-heading-DEMO-002"
+      },
+      {
+        "type": "link",
+        "name": "Remove Alex Taylor from case",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Cancel adding Sam Morgan to case",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Continue Continue",
+        "selector": "#btn-continue"
+      },
+      {
+        "type": "button",
+        "name": "Cancel Cancel",
+        "selector": "#btn-cancel"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "heading-order",
+      "message": "Heading level jumps from h1 to h3.",
+      "selector": "#title-selected-cases",
+      "html": "<h3 _ngcontent-ng-c104121396=\"\" id=\"title-selected-cases\" class=\"govuk-heading-m\"> Selected cases </h3>",
+      "codeLocation": {
+        "tag": "h3",
+        "id": "title-selected-cases",
+        "classes": "govuk-heading-m",
+        "angularAttrs": "_ngcontent-ng-c104121396",
+        "accessibleName": "Selected cases",
+        "nearestHeading": "h1: Share synthetic cases",
+        "nearestLandmark": "main #main-content .govuk-width-container"
+      },
+      "advice": "Check whether the heading hierarchy represents the content. Use nested levels for subsections; do not insert empty headings just to satisfy the check."
+    },
+    {
+      "rule": "duplicate-id",
+      "message": "Duplicate id \"user-full-name-0\" appears 2 times.",
+      "selector": "#user-full-name-0",
+      "html": "<td _ngcontent-ng-c2150780512=\"\" class=\"govuk-table__cell\" id=\"user-full-name-0\">Alex Taylor</td>",
+      "codeLocation": {
+        "tag": "td",
+        "id": "user-full-name-0",
+        "classes": "govuk-table__cell",
+        "angularAttrs": "_ngcontent-ng-c2150780512",
+        "accessibleName": "Alex Taylor",
+        "nearestHeading": "h3: DEMO-001",
+        "nearestLandmark": "main #main-content .govuk-width-container"
+      },
+      "advice": "Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links."
+    },
+    {
+      "rule": "duplicate-id",
+      "message": "Duplicate id \"user-email-0\" appears 2 times.",
+      "selector": "#user-email-0",
+      "html": "<td _ngcontent-ng-c2150780512=\"\" class=\"govuk-table__cell\" id=\"user-email-0\">alex@example.test</td>",
+      "codeLocation": {
+        "tag": "td",
+        "id": "user-email-0",
+        "classes": "govuk-table__cell",
+        "angularAttrs": "_ngcontent-ng-c2150780512",
+        "accessibleName": "alex@example.test",
+        "nearestHeading": "h3: DEMO-001",
+        "nearestLandmark": "main #main-content .govuk-width-container"
+      },
+      "advice": "Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links."
+    },
+    {
+      "rule": "duplicate-id",
+      "message": "Duplicate id \"user-full-name-pendingShares-1\" appears 2 times.",
+      "selector": "#user-full-name-pendingShares-1",
+      "html": "<td _ngcontent-ng-c2150780512=\"\" class=\"govuk-table__cell\" id=\"user-full-name-pendingShares-1\">Sam Morgan</td>",
+      "codeLocation": {
+        "tag": "td",
+        "id": "user-full-name-pendingShares-1",
+        "classes": "govuk-table__cell",
+        "angularAttrs": "_ngcontent-ng-c2150780512",
+        "accessibleName": "Sam Morgan",
+        "nearestHeading": "h3: DEMO-001",
+        "nearestLandmark": "main #main-content .govuk-width-container"
+      },
+      "advice": "Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links."
+    },
+    {
+      "rule": "duplicate-id",
+      "message": "Duplicate id \"user-email-pendingShares-1\" appears 2 times.",
+      "selector": "#user-email-pendingShares-1",
+      "html": "<td _ngcontent-ng-c2150780512=\"\" class=\"govuk-table__cell\" id=\"user-email-pendingShares-1\">sam@example.test</td>",
+      "codeLocation": {
+        "tag": "td",
+        "id": "user-email-pendingShares-1",
+        "classes": "govuk-table__cell",
+        "angularAttrs": "_ngcontent-ng-c2150780512",
+        "accessibleName": "sam@example.test",
+        "nearestHeading": "h3: DEMO-001",
+        "nearestLandmark": "main #main-content .govuk-width-container"
+      },
+      "advice": "Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links."
+    }
+  ]
+}

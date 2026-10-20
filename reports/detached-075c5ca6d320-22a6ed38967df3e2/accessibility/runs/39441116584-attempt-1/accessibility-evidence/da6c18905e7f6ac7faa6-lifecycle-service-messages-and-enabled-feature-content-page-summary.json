@@ -1,0 +1,444 @@
+{
+  "feature": "lifecycle",
+  "pageState": "service messages and enabled feature content",
+  "strict": true,
+  "url": "http://localhost:4200/coverage/lifecycle",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "needs-review",
+      "reviewCount": 1,
+      "reviewRules": [
+        "color-contrast"
+      ],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Lifecycle behaviour coverage"
+      },
+      {
+        "level": 2,
+        "text": "Service messages"
+      },
+      {
+        "level": 2,
+        "text": "English planned maintenance is available."
+      },
+      {
+        "level": 2,
+        "text": "Mae gwaith cynnal a chadw ar gael."
+      },
+      {
+        "level": 2,
+        "text": "English unaffected service message."
+      },
+      {
+        "level": 2,
+        "text": "Neges gwasanaeth Gymraeg heb ei heffeithio."
+      },
+      {
+        "level": 2,
+        "text": "Feature toggle"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Lifecycle behaviour coverageService messagesWarningEnglish planned maintenance is available.Mae gwaith cynnal a chadw ar gael.Hide messageWarningEnglish unaffected service message.",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Hide message",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Hide message",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Enable current feature",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Disable current feature",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Rebind feature",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Enable original feature",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Disable original feature",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/lifecycle",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Lifecycle behaviour coverage"
+      },
+      {
+        "role": "region",
+        "name": "Service messages"
+      },
+      {
+        "role": "region",
+        "name": "Feature toggle"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Lifecycle behaviour coverage"
+      },
+      {
+        "role": "heading",
+        "name": "Service messages"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Feature toggle"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Enable current feature"
+      },
+      {
+        "role": "button",
+        "name": "Disable current feature"
+      },
+      {
+        "role": "button",
+        "name": "Rebind feature"
+      },
+      {
+        "role": "button",
+        "name": "Enable original feature"
+      },
+      {
+        "role": "button",
+        "name": "Disable original feature"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Lifecycle behaviour coverage"
+      },
+      {
+        "role": "StaticText",
+        "name": "Service messages"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "image",
+        "name": "hmcts-warning-icon"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Warning"
+      },
+      {
+        "role": "heading",
+        "name": "English planned maintenance is available."
+      },
+      {
+        "role": "heading",
+        "name": "Mae gwaith cynnal a chadw ar gael."
+      },
+      {
+        "role": "link",
+        "name": "Hide message"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "image",
+        "name": "hmcts-warning-icon"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Warning"
+      },
+      {
+        "role": "heading",
+        "name": "English unaffected service message."
+      },
+      {
+        "role": "heading",
+        "name": "Neges gwasanaeth Gymraeg heb ei heffeithio."
+      },
+      {
+        "role": "link",
+        "name": "Hide message"
+      },
+      {
+        "role": "StaticText",
+        "name": "Feature toggle"
+      },
+      {
+        "role": "StaticText",
+        "name": "Active feature: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Enable current feature"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Disable current feature"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Rebind feature"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Enable original feature"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Disable original feature"
+      },
+      {
+        "role": "StaticText",
+        "name": "Feature content for commonlib-lifecycle-alpha"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Service messages"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Warning"
+      },
+      {
+        "role": "StaticText",
+        "name": "English "
+      },
+      {
+        "role": "strong",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " is available."
+      },
+      {
+        "role": "StaticText",
+        "name": "Mae "
+      },
+      {
+        "role": "strong",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " ar gael."
+      },
+      {
+        "role": "StaticText",
+        "name": "Hide message"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Warning"
+      },
+      {
+        "role": "StaticText",
+        "name": "English unaffected service message."
+      },
+      {
+        "role": "StaticText",
+        "name": "Neges gwasanaeth Gymraeg heb ei heffeithio."
+      },
+      {
+        "role": "StaticText",
+        "name": "Hide message"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Feature toggle"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Active feature: "
+      },
+      {
+        "role": "StaticText",
+        "name": "commonlib-lifecycle-alpha"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Enable current feature"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Disable current feature"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Rebind feature"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Enable original feature"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Disable original feature"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Feature content for commonlib-lifecycle-alpha"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "English "
+      },
+      {
+        "role": "StaticText",
+        "name": "planned maintenance"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " is available."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Mae "
+      },
+      {
+        "role": "StaticText",
+        "name": "gwaith cynnal a chadw"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " ar gael."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Hide message"
+      }
+    ]
+  }
+}

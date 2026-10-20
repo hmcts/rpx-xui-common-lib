@@ -1,0 +1,71 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-44283a0d44f941e9cf1d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/users/user-1",
+  "pageState": "skip link moves focus to the main-content target for /coverage/users/user-1",
+  "status": "issues-found",
+  "reviewCount": 5,
+  "reviewRules": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "findings": [
+    {
+      "rule": "dlitem",
+      "targets": [
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]",
+        "[\"div:nth-child(3) > dt\"]",
+        "[\"div:nth-child(3) > dd:nth-child(2)\"]",
+        "[\"div:nth-child(3) > dd:nth-child(3)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]"
+      ],
+      "summary": "<dt> and <dd> elements must be contained by a <dl>",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 15,
+  "rules": [
+    "dlitem"
+  ],
+  "targets": [
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]",
+    "[\"div:nth-child(3) > dt\"]",
+    "[\"div:nth-child(3) > dd:nth-child(2)\"]",
+    "[\"div:nth-child(3) > dd:nth-child(3)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/users/user-1",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "60b42e0d86800fcb826f-axe.html",
+  "jsonFileName": "60b42e0d86800fcb826f-axe.json",
+  "screenshotFileName": "60b42e0d86800fcb826f-axe.png",
+  "assetFileNames": [
+    "60b42e0d86800fcb826f-axe-style-1.css"
+  ]
+}

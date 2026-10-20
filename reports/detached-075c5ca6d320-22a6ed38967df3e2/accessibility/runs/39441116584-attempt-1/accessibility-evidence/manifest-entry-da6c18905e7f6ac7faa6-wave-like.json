@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-588cd3d99e2d83442802",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "lifecycle",
+  "pageState": "service messages and enabled feature content",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "lifecycle — service messages and enabled feature content",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "da6c18905e7f6ac7faa6-wave-like.html",
+  "jsonFileName": "da6c18905e7f6ac7faa6-wave-like.json",
+  "screenshotFileName": "da6c18905e7f6ac7faa6-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "da6c18905e7f6ac7faa6-wave-like-style-1.css"
+  ]
+}

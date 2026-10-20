@@ -1,0 +1,52 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-1624cf067bec5025de55",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "search judicials",
+  "pageState": "expanded suggestions",
+  "status": "issues-found",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [
+    {
+      "rule": "aria-required-attr",
+      "targets": [
+        "[\"#inputSelectPersonjudicials\"]"
+      ],
+      "summary": "Required ARIA attributes must be provided",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "region",
+      "targets": [
+        "[\".cdk-overlay-container\"]"
+      ],
+      "summary": "All page content should be contained by landmarks",
+      "anchor": "issue-2"
+    }
+  ],
+  "violationCount": 2,
+  "rules": [
+    "aria-required-attr",
+    "region"
+  ],
+  "targets": [
+    "[\"#inputSelectPersonjudicials\"]",
+    "[\".cdk-overlay-container\"]"
+  ],
+  "testTitle": "search judicials — expanded suggestions",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "6b425bb47eff8241fa64-axe.html",
+  "jsonFileName": "6b425bb47eff8241fa64-axe.json",
+  "screenshotFileName": "6b425bb47eff8241fa64-axe.png",
+  "assetFileNames": [
+    "6b425bb47eff8241fa64-axe-style-1.css"
+  ]
+}

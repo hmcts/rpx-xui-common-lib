@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-ef06c773769dc256dbe0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "invitation",
+  "pageState": "submitted details and permissions",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/invitation"
+  ],
+  "testTitle": "invitation — submitted details and permissions",
+  "attachmentPrefix": "invitation-submitted-details-and-permissions-page-summary",
+  "htmlFileName": "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.html",
+  "jsonFileName": "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.json",
+  "screenshotFileName": "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary.png",
+  "assetFileNames": [
+    "ffed1ef861e2871cb550-invitation-submitted-details-and-permissions-page-summary-style-1.css"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-71ab8533e48bc8fd76d0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/service-contract-b",
+  "pageState": "skip link moves focus to the main-content target for /coverage/service-contract-b",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/service-contract-b"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/service-contract-b",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-b-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-b-page-summary",
+  "htmlFileName": "74f6583c463a2af32c4b-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-b-skip-link-moves-foc.html",
+  "jsonFileName": "74f6583c463a2af32c4b-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-b-skip-link-moves-foc.json",
+  "screenshotFileName": "74f6583c463a2af32c4b-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-b-skip-link-moves-foc.png",
+  "assetFileNames": [
+    "74f6583c463a2af32c4b-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-b-skip-link-moves-foc-style-1.css"
+  ]
+}

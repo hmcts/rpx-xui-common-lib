@@ -1,0 +1,76 @@
+{
+  "title": "skip link moves focus to the main-content target for /coverage/advanced-filter",
+  "url": "http://localhost:4200/coverage/advanced-filter",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "issues-found",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 1,
+      "rules": [
+        "heading-order"
+      ]
+    },
+    {
+      "engine": "wave-like",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "heading-order",
+        "duplicate-id"
+      ]
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "incompleteCount": 0,
+  "published": {
+    "context": {
+      "scenarioId": "952c03097f06ee496f4e-f82404b38a6ee902cc0d",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "skip link moves focus to the main-content target for /coverage/advanced-filter",
+    "pageState": "skip link moves focus to the main-content target for /coverage/advanced-filter",
+    "violationCount": 3,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:heading-order",
+      "wave-like:heading-order",
+      "wave-like:duplicate-id"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/advanced-filter"
+    ],
+    "testTitle": "skip link moves focus to the main-content target for /coverage/advanced-filter",
+    "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-advanced-filter-skip-link-moves-focus-to-the-main-content-target-for-coverage-advanced-filter-page-summary",
+    "htmlFileName": "171a09db1fe0654fdc9e-skip-link-moves-focus-to-the-main-content-target-for-coverage-advanced-filter-skip-link-moves-focus-.html",
+    "jsonFileName": "171a09db1fe0654fdc9e-skip-link-moves-focus-to-the-main-content-target-for-coverage-advanced-filter-skip-link-moves-focus-.json",
+    "screenshotFileName": "171a09db1fe0654fdc9e-skip-link-moves-focus-to-the-main-content-target-for-coverage-advanced-filter-skip-link-moves-focus-.png",
+    "assetFileNames": [
+      "171a09db1fe0654fdc9e-skip-link-moves-focus-to-the-main-content-target-for-coverage-advanced-filter-skip-link-moves-focus--style-1.css"
+    ]
+  }
+}

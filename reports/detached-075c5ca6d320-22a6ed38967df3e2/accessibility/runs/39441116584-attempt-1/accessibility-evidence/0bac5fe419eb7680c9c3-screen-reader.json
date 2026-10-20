@@ -1,0 +1,467 @@
+{
+  "url": "http://localhost:4200/coverage/primitives",
+  "violations": [
+    {
+      "rule": "main-landmark",
+      "message": "Expected exactly one visible main landmark, found 2."
+    },
+    {
+      "rule": "aria-reference-target",
+      "message": "aria-describedby references missing id(s): notes-hint.",
+      "selector": "#notes",
+      "html": "<textarea name=\"more-detail\" class=\"govuk-textarea ng-untouched ng-pristine ng-valid\" id=\"notes\" rows=\"3\" aria-describedby=\"notes-hint\" style=\"\"></textarea>"
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Primitives coverage demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form value"
+      },
+      {
+        "level": 1,
+        "text": "Choice details"
+      },
+      {
+        "level": 1,
+        "text": "Main wrapper"
+      },
+      {
+        "level": 2,
+        "text": "Paginated records"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Primitives coverage demoNotes Synthetic notes. Notification channels Email alerts SMS alerts UrgencyRoutineUrgent Toggle supplied errors Disabled value Toggle disabled control Pare",
+        "selector": "#main-content"
+      },
+      {
+        "role": "main",
+        "name": "Main wrapperProjected main-wrapper content",
+        "selector": "#content"
+      },
+      {
+        "role": "nav",
+        "name": "Pagination navigation1page 2page 3Next pageShowing 1 to 2 of 5 results",
+        "selector": "#pagination-label"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "textarea",
+        "name": "Notes",
+        "selector": "#notes",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Email alerts",
+        "selector": "#email-alerts",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "SMS alerts",
+        "selector": "#sms-alerts",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "Routine",
+        "selector": "#routine",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "Urgent",
+        "selector": "#urgent",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle supplied errors",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Disabled value",
+        "selector": "#disabled-field",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle disabled control",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Case 1001",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Case 1002",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle identity",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Reduce records",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle pagination displays",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/primitives",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Primitives coverage demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Notes"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Urgency"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Disabled value"
+      },
+      {
+        "role": "button",
+        "name": "Toggle disabled control"
+      },
+      {
+        "role": "heading",
+        "name": "Parent form value"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Projected fieldsets"
+      },
+      {
+        "role": "table",
+        "name": "Primitive records"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Toggle identity"
+      },
+      {
+        "role": "link",
+        "name": "Back"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Paginated records"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "navigation",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Reduce records"
+      },
+      {
+        "role": "button",
+        "name": "Toggle pagination displays"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Primitives coverage demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Notes"
+      },
+      {
+        "role": "StaticText",
+        "name": "Synthetic notes."
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Notification channels"
+      },
+      {
+        "role": "checkbox",
+        "name": "Email alerts"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "checkbox",
+        "name": "SMS alerts"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Toggle supplied errors"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Disabled value"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle disabled control"
+      },
+      {
+        "role": "StaticText",
+        "name": "Parent form value"
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"notes\": \"Original notes\",\n  \"notifications\": [\n    \"sms\"\n  ],\n  \"urgency\": \"routine\",\n  \"preserved\": \"preserved\",\n  \"disabledField\": \"Unavailable value\"\n}"
+      },
+      {
+        "role": "group",
+        "name": "Contact details"
+      },
+      {
+        "role": "group",
+        "name": "Choice details"
+      },
+      {
+        "role": "caption",
+        "name": ""
+      },
+      {
+        "role": "rowgroup",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "row",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle identity"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Back"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      }
+    ]
+  }
+}

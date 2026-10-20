@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-7f4054627f7915be5349",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/invitation",
+  "pageState": "skip link moves focus to the main-content target for /coverage/invitation",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/invitation"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/invitation",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-invitation-skip-link-moves-focus-to-the-main-content-target-for-coverage-invitation-page-summary",
+  "htmlFileName": "6f1a83b971996a6d012f-skip-link-moves-focus-to-the-main-content-target-for-coverage-invitation-skip-link-moves-focus-to-th.html",
+  "jsonFileName": "6f1a83b971996a6d012f-skip-link-moves-focus-to-the-main-content-target-for-coverage-invitation-skip-link-moves-focus-to-th.json",
+  "screenshotFileName": "6f1a83b971996a6d012f-skip-link-moves-focus-to-the-main-content-target-for-coverage-invitation-skip-link-moves-focus-to-th.png",
+  "assetFileNames": [
+    "6f1a83b971996a6d012f-skip-link-moves-focus-to-the-main-content-target-for-coverage-invitation-skip-link-moves-focus-to-th-style-1.css"
+  ]
+}

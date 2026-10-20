@@ -1,0 +1,42 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-0716375e61ab5dc94c01",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/selected-cases",
+  "pageState": "skip link moves focus to the main-content target for /coverage/selected-cases",
+  "status": "issues-found",
+  "reviewCount": 2,
+  "reviewRules": [
+    "aria-prohibited-attr"
+  ],
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "[\"#case-title-DEMO-001\"]"
+      ],
+      "summary": "Heading levels should only increase by one",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 1,
+  "rules": [
+    "heading-order"
+  ],
+  "targets": [
+    "[\"#case-title-DEMO-001\"]"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/selected-cases",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "7d50d86f2a9ac5317154-axe.html",
+  "jsonFileName": "7d50d86f2a9ac5317154-axe.json",
+  "screenshotFileName": "7d50d86f2a9ac5317154-axe.png",
+  "assetFileNames": [
+    "7d50d86f2a9ac5317154-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "invitation",
+  "pageState": "parent validation errors",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "invitation — parent validation errors",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "084e7985cdee6a829b25-axe.html",
+  "jsonFileName": "084e7985cdee6a829b25-axe.json",
+  "screenshotFileName": "084e7985cdee6a829b25-axe.png",
+  "assetFileNames": [
+    "084e7985cdee6a829b25-axe-style-1.css"
+  ]
+}

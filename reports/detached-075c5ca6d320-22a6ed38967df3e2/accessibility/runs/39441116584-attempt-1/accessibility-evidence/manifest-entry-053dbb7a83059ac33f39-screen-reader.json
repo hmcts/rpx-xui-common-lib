@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-1c714c3c3bfc910489db",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "advanced filter",
+  "pageState": "conditional detail visible",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "advanced filter — conditional detail visible",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "053dbb7a83059ac33f39-screen-reader.html",
+  "jsonFileName": "053dbb7a83059ac33f39-screen-reader.json",
+  "screenshotFileName": "053dbb7a83059ac33f39-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "053dbb7a83059ac33f39-screen-reader-style-1.css"
+  ]
+}

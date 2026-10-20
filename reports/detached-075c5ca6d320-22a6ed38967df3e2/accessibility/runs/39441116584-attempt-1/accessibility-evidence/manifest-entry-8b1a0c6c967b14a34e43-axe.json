@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-f9637579684f3bad5122",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "cookies",
+  "pageState": "choice banner",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "cookies — choice banner",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "8b1a0c6c967b14a34e43-axe.html",
+  "jsonFileName": "8b1a0c6c967b14a34e43-axe.json",
+  "screenshotFileName": "8b1a0c6c967b14a34e43-axe.png",
+  "assetFileNames": [
+    "8b1a0c6c967b14a34e43-axe-style-1.css"
+  ]
+}

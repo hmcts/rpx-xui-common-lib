@@ -1,0 +1,32 @@
+{
+  "url": "http://localhost:4200/coverage/public-contracts",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Public component contract demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Public component contract demoChoose a service"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "Choose a service",
+        "selector": "#inputServiceSearch"
+      }
+    ]
+  },
+  "violations": []
+}

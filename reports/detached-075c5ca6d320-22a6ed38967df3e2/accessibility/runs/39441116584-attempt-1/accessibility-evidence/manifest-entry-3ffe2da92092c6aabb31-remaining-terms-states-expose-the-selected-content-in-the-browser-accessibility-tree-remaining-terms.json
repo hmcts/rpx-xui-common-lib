@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-d1587e0ef70292c89b24",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "remaining terms states expose the selected content in the browser accessibility tree",
+  "pageState": "remaining terms states expose the selected content in the browser accessibility tree",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage?feature=terms-html"
+  ],
+  "testTitle": "remaining terms states expose the selected content in the browser accessibility tree",
+  "attachmentPrefix": "remaining-terms-states-expose-the-selected-content-in-the-browser-accessibility-tree-remaining-terms-states-expose-the-selected-content-in-the-browser-accessibility-tree-page-summary",
+  "htmlFileName": "3ffe2da92092c6aabb31-remaining-terms-states-expose-the-selected-content-in-the-browser-accessibility-tree-remaining-terms.html",
+  "jsonFileName": "3ffe2da92092c6aabb31-remaining-terms-states-expose-the-selected-content-in-the-browser-accessibility-tree-remaining-terms.json",
+  "screenshotFileName": "3ffe2da92092c6aabb31-remaining-terms-states-expose-the-selected-content-in-the-browser-accessibility-tree-remaining-terms.png",
+  "assetFileNames": [
+    "3ffe2da92092c6aabb31-remaining-terms-states-expose-the-selected-content-in-the-browser-accessibility-tree-remaining-terms-style-1.css"
+  ]
+}

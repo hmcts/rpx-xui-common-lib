@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-106720ebe7a69d7881b0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "filter",
+  "pageState": "initial controls",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "filter — initial controls",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "5803c38c5ee18792ce92-axe.html",
+  "jsonFileName": "5803c38c5ee18792ce92-axe.json",
+  "screenshotFileName": "5803c38c5ee18792ce92-axe.png",
+  "assetFileNames": [
+    "5803c38c5ee18792ce92-axe-style-1.css"
+  ]
+}

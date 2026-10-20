@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-23229782a550f6f6d0ad",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "pageState": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "violationCount": 1,
+  "status": "issues-found",
+  "rules": [
+    "aria-reference-target"
+  ],
+  "targets": [
+    "#case-notes"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "8830f025959562d21f03-screen-reader.html",
+  "jsonFileName": "8830f025959562d21f03-screen-reader.json",
+  "screenshotFileName": "8830f025959562d21f03-screen-reader.png",
+  "findings": [
+    {
+      "rule": "aria-reference-target",
+      "targets": [
+        "#case-notes"
+      ],
+      "summary": "aria-describedby references missing id(s): case-notes-hint.",
+      "anchor": "issue-1"
+    }
+  ],
+  "assetFileNames": [
+    "8830f025959562d21f03-screen-reader-style-1.css"
+  ]
+}

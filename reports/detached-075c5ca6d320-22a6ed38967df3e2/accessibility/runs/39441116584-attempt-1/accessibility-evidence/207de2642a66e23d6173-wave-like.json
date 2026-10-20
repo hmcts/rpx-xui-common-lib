@@ -1,0 +1,82 @@
+{
+  "url": "http://localhost:4200/coverage?feature=filter",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Generic filter"
+      },
+      {
+        "level": 3,
+        "text": "Service"
+      },
+      {
+        "level": 3,
+        "text": "Priority"
+      },
+      {
+        "level": 3,
+        "text": "Region"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "role": "main",
+        "text": "Generic filter Service CivilFamily Priority UrgentNormal Region LondonNorthApply filtersCancel changesnull"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Civil",
+        "selector": "#checkbox_servicecivil"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Family",
+        "selector": "#checkbox_servicefamily"
+      },
+      {
+        "type": "radio input",
+        "name": "Urgent",
+        "selector": "#radio_urgent"
+      },
+      {
+        "type": "radio input",
+        "name": "Normal",
+        "selector": "#radio_normal"
+      },
+      {
+        "type": "select",
+        "name": "Region LondonNorth",
+        "selector": "#select_region"
+      },
+      {
+        "type": "button",
+        "name": "Apply filters",
+        "selector": "#applyFilter"
+      },
+      {
+        "type": "button",
+        "name": "Cancel changes",
+        "selector": "#cancelFilter"
+      }
+    ]
+  },
+  "violations": []
+}

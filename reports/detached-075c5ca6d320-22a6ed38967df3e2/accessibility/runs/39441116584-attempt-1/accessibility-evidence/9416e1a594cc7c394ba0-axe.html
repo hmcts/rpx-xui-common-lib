@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Axe accessibility evidence</title><link rel="stylesheet" href="9416e1a594cc7c394ba0-axe-style-1.css"></head><body><a class="skip-link" href="#evidence-content">Skip to evidence</a>
+    <header><h1>Axe accessibility evidence</h1><p>2 violated rule(s); 1 rule(s) need investigation.</p></header>
+    <main id="evidence-content" tabindex="-1"><p><a href="../index.html">Back to Odhín report</a></p>
+      <p><strong>Page:</strong> http://localhost:4200/coverage/searches?feature=person&amp;domain=judicial&amp;exclude=true</p><p>Automated checks cover part of WCAG 2.2 A/AA, including retained WCAG 2.0 and 2.1 criteria. This is not a conformance verdict. DOM targets are evidence clues, not verified source-file locations.</p>
+      <nav aria-label="Findings"><ul><li><a href="#issue-1">1. Required ARIA attributes must be provided</a></li><li><a href="#issue-2">2. All page content should be contained by landmarks</a></li><li><a href="#issue-3">3. Elements must meet minimum color contrast ratio thresholds</a></li></ul></nav>
+      <section class="issue " id="issue-1" tabindex="-1">
+      <h2>1. Required ARIA attributes must be provided</h2>
+      <p><strong>Automatically detected violation</strong> · critical</p>
+      <p>Ensure elements with ARIA roles have all required ARIA attributes</p>
+      <p><strong>Rule:</strong> aria-required-attr. <strong>WCAG criterion number(s):</strong> 4.1.2. <strong>Engine version/level tags:</strong> WCAG 2.0 A</p>
+      <p><strong>Potential solution:</strong> Use the failing check details and rule-specific examples to correct the affected markup, styles or interaction.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/aria-required-attr?application=playwright">aria-required-attr: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.1</dd>
+          <dt>Where to look</dt><dd><code>#inputSelectPerson</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Required ARIA attribute not present: aria-controls</dd></dl>
+        <ul><li>Required ARIA attribute not present: aria-controls</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;input _ngcontent-ng-c42013905=&quot;&quot; type=&quot;text&quot; aria-label=&quot;select a person&quot; formcontrolname=&quot;findPersonControl&quot; class=&quot;mat-autocomplete-trigger govuk-input govuk-!-width-one-third ng-untouched ng-valid ng-dirty&quot; id=&quot;inputSelectPerson&quot; placeholder=&quot;&quot; autocomplete=&quot;off&quot; role=&quot;combobox&quot; aria-autocomplete=&quot;list&quot; aria-expanded=&quot;true&quot; aria-haspopup=&quot;listbox&quot; aria-activedescendant=&quot;mat-option-0&quot; aria-owns=&quot;mat-autocomplete-0&quot;&gt;</pre></details>
+      </li></ol>
+    </section><section class="issue " id="issue-2" tabindex="-1">
+      <h2>2. All page content should be contained by landmarks</h2>
+      <p><strong>Automatically detected violation</strong> · moderate</p>
+      <p>Ensure all page content is contained by landmarks</p>
+      <p><strong>Rule:</strong> region. <strong>WCAG criterion number(s):</strong> Not supplied by engine. <strong>Engine version/level tags:</strong> Not supplied</p>
+      <p><strong>Potential solution:</strong> Use the failing check details and rule-specific examples to correct the affected markup, styles or interaction.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/region?application=playwright">region: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>2.1</dd>
+          <dt>Where to look</dt><dd><code>.cdk-overlay-container</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Some page content is not contained by landmarks</dd></dl>
+        <ul><li>Some page content is not contained by landmarks</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;div class=&quot;cdk-overlay-container&quot;&gt;</pre></details>
+      </li></ol>
+    </section><section class="issue review" id="issue-3" tabindex="-1">
+      <h2>3. Elements must meet minimum color contrast ratio thresholds</h2>
+      <p><strong>Needs investigation — not a confirmed failure</strong> · serious</p>
+      <p>Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds</p>
+      <p><strong>Rule:</strong> color-contrast. <strong>WCAG criterion number(s):</strong> 1.4.3. <strong>Engine version/level tags:</strong> WCAG 2.0 AA</p>
+      <p><strong>Potential solution:</strong> Determine whether the reported condition is a failure before changing the page. Use the check details and rule-specific examples.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright">color-contrast: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>3.1</dd>
+          <dt>Where to look</dt><dd><code>span</code></dd>
+          <dt>What needs checking</dt><dd>Fix any of the following:
+  Element&#39;s background color could not be determined because it is overlapped by another element</dd></dl>
+        <ul><li>Element&#39;s background color could not be determined because it is overlapped by another element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;span class=&quot;mat-option-text&quot;&gt; Judge Alex Taylor (alex@example.test) &lt;/span&gt;</pre></details>
+      </li></ol>
+    </section><p><a href="../index.html">Back to Odhín report</a></p>
+    </main></body></html>

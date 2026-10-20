@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f0da1badef792dbf86a8",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "find person",
+  "pageState": "expanded judicial suggestions",
+  "violationCount": 1,
+  "rules": [
+    "text-spacing-clipping"
+  ],
+  "targets": [
+    "#mat-option-0 > span:nth-of-type(1)"
+  ],
+  "testTitle": "find person — expanded judicial suggestions",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "9416e1a594cc7c394ba0-wave-like.html",
+  "jsonFileName": "9416e1a594cc7c394ba0-wave-like.json",
+  "screenshotFileName": "9416e1a594cc7c394ba0-wave-like.png",
+  "findings": [
+    {
+      "rule": "text-spacing-clipping",
+      "targets": [
+        "#mat-option-0 > span:nth-of-type(1)"
+      ],
+      "summary": "Text becomes clipped by overflow:hidden/clip after WCAG 1.4.12 spacing overrides (layout heuristic; confirm visually).",
+      "anchor": "issue-1"
+    }
+  ],
+  "assetFileNames": [
+    "9416e1a594cc7c394ba0-wave-like-style-1.css"
+  ]
+}

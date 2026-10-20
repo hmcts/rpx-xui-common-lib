@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-9f46931c55c002aefc92",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/extended-controls",
+  "pageState": "skip link moves focus to the main-content target for /coverage/extended-controls",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/extended-controls"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/extended-controls",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-extended-controls-skip-link-moves-focus-to-the-main-content-target-for-coverage-extended-controls-page-summary",
+  "htmlFileName": "9cfe333a493e502587e6-skip-link-moves-focus-to-the-main-content-target-for-coverage-extended-controls-skip-link-moves-focu.html",
+  "jsonFileName": "9cfe333a493e502587e6-skip-link-moves-focus-to-the-main-content-target-for-coverage-extended-controls-skip-link-moves-focu.json",
+  "screenshotFileName": "9cfe333a493e502587e6-skip-link-moves-focus-to-the-main-content-target-for-coverage-extended-controls-skip-link-moves-focu.png",
+  "assetFileNames": [
+    "9cfe333a493e502587e6-skip-link-moves-focus-to-the-main-content-target-for-coverage-extended-controls-skip-link-moves-focu-style-1.css"
+  ]
+}

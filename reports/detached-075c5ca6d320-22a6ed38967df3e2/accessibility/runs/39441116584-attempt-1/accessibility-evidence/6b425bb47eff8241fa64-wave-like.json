@@ -1,0 +1,37 @@
+{
+  "url": "http://localhost:4200/coverage/searches?feature=judicials",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Search component demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Search component demoChoose a judicial usernull[]"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "Choose a judicial user",
+        "selector": "#inputSelectPersonjudicials"
+      },
+      {
+        "type": "mat-option",
+        "name": "Judge Alex Taylor (alex@example.test)",
+        "selector": "#mat-option-0"
+      }
+    ]
+  },
+  "violations": []
+}

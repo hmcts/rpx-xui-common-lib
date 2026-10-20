@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-a7d39bd4632646e0590e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=pagination",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=pagination",
+  "status": "needs-review",
+  "reviewCount": 1,
+  "reviewRules": [
+    "aria-prohibited-attr"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage?feature=pagination",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "bed41e3f4d1db39dcd30-axe.html",
+  "jsonFileName": "bed41e3f4d1db39dcd30-axe.json",
+  "screenshotFileName": "bed41e3f4d1db39dcd30-axe.png",
+  "assetFileNames": [
+    "bed41e3f4d1db39dcd30-axe-style-1.css"
+  ]
+}

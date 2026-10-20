@@ -1,0 +1,246 @@
+{
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=pagination",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=pagination",
+  "strict": true,
+  "url": "http://localhost:4200/coverage?feature=pagination",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "needs-review",
+      "reviewCount": 1,
+      "reviewRules": [
+        "aria-prohibited-attr"
+      ],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 2,
+        "text": "Pagination"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "PaginationPagination navigationPrevious pageNext pagePage 1",
+        "selector": "#main-content"
+      },
+      {
+        "role": "nav",
+        "name": "Pagination navigationPrevious pageNext page",
+        "selector": "#pagination-label"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Next page",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage?feature=pagination",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "heading",
+        "name": "Pagination"
+      },
+      {
+        "role": "navigation",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Pagination"
+      },
+      {
+        "role": "paragraph",
+        "name": " Pagination navigation  Previous page Next page"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Page 1"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Pagination"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Pagination navigation"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Page 1"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Pagination navigation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "ListMarker",
+        "name": "• "
+      },
+      {
+        "role": "StaticText",
+        "name": "Previous page"
+      },
+      {
+        "role": "ListMarker",
+        "name": "• "
+      },
+      {
+        "role": "link",
+        "name": "Next page"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Previous page"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Next page"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Next page"
+      }
+    ]
+  }
+}

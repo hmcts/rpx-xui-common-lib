@@ -1,0 +1,42 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-ffc5dcbc7e192e860f96",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /home",
+  "pageState": "skip link moves focus to the main-content target for /home",
+  "status": "issues-found",
+  "reviewCount": 1,
+  "reviewRules": [
+    "aria-prohibited-attr"
+  ],
+  "findings": [
+    {
+      "rule": "color-contrast",
+      "targets": [
+        "[\".due-date\"]"
+      ],
+      "summary": "Elements must meet minimum color contrast ratio thresholds",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 1,
+  "rules": [
+    "color-contrast"
+  ],
+  "targets": [
+    "[\".due-date\"]"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /home",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "4a4584dd7adf959392f0-axe.html",
+  "jsonFileName": "4a4584dd7adf959392f0-axe.json",
+  "screenshotFileName": "4a4584dd7adf959392f0-axe.png",
+  "assetFileNames": [
+    "4a4584dd7adf959392f0-axe-style-1.css"
+  ]
+}

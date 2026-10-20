@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-518f7a6141bc78ad4b02",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/service-selection",
+  "pageState": "skip link moves focus to the main-content target for /coverage/service-selection",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/service-selection"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/service-selection",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-service-selection-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-selection-page-summary",
+  "htmlFileName": "579a2a3273a025fe7ebd-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-selection-skip-link-moves-focu.html",
+  "jsonFileName": "579a2a3273a025fe7ebd-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-selection-skip-link-moves-focu.json",
+  "screenshotFileName": "579a2a3273a025fe7ebd-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-selection-skip-link-moves-focu.png",
+  "assetFileNames": [
+    "579a2a3273a025fe7ebd-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-selection-skip-link-moves-focu-style-1.css"
+  ]
+}

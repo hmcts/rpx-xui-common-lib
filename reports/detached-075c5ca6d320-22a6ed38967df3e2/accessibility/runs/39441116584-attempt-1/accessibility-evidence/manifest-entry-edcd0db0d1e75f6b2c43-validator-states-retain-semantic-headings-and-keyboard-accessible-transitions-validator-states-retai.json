@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-8cd9813cc452e551561e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "validator states retain semantic headings and keyboard-accessible transitions",
+  "pageState": "validator states retain semantic headings and keyboard-accessible transitions",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/validators"
+  ],
+  "testTitle": "validator states retain semantic headings and keyboard-accessible transitions",
+  "attachmentPrefix": "validator-states-retain-semantic-headings-and-keyboard-accessible-transitions-validator-states-retain-semantic-headings-and-keyboard-accessible-transitions-page-summary",
+  "htmlFileName": "edcd0db0d1e75f6b2c43-validator-states-retain-semantic-headings-and-keyboard-accessible-transitions-validator-states-retai.html",
+  "jsonFileName": "edcd0db0d1e75f6b2c43-validator-states-retain-semantic-headings-and-keyboard-accessible-transitions-validator-states-retai.json",
+  "screenshotFileName": "edcd0db0d1e75f6b2c43-validator-states-retain-semantic-headings-and-keyboard-accessible-transitions-validator-states-retai.png",
+  "assetFileNames": [
+    "edcd0db0d1e75f6b2c43-validator-states-retain-semantic-headings-and-keyboard-accessible-transitions-validator-states-retai-style-1.css"
+  ]
+}

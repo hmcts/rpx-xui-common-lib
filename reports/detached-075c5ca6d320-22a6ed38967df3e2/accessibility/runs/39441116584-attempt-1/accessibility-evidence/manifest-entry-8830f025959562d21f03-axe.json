@@ -1,0 +1,30 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-23229782a550f6f6d0ad",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "pageState": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "status": "needs-review",
+  "reviewCount": 2,
+  "reviewRules": [
+    "aria-valid-attr-value",
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "8830f025959562d21f03-axe.html",
+  "jsonFileName": "8830f025959562d21f03-axe.json",
+  "screenshotFileName": "8830f025959562d21f03-axe.png",
+  "assetFileNames": [
+    "8830f025959562d21f03-axe-style-1.css"
+  ]
+}

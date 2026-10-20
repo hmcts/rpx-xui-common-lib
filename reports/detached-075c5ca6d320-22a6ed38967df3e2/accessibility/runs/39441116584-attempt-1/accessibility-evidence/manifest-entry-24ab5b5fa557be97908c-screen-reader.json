@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-7ce98eda727c270389bc",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "case sharing",
+  "pageState": "pending addition",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "case sharing — pending addition",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "24ab5b5fa557be97908c-screen-reader.html",
+  "jsonFileName": "24ab5b5fa557be97908c-screen-reader.json",
+  "screenshotFileName": "24ab5b5fa557be97908c-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "24ab5b5fa557be97908c-screen-reader-style-1.css"
+  ]
+}

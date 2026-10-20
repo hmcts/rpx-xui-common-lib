@@ -1,0 +1,33 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-1c714c3c3bfc910489db",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "advanced filter",
+  "pageState": "conditional detail visible",
+  "violationCount": 3,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 3 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:heading-order",
+    "wave-like:heading-order",
+    "wave-like:duplicate-id"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/advanced-filter?contract=conditional"
+  ],
+  "testTitle": "advanced filter — conditional detail visible",
+  "attachmentPrefix": "advanced-filter-conditional-detail-visible-page-summary",
+  "htmlFileName": "053dbb7a83059ac33f39-advanced-filter-conditional-detail-visible-page-summary.html",
+  "jsonFileName": "053dbb7a83059ac33f39-advanced-filter-conditional-detail-visible-page-summary.json",
+  "screenshotFileName": "053dbb7a83059ac33f39-advanced-filter-conditional-detail-visible-page-summary.png",
+  "assetFileNames": [
+    "053dbb7a83059ac33f39-advanced-filter-conditional-detail-visible-page-summary-style-1.css"
+  ]
+}

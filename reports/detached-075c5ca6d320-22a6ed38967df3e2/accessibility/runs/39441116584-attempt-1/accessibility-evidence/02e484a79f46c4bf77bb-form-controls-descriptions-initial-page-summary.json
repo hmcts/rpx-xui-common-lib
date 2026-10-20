@@ -1,0 +1,428 @@
+{
+  "feature": "form controls",
+  "pageState": "descriptions initial",
+  "strict": true,
+  "url": "http://localhost:4200/coverage/form-controls",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "needs-review",
+      "reviewCount": 2,
+      "reviewRules": [
+        "aria-valid-attr-value",
+        "color-contrast"
+      ],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "aria-reference-target",
+        "component-description"
+      ]
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Form controls demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form values"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Form controls demoError messages are supplied by the demo parent. Date validity uses the library's own validator.Priority Choose how soon to review. RoutineUrgentCase notes Include",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "select",
+        "name": "Priority RoutineUrgent",
+        "selector": "#priority",
+        "tabIndex": 0
+      },
+      {
+        "type": "textarea",
+        "name": "Case notes",
+        "selector": "#case-notes",
+        "tabIndex": 0
+      },
+      {
+        "type": "file input",
+        "name": "Supporting file",
+        "selector": "#supportingFile",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle supplied errors",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Day",
+        "selector": "#hearing-day",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Month",
+        "selector": "#hearing-month",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Year",
+        "selector": "#hearing-year",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/form-controls",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Form controls demo"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "combobox",
+        "name": "Priority"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Case notes"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Supporting file"
+      },
+      {
+        "role": "button",
+        "name": "Toggle supplied errors"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Parent form values"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Form controls demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Error messages are supplied by the demo parent. Date validity uses the library's own validator."
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Priority"
+      },
+      {
+        "role": "StaticText",
+        "name": "Choose how soon to review. "
+      },
+      {
+        "role": "MenuListPopup",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Case notes"
+      },
+      {
+        "role": "StaticText",
+        "name": "Include only synthetic notes."
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Supporting file"
+      },
+      {
+        "role": "StaticText",
+        "name": "Choose a synthetic text file. "
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle supplied errors"
+      },
+      {
+        "role": "group",
+        "name": "Hearing date (optional)"
+      },
+      {
+        "role": "StaticText",
+        "name": "Parent form values"
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"priority\": \"routine\",\n  \"notes\": \"\",\n  \"supportingFile\": \"\",\n  \"untouched\": \"preserved\"\n}"
+      },
+      {
+        "role": "StaticText",
+        "name": "Date valid: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"hearing_day\": \"\",\n  \"hearing_month\": \"\",\n  \"hearing_year\": \"\"\n}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Form controls demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Error messages are supplied by the demo parent. Date validity uses the library's own validator."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Priority"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Choose how soon to review. "
+      },
+      {
+        "role": "option",
+        "name": "Routine"
+      },
+      {
+        "role": "option",
+        "name": "Urgent"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Case notes"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Include only synthetic notes."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Supporting file"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Choose a synthetic text file. "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Toggle supplied errors"
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Parent form values"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"priority\": \"routine\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"notes\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"supportingFile\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"untouched\": \"preserved\""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Date valid: "
+      },
+      {
+        "role": "StaticText",
+        "name": "true"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"hearing_day\": \"\","
+      }
+    ]
+  }
+}

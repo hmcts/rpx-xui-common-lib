@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-61ff57397975ea90b153",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "feedback",
+  "pageState": "success and warning banners",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "feedback — success and warning banners",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "b6d7c4986c371f1daacf-wave-like.html",
+  "jsonFileName": "b6d7c4986c371f1daacf-wave-like.json",
+  "screenshotFileName": "b6d7c4986c371f1daacf-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "b6d7c4986c371f1daacf-wave-like-style-1.css"
+  ]
+}

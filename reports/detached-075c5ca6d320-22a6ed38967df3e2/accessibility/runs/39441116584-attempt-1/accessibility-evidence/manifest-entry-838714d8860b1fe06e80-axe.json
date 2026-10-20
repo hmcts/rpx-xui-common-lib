@@ -1,0 +1,42 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "home",
+  "pageState": "initial components",
+  "status": "issues-found",
+  "reviewCount": 1,
+  "reviewRules": [
+    "aria-prohibited-attr"
+  ],
+  "findings": [
+    {
+      "rule": "color-contrast",
+      "targets": [
+        "[\".due-date\"]"
+      ],
+      "summary": "Elements must meet minimum color contrast ratio thresholds",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 1,
+  "rules": [
+    "color-contrast"
+  ],
+  "targets": [
+    "[\".due-date\"]"
+  ],
+  "testTitle": "home — initial components",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "838714d8860b1fe06e80-axe.html",
+  "jsonFileName": "838714d8860b1fe06e80-axe.json",
+  "screenshotFileName": "838714d8860b1fe06e80-axe.png",
+  "assetFileNames": [
+    "838714d8860b1fe06e80-axe-style-1.css"
+  ]
+}

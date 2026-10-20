@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-b78b2fd6f88136efaabe",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "pageState": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "violationCount": 1,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 1 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:error-describedby"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=form-group"
+  ],
+  "testTitle": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "attachmentPrefix": "form-group-wrapper-exposes-its-group-name-descriptions-and-keyboard-target-form-group-wrapper-exposes-its-group-name-descriptions-and-keyboard-target-page-summary",
+  "htmlFileName": "7c21653d59869ff1e6ca-form-group-wrapper-exposes-its-group-name-descriptions-and-keyboard-target-form-group-wrapper-expose.html",
+  "jsonFileName": "7c21653d59869ff1e6ca-form-group-wrapper-exposes-its-group-name-descriptions-and-keyboard-target-form-group-wrapper-expose.json",
+  "screenshotFileName": "7c21653d59869ff1e6ca-form-group-wrapper-exposes-its-group-name-descriptions-and-keyboard-target-form-group-wrapper-expose.png",
+  "assetFileNames": [
+    "7c21653d59869ff1e6ca-form-group-wrapper-exposes-its-group-name-descriptions-and-keyboard-target-form-group-wrapper-expose-style-1.css"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-29036d87aa2ad08eee6e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage/primitives",
+  "pageState": "skip link moves focus to the main-content target for /coverage/primitives",
+  "violationCount": 2,
+  "rules": [
+    "main-landmark",
+    "h1-count"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/primitives",
+    "h1"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/primitives",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "0bac5fe419eb7680c9c3-wave-like.html",
+  "jsonFileName": "0bac5fe419eb7680c9c3-wave-like.json",
+  "screenshotFileName": "0bac5fe419eb7680c9c3-wave-like.png",
+  "findings": [
+    {
+      "rule": "main-landmark",
+      "targets": [],
+      "summary": "Expected exactly one visible main landmark, found 2.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "h1-count",
+      "targets": [
+        "h1"
+      ],
+      "summary": "Expected exactly one visible h1, found 3.",
+      "anchor": "issue-2"
+    }
+  ],
+  "assetFileNames": [
+    "0bac5fe419eb7680c9c3-wave-like-style-1.css"
+  ]
+}

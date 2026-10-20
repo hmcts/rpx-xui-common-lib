@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-1624cf067bec5025de55",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "search judicials",
+  "pageState": "expanded suggestions",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "search judicials — expanded suggestions",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "6b425bb47eff8241fa64-screen-reader.html",
+  "jsonFileName": "6b425bb47eff8241fa64-screen-reader.json",
+  "screenshotFileName": "6b425bb47eff8241fa64-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "6b425bb47eff8241fa64-screen-reader-style-1.css"
+  ]
+}

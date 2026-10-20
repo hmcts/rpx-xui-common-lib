@@ -1,0 +1,34 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-5e08377d63ac4a49042f",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/case-sharing/confirmation",
+  "pageState": "skip link moves focus to the main-content target for /coverage/case-sharing/confirmation",
+  "violationCount": 2,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:heading-order",
+    "wave-like:heading-order"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/case-sharing/confirmation"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/case-sharing/confirmation",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-confirmation-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-confirmation-page-summary",
+  "htmlFileName": "91355fd8876323a1b806-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-confirmation-skip-link-mo.html",
+  "jsonFileName": "91355fd8876323a1b806-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-confirmation-skip-link-mo.json",
+  "screenshotFileName": "91355fd8876323a1b806-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-confirmation-skip-link-mo.png",
+  "assetFileNames": [
+    "91355fd8876323a1b806-skip-link-moves-focus-to-the-main-content-target-for-coverage-case-sharing-confirmation-skip-link-mo-style-1.css"
+  ]
+}

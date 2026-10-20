@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-f7657ee665d113df6265",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=terms",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=terms",
+  "violationCount": 1,
+  "rules": [
+    "h1-count"
+  ],
+  "targets": [
+    "h1"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage?feature=terms",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "d10c1ff847dc8facfa44-wave-like.html",
+  "jsonFileName": "d10c1ff847dc8facfa44-wave-like.json",
+  "screenshotFileName": "d10c1ff847dc8facfa44-wave-like.png",
+  "findings": [
+    {
+      "rule": "h1-count",
+      "targets": [
+        "h1"
+      ],
+      "summary": "Expected exactly one visible h1, found 2.",
+      "anchor": "issue-1"
+    }
+  ],
+  "assetFileNames": [
+    "d10c1ff847dc8facfa44-wave-like-style-1.css"
+  ]
+}

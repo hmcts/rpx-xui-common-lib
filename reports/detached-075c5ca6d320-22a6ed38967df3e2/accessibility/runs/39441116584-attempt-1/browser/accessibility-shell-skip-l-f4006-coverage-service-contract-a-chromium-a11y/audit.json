@@ -1,0 +1,67 @@
+{
+  "title": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "url": "http://localhost:4200/coverage/service-contract-a",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "incompleteCount": 0,
+  "published": {
+    "context": {
+      "scenarioId": "952c03097f06ee496f4e-f1ec3adf9720527948dc",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+    "pageState": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+    "violationCount": 0,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "passed",
+    "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [],
+    "targets": [
+      "http://localhost:4200/coverage/service-contract-a"
+    ],
+    "testTitle": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+    "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-a-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-a-page-summary",
+    "htmlFileName": "dec7da188ab146a85f2e-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-a-skip-link-moves-foc.html",
+    "jsonFileName": "dec7da188ab146a85f2e-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-a-skip-link-moves-foc.json",
+    "screenshotFileName": "dec7da188ab146a85f2e-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-a-skip-link-moves-foc.png",
+    "assetFileNames": [
+      "dec7da188ab146a85f2e-skip-link-moves-focus-to-the-main-content-target-for-coverage-service-contract-a-skip-link-moves-foc-style-1.css"
+    ]
+  }
+}

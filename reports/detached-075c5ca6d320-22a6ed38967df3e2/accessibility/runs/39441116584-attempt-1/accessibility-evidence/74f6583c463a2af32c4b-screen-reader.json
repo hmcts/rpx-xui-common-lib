@@ -1,0 +1,268 @@
+{
+  "url": "http://localhost:4200/coverage/service-contract-b",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Service contract B demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Service contract B demoLoad reference dataidleLoad locations for IALoad locations for IA and UNKNOWNidleLoad task namesClear task-name cacheidleRequest interceptor erroridle",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Load reference data",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Load locations for IA",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Load locations for IA and UNKNOWN",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Load task names",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Clear task-name cache",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Request interceptor error",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/service-contract-b",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Service contract B demo"
+      },
+      {
+        "role": "button",
+        "name": "Load reference data"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Load locations for IA"
+      },
+      {
+        "role": "button",
+        "name": "Load locations for IA and UNKNOWN"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Load task names"
+      },
+      {
+        "role": "button",
+        "name": "Clear task-name cache"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Request interceptor error"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Service contract B demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Load reference data"
+      },
+      {
+        "role": "StaticText",
+        "name": "idle"
+      },
+      {
+        "role": "StaticText",
+        "name": "Load locations for IA"
+      },
+      {
+        "role": "StaticText",
+        "name": "Load locations for IA and UNKNOWN"
+      },
+      {
+        "role": "StaticText",
+        "name": "idle"
+      },
+      {
+        "role": "StaticText",
+        "name": "Load task names"
+      },
+      {
+        "role": "StaticText",
+        "name": "Clear task-name cache"
+      },
+      {
+        "role": "StaticText",
+        "name": "idle"
+      },
+      {
+        "role": "StaticText",
+        "name": "Request interceptor error"
+      },
+      {
+        "role": "StaticText",
+        "name": "idle"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Service contract B demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Load reference data"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "idle"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Load locations for IA"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Load locations for IA and UNKNOWN"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "idle"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Load task names"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Clear task-name cache"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "idle"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Request interceptor error"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "idle"
+      }
+    ]
+  }
+}
