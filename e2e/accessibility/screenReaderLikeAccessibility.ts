@@ -163,7 +163,8 @@ export async function collectScreenReaderLikeAccessibilityViolations(page: Page)
     const fragmentTarget = (link: Element): HTMLElement | null => {
       try {
         const href = link.getAttribute('href') ?? '';
-        const url = new URL(href, document.baseURI || document.location.href);
+        // A hash-only link must retain the current query string when the app is on a routed URL.
+        const url = new URL(href, document.location.href);
         if (
           url.origin !== document.location.origin ||
           url.pathname !== document.location.pathname ||

@@ -38,6 +38,29 @@
       <output data-testid="terms-result">{{ termsConfirmed ? 'Terms accepted' : 'Terms not accepted' }}</output>
     </section>
   }
+  @case ('terms-html') {
+    <section data-testid="terms-html-demo">
+      <xuilib-terms-and-conditions [document]="termsHtmlDocument"></xuilib-terms-and-conditions>
+    </section>
+  }
+  @case ('terms-plain') {
+    <section data-testid="terms-plain-demo">
+      <xuilib-terms-and-conditions [document]="termsPlainDocument"></xuilib-terms-and-conditions>
+    </section>
+  }
+  @case ('terms-unknown') {
+    <section data-testid="terms-unknown-demo">
+      <xuilib-terms-and-conditions [document]="termsUnknownDocument"></xuilib-terms-and-conditions>
+    </section>
+  }
+  @case ('form-group') {
+    <section data-testid="form-group-demo">
+      <xuilib-gov-uk-form-group-wrapper [group]="'wrapped-options'" [config]="formGroupConfig" [error]="formGroupError">
+        <label for="wrapped-option">Wrapped option</label>
+        <input id="wrapped-option" type="checkbox">
+      </xuilib-gov-uk-form-group-wrapper>
+    </section>
+  }
   @case ('navigation') {
     <section data-testid="navigation-demo">
       <h2>Navigation</h2>

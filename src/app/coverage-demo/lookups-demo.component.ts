@@ -22,6 +22,11 @@ export class LookupsDemoComponent {
   public readonly workTypeField: FilterFieldConfig;
   public readonly workTypeFields: FilterFieldConfig[];
   public readonly workTypeForm = new FormGroup({ workTypes: new FormArray<FormControl<WorkType>>([]) });
+  public readonly directSearchWorkTypeForm = new FormGroup({});
+  public readonly directSearchWorkTypeField: FilterFieldConfig = {
+    name: 'directWorkType', options: [], minSelected: 0, maxSelected: 1, type: 'find-work-type'
+  };
+
   public readonly taskNameForm = new FormGroup({});
   public readonly venueControl = new FormControl<LocationByEPIMMSModel | null>(null);
   public readonly venueSelectedLocations: LocationByEPIMMSModel[];
@@ -29,6 +34,7 @@ export class LookupsDemoComponent {
   public workTypeApplied: WorkType[] = [];
   public taskNameSelection: unknown = null;
   public venueSelection: LocationByEPIMMSModel | undefined;
+  public directWorkTypeSelection: WorkType | undefined;
 
   constructor(route: ActivatedRoute) {
     const query = route.snapshot.queryParamMap;
@@ -47,5 +53,9 @@ export class LookupsDemoComponent {
 
   public applyWorkTypes(): void {
     this.workTypeApplied = [...this.workTypeForm.controls.workTypes.value];
+  }
+
+  public selectDirectWorkType(workType: WorkType): void {
+    this.directWorkTypeSelection = workType;
   }
 }
