@@ -32,6 +32,9 @@ export class ServiceContractBDemoComponent {
   public locationsState = 'idle';
   public locationsError = '';
   public locations: LocationByEPIMMSModel[] = [];
+  public concurrentFirstLocations: LocationByEPIMMSModel[] = [];
+  public concurrentSecondLocations: LocationByEPIMMSModel[] = [];
+  public concurrentLocationsState = 'idle';
   public multiCodeLocations: LocationByEPIMMSModel[] = [];
   public taskNamesState = 'idle';
   public taskNamesError = '';
@@ -80,6 +83,23 @@ export class ServiceContractBDemoComponent {
     this.loadLocationsFor(['IA', 'UNKNOWN'], 'multiCodeLocations');
   }
 
+  public loadLocationsConcurrently(): void {
+    this.concurrentLocationsState = 'loading';
+    const locations$ = this.refData.getLocationsByServiceCodes(['IA']);
+    forkJoin({ first: locations$, second: locations$ }).subscribe({
+      next: ({ first, second }) => {
+        this.concurrentFirstLocations = first;
+        this.concurrentSecondLocations = second;
+        this.concurrentLocationsState = 'ready';
+      },
+      error: () => {
+        this.concurrentFirstLocations = [];
+        this.concurrentSecondLocations = [];
+        this.concurrentLocationsState = 'error';
+      }
+    });
+  }
+
   private loadLocationsFor(serviceCodes: string[], target: 'locations' | 'multiCodeLocations'): void {
     this.locationsState = 'loading';
     this.refData.getLocationsByServiceCodes(serviceCodes).subscribe({
@@ -126,6 +146,14 @@ export class ServiceContractBDemoComponent {
 
   public get multiCodeLocationNames(): string {
     return this.multiCodeLocations.map((location) => location.site_name).join(', ');
+  }
+
+  public get concurrentFirstLocationNames(): string {
+    return this.concurrentFirstLocations.map((location) => location.site_name).join(', ');
+  }
+
+  public get concurrentSecondLocationNames(): string {
+    return this.concurrentSecondLocations.map((location) => location.site_name).join(', ');
   }
 
   public get taskNameValues(): string {

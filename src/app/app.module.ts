@@ -28,6 +28,7 @@ import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-d
 import { ValidatorContractsDemoComponent } from './coverage-demo/validator-contracts-demo.component';
 import { ServiceContractADemoComponent } from './coverage-demo/service-contract-a-demo.component';
 import { ServiceContractBDemoComponent } from './coverage-demo/service-contract-b-demo.component';
+import { RemainingCoverageDemoComponent } from './coverage-demo/remaining-coverage-demo.component';
 
 @Component({
   selector: 'app-root',
@@ -69,7 +70,8 @@ export class AppShellComponent {
     PublicContractsDemoComponent,
     ValidatorContractsDemoComponent,
     ServiceContractADemoComponent,
-    ServiceContractBDemoComponent
+    ServiceContractBDemoComponent,
+    RemainingCoverageDemoComponent
   ],
   imports: [
     CommonModule,

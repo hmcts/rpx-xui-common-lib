@@ -21,6 +21,7 @@ import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-d
 import { ValidatorContractsDemoComponent } from './coverage-demo/validator-contracts-demo.component';
 import { ServiceContractADemoComponent } from './coverage-demo/service-contract-a-demo.component';
 import { ServiceContractBDemoComponent } from './coverage-demo/service-contract-b-demo.component';
+import { RemainingCoverageDemoComponent } from './coverage-demo/remaining-coverage-demo.component';
 
 const routes: Routes = [
   { path: 'coverage/accessibility/manage-case', component: AccessibilityDemoComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'coverage/validators', component: ValidatorContractsDemoComponent },
   { path: 'coverage/service-contract-a', component: ServiceContractADemoComponent },
   { path: 'coverage/service-contract-b', component: ServiceContractBDemoComponent },
+  { path: 'coverage/remaining', component: RemainingCoverageDemoComponent },
   { path: 'coverage/users', component: UserManagementDemoComponent, children: [{ path: ':id', children: [] }] },
   {
     path: 'coverage',
