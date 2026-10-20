@@ -1,4 +1,4 @@
-<main class="govuk-width-container">
+<main id="main-content" tabindex="-1" class="govuk-width-container">
   <h1 class="govuk-heading-xl">User management demo</h1>
   <xuilib-user-list [users]="users" [currentPageNumber]="1" [pageTotalSize]="users.length"
     (userClick)="selectUser($event)" (pageChange)="pageEvents.push($event)"></xuilib-user-list>

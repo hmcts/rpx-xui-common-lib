@@ -8,7 +8,7 @@ const baseURL = process.env.PLAYWRIGHT_TEST_BASE_URL;
 
 export default defineConfig({
   testDir: './e2e/accessibility',
-  testMatch: ['demo.spec.ts', 'feature-states.spec.ts', 'lighthouse.spec.ts'],
+  testMatch: ['demo.spec.ts', 'feature-states.spec.ts', 'remaining-states.spec.ts', 'accessibility-shell.spec.ts', 'lighthouse.spec.ts'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,

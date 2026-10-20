@@ -18,6 +18,9 @@ import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-co
 import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
 import { SelectedCaseDemoComponent } from './coverage-demo/selected-case-demo.component';
 import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-demo.component';
+import { ValidatorContractsDemoComponent } from './coverage-demo/validator-contracts-demo.component';
+import { ServiceContractADemoComponent } from './coverage-demo/service-contract-a-demo.component';
+import { ServiceContractBDemoComponent } from './coverage-demo/service-contract-b-demo.component';
 
 const routes: Routes = [
   { path: 'coverage/accessibility/manage-case', component: AccessibilityDemoComponent },
@@ -41,6 +44,9 @@ const routes: Routes = [
   { path: 'coverage/address', component: AddressDemoComponent },
   { path: 'coverage/selected-cases', component: SelectedCaseDemoComponent },
   { path: 'coverage/public-contracts', component: PublicContractsDemoComponent },
+  { path: 'coverage/validators', component: ValidatorContractsDemoComponent },
+  { path: 'coverage/service-contract-a', component: ServiceContractADemoComponent },
+  { path: 'coverage/service-contract-b', component: ServiceContractBDemoComponent },
   { path: 'coverage/users', component: UserManagementDemoComponent, children: [{ path: ':id', children: [] }] },
   {
     path: 'coverage',

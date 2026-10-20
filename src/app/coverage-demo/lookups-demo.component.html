@@ -1,3 +1,4 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container govuk-main-wrapper">
 <h1>Lookup component demo</h1>
 
 @if (feature === 'location') {
@@ -36,6 +37,18 @@
   <pre data-testid="work-type-applied">{{ workTypeApplied | json }}</pre>
 }
 
+@if (feature === 'search-work-type') {
+  <h2>Direct SearchWorkType component</h2>
+  <label for="inputWorkTypeSearch">Search work type</label>
+  <exui-search-work-type
+    [form]="directSearchWorkTypeForm"
+    [field]="directSearchWorkTypeField"
+    [singleMode]="true"
+    (workTypeSelected)="selectDirectWorkType($event)">
+  </exui-search-work-type>
+  <pre data-testid="direct-work-type-selection">{{ directWorkTypeSelection | json }}</pre>
+}
+
 @if (feature === 'task-name') {
   <xuilib-find-task-name
     [findTaskNameGroup]="taskNameForm"
@@ -44,3 +57,5 @@
   </xuilib-find-task-name>
   <pre data-testid="task-name-selection">{{ taskNameSelection | json }}</pre>
 }
+
+</main>

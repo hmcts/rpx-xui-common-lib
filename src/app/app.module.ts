@@ -25,13 +25,24 @@ import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-co
 import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
 import { SelectedCaseDemoComponent } from './coverage-demo/selected-case-demo.component';
 import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-demo.component';
+import { ValidatorContractsDemoComponent } from './coverage-demo/validator-contracts-demo.component';
+import { ServiceContractADemoComponent } from './coverage-demo/service-contract-a-demo.component';
+import { ServiceContractBDemoComponent } from './coverage-demo/service-contract-b-demo.component';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  template: `
+    <a class="govuk-skip-link" href="#main-content" (click)="focusMainContent($event)">Skip to main content</a>
+    <router-outlet></router-outlet>
+  `,
   standalone: false
 })
-export class AppShellComponent { }
+export class AppShellComponent {
+  public focusMainContent(event: Event): void {
+    event.preventDefault();
+    document.getElementById('main-content')?.focus();
+  }
+}
 
 @NgModule({
   declarations: [
@@ -55,7 +66,10 @@ export class AppShellComponent { }
     StandaloneComponentsDemoComponent,
     ExtendedControlsDemoComponent,
     SelectedCaseDemoComponent,
-    PublicContractsDemoComponent
+    PublicContractsDemoComponent,
+    ValidatorContractsDemoComponent,
+    ServiceContractADemoComponent,
+    ServiceContractBDemoComponent
   ],
   imports: [
     CommonModule,

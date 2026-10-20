@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FilterConfig, UserDetails } from 'projects/exui-common-lib/src';
+import { FilterConfig, TCDocument, UserDetails } from 'projects/exui-common-lib/src';
 import { FilterService } from 'projects/exui-common-lib/src/lib/services';
 
 @Component({
@@ -75,6 +75,32 @@ export class CoverageDemoComponent {
   public moreItems = true;
   public selectedUserEmail = 'No user selected';
   public termsConfirmed = false;
+
+  public readonly termsHtmlDocument: TCDocument = {
+    version: 1,
+    content: '<h2>HTML terms</h2><p>Safe <strong>content</strong>.</p><script>window.__termsScript = true;</script>',
+    mimeType: 'text/html'
+  };
+
+  public readonly termsPlainDocument: TCDocument = {
+    version: 1,
+    content: 'Plain terms content.',
+    mimeType: 'text/plain'
+  };
+
+  public readonly termsUnknownDocument: TCDocument = {
+    version: 1,
+    content: 'Unsupported terms content.',
+    mimeType: 'application/octet-stream'
+  };
+
+  public readonly formGroupError = { isInvalid: true, messages: ['Choose at least one option'] };
+  public readonly formGroupConfig = {
+    id: 'wrapped-options',
+    key: 'wrapped-options',
+    legend: 'Wrapped options',
+    hint: 'The wrapper owns this hint.'
+  };
 
   constructor(private readonly filterService: FilterService) { }
 

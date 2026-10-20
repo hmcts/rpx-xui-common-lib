@@ -1,0 +1,26 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container govuk-main-wrapper">
+  <h1>Service contract B demo</h1>
+  <button type="button" (click)="loadReferenceData()">Load reference data</button>
+  <output data-testid="service-contract-b-reference-data-state">{{ referenceDataState }}</output>
+  <output data-testid="service-contract-b-reference-data-error">{{ referenceDataError }}</output>
+  <output data-testid="service-contract-b-reference-data-regions">{{ regionNames }}</output>
+  <output data-testid="service-contract-b-reference-data-services">{{ serviceNames }}</output>
+  <output data-testid="service-contract-b-reference-data-locations">{{ referenceLocationNames }}</output>
+
+  <button type="button" (click)="loadLocations()">Load locations for IA</button>
+  <button type="button" (click)="loadLocationsForMultipleServices()">Load locations for IA and UNKNOWN</button>
+  <output data-testid="service-contract-b-locations-state">{{ locationsState }}</output>
+  <output data-testid="service-contract-b-locations-error">{{ locationsError }}</output>
+  <output data-testid="service-contract-b-locations">{{ locationNames }}</output>
+  <output data-testid="service-contract-b-multi-code-locations">{{ multiCodeLocationNames }}</output>
+
+  <button type="button" (click)="loadTaskNames()">Load task names</button>
+  <button type="button" (click)="clearTaskCache()">Clear task-name cache</button>
+  <output data-testid="service-contract-b-task-names-state">{{ taskNamesState }}</output>
+  <output data-testid="service-contract-b-task-names-error">{{ taskNamesError }}</output>
+  <output data-testid="service-contract-b-task-names">{{ taskNameValues }}</output>
+
+  <button type="button" (click)="requestInterceptorError()">Request interceptor error</button>
+  <output data-testid="service-contract-b-interceptor-state">{{ interceptorState }}</output>
+  <output data-testid="service-contract-b-interceptor-error">{{ interceptorError }}</output>
+</main>
