@@ -195,6 +195,9 @@ test('work-type search keeps the latest response when the earlier request is can
   const oldRequest = page.waitForRequest((request) =>
     new URL(request.url()).pathname === '/workallocation/task/search-types-of-work' &&
     request.postDataJSON()?.searchTerm === 'old');
+  const oldRequestFailed = page.waitForEvent('requestfailed', (request) =>
+    new URL(request.url()).pathname === '/workallocation/task/search-types-of-work' &&
+    request.postDataJSON()?.searchTerm === 'old');
   await input.fill('old');
   await oldRequest;
   const latestResponse = page.waitForResponse((response) =>
@@ -202,6 +205,8 @@ test('work-type search keeps the latest response when the earlier request is can
     response.request().postDataJSON()?.searchTerm === 'new');
   await input.fill('new');
   await latestResponse;
+  const failedRequest = await oldRequestFailed;
+  expect(failedRequest.failure()?.errorText).toMatch(/abort|cancel/i);
   await expect(page.getByRole('option')).toHaveText(['Review case']);
   await expect(page.getByRole('option', { name: 'Old result', exact: true })).toHaveCount(0);
 
