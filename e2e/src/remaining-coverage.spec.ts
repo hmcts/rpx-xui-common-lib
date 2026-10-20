@@ -177,6 +177,7 @@ test.describe('remaining CommonLib browser contracts', () => {
     await expect(page.getByTestId('remaining-date-state')).toHaveText('valid');
 
     await expect(page.getByTestId('remaining-empty-radio-state')).toHaveText('valid');
+    await expect(page.getByTestId('remaining-radio-errors')).toContainText('"isRadioGroupInvalid": true');
     await page.getByRole('button', { name: 'Disable radio controls', exact: true }).click();
     await expect(page.getByTestId('remaining-disabled-radio-state')).toHaveText('disabled');
 

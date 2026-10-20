@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import {
   checkboxesBeCheckedValidator,
@@ -24,8 +24,8 @@ import { FilterSetting, PersonRole, SharedCase, UserDetails } from 'projects/exu
 export class RemainingCoverageDemoComponent {
   public readonly emptyRadioForm = new FormGroup({}, { validators: radioGroupValidator() });
   public readonly disabledRadioForm = new FormGroup({
-    first: new FormControl(false),
-    second: new FormControl(false)
+    first: new FormControl(false, Validators.requiredTrue),
+    second: new FormControl(false, Validators.requiredTrue)
   }, { validators: radioGroupValidator() });
 
   public readonly minimumCheckboxForm = new FormGroup({

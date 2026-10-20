@@ -59,6 +59,7 @@
 
     <button type="button" (click)="disableRadios()">Disable radio controls</button>
     <output data-testid="remaining-empty-radio-state">{{ emptyRadioForm.valid ? 'valid' : 'invalid' }}</output>
+    <output data-testid="remaining-radio-errors">{{ disabledRadioForm.errors | json }}</output>
     <output data-testid="remaining-disabled-radio-state">{{ disabledRadioForm.status.toLowerCase() }}</output>
 
     <button type="button" (click)="checkMinimumCheckboxes()">Check two checkboxes</button>
