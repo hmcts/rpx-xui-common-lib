@@ -6,7 +6,7 @@ import { sharingCases, sharingUsers } from './case-sharing-demo.data';
 
 @Component({
   selector: 'app-case-sharing-demo',
-  template: '<main class="govuk-width-container"><router-outlet></router-outlet></main>',
+  template: '<main id="main-content" tabindex="-1" class="govuk-width-container"><router-outlet></router-outlet></main>',
   providers: [CaseSharingStateService],
   standalone: false
 })

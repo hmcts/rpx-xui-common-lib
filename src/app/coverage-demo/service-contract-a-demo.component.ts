@@ -30,51 +30,27 @@ export class ServiceContractAIdleStub {
   public readonly onTimeout = new Subject<void>();
   public readonly onTimeoutWarning = new Subject<number>();
   public readonly onIdleStart = new Subject<void>();
-  public idleName = '';
-  public timeoutSeconds = 0;
-  public idleSeconds = 0;
-  public interrupts: unknown[] = [];
-  public watchCount = 0;
-  public stopped = false;
-  public interruptsCleared = false;
 
-  public setIdleName(name: string): void {
-    this.idleName = name;
-  }
+  public setIdleName(): void {}
 
-  public setTimeout(seconds: number): void {
-    this.timeoutSeconds = seconds;
-  }
+  public setTimeout(): void {}
 
-  public setInterrupts(interrupts: unknown[]): void {
-    this.interrupts = interrupts;
-  }
+  public setInterrupts(): void {}
 
-  public setIdle(seconds: number): void {
-    this.idleSeconds = seconds;
-  }
+  public setIdle(): void {}
 
-  public watch(): void {
-    this.watchCount++;
-  }
+  public watch(): void {}
 
-  public stop(): void {
-    this.stopped = true;
-  }
+  public stop(): void {}
 
-  public clearInterrupts(): void {
-    this.interruptsCleared = true;
-  }
+  public clearInterrupts(): void {}
 }
 
 @Injectable()
 export class ServiceContractAKeepaliveStub {
   public readonly onPing = new Subject<void>();
-  public intervalSeconds = 0;
 
-  public interval(seconds: number): void {
-    this.intervalSeconds = seconds;
-  }
+  public interval(): void {}
 }
 
 @Component({
@@ -156,10 +132,7 @@ export class ServiceContractADemoComponent implements OnInit, OnDestroy {
     if (this.feature === 'timeout') {
       this.startTimeoutNotifications();
     }
-    if (this.feature === 'analytics') {
-      this.resetTelemetryState();
-    }
-    if (this.feature === 'tag-manager') {
+    if (this.feature === 'analytics' || this.feature === 'tag-manager') {
       this.resetTelemetryState();
     }
     if (this.feature === 'launchdarkly') {

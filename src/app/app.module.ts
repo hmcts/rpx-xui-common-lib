@@ -31,10 +31,18 @@ import { ServiceContractBDemoComponent } from './coverage-demo/service-contract-
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  template: `
+    <a class="govuk-skip-link" href="#main-content" (click)="focusMainContent($event)">Skip to main content</a>
+    <router-outlet></router-outlet>
+  `,
   standalone: false
 })
-export class AppShellComponent { }
+export class AppShellComponent {
+  public focusMainContent(event: Event): void {
+    event.preventDefault();
+    document.getElementById('main-content')?.focus();
+  }
+}
 
 @NgModule({
   declarations: [

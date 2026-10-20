@@ -1,7 +1,6 @@
 import type { Locator, Page } from '@playwright/test';
 
 export class ServiceContractBPage {
-  public readonly heading: Locator;
   public readonly referenceDataState: Locator;
   public readonly referenceDataError: Locator;
   public readonly referenceDataRegions: Locator;
@@ -20,7 +19,6 @@ export class ServiceContractBPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.heading = page.getByRole('heading', { name: 'Service contract B demo' });
     this.referenceDataState = page.getByTestId('service-contract-b-reference-data-state');
     this.referenceDataError = page.getByTestId('service-contract-b-reference-data-error');
     this.referenceDataRegions = page.getByTestId('service-contract-b-reference-data-regions');

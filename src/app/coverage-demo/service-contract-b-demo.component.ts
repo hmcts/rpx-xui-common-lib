@@ -73,22 +73,18 @@ export class ServiceContractBDemoComponent {
   }
 
   public loadLocations(): void {
-    this.locationsState = 'loading';
-    this.refData.getLocationsByServiceCodes(['IA']).subscribe({
-      next: (value) => {
-        this.locations = value; this.locationsState = 'ready';
-      },
-      error: (error) => {
-        this.locationsState = 'error'; this.locationsError = this.errorMessage(error, 'Location request failed');
-      }
-    });
+    this.loadLocationsFor(['IA'], 'locations');
   }
 
   public loadLocationsForMultipleServices(): void {
+    this.loadLocationsFor(['IA', 'UNKNOWN'], 'multiCodeLocations');
+  }
+
+  private loadLocationsFor(serviceCodes: string[], target: 'locations' | 'multiCodeLocations'): void {
     this.locationsState = 'loading';
-    this.refData.getLocationsByServiceCodes(['IA', 'UNKNOWN']).subscribe({
+    this.refData.getLocationsByServiceCodes(serviceCodes).subscribe({
       next: (value) => {
-        this.multiCodeLocations = value; this.locationsState = 'ready';
+        this[target] = value; this.locationsState = 'ready';
       },
       error: (error) => {
         this.locationsState = 'error'; this.locationsError = this.errorMessage(error, 'Location request failed');
