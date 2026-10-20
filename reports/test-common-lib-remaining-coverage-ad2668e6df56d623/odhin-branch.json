@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "test/common-lib-remaining-coverage",
       "branchSlug": "test-common-lib-remaining-coverage-ad2668e6df56d623",
+      "runKey": "39441098424-attempt-1",
+      "runId": "39441098424",
+      "runAttempt": "1",
+      "sha": "075c5ca6d32022c935233dbfc7c309e13eeb4a4f",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/39441098424/attempts/1",
+      "createdAt": "2026-10-20T14:46:58.722Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "test/common-lib-remaining-coverage",
+      "branchSlug": "test-common-lib-remaining-coverage-ad2668e6df56d623",
       "runKey": "39429850748-attempt-1",
       "runId": "39429850748",
       "runAttempt": "1",
