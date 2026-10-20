@@ -1,0 +1,18 @@
+{
+  "rawBranch": "test/common-lib-followup-coverage",
+  "slug": "test-common-lib-followup-coverage-ee4e71853740f149",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "test/common-lib-followup-coverage",
+      "branchSlug": "test-common-lib-followup-coverage-ee4e71853740f149",
+      "runKey": "39456596773-attempt-1",
+      "runId": "39456596773",
+      "runAttempt": "1",
+      "sha": "a9e8d328e07792e67731ae9b264c37a72b5e8d48",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/39456596773/attempts/1",
+      "createdAt": "2026-10-20T16:29:21.492Z"
+    }
+  ]
+}
