@@ -6,7 +6,7 @@ test.describe('validator contracts', () => {
     await page.goto('/coverage/validators');
   });
 
-  test('date validator reports missing values and clears its error for a complete date', async ({ page }) => {
+  test('date validator reports missing values, accepts a complete date, and rejects non-numeric input', async ({ page }) => {
     await expect(page.getByTestId('date-validator-status')).toHaveText('invalid');
     await expect(page.getByTestId('date-validator-errors')).toContainText('dateIsInvalid');
 
@@ -14,8 +14,18 @@ test.describe('validator contracts', () => {
     await expect(page.getByTestId('date-validator-status')).toHaveText('valid');
     await expect(page.getByTestId('date-validator-errors')).toHaveText('null');
 
+    await page.getByRole('button', { name: 'Set malformed date' }).click();
+    await expect(page.getByTestId('date-validator-status')).toHaveText('invalid');
+    await expect(page.getByTestId('date-validator-errors')).toContainText('dateIsInvalid');
+
     await page.getByRole('button', { name: 'Clear date' }).click();
     await expect(page.getByTestId('date-validator-status')).toHaveText('invalid');
+  });
+
+  test('date validator exposes the current calendar-overflow normalisation behaviour', async ({ page }) => {
+    await page.getByRole('button', { name: 'Set calendar-invalid date' }).click();
+    await expect(page.getByTestId('date-validator-status')).toHaveText('valid');
+    await expect(page.getByTestId('date-validator-errors')).toHaveText('null');
   });
 
   test('radio-group validator exposes invalid and valid group states', async ({ page }) => {

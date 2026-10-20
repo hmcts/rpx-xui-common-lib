@@ -32,6 +32,14 @@ export class ValidatorContractsDemoComponent {
     this.dateForm.setValue({ day: '1', month: '1', year: '2026' });
   }
 
+  public setMalformedDate(): void {
+    this.dateForm.setValue({ day: 'not-a-day', month: '1', year: '2026' });
+  }
+
+  public setCalendarInvalidDate(): void {
+    this.dateForm.setValue({ day: '31', month: '2', year: '2026' });
+  }
+
   public clearDate(): void {
     this.dateForm.reset();
   }

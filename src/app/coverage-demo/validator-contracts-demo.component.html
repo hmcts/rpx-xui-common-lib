@@ -4,6 +4,8 @@
   <section aria-labelledby="date-validator-heading">
     <h2 id="date-validator-heading">Date validator</h2>
     <button type="button" (click)="setValidDate()">Set valid date</button>
+    <button type="button" (click)="setMalformedDate()">Set malformed date</button>
+    <button type="button" (click)="setCalendarInvalidDate()">Set calendar-invalid date</button>
     <button type="button" (click)="clearDate()">Clear date</button>
     <output data-testid="date-validator-status">{{ dateForm.valid ? 'valid' : 'invalid' }}</output>
     <output data-testid="date-validator-errors">{{ dateForm.errors | json }}</output>
