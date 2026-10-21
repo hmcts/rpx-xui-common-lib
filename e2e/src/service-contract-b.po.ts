@@ -10,6 +10,9 @@ export class ServiceContractBPage {
   public readonly locationsError: Locator;
   public readonly locations: Locator;
   public readonly multiCodeLocations: Locator;
+  public readonly concurrentLocationsState: Locator;
+  public readonly concurrentLocationsFirst: Locator;
+  public readonly concurrentLocationsSecond: Locator;
   public readonly taskNamesState: Locator;
   public readonly taskNamesError: Locator;
   public readonly taskNames: Locator;
@@ -28,6 +31,9 @@ export class ServiceContractBPage {
     this.locationsError = page.getByTestId('service-contract-b-locations-error');
     this.locations = page.getByTestId('service-contract-b-locations');
     this.multiCodeLocations = page.getByTestId('service-contract-b-multi-code-locations');
+    this.concurrentLocationsState = page.getByTestId('service-contract-b-concurrent-locations-state');
+    this.concurrentLocationsFirst = page.getByTestId('service-contract-b-concurrent-locations-first');
+    this.concurrentLocationsSecond = page.getByTestId('service-contract-b-concurrent-locations-second');
     this.taskNamesState = page.getByTestId('service-contract-b-task-names-state');
     this.taskNamesError = page.getByTestId('service-contract-b-task-names-error');
     this.taskNames = page.getByTestId('service-contract-b-task-names');
@@ -49,6 +55,10 @@ export class ServiceContractBPage {
 
   public async loadLocationsForMultipleServices(): Promise<void> {
     await this.page.getByRole('button', { name: 'Load locations for IA and UNKNOWN', exact: true }).click();
+  }
+
+  public async loadLocationsConcurrently(): Promise<void> {
+    await this.page.getByRole('button', { name: 'Load locations for two subscribers', exact: true }).click();
   }
 
   public async loadTaskNames(): Promise<void> {

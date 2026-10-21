@@ -94,6 +94,36 @@ test('reference-data location cache is reused and resets for a new service insta
   expect(requestCount).toBe(2);
 });
 
+test('reference-data location cache coalesces concurrent requests', async ({ page }) => {
+  let requestCount = 0;
+  let releaseRequest: (() => void) | undefined;
+  let signalHandlerReady: (() => void) | undefined;
+  const handlerReady = new Promise<void>((resolve) => { signalHandlerReady = resolve; });
+
+  await page.route('**/api/ref-data/locations-by-service-code*', async (route) => {
+    requestCount += 1;
+    const responseReleased = new Promise<void>((resolve) => { releaseRequest = resolve; });
+    signalHandlerReady?.();
+    await responseReleased;
+    await route.fulfill({ status: 200, json: { court_venues: serviceContractBLocations } });
+  });
+
+  const demo = new ServiceContractBPage(page);
+  await demo.open();
+  const request = page.waitForRequest((candidate) => new URL(candidate.url()).pathname === '/api/ref-data/locations-by-service-code');
+  const response = page.waitForResponse((candidate) => new URL(candidate.url()).pathname === '/api/ref-data/locations-by-service-code');
+  await demo.loadLocationsConcurrently();
+  await request;
+  await handlerReady;
+  releaseRequest?.();
+
+  expect((await response).status()).toBe(200);
+  await expect(demo.concurrentLocationsState).toHaveText('ready');
+  await expect(demo.concurrentLocationsFirst).toHaveText('London Civil Centre');
+  await expect(demo.concurrentLocationsSecond).toHaveText('London Civil Centre');
+  expect(requestCount).toBe(1);
+});
+
 test('reference-data location fallback preserves successful results when one service code returns 4xx', async ({ page, allowBrowserDiagnostic }) => {
   let requestCount = 0;
   allowBrowserDiagnostic({

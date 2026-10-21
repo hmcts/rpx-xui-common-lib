@@ -45,6 +45,7 @@ const routes: RouteContract[] = [
   { path: '/coverage/selected-cases', marker: heading('Selected case component demo') },
   { path: '/coverage/public-contracts', marker: heading('Public component contract demo') },
   { path: '/coverage/service-contract-b', marker: heading('Service contract B demo') },
+  { path: '/coverage/remaining', marker: heading('Remaining CommonLib coverage') },
   { path: '/coverage/users', marker: heading('User management demo') },
   { path: '/coverage/users/user-1', marker: heading('User management demo') }
 ];
