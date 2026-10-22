@@ -28,12 +28,14 @@ export class FeatureToggleDirective implements OnDestroy {
     }
 
     private updateSubscription() {
-        this.subscription = this.service.isEnabled(this.feature).subscribe(enabled => {
-            if (enabled) {
-                this.viewContainer.createEmbeddedView(this.templateRef);
-            } else {
-                this.viewContainer.clear();
-            }
-        });
+      this.subscription?.unsubscribe();
+      this.viewContainer.clear();
+      this.subscription = this.service.isEnabled(this.feature).subscribe((enabled) => {
+        if (enabled && this.viewContainer.length === 0) {
+          this.viewContainer.createEmbeddedView(this.templateRef);
+        } else if (!enabled) {
+          this.viewContainer.clear();
+        }
+      });
     }
 }
