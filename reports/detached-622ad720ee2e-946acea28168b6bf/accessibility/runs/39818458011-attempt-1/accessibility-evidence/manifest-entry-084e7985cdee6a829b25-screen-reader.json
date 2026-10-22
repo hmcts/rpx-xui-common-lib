@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-6ed993ebe43e96bde878",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "invitation",
+  "pageState": "parent validation errors",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "invitation — parent validation errors",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "084e7985cdee6a829b25-screen-reader.html",
+  "jsonFileName": "084e7985cdee6a829b25-screen-reader.json",
+  "screenshotFileName": "084e7985cdee6a829b25-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "084e7985cdee6a829b25-screen-reader-style-1.css"
+  ]
+}

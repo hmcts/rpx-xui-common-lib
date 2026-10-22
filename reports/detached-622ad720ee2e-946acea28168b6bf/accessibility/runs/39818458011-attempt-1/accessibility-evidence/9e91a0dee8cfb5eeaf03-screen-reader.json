@@ -1,0 +1,381 @@
+{
+  "url": "http://localhost:4200/coverage/address",
+  "violations": [
+    {
+      "rule": "error-describedby",
+      "message": "Invalid controls should reference the visible error message.",
+      "selector": "#postcodeInput",
+      "html": "<input _ngcontent-ng-c2332226571=\"\" type=\"text\" id=\"postcodeInput\" name=\"postcode\" formcontrolname=\"postcode\" class=\"govuk-input govuk-!-width-one-third postcodeinput inline-block ng-untouched ng-pristine ng-valid govuk-input--error\" style=\"\">"
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Address demo"
+      },
+      {
+        "level": 2,
+        "text": "Demo form and event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Address demoProvide address detailsEnter a UK postcodeError:Enter a valid postcode Find addressI can't enter a UK postcodeDemo form and event outputs{ \"address\": { \"addressLine1\": ",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Enter a UK postcode",
+        "selector": "#postcodeInput",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Find address",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "I can't enter a UK postcode",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/address",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Address demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "strong",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "I can't enter a UK postcode"
+      },
+      {
+        "role": "heading",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Address demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Provide address details"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "I can't enter a UK postcode"
+      },
+      {
+        "role": "StaticText",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"address\": {\n    \"addressLine1\": null,\n    \"addressLine2\": null,\n    \"addressLine3\": null,\n    \"postTown\": null,\n    \"county\": null,\n    \"postCode\": null,\n    \"country\": null\n  }\n}"
+      },
+      {
+        "role": "StaticText",
+        "name": "Selection events: "
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "Addresses available: "
+      },
+      {
+        "role": "StaticText",
+        "name": "false"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Address demo"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Provide address details"
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter a UK postcode"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Error:"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter a valid postcode"
+      },
+      {
+        "role": "textbox",
+        "name": "Enter a UK postcode"
+      },
+      {
+        "role": "button",
+        "name": "Find address"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "I can't enter a UK postcode"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"address\": {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine1\": null,"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine2\": null,"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine3\": null,"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"postTown\": null,"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"county\": null,"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"postCode\": null,"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"country\": null"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  }"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Selection events: "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Addresses available: "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "false"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Enter a UK postcode"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Error:"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Enter a valid postcode"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Find address"
+      }
+    ]
+  }
+}

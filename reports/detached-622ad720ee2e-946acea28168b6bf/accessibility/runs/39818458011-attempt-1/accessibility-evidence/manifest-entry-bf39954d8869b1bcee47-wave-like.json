@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-e82c70f0ceee0a69d9d9",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "textarea",
+  "pageState": "Remove review hint cleared",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "textarea — Remove review hint cleared",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "bf39954d8869b1bcee47-wave-like.html",
+  "jsonFileName": "bf39954d8869b1bcee47-wave-like.json",
+  "screenshotFileName": "bf39954d8869b1bcee47-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "bf39954d8869b1bcee47-wave-like-style-1.css"
+  ]
+}

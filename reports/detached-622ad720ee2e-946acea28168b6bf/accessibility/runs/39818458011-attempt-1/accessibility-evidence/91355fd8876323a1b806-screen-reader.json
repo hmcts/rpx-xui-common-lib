@@ -1,0 +1,140 @@
+{
+  "url": "http://localhost:4200/coverage/case-sharing/confirmation",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Check case sharing changes"
+      },
+      {
+        "level": 3,
+        "text": "Cases"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Check case sharing changesCasesConfirmCancel confirmation",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Confirm Confirm",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Cancel confirmation",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/case-sharing/confirmation",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Check case sharing changes"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Cancel confirmation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Check case sharing changes"
+      },
+      {
+        "role": "heading",
+        "name": "Cases"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Confirm"
+      },
+      {
+        "role": "StaticText",
+        "name": "Cancel confirmation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Check case sharing changes"
+      },
+      {
+        "role": "StaticText",
+        "name": "Cases"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Confirm"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cancel confirmation"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Cases"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Confirm"
+      }
+    ]
+  }
+}

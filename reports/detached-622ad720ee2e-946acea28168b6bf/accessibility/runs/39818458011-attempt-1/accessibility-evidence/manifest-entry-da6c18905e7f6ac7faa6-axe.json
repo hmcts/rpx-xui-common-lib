@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-588cd3d99e2d83442802",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "lifecycle",
+  "pageState": "service messages and enabled feature content",
+  "status": "needs-review",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "lifecycle — service messages and enabled feature content",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "da6c18905e7f6ac7faa6-axe.html",
+  "jsonFileName": "da6c18905e7f6ac7faa6-axe.json",
+  "screenshotFileName": "da6c18905e7f6ac7faa6-axe.png",
+  "assetFileNames": [
+    "da6c18905e7f6ac7faa6-axe-style-1.css"
+  ]
+}

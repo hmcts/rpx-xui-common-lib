@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-a09f6018beb00364553e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/remaining",
+  "pageState": "skip link moves focus to the main-content target for /coverage/remaining",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/remaining"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/remaining",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-remaining-skip-link-moves-focus-to-the-main-content-target-for-coverage-remaining-page-summary",
+  "htmlFileName": "4051643389c58ce3fa78-skip-link-moves-focus-to-the-main-content-target-for-coverage-remaining-skip-link-moves-focus-to-the.html",
+  "jsonFileName": "4051643389c58ce3fa78-skip-link-moves-focus-to-the-main-content-target-for-coverage-remaining-skip-link-moves-focus-to-the.json",
+  "screenshotFileName": "4051643389c58ce3fa78-skip-link-moves-focus-to-the-main-content-target-for-coverage-remaining-skip-link-moves-focus-to-the.png",
+  "assetFileNames": [
+    "4051643389c58ce3fa78-skip-link-moves-focus-to-the-main-content-target-for-coverage-remaining-skip-link-moves-focus-to-the-style-1.css"
+  ]
+}

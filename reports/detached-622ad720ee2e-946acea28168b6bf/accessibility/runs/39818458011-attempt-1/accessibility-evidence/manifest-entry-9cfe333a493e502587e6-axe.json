@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-9f46931c55c002aefc92",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/extended-controls",
+  "pageState": "skip link moves focus to the main-content target for /coverage/extended-controls",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/extended-controls",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "9cfe333a493e502587e6-axe.html",
+  "jsonFileName": "9cfe333a493e502587e6-axe.json",
+  "screenshotFileName": "9cfe333a493e502587e6-axe.png",
+  "assetFileNames": [
+    "9cfe333a493e502587e6-axe-style-1.css"
+  ]
+}

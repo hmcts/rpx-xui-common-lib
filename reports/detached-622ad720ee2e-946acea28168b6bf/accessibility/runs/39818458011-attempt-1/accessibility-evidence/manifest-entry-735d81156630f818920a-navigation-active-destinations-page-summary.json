@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-8647a7d9592f503b5cf1",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "navigation",
+  "pageState": "active destinations",
+  "violationCount": 0,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "needs-review",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage?feature=navigation"
+  ],
+  "testTitle": "navigation — active destinations",
+  "attachmentPrefix": "navigation-active-destinations-page-summary",
+  "htmlFileName": "735d81156630f818920a-navigation-active-destinations-page-summary.html",
+  "jsonFileName": "735d81156630f818920a-navigation-active-destinations-page-summary.json",
+  "screenshotFileName": "735d81156630f818920a-navigation-active-destinations-page-summary.png",
+  "assetFileNames": [
+    "735d81156630f818920a-navigation-active-destinations-page-summary-style-1.css"
+  ]
+}

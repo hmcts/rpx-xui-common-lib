@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-23229782a550f6f6d0ad",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "pageState": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "8830f025959562d21f03-wave-like.html",
+  "jsonFileName": "8830f025959562d21f03-wave-like.json",
+  "screenshotFileName": "8830f025959562d21f03-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "8830f025959562d21f03-wave-like-style-1.css"
+  ]
+}

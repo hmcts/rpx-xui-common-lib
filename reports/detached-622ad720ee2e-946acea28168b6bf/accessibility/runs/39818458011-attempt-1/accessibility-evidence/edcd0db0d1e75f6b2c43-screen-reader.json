@@ -1,0 +1,348 @@
+{
+  "url": "http://localhost:4200/coverage/validators",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Validator contract demo"
+      },
+      {
+        "level": 2,
+        "text": "Date validator"
+      },
+      {
+        "level": 2,
+        "text": "Radio-group validator"
+      },
+      {
+        "level": 2,
+        "text": "Checkbox validator"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Validator contract demoDate validatorSet valid dateSet malformed dateSet calendar-invalid dateClear datevalidnullRadio-group validatorSelect all radio controlsClear radio controlsi",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set valid date",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set malformed date",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set calendar-invalid date",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Clear date",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Select all radio controls",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Clear radio controls",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Check Civil",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Clear checkboxes",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/validators",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Validator contract demo"
+      },
+      {
+        "role": "region",
+        "name": "Date validator"
+      },
+      {
+        "role": "region",
+        "name": "Radio-group validator"
+      },
+      {
+        "role": "region",
+        "name": "Checkbox validator"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Validator contract demo"
+      },
+      {
+        "role": "heading",
+        "name": "Date validator"
+      },
+      {
+        "role": "button",
+        "name": "Set valid date"
+      },
+      {
+        "role": "button",
+        "name": "Set malformed date"
+      },
+      {
+        "role": "button",
+        "name": "Set calendar-invalid date"
+      },
+      {
+        "role": "button",
+        "name": "Clear date"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Radio-group validator"
+      },
+      {
+        "role": "button",
+        "name": "Select all radio controls"
+      },
+      {
+        "role": "button",
+        "name": "Clear radio controls"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Checkbox validator"
+      },
+      {
+        "role": "button",
+        "name": "Check Civil"
+      },
+      {
+        "role": "button",
+        "name": "Clear checkboxes"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Validator contract demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Date validator"
+      },
+      {
+        "role": "StaticText",
+        "name": "Set valid date"
+      },
+      {
+        "role": "StaticText",
+        "name": "Set malformed date"
+      },
+      {
+        "role": "StaticText",
+        "name": "Set calendar-invalid date"
+      },
+      {
+        "role": "StaticText",
+        "name": "Clear date"
+      },
+      {
+        "role": "StaticText",
+        "name": "valid"
+      },
+      {
+        "role": "StaticText",
+        "name": "null"
+      },
+      {
+        "role": "StaticText",
+        "name": "Radio-group validator"
+      },
+      {
+        "role": "StaticText",
+        "name": "Select all radio controls"
+      },
+      {
+        "role": "StaticText",
+        "name": "Clear radio controls"
+      },
+      {
+        "role": "StaticText",
+        "name": "invalid"
+      },
+      {
+        "role": "StaticText",
+        "name": "{ \"isRadioGroupInvalid\": true }"
+      },
+      {
+        "role": "StaticText",
+        "name": "Checkbox validator"
+      },
+      {
+        "role": "StaticText",
+        "name": "Check Civil"
+      },
+      {
+        "role": "StaticText",
+        "name": "Clear checkboxes"
+      },
+      {
+        "role": "StaticText",
+        "name": "invalid"
+      },
+      {
+        "role": "StaticText",
+        "name": "{ \"requireOneCheckboxToBeChecked\": true }"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Date validator"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Set valid date"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Set malformed date"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Set calendar-invalid date"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Clear date"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "valid"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "null"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Radio-group validator"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Select all radio controls"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Clear radio controls"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "invalid"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{ \"isRadioGroupInvalid\": true }"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Checkbox validator"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Check Civil"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Clear checkboxes"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "invalid"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{ \"requireOneCheckboxToBeChecked\": true }"
+      }
+    ]
+  }
+}

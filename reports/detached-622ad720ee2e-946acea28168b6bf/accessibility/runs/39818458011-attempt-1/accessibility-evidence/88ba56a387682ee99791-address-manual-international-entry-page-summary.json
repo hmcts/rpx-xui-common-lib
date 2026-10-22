@@ -1,0 +1,436 @@
+{
+  "feature": "address",
+  "pageState": "manual international entry",
+  "strict": true,
+  "url": "http://localhost:4200/coverage/address",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "needs-review",
+      "reviewCount": 1,
+      "reviewRules": [
+        "color-contrast"
+      ],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Address demo"
+      },
+      {
+        "level": 2,
+        "text": "Demo form and event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Address demo Yes No Enter address details Building and Street Address line 2 (Optional) Address line 3 (Optional) Town or City County/ State/ Province (Optional) Country Postcode (",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "Yes",
+        "selector": "#yes",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "No",
+        "selector": "#no",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Building and Street",
+        "selector": "#addressLine1",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Address line 2 (Optional)",
+        "selector": "#addressLine2",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Address line 3 (Optional)",
+        "selector": "#addressLine3",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Town or City",
+        "selector": "#postTown",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "County/ State/ Province (Optional)",
+        "selector": "#county",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Country",
+        "selector": "#country",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Postcode (Optional)",
+        "selector": "#postCode",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/address",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Address demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Address demo"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"address\": {\n    \"addressLine1\": \"\",\n    \"addressLine2\": \"\",\n    \"addressLine3\": \"\",\n    \"postTown\": \"\",\n    \"county\": \"\",\n    \"postCode\": \"\",\n    \"country\": \"\"\n  }\n}"
+      },
+      {
+        "role": "StaticText",
+        "name": "Selection events: "
+      },
+      {
+        "role": "StaticText",
+        "name": "0"
+      },
+      {
+        "role": "StaticText",
+        "name": "Addresses available: "
+      },
+      {
+        "role": "StaticText",
+        "name": "false"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Address demo"
+      },
+      {
+        "role": "radio",
+        "name": "Yes"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "radio",
+        "name": "No"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "form",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Demo form and event outputs"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"address\": {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine1\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine2\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"addressLine3\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"postTown\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"county\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"postCode\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"country\": \"\""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  }"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Selection events: "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "0"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Addresses available: "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "false"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Building and Street"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Address line 2 (Optional)"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Address line 3 (Optional)"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Town or City"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "County/ State/ Province (Optional)"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Country"
+      },
+      {
+        "role": "none",
+        "name": ""
+      }
+    ]
+  }
+}

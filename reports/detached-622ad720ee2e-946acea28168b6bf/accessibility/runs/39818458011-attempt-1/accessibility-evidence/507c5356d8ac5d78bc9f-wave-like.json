@@ -1,0 +1,85 @@
+{
+  "url": "http://localhost:4200/coverage/standalone",
+  "violationCount": 1,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Standalone component coverage"
+      },
+      {
+        "level": 1,
+        "text": "Standalone wrapper caption Standalone wrapper title"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Standalone component coverageToggle page titleToggle page back linkToggle page captionBackStandalone wrapper caption Standalone wrapper title Projected wrapper "
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Toggle page title",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Toggle page back link",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Toggle page caption",
+        "selector": "button"
+      },
+      {
+        "type": "link",
+        "name": "Back",
+        "selector": "a"
+      },
+      {
+        "type": "radio input",
+        "name": "First route",
+        "selector": "#first"
+      },
+      {
+        "type": "radio input",
+        "name": "Second route",
+        "selector": "#second"
+      },
+      {
+        "type": "button",
+        "name": "Toggle radio error",
+        "selector": "button"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Email updates(optional)",
+        "selector": "#consent-checkbox"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "h1-count",
+      "message": "Expected exactly one visible h1, found 2.",
+      "selector": "h1",
+      "html": "<h1 class=\"govuk-heading-xl\">Standalone component coverage</h1>",
+      "codeLocation": {
+        "tag": "h1",
+        "classes": "govuk-heading-xl",
+        "accessibleName": "Standalone component coverage",
+        "nearestLandmark": "main #main-content .govuk-width-container.govuk-main-wrapper.ng-untouched.ng-pristine.ng-valid"
+      },
+      "advice": "Check all page headings, including shared banners. Follow the GOV.UK convention of one main page h1; choose other levels by section hierarchy, not visual size. Multiple h1 elements alone do not establish a WCAG failure."
+    }
+  ]
+}

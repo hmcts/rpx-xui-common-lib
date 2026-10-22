@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-cbcd79113877a96f0dfe",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=form-group",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=form-group",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage?feature=form-group",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "af2a6e3dd74ca11bf99a-wave-like.html",
+  "jsonFileName": "af2a6e3dd74ca11bf99a-wave-like.json",
+  "screenshotFileName": "af2a6e3dd74ca11bf99a-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "af2a6e3dd74ca11bf99a-wave-like-style-1.css"
+  ]
+}

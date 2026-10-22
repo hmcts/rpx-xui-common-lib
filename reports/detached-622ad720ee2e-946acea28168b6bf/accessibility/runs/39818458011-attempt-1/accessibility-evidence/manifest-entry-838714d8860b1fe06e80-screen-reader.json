@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-5c0d45f6c258309e4f8d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "home",
+  "pageState": "initial components",
+  "violationCount": 1,
+  "status": "issues-found",
+  "rules": [
+    "table-headers"
+  ],
+  "targets": [
+    "table"
+  ],
+  "testTitle": "home — initial components",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "838714d8860b1fe06e80-screen-reader.html",
+  "jsonFileName": "838714d8860b1fe06e80-screen-reader.json",
+  "screenshotFileName": "838714d8860b1fe06e80-screen-reader.png",
+  "findings": [
+    {
+      "rule": "table-headers",
+      "targets": [
+        "table"
+      ],
+      "summary": "Screen-reader users need row or column headers in data tables.",
+      "anchor": "issue-1"
+    }
+  ],
+  "assetFileNames": [
+    "838714d8860b1fe06e80-screen-reader-style-1.css"
+  ]
+}

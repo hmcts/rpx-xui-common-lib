@@ -1,0 +1,83 @@
+{
+  "title": "skip link moves focus to the main-content target for /home",
+  "url": "http://localhost:4200/home",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "issues-found",
+      "reviewCount": 1,
+      "reviewRules": [
+        "aria-prohibited-attr"
+      ],
+      "issueCount": 1,
+      "rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "engine": "wave-like",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "h1-count",
+        "table-headers"
+      ]
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 1,
+      "rules": [
+        "table-headers"
+      ]
+    }
+  ],
+  "incompleteCount": 1,
+  "published": {
+    "context": {
+      "scenarioId": "952c03097f06ee496f4e-ffc5dcbc7e192e860f96",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "skip link moves focus to the main-content target for /home",
+    "pageState": "skip link moves focus to the main-content target for /home",
+    "violationCount": 4,
+    "reviewCount": 1,
+    "reviewRules": [
+      "aria-prohibited-attr"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:color-contrast",
+      "wave-like:h1-count",
+      "wave-like:table-headers",
+      "screen-reader:table-headers"
+    ],
+    "targets": [
+      "http://localhost:4200/home"
+    ],
+    "testTitle": "skip link moves focus to the main-content target for /home",
+    "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-home-skip-link-moves-focus-to-the-main-content-target-for-home-page-summary",
+    "htmlFileName": "4a4584dd7adf959392f0-skip-link-moves-focus-to-the-main-content-target-for-home-skip-link-moves-focus-to-the-main-content-.html",
+    "jsonFileName": "4a4584dd7adf959392f0-skip-link-moves-focus-to-the-main-content-target-for-home-skip-link-moves-focus-to-the-main-content-.json",
+    "screenshotFileName": "4a4584dd7adf959392f0-skip-link-moves-focus-to-the-main-content-target-for-home-skip-link-moves-focus-to-the-main-content-.png",
+    "assetFileNames": [
+      "4a4584dd7adf959392f0-skip-link-moves-focus-to-the-main-content-target-for-home-skip-link-moves-focus-to-the-main-content--style-1.css"
+    ]
+  }
+}

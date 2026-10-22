@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f0da1badef792dbf86a8",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "find person",
+  "pageState": "expanded judicial suggestions",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "find person — expanded judicial suggestions",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "9416e1a594cc7c394ba0-screen-reader.html",
+  "jsonFileName": "9416e1a594cc7c394ba0-screen-reader.json",
+  "screenshotFileName": "9416e1a594cc7c394ba0-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "9416e1a594cc7c394ba0-screen-reader-style-1.css"
+  ]
+}

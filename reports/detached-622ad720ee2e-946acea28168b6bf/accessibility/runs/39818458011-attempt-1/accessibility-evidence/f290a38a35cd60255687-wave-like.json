@@ -1,0 +1,36 @@
+{
+  "url": "http://localhost:4200/coverage/lookups?feature=search-work-type",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Lookup component demo"
+      },
+      {
+        "level": 2,
+        "text": "Direct SearchWorkType component"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Lookup component demoDirect SearchWorkType componentSearch work type{ \"key\": \"review\", \"label\": \"Review case\" }"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "Search work type",
+        "selector": "#inputWorkTypeSearch"
+      }
+    ]
+  },
+  "violations": []
+}

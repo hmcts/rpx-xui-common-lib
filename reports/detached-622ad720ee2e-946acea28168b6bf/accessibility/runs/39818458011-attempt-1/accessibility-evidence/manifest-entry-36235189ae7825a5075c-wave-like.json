@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "session",
+  "pageState": "visible timeout dialog",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "session — visible timeout dialog",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "36235189ae7825a5075c-wave-like.html",
+  "jsonFileName": "36235189ae7825a5075c-wave-like.json",
+  "screenshotFileName": "36235189ae7825a5075c-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "36235189ae7825a5075c-wave-like-style-1.css"
+  ]
+}

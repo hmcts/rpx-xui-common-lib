@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-595dd0ef58aab2884eae",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/lookups",
+  "pageState": "skip link moves focus to the main-content target for /coverage/lookups",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/lookups",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "d4faa0a4b4b758475b00-axe.html",
+  "jsonFileName": "d4faa0a4b4b758475b00-axe.json",
+  "screenshotFileName": "d4faa0a4b4b758475b00-axe.png",
+  "assetFileNames": [
+    "d4faa0a4b4b758475b00-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,404 @@
+{
+  "url": "http://localhost:4200/coverage/standalone",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Standalone component coverage"
+      },
+      {
+        "level": 1,
+        "text": "Standalone wrapper caption Standalone wrapper title"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Standalone component coverageToggle page titleToggle page back linkToggle page captionBackStandalone wrapper caption Standalone wrapper title Projected wrapper content Preferred ro",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle page title",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle page back link",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle page caption",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Back",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "First route",
+        "selector": "#first",
+        "tabIndex": 0
+      },
+      {
+        "type": "radio input",
+        "name": "Second route",
+        "selector": "#second",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle radio error",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Email updates(optional)",
+        "selector": "#consent-checkbox",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/standalone",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Standalone component coverage"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Back"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Standalone wrapper caption Standalone wrapper title"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "group",
+        "name": "Preferred route"
+      },
+      {
+        "role": "button",
+        "name": "Toggle radio error"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Standalone component coverage"
+      },
+      {
+        "role": "button",
+        "name": "Toggle page title"
+      },
+      {
+        "role": "button",
+        "name": "Toggle page back link"
+      },
+      {
+        "role": "button",
+        "name": "Toggle page caption"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Back"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Standalone wrapper caption"
+      },
+      {
+        "role": "StaticText",
+        "name": "Standalone wrapper title"
+      },
+      {
+        "role": "StaticText",
+        "name": "Projected wrapper content"
+      },
+      {
+        "role": "Legend",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle radio error"
+      },
+      {
+        "role": "checkbox",
+        "name": "Email updates (optional)"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"choice\": \"first\",\n  \"consent\": false\n}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Standalone component coverage"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle page title"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle page back link"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle page caption"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Back"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Standalone wrapper caption"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Standalone wrapper title"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Projected wrapper content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Preferred route"
+      },
+      {
+        "role": "StaticText",
+        "name": "Choose one route."
+      },
+      {
+        "role": "radio",
+        "name": "First route"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "radio",
+        "name": "Second route"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Toggle radio error"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Email updates"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "(optional)"
+      },
+      {
+        "role": "StaticText",
+        "name": "Receive status updates."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"choice\": \"first\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"consent\": false"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Toggle page title"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Toggle page back link"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Toggle page caption"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Preferred route"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Choose one route."
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "First route"
+      }
+    ]
+  }
+}

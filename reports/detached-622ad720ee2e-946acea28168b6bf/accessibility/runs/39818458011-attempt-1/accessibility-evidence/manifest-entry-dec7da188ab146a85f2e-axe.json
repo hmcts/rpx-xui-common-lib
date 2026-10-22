@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-f1ec3adf9720527948dc",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "pageState": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "dec7da188ab146a85f2e-axe.html",
+  "jsonFileName": "dec7da188ab146a85f2e-axe.json",
+  "screenshotFileName": "dec7da188ab146a85f2e-axe.png",
+  "assetFileNames": [
+    "dec7da188ab146a85f2e-axe-style-1.css"
+  ]
+}

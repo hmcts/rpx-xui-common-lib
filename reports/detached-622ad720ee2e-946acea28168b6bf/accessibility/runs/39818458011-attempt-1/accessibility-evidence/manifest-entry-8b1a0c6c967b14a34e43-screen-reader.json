@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-f9637579684f3bad5122",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "cookies",
+  "pageState": "choice banner",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "cookies — choice banner",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "8b1a0c6c967b14a34e43-screen-reader.html",
+  "jsonFileName": "8b1a0c6c967b14a34e43-screen-reader.json",
+  "screenshotFileName": "8b1a0c6c967b14a34e43-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "8b1a0c6c967b14a34e43-screen-reader-style-1.css"
+  ]
+}

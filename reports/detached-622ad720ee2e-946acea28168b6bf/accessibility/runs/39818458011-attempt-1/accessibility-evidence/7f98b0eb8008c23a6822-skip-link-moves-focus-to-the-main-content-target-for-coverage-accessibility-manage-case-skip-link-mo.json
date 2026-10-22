@@ -1,0 +1,554 @@
+{
+  "feature": "skip link moves focus to the main-content target for /coverage/accessibility/manage-case",
+  "pageState": "skip link moves focus to the main-content target for /coverage/accessibility/manage-case",
+  "strict": true,
+  "url": "http://localhost:4200/coverage/accessibility/manage-case",
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Accessibility statement for MyHMCTS Manage Cases"
+      },
+      {
+        "level": 2,
+        "text": "How accessible this website is"
+      },
+      {
+        "level": 2,
+        "text": "Feedback and contact information"
+      },
+      {
+        "level": 3,
+        "text": "Adoption"
+      },
+      {
+        "level": 3,
+        "text": "Civil Damages Service"
+      },
+      {
+        "level": 3,
+        "text": "Divorce and Financial Remedy"
+      },
+      {
+        "level": 3,
+        "text": "Family Public Law"
+      },
+      {
+        "level": 3,
+        "text": "Immigration and Asylum Chamber"
+      },
+      {
+        "level": 3,
+        "text": "Online Civil Money Claims"
+      },
+      {
+        "level": 3,
+        "text": "Private Law"
+      },
+      {
+        "level": 3,
+        "text": "Probate"
+      },
+      {
+        "level": 3,
+        "text": "Social Security and Child Support"
+      },
+      {
+        "level": 2,
+        "text": "Reporting accessibility problems with this website"
+      },
+      {
+        "level": 2,
+        "text": "Enforcement procedure"
+      },
+      {
+        "level": 2,
+        "text": "Technical information about this website’s accessibility"
+      },
+      {
+        "level": 2,
+        "text": "Compliance Status"
+      },
+      {
+        "level": 2,
+        "text": "Non-accessible content"
+      },
+      {
+        "level": 2,
+        "text": "Non-accessible content"
+      },
+      {
+        "level": 3,
+        "text": "Non-compliance with the accessibility regulations"
+      },
+      {
+        "level": 3,
+        "text": "Disproportionate burden on accessibility regulations"
+      },
+      {
+        "level": 3,
+        "text": "Content that’s not within the scope of the accessibility regulations"
+      },
+      {
+        "level": 2,
+        "text": "What we’re doing to improve accessibility"
+      },
+      {
+        "level": 2,
+        "text": "Preparation of this accessibility statement"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Accessibility statement for MyHMCTS Manage CasesMyHMCTS Manage Cases is used across several services. Please use links to find contact information for each service.Immigration and ",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Immigration and Asylum",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Family Public Law",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "adoption",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Civil Damages",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Divorce and financial remeduies",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Civil Money Claims",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Private Law",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Probate",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Social Security and Child Support",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "AbilityNet",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "HMCTSforms@justice.gov.uk",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "customer.service@justice.gov.uk",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "contact the Equality Advisory and Support Service (EASS).",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Web Content Accessibility Guidelines version 2.2",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Digital Accessibility Centre (DAC)",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/accessibility/manage-case",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Accessibility statement for MyHMCTS Manage Cases"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "How accessible this website is"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Feedback and contact information"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Adoption"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Civil Damages Service"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Divorce and Financial Remedy"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Family Public Law"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Immigration and Asylum Chamber"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Online Civil Money Claims"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Private Law"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Probate"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Social Security and Child Support"
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Reporting accessibility problems with this website"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Enforcement procedure"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Technical information about this website’s accessibility"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Compliance Status"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Non-accessible content"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Non-accessible content"
+      },
+      {
+        "role": "heading",
+        "name": "Non-compliance with the accessibility regulations"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      }
+    ]
+  }
+}

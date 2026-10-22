@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-595dd0ef58aab2884eae",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage/lookups",
+  "pageState": "skip link moves focus to the main-content target for /coverage/lookups",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/lookups",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "d4faa0a4b4b758475b00-wave-like.html",
+  "jsonFileName": "d4faa0a4b4b758475b00-wave-like.json",
+  "screenshotFileName": "d4faa0a4b4b758475b00-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "d4faa0a4b4b758475b00-wave-like-style-1.css"
+  ]
+}

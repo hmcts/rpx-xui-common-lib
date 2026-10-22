@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-acdb95e129d680c15399",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "form controls",
+  "pageState": "descriptions initial",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "form controls — descriptions initial",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "02e484a79f46c4bf77bb-screen-reader.html",
+  "jsonFileName": "02e484a79f46c4bf77bb-screen-reader.json",
+  "screenshotFileName": "02e484a79f46c4bf77bb-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "02e484a79f46c4bf77bb-screen-reader-style-1.css"
+  ]
+}

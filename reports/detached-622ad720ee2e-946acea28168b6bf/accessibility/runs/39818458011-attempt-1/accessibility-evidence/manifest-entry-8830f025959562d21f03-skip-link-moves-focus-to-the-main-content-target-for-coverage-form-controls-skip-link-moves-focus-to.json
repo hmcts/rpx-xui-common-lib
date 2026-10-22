@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-23229782a550f6f6d0ad",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "pageState": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "violationCount": 0,
+  "reviewCount": 2,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "needs-review",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/form-controls",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-form-controls-skip-link-moves-focus-to-the-main-content-target-for-coverage-form-controls-page-summary",
+  "htmlFileName": "8830f025959562d21f03-skip-link-moves-focus-to-the-main-content-target-for-coverage-form-controls-skip-link-moves-focus-to.html",
+  "jsonFileName": "8830f025959562d21f03-skip-link-moves-focus-to-the-main-content-target-for-coverage-form-controls-skip-link-moves-focus-to.json",
+  "screenshotFileName": "8830f025959562d21f03-skip-link-moves-focus-to-the-main-content-target-for-coverage-form-controls-skip-link-moves-focus-to.png",
+  "assetFileNames": [
+    "8830f025959562d21f03-skip-link-moves-focus-to-the-main-content-target-for-coverage-form-controls-skip-link-moves-focus-to-style-1.css"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-cbcd79113877a96f0dfe",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=form-group",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=form-group",
+  "violationCount": 1,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 1 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:error-describedby"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=form-group"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage?feature=form-group",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-form-group-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-form-group-page-summary",
+  "htmlFileName": "af2a6e3dd74ca11bf99a-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-form-group-skip-link-moves-foc.html",
+  "jsonFileName": "af2a6e3dd74ca11bf99a-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-form-group-skip-link-moves-foc.json",
+  "screenshotFileName": "af2a6e3dd74ca11bf99a-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-form-group-skip-link-moves-foc.png",
+  "assetFileNames": [
+    "af2a6e3dd74ca11bf99a-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-form-group-skip-link-moves-foc-style-1.css"
+  ]
+}

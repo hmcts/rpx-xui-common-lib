@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-567fd581dba25dc14f53",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "service selection",
+  "pageState": "selected service",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/service-selection"
+  ],
+  "testTitle": "service selection — selected service",
+  "attachmentPrefix": "service-selection-selected-service-page-summary",
+  "htmlFileName": "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.html",
+  "jsonFileName": "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.json",
+  "screenshotFileName": "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary.png",
+  "assetFileNames": [
+    "3d208979d1d6cd0f3f10-service-selection-selected-service-page-summary-style-1.css"
+  ]
+}

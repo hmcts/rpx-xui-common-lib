@@ -1,0 +1,42 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-0fc654d208d63f607318",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "case sharing",
+  "pageState": "no-change validation",
+  "status": "issues-found",
+  "reviewCount": 2,
+  "reviewRules": [
+    "aria-prohibited-attr"
+  ],
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "[\"#title-selected-cases\"]"
+      ],
+      "summary": "Heading levels should only increase by one",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 1,
+  "rules": [
+    "heading-order"
+  ],
+  "targets": [
+    "[\"#title-selected-cases\"]"
+  ],
+  "testTitle": "case sharing — no-change validation",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "7a4203c09c41cce2a0f3-axe.html",
+  "jsonFileName": "7a4203c09c41cce2a0f3-axe.json",
+  "screenshotFileName": "7a4203c09c41cce2a0f3-axe.png",
+  "assetFileNames": [
+    "7a4203c09c41cce2a0f3-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-b3b9e5faf4c47203398b",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=dialog",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=dialog",
+  "violationCount": 1,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 1 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:aria-dialog-name"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=dialog"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage?feature=dialog",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-dialog-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-dialog-page-summary",
+  "htmlFileName": "cf72567e5cd4e4264836-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-dialog-skip-link-moves-focus-t.html",
+  "jsonFileName": "cf72567e5cd4e4264836-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-dialog-skip-link-moves-focus-t.json",
+  "screenshotFileName": "cf72567e5cd4e4264836-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-dialog-skip-link-moves-focus-t.png",
+  "assetFileNames": [
+    "cf72567e5cd4e4264836-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-dialog-skip-link-moves-focus-t-style-1.css"
+  ]
+}

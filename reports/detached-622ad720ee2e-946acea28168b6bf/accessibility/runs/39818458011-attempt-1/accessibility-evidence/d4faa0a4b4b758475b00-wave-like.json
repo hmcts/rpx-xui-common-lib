@@ -1,0 +1,27 @@
+{
+  "url": "http://localhost:4200/coverage/lookups",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Lookup component demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Lookup component demo"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": []
+}

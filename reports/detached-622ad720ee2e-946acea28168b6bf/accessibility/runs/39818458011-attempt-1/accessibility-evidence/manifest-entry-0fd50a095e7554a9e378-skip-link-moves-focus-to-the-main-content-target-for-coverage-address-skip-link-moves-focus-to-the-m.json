@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-e18065160687b769772f",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/address",
+  "pageState": "skip link moves focus to the main-content target for /coverage/address",
+  "violationCount": 0,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "needs-review",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/address"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/address",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-address-skip-link-moves-focus-to-the-main-content-target-for-coverage-address-page-summary",
+  "htmlFileName": "0fd50a095e7554a9e378-skip-link-moves-focus-to-the-main-content-target-for-coverage-address-skip-link-moves-focus-to-the-m.html",
+  "jsonFileName": "0fd50a095e7554a9e378-skip-link-moves-focus-to-the-main-content-target-for-coverage-address-skip-link-moves-focus-to-the-m.json",
+  "screenshotFileName": "0fd50a095e7554a9e378-skip-link-moves-focus-to-the-main-content-target-for-coverage-address-skip-link-moves-focus-to-the-m.png",
+  "assetFileNames": [
+    "0fd50a095e7554a9e378-skip-link-moves-focus-to-the-main-content-target-for-coverage-address-skip-link-moves-focus-to-the-m-style-1.css"
+  ]
+}

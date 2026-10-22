@@ -1,0 +1,40 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-9ab1459c84617506eab2",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "session",
+  "pageState": "visible timeout dialog",
+  "status": "issues-found",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [
+    {
+      "rule": "aria-dialog-name",
+      "targets": [
+        "[\"dialog\"]"
+      ],
+      "summary": "ARIA dialog and alertdialog nodes should have an accessible name",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 1,
+  "rules": [
+    "aria-dialog-name"
+  ],
+  "targets": [
+    "[\"dialog\"]"
+  ],
+  "testTitle": "session — visible timeout dialog",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "36235189ae7825a5075c-axe.html",
+  "jsonFileName": "36235189ae7825a5075c-axe.json",
+  "screenshotFileName": "36235189ae7825a5075c-axe.png",
+  "assetFileNames": [
+    "36235189ae7825a5075c-axe-style-1.css"
+  ]
+}

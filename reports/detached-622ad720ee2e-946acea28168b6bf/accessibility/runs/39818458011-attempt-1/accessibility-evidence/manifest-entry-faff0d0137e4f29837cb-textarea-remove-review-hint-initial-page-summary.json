@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-e9fd44e781362bad79f1",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "textarea",
+  "pageState": "Remove review hint initial",
+  "violationCount": 0,
+  "reviewCount": 2,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "needs-review",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls"
+  ],
+  "testTitle": "textarea — Remove review hint initial",
+  "attachmentPrefix": "textarea-remove-review-hint-initial-page-summary",
+  "htmlFileName": "faff0d0137e4f29837cb-textarea-remove-review-hint-initial-page-summary.html",
+  "jsonFileName": "faff0d0137e4f29837cb-textarea-remove-review-hint-initial-page-summary.json",
+  "screenshotFileName": "faff0d0137e4f29837cb-textarea-remove-review-hint-initial-page-summary.png",
+  "assetFileNames": [
+    "faff0d0137e4f29837cb-textarea-remove-review-hint-initial-page-summary-style-1.css"
+  ]
+}

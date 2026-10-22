@@ -1,0 +1,34 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-44283a0d44f941e9cf1d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/users/user-1",
+  "pageState": "skip link moves focus to the main-content target for /coverage/users/user-1",
+  "violationCount": 15,
+  "reviewCount": 5,
+  "reviewRules": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 15 unexpected issue(s), 5 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:dlitem"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/users/user-1"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/users/user-1",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-users-user-1-skip-link-moves-focus-to-the-main-content-target-for-coverage-users-user-1-page-summary",
+  "htmlFileName": "60b42e0d86800fcb826f-skip-link-moves-focus-to-the-main-content-target-for-coverage-users-user-1-skip-link-moves-focus-to-.html",
+  "jsonFileName": "60b42e0d86800fcb826f-skip-link-moves-focus-to-the-main-content-target-for-coverage-users-user-1-skip-link-moves-focus-to-.json",
+  "screenshotFileName": "60b42e0d86800fcb826f-skip-link-moves-focus-to-the-main-content-target-for-coverage-users-user-1-skip-link-moves-focus-to-.png",
+  "assetFileNames": [
+    "60b42e0d86800fcb826f-skip-link-moves-focus-to-the-main-content-target-for-coverage-users-user-1-skip-link-moves-focus-to--style-1.css"
+  ]
+}

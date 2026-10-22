@@ -1,0 +1,201 @@
+
+    <!doctype html><html lang="en">
+      <head>
+        <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WAVE-like Accessibility Issues</title>
+        <link rel="stylesheet" href="0bac5fe419eb7680c9c3-wave-like-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Evidence navigation</h2>
+            <nav class="toolbar" aria-label="Evidence sections"><a href="#issues">Findings</a><a href="#visual">Image</a><a href="#order">Order</a><a href="#structure">Structure</a></nav>
+            <div class="scorecard">
+              <p><strong>RpxXuiCommonLib</strong></p>
+              <div class="metric-grid">
+                <div class="metric"><strong>2</strong>Issues</div>
+                <div class="metric"><strong>2</strong>Rules</div>
+                <div class="metric"><strong>14</strong>Order</div>
+                <div class="metric"><strong>5</strong>Headings</div>
+              </div>
+            </div>
+            <details open id="issues">
+              <summary>Findings</summary>
+              <ol><li><a href="#issue-1">1. main-landmark</a></li><li><a href="#issue-2">2. h1-count</a></li></ol>
+            </details>
+            <details id="order">
+              <summary>DOM order inventory</summary>
+              <p>Candidate controls in DOM order; this is not a verified keyboard Tab sequence.</p>
+              <ol>
+        <li>
+          <span class="marker">1</span>
+          <strong>link</strong>: Skip to main content
+          <code>a</code>
+        </li>
+      
+        <li>
+          <span class="marker">2</span>
+          <strong>textarea</strong>: Notes
+          <code>#notes</code>
+        </li>
+      
+        <li>
+          <span class="marker">3</span>
+          <strong>checkbox input</strong>: Email alerts
+          <code>#email-alerts</code>
+        </li>
+      
+        <li>
+          <span class="marker">4</span>
+          <strong>checkbox input</strong>: SMS alerts
+          <code>#sms-alerts</code>
+        </li>
+      
+        <li>
+          <span class="marker">5</span>
+          <strong>radio input</strong>: Routine
+          <code>#routine</code>
+        </li>
+      
+        <li>
+          <span class="marker">6</span>
+          <strong>radio input</strong>: Urgent
+          <code>#urgent</code>
+        </li>
+      
+        <li>
+          <span class="marker">7</span>
+          <strong>button</strong>: Toggle supplied errors
+          <code>button</code>
+        </li>
+      
+        <li>
+          <span class="marker">8</span>
+          <strong>text input</strong>: Disabled value
+          <code>#disabled-field</code>
+        </li>
+      
+        <li>
+          <span class="marker">9</span>
+          <strong>button</strong>: Toggle disabled control
+          <code>button</code>
+        </li>
+      
+        <li>
+          <span class="marker">10</span>
+          <strong>link</strong>: Case 1001
+          <code>a</code>
+        </li>
+      
+        <li>
+          <span class="marker">11</span>
+          <strong>link</strong>: Case 1002
+          <code>a</code>
+        </li>
+      
+        <li>
+          <span class="marker">12</span>
+          <strong>button</strong>: Toggle identity
+          <code>button</code>
+        </li>
+      
+        <li>
+          <span class="marker">13</span>
+          <strong>button</strong>: Reduce records
+          <code>button</code>
+        </li>
+      
+        <li>
+          <span class="marker">14</span>
+          <strong>button</strong>: Toggle pagination displays
+          <code>button</code>
+        </li>
+      </ol>
+            </details>
+            <details id="structure">
+              <summary>Structure</summary>
+              <ol><li><span class="structure-token">h1</span>Primitives coverage demo</li><li><span class="structure-token">h2</span>Parent form value</li><li><span class="structure-token">h1</span>Choice details</li><li><span class="structure-token">h1</span>Main wrapper</li><li><span class="structure-token">h2</span>Paginated records</li><li><span class="structure-token">main</span>Primitives coverage demoNotes Synthetic notes. Notification channels Email alerts SMS alerts UrgencyRoutineUrgent Toggle supplied errors Disabled value Toggle d</li><li><span class="structure-token">main</span>Main wrapperProjected main-wrapper content</li><li><span class="structure-token">nav</span>Pagination navigation1page 2page 3Next pageShowing 1 to 2 of 5 results</li></ol>
+            </details>
+            <details>
+              <summary>Contrast</summary>
+              <p>Contrast signal is provided by axe and Lighthouse in the unified pack. This WAVE-like panel focuses on structure, order, names, labels, and target evidence.</p>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <div class="banner">
+              <h1>WAVE-like accessibility evidence</h1>
+              <p>2 automated finding(s). These checks include heuristics and conventions, not a WCAG conformance verdict. Match finding numbers to the highlighted page image.</p>
+            </div>
+            <p class="report-nav"><a href="../index.html">Back to Odhín report</a></p>
+            <details class="visual" id="visual"><summary>Show highlighted page image</summary>
+              <img alt="Highlighted page screenshot with WAVE-like issue markers" src="0bac5fe419eb7680c9c3-wave-like.png" />
+            </details>
+            
+        <section class="issue" id="issue-1" tabindex="-1">
+          <h2>1. main-landmark</h2>
+          <p><strong>Expected exactly one visible main landmark, found 2.</strong></p>
+          <p><strong>Selector:</strong> <code>page</code></p>
+          
+    <div class="advice">
+      <h3>Developer advice</h3>
+      <p><strong>Landmark convention — inspect the page structure</strong></p>
+      <h4>Where to look</h4>
+      <dl class="location"><dt>Page</dt><dd>http://localhost:4200/coverage/primitives</dd></dl><p>No element context was captured. For a page-level finding, inspect the document shell/template.</p>
+      <dl>
+        <dt>Why this matters</dt>
+        <dd>A clear main region lets assistive-technology users bypass repeated navigation.</dd>
+        <dt>What to fix</dt>
+        <dd>Render exactly one usable main element or role=&quot;main&quot; in the app shell/page template; do not nest duplicate mains.</dd>
+        <dt>How to verify</dt>
+        <dd>Inspect the landmark list and navigate to main with a screen reader; confirm it contains the unique primary content.</dd>
+        <dt>Guidance</dt><dd><a href="https://www.w3.org/WAI/tutorials/page-structure/regions/">W3C WAI: page regions</a></dd>
+        <dt>Related WCAG criteria</dt><dd>Related: 2.4.1 (A). A main landmark is one technique for bypassing repeated content. Criteria refer to WCAG 2.2; unless noted, they also existed in WCAG 2.0.</dd>
+      </dl>
+      <details><summary>DOM hints and source investigation</summary><p>Start with the route component or template that renders this page state.</p>
+      <p>These are rendered DOM clues, not a verified source-file mapping. Match the selector and nearby text in the route component/template. The excerpt may be truncated.</p>
+      <pre>{}</pre></details>
+    </div>
+  
+          <details><summary>Captured DOM excerpt</summary><pre>No element excerpt was captured for this page-level finding.</pre></details>
+        </section>
+      
+        <section class="issue" id="issue-2" tabindex="-1">
+          <h2>2. h1-count</h2>
+          <p><strong>Expected exactly one visible h1, found 3.</strong></p>
+          <p><strong>Selector:</strong> <code>h1</code></p>
+          
+    <div class="advice">
+      <h3>Developer advice</h3>
+      <p><strong>Heading convention — inspect the page hierarchy</strong></p>
+      <h4>Where to look</h4>
+      <dl class="location"><dt>Page</dt><dd>http://localhost:4200/coverage/primitives</dd><dt>Selector</dt><dd><code>h1</code></dd><dt>Element</dt><dd><code>h1</code></dd><dt>Name hint</dt><dd>Primitives coverage demo</dd><dt>Landmark</dt><dd>main #main-content .govuk-width-container.ng-untouched.ng-pristine.ng-valid</dd></dl>
+      <dl>
+        <dt>Why this matters</dt>
+        <dd>Heading navigation helps screen-reader users understand the page and locate its main subject.</dd>
+        <dt>What to fix</dt>
+        <dd>Check all page headings, including shared banners. Follow the GOV.UK convention of one main page h1; choose other levels by section hierarchy, not visual size. Multiple h1 elements alone do not establish a WCAG failure.</dd>
+        <dt>How to verify</dt>
+        <dd>Inspect every h1 and navigate the heading list with a screen reader. Confirm the main heading identifies this page state and section levels reflect the content.</dd>
+        <dt>Guidance</dt><dd><a href="https://www.w3.org/WAI/tutorials/page-structure/headings/">W3C WAI: page headings</a></dd>
+        <dt>Related WCAG criteria</dt><dd>GOV.UK heading convention; not a standalone WCAG failure. Review 1.3.1 (A) and 2.4.6 (AA) in context. Criteria refer to WCAG 2.2; unless noted, they also existed in WCAG 2.0.</dd>
+      </dl>
+      <details><summary>DOM hints and source investigation</summary><p>search selector h1; search class govuk-heading-xl</p>
+      <p>These are rendered DOM clues, not a verified source-file mapping. Match the selector and nearby text in the route component/template. The excerpt may be truncated.</p>
+      <pre>{
+  &quot;tag&quot;: &quot;h1&quot;,
+  &quot;classes&quot;: &quot;govuk-heading-xl&quot;,
+  &quot;accessibleName&quot;: &quot;Primitives coverage demo&quot;,
+  &quot;nearestLandmark&quot;: &quot;main #main-content .govuk-width-container.ng-untouched.ng-pristine.ng-valid&quot;
+}</pre></details>
+    </div>
+  
+          <details><summary>Captured DOM excerpt</summary><pre>&lt;h1 class=&quot;govuk-heading-xl&quot;&gt;Primitives coverage demo&lt;/h1&gt;</pre></details>
+        </section>
+      
+            <p class="report-nav"><a href="../index.html">Back to Odhín report</a></p>
+          </main>
+        </div>
+      </body>
+    </html>
+  

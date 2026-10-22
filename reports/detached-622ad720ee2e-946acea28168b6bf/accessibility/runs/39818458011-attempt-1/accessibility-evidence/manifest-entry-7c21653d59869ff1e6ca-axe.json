@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-b78b2fd6f88136efaabe",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "pageState": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "7c21653d59869ff1e6ca-axe.html",
+  "jsonFileName": "7c21653d59869ff1e6ca-axe.json",
+  "screenshotFileName": "7c21653d59869ff1e6ca-axe.png",
+  "assetFileNames": [
+    "7c21653d59869ff1e6ca-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-d42f6110167cbb95590d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "case sharing",
+  "pageState": "initial assignments",
+  "violationCount": 4,
+  "reviewCount": 3,
+  "reviewRules": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 3 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:heading-order",
+    "wave-like:heading-order",
+    "wave-like:duplicate-id"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/case-sharing"
+  ],
+  "testTitle": "case sharing — initial assignments",
+  "attachmentPrefix": "case-sharing-initial-assignments-page-summary",
+  "htmlFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.html",
+  "jsonFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.json",
+  "screenshotFileName": "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary.png",
+  "assetFileNames": [
+    "94d499437e007773b9cd-case-sharing-initial-assignments-page-summary-style-1.css"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "title": "skip link moves focus to the main-content target for /coverage/primitives",
+  "url": "http://localhost:4200/coverage/primitives",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "issues-found",
+      "reviewCount": 6,
+      "reviewRules": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ],
+      "issueCount": 3,
+      "rules": [
+        "landmark-main-is-top-level",
+        "landmark-no-duplicate-main",
+        "landmark-unique"
+      ]
+    },
+    {
+      "engine": "wave-like",
+      "status": "issues-found",
+      "issueCount": 2,
+      "rules": [
+        "main-landmark",
+        "h1-count"
+      ]
+    },
+    {
+      "engine": "screen-reader",
+      "status": "issues-found",
+      "issueCount": 1,
+      "rules": [
+        "main-landmark"
+      ]
+    }
+  ],
+  "incompleteCount": 2,
+  "published": {
+    "context": {
+      "scenarioId": "952c03097f06ee496f4e-29036d87aa2ad08eee6e",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "skip link moves focus to the main-content target for /coverage/primitives",
+    "pageState": "skip link moves focus to the main-content target for /coverage/primitives",
+    "violationCount": 6,
+    "reviewCount": 6,
+    "reviewRules": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ],
+    "status": "issues-found",
+    "summary": "3 engine(s), 0 known issue(s), 6 unexpected issue(s), 6 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [
+      "axe:landmark-main-is-top-level",
+      "axe:landmark-no-duplicate-main",
+      "axe:landmark-unique",
+      "wave-like:main-landmark",
+      "wave-like:h1-count",
+      "screen-reader:main-landmark"
+    ],
+    "targets": [
+      "http://localhost:4200/coverage/primitives"
+    ],
+    "testTitle": "skip link moves focus to the main-content target for /coverage/primitives",
+    "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-primitives-skip-link-moves-focus-to-the-main-content-target-for-coverage-primitives-page-summary",
+    "htmlFileName": "0bac5fe419eb7680c9c3-skip-link-moves-focus-to-the-main-content-target-for-coverage-primitives-skip-link-moves-focus-to-th.html",
+    "jsonFileName": "0bac5fe419eb7680c9c3-skip-link-moves-focus-to-the-main-content-target-for-coverage-primitives-skip-link-moves-focus-to-th.json",
+    "screenshotFileName": "0bac5fe419eb7680c9c3-skip-link-moves-focus-to-the-main-content-target-for-coverage-primitives-skip-link-moves-focus-to-th.png",
+    "assetFileNames": [
+      "0bac5fe419eb7680c9c3-skip-link-moves-focus-to-the-main-content-target-for-coverage-primitives-skip-link-moves-focus-to-th-style-1.css"
+    ]
+  }
+}

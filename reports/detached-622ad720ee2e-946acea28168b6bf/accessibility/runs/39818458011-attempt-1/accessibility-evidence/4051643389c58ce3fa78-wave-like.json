@@ -1,0 +1,151 @@
+{
+  "url": "http://localhost:4200/coverage/remaining",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Remaining CommonLib coverage"
+      },
+      {
+        "level": 2,
+        "text": "Direct component contracts"
+      },
+      {
+        "level": 3,
+        "text": "Direct HTML terms"
+      },
+      {
+        "level": 3,
+        "text": "Cases"
+      },
+      {
+        "level": 2,
+        "text": "Direct service contracts"
+      },
+      {
+        "level": 2,
+        "text": "Directive and pipe contracts"
+      },
+      {
+        "level": 2,
+        "text": "Validator edge states"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Remaining CommonLib coverageDirect component contractsDirect HTML termsProjected HTML content.Projected plain terms.CasesConfirmDirect service contractsLookup a"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Confirm Confirm",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Lookup address",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Find people",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Search locations",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set cookie",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Delete cookie",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Register loading",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Unregister loading",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set cases",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Request share",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Request unshare",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Persist filter",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Clear filter",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Update let value",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set valid date",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set calendar-invalid date",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set malformed date",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Disable radio controls",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Check two checkboxes",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set non-boolean checkbox value",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

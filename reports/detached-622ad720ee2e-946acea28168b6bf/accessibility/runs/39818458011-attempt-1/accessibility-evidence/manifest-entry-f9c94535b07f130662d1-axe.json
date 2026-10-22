@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-7d407949d73b73b4162f",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "textarea",
+  "pageState": "Use empty review hint errors",
+  "status": "needs-review",
+  "reviewCount": 2,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "textarea — Use empty review hint errors",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "f9c94535b07f130662d1-axe.html",
+  "jsonFileName": "f9c94535b07f130662d1-axe.json",
+  "screenshotFileName": "f9c94535b07f130662d1-axe.png",
+  "assetFileNames": [
+    "f9c94535b07f130662d1-axe-style-1.css"
+  ]
+}

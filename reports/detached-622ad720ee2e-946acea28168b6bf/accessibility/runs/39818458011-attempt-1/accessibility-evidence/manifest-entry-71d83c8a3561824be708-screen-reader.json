@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-06c9f1cf4dc6245a78a0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "textarea",
+  "pageState": "Use empty review hint initial",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "textarea — Use empty review hint initial",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "71d83c8a3561824be708-screen-reader.html",
+  "jsonFileName": "71d83c8a3561824be708-screen-reader.json",
+  "screenshotFileName": "71d83c8a3561824be708-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "71d83c8a3561824be708-screen-reader-style-1.css"
+  ]
+}

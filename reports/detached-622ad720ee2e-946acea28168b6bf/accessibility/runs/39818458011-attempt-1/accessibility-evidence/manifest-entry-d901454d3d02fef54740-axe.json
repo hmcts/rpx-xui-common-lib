@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-df081fe6e1186804d46d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "form controls",
+  "pageState": "descriptions cleared",
+  "status": "needs-review",
+  "reviewCount": 2,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "form controls — descriptions cleared",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "d901454d3d02fef54740-axe.html",
+  "jsonFileName": "d901454d3d02fef54740-axe.json",
+  "screenshotFileName": "d901454d3d02fef54740-axe.png",
+  "assetFileNames": [
+    "d901454d3d02fef54740-axe-style-1.css"
+  ]
+}

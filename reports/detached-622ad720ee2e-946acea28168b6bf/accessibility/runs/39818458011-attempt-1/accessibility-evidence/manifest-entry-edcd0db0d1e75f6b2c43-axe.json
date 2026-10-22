@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-8cd9813cc452e551561e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "validator states retain semantic headings and keyboard-accessible transitions",
+  "pageState": "validator states retain semantic headings and keyboard-accessible transitions",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "validator states retain semantic headings and keyboard-accessible transitions",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "edcd0db0d1e75f6b2c43-axe.html",
+  "jsonFileName": "edcd0db0d1e75f6b2c43-axe.json",
+  "screenshotFileName": "edcd0db0d1e75f6b2c43-axe.png",
+  "assetFileNames": [
+    "edcd0db0d1e75f6b2c43-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-f1ec3adf9720527948dc",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "pageState": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "dec7da188ab146a85f2e-screen-reader.html",
+  "jsonFileName": "dec7da188ab146a85f2e-screen-reader.json",
+  "screenshotFileName": "dec7da188ab146a85f2e-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "dec7da188ab146a85f2e-screen-reader-style-1.css"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "url": "http://localhost:4200/coverage/validators",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Validator contract demo"
+      },
+      {
+        "level": 2,
+        "text": "Date validator"
+      },
+      {
+        "level": 2,
+        "text": "Radio-group validator"
+      },
+      {
+        "level": 2,
+        "text": "Checkbox validator"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Validator contract demoDate validatorSet valid dateSet malformed dateSet calendar-invalid dateClear datevalidnullRadio-group validatorSelect all radio controlsC"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Set valid date",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set malformed date",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Set calendar-invalid date",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Clear date",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Select all radio controls",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Clear radio controls",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Check Civil",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Clear checkboxes",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

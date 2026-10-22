@@ -1,0 +1,122 @@
+{
+  "url": "http://localhost:4200/coverage/selected-cases",
+  "violationCount": 3,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Selected case component demo"
+      },
+      {
+        "level": 3,
+        "text": "Synthetic case Alpha"
+      },
+      {
+        "level": 3,
+        "text": "DEMO-001"
+      },
+      {
+        "level": 3,
+        "text": "Synthetic case Beta"
+      },
+      {
+        "level": 3,
+        "text": "DEMO-002"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Selected case component demoSelected cases(optional)Synthetic case AlphaDEMO-001 Deselect case Users from your organisation with access to this case. NameEmail "
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Deselect case Deselect case",
+        "selector": "#btn-deselect-case-DEMO-001"
+      },
+      {
+        "type": "button",
+        "name": "Expand or Collapse",
+        "selector": "#accordion-with-summary-sections-heading-DEMO-001"
+      },
+      {
+        "type": "link",
+        "name": "Remove Alex Taylor from case",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Deselect case Deselect case",
+        "selector": "#btn-deselect-case-DEMO-002"
+      },
+      {
+        "type": "button",
+        "name": "Expand or Collapse",
+        "selector": "#accordion-with-summary-sections-heading-DEMO-002"
+      },
+      {
+        "type": "link",
+        "name": "Remove Alex Taylor from case",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "heading-order",
+      "message": "Heading level jumps from h1 to h3.",
+      "selector": "#case-title-DEMO-001",
+      "html": "<h3 _ngcontent-ng-c2150780512=\"\" class=\"govuk-case-title\" id=\"case-title-DEMO-001\">Synthetic case Alpha</h3>",
+      "codeLocation": {
+        "tag": "h3",
+        "id": "case-title-DEMO-001",
+        "classes": "govuk-case-title",
+        "angularAttrs": "_ngcontent-ng-c2150780512",
+        "accessibleName": "Synthetic case Alpha",
+        "nearestHeading": "h1: Selected case component demo",
+        "nearestLandmark": "main #main-content .govuk-width-container.govuk-main-wrapper"
+      },
+      "advice": "Check whether the heading hierarchy represents the content. Use nested levels for subsections; do not insert empty headings just to satisfy the check."
+    },
+    {
+      "rule": "duplicate-id",
+      "message": "Duplicate id \"user-full-name-0\" appears 2 times.",
+      "selector": "#user-full-name-0",
+      "html": "<td _ngcontent-ng-c2150780512=\"\" class=\"govuk-table__cell\" id=\"user-full-name-0\">Alex Taylor</td>",
+      "codeLocation": {
+        "tag": "td",
+        "id": "user-full-name-0",
+        "classes": "govuk-table__cell",
+        "angularAttrs": "_ngcontent-ng-c2150780512",
+        "accessibleName": "Alex Taylor",
+        "nearestHeading": "h3: DEMO-001",
+        "nearestLandmark": "main #main-content .govuk-width-container.govuk-main-wrapper"
+      },
+      "advice": "Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links."
+    },
+    {
+      "rule": "duplicate-id",
+      "message": "Duplicate id \"user-email-0\" appears 2 times.",
+      "selector": "#user-email-0",
+      "html": "<td _ngcontent-ng-c2150780512=\"\" class=\"govuk-table__cell\" id=\"user-email-0\">alex@example.test</td>",
+      "codeLocation": {
+        "tag": "td",
+        "id": "user-email-0",
+        "classes": "govuk-table__cell",
+        "angularAttrs": "_ngcontent-ng-c2150780512",
+        "accessibleName": "alex@example.test",
+        "nearestHeading": "h3: DEMO-001",
+        "nearestLandmark": "main #main-content .govuk-width-container.govuk-main-wrapper"
+      },
+      "advice": "Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links."
+    }
+  ]
+}

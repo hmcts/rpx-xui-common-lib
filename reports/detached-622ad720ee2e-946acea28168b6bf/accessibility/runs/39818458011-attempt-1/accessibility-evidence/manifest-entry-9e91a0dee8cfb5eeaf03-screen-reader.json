@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-0563fbd8548b068b7ff8",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "address",
+  "pageState": "invalid postcode",
+  "violationCount": 1,
+  "status": "issues-found",
+  "rules": [
+    "error-describedby"
+  ],
+  "targets": [
+    "#postcodeInput"
+  ],
+  "testTitle": "address — invalid postcode",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "9e91a0dee8cfb5eeaf03-screen-reader.html",
+  "jsonFileName": "9e91a0dee8cfb5eeaf03-screen-reader.json",
+  "screenshotFileName": "9e91a0dee8cfb5eeaf03-screen-reader.png",
+  "findings": [
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#postcodeInput"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-1"
+    }
+  ],
+  "assetFileNames": [
+    "9e91a0dee8cfb5eeaf03-screen-reader-style-1.css"
+  ]
+}

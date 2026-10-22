@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-e4b42f4f9485cf59fdb4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "cookies",
+  "pageState": "accept persisted after reload",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage?feature=cookie"
+  ],
+  "testTitle": "cookies — accept persisted after reload",
+  "attachmentPrefix": "cookies-accept-persisted-after-reload-page-summary",
+  "htmlFileName": "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.html",
+  "jsonFileName": "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.json",
+  "screenshotFileName": "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary.png",
+  "assetFileNames": [
+    "5e71231c4db52b85c149-cookies-accept-persisted-after-reload-page-summary-style-1.css"
+  ]
+}

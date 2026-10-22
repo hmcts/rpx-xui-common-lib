@@ -1,0 +1,67 @@
+{
+  "title": "skip link moves focus to the main-content target for /coverage?feature=cookie",
+  "url": "http://localhost:4200/coverage?feature=cookie",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "incompleteCount": 0,
+  "published": {
+    "context": {
+      "scenarioId": "952c03097f06ee496f4e-a80b2b9287581cad1be5",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "skip link moves focus to the main-content target for /coverage?feature=cookie",
+    "pageState": "skip link moves focus to the main-content target for /coverage?feature=cookie",
+    "violationCount": 0,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "passed",
+    "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [],
+    "targets": [
+      "http://localhost:4200/coverage?feature=cookie"
+    ],
+    "testTitle": "skip link moves focus to the main-content target for /coverage?feature=cookie",
+    "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-cookie-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-cookie-page-summary",
+    "htmlFileName": "06c016640ade0a7b5f82-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-cookie-skip-link-moves-focus-t.html",
+    "jsonFileName": "06c016640ade0a7b5f82-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-cookie-skip-link-moves-focus-t.json",
+    "screenshotFileName": "06c016640ade0a7b5f82-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-cookie-skip-link-moves-focus-t.png",
+    "assetFileNames": [
+      "06c016640ade0a7b5f82-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-cookie-skip-link-moves-focus-t-style-1.css"
+    ]
+  }
+}

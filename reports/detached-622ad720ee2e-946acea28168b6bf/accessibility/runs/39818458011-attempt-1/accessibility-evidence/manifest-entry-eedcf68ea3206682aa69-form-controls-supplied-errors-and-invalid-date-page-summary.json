@@ -1,0 +1,34 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "form controls",
+  "pageState": "supplied errors and invalid date",
+  "violationCount": 4,
+  "reviewCount": 2,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 4 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "screen-reader:aria-reference-target",
+    "screen-reader:error-describedby"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls"
+  ],
+  "testTitle": "form controls — supplied errors and invalid date",
+  "attachmentPrefix": "form-controls-supplied-errors-and-invalid-date-page-summary",
+  "htmlFileName": "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.html",
+  "jsonFileName": "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.json",
+  "screenshotFileName": "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary.png",
+  "assetFileNames": [
+    "eedcf68ea3206682aa69-form-controls-supplied-errors-and-invalid-date-page-summary-style-1.css"
+  ]
+}

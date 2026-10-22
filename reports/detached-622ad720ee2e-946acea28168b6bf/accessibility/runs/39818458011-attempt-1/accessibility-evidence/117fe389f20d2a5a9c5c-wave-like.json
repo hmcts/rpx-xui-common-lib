@@ -1,0 +1,86 @@
+{
+  "url": "http://localhost:4200/coverage/lifecycle",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Lifecycle behaviour coverage"
+      },
+      {
+        "level": 2,
+        "text": "Service messages"
+      },
+      {
+        "level": 2,
+        "text": "English planned maintenance is available."
+      },
+      {
+        "level": 2,
+        "text": "Mae gwaith cynnal a chadw ar gael."
+      },
+      {
+        "level": 2,
+        "text": "English unaffected service message."
+      },
+      {
+        "level": 2,
+        "text": "Neges gwasanaeth Gymraeg heb ei heffeithio."
+      },
+      {
+        "level": 2,
+        "text": "Feature toggle"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Lifecycle behaviour coverageService messagesWarningEnglish planned maintenance is available.Mae gwaith cynnal a chadw ar gael.Hide messageWarningEnglish unaffec"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Hide message",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Hide message",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Enable current feature",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Disable current feature",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Rebind feature",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Enable original feature",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Disable original feature",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

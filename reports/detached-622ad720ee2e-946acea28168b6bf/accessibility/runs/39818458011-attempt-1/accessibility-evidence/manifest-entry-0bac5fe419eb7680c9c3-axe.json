@@ -1,0 +1,63 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-29036d87aa2ad08eee6e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/primitives",
+  "pageState": "skip link moves focus to the main-content target for /coverage/primitives",
+  "status": "issues-found",
+  "reviewCount": 6,
+  "reviewRules": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "findings": [
+    {
+      "rule": "landmark-main-is-top-level",
+      "targets": [
+        "[\"#content\"]"
+      ],
+      "summary": "Main landmark should not be contained in another landmark",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "landmark-no-duplicate-main",
+      "targets": [
+        "[\"#main-content\"]"
+      ],
+      "summary": "Document should not have more than one main landmark",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "landmark-unique",
+      "targets": [
+        "[\"#main-content\"]"
+      ],
+      "summary": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+      "anchor": "issue-3"
+    }
+  ],
+  "violationCount": 3,
+  "rules": [
+    "landmark-main-is-top-level",
+    "landmark-no-duplicate-main",
+    "landmark-unique"
+  ],
+  "targets": [
+    "[\"#content\"]",
+    "[\"#main-content\"]",
+    "[\"#main-content\"]"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/primitives",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "0bac5fe419eb7680c9c3-axe.html",
+  "jsonFileName": "0bac5fe419eb7680c9c3-axe.json",
+  "screenshotFileName": "0bac5fe419eb7680c9c3-axe.png",
+  "assetFileNames": [
+    "0bac5fe419eb7680c9c3-axe-style-1.css"
+  ]
+}

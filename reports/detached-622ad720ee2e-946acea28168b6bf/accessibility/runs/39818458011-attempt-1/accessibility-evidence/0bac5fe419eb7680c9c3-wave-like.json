@@ -1,0 +1,135 @@
+{
+  "url": "http://localhost:4200/coverage/primitives",
+  "violationCount": 2,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Primitives coverage demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form value"
+      },
+      {
+        "level": 1,
+        "text": "Choice details"
+      },
+      {
+        "level": 1,
+        "text": "Main wrapper"
+      },
+      {
+        "level": 2,
+        "text": "Paginated records"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Primitives coverage demoNotes Synthetic notes. Notification channels Email alerts SMS alerts UrgencyRoutineUrgent Toggle supplied errors Disabled value Toggle d"
+      },
+      {
+        "role": "main",
+        "text": "Main wrapperProjected main-wrapper content"
+      },
+      {
+        "role": "nav",
+        "text": "Pagination navigation1page 2page 3Next pageShowing 1 to 2 of 5 results"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "textarea",
+        "name": "Notes",
+        "selector": "#notes"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Email alerts",
+        "selector": "#email-alerts"
+      },
+      {
+        "type": "checkbox input",
+        "name": "SMS alerts",
+        "selector": "#sms-alerts"
+      },
+      {
+        "type": "radio input",
+        "name": "Routine",
+        "selector": "#routine"
+      },
+      {
+        "type": "radio input",
+        "name": "Urgent",
+        "selector": "#urgent"
+      },
+      {
+        "type": "button",
+        "name": "Toggle supplied errors",
+        "selector": "button"
+      },
+      {
+        "type": "text input",
+        "name": "Disabled value",
+        "selector": "#disabled-field"
+      },
+      {
+        "type": "button",
+        "name": "Toggle disabled control",
+        "selector": "button"
+      },
+      {
+        "type": "link",
+        "name": "Case 1001",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Case 1002",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Toggle identity",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Reduce records",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Toggle pagination displays",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "main-landmark",
+      "message": "Expected exactly one visible main landmark, found 2.",
+      "advice": "Render exactly one usable main element or role=\"main\" in the app shell/page template; do not nest duplicate mains."
+    },
+    {
+      "rule": "h1-count",
+      "message": "Expected exactly one visible h1, found 3.",
+      "selector": "h1",
+      "html": "<h1 class=\"govuk-heading-xl\">Primitives coverage demo</h1>",
+      "codeLocation": {
+        "tag": "h1",
+        "classes": "govuk-heading-xl",
+        "accessibleName": "Primitives coverage demo",
+        "nearestLandmark": "main #main-content .govuk-width-container.ng-untouched.ng-pristine.ng-valid"
+      },
+      "advice": "Check all page headings, including shared banners. Follow the GOV.UK convention of one main page h1; choose other levels by section hierarchy, not visual size. Multiple h1 elements alone do not establish a WCAG failure."
+    }
+  ]
+}

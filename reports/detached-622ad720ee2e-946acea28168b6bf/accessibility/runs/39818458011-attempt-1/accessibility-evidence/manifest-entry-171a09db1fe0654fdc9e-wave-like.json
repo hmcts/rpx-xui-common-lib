@@ -1,0 +1,48 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-f82404b38a6ee902cc0d",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage/advanced-filter",
+  "pageState": "skip link moves focus to the main-content target for /coverage/advanced-filter",
+  "violationCount": 2,
+  "rules": [
+    "heading-order",
+    "duplicate-id"
+  ],
+  "targets": [
+    "#include-label",
+    "#detail"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/advanced-filter",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "171a09db1fe0654fdc9e-wave-like.html",
+  "jsonFileName": "171a09db1fe0654fdc9e-wave-like.json",
+  "screenshotFileName": "171a09db1fe0654fdc9e-wave-like.png",
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "#include-label"
+      ],
+      "summary": "Heading level jumps from h1 to h3.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "duplicate-id",
+      "targets": [
+        "#detail"
+      ],
+      "summary": "Duplicate id \"detail\" appears 2 times.",
+      "anchor": "issue-2"
+    }
+  ],
+  "assetFileNames": [
+    "171a09db1fe0654fdc9e-wave-like-style-1.css"
+  ]
+}
