@@ -1,0 +1,85 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Screen-reader-like accessibility evidence</title>
+        <link rel="stylesheet" href="eedcf68ea3206682aa69-screen-reader-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Page structure</h2>
+            <div class="scorecard">
+              <p><strong>RpxXuiCommonLib</strong></p>
+              <div class="score-grid">
+                <div class="score"><strong>2</strong><br/>Headings</div>
+                <div class="score"><strong>1</strong><br/>Landmarks</div>
+                <div class="score"><strong>11</strong><br/>Potential focus targets</div>
+                <div class="score"><strong>80</strong><br/>AX nodes</div>
+              </div>
+            </div>
+            <details>
+              <summary>Headings</summary>
+              <ol><li><span class="token">h1</span>Form controls demo</li><li><span class="token">h2</span>Parent form values</li></ol>
+            </details>
+            <details>
+              <summary>Landmarks</summary>
+              <ol><li><span class="token">main</span>Form controls demoError messages are supplied by the demo parent. Date validity uses the library&#39;s own validator.Priority Choose how soon to review. Error:Choose a priority Routine <code>#main-content</code></li></ol>
+            </details>
+            <details>
+              <summary>Potential focus targets in DOM order</summary>
+              <ol><li><span class="marker">1</span><strong>link</strong>: Skip to main content <code>a</code></li><li><span class="marker">2</span><strong>select</strong>: Priority RoutineUrgent <code>#priority</code></li><li><span class="marker">3</span><strong>textarea</strong>: Case notes <code>#case-notes</code></li><li><span class="marker">4</span><strong>textarea</strong>: Review notes <code>#review-notes</code></li><li><span class="marker">5</span><strong>button</strong>: Use empty review hint <code>button</code></li><li><span class="marker">6</span><strong>button</strong>: Remove review hint <code>button</code></li><li><span class="marker">7</span><strong>file input</strong>: Supporting file <code>#supportingFile</code></li><li><span class="marker">8</span><strong>button</strong>: Toggle supplied errors <code>button</code></li><li><span class="marker">9</span><strong>text input</strong>: Day <code>#hearing-day</code></li><li><span class="marker">10</span><strong>text input</strong>: Month <code>#hearing-month</code></li><li><span class="marker">11</span><strong>text input</strong>: Year <code>#hearing-year</code></li></ol>
+            </details>
+            <details>
+              <summary>Accessibility tree sample</summary>
+              <ol><li><span class="token">RootWebArea</span>RpxXuiCommonLib</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">link</span>Skip to main content</li><li><span class="token">main</span>(unnamed)</li><li><span class="token">StaticText</span>Skip to main content</li><li><span class="token">heading</span>Form controls demo</li><li><span class="token">paragraph</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">combobox</span>Priority</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">textbox</span>Case notes</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">textbox</span>Review notes</li><li><span class="token">button</span>Use empty review hint</li><li><span class="token">button</span>Remove review hint</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">LabelText</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">button</span>Supporting file</li></ol>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <p><a href="../index.html">Back to Odhín report</a></p>
+            <div class="banner issue-banner">
+              <h1>Screen-reader-like accessibility evidence</h1>
+              <p>4 screen-reader-like issue(s) on http://localhost:4200/coverage/form-controls</p>
+            </div>
+            <p>Automated heuristics support investigation; they do not replace screen-reader testing or establish WCAG conformance.</p>
+            <details class="visual">
+              <summary>View page screenshot</summary>
+              <img alt="Accessibility evidence screenshot" src="eedcf68ea3206682aa69-screen-reader.png" />
+            </details>
+            
+        <section class="issue" id="issue-1">
+          <h2>1. aria-reference-target</h2>
+          <p><strong>aria-describedby references missing id(s): hearing-error.</strong></p>
+          <p><strong>Selector:</strong> <code>fieldset</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre>&lt;fieldset class=&quot;govuk-fieldset&quot; aria-describedby=&quot;hearing-hint hearing-error&quot;&gt;&lt;legend class=&quot;govuk-fieldset__legend govuk-label--m&quot;&gt; Hearing date (optional) &lt;/legend&gt;&lt;!--container--&gt;&lt;!--container--&gt;&lt;span class=&quot;govuk-hint&quot; id=&quot;hearing-hint&quot;&gt; For example, 12 11 2007 &lt;/span&gt;&lt;!--container--&gt;&lt;xuilib-gov-uk-error-message _ngcontent-ng-c1587765648=&quot;&quot;&gt;&lt;span class=&quot;govuk-error-message&quot; id=&quot;passport-error&quot;&gt;&lt;span class=&quot;govuk-visually-hidden&quot;&gt;Error:&lt;/span&gt;Enter a valid hearing date &lt;/span&gt;&lt;!--container--&gt;&lt;/xuilib-gov-uk-error-message&gt;&lt;!--container--&gt;&lt;div _ngcontent-ng-c1587765648=&quot;&quot; class=&quot;govuk-date-input&quot; id=&quot;hearing-date&quot;&gt;&lt;div _ngcontent-ng-c1587765648=&quot;&quot; class=&quot;govuk-date-input__item&quot;&gt;&lt;div _ngcontent-ng-c1587765648=&quot;&quot; class=&quot;govuk-form-group&quot;&gt;&lt;xuilib-gov-label _ngcontent-ng-c1587765648=&quot;&quot; _ngho</pre></details>
+        </section>
+      
+        <section class="issue" id="issue-2">
+          <h2>2. error-describedby</h2>
+          <p><strong>Invalid controls should reference the visible error message.</strong></p>
+          <p><strong>Selector:</strong> <code>#hearing-day</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre>&lt;input _ngcontent-ng-c1587765648=&quot;&quot; type=&quot;text&quot; value=&quot;&quot; pattern=&quot;\d*&quot; maxlength=&quot;2&quot; class=&quot;govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error ng-invalid ng-dirty ng-touched&quot; id=&quot;hearing-day&quot; name=&quot;hearing-day&quot; style=&quot;&quot;&gt;</pre></details>
+        </section>
+      
+        <section class="issue" id="issue-3">
+          <h2>3. error-describedby</h2>
+          <p><strong>Invalid controls should reference the visible error message.</strong></p>
+          <p><strong>Selector:</strong> <code>#hearing-month</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre>&lt;input _ngcontent-ng-c1587765648=&quot;&quot; type=&quot;text&quot; value=&quot;&quot; pattern=&quot;\d*&quot; maxlength=&quot;2&quot; class=&quot;govuk-input govuk-date-input__input govuk-input--width-2 ng-valid govuk-input--error ng-dirty ng-touched&quot; id=&quot;hearing-month&quot; name=&quot;hearing-month&quot; style=&quot;&quot;&gt;</pre></details>
+        </section>
+      
+        <section class="issue" id="issue-4">
+          <h2>4. error-describedby</h2>
+          <p><strong>Invalid controls should reference the visible error message.</strong></p>
+          <p><strong>Selector:</strong> <code>#hearing-year</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre>&lt;input _ngcontent-ng-c1587765648=&quot;&quot; type=&quot;text&quot; value=&quot;&quot; pattern=&quot;\d*&quot; maxlength=&quot;4&quot; class=&quot;govuk-input govuk-date-input__input govuk-input--width-4 ng-valid govuk-input--error ng-dirty ng-touched&quot; id=&quot;hearing-year&quot; name=&quot;hearing-year&quot; style=&quot;&quot;&gt;</pre></details>
+        </section>
+      
+          </main>
+        </div>
+      </body>
+    </html>
+  

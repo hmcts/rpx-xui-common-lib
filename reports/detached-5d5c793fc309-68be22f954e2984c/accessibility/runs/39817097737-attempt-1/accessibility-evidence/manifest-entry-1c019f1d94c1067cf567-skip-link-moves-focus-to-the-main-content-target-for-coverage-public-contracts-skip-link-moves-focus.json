@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-506b14cbf63abe799598",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/public-contracts",
+  "pageState": "skip link moves focus to the main-content target for /coverage/public-contracts",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/public-contracts"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/public-contracts",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-public-contracts-skip-link-moves-focus-to-the-main-content-target-for-coverage-public-contracts-page-summary",
+  "htmlFileName": "1c019f1d94c1067cf567-skip-link-moves-focus-to-the-main-content-target-for-coverage-public-contracts-skip-link-moves-focus.html",
+  "jsonFileName": "1c019f1d94c1067cf567-skip-link-moves-focus-to-the-main-content-target-for-coverage-public-contracts-skip-link-moves-focus.json",
+  "screenshotFileName": "1c019f1d94c1067cf567-skip-link-moves-focus-to-the-main-content-target-for-coverage-public-contracts-skip-link-moves-focus.png",
+  "assetFileNames": [
+    "1c019f1d94c1067cf567-skip-link-moves-focus-to-the-main-content-target-for-coverage-public-contracts-skip-link-moves-focus-style-1.css"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "url": "http://localhost:4200/coverage?feature=terms-plain",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "name": "CommonLib component coverage examples",
+        "selector": "header"
+      },
+      {
+        "role": "main",
+        "name": "Plain terms content.",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage?feature=terms-plain",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "banner",
+        "name": ""
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "CommonLib component coverage examples"
+      },
+      {
+        "role": "StaticText",
+        "name": "Plain terms content."
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Plain terms content."
+      }
+    ]
+  }
+}

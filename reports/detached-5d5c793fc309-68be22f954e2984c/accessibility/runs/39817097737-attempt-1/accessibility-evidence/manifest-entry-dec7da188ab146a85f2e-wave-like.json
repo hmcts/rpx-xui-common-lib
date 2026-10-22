@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-f1ec3adf9720527948dc",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "pageState": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/service-contract-a",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "dec7da188ab146a85f2e-wave-like.html",
+  "jsonFileName": "dec7da188ab146a85f2e-wave-like.json",
+  "screenshotFileName": "dec7da188ab146a85f2e-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "dec7da188ab146a85f2e-wave-like-style-1.css"
+  ]
+}

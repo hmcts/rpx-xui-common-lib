@@ -1,0 +1,446 @@
+{
+  "url": "http://localhost:4200/coverage/extended-controls",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Extended control coverage"
+      },
+      {
+        "level": 2,
+        "text": "Address inputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Extended control coverageFull name Enter a synthetic name. Toggle input error Select the services that apply. Alpha service Beta service A second option. Gamma service Toggle check",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Full name",
+        "selector": "#full-name",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle input error",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Alpha service",
+        "selector": "#alpha-service",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Beta service",
+        "selector": "#beta-service",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Gamma service",
+        "selector": "#gamma-service",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle checkbox error",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Search services",
+        "selector": "#inputServiceSearch",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle address errors",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Toggle international address",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Building and Street",
+        "selector": "#addressLine1",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Address line 2 (Optional)",
+        "selector": "#addressLine2",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Address line 3 (Optional)",
+        "selector": "#addressLine3",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Town or City",
+        "selector": "#postTown",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "County (Optional)",
+        "selector": "#county",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Postcode",
+        "selector": "#postCode",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/extended-controls",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Extended control coverage"
+      },
+      {
+        "role": "form",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "region",
+        "name": "Address inputs"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Extended control coverage"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "textbox",
+        "name": "Full name"
+      },
+      {
+        "role": "button",
+        "name": "Toggle input error"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Toggle checkbox error"
+      },
+      {
+        "role": "StaticText",
+        "name": "{\n  \"name\": \"\",\n  \"selections\": [\n    \"alpha\"\n  ]\n}"
+      },
+      {
+        "role": "StaticText",
+        "name": "Search services"
+      },
+      {
+        "role": "combobox",
+        "name": "Search services"
+      },
+      {
+        "role": "StaticText",
+        "name": "Selected services: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Address inputs"
+      },
+      {
+        "role": "button",
+        "name": "Toggle address errors"
+      },
+      {
+        "role": "button",
+        "name": "Toggle international address"
+      },
+      {
+        "role": "form",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Extended control coverage"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Full name"
+      },
+      {
+        "role": "StaticText",
+        "name": "Enter a synthetic name. "
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle input error"
+      },
+      {
+        "role": "StaticText",
+        "name": "Select the services that apply."
+      },
+      {
+        "role": "checkbox",
+        "name": "Alpha service"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "checkbox",
+        "name": "Beta service"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "checkbox",
+        "name": "Gamma service"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle checkbox error"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "{"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"name\": \"\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  \"selections\": ["
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"alpha\""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  ]"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "}"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Search services"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Selected services: "
+      },
+      {
+        "role": "StaticText",
+        "name": "[ { \"key\": \"alpha\", \"label\": \"Alpha service\" } ]"
+      },
+      {
+        "role": "StaticText",
+        "name": "Address inputs"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle address errors"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Toggle international address"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      }
+    ]
+  }
+}

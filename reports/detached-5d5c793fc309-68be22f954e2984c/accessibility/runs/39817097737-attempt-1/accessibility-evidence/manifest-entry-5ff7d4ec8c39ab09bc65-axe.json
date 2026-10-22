@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-27f57ad1db87b9fcfe76",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "invitation",
+  "pageState": "initial form",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "invitation — initial form",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "5ff7d4ec8c39ab09bc65-axe.html",
+  "jsonFileName": "5ff7d4ec8c39ab09bc65-axe.json",
+  "screenshotFileName": "5ff7d4ec8c39ab09bc65-axe.png",
+  "assetFileNames": [
+    "5ff7d4ec8c39ab09bc65-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "url": "http://localhost:4200/coverage/users",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "User management demo"
+      },
+      {
+        "level": 2,
+        "text": "Selected user"
+      },
+      {
+        "level": 2,
+        "text": "Pending invitation"
+      },
+      {
+        "level": 2,
+        "text": "Demo event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "User management demoNameEmailStatusDemo User 51user51@example.testActivePagination navigationPrevious set of pagespage 12Showing 51 to 51 of 51 resultsSelected "
+      },
+      {
+        "role": "nav",
+        "text": "Pagination navigationPrevious set of pagespage 12Showing 51 to 51 of 51 results"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "View Demo User 51 Demo User 51",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Toggle account actions",
+        "selector": "button"
+      },
+      {
+        "type": "link",
+        "name": "Change roles",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Suspend account",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Resend invitation",
+        "selector": "#resend-invite-button"
+      }
+    ]
+  },
+  "violations": []
+}

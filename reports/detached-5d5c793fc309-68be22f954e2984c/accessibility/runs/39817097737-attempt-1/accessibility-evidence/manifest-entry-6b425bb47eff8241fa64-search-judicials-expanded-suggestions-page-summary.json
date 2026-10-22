@@ -1,0 +1,34 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-1624cf067bec5025de55",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "search judicials",
+  "pageState": "expanded suggestions",
+  "violationCount": 2,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:aria-required-attr",
+    "axe:region"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage/searches?feature=judicials"
+  ],
+  "testTitle": "search judicials — expanded suggestions",
+  "attachmentPrefix": "search-judicials-expanded-suggestions-page-summary",
+  "htmlFileName": "6b425bb47eff8241fa64-search-judicials-expanded-suggestions-page-summary.html",
+  "jsonFileName": "6b425bb47eff8241fa64-search-judicials-expanded-suggestions-page-summary.json",
+  "screenshotFileName": "6b425bb47eff8241fa64-search-judicials-expanded-suggestions-page-summary.png",
+  "assetFileNames": [
+    "6b425bb47eff8241fa64-search-judicials-expanded-suggestions-page-summary-style-1.css"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "url": "http://localhost:4200/coverage/extended-controls",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Extended control coverage"
+      },
+      {
+        "level": 2,
+        "text": "Address inputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Extended control coverageFull name Enter a synthetic name. Toggle input error Select the services that apply. Alpha service Beta service A second option. Gamma "
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "Full name",
+        "selector": "#full-name"
+      },
+      {
+        "type": "button",
+        "name": "Toggle input error",
+        "selector": "button"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Alpha service",
+        "selector": "#alpha-service"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Beta service",
+        "selector": "#beta-service"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Gamma service",
+        "selector": "#gamma-service"
+      },
+      {
+        "type": "button",
+        "name": "Toggle checkbox error",
+        "selector": "button"
+      },
+      {
+        "type": "text input",
+        "name": "Search services",
+        "selector": "#inputServiceSearch"
+      },
+      {
+        "type": "button",
+        "name": "Toggle address errors",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Toggle international address",
+        "selector": "button"
+      },
+      {
+        "type": "text input",
+        "name": "Building and Street",
+        "selector": "#addressLine1"
+      },
+      {
+        "type": "text input",
+        "name": "Address line 2 (Optional)",
+        "selector": "#addressLine2"
+      },
+      {
+        "type": "text input",
+        "name": "Address line 3 (Optional)",
+        "selector": "#addressLine3"
+      },
+      {
+        "type": "text input",
+        "name": "Town or City",
+        "selector": "#postTown"
+      },
+      {
+        "type": "text input",
+        "name": "County (Optional)",
+        "selector": "#county"
+      },
+      {
+        "type": "text input",
+        "name": "Postcode",
+        "selector": "#postCode"
+      }
+    ]
+  },
+  "violations": []
+}

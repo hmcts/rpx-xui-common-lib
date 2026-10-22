@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-595dd0ef58aab2884eae",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage/lookups",
+  "pageState": "skip link moves focus to the main-content target for /coverage/lookups",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/lookups"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/lookups",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-lookups-skip-link-moves-focus-to-the-main-content-target-for-coverage-lookups-page-summary",
+  "htmlFileName": "d4faa0a4b4b758475b00-skip-link-moves-focus-to-the-main-content-target-for-coverage-lookups-skip-link-moves-focus-to-the-m.html",
+  "jsonFileName": "d4faa0a4b4b758475b00-skip-link-moves-focus-to-the-main-content-target-for-coverage-lookups-skip-link-moves-focus-to-the-m.json",
+  "screenshotFileName": "d4faa0a4b4b758475b00-skip-link-moves-focus-to-the-main-content-target-for-coverage-lookups-skip-link-moves-focus-to-the-m.png",
+  "assetFileNames": [
+    "d4faa0a4b4b758475b00-skip-link-moves-focus-to-the-main-content-target-for-coverage-lookups-skip-link-moves-focus-to-the-m-style-1.css"
+  ]
+}

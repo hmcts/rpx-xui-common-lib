@@ -1,0 +1,64 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Screen-reader-like accessibility evidence</title>
+        <link rel="stylesheet" href="af2a6e3dd74ca11bf99a-screen-reader-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Page structure</h2>
+            <div class="scorecard">
+              <p><strong>RpxXuiCommonLib</strong></p>
+              <div class="score-grid">
+                <div class="score"><strong>1</strong><br/>Headings</div>
+                <div class="score"><strong>2</strong><br/>Landmarks</div>
+                <div class="score"><strong>2</strong><br/>Potential focus targets</div>
+                <div class="score"><strong>37</strong><br/>AX nodes</div>
+              </div>
+            </div>
+            <details>
+              <summary>Headings</summary>
+              <ol><li><span class="token">h1</span>CommonLib component coverage examples</li></ol>
+            </details>
+            <details>
+              <summary>Landmarks</summary>
+              <ol><li><span class="token">header</span>CommonLib component coverage examples <code>header</code></li><li><span class="token">main</span>Wrapped options The wrapper owns this hint. Error:Choose at least one option Wrapped option <code>#main-content</code></li></ol>
+            </details>
+            <details>
+              <summary>Potential focus targets in DOM order</summary>
+              <ol><li><span class="marker">1</span><strong>link</strong>: Skip to main content <code>a</code></li><li><span class="marker">2</span><strong>checkbox input</strong>: Wrapped option <code>#wrapped-option</code></li></ol>
+            </details>
+            <details>
+              <summary>Accessibility tree sample</summary>
+              <ol><li><span class="token">RootWebArea</span>RpxXuiCommonLib</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">link</span>Skip to main content</li><li><span class="token">banner</span>(unnamed)</li><li><span class="token">main</span>(unnamed)</li><li><span class="token">StaticText</span>Skip to main content</li><li><span class="token">heading</span>CommonLib component coverage examples</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">InlineTextBox</span>Skip to main content</li><li><span class="token">StaticText</span>CommonLib component coverage examples</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">group</span>Wrapped options</li><li><span class="token">InlineTextBox</span>CommonLib component coverage examples</li><li><span class="token">Legend</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">generic</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">checkbox</span>Wrapped option</li><li><span class="token">StaticText</span>Wrapped options</li><li><span class="token">StaticText</span>The wrapper owns this hint.</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">StaticText</span> </li><li><span class="token">InlineTextBox</span> </li><li><span class="token">StaticText</span>Error:</li><li><span class="token">none</span>(unnamed)</li><li><span class="token">StaticText</span> </li><li><span class="token">InlineTextBox</span> </li></ol>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <p><a href="../index.html">Back to Odhín report</a></p>
+            <div class="banner issue-banner">
+              <h1>Screen-reader-like accessibility evidence</h1>
+              <p>1 screen-reader-like issue(s) on http://localhost:4200/coverage?feature=form-group</p>
+            </div>
+            <p>Automated heuristics support investigation; they do not replace screen-reader testing or establish WCAG conformance.</p>
+            <details class="visual">
+              <summary>View page screenshot</summary>
+              <img alt="Accessibility evidence screenshot" src="af2a6e3dd74ca11bf99a-screen-reader.png" />
+            </details>
+            
+        <section class="issue" id="issue-1">
+          <h2>1. error-describedby</h2>
+          <p><strong>Invalid controls should reference the visible error message.</strong></p>
+          <p><strong>Selector:</strong> <code>#wrapped-option</code></p>
+          <details><summary>Inspect DOM snippet</summary><pre>&lt;input id=&quot;wrapped-option&quot; type=&quot;checkbox&quot; style=&quot;&quot;&gt;</pre></details>
+        </section>
+      
+          </main>
+        </div>
+      </body>
+    </html>
+  

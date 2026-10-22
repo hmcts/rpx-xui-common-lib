@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-0068ddd5374158f4a9b6",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=users",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=users",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage?feature=users",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "c1236742fcaba0ca936e-axe.html",
+  "jsonFileName": "c1236742fcaba0ca936e-axe.json",
+  "screenshotFileName": "c1236742fcaba0ca936e-axe.png",
+  "assetFileNames": [
+    "c1236742fcaba0ca936e-axe-style-1.css"
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "url": "http://localhost:4200/coverage/accessibility/manage-case",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Accessibility statement for MyHMCTS Manage Cases"
+      },
+      {
+        "level": 2,
+        "text": "How accessible this website is"
+      },
+      {
+        "level": 2,
+        "text": "Feedback and contact information"
+      },
+      {
+        "level": 3,
+        "text": "Adoption"
+      },
+      {
+        "level": 3,
+        "text": "Civil Damages Service"
+      },
+      {
+        "level": 3,
+        "text": "Divorce and Financial Remedy"
+      },
+      {
+        "level": 3,
+        "text": "Family Public Law"
+      },
+      {
+        "level": 3,
+        "text": "Immigration and Asylum Chamber"
+      },
+      {
+        "level": 3,
+        "text": "Online Civil Money Claims"
+      },
+      {
+        "level": 3,
+        "text": "Private Law"
+      },
+      {
+        "level": 3,
+        "text": "Probate"
+      },
+      {
+        "level": 3,
+        "text": "Social Security and Child Support"
+      },
+      {
+        "level": 2,
+        "text": "Reporting accessibility problems with this website"
+      },
+      {
+        "level": 2,
+        "text": "Enforcement procedure"
+      },
+      {
+        "level": 2,
+        "text": "Technical information about this website’s accessibility"
+      },
+      {
+        "level": 2,
+        "text": "Compliance Status"
+      },
+      {
+        "level": 2,
+        "text": "Non-accessible content"
+      },
+      {
+        "level": 2,
+        "text": "Non-accessible content"
+      },
+      {
+        "level": 3,
+        "text": "Non-compliance with the accessibility regulations"
+      },
+      {
+        "level": 3,
+        "text": "Disproportionate burden on accessibility regulations"
+      },
+      {
+        "level": 3,
+        "text": "Content that’s not within the scope of the accessibility regulations"
+      },
+      {
+        "level": 2,
+        "text": "What we’re doing to improve accessibility"
+      },
+      {
+        "level": 2,
+        "text": "Preparation of this accessibility statement"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Accessibility statement for MyHMCTS Manage CasesMyHMCTS Manage Cases is used across several services. Please use links to find contact information for each serv"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Immigration and Asylum",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Family Public Law",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "adoption",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Civil Damages",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Divorce and financial remeduies",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Civil Money Claims",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Private Law",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Probate",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Social Security and Child Support",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "AbilityNet",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "HMCTSforms@justice.gov.uk",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "customer.service@justice.gov.uk",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "contact the Equality Advisory and Support Service (EASS).",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Web Content Accessibility Guidelines version 2.2",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Digital Accessibility Centre (DAC)",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": []
+}

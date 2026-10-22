@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-8ec2f56df03f23c9868b",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/validators",
+  "pageState": "skip link moves focus to the main-content target for /coverage/validators",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/validators",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "b832f1e22f3b53b6bd16-axe.html",
+  "jsonFileName": "b832f1e22f3b53b6bd16-axe.json",
+  "screenshotFileName": "b832f1e22f3b53b6bd16-axe.png",
+  "assetFileNames": [
+    "b832f1e22f3b53b6bd16-axe-style-1.css"
+  ]
+}

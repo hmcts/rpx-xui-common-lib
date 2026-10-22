@@ -1,0 +1,38 @@
+{
+  "context": {
+    "scenarioId": "1737fec63eae85b17f7d-b78b2fd6f88136efaabe",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "pageState": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "violationCount": 1,
+  "status": "issues-found",
+  "rules": [
+    "error-describedby"
+  ],
+  "targets": [
+    "#wrapped-option"
+  ],
+  "testTitle": "form-group wrapper exposes its group name, descriptions and keyboard target",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "7c21653d59869ff1e6ca-screen-reader.html",
+  "jsonFileName": "7c21653d59869ff1e6ca-screen-reader.json",
+  "screenshotFileName": "7c21653d59869ff1e6ca-screen-reader.png",
+  "findings": [
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#wrapped-option"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-1"
+    }
+  ],
+  "assetFileNames": [
+    "7c21653d59869ff1e6ca-screen-reader-style-1.css"
+  ]
+}

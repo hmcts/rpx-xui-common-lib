@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-9e46ad6c03b1c3cb302b",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "terms",
+  "pageState": "accepted",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "terms — accepted",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "cc35fa29bb82b8dab4c2-axe.html",
+  "jsonFileName": "cc35fa29bb82b8dab4c2-axe.json",
+  "screenshotFileName": "cc35fa29bb82b8dab4c2-axe.png",
+  "assetFileNames": [
+    "cc35fa29bb82b8dab4c2-axe-style-1.css"
+  ]
+}

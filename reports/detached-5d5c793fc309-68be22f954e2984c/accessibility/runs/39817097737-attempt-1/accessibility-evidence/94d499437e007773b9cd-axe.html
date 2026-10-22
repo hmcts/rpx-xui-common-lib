@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Axe accessibility evidence</title><link rel="stylesheet" href="94d499437e007773b9cd-axe-style-1.css"></head><body><a class="skip-link" href="#evidence-content">Skip to evidence</a>
+    <header><h1>Axe accessibility evidence</h1><p>1 violated rule(s); 2 rule(s) need investigation.</p></header>
+    <main id="evidence-content" tabindex="-1"><p><a href="../index.html">Back to Odhín report</a></p>
+      <p><strong>Page:</strong> http://localhost:4200/coverage/case-sharing</p><p>Automated checks cover part of WCAG 2.2 A/AA, including retained WCAG 2.0 and 2.1 criteria. This is not a conformance verdict. DOM targets are evidence clues, not verified source-file locations.</p>
+      <nav aria-label="Findings"><ul><li><a href="#issue-1">1. Heading levels should only increase by one</a></li><li><a href="#issue-2">2. Elements must only use permitted ARIA attributes</a></li><li><a href="#issue-3">3. Elements must meet minimum color contrast ratio thresholds</a></li></ul></nav>
+      <section class="issue " id="issue-1" tabindex="-1">
+      <h2>1. Heading levels should only increase by one</h2>
+      <p><strong>Automatically detected violation</strong> · moderate</p>
+      <p>Ensure the order of headings is semantically correct</p>
+      <p><strong>Rule:</strong> heading-order. <strong>WCAG criterion number(s):</strong> Not supplied by engine. <strong>Engine version/level tags:</strong> Not supplied</p>
+      <p><strong>Potential solution:</strong> Use the failing check details and rule-specific examples to correct the affected markup, styles or interaction.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/heading-order?application=playwright">heading-order: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>1.1</dd>
+          <dt>Where to look</dt><dd><code>#title-selected-cases</code></dd>
+          <dt>What failed</dt><dd>Fix any of the following:
+  Heading order invalid</dd></dl>
+        <ul><li>Heading order invalid</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;h3 _ngcontent-ng-c104121396=&quot;&quot; id=&quot;title-selected-cases&quot; class=&quot;govuk-heading-m&quot;&gt; Selected cases &lt;/h3&gt;</pre></details>
+      </li></ol>
+    </section><section class="issue review" id="issue-2" tabindex="-1">
+      <h2>2. Elements must only use permitted ARIA attributes</h2>
+      <p><strong>Needs investigation — not a confirmed failure</strong> · serious</p>
+      <p>Ensure ARIA attributes are not prohibited for an element&#39;s role</p>
+      <p><strong>Rule:</strong> aria-prohibited-attr. <strong>WCAG criterion number(s):</strong> 4.1.2. <strong>Engine version/level tags:</strong> WCAG 2.0 A</p>
+      <p><strong>Potential solution:</strong> Determine whether the reported condition is a failure before changing the page. Use the check details and rule-specific examples.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr?application=playwright">aria-prohibited-attr: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>2.1</dd>
+          <dt>Where to look</dt><dd><code>#accordion-with-summary-sections-content-DEMO-001</code></dd>
+          <dt>What needs checking</dt><dd>Fix all of the following:
+  aria-labelledby attribute is not well supported on a div with no valid role attribute.</dd></dl>
+        <ul><li>aria-labelledby attribute is not well supported on a div with no valid role attribute.</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;div _ngcontent-ng-c2150780512=&quot;&quot; class=&quot;govuk-accordion__section-content&quot; id=&quot;accordion-with-summary-sections-content-DEMO-001&quot; aria-labelledby=&quot;accordion-with-summary-sections-heading-DEMO-001&quot;&gt;</pre></details>
+      </li>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>2.2</dd>
+          <dt>Where to look</dt><dd><code>#accordion-with-summary-sections-content-DEMO-002</code></dd>
+          <dt>What needs checking</dt><dd>Fix all of the following:
+  aria-labelledby attribute is not well supported on a div with no valid role attribute.</dd></dl>
+        <ul><li>aria-labelledby attribute is not well supported on a div with no valid role attribute.</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;div _ngcontent-ng-c2150780512=&quot;&quot; class=&quot;govuk-accordion__section-content&quot; id=&quot;accordion-with-summary-sections-content-DEMO-002&quot; aria-labelledby=&quot;accordion-with-summary-sections-heading-DEMO-002&quot;&gt;</pre></details>
+      </li></ol>
+    </section><section class="issue review" id="issue-3" tabindex="-1">
+      <h2>3. Elements must meet minimum color contrast ratio thresholds</h2>
+      <p><strong>Needs investigation — not a confirmed failure</strong> · serious</p>
+      <p>Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds</p>
+      <p><strong>Rule:</strong> color-contrast. <strong>WCAG criterion number(s):</strong> 1.4.3. <strong>Engine version/level tags:</strong> WCAG 2.0 AA</p>
+      <p><strong>Potential solution:</strong> Determine whether the reported condition is a failure before changing the page. Use the check details and rule-specific examples.
+        <a href="https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright">color-contrast: explanation and remediation examples</a></p>
+      <p><strong>Verify:</strong> Recheck this element in the same page state, rerun the audit, and check the relevant keyboard or assistive-technology behaviour. An empty automated result does not establish full accessibility.</p>
+      <ol>
+      <li>
+        <dl><dt>Screenshot marker</dt><dd>3.1</dd>
+          <dt>Where to look</dt><dd><code>h1</code></dd>
+          <dt>What needs checking</dt><dd>Fix any of the following:
+  Element&#39;s background color could not be determined because it&#39;s partially obscured by another element</dd></dl>
+        <ul><li>Element&#39;s background color could not be determined because it&#39;s partially obscured by another element</li></ul>
+        <details><summary>Rendered HTML excerpt</summary><pre>&lt;h1 _ngcontent-ng-c104121396=&quot;&quot; class=&quot;govuk-heading-xl govuk-!-margin-top-2&quot;&gt;&lt;!--container--&gt; Share synthetic cases &lt;/h1&gt;</pre></details>
+      </li></ol>
+    </section><p><a href="../index.html">Back to Odhín report</a></p>
+    </main></body></html>

@@ -1,0 +1,66 @@
+{
+  "url": "http://localhost:4200/coverage/invitation",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Invitation form demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form and emitted events"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Invitation form demoSynthetic data only. Validation is supplied by the demo parent; no invitation is sent.First name Include all middle names. Last nameEmail ad"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "First name",
+        "selector": "#firstName"
+      },
+      {
+        "type": "text input",
+        "name": "Last name",
+        "selector": "#lastName"
+      },
+      {
+        "type": "email input",
+        "name": "Email address",
+        "selector": "#email"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Cases",
+        "selector": "#roles"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Users",
+        "selector": "#pui-user-manager"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Manage Organisation",
+        "selector": "#pui-organisation-manager"
+      },
+      {
+        "type": "button",
+        "name": "Send invitation",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

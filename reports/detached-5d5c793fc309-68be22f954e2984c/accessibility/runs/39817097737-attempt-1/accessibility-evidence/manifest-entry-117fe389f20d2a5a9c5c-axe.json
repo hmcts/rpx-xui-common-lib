@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-cd0fa0c890a93b2d6f84",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/lifecycle",
+  "pageState": "skip link moves focus to the main-content target for /coverage/lifecycle",
+  "status": "needs-review",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/lifecycle",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "117fe389f20d2a5a9c5c-axe.html",
+  "jsonFileName": "117fe389f20d2a5a9c5c-axe.json",
+  "screenshotFileName": "117fe389f20d2a5a9c5c-axe.png",
+  "assetFileNames": [
+    "117fe389f20d2a5a9c5c-axe-style-1.css"
+  ]
+}

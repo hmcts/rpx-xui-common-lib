@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-7f4054627f7915be5349",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/invitation",
+  "pageState": "skip link moves focus to the main-content target for /coverage/invitation",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/invitation",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "6f1a83b971996a6d012f-axe.html",
+  "jsonFileName": "6f1a83b971996a6d012f-axe.json",
+  "screenshotFileName": "6f1a83b971996a6d012f-axe.png",
+  "assetFileNames": [
+    "6f1a83b971996a6d012f-axe-style-1.css"
+  ]
+}

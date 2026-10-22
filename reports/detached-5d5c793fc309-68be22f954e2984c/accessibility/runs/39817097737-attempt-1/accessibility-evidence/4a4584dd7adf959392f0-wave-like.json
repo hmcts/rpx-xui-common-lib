@@ -1,0 +1,178 @@
+{
+  "url": "http://localhost:4200/home",
+  "violationCount": 2,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "ExUI Common Lib Test Page"
+      },
+      {
+        "level": 2,
+        "text": "This is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden."
+      },
+      {
+        "level": 1,
+        "text": "HTML Test"
+      },
+      {
+        "level": 2,
+        "text": "Contact details example"
+      },
+      {
+        "level": 3,
+        "text": "Contact Details Component"
+      },
+      {
+        "level": 2,
+        "text": "Tab items component:"
+      },
+      {
+        "level": 2,
+        "text": "Due date component: TODAY"
+      },
+      {
+        "level": 2,
+        "text": "Checkbox list component:"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "ExUI Common Lib Test PageWarningThis is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden.Hide message Tes"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "Hide message",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "test@justice.gov.uk",
+        "selector": "a"
+      },
+      {
+        "type": "div",
+        "name": "Tab1",
+        "selector": "#mat-tab-label-0-0"
+      },
+      {
+        "type": "text input",
+        "name": "Due date",
+        "selector": "input"
+      },
+      {
+        "type": "number input",
+        "name": "Red threshold",
+        "selector": "input"
+      },
+      {
+        "type": "number input",
+        "name": "Orange threshold",
+        "selector": "input"
+      },
+      {
+        "type": "select",
+        "name": "List height: Default (no limt)100px80px50px",
+        "selector": "#checkbox_list_height"
+      },
+      {
+        "type": "button",
+        "name": "Add Wimbledon option",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Add Golders Green option",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Use borough for label",
+        "selector": "button"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Select all / Deselect all",
+        "selector": "#select_all"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Baker Street",
+        "selector": "#select_0"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Clapham Junction",
+        "selector": "#select_1"
+      },
+      {
+        "type": "checkbox input",
+        "name": "King's Cross",
+        "selector": "#select_2"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Shoreditch High Street",
+        "selector": "#select_3"
+      },
+      {
+        "type": "checkbox input",
+        "name": "South Woodford",
+        "selector": "#select_4"
+      },
+      {
+        "type": "checkbox input",
+        "name": "Twickenham",
+        "selector": "#select_5"
+      },
+      {
+        "type": "checkbox input",
+        "name": "West Brompton",
+        "selector": "#select_6"
+      },
+      {
+        "type": "button",
+        "name": "Start Spinner",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "h1-count",
+      "message": "Expected exactly one visible h1, found 2.",
+      "selector": "h1",
+      "html": "<h1 _ngcontent-ng-c971040121=\"\">ExUI Common Lib Test Page</h1>",
+      "codeLocation": {
+        "tag": "h1",
+        "angularAttrs": "_ngcontent-ng-c971040121",
+        "accessibleName": "ExUI Common Lib Test Page",
+        "nearestLandmark": "main #main-content"
+      },
+      "advice": "Check all page headings, including shared banners. Follow the GOV.UK convention of one main page h1; choose other levels by section hierarchy, not visual size. Multiple h1 elements alone do not establish a WCAG failure."
+    },
+    {
+      "rule": "table-headers",
+      "message": "Data tables should expose row or column headers.",
+      "selector": "table",
+      "html": "<table _ngcontent-ng-c971040121=\"\"><tr _ngcontent-ng-c971040121=\"\"><td _ngcontent-ng-c971040121=\"\">Due date</td><td _ngcontent-ng-c971040121=\"\">Red threshold</td><td _ngcontent-ng-c971040121=\"\">Orange threshold</td></tr><tr _ngcontent-ng-c971040121=\"\"><td _ngcontent-ng-c971040121=\"\"><input _ngcontent-ng-c971040121=\"\" type=\"text\" aria-label=\"Due date\" style=\"\"></td><td _ngcontent-ng-c971040121=\"\"><input _ngcontent-ng-c971040121=\"\" type=\"number\" aria-label=\"Red threshold\" style=\"\"></td><td _ngcont",
+      "codeLocation": {
+        "tag": "table",
+        "angularAttrs": "_ngcontent-ng-c971040121",
+        "accessibleName": "Due dateRed thresholdOrange threshold",
+        "nearestHeading": "h2: Due date component: TODAY",
+        "nearestLandmark": "main #main-content"
+      },
+      "advice": "Add th scope=\"col\"/scope=\"row\" or equivalent row/column header roles for data tables."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "url": "http://localhost:4200/coverage?feature=terms",
+  "violationCount": 1,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "level": 1,
+        "text": "Using this service"
+      },
+      {
+        "level": 2,
+        "text": "Terms and conditions"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "role": "main",
+        "text": "Using this serviceTerms and conditionsWe've recently updated the terms and conditions. You must review and accept them. Accept terms"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "link",
+        "name": "terms and conditions",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Accept terms",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "h1-count",
+      "message": "Expected exactly one visible h1, found 2.",
+      "selector": "h1",
+      "html": "<h1>CommonLib component coverage examples</h1>",
+      "codeLocation": {
+        "tag": "h1",
+        "accessibleName": "CommonLib component coverage examples",
+        "nearestLandmark": "header"
+      },
+      "advice": "Check all page headings, including shared banners. Follow the GOV.UK convention of one main page h1; choose other levels by section hierarchy, not visual size. Multiple h1 elements alone do not establish a WCAG failure."
+    }
+  ]
+}

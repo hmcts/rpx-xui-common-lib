@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "form controls",
+  "pageState": "supplied errors and invalid date",
+  "status": "needs-review",
+  "reviewCount": 2,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "form controls — supplied errors and invalid date",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "eedcf68ea3206682aa69-axe.html",
+  "jsonFileName": "eedcf68ea3206682aa69-axe.json",
+  "screenshotFileName": "eedcf68ea3206682aa69-axe.png",
+  "assetFileNames": [
+    "eedcf68ea3206682aa69-axe-style-1.css"
+  ]
+}

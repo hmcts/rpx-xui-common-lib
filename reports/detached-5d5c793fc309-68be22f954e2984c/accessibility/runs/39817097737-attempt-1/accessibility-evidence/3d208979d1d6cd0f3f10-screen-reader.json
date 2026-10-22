@@ -1,0 +1,358 @@
+{
+  "url": "http://localhost:4200/coverage/service-selection",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Service selection demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form and emitted events"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Service selection demo Choose services Add service Family Disable service searchEnable service searchParent form and emitted events[ { \"key\": \"family\", \"label\": \"Family\" } ]Change ",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Choose services",
+        "selector": "#inputServiceSearch",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Add service",
+        "selector": "#add-service",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Family",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Disable service search",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Enable service search",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/service-selection",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Service selection demo"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Disable service search"
+      },
+      {
+        "role": "button",
+        "name": "Enable service search"
+      },
+      {
+        "role": "heading",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Service selection demo"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Add  service "
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Disable service search"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Enable service search"
+      },
+      {
+        "role": "StaticText",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "StaticText",
+        "name": "[\n  {\n    \"key\": \"family\",\n    \"label\": \"Family\"\n  }\n]"
+      },
+      {
+        "role": "StaticText",
+        "name": "Change events: "
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Service selection demo"
+      },
+      {
+        "role": "StaticText",
+        "name": "Choose services"
+      },
+      {
+        "role": "combobox",
+        "name": "Choose services"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Add"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "StaticText",
+        "name": "service"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "ListMarker",
+        "name": "• "
+      },
+      {
+        "role": "link",
+        "name": "Family"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Disable service search"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Enable service search"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Parent form and emitted events"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "["
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  {"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"key\": \"family\","
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "    \"label\": \"Family\""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "  }"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "\n"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "]"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Change events: "
+      },
+      {
+        "role": "StaticText",
+        "name": "1"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Choose services"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Add"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "service"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": " "
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Family"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "1"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Family"
+      }
+    ]
+  }
+}

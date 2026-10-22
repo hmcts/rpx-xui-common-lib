@@ -1,0 +1,501 @@
+{
+  "url": "http://localhost:4200/home",
+  "violations": [
+    {
+      "rule": "table-headers",
+      "message": "Screen-reader users need row or column headers in data tables.",
+      "selector": "table",
+      "html": "<table _ngcontent-ng-c971040121=\"\"><tr _ngcontent-ng-c971040121=\"\"><td _ngcontent-ng-c971040121=\"\">Due date</td><td _ngcontent-ng-c971040121=\"\">Red threshold</td><td _ngcontent-ng-c971040121=\"\">Orange threshold</td></tr><tr _ngcontent-ng-c971040121=\"\"><td _ngcontent-ng-c971040121=\"\"><input _ngcontent-ng-c971040121=\"\" type=\"text\" aria-label=\"Due date\" style=\"\"></td><td _ngcontent-ng-c971040121=\"\"><input _ngcontent-ng-c971040121=\"\" type=\"number\" aria-label=\"Red threshold\" style=\"\"></td><td _ngcontent-ng-c971040121=\"\"><input _ngcontent-ng-c971040121=\"\" type=\"number\" aria-label=\"Orange threshold\" style=\"\"></td></tr></table>"
+    }
+  ],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "ExUI Common Lib Test Page"
+      },
+      {
+        "level": 2,
+        "text": "This is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden."
+      },
+      {
+        "level": 1,
+        "text": "HTML Test"
+      },
+      {
+        "level": 2,
+        "text": "Contact details example"
+      },
+      {
+        "level": 3,
+        "text": "Contact Details Component"
+      },
+      {
+        "level": 2,
+        "text": "Tab items component:"
+      },
+      {
+        "level": 2,
+        "text": "Due date component: TODAY"
+      },
+      {
+        "level": 2,
+        "text": "Checkbox list component:"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "ExUI Common Lib Test PageWarningThis is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden.Hide message Test Document Content H",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "Hide message",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "link",
+        "name": "test@justice.gov.uk",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "div",
+        "name": "Tab1",
+        "selector": "#mat-tab-label-0-0",
+        "tabIndex": 0
+      },
+      {
+        "type": "text input",
+        "name": "Due date",
+        "selector": "input",
+        "tabIndex": 0
+      },
+      {
+        "type": "number input",
+        "name": "Red threshold",
+        "selector": "input",
+        "tabIndex": 0
+      },
+      {
+        "type": "number input",
+        "name": "Orange threshold",
+        "selector": "input",
+        "tabIndex": 0
+      },
+      {
+        "type": "select",
+        "name": "List height: Default (no limt)100px80px50px",
+        "selector": "#checkbox_list_height",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Add Wimbledon option",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Add Golders Green option",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Use borough for label",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Select all / Deselect all",
+        "selector": "#select_all",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Baker Street",
+        "selector": "#select_0",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Clapham Junction",
+        "selector": "#select_1",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "King's Cross",
+        "selector": "#select_2",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Shoreditch High Street",
+        "selector": "#select_3",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "South Woodford",
+        "selector": "#select_4",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "Twickenham",
+        "selector": "#select_5",
+        "tabIndex": 0
+      },
+      {
+        "type": "checkbox input",
+        "name": "West Brompton",
+        "selector": "#select_6",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Start Spinner",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/home",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "ExUI Common Lib Test Page"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "image",
+        "name": "hmcts-warning-icon"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Warning"
+      },
+      {
+        "role": "heading",
+        "name": "This is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden."
+      },
+      {
+        "role": "link",
+        "name": "Hide message"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "HTML Test"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Contact details example"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Contact Details Component"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "list",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Tab items component:"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Due date component: This task is due to be completed today"
+      },
+      {
+        "role": "LayoutTable",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Checkbox list component:"
+      },
+      {
+        "role": "LabelText",
+        "name": ""
+      },
+      {
+        "role": "combobox",
+        "name": "List height:"
+      },
+      {
+        "role": "StaticText",
+        "name": "   "
+      },
+      {
+        "role": "button",
+        "name": "Add Wimbledon option"
+      },
+      {
+        "role": "button",
+        "name": "Add Golders Green option"
+      },
+      {
+        "role": "button",
+        "name": "Use borough for label"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "ExUI Common Lib Test Page"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Warning"
+      },
+      {
+        "role": "StaticText",
+        "name": "This is a test xuilib-service-message for the ExUI Common Lib Test Page. For demo purposes it can not be hidden."
+      },
+      {
+        "role": "StaticText",
+        "name": "Hide message"
+      },
+      {
+        "role": "StaticText",
+        "name": "Test Document Content"
+      },
+      {
+        "role": "StaticText",
+        "name": "HTML Test"
+      },
+      {
+        "role": "StaticText",
+        "name": "Document to test "
+      },
+      {
+        "role": "StaticText",
+        "name": "HTML"
+      },
+      {
+        "role": "StaticText",
+        "name": " content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Contact details example"
+      },
+      {
+        "role": "StaticText",
+        "name": "Contact Details Component"
+      },
+      {
+        "role": "StaticText",
+        "name": "PRIVATE BETA"
+      },
+      {
+        "role": "StaticText",
+        "name": "Email: "
+      },
+      {
+        "role": "link",
+        "name": "test@justice.gov.uk"
+      },
+      {
+        "role": "StaticText",
+        "name": "Phone: "
+      },
+      {
+        "role": "StaticText",
+        "name": "1111111"
+      },
+      {
+        "role": "StaticText",
+        "name": "Opening times: "
+      },
+      {
+        "role": "StaticText",
+        "name": "bla bla bla"
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "listitem",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Tab items component:"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "tablist",
+        "name": ""
+      },
+      {
+        "role": "tabpanel",
+        "name": "Tab1"
+      }
+    ]
+  }
+}

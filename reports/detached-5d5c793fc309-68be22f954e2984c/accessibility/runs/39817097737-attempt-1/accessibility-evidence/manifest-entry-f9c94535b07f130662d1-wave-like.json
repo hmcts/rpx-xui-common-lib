@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-7d407949d73b73b4162f",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "textarea",
+  "pageState": "Use empty review hint errors",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "textarea — Use empty review hint errors",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "f9c94535b07f130662d1-wave-like.html",
+  "jsonFileName": "f9c94535b07f130662d1-wave-like.json",
+  "screenshotFileName": "f9c94535b07f130662d1-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "f9c94535b07f130662d1-wave-like-style-1.css"
+  ]
+}

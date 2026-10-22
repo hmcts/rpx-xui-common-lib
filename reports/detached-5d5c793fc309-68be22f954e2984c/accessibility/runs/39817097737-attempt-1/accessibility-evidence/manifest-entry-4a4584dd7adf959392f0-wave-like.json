@@ -1,0 +1,48 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-ffc5dcbc7e192e860f96",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /home",
+  "pageState": "skip link moves focus to the main-content target for /home",
+  "violationCount": 2,
+  "rules": [
+    "h1-count",
+    "table-headers"
+  ],
+  "targets": [
+    "h1",
+    "table"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /home",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "4a4584dd7adf959392f0-wave-like.html",
+  "jsonFileName": "4a4584dd7adf959392f0-wave-like.json",
+  "screenshotFileName": "4a4584dd7adf959392f0-wave-like.png",
+  "findings": [
+    {
+      "rule": "h1-count",
+      "targets": [
+        "h1"
+      ],
+      "summary": "Expected exactly one visible h1, found 2.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "table-headers",
+      "targets": [
+        "table"
+      ],
+      "summary": "Data tables should expose row or column headers.",
+      "anchor": "issue-2"
+    }
+  ],
+  "assetFileNames": [
+    "4a4584dd7adf959392f0-wave-like-style-1.css"
+  ]
+}

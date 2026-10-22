@@ -1,0 +1,34 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "users",
+  "pageState": "suggestions expanded",
+  "violationCount": 2,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "issues-found",
+  "summary": "3 engine(s), 0 known issue(s), 2 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [
+    "axe:aria-required-attr",
+    "axe:region"
+  ],
+  "targets": [
+    "http://localhost:4200/coverage?feature=users"
+  ],
+  "testTitle": "users — suggestions expanded",
+  "attachmentPrefix": "users-suggestions-expanded-page-summary",
+  "htmlFileName": "34e2c591f700e43121e8-users-suggestions-expanded-page-summary.html",
+  "jsonFileName": "34e2c591f700e43121e8-users-suggestions-expanded-page-summary.json",
+  "screenshotFileName": "34e2c591f700e43121e8-users-suggestions-expanded-page-summary.png",
+  "assetFileNames": [
+    "34e2c591f700e43121e8-users-suggestions-expanded-page-summary-style-1.css"
+  ]
+}

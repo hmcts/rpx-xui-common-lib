@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-06c9f1cf4dc6245a78a0",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "textarea",
+  "pageState": "Use empty review hint initial",
+  "violationCount": 0,
+  "reviewCount": 2,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "needs-review",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 2 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/form-controls"
+  ],
+  "testTitle": "textarea — Use empty review hint initial",
+  "attachmentPrefix": "textarea-use-empty-review-hint-initial-page-summary",
+  "htmlFileName": "71d83c8a3561824be708-textarea-use-empty-review-hint-initial-page-summary.html",
+  "jsonFileName": "71d83c8a3561824be708-textarea-use-empty-review-hint-initial-page-summary.json",
+  "screenshotFileName": "71d83c8a3561824be708-textarea-use-empty-review-hint-initial-page-summary.png",
+  "assetFileNames": [
+    "71d83c8a3561824be708-textarea-use-empty-review-hint-initial-page-summary-style-1.css"
+  ]
+}

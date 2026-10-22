@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-056b10a47fdf03417b59",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "filter",
+  "pageState": "required-service error",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage?feature=filter"
+  ],
+  "testTitle": "filter — required-service error",
+  "attachmentPrefix": "filter-required-service-error-page-summary",
+  "htmlFileName": "7b54a649beda8d1e3985-filter-required-service-error-page-summary.html",
+  "jsonFileName": "7b54a649beda8d1e3985-filter-required-service-error-page-summary.json",
+  "screenshotFileName": "7b54a649beda8d1e3985-filter-required-service-error-page-summary.png",
+  "assetFileNames": [
+    "7b54a649beda8d1e3985-filter-required-service-error-page-summary-style-1.css"
+  ]
+}

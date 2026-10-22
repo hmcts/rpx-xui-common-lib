@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-50df024f1bd0d29d5623",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "address",
+  "pageState": "manual international entry",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "address — manual international entry",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "88ba56a387682ee99791-screen-reader.html",
+  "jsonFileName": "88ba56a387682ee99791-screen-reader.json",
+  "screenshotFileName": "88ba56a387682ee99791-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "88ba56a387682ee99791-screen-reader-style-1.css"
+  ]
+}

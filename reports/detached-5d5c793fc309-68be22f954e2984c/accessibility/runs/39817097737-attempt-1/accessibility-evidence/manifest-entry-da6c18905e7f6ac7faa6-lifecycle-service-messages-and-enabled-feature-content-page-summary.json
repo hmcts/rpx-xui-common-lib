@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-588cd3d99e2d83442802",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "lifecycle",
+  "pageState": "service messages and enabled feature content",
+  "violationCount": 0,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "needs-review",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/lifecycle"
+  ],
+  "testTitle": "lifecycle — service messages and enabled feature content",
+  "attachmentPrefix": "lifecycle-service-messages-and-enabled-feature-content-page-summary",
+  "htmlFileName": "da6c18905e7f6ac7faa6-lifecycle-service-messages-and-enabled-feature-content-page-summary.html",
+  "jsonFileName": "da6c18905e7f6ac7faa6-lifecycle-service-messages-and-enabled-feature-content-page-summary.json",
+  "screenshotFileName": "da6c18905e7f6ac7faa6-lifecycle-service-messages-and-enabled-feature-content-page-summary.png",
+  "assetFileNames": [
+    "da6c18905e7f6ac7faa6-lifecycle-service-messages-and-enabled-feature-content-page-summary-style-1.css"
+  ]
+}

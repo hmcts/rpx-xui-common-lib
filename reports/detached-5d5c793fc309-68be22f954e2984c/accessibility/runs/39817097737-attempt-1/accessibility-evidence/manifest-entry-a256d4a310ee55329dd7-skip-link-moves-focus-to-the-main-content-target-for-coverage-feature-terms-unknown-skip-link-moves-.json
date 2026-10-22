@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-7e387891dcac424a180e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "skip link moves focus to the main-content target for /coverage?feature=terms-unknown",
+  "pageState": "skip link moves focus to the main-content target for /coverage?feature=terms-unknown",
+  "violationCount": 0,
+  "reviewCount": 0,
+  "reviewRules": [],
+  "status": "passed",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage?feature=terms-unknown"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage?feature=terms-unknown",
+  "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-terms-unknown-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-terms-unknown-page-summary",
+  "htmlFileName": "a256d4a310ee55329dd7-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-terms-unknown-skip-link-moves-.html",
+  "jsonFileName": "a256d4a310ee55329dd7-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-terms-unknown-skip-link-moves-.json",
+  "screenshotFileName": "a256d4a310ee55329dd7-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-terms-unknown-skip-link-moves-.png",
+  "assetFileNames": [
+    "a256d4a310ee55329dd7-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-terms-unknown-skip-link-moves--style-1.css"
+  ]
+}

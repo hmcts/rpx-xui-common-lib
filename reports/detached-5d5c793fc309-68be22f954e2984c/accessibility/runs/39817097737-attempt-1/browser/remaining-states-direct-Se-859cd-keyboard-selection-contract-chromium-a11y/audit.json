@@ -1,0 +1,67 @@
+{
+  "title": "direct SearchWorkType exposes options and a keyboard selection contract",
+  "url": "http://localhost:4200/coverage/lookups?feature=search-work-type",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "passed",
+      "reviewCount": 0,
+      "reviewRules": [],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "incompleteCount": 0,
+  "published": {
+    "context": {
+      "scenarioId": "1737fec63eae85b17f7d-08d356c556f572b4b3f9",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "direct SearchWorkType exposes options and a keyboard selection contract",
+    "pageState": "direct SearchWorkType exposes options and a keyboard selection contract",
+    "violationCount": 0,
+    "reviewCount": 0,
+    "reviewRules": [],
+    "status": "passed",
+    "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 0 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [],
+    "targets": [
+      "http://localhost:4200/coverage/lookups?feature=search-work-type"
+    ],
+    "testTitle": "direct SearchWorkType exposes options and a keyboard selection contract",
+    "attachmentPrefix": "direct-searchworktype-exposes-options-and-a-keyboard-selection-contract-direct-searchworktype-exposes-options-and-a-keyboard-selection-contract-page-summary",
+    "htmlFileName": "f290a38a35cd60255687-direct-searchworktype-exposes-options-and-a-keyboard-selection-contract-direct-searchworktype-expose.html",
+    "jsonFileName": "f290a38a35cd60255687-direct-searchworktype-exposes-options-and-a-keyboard-selection-contract-direct-searchworktype-expose.json",
+    "screenshotFileName": "f290a38a35cd60255687-direct-searchworktype-exposes-options-and-a-keyboard-selection-contract-direct-searchworktype-expose.png",
+    "assetFileNames": [
+      "f290a38a35cd60255687-direct-searchworktype-exposes-options-and-a-keyboard-selection-contract-direct-searchworktype-expose-style-1.css"
+    ]
+  }
+}

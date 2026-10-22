@@ -1,0 +1,496 @@
+{
+  "url": "http://localhost:4200/coverage/remaining",
+  "violations": [],
+  "snapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Remaining CommonLib coverage"
+      },
+      {
+        "level": 2,
+        "text": "Direct component contracts"
+      },
+      {
+        "level": 3,
+        "text": "Direct HTML terms"
+      },
+      {
+        "level": 3,
+        "text": "Cases"
+      },
+      {
+        "level": 2,
+        "text": "Direct service contracts"
+      },
+      {
+        "level": 2,
+        "text": "Directive and pipe contracts"
+      },
+      {
+        "level": 2,
+        "text": "Validator edge states"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "name": "Remaining CommonLib coverageDirect component contractsDirect HTML termsProjected HTML content.Projected plain terms.CasesConfirmDirect service contractsLookup addressidlenullFind p",
+        "selector": "#main-content"
+      }
+    ],
+    "keyboardOrder": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Confirm Confirm",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Lookup address",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Find people",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Search locations",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set cookie",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Delete cookie",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Register loading",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Unregister loading",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set cases",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Request share",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Request unshare",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Persist filter",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Clear filter",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Update let value",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set valid date",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set calendar-invalid date",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set malformed date",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Disable radio controls",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Check two checkboxes",
+        "selector": "button",
+        "tabIndex": 0
+      },
+      {
+        "type": "button",
+        "name": "Set non-boolean checkbox value",
+        "selector": "button",
+        "tabIndex": 0
+      }
+    ],
+    "liveRegions": [],
+    "url": "http://localhost:4200/coverage/remaining",
+    "axTree": [
+      {
+        "role": "RootWebArea",
+        "name": "RpxXuiCommonLib"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "link",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "main",
+        "name": ""
+      },
+      {
+        "role": "StaticText",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "heading",
+        "name": "Remaining CommonLib coverage"
+      },
+      {
+        "role": "region",
+        "name": "Direct component contracts"
+      },
+      {
+        "role": "region",
+        "name": "Direct service contracts"
+      },
+      {
+        "role": "region",
+        "name": "Directive and pipe contracts"
+      },
+      {
+        "role": "region",
+        "name": "Validator edge states"
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Skip to main content"
+      },
+      {
+        "role": "StaticText",
+        "name": "Remaining CommonLib coverage"
+      },
+      {
+        "role": "heading",
+        "name": "Direct component contracts"
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Direct HTML terms"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "none",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Direct service contracts"
+      },
+      {
+        "role": "button",
+        "name": "Lookup address"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Find people"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Search locations"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Set cookie"
+      },
+      {
+        "role": "button",
+        "name": "Delete cookie"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Register loading"
+      },
+      {
+        "role": "button",
+        "name": "Unregister loading"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Set cases"
+      },
+      {
+        "role": "button",
+        "name": "Request share"
+      },
+      {
+        "role": "button",
+        "name": "Request unshare"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Persist filter"
+      },
+      {
+        "role": "button",
+        "name": "Clear filter"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Directive and pipe contracts"
+      },
+      {
+        "role": "button",
+        "name": "Update let value"
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "paragraph",
+        "name": ""
+      },
+      {
+        "role": "heading",
+        "name": "Validator edge states"
+      },
+      {
+        "role": "button",
+        "name": "Set valid date"
+      },
+      {
+        "role": "button",
+        "name": "Set calendar-invalid date"
+      },
+      {
+        "role": "button",
+        "name": "Set malformed date"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Disable radio controls"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Check two checkboxes"
+      },
+      {
+        "role": "button",
+        "name": "Set non-boolean checkbox value"
+      },
+      {
+        "role": "status",
+        "name": ""
+      },
+      {
+        "role": "InlineTextBox",
+        "name": "Remaining CommonLib coverage"
+      },
+      {
+        "role": "StaticText",
+        "name": "Direct component contracts"
+      },
+      {
+        "role": "StaticText",
+        "name": "Direct HTML terms"
+      },
+      {
+        "role": "StaticText",
+        "name": "Projected HTML content."
+      },
+      {
+        "role": "StaticText",
+        "name": "Projected plain terms."
+      },
+      {
+        "role": "heading",
+        "name": "Cases"
+      },
+      {
+        "role": "generic",
+        "name": ""
+      },
+      {
+        "role": "button",
+        "name": "Confirm"
+      },
+      {
+        "role": "StaticText",
+        "name": "Direct service contracts"
+      },
+      {
+        "role": "StaticText",
+        "name": "Lookup address"
+      },
+      {
+        "role": "StaticText",
+        "name": "idle"
+      },
+      {
+        "role": "StaticText",
+        "name": "null"
+      },
+      {
+        "role": "StaticText",
+        "name": "Find people"
+      },
+      {
+        "role": "StaticText",
+        "name": "idle"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      },
+      {
+        "role": "StaticText",
+        "name": "Search locations"
+      },
+      {
+        "role": "StaticText",
+        "name": "idle"
+      },
+      {
+        "role": "StaticText",
+        "name": "[]"
+      }
+    ]
+  }
+}

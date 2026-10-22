@@ -1,0 +1,86 @@
+{
+  "url": "http://localhost:4200/coverage/advanced-filter?contract=conditional",
+  "violationCount": 2,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Advanced filter contracts"
+      },
+      {
+        "level": 3,
+        "text": "Include details"
+      },
+      {
+        "level": 3,
+        "text": "Detail"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Advanced filter contracts Include details No detailInclude detail Detail Apply advanced filtersnull"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "radio input",
+        "name": "No detail",
+        "selector": "#radio_no"
+      },
+      {
+        "type": "radio input",
+        "name": "Include detail",
+        "selector": "#radio_yes"
+      },
+      {
+        "type": "text input",
+        "name": "Detail",
+        "selector": "#detail"
+      },
+      {
+        "type": "button",
+        "name": "Apply advanced filters",
+        "selector": "#applyFilter"
+      }
+    ]
+  },
+  "violations": [
+    {
+      "rule": "heading-order",
+      "message": "Heading level jumps from h1 to h3.",
+      "selector": "#include-label",
+      "html": "<h3 style=\"margin-bottom: 0!important;\" class=\"govuk-heading-s\" id=\"include-label\"> Include details </h3>",
+      "codeLocation": {
+        "tag": "h3",
+        "id": "include-label",
+        "classes": "govuk-heading-s",
+        "accessibleName": "Include details",
+        "nearestHeading": "h1: Advanced filter contracts",
+        "nearestLandmark": "main #main-content .govuk-width-container.govuk-main-wrapper"
+      },
+      "advice": "Check whether the heading hierarchy represents the content. Use nested levels for subsections; do not insert empty headings just to satisfy the check."
+    },
+    {
+      "rule": "duplicate-id",
+      "message": "Duplicate id \"detail\" appears 2 times.",
+      "selector": "#detail",
+      "html": "<div class=\"govuk-form-group xui-generic-filter\" id=\"detail\"><div class=\"xui-generic-filter__field-title\"><h3 style=\"margin-bottom: 0!important;\" class=\"govuk-heading-s\" id=\"detail-label\"> Detail </h3><!--container--></div><!--container--><!--container--><!--container--><!--container--><!--container--><!--container--><div class=\"govuk-body\"><!--container--><!--container--><!--container--><!--container--><!--container--><!--container--><!--container--><!--container--><!--container--><!--container",
+      "codeLocation": {
+        "tag": "div",
+        "id": "detail",
+        "classes": "govuk-form-group xui-generic-filter",
+        "accessibleName": "Detail",
+        "nearestHeading": "h3: Include details",
+        "nearestLandmark": "main #main-content .govuk-width-container.govuk-main-wrapper"
+      },
+      "advice": "Make the id unique in the template, then update label for, aria-describedby, aria-labelledby, and error-summary links."
+    }
+  ]
+}

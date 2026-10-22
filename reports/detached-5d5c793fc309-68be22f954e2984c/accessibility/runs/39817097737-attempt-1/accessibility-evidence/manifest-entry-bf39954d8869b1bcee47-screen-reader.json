@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-e82c70f0ceee0a69d9d9",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "textarea",
+  "pageState": "Remove review hint cleared",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "textarea — Remove review hint cleared",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "bf39954d8869b1bcee47-screen-reader.html",
+  "jsonFileName": "bf39954d8869b1bcee47-screen-reader.json",
+  "screenshotFileName": "bf39954d8869b1bcee47-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "bf39954d8869b1bcee47-screen-reader-style-1.css"
+  ]
+}

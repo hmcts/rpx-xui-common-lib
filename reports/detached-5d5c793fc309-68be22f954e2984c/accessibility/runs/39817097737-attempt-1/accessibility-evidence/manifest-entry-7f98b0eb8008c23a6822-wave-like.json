@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-63e713b4f18d8347b5e4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage/accessibility/manage-case",
+  "pageState": "skip link moves focus to the main-content target for /coverage/accessibility/manage-case",
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/accessibility/manage-case",
+  "attachmentPrefix": "wave-like",
+  "status": "passed",
+  "htmlFileName": "7f98b0eb8008c23a6822-wave-like.html",
+  "jsonFileName": "7f98b0eb8008c23a6822-wave-like.json",
+  "screenshotFileName": "7f98b0eb8008c23a6822-wave-like.png",
+  "findings": [],
+  "assetFileNames": [
+    "7f98b0eb8008c23a6822-wave-like-style-1.css"
+  ]
+}

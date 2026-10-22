@@ -1,0 +1,46 @@
+{
+  "url": "http://localhost:4200/coverage/service-contract-a",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Service contract A demo"
+      },
+      {
+        "level": 2,
+        "text": "Role guard and role service"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Service contract A demoRole guard and role serviceAllow any roleDeny missing roleAllow all rolesnot evaluated"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Allow any role",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Deny missing role",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Allow all roles",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-5ed8da5e425765b9bc16",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "cookies",
+  "pageState": "reject persisted after reload",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "cookies — reject persisted after reload",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "cf1626cfaa96ce08dce9-screen-reader.html",
+  "jsonFileName": "cf1626cfaa96ce08dce9-screen-reader.json",
+  "screenshotFileName": "cf1626cfaa96ce08dce9-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "cf1626cfaa96ce08dce9-screen-reader-style-1.css"
+  ]
+}

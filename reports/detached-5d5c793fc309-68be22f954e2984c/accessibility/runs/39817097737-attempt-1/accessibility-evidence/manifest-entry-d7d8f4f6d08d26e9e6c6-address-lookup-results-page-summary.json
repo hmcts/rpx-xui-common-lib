@@ -1,0 +1,31 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-f58900d80c65fb0d08c4",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "summary",
+  "feature": "address",
+  "pageState": "lookup results",
+  "violationCount": 0,
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "status": "needs-review",
+  "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+  "rules": [],
+  "targets": [
+    "http://localhost:4200/coverage/address"
+  ],
+  "testTitle": "address — lookup results",
+  "attachmentPrefix": "address-lookup-results-page-summary",
+  "htmlFileName": "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.html",
+  "jsonFileName": "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.json",
+  "screenshotFileName": "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary.png",
+  "assetFileNames": [
+    "d7d8f4f6d08d26e9e6c6-address-lookup-results-page-summary-style-1.css"
+  ]
+}

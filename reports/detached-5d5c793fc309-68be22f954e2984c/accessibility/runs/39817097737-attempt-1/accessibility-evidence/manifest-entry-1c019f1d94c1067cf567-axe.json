@@ -1,0 +1,27 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-506b14cbf63abe799598",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/public-contracts",
+  "pageState": "skip link moves focus to the main-content target for /coverage/public-contracts",
+  "status": "passed",
+  "reviewCount": 0,
+  "reviewRules": [],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/public-contracts",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "1c019f1d94c1067cf567-axe.html",
+  "jsonFileName": "1c019f1d94c1067cf567-axe.json",
+  "screenshotFileName": "1c019f1d94c1067cf567-axe.png",
+  "assetFileNames": [
+    "1c019f1d94c1067cf567-axe-style-1.css"
+  ]
+}

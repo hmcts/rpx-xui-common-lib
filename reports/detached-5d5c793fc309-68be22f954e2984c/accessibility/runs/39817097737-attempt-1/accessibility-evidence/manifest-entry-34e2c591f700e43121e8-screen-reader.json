@@ -1,0 +1,25 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "users",
+  "pageState": "suggestions expanded",
+  "violationCount": 0,
+  "status": "passed",
+  "rules": [],
+  "targets": [],
+  "testTitle": "users — suggestions expanded",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "34e2c591f700e43121e8-screen-reader.html",
+  "jsonFileName": "34e2c591f700e43121e8-screen-reader.json",
+  "screenshotFileName": "34e2c591f700e43121e8-screen-reader.png",
+  "findings": [],
+  "assetFileNames": [
+    "34e2c591f700e43121e8-screen-reader-style-1.css"
+  ]
+}

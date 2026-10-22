@@ -1,0 +1,106 @@
+
+    <!doctype html><html lang="en">
+      <head>
+        <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WAVE-like Accessibility Issues</title>
+        <link rel="stylesheet" href="d10c1ff847dc8facfa44-wave-like-style-1.css">
+      </head>
+      <body>
+        <a class="skip-link" href="#evidence-content">Skip to evidence</a>
+        <div class="layout">
+          <aside class="panel">
+            <h2>Evidence navigation</h2>
+            <nav class="toolbar" aria-label="Evidence sections"><a href="#issues">Findings</a><a href="#visual">Image</a><a href="#order">Order</a><a href="#structure">Structure</a></nav>
+            <div class="scorecard">
+              <p><strong>RpxXuiCommonLib</strong></p>
+              <div class="metric-grid">
+                <div class="metric"><strong>1</strong>Issues</div>
+                <div class="metric"><strong>1</strong>Rules</div>
+                <div class="metric"><strong>3</strong>Order</div>
+                <div class="metric"><strong>3</strong>Headings</div>
+              </div>
+            </div>
+            <details open id="issues">
+              <summary>Findings</summary>
+              <ol><li><a href="#issue-1">1. h1-count</a></li></ol>
+            </details>
+            <details id="order">
+              <summary>DOM order inventory</summary>
+              <p>Candidate controls in DOM order; this is not a verified keyboard Tab sequence.</p>
+              <ol>
+        <li>
+          <span class="marker">1</span>
+          <strong>link</strong>: Skip to main content
+          <code>a</code>
+        </li>
+      
+        <li>
+          <span class="marker">2</span>
+          <strong>link</strong>: terms and conditions
+          <code>a</code>
+        </li>
+      
+        <li>
+          <span class="marker">3</span>
+          <strong>button</strong>: Accept terms
+          <code>button</code>
+        </li>
+      </ol>
+            </details>
+            <details id="structure">
+              <summary>Structure</summary>
+              <ol><li><span class="structure-token">h1</span>CommonLib component coverage examples</li><li><span class="structure-token">h1</span>Using this service</li><li><span class="structure-token">h2</span>Terms and conditions</li><li><span class="structure-token">header</span>CommonLib component coverage examples</li><li><span class="structure-token">main</span>Using this serviceTerms and conditionsWe&#39;ve recently updated the terms and conditions. You must review and accept them. Accept terms</li></ol>
+            </details>
+            <details>
+              <summary>Contrast</summary>
+              <p>Contrast signal is provided by axe and Lighthouse in the unified pack. This WAVE-like panel focuses on structure, order, names, labels, and target evidence.</p>
+            </details>
+          </aside>
+          <main class="content" id="evidence-content" tabindex="-1">
+            <div class="banner">
+              <h1>WAVE-like accessibility evidence</h1>
+              <p>1 automated finding(s). These checks include heuristics and conventions, not a WCAG conformance verdict. Match finding numbers to the highlighted page image.</p>
+            </div>
+            <p class="report-nav"><a href="../index.html">Back to Odhín report</a></p>
+            <details class="visual" id="visual"><summary>Show highlighted page image</summary>
+              <img alt="Highlighted page screenshot with WAVE-like issue markers" src="d10c1ff847dc8facfa44-wave-like.png" />
+            </details>
+            
+        <section class="issue" id="issue-1" tabindex="-1">
+          <h2>1. h1-count</h2>
+          <p><strong>Expected exactly one visible h1, found 2.</strong></p>
+          <p><strong>Selector:</strong> <code>h1</code></p>
+          
+    <div class="advice">
+      <h3>Developer advice</h3>
+      <p><strong>Heading convention — inspect the page hierarchy</strong></p>
+      <h4>Where to look</h4>
+      <dl class="location"><dt>Page</dt><dd>http://localhost:4200/coverage?feature=terms</dd><dt>Selector</dt><dd><code>h1</code></dd><dt>Element</dt><dd><code>h1</code></dd><dt>Name hint</dt><dd>CommonLib component coverage examples</dd><dt>Landmark</dt><dd>header</dd></dl>
+      <dl>
+        <dt>Why this matters</dt>
+        <dd>Heading navigation helps screen-reader users understand the page and locate its main subject.</dd>
+        <dt>What to fix</dt>
+        <dd>Check all page headings, including shared banners. Follow the GOV.UK convention of one main page h1; choose other levels by section hierarchy, not visual size. Multiple h1 elements alone do not establish a WCAG failure.</dd>
+        <dt>How to verify</dt>
+        <dd>Inspect every h1 and navigate the heading list with a screen reader. Confirm the main heading identifies this page state and section levels reflect the content.</dd>
+        <dt>Guidance</dt><dd><a href="https://www.w3.org/WAI/tutorials/page-structure/headings/">W3C WAI: page headings</a></dd>
+        <dt>Related WCAG criteria</dt><dd>GOV.UK heading convention; not a standalone WCAG failure. Review 1.3.1 (A) and 2.4.6 (AA) in context. Criteria refer to WCAG 2.2; unless noted, they also existed in WCAG 2.0.</dd>
+      </dl>
+      <details><summary>DOM hints and source investigation</summary><p>search selector h1</p>
+      <p>These are rendered DOM clues, not a verified source-file mapping. Match the selector and nearby text in the route component/template. The excerpt may be truncated.</p>
+      <pre>{
+  &quot;tag&quot;: &quot;h1&quot;,
+  &quot;accessibleName&quot;: &quot;CommonLib component coverage examples&quot;,
+  &quot;nearestLandmark&quot;: &quot;header&quot;
+}</pre></details>
+    </div>
+  
+          <details><summary>Captured DOM excerpt</summary><pre>&lt;h1&gt;CommonLib component coverage examples&lt;/h1&gt;</pre></details>
+        </section>
+      
+            <p class="report-nav"><a href="../index.html">Back to Odhín report</a></p>
+          </main>
+        </div>
+      </body>
+    </html>
+  

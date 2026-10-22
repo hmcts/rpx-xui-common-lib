@@ -1,0 +1,46 @@
+{
+  "url": "http://localhost:4200/coverage/address",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Address demo"
+      },
+      {
+        "level": 2,
+        "text": "Demo form and event outputs"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Address demoProvide address detailsEnter a UK postcodeFind addressI can't enter a UK postcodeDemo form and event outputs{ \"address\": { \"addressLine1\": null, \"ad"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "text input",
+        "name": "Enter a UK postcode",
+        "selector": "#postcodeInput"
+      },
+      {
+        "type": "button",
+        "name": "Find address",
+        "selector": "button"
+      },
+      {
+        "type": "link",
+        "name": "I can't enter a UK postcode",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": []
+}

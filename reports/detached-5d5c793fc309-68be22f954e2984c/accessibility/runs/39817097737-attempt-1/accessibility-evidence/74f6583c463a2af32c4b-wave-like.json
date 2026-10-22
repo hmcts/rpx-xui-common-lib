@@ -1,0 +1,62 @@
+{
+  "url": "http://localhost:4200/coverage/service-contract-b",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Service contract B demo"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Service contract B demoLoad reference dataidleLoad locations for IALoad locations for IA and UNKNOWNLoad locations for two subscribersidleidleLoad task namesCle"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "button",
+        "name": "Load reference data",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Load locations for IA",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Load locations for IA and UNKNOWN",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Load locations for two subscribers",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Load task names",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Clear task-name cache",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Request interceptor error",
+        "selector": "button"
+      }
+    ]
+  },
+  "violations": []
+}

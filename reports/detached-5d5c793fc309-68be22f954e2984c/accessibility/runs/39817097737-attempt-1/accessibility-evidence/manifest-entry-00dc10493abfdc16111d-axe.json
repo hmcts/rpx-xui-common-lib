@@ -1,0 +1,71 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-9f55dee605ed354ee20e",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "user management",
+  "pageState": "first page and detail panels",
+  "status": "issues-found",
+  "reviewCount": 5,
+  "reviewRules": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "findings": [
+    {
+      "rule": "dlitem",
+      "targets": [
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+        "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]",
+        "[\"div:nth-child(3) > dt\"]",
+        "[\"div:nth-child(3) > dd:nth-child(2)\"]",
+        "[\"div:nth-child(3) > dd:nth-child(3)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+        "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]"
+      ],
+      "summary": "<dt> and <dd> elements must be contained by a <dl>",
+      "anchor": "issue-1"
+    }
+  ],
+  "violationCount": 15,
+  "rules": [
+    "dlitem"
+  ],
+  "targets": [
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+    "[\"xuilib-user-details[editpermissionrouterlink=\\\"/coverage/users\\\"] > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]",
+    "[\"div:nth-child(3) > dt\"]",
+    "[\"div:nth-child(3) > dd:nth-child(2)\"]",
+    "[\"div:nth-child(3) > dd:nth-child(3)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dt\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(2)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(1) > dd:nth-child(3)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dt\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(2)\"]",
+    "[\"section[aria-label=\\\"Invited user details\\\"] > xuilib-user-details > dl > .govuk-table__body > div:nth-child(2) > dd:nth-child(3)\"]"
+  ],
+  "testTitle": "user management — first page and detail panels",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "00dc10493abfdc16111d-axe.html",
+  "jsonFileName": "00dc10493abfdc16111d-axe.json",
+  "screenshotFileName": "00dc10493abfdc16111d-axe.png",
+  "assetFileNames": [
+    "00dc10493abfdc16111d-axe-style-1.css"
+  ]
+}

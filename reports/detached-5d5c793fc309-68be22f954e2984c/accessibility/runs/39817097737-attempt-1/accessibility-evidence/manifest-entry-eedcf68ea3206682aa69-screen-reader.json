@@ -1,0 +1,68 @@
+{
+  "context": {
+    "scenarioId": "d45d9ddca158fa8a2748-13d1bed6b436ab1ab685",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "screen-reader",
+  "feature": "form controls",
+  "pageState": "supplied errors and invalid date",
+  "violationCount": 4,
+  "status": "issues-found",
+  "rules": [
+    "aria-reference-target",
+    "error-describedby",
+    "error-describedby",
+    "error-describedby"
+  ],
+  "targets": [
+    "fieldset",
+    "#hearing-day",
+    "#hearing-month",
+    "#hearing-year"
+  ],
+  "testTitle": "form controls — supplied errors and invalid date",
+  "attachmentPrefix": "screen-reader",
+  "htmlFileName": "eedcf68ea3206682aa69-screen-reader.html",
+  "jsonFileName": "eedcf68ea3206682aa69-screen-reader.json",
+  "screenshotFileName": "eedcf68ea3206682aa69-screen-reader.png",
+  "findings": [
+    {
+      "rule": "aria-reference-target",
+      "targets": [
+        "fieldset"
+      ],
+      "summary": "aria-describedby references missing id(s): hearing-error.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#hearing-day"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#hearing-month"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-3"
+    },
+    {
+      "rule": "error-describedby",
+      "targets": [
+        "#hearing-year"
+      ],
+      "summary": "Invalid controls should reference the visible error message.",
+      "anchor": "issue-4"
+    }
+  ],
+  "assetFileNames": [
+    "eedcf68ea3206682aa69-screen-reader-style-1.css"
+  ]
+}

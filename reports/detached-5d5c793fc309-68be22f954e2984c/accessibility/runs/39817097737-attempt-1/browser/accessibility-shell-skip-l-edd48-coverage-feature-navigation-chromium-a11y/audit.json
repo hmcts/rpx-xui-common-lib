@@ -1,0 +1,71 @@
+{
+  "title": "skip link moves focus to the main-content target for /coverage?feature=navigation",
+  "url": "http://localhost:4200/coverage?feature=navigation",
+  "audit": {
+    "project": "chromium-a11y",
+    "browserVersion": "156.0.8078.4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "retry": 0,
+    "repeatEachIndex": 0,
+    "scope": "Full-page. All default axe rules; WebApp WAVE-like and screen-reader-like heuristics. No exclusions or known-violation waivers."
+  },
+  "outcomes": [
+    {
+      "engine": "axe",
+      "status": "needs-review",
+      "reviewCount": 1,
+      "reviewRules": [
+        "color-contrast"
+      ],
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "wave-like",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    },
+    {
+      "engine": "screen-reader",
+      "status": "passed",
+      "issueCount": 0,
+      "rules": []
+    }
+  ],
+  "incompleteCount": 1,
+  "published": {
+    "context": {
+      "scenarioId": "952c03097f06ee496f4e-d1f3b30ea244cbdc50d9",
+      "persona": "synthetic demo user",
+      "language": "en",
+      "authentication": "none",
+      "dataMode": "local synthetic fixtures"
+    },
+    "engine": "summary",
+    "feature": "skip link moves focus to the main-content target for /coverage?feature=navigation",
+    "pageState": "skip link moves focus to the main-content target for /coverage?feature=navigation",
+    "violationCount": 0,
+    "reviewCount": 1,
+    "reviewRules": [
+      "color-contrast"
+    ],
+    "status": "needs-review",
+    "summary": "3 engine(s), 0 known issue(s), 0 unexpected issue(s), 1 node(s) needing investigation, 0 behavioral check(s)",
+    "rules": [],
+    "targets": [
+      "http://localhost:4200/coverage?feature=navigation"
+    ],
+    "testTitle": "skip link moves focus to the main-content target for /coverage?feature=navigation",
+    "attachmentPrefix": "skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-navigation-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-navigation-page-summary",
+    "htmlFileName": "ece059715f543092619e-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-navigation-skip-link-moves-foc.html",
+    "jsonFileName": "ece059715f543092619e-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-navigation-skip-link-moves-foc.json",
+    "screenshotFileName": "ece059715f543092619e-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-navigation-skip-link-moves-foc.png",
+    "assetFileNames": [
+      "ece059715f543092619e-skip-link-moves-focus-to-the-main-content-target-for-coverage-feature-navigation-skip-link-moves-foc-style-1.css"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-1eaa16255ec8f38bd587",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "wave-like",
+  "feature": "skip link moves focus to the main-content target for /coverage/case-sharing",
+  "pageState": "skip link moves focus to the main-content target for /coverage/case-sharing",
+  "violationCount": 3,
+  "rules": [
+    "heading-order",
+    "duplicate-id",
+    "duplicate-id"
+  ],
+  "targets": [
+    "#title-selected-cases",
+    "#user-full-name-0",
+    "#user-email-0"
+  ],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/case-sharing",
+  "attachmentPrefix": "wave-like",
+  "status": "issues-found",
+  "htmlFileName": "78333f4cd0b483aae600-wave-like.html",
+  "jsonFileName": "78333f4cd0b483aae600-wave-like.json",
+  "screenshotFileName": "78333f4cd0b483aae600-wave-like.png",
+  "findings": [
+    {
+      "rule": "heading-order",
+      "targets": [
+        "#title-selected-cases"
+      ],
+      "summary": "Heading level jumps from h1 to h3.",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "duplicate-id",
+      "targets": [
+        "#user-full-name-0"
+      ],
+      "summary": "Duplicate id \"user-full-name-0\" appears 2 times.",
+      "anchor": "issue-2"
+    },
+    {
+      "rule": "duplicate-id",
+      "targets": [
+        "#user-email-0"
+      ],
+      "summary": "Duplicate id \"user-email-0\" appears 2 times.",
+      "anchor": "issue-3"
+    }
+  ],
+  "assetFileNames": [
+    "78333f4cd0b483aae600-wave-like-style-1.css"
+  ]
+}

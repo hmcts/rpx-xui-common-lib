@@ -1,0 +1,52 @@
+{
+  "context": {
+    "scenarioId": "05384557491ebd602dd7-1e6617b4f9f36cb34d28",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "users",
+  "pageState": "suggestions expanded",
+  "status": "issues-found",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [
+    {
+      "rule": "aria-required-attr",
+      "targets": [
+        "[\"input\"]"
+      ],
+      "summary": "Required ARIA attributes must be provided",
+      "anchor": "issue-1"
+    },
+    {
+      "rule": "region",
+      "targets": [
+        "[\".cdk-overlay-container\"]"
+      ],
+      "summary": "All page content should be contained by landmarks",
+      "anchor": "issue-2"
+    }
+  ],
+  "violationCount": 2,
+  "rules": [
+    "aria-required-attr",
+    "region"
+  ],
+  "targets": [
+    "[\"input\"]",
+    "[\".cdk-overlay-container\"]"
+  ],
+  "testTitle": "users — suggestions expanded",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "34e2c591f700e43121e8-axe.html",
+  "jsonFileName": "34e2c591f700e43121e8-axe.json",
+  "screenshotFileName": "34e2c591f700e43121e8-axe.png",
+  "assetFileNames": [
+    "34e2c591f700e43121e8-axe-style-1.css"
+  ]
+}

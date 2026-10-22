@@ -1,0 +1,31 @@
+{
+  "url": "http://localhost:4200/coverage?feature=terms-unknown",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "CommonLib component coverage examples"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "header",
+        "text": "CommonLib component coverage examples"
+      },
+      {
+        "role": "main",
+        "text": "An error occured. Please try again."
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      }
+    ]
+  },
+  "violations": []
+}

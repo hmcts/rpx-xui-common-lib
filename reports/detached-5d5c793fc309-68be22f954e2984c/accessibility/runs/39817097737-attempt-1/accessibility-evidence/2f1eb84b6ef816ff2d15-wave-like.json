@@ -1,0 +1,81 @@
+{
+  "url": "http://localhost:4200/coverage/form-controls",
+  "violationCount": 0,
+  "pageSnapshot": {
+    "title": "RpxXuiCommonLib",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Form controls demo"
+      },
+      {
+        "level": 2,
+        "text": "Parent form values"
+      }
+    ],
+    "landmarks": [
+      {
+        "role": "main",
+        "text": "Form controls demoError messages are supplied by the demo parent. Date validity uses the library's own validator.Priority Choose how soon to review. Error:Choos"
+      }
+    ],
+    "order": [
+      {
+        "type": "link",
+        "name": "Skip to main content",
+        "selector": "a"
+      },
+      {
+        "type": "select",
+        "name": "Priority RoutineUrgent",
+        "selector": "#priority"
+      },
+      {
+        "type": "textarea",
+        "name": "Case notes",
+        "selector": "#case-notes"
+      },
+      {
+        "type": "textarea",
+        "name": "Review notes",
+        "selector": "#review-notes"
+      },
+      {
+        "type": "button",
+        "name": "Use empty review hint",
+        "selector": "button"
+      },
+      {
+        "type": "button",
+        "name": "Remove review hint",
+        "selector": "button"
+      },
+      {
+        "type": "file input",
+        "name": "Supporting file",
+        "selector": "#supportingFile"
+      },
+      {
+        "type": "button",
+        "name": "Toggle supplied errors",
+        "selector": "button"
+      },
+      {
+        "type": "text input",
+        "name": "Day",
+        "selector": "#hearing-day"
+      },
+      {
+        "type": "text input",
+        "name": "Month",
+        "selector": "#hearing-month"
+      },
+      {
+        "type": "text input",
+        "name": "Year",
+        "selector": "#hearing-year"
+      }
+    ]
+  },
+  "violations": []
+}

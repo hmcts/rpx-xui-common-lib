@@ -1,0 +1,29 @@
+{
+  "context": {
+    "scenarioId": "952c03097f06ee496f4e-e18065160687b769772f",
+    "persona": "synthetic demo user",
+    "language": "en",
+    "authentication": "none",
+    "dataMode": "local synthetic fixtures"
+  },
+  "engine": "axe",
+  "feature": "skip link moves focus to the main-content target for /coverage/address",
+  "pageState": "skip link moves focus to the main-content target for /coverage/address",
+  "status": "needs-review",
+  "reviewCount": 1,
+  "reviewRules": [
+    "color-contrast"
+  ],
+  "findings": [],
+  "violationCount": 0,
+  "rules": [],
+  "targets": [],
+  "testTitle": "skip link moves focus to the main-content target for /coverage/address",
+  "attachmentPrefix": "axe",
+  "htmlFileName": "0fd50a095e7554a9e378-axe.html",
+  "jsonFileName": "0fd50a095e7554a9e378-axe.json",
+  "screenshotFileName": "0fd50a095e7554a9e378-axe.png",
+  "assetFileNames": [
+    "0fd50a095e7554a9e378-axe-style-1.css"
+  ]
+}
