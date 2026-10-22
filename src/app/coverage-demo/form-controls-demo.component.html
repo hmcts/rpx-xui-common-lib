@@ -7,6 +7,11 @@
   <xuilib-gov-uk-textarea [group]="form"
     [config]="{id: 'case-notes', key: 'notes', label: 'Case notes', hint: 'Include only synthetic notes.', rows: 3}"
     [errorMessage]="suppliedError('Enter case notes')"></xuilib-gov-uk-textarea>
+  <xuilib-gov-uk-textarea [group]="secondaryForm"
+    [config]="{id: 'review-notes', key: 'reviewNotes', label: 'Review notes', hint: reviewNotesHint, rows: 3}"
+    [errorMessage]="suppliedError('Enter review notes')"></xuilib-gov-uk-textarea>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="reviewNotesHint = ''">Use empty review hint</button>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="reviewNotesHint = undefined">Remove review hint</button>
   <xuilib-gov-uk-file-upload [group]="form"
     [config]="{id: 'supportingFile', name: 'supportingFile', label: 'Supporting file', hint: 'Choose a synthetic text file.'}"
     [errorMessage]="suppliedError('Choose a supporting file')"></xuilib-gov-uk-file-upload>
