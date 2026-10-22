@@ -1,0 +1,18 @@
+{
+  "rawBranch": "fix/EXUI-5357-common-lib-defects",
+  "slug": "fix-exui-5357-common-lib-defects-b2f246da8474f09e",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "fix/EXUI-5357-common-lib-defects",
+      "branchSlug": "fix-exui-5357-common-lib-defects-b2f246da8474f09e",
+      "runKey": "39817122171-attempt-1",
+      "runId": "39817122171",
+      "runAttempt": "1",
+      "sha": "5d5c793fc309505478ce82803b8449e40795f725",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/39817122171/attempts/1",
+      "createdAt": "2026-10-22T16:58:24.017Z"
+    }
+  ]
+}
