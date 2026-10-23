@@ -6,6 +6,7 @@ export function formDescriptions(state: typeof formDescriptionStates[number]): D
   return [
     { selector: '#priority', id: 'priority', hint: 'Choose how soon to review.', error: 'Choose a priority' },
     { selector: '#case-notes', id: 'case-notes', hint: 'Include only synthetic notes.', error: 'Enter case notes' },
+    { selector: '#review-notes', id: 'review-notes', hint: 'Add a synthetic review note.', error: 'Enter review notes' },
     { selector: '#supportingFile', id: 'supportingFile', hint: 'Choose a synthetic text file.', error: 'Choose a supporting file' }
   ].map(({ selector, id, hint, error }) => ({
     selector,

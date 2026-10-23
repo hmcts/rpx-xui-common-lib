@@ -59,8 +59,35 @@ for (const state of formDescriptionStates) {
       await expect(page.locator('#case-notes-error')).toHaveCount(0);
     }
     const outcomes = await collectAccessibilityEvidence(page, testInfo, formDescriptions(state));
+    const hintIds = await page.locator('xuilib-gov-uk-textarea .govuk-hint')
+      .evaluateAll((hints) => hints.map((hint) => hint.id));
+    expect(hintIds, ASSERTION_MARKER).toEqual(['case-notes-hint', 'review-notes-hint']);
     expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
   });
+}
+
+for (const action of ['Use empty review hint', 'Remove review hint']) {
+  for (const state of formDescriptionStates) {
+    test(`textarea — ${action} ${state}`, async ({ page }, testInfo) => {
+      await page.goto('/coverage/form-controls');
+      await page.getByRole('button', { name: action, exact: true }).click();
+      const controls = new FormControlsPage(page);
+      if (state !== 'initial') {
+        await controls.errors.click();
+      }
+      if (state === 'cleared') {
+        await controls.errors.click();
+      }
+      const hasError = state === 'errors';
+      const outcomes = await collectAccessibilityEvidence(page, testInfo, [{
+        selector: '#review-notes',
+        describedBy: hasError ? 'review-notes-error' : null,
+        targets: hasError ? [{ id: 'review-notes-error', text: 'Error:Enter review notes' }] : [],
+        absentIds: hasError ? [] : ['review-notes-error']
+      }]);
+      expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+    });
+  }
 }
 
 test('form controls — supplied errors and invalid date', async ({ page }, testInfo) => {

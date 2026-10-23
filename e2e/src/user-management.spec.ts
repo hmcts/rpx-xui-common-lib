@@ -68,29 +68,25 @@ test('pending invitation explains resend restrictions and hides permissions', as
   await expect(users.reinvite).toBeVisible();
 });
 
-for (const activation of ['click', 'Enter'] as const) {
+for (const activation of ['click', 'Enter', 'Space'] as const) {
   test(`suspend emits the exact user once on ${activation}`, async ({ page }) => {
-    if (activation === 'Enter') {
-      test.skip(true, 'EXUI-5360: Enter activation emits the suspended user twice');
-    }
     const users = new UserManagementPage(page);
+    await expect(page.getByTestId('user-suspend-events')).toHaveText('[]');
     if (activation === 'click') {
       await users.suspend.click();
     } else {
-      await users.suspend.press('Enter');
+      await users.suspend.press(activation);
     }
     await expect.poll(async () => JSON.parse(await page.getByTestId('user-suspend-events').innerText())).toEqual([expectedFirstUser]);
   });
 
   test(`reinvite emits the exact user once on ${activation}`, async ({ page }) => {
-    if (activation === 'Enter') {
-      test.skip(true, 'EXUI-5360: Enter activation emits the invited user twice');
-    }
     const users = new UserManagementPage(page);
+    await expect(page.getByTestId('user-reinvite-events')).toHaveText('[]');
     if (activation === 'click') {
       await users.reinvite.click();
     } else {
-      await users.reinvite.press('Enter');
+      await users.reinvite.press(activation);
     }
     await expect.poll(async () => JSON.parse(await page.getByTestId('user-reinvite-events').innerText())).toEqual([expectedInvitedUser]);
   });

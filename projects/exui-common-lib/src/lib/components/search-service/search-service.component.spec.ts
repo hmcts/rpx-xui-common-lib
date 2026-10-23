@@ -44,6 +44,39 @@ describe('SearchServiceComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  for (const disabled of [false, null, undefined, true]) {
+    it(`binds disabled=${disabled} to the native property`, () => {
+      component.disabled = disabled;
+      fixture.detectChanges();
+      const input: HTMLInputElement = fixture.nativeElement.querySelector('#inputServiceSearch');
+      expect(input.disabled).toBe(disabled === true);
+    });
+  }
+
+  it('re-enables the native input when disabled changes from true to false', () => {
+    component.disabled = true;
+    fixture.detectChanges();
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('#inputServiceSearch');
+    expect(input.disabled).toBeTrue();
+
+    component.disabled = false;
+    fixture.detectChanges();
+
+    expect(input.disabled).toBeFalse();
+  });
+
+  it('disables the native input when disabled changes from false to true', () => {
+    component.disabled = false;
+    fixture.detectChanges();
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('#inputServiceSearch');
+    expect(input.disabled).toBeFalse();
+
+    component.disabled = true;
+    fixture.detectChanges();
+
+    expect(input.disabled).toBeTrue();
+  });
+
   it('should return the correct filtered options when searchTerm is set', () => {
     component.searchTerm = 'some other';
     const result = component.filteredOptions;

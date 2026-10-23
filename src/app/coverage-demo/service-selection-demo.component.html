@@ -3,6 +3,7 @@
   <xuilib-find-service [field]="field" [form]="form" serviceTitle="Choose services"
     [disabled]="disabled" (serviceFieldChanged)="changes = changes + 1"></xuilib-find-service>
   <button class="govuk-button govuk-button--secondary" type="button" (click)="disabled = true">Disable service search</button>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="disabled = false">Enable service search</button>
   <h2 class="govuk-heading-m">Parent form and emitted events</h2>
   <pre data-testid="services-value">{{ form.get('services').value | json }}</pre>
   <p>Change events: <output data-testid="services-changes">{{ changes }}</output></p>

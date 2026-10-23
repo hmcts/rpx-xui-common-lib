@@ -17,6 +17,9 @@ export class FormControlsDemoComponent {
     untouched: new FormControl('preserved')
   });
 
+  public readonly secondaryForm = new FormGroup({ reviewNotes: new FormControl('') });
+  public reviewNotesHint: string | undefined = 'Add a synthetic review note.';
+
   public readonly dateForm = new FormGroup({
     hearing_day: new FormControl(''), hearing_month: new FormControl(''), hearing_year: new FormControl('')
   });

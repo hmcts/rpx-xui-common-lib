@@ -1,9 +1,11 @@
 import {
   Component,
   Input,
+  OnDestroy,
   OnInit
 } from '@angular/core';
 import { ValidationErrors, ValidatorFn } from '@angular/forms';
+import { merge, Subscription } from 'rxjs';
 import { ErrorMessagesModel } from '../../models/error-messages-model';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
@@ -18,7 +20,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
     styleUrls: ['./gov-uk-date.component.scss'],
     standalone: false
 })
-export class GovUkDateComponent implements OnInit {
+export class GovUkDateComponent implements OnInit, OnDestroy {
   constructor() {}
   @Input() public config: GovUiConfigModel;
   @Input() public errorMessage: ErrorMessagesModel;
@@ -29,12 +31,23 @@ export class GovUkDateComponent implements OnInit {
   public day: any;
   public year: any;
 
+  private dateControlSubscription: Subscription;
+
   public ngOnInit(): void {
     this.day = `${this.config.id}_day`;
     this.month = `${this.config.id}_month`;
     this.year = `${this.config.id}_year`;
     const dateValidator = this.DateValidator();
-    this.formGroup.get(this.day).setValidators(dateValidator);
+    const dayControl = this.formGroup.get(this.day);
+    dayControl.setValidators(dateValidator);
+    this.dateControlSubscription = merge(
+      this.formGroup.get(this.month).valueChanges,
+      this.formGroup.get(this.year).valueChanges
+    ).subscribe(() => dayControl.updateValueAndValidity({ emitEvent: false, onlySelf: true }));
+  }
+
+  public ngOnDestroy(): void {
+    this.dateControlSubscription?.unsubscribe();
   }
 
   private isValidDate(d: Date, month: number, year: number): boolean {
