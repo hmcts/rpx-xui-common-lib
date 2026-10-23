@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "exui-5389-filter-saving",
       "branchSlug": "exui-5389-filter-saving-55994b1f8af7ccd5",
+      "runKey": "39948246551-attempt-1",
+      "runId": "39948246551",
+      "runAttempt": "1",
+      "sha": "80392fe18cfb88173c8db63dfed6f1be9d1410ff",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/39948246551/attempts/1",
+      "createdAt": "2026-10-23T11:50:54.560Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "exui-5389-filter-saving",
+      "branchSlug": "exui-5389-filter-saving-55994b1f8af7ccd5",
       "runKey": "39806577142-attempt-1",
       "runId": "39806577142",
       "runAttempt": "1",
