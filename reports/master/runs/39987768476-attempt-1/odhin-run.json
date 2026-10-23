@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "master",
+  "branchSlug": "master",
+  "runKey": "39987768476-attempt-1",
+  "runId": "39987768476",
+  "runAttempt": "1",
+  "sha": "6769d791fb57621c0c044a421a408d7184debb79",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/39987768476/attempts/1",
+  "createdAt": "2026-10-23T16:42:11.317Z"
+}
