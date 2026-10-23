@@ -2751,7 +2751,7 @@ __metadata:
     playwright-ng-schematics: "npm:2.0.3"
     rpx-xui-translation: "npm:1.2.15"
     rxjs: "npm:^7.8.2"
-    ts-node: "npm:10.8.1"
+    ts-node: "npm:^10.9.2"
     tslib: "npm:^2.8.1"
     tslint: "npm:~6.1.0"
     typescript: "npm:~5.8.3"
@@ -15863,9 +15863,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:10.8.1":
-  version: 10.8.1
-  resolution: "ts-node@npm:10.8.1"
+"ts-node@npm:^10.9.2":
+  version: 10.9.2
+  resolution: "ts-node@npm:10.9.2"
   dependencies:
     "@cspotcode/source-map-support": "npm:^0.8.0"
     "@tsconfig/node10": "npm:^1.0.7"
@@ -15897,7 +15897,7 @@ __metadata:
     ts-node-script: dist/bin-script.js
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
-  checksum: 10c0/47e23f5c11ce4a1a3f64c49ce8433ebb053e8ec3b1bdddc190f959df511af2c99d5964eaff848572cdce810ee6809fa4edc892cb15dc6997a25fde06756edfa4
+  checksum: 10c0/5f29938489f96982a25ba650b64218e83a3357d76f7bede80195c65ab44ad279c8357264639b7abdd5d7e75fc269a83daa0e9c62fd8637a3def67254ecc9ddc2
   languageName: node
   linkType: hard
 
