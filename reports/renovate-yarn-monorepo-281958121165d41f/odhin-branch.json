@@ -1,0 +1,18 @@
+{
+  "rawBranch": "renovate/yarn-monorepo",
+  "slug": "renovate-yarn-monorepo-281958121165d41f",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "renovate/yarn-monorepo",
+      "branchSlug": "renovate-yarn-monorepo-281958121165d41f",
+      "runKey": "40159280430-attempt-1",
+      "runId": "40159280430",
+      "runAttempt": "1",
+      "sha": "2328c7e31b91d4cd54b3e4090025ac275bcb2e39",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/40159280430/attempts/1",
+      "createdAt": "2026-10-25T03:52:20.347Z"
+    }
+  ]
+}
