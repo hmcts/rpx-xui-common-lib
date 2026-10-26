@@ -45,13 +45,33 @@ describe('UserListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call onUserClick when the link clicked', waitForAsync(() => {
+  it('should render a keyboard-accessible button when no route is provided', waitForAsync(() => {
     spyOn(component, 'onUserClick');
     fixture.detectChanges();
-    const links = fixture.debugElement.nativeElement.querySelector('.govuk-link');
-    links.click();
+    const button = fixture.debugElement.nativeElement.querySelector('button.govuk-link');
+
+    expect(button).toBeTruthy();
+    expect(button.type).toBe('button');
+    expect(button.getAttribute('href')).toBeNull();
+
+    button.click();
     fixture.whenStable().then(() => {
       expect(component.onUserClick).toHaveBeenCalled();
     });
   }));
+
+  it('should render a link when a route is provided', () => {
+    component.users = [{
+      routerLink: '/users/123',
+      fullName: 'Test Test',
+      email: 'tst@email.com',
+      status: 'Active'
+    }];
+    fixture.detectChanges();
+
+    const link = fixture.debugElement.nativeElement.querySelector('a.govuk-link');
+
+    expect(link).toBeTruthy();
+    expect(link.getAttribute('href')).toBe('/users/123');
+  });
 });

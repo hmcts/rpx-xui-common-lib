@@ -58,4 +58,19 @@ describe('HmctsMainWrapperComponent', () => {
     expect(title).toBeTruthy();
   });
 
+  it('should render action buttons as native keyboard-accessible buttons', () => {
+    component.actionButtons = [{
+      name: 'Do action',
+      class: '',
+      action: () => ({})
+    }];
+    fixture.detectChanges();
+
+    const action = fixture.nativeElement.querySelector('.hmcts-page-heading__actions-wrapper button');
+
+    expect(action).toBeTruthy();
+    expect(action.type).toBe('button');
+    expect(fixture.nativeElement.querySelector('.hmcts-page-heading__actions-wrapper a')).toBeNull();
+  });
+
 });

@@ -40,4 +40,12 @@ describe('HMCTS Dialog Component', () => {
   it('should have onClose', () => {
     expect(component.onClose).toBeTruthy();
   });
+
+  it('should expose its title as the dialog accessible name', () => {
+    const dialog = fixture.nativeElement.querySelector('dialog');
+    const title = fixture.nativeElement.querySelector('#session-dialog-title');
+
+    expect(dialog.getAttribute('aria-labelledby')).toBe('session-dialog-title');
+    expect(title).toBeTruthy();
+  });
 });

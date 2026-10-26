@@ -11,7 +11,11 @@
     @for (u of users | paginate: { itemsPerPage: pagination.itemsPerPage, currentPage: currentPageNumber, totalItems: pagination.totalItems }; track u) {
       <tr class="govuk-table__row" data-selector="table-row">
         <td class="govuk-table__cell" data-selector="table-cell">
-          <a class="govuk-link" [attr.title]="u.routerLinkTitle" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
+          @if (u.routerLink) {
+            <a class="govuk-link" [attr.title]="u.routerLinkTitle" [routerLink]="u.routerLink" (click)="onUserClick(u)">{{ u.fullName }}</a>
+          } @else {
+            <button type="button" class="govuk-link user-link-button" [attr.title]="u.routerLinkTitle" (click)="onUserClick(u)">{{ u.fullName }}</button>
+          }
         </td>
         <td class="govuk-table__cell" data-selector="table-cell">{{ u.email }}</td>
         <td class="govuk-table__cell" data-selector="table-cell">{{ u.status }}</td>
