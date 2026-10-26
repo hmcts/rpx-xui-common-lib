@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "EXUI-5045-ts-node-update",
+  "branchSlug": "exui-5045-ts-node-update-af8152a15730944b",
+  "runKey": "40299270168-attempt-1",
+  "runId": "40299270168",
+  "runAttempt": "1",
+  "sha": "ea329a3aa08980359dc53d9c00537b186fcab6f0",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/40299270168/attempts/1",
+  "createdAt": "2026-10-26T09:31:49.072Z"
+}
