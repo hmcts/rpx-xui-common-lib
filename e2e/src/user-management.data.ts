@@ -5,7 +5,7 @@ export const expectedSelectedUser = {
   manageOrganisations: 'No', manageUsers: 'Yes', manageCases: 'Yes', roles: ['pui-caa'], resendInvite: false
 };
 
-export const expectedSuspendedUser = {
+export const expectedFirstUser = {
   fullName: 'Demo User 1', email: 'user1@example.test', status: 'Active',
   routerLink: '/coverage/users/user-1', routerLinkTitle: 'View Demo User 1',
   manageOrganisations: 'No', manageUsers: 'Yes', manageCases: 'Yes', roles: ['pui-caa'], resendInvite: false

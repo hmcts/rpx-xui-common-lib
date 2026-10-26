@@ -63,10 +63,40 @@ describe('SearchServiceComponent', () => {
     expect(result[3].label).toBe('Some other service');
   });
 
+  it('should filter labels case-insensitively and keep matching option order', () => {
+    component.searchTerm = 'ANOTHER';
+
+    expect(component.filteredOptions).toEqual([options[2]]);
+  });
+
+  it('should exclude selected options before applying the search term', () => {
+    component.selectedOptions = [options[1], options[3]];
+    component.searchTerm = 'service';
+
+    expect(component.filteredOptions).toEqual([options[0], options[2]]);
+  });
+
+  it('should not filter for a search term shorter than three characters', () => {
+    component.selectedOptions = [options[1]];
+    component.searchTerm = 'se';
+
+    expect(component.filteredOptions).toEqual([options[0], options[2], options[3]]);
+  });
+
   it('should set the searchTerm property to an empty string when calling resetSearchTerm', () => {
     component.searchTerm = 'foo';
     component.resetSearchTerm();
     expect(component.searchTerm).toBe('');
+  });
+
+  it('should emit the changed and reset search terms', () => {
+    const searchTerms: string[] = [];
+    component.searchTermChange.subscribe(value => searchTerms.push(value));
+
+    component.onSearchTermChanged('civil');
+    component.resetSearchTerm();
+
+    expect(searchTerms).toEqual(['civil', '']);
   });
 
   it('should emit the optionChanged event when a valid option is selected', () => {
@@ -76,5 +106,14 @@ describe('SearchServiceComponent', () => {
     component.onSelectionChanged(mockEvent);
 
     expect(component.optionChanged.emit).toHaveBeenCalledWith(options[0]);
+  });
+
+  it('should not emit optionChanged for a deselected option event', () => {
+    const mockEvent = { source: { value: 'Service 1', selected: false } } as MatOptionSelectionChange;
+    spyOn(component.optionChanged, 'emit');
+
+    component.onSelectionChanged(mockEvent);
+
+    expect(component.optionChanged.emit).not.toHaveBeenCalled();
   });
 });

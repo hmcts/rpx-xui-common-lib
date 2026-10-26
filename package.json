@@ -1,8 +1,8 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.22-exui-5239",
+  "version": "3.2.24",
   "engines": {
-    "node": ">=24.18.0"
+    "node": ">=24.22.1"
   },
   "scripts": {
     "sync:library-package": "node ./scripts/sync-library-package.mjs",
@@ -16,6 +16,7 @@
     "build:dev": "ng build --watch exui-common-lib",
     "test": "ng test exui-common-lib",
     "test:e2e:typecheck": "tsc -p tsconfig.playwright.json --noEmit",
+    "playwright": "./node_modules/.bin/playwright",
     "test:a11y": "playwright test -c playwright.accessibility.config.ts",
     "test:a11y:advisory": "node e2e/accessibility/run-advisory.cjs",
     "test:a11y:report": "node --test e2e/accessibility/*.test.cjs",

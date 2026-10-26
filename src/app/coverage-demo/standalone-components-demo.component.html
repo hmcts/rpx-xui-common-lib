@@ -1,0 +1,30 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container govuk-main-wrapper" [formGroup]="form">
+  <h1 class="govuk-heading-xl">Standalone component coverage</h1>
+
+  <div data-testid="wrapper-controls">
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleTitle()">Toggle page title</button>
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleBackLink()">Toggle page back link</button>
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleCaption()">Toggle page caption</button>
+  </div>
+
+  <exui-page-wrapper
+    [backLink]="showBackLink ? '/coverage' : null"
+    [title]="showTitle ? 'Standalone wrapper title' : null"
+    [fnTitle]="showTitle && showCaption ? 'Standalone wrapper caption' : null">
+    <p data-testid="wrapper-content">Projected wrapper content</p>
+  </exui-page-wrapper>
+
+  <xuilib-gov-uk-radios
+    [options]="radioOptions"
+    [errors]="radioError">
+  </xuilib-gov-uk-radios>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleRadioError()">Toggle radio error</button>
+
+  <xuilib-gov-checkbox
+    [group]="form"
+    [config]="checkboxConfig"
+    [isChecked]="form.controls.consent.value">
+  </xuilib-gov-checkbox>
+
+  <pre data-testid="standalone-form-value">{{ form.getRawValue() | json }}</pre>
+</main>

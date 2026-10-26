@@ -19,13 +19,31 @@ import { AdvancedFilterDemoComponent } from './coverage-demo/advanced-filter-dem
 import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component';
 import { SearchDemoComponent } from './coverage-demo/search-demo.component';
 import { PrimitivesDemoComponent } from './coverage-demo/primitives-demo.component';
+import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
+import { AccessibilityDemoComponent } from './coverage-demo/accessibility-demo.component';
+import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-components-demo.component';
+import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
+import { SelectedCaseDemoComponent } from './coverage-demo/selected-case-demo.component';
+import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-demo.component';
+import { ValidatorContractsDemoComponent } from './coverage-demo/validator-contracts-demo.component';
+import { ServiceContractADemoComponent } from './coverage-demo/service-contract-a-demo.component';
+import { ServiceContractBDemoComponent } from './coverage-demo/service-contract-b-demo.component';
+import { RemainingCoverageDemoComponent } from './coverage-demo/remaining-coverage-demo.component';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  template: `
+    <a class="govuk-skip-link" href="#main-content" (click)="focusMainContent($event)">Skip to main content</a>
+    <router-outlet></router-outlet>
+  `,
   standalone: false
 })
-export class AppShellComponent { }
+export class AppShellComponent {
+  public focusMainContent(event: Event): void {
+    event.preventDefault();
+    document.getElementById('main-content')?.focus();
+  }
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +61,17 @@ export class AppShellComponent { }
     AdvancedFilterDemoComponent,
     LifecycleDemoComponent,
     SearchDemoComponent,
-    PrimitivesDemoComponent
+    PrimitivesDemoComponent,
+    LookupsDemoComponent,
+    AccessibilityDemoComponent,
+    StandaloneComponentsDemoComponent,
+    ExtendedControlsDemoComponent,
+    SelectedCaseDemoComponent,
+    PublicContractsDemoComponent,
+    ValidatorContractsDemoComponent,
+    ServiceContractADemoComponent,
+    ServiceContractBDemoComponent,
+    RemainingCoverageDemoComponent
   ],
   imports: [
     CommonModule,
