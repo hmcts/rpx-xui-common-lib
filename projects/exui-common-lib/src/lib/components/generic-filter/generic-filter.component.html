@@ -37,17 +37,17 @@
               </div>
             }
             @if (field.displayMinSelectedError && submitted && (form.get(field.name).errors?.required || form.get(field.name).errors?.minlength)) {
-              <span [id]="field.name + '-error'" class="govuk-error-message">
+              <span [id]="field.name + '-error'" class="govuk-error-message" role="alert">
                 <span class="govuk-visually-hidden">{{ 'Error:' | rpxTranslate}}</span> {{field.minSelectedError | rpxTranslate }}
               </span>
             }
             @if (field.displayMaxSelectedError && submitted && form.get(field.name).errors?.maxLength) {
-              <span [id]="field.name + '-error'" class="govuk-error-message">
+              <span [id]="field.name + '-error'" class="govuk-error-message" role="alert">
                 <span class="govuk-visually-hidden">{{ 'Error:' | rpxTranslate}}</span> {{field.maxSelectedError | rpxTranslate }}
               </span>
             }
             @if (field.emailError && submitted && form.get(field.name).errors?.email) {
-              <span [id]="field.name + '-error'" class="govuk-error-message"
+              <span [id]="field.name + '-error'" class="govuk-error-message" role="alert"
                 >
                 <span class="govuk-visually-hidden">{{ 'Error:' | rpxTranslate }}</span> {{field.emailError | rpxTranslate }}
               </span>
@@ -199,7 +199,7 @@
                 }
                 @case ('find-service') {
                   @if (isServiceSelected) {
-                    <span class="govuk-error-message">{{serviceErrorMsg | rpxTranslate}}</span>
+                    <span class="govuk-error-message" role="alert">{{serviceErrorMsg | rpxTranslate}}</span>
                   }
                   <xuilib-find-service (serviceFieldChanged)="inputServiceChanged(field)"
                     [field]="field"

@@ -66,7 +66,7 @@ describe('HmctsPaginationComponent', () => {
 
     expect(results).toContain('Showing 1 to 10 of 25 results');
     expect(fixture.nativeElement.querySelector('.hmcts-pagination__item--prev a')).toBeNull();
-    expect(fixture.nativeElement.querySelector('.hmcts-pagination__item--next a')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.hmcts-pagination__item--next button')).not.toBeNull();
   });
 
   it('renders the updated range and previous link on a later page', () => {
@@ -75,7 +75,7 @@ describe('HmctsPaginationComponent', () => {
 
     const results = fixture.nativeElement.querySelector('.hmcts-pagination__results').textContent.replace(/\s+/g, ' ').trim();
     expect(results).toContain('Showing 11 to 20 of 25 results');
-    expect(fixture.nativeElement.querySelector('.hmcts-pagination__item--prev a')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.hmcts-pagination__item--prev button')).not.toBeNull();
   });
 
   it('hides page number links when showPageNumbers is false', () => {

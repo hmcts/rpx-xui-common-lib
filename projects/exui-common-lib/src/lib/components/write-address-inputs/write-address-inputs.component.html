@@ -10,7 +10,7 @@
           Building and Street
         </label>
         @if (submissionAttempted && !formGroup.get('address').get('addressLine1').valid) {
-          <p class="govuk-error-message">
+          <p class="govuk-error-message" role="alert">
             <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_STREET_SELECTED}}
           </p>
         }
@@ -39,7 +39,7 @@
           Town or City
         </label>
         @if (submissionAttempted && !formGroup.get('address').get('postTown').valid) {
-          <p class="govuk-error-message">
+          <p class="govuk-error-message" role="alert">
             <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_CITY_SELECTED}}
           </p>
         }
@@ -61,7 +61,7 @@
             Country
           </label>
           @if (submissionAttempted && !formGroup.get('address').get('country').valid) {
-            <p class="govuk-error-message">
+            <p class="govuk-error-message" role="alert">
               <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_COUNTRY_SELECTED}}
             </p>
           }
@@ -75,12 +75,12 @@
           Postcode{{ isInternational ? ' (Optional)' : '' }}
         </label>
         @if (submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('required')) {
-          <p class="govuk-error-message">
+          <p class="govuk-error-message" role="alert">
             <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.NO_POSTCODE_SELECTED}}
           </p>
         }
         @if (submissionAttempted && !isInternational && this.formGroup.get('address').get('postCode').hasError('invalidPostcode')) {
-          <p class="govuk-error-message">
+          <p class="govuk-error-message" role="alert">
             <span class="govuk-visually-hidden">Error:</span>{{MESSAGE_ENUM.INVALID_POSTCODE}}
           </p>
         }

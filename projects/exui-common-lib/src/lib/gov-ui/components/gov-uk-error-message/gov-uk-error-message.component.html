@@ -1,5 +1,7 @@
 @for (message of errorMessage?.messages; track message) {
-  <span class="govuk-error-message" [id]="config.id + '-error'">
-    <span class="govuk-visually-hidden">{{'Error' | rpxTranslate}}:</span>{{message | rpxTranslate}}
-  </span>
+  <div role="alert">
+    <span class="govuk-error-message" [id]="config.id + '-error'">
+      <span class="govuk-visually-hidden">{{'Error' | rpxTranslate}}:</span>{{message | rpxTranslate}}
+    </span>
+  </div>
 }
