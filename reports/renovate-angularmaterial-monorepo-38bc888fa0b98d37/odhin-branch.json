@@ -1,0 +1,18 @@
+{
+  "rawBranch": "renovate/angularmaterial-monorepo",
+  "slug": "renovate-angularmaterial-monorepo-38bc888fa0b98d37",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "renovate/angularmaterial-monorepo",
+      "branchSlug": "renovate-angularmaterial-monorepo-38bc888fa0b98d37",
+      "runKey": "40316507383-attempt-1",
+      "runId": "40316507383",
+      "runAttempt": "1",
+      "sha": "2530a767a4471a898461fddad096276b1c206681",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/40316507383/attempts/1",
+      "createdAt": "2026-10-26T11:49:46.119Z"
+    }
+  ]
+}
