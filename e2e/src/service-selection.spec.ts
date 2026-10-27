@@ -17,6 +17,24 @@ test('S2.1 mixed case query filters exactly and keyboard selection adds the corr
   await expect(services.changes).toHaveText('1');
 });
 
+test('S2.1 pointer selection adds the chosen service and clears the search', async ({ page }) => {
+  await page.goto('/coverage/service-selection');
+  const services = new ServiceSelectionPage(page);
+
+  await services.search.fill('Family');
+  const option = page.getByRole('option', { name: 'Family', exact: true });
+  await expect(option).toBeVisible();
+  await expect(option).toBeEnabled();
+  await option.click();
+  await services.add.click();
+
+  await expect.poll(async () => JSON.parse(await services.value.innerText())).toEqual([
+    { key: 'family', label: 'Family' }
+  ]);
+  await expect(services.search).toHaveValue('');
+  await expect(services.selected).toHaveText(['Family']);
+});
+
 test('S2.2 excludes selected services and restores removed options without losing the remaining selection', async ({ page }) => {
   await page.goto('/coverage/service-selection');
   const services = new ServiceSelectionPage(page);
@@ -82,6 +100,17 @@ test('S2.4 single selection auto replaces the previous value without an Add butt
   await expect.poll(async () => JSON.parse(await services.value.innerText()))
     .toEqual([{ key: 'civil-damages', label: 'Civil damages' }]);
   await expect(services.changes).toHaveText('2');
+});
+
+test('S2.4 single selection replacement restores the displaced option', async ({ page }) => {
+  await page.goto('/coverage/service-selection?mode=single');
+  const services = new ServiceSelectionPage(page);
+  await services.choose('Family');
+  await services.choose('Civil damages');
+  await expect.poll(async () => JSON.parse(await services.value.innerText()))
+    .toEqual([{ key: 'civil-damages', label: 'Civil damages' }]);
+  await services.search.fill('Family');
+  await expect(services.options).toHaveText(['Family']);
 });
 
 test('S2.4 disabled input cannot be focused and preserves selection', async ({ page }) => {

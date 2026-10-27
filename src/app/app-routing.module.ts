@@ -12,8 +12,23 @@ import { AdvancedFilterDemoComponent } from './coverage-demo/advanced-filter-dem
 import { LifecycleDemoComponent } from './coverage-demo/lifecycle-demo.component';
 import { SearchDemoComponent } from './coverage-demo/search-demo.component';
 import { PrimitivesDemoComponent } from './coverage-demo/primitives-demo.component';
+import { LookupsDemoComponent } from './coverage-demo/lookups-demo.component';
+import { AccessibilityDemoComponent } from './coverage-demo/accessibility-demo.component';
+import { StandaloneComponentsDemoComponent } from './coverage-demo/standalone-components-demo.component';
+import { ExtendedControlsDemoComponent } from './coverage-demo/extended-controls-demo.component';
+import { SelectedCaseDemoComponent } from './coverage-demo/selected-case-demo.component';
+import { PublicContractsDemoComponent } from './coverage-demo/public-contracts-demo.component';
+import { ValidatorContractsDemoComponent } from './coverage-demo/validator-contracts-demo.component';
+import { ServiceContractADemoComponent } from './coverage-demo/service-contract-a-demo.component';
+import { ServiceContractBDemoComponent } from './coverage-demo/service-contract-b-demo.component';
+import { RemainingCoverageDemoComponent } from './coverage-demo/remaining-coverage-demo.component';
 
 const routes: Routes = [
+  { path: 'coverage/accessibility/manage-case', component: AccessibilityDemoComponent },
+  { path: 'coverage/accessibility', component: AccessibilityDemoComponent },
+  { path: 'coverage/standalone', component: StandaloneComponentsDemoComponent },
+  { path: 'coverage/extended-controls', component: ExtendedControlsDemoComponent },
+  { path: 'coverage/lookups', component: LookupsDemoComponent },
   { path: 'coverage/advanced-filter', component: AdvancedFilterDemoComponent },
   { path: 'coverage/lifecycle', component: LifecycleDemoComponent },
   { path: 'coverage/searches', component: SearchDemoComponent },
@@ -28,6 +43,12 @@ const routes: Routes = [
     ]
   },
   { path: 'coverage/address', component: AddressDemoComponent },
+  { path: 'coverage/selected-cases', component: SelectedCaseDemoComponent },
+  { path: 'coverage/public-contracts', component: PublicContractsDemoComponent },
+  { path: 'coverage/validators', component: ValidatorContractsDemoComponent },
+  { path: 'coverage/service-contract-a', component: ServiceContractADemoComponent },
+  { path: 'coverage/service-contract-b', component: ServiceContractBDemoComponent },
+  { path: 'coverage/remaining', component: RemainingCoverageDemoComponent },
   { path: 'coverage/users', component: UserManagementDemoComponent, children: [{ path: ':id', children: [] }] },
   {
     path: 'coverage',

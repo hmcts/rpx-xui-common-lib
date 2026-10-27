@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
@@ -217,12 +217,12 @@ describe('SearchVenueComponent', () => {
 
     fixture = TestBed.createComponent(SearchVenueComponent);
     component = fixture.componentInstance;
-    spyOn(component.keyUpSubject$, 'next');
-    spyOn(component.keyUpSubject$, 'pipe').and.returnValue(of('MARCUS'));
+    spyOn(component.keyUpSubject$, 'next').and.callThrough();
     component.displayedLocations = LOCATION_RESULTS;
     spyOn(component, 'searchLocations').and.callThrough();
 
     searchFilterServiceMock.searchLocations.and.returnValue(of(LOCATION_RESULTS));
+    searchFilterServiceMock.searchLocations.calls.reset();
 
     fixture.detectChanges();
   }));
@@ -231,63 +231,71 @@ describe('SearchVenueComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component.searchLocations).toHaveBeenCalled();
+  afterEach(() => {
+    component.keyUpSubject$.complete();
   });
 
-  it('should reset location selected form Control', () => {
-    [
-      { value: '' },
-      { value: undefined }
-    ].forEach(({ value }) => {
-      component.search(value);
-      expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeFalse();
-    });
+  it('should wait for input before searching locations', () => {
+    expect(component.searchLocations).not.toHaveBeenCalled();
+    expect(component.displayedLocations).toEqual([]);
+    expect(component.findLocationFormGroup.controls.locationSelectedFormControl.pristine).toBeTrue();
   });
 
-  it('should call filter when input is more than 2 characters', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = 'MARCUS';
-    // Create proper KeyboardEvent with key property to prevent undefined error
-    const mockKeyboardEvent = new KeyboardEvent('keyup', {
-      key: 'M',
-      code: 'KeyM'
-    });
-    Object.defineProperty(mockKeyboardEvent, 'target', {
-      value: { value: 'MARCUS' }
-    });
-    selectedLoction.nativeElement.dispatchEvent(mockKeyboardEvent);
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(component.keyUpSubject$.next).toHaveBeenCalledWith('MARCUS');
-      expect(component.findLocationFormGroup.controls.locationSelectedFormControl.dirty).toBeTrue();
-    });
+  it('should reset the selected control when the search value is undefined', () => {
+    const selectedControl = component.findLocationFormGroup.controls.locationSelectedFormControl;
+    selectedControl.setValue('selected venue');
+    selectedControl.markAsDirty();
+    component.search(undefined);
+    expect(selectedControl.value).toBeNull();
+    expect(selectedControl.pristine).toBeTrue();
   });
 
-  it('should not filter in input characters are less then three', async () => {
-    expect(component.displayedLocations.length).toBeGreaterThan(1);
+  it('should filter the emitted term after a valid keyup', fakeAsync(() => {
+    const filterSpy = spyOn(component, 'filter').and.callThrough();
+    const searchSpy = spyOn(component, 'search').and.callThrough();
+    const selectedControl = component.findLocationFormGroup.controls.locationSelectedFormControl;
+    const input = fixture.debugElement.query(By.css('#searchVenueLocation')).nativeElement;
+    expect(selectedControl.pristine).toBeTrue();
+    expect(component.showAutocomplete).toBeFalse();
+    input.value = 'MARCUS';
+    input.dispatchEvent(new KeyboardEvent('keyup', { key: 'M', code: 'KeyM' }));
 
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = 'te';
-    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      spyOn(component, 'filter');
-      expect(component.filter).not.toHaveBeenCalled();
-    });
-  });
+    expect(component.keyUpSubject$.next).toHaveBeenCalledOnceWith('MARCUS');
+    expect(searchSpy).not.toHaveBeenCalled();
+    tick(500);
 
-  it('should reset form control and set to pristine when empty value is given', async () => {
-    const selectedLoction = fixture.debugElement.query(By.css('.autocomplete__input'));
-    selectedLoction.nativeElement.value = '';
-    selectedLoction.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.value).toEqual('');
-        expect(component.findLocationFormGroup.controls.locationSelectedFormControl.pristine).toBeTruthy();
-      });
-    });
+    expect(searchSpy).toHaveBeenCalledOnceWith('MARCUS');
+    expect(filterSpy).toHaveBeenCalledOnceWith('MARCUS');
+    expect(component.searchLocations).toHaveBeenCalledOnceWith('MARCUS');
+    expect(searchFilterServiceMock.searchLocations).toHaveBeenCalledOnceWith('', '', 'MARCUS');
+    expect(selectedControl.dirty).toBeTrue();
+    expect(component.showAutocomplete).toBeTrue();
+    expect(component.displayedLocations.length).toBe(12);
+  }));
+
+  it('should search but not filter a short term after keyup', fakeAsync(() => {
+    const filterSpy = spyOn(component, 'filter').and.callThrough();
+    const searchSpy = spyOn(component, 'search').and.callThrough();
+    const input = fixture.debugElement.query(By.css('#searchVenueLocation')).nativeElement;
+    input.value = 'te';
+    input.dispatchEvent(new KeyboardEvent('keyup', { key: 'e', code: 'KeyE' }));
+    tick(500);
+
+    expect(component.keyUpSubject$.next).toHaveBeenCalledOnceWith('te');
+    expect(searchSpy).toHaveBeenCalledOnceWith('te');
+    expect(filterSpy).not.toHaveBeenCalled();
+    expect(searchFilterServiceMock.searchLocations).not.toHaveBeenCalled();
+    expect(component.showAutocomplete).toBeFalse();
+  }));
+
+  it('should reset a dirty selected control to null and pristine on direct search(\'\')', () => {
+    const selectedControl = component.findLocationFormGroup.controls.locationSelectedFormControl;
+    selectedControl.setValue('selected venue');
+    selectedControl.markAsDirty();
+
+    component.search('');
+
+    expect(selectedControl.value).toBeNull();
+    expect(selectedControl.pristine).toBeTrue();
   });
 });

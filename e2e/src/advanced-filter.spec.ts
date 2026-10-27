@@ -16,6 +16,19 @@ test('conditional detail is shown only while its controlling radio enables it', 
   await expect(filter.detail).toBeHidden();
 });
 
+test('conditional detail persists with its controlling value after submission', async ({ page }) => {
+  const filter = new AdvancedFilterPage(page);
+  await filter.openConditional();
+
+  await filter.enableDetail();
+  await filter.detail.fill('Additional case detail');
+  await filter.applyFilters();
+  await expect.poll(async () => JSON.parse(await filter.settings.innerText()).fields).toEqual([
+    { name: 'include', value: ['yes'] },
+    { name: 'detail', value: ['Additional case detail'] }
+  ]);
+});
+
 test('session settings reload while another session or key inherits nothing', async ({ page, browser }) => {
   const filter = new AdvancedFilterPage(page);
   await filter.openPersistence('synthetic-owner', 'primary');

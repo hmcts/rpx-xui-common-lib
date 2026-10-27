@@ -35,6 +35,10 @@ export class SearchPage {
     await this.input.pressSequentially(term);
   }
 
+  public async replaceSearch(term: string): Promise<void> {
+    await this.input.fill(term);
+  }
+
   public async selectFirstWithKeyboard(): Promise<void> {
     await this.input.press('Enter');
   }

@@ -24,6 +24,23 @@ test('binds parent form values, preserves edits, and selects checkbox and radio 
   await expect(primitives.radio('Urgent')).toBeChecked();
 });
 
+test('replacing a radio selection updates the parent control without changing other values', async ({ page }) => {
+  const primitives = new PrimitivesPage(page);
+
+  await primitives.radio('Urgent').check();
+  await primitives.radio('Routine').check();
+
+  await expect.poll(async () => JSON.parse(await primitives.formValue.innerText())).toEqual({
+    notes: 'Original notes',
+    notifications: ['sms'],
+    urgency: 'routine',
+    preserved: 'preserved',
+    disabledField: 'Unavailable value'
+  });
+  await expect(primitives.radio('Routine')).toBeChecked();
+  await expect(primitives.radio('Urgent')).not.toBeChecked();
+});
+
 test('clears supplied errors without losing edits and re-enables a disabled control', async ({ page }) => {
   const primitives = new PrimitivesPage(page);
   await primitives.notes.fill('Keep this edit');
@@ -38,6 +55,17 @@ test('clears supplied errors without losing edits and re-enables a disabled cont
   await expect(primitives.disabledControl).toBeEnabled();
   await primitives.disabledControl.fill('Re-enabled value');
   await expect(primitives.formValue).toContainText('Re-enabled value');
+});
+
+test('renders each supplied error against its configured control id', async ({ page }) => {
+  const primitives = new PrimitivesPage(page);
+
+  await primitives.toggleErrors.click();
+
+  await expect(page.locator('xuilib-gov-uk-textarea [id="notes-error"]')).toHaveText('Error:Enter notes');
+  await expect(page.getByTestId('supplied-error-messages').locator('[id="notes-error"]')).toHaveText('Error:Enter notes');
+  await expect(page.getByTestId('supplied-error-messages').locator('[id="priority-error"]'))
+    .toContainText('Choose a priority');
 });
 
 test('renders projected fieldset content with and without a page-heading variant', async ({ page }) => {
@@ -89,4 +117,15 @@ test('supports next, previous, last, bounds correction, and display toggling', a
   await primitives.reduceRecords.click();
   await expect(primitives.pageNumber).toHaveText('Page 1');
   await expect(page.getByTestId('pagination-bounds')).toHaveText('1');
+});
+
+test('renders the records belonging to the selected page', async ({ page }) => {
+  const primitives = new PrimitivesPage(page);
+  const records = page.getByTestId('paged-records').locator('li');
+
+  await expect(records).toHaveText(['Record 1', 'Record 2']);
+  await primitives.nextPage.click();
+  await expect(records).toHaveText(['Record 3', 'Record 4']);
+  await primitives.previousPage.click();
+  await expect(records).toHaveText(['Record 1', 'Record 2']);
 });

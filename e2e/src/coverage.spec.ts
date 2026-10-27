@@ -10,21 +10,62 @@ test.describe('CommonLib coverage', () => {
     test('requires a service before persisting a filter', async ({ page }) => {
       await page.getByRole('button', { name: 'Apply filters' }).click();
 
+      await expect(page.locator('#service')).toHaveClass(/form-group-error/);
       await expect(page.getByTestId('filter-result')).toHaveText('null');
-      expect(await page.evaluate(() => sessionStorage.getItem('commonlib-coverage-filter'))).toBeNull();
+      await expect.poll(() => page.evaluate(() => sessionStorage.getItem('commonlib-coverage-filter'))).toBeNull();
+      await page.reload();
+      await expect(page.getByRole('checkbox', { name: 'Civil' })).not.toBeChecked();
+      await expect(page.getByRole('checkbox', { name: 'Family' })).not.toBeChecked();
     });
 
     test('persists the selected checkbox, radio and region', async ({ page }) => {
       await page.getByRole('checkbox', { name: 'Civil' }).check();
       await page.getByRole('radio', { name: 'Urgent' }).check();
-      await page.locator('#select_region').selectOption('london');
+      await page.getByRole('combobox', { name: 'Region' }).selectOption('london');
       await page.getByRole('button', { name: 'Apply filters' }).click();
 
       await expect(page.getByTestId('filter-result')).toContainText('civil');
       await expect(page.getByTestId('filter-result')).toContainText('urgent');
       await expect(page.getByTestId('filter-result')).toContainText('london');
-      await expect.poll(() => page.evaluate(() => sessionStorage.getItem('commonlib-coverage-filter')))
-        .toContain('civil');
+      await page.reload();
+      await expect(page.getByRole('checkbox', { name: 'Civil' })).toBeChecked();
+      await expect(page.getByRole('radio', { name: 'Urgent' })).toBeChecked();
+      await expect(page.getByRole('combobox', { name: 'Region' })).toHaveValue('london');
+    });
+
+    test('persists the maximum allowed service selection after reload', async ({ page }) => {
+      const civil = page.getByRole('checkbox', { name: 'Civil' });
+      const family = page.getByRole('checkbox', { name: 'Family' });
+      await civil.check();
+      await family.check();
+      await expect(civil).toBeChecked();
+      await expect(family).toBeChecked();
+
+      await page.getByRole('button', { name: 'Apply filters' }).click();
+      await expect(page.getByTestId('filter-result')).toContainText('civil');
+      await expect(page.getByTestId('filter-result')).toContainText('family');
+
+      await page.reload();
+      await expect(civil).toBeChecked();
+      await expect(family).toBeChecked();
+      await expect(page.getByTestId('filter-result')).toContainText('civil');
+      await expect(page.getByTestId('filter-result')).toContainText('family');
+    });
+
+    test('keeps the last valid filter when an empty submission fails validation', async ({ page }) => {
+      const family = page.getByRole('checkbox', { name: 'Family' });
+      await family.check();
+      await page.getByRole('button', { name: 'Apply filters' }).click();
+      await expect(page.getByTestId('filter-result')).toContainText('family');
+
+      await family.uncheck();
+      await page.getByRole('button', { name: 'Apply filters' }).click();
+      await expect(page.locator('#service')).toHaveClass(/form-group-error/);
+      await expect(page.getByTestId('filter-result')).toContainText('family');
+
+      await page.reload();
+      await expect(family).toBeChecked();
+      await expect(page.getByTestId('filter-result')).toContainText('family');
     });
 
     test('cancel restores the last applied filter', async ({ page }) => {
@@ -65,6 +106,20 @@ test.describe('CommonLib coverage', () => {
       await expect(page.getByTestId('page-number')).toHaveText('Page 3');
       await expect(page.getByRole('link', { name: 'Next page' })).toHaveCount(0);
     });
+
+    test('restores the next link after leaving the final page', async ({ page }) => {
+      const next = page.getByRole('link', { name: 'Next page' });
+      await next.click();
+      await next.click();
+      await expect(page.getByTestId('page-number')).toHaveText('Page 3');
+      await expect(next).toHaveCount(0);
+      await expect(page.getByRole('link', { name: 'Previous page' })).toBeVisible();
+
+      await page.getByRole('link', { name: 'Previous page' }).click();
+      await expect(page.getByTestId('page-number')).toHaveText('Page 2');
+      await expect(page.getByRole('link', { name: 'Previous page' })).toBeVisible();
+      await expect(next).toBeVisible();
+    });
   });
 
   test.describe('cookie banner', () => {
@@ -86,6 +141,14 @@ test.describe('CommonLib coverage', () => {
       await page.reload();
       await expect(page.getByRole('button', { name: 'Reject analytics cookies' })).toHaveCount(0);
       expect((await context.cookies()).find((cookie) => cookie.name === 'commonlib-coverage-cookie')?.value).toBe('false');
+    });
+
+    test('renders the cookie choice region and policy link before a decision', async ({ page }) => {
+      const banner = page.getByRole('region', { name: 'Cookies on CommonLib demo' });
+      await expect(banner).toContainText('We use some essential cookies to make this service work.');
+      await expect(banner.getByRole('button', { name: 'Accept analytics cookies' })).toBeVisible();
+      await expect(banner.getByRole('button', { name: 'Reject analytics cookies' })).toBeVisible();
+      await expect(banner.getByRole('link', { name: 'View cookies' })).toHaveAttribute('href', '/cookies');
     });
   });
 
@@ -115,6 +178,17 @@ test.describe('CommonLib coverage', () => {
       await page.getByRole('combobox', { name: 'Select a user' }).fill('nobody');
       await expect(page.getByRole('option')).toHaveCount(0);
       await expect(page.getByTestId('selected-user')).toHaveText('No user selected');
+    });
+
+    test('selects the filtered user with keyboard actions', async ({ page }) => {
+      const userInput = page.getByRole('combobox', { name: 'Select a user' });
+      await userInput.fill('alex@example.test');
+      await expect(page.getByRole('option', { name: 'Alex Taylor - alex@example.test', exact: true })).toBeVisible();
+      await userInput.press('ArrowDown');
+      await userInput.press('Enter');
+
+      await expect(userInput).toHaveValue('Alex Taylor - alex@example.test');
+      await expect(page.getByTestId('selected-user')).toHaveText('alex@example.test');
     });
   });
 
@@ -157,9 +231,14 @@ test.describe('CommonLib coverage', () => {
     });
 
     test('renders success and warning banners with distinct messages', async ({ page }) => {
-      await expect(page.locator('.hmcts-banner--success')).toContainText('The action was saved');
-      await expect(page.locator('.hmcts-banner--warning')).toContainText('Action needs attention');
+      const success = page.locator('.hmcts-banner--success');
+      const warning = page.locator('.hmcts-banner--warning');
+      await expect(success).toContainText('The action was saved');
+      await expect(warning).toContainText('Action needs attention');
       await expect(page.locator('.hmcts-banner-title--success')).toHaveText('Completed');
+      await expect(success.locator('.hmcts-banner__assistive')).toHaveText('success');
+      await expect(warning.locator('.hmcts-banner__assistive')).toHaveText('warning');
+      await expect(success.locator('.hmcts-banner__icon--success')).toHaveCount(1);
     });
 
     test('links the error summary to its field and prefixes the page title', async ({ page }) => {
@@ -169,7 +248,8 @@ test.describe('CommonLib coverage', () => {
       await expect(summary).toContainText('Check your details');
       await expect(page).toHaveTitle(/^Error:/);
 
-      await summary.locator('a', { hasText: 'Enter an email address' }).click();
+      const emailMessage = summary.locator('a', { hasText: 'Enter an email address' });
+      await emailMessage.click();
       await expect(page.getByRole('textbox', { name: 'Email address' })).toBeFocused();
       await expect(summary.locator('a', { hasText: 'Check your details' })).toHaveCount(0);
     });
@@ -181,6 +261,7 @@ test.describe('CommonLib coverage', () => {
 
       const dialog = page.getByRole('dialog');
       await expect(dialog).toHaveAttribute('aria-modal', 'true');
+      await expect(dialog).toHaveCSS('margin-top', '40px');
       await expect(dialog).toContainText('We are about to sign you out');
       await expect(dialog).toContainText('Your session will end soon.');
     });

@@ -1,0 +1,69 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container govuk-main-wrapper">
+  <h1>Remaining CommonLib coverage</h1>
+
+  <section aria-labelledby="direct-components-heading">
+    <h2 id="direct-components-heading">Direct component contracts</h2>
+    <xuilib-tc-display-html><h3>Direct HTML terms</h3><p>Projected HTML content.</p></xuilib-tc-display-html>
+    <xuilib-tc-display-plain><p>Projected plain terms.</p></xuilib-tc-display-plain>
+    <xuilib-share-case-confirm [shareCases$]="directCases$" changeLink="/coverage/remaining" completeLink="/coverage/remaining">
+    </xuilib-share-case-confirm>
+  </section>
+
+  <section aria-labelledby="service-contracts-heading">
+    <h2 id="service-contracts-heading">Direct service contracts</h2>
+    <button type="button" (click)="lookupAddress()">Lookup address</button>
+    <output data-testid="remaining-address-state">{{ addressState }}</output>
+    <output data-testid="remaining-address-value">{{ addressValue | json }}</output>
+
+    <button type="button" (click)="findPeople()">Find people</button>
+    <output data-testid="remaining-person-state">{{ personState }}</output>
+    <output data-testid="remaining-person-value">{{ people | json }}</output>
+
+    <button type="button" (click)="searchLocations()">Search locations</button>
+    <output data-testid="remaining-location-state">{{ locationState }}</output>
+    <output data-testid="remaining-location-value">{{ locations | json }}</output>
+
+    <button type="button" (click)="setCookie()">Set cookie</button>
+    <button type="button" (click)="deleteCookie()">Delete cookie</button>
+    <output data-testid="remaining-cookie-state">{{ cookieState }}</output>
+
+    <button type="button" (click)="registerLoading()">Register loading</button>
+    <button type="button" (click)="unregisterLoading()">Unregister loading</button>
+    <output data-testid="remaining-loading-state">{{ loadingState }}</output>
+    <output data-testid="remaining-loading-token-count">{{ loadingTokens.length }}</output>
+
+    <button type="button" (click)="setCases()">Set cases</button>
+    <button type="button" (click)="requestShare()">Request share</button>
+    <button type="button" (click)="requestUnshare()">Request unshare</button>
+    <output data-testid="remaining-case-state">{{ caseState | json }}</output>
+
+    <button type="button" (click)="persistFilter()">Persist filter</button>
+    <button type="button" (click)="clearFilter()">Clear filter</button>
+    <output data-testid="remaining-filter-state">{{ filterStream$ | async | json }}</output>
+  </section>
+
+  <section aria-labelledby="directive-pipe-heading">
+    <h2 id="directive-pipe-heading">Directive and pipe contracts</h2>
+    <button type="button" (click)="updateLetValue()">Update let value</button>
+    <p data-testid="remaining-let-value" *xuilibLet="letValue; let value; let explicit = xuilibLet">{{ value }}|{{ explicit }}</p>
+    <p data-testid="remaining-capitalize-value">{{ pipeValue | capitalize }}</p>
+  </section>
+
+  <section aria-labelledby="validator-edge-heading">
+    <h2 id="validator-edge-heading">Validator edge states</h2>
+    <button type="button" (click)="setDate({ day: '1', month: '1', year: '2026' })">Set valid date</button>
+    <button type="button" (click)="setDate({ day: '31', month: '2', year: '2026' })">Set calendar-invalid date</button>
+    <button type="button" (click)="setDate({ day: 'not-a-day', month: '1', year: '2026' })">Set malformed date</button>
+    <output data-testid="remaining-date-state">{{ dateResetForm.valid ? 'valid' : 'invalid' }}</output>
+    <output data-testid="remaining-date-errors">{{ dateResetForm.errors | json }}</output>
+
+    <button type="button" (click)="disableRadios()">Disable radio controls</button>
+    <output data-testid="remaining-empty-radio-state">{{ emptyRadioForm.valid ? 'valid' : 'invalid' }}</output>
+    <output data-testid="remaining-radio-errors">{{ disabledRadioForm.errors | json }}</output>
+    <output data-testid="remaining-disabled-radio-state">{{ disabledRadioForm.status.toLowerCase() }}</output>
+
+    <button type="button" (click)="checkMinimumCheckboxes()">Check two checkboxes</button>
+    <button type="button" (click)="setNonBooleanCheckboxValue()">Set non-boolean checkbox value</button>
+    <output data-testid="remaining-checkbox-state">{{ minimumCheckboxForm.valid ? 'valid' : 'invalid' }}</output>
+  </section>
+</main>
