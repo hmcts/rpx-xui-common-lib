@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "renovate/ngx-spec-2.x-lockfile",
+  "branchSlug": "renovate-ngx-spec-2.x-lockfile-a5277e329e1d472f",
+  "runKey": "40499203208-attempt-1",
+  "runId": "40499203208",
+  "runAttempt": "1",
+  "sha": "b45523467c3e2f2f267702363192f422b70bd977",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/40499203208/attempts/1",
+  "createdAt": "2026-10-27T11:59:19.448Z"
+}
