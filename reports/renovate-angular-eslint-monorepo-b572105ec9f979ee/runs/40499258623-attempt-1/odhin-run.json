@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "renovate/angular-eslint-monorepo",
+  "branchSlug": "renovate-angular-eslint-monorepo-b572105ec9f979ee",
+  "runKey": "40499258623-attempt-1",
+  "runId": "40499258623",
+  "runAttempt": "1",
+  "sha": "792b10018343806b2887c3efed641e1bdd715ee0",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/40499258623/attempts/1",
+  "createdAt": "2026-10-27T12:09:30.333Z"
+}
