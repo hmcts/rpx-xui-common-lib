@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.20-CME-1008-dart-sass-rc2",
+  "version": "3.2.25",
   "engines": {
     "node": ">=24.22.1"
   },
