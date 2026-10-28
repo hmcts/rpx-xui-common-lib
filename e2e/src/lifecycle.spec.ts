@@ -69,6 +69,8 @@ test('L2 disabling removes feature content and re-enabling recreates it once', a
 
   await expect(lifecycle.featureContent).toHaveCount(0);
   await lifecycle.enableCurrentFeature();
+  await lifecycle.enableCurrentFeature();
+  await expect(lifecycle.featureContent).toHaveCount(1);
   await expect(lifecycle.featureContent).toHaveText('Feature content for commonlib-lifecycle-alpha');
   await lifecycle.disableCurrentFeature();
   await expect(lifecycle.featureContent).toHaveCount(0);
@@ -77,17 +79,26 @@ test('L2 disabling removes feature content and re-enabling recreates it once', a
 });
 
 test('L2 rebinding follows only the new feature key without stale content', async ({ page, context }) => {
-  test.skip(true, 'EXUI-5377: FeatureToggle keeps the previous feature-key subscription after rebinding');
   const lifecycle = new LifecyclePage(page, context);
   await lifecycle.open();
 
+  await lifecycle.enableCurrentFeature();
+  await expect(lifecycle.featureContent).toHaveCount(1);
+  await expect(lifecycle.featureContent).toHaveText('Feature content for commonlib-lifecycle-alpha');
   await lifecycle.rebindFeature();
   await expect(lifecycle.activeFeatureKey).toHaveText('commonlib-lifecycle-beta');
   await expect(lifecycle.featureContent).toHaveCount(0);
   await lifecycle.enableOriginalFeature();
   await expect(lifecycle.featureContent).toHaveCount(0);
   await lifecycle.enableCurrentFeature();
+  await expect(lifecycle.featureContent).toHaveCount(1);
   await expect(lifecycle.featureContent).toHaveText('Feature content for commonlib-lifecycle-beta');
   await lifecycle.disableOriginalFeature();
+  await expect(lifecycle.featureContent).toHaveCount(1);
+  await expect(lifecycle.featureContent).toHaveText('Feature content for commonlib-lifecycle-beta');
+  await lifecycle.disableCurrentFeature();
+  await expect(lifecycle.featureContent).toHaveCount(0);
+  await lifecycle.enableCurrentFeature();
+  await expect(lifecycle.featureContent).toHaveCount(1);
   await expect(lifecycle.featureContent).toHaveText('Feature content for commonlib-lifecycle-beta');
 });
