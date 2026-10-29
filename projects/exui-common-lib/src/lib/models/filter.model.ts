@@ -88,7 +88,7 @@ export interface GroupOptions {
 
 export interface FilterSetting {
   id: string;
-  idamId?: string;
+  ownerHash?: string;
   reset?: boolean;
   fields: { name: string, value: any[] }[];
 }
