@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.25",
+  "version": "3.2.27",
   "engines": {
     "node": ">=24.22.1"
   },
@@ -47,7 +47,7 @@
     "govuk-frontend": "5.13.0",
     "launchdarkly-js-client-sdk": "3.9.1",
     "ngx-pagination": "^6.0.3",
-    "rpx-xui-translation": "1.2.15",
+    "rpx-xui-translation": "1.2.18",
     "rxjs": "^7.8.2",
     "tslib": "^2.8.1",
     "zone.js": "0.16.2"
@@ -87,7 +87,7 @@
     "odhin-reports-playwright": "patch:odhin-reports-playwright@npm%3A1.1.8#~/.yarn/patches/odhin-reports-playwright-npm-1.1.8-a445ed88b7.patch",
     "playwright-core": "1.64.1",
     "playwright-ng-schematics": "2.0.3",
-    "ts-node": "10.8.1",
+    "ts-node": "^10.9.2",
     "tslint": "~6.1.0",
     "typescript": "~5.8.3"
   },
