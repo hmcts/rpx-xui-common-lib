@@ -1,6 +1,6 @@
 @if (title && title.length) {
+  <span class="govuk-caption-l">{{title}}</span>
   <h1 class="govuk-heading-l">
-    <span class="govuk-caption-l">{{title}}</span>
     {{boldTitle}}
   </h1>
 }
@@ -14,7 +14,7 @@
       </div>
     }
     @if (findTaskNameGroup && findTaskNameGroup.errors) {
-      <span id="validation-error" class="govuk-error-message">
+      <span id="validation-error" class="govuk-error-message" role="alert">
         <span class="govuk-visually-hidden">Error:</span>{{findTaskNameGroup.errors.error ? findTaskNameGroup.errors.error : errorMessage}}
       </span>
     }

@@ -38,6 +38,14 @@ describe('ServiceMessageComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render the hide control as a native button', () => {
+    const hideButton = fixture.nativeElement.querySelector('button.service-message__hide-button');
+
+    expect(hideButton).toBeTruthy();
+    expect(hideButton.type).toBe('button');
+    expect(fixture.nativeElement.querySelector('a')).toBeNull();
+  });
+
   describe('onHideMessageEvent()', () => {
     it('should emit the id of the message to hide', () => {
       const hideKey: ServiceMessages = {

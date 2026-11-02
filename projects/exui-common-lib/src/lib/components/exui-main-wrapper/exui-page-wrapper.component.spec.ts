@@ -60,6 +60,7 @@ describe('ExuiPageWrapperComponent', () => {
     const fntitle = fixture.nativeElement.querySelectorAll('.govuk-caption-xl');
     expect(fntitle.length).toEqual(1);
     expect(fntitle[0].textContent).toEqual('Add recipient');
+    expect(fixture.nativeElement.querySelector('h1').contains(fntitle[0])).toBeFalse();
   });
 
   it('does not render a back link when backLink is not supplied', () => {

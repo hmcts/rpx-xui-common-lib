@@ -26,12 +26,11 @@
       <div class="govuk-grid-column-one-third">
         <div class="hmcts-page-heading__actions-wrapper">
           @for (actionButton of actionButtons; track actionButton) {
-            <a
+            <button
+              type="button"
               (click)="actionButton.action()"
-              role="button"
-              draggable="false"
               class="govuk-button {{ actionButton.class }}"
-            >{{ actionButton.name | rpxTranslate }}</a>
+            >{{ actionButton.name | rpxTranslate }}</button>
           }
         </div>
       </div>

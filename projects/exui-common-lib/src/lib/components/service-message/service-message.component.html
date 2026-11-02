@@ -11,7 +11,7 @@
     @if (message_cy) {
       <h2 class="govuk-heading-s" [innerHTML]="sanitizeHtml(message_cy)"></h2>
     }
-    <a [routerLink]="" tabindex="0" class="govuk-link--no-visited-state" (click)="onHideMessageEvent(key)" (keyup.enter)="onHideMessageEvent(key)">{{'Hide message' | rpxTranslate}}</a>
+    <button type="button" class="govuk-link govuk-link--no-visited-state service-message__hide-button" (click)="onHideMessageEvent(key)">{{'Hide message' | rpxTranslate}}</button>
   </div>
 
 </div>

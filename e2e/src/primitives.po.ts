@@ -72,15 +72,15 @@ export class PrimitivesPage {
   }
 
   public get nextPage(): Locator {
-    return this.pagination.locator('a').filter({ hasText: 'Next' });
+    return this.pagination.getByRole('button', { name: /Next/ });
   }
 
   public get previousPage(): Locator {
-    return this.pagination.locator('a').filter({ hasText: 'Previous' });
+    return this.pagination.getByRole('button', { name: /Previous/ });
   }
 
   public pageLink(pageNumber: number): Locator {
-    return this.pagination.locator('a').filter({ hasText: String(pageNumber) });
+    return this.pagination.getByRole('button', { name: new RegExp(`page\\s*${pageNumber}`) });
   }
 
   public get reduceRecords(): Locator {

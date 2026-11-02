@@ -82,10 +82,9 @@ describe('SearchJudicialsComponent', () => {
     const selectedJudicial = fixture.debugElement.query(By.css('.govuk-input'));
     selectedJudicial.nativeElement.dispatchEvent(new Event('focus'));
 
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(component.onFocus).toHaveBeenCalled();
-    });
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(component.onFocus).toHaveBeenCalled();
   });
 
   it('should call filter when input is more than 2 characters', async () => {
@@ -100,35 +99,27 @@ describe('SearchJudicialsComponent', () => {
     });
     selectedJudicial.nativeElement.dispatchEvent(mockKeyboardEvent);
 
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(component.keyUpSubject$.next).toHaveBeenCalledWith('MARCUS');
-    });
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(component.keyUpSubject$.next).toHaveBeenCalledWith('MARCUS');
   });
 
-  it('should not filter in input characters are less then three', async () => {
+  it('should not filter when input has fewer than three characters', () => {
     expect(component.displayedJudicials.length).toBeGreaterThan(0);
 
-    const selectedJudicial = fixture.debugElement.query(By.css('.govuk-input'));
-    selectedJudicial.nativeElement.value = 'ja';
-    selectedJudicial.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      spyOn(component, 'filter').and.callThrough();
-      expect(component.filter).not.toHaveBeenCalled();
-    });
+    const filterSpy = spyOn(component, 'filter').and.callThrough();
+    component.search('ja');
+    expect(filterSpy).not.toHaveBeenCalled();
   });
 
-  it('should reset form control and set to pristine when empty value is given', async () => {
-    const selectedJudicial = fixture.debugElement.query(By.css('.govuk-input'));
-    selectedJudicial.nativeElement.value = '';
-    selectedJudicial.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      component.keyUpSubject$.subscribe(() => {
-        expect(component.formGroup.controls.selectedFormControl.value).toEqual('');
-        expect(component.formGroup.controls.selectedFormControl.pristine).toBeTruthy();
-      });
-    });
+  it('should reset form control and set it to pristine when the search value is empty', () => {
+    const control = component.formGroup.controls.selectedFormControl;
+    control.setValue('MARCUS');
+    control.markAsDirty();
+
+    component.search('');
+
+    expect(control.value).toEqual(null);
+    expect(control.pristine).toBeTruthy();
   });
 });
