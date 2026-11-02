@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "EXUI-1662-assessibility-postcode",
       "branchSlug": "exui-1662-assessibility-postcode-2dd6b1fa031d8ee4",
+      "runKey": "41418065986-attempt-1",
+      "runId": "41418065986",
+      "runAttempt": "1",
+      "sha": "17ee430f08b3cdf2f0766610e901502149507dbb",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/41418065986/attempts/1",
+      "createdAt": "2026-11-02T09:14:12.148Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "EXUI-1662-assessibility-postcode",
+      "branchSlug": "exui-1662-assessibility-postcode-2dd6b1fa031d8ee4",
       "runKey": "41411896002-attempt-2",
       "runId": "41411896002",
       "runAttempt": "2",
