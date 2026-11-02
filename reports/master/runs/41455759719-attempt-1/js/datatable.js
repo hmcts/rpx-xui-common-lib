@@ -1,0 +1,1 @@
+$(document).ready(function(){var t=$("#test-list-table").DataTable({}),e=$("#status-filter");e.length&&e.on("change",function(){var e=$(this).val();if(!e)return t.column(1).search("").draw();var a=$.fn.dataTable.util.escapeRegex(e);return t.column(1).search("^"+a+"$",!0,!1).draw()})});
