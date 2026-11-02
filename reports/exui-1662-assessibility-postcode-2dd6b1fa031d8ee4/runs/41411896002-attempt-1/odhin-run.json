@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "EXUI-1662-assessibility-postcode",
+  "branchSlug": "exui-1662-assessibility-postcode-2dd6b1fa031d8ee4",
+  "runKey": "41411896002-attempt-1",
+  "runId": "41411896002",
+  "runAttempt": "1",
+  "sha": "f1c313da1d49f5000dd6a5d0b65b5464d216c93e",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/41411896002/attempts/1",
+  "createdAt": "2026-11-02T08:35:18.790Z"
+}
