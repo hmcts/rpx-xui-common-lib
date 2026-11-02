@@ -117,7 +117,7 @@ test('S2.4 disabled input cannot be focused and preserves selection', async ({ p
   await page.goto('/coverage/service-selection?mode=single');
   const services = new ServiceSelectionPage(page);
   await services.choose('Family');
-  await page.getByRole('button', { name: 'Disable service search' }).click();
+  await services.disable.click();
   await expect(services.search).toBeDisabled();
   await page.keyboard.press('Tab');
   await expect(services.search).not.toBeFocused();
@@ -127,7 +127,6 @@ test('S2.4 disabled input cannot be focused and preserves selection', async ({ p
 });
 
 test('S2.4 explicit disabled false permits service selection', async ({ page }) => {
-  test.skip(true, 'EXUI-5359: disabled=false renders the service search as disabled');
   await page.goto('/coverage/service-selection?disabled=false');
   const services = new ServiceSelectionPage(page);
   await expect(services.search).toBeEnabled();
@@ -135,4 +134,26 @@ test('S2.4 explicit disabled false permits service selection', async ({ page }) 
   await services.add.click();
   await expect.poll(async () => JSON.parse(await services.value.innerText()))
     .toEqual([{ key: 'family', label: 'Family' }]);
+});
+
+test('EXUI-5359 preserves selection across disable and explicit re-enable', async ({ page }) => {
+  await page.goto('/coverage/service-selection?mode=single');
+  const services = new ServiceSelectionPage(page);
+  await services.choose('Family');
+  await expect.poll(async () => JSON.parse(await services.value.innerText()))
+    .toEqual([{ key: 'family', label: 'Family' }]);
+  await expect(services.changes).toHaveText('1');
+
+  await services.disable.click();
+  await expect(services.search).toBeDisabled();
+  await expect.poll(async () => JSON.parse(await services.value.innerText()))
+    .toEqual([{ key: 'family', label: 'Family' }]);
+  await expect(services.changes).toHaveText('1');
+
+  await services.enable.click();
+  await expect(services.search).toBeEnabled();
+  await services.choose('Civil damages');
+  await expect.poll(async () => JSON.parse(await services.value.innerText()))
+    .toEqual([{ key: 'civil-damages', label: 'Civil damages' }]);
+  await expect(services.changes).toHaveText('2');
 });

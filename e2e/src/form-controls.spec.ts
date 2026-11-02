@@ -63,10 +63,11 @@ test('S1.4 day beyond a 30-day month remains invalid with the submitted values',
 });
 
 test('S1.4 entering a valid date in day month year order restores validity', async ({ page }) => {
-  test.skip(true, 'EXUI-5357: date validator does not restore validity after direct day/month/year edits');
   const controls = new FormControlsPage(page);
   await controls.day.fill('29');
+  await expect(controls.dateValid).toHaveText('false');
   await controls.month.fill('02');
+  await expect(controls.dateValid).toHaveText('false');
   await controls.year.fill('2024');
   await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
     .toEqual({ hearing_day: '29', hearing_month: '02', hearing_year: '2024' });
@@ -86,12 +87,81 @@ test('S1.4 correcting an impossible date restores validity', async ({ page }) =>
 });
 
 test('S1.4 changing month revalidates a previously valid day', async ({ page }) => {
-  test.skip(true, 'EXUI-5357: date validator retains stale validity after the month changes');
   const controls = new FormControlsPage(page);
   await controls.fillDate('31', '01', '2024');
   await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '31', hearing_month: '01', hearing_year: '2024' });
+
   await controls.month.fill('02');
   await expect(controls.dateValid).toHaveText('false');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '31', hearing_month: '02', hearing_year: '2024' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveText('Error:Enter a valid hearing date');
+
+  await controls.month.fill('01');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '31', hearing_month: '01', hearing_year: '2024' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
+});
+
+test('S1.4 changing year and alternating month edits revalidate a leap day', async ({ page }) => {
+  const controls = new FormControlsPage(page);
+  await controls.fillDate('29', '02', '2024');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '29', hearing_month: '02', hearing_year: '2024' });
+
+  await controls.year.fill('2023');
+  await expect(controls.dateValid).toHaveText('false');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '29', hearing_month: '02', hearing_year: '2023' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveText('Error:Enter a valid hearing date');
+
+  await controls.year.fill('2024');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '29', hearing_month: '02', hearing_year: '2024' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
+
+  await controls.month.fill('03');
+  await expect(controls.dateValid).toHaveText('true');
+  await controls.year.fill('2023');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '29', hearing_month: '03', hearing_year: '2023' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
+
+  await controls.month.fill('02');
+  await expect(controls.dateValid).toHaveText('false');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '29', hearing_month: '02', hearing_year: '2023' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveText('Error:Enter a valid hearing date');
+
+  await controls.year.fill('2024');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '29', hearing_month: '02', hearing_year: '2024' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
+});
+
+test('S1.4 clearing day month then year restores optional validity', async ({ page }) => {
+  const controls = new FormControlsPage(page);
+  await controls.fillDate('31', '02', '2024');
+  await expect(controls.dateValid).toHaveText('false');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '31', hearing_month: '02', hearing_year: '2024' });
+
+  await controls.day.fill('');
+  await expect(controls.dateValid).toHaveText('false');
+  await controls.month.fill('');
+  await expect(controls.dateValid).toHaveText('false');
+  await controls.year.fill('');
+  await expect(controls.dateValid).toHaveText('true');
+  await expect.poll(async () => JSON.parse(await page.getByTestId('date-value').innerText()))
+    .toEqual({ hearing_day: '', hearing_month: '', hearing_year: '' });
+  await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
 });
 
 test('S1.4 optional empty date remains valid after clearing all fields', async ({ page }) => {

@@ -1,7 +1,7 @@
 <div [formGroup]="group"
 class="govuk-form-group" [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
 <xuilib-gov-label [config]="config"></xuilib-gov-label>
-<span id="more-detail-hint" class="govuk-hint">
+<span [id]="config.id + '-hint'" class="govuk-hint">
   {{config.hint | rpxTranslate}}
 </span>
 <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
