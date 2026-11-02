@@ -28,11 +28,10 @@ export class UserManagementPage {
   }
 
   public get next() {
-    // The library renders these anchors without href; accessibility is tracked separately.
-    return this.page.locator('xuilib-hmcts-pagination a').filter({ hasText: 'Next' });
+    return this.page.locator('xuilib-hmcts-pagination').getByRole('button', { name: /Next/ });
   }
 
   public get previous() {
-    return this.page.locator('xuilib-hmcts-pagination a').filter({ hasText: 'Previous' });
+    return this.page.locator('xuilib-hmcts-pagination').getByRole('button', { name: /Previous/ });
   }
 }

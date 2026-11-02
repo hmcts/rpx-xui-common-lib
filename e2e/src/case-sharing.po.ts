@@ -8,6 +8,14 @@ export class CaseSharingPage {
     return this.page.locator(`#govuk-accordion__section-${id}`);
   }
 
+  public async openCase(id: string): Promise<void> {
+    const section = this.case(id);
+    const toggle = section.locator('.govuk-accordion__section-button');
+    if (await toggle.getAttribute('aria-expanded') === 'false') {
+      await toggle.click();
+    }
+  }
+
   public confirmation(id: string) {
     return this.page.locator(`#user-access-block-${id}`);
   }

@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 
 test('case sharing blocks continuation without changes', async ({ page }) => {
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('You have not requested any changes to case sharing');
+  await expect(page.locator('#cases [role="alert"]')).toContainText('You have not requested any changes to case sharing');
   await expect(page).toHaveURL(/\/coverage\/case-sharing$/);
 });
 
@@ -17,6 +17,7 @@ test('adding a user synchronizes both cases without duplicate assignments', asyn
   const sharing = new CaseSharingPage(page);
   await sharing.addSam();
   for (const id of ['DEMO-001', 'DEMO-002']) {
+    await sharing.openCase(id);
     await expect(sharing.case(id).getByRole('row', { name: /Sam Morgan/ })).toContainText('To be added');
   }
   await expect.poll(() => sharing.synchronized()).toEqual(expectedSharedCases);
@@ -30,14 +31,16 @@ test('adding a user synchronizes both cases without duplicate assignments', asyn
 test('canceling one pending share preserves the other and canceling both blocks continue', async ({ page }) => {
   const sharing = new CaseSharingPage(page);
   await sharing.addSam();
+  await sharing.openCase('DEMO-001');
   await sharing.case('DEMO-001').getByRole('link', { name: 'Cancel adding Sam Morgan to case' }).click();
   await expect(sharing.case('DEMO-001').getByRole('row', { name: /Sam Morgan/ })).toHaveCount(0);
+  await sharing.openCase('DEMO-002');
   await expect(sharing.case('DEMO-002').getByRole('row', { name: /Sam Morgan/ })).toContainText('To be added');
   await expect.poll(async () => (await sharing.state()).map((item) => ({ id: item.caseId, pending: item.pendingShares.map((user) => user.idamId) })))
     .toEqual([{ id: 'DEMO-001', pending: [] }, { id: 'DEMO-002', pending: ['demo-sam'] }]);
   await sharing.case('DEMO-002').getByRole('link', { name: 'Cancel adding Sam Morgan to case' }).click();
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('You have not requested any changes to case sharing');
+  await expect(page.locator('#cases [role="alert"]')).toContainText('You have not requested any changes to case sharing');
   await expect.poll(async () => (await sharing.state()).map((item) => item.pendingShares)).toEqual([[], []]);
   await expect(page).toHaveURL(/\/coverage\/case-sharing$/);
 });
@@ -54,10 +57,11 @@ test('deselect emits the removed case and protects the final selected case', asy
 
 test('removing the only assignee blocks continue until a replacement reaches confirmation', async ({ page }) => {
   const sharing = new CaseSharingPage(page);
+  await sharing.openCase('DEMO-001');
   await sharing.case('DEMO-001').getByRole('link', { name: 'Remove Alex Taylor from case' }).click();
   await expect(sharing.case('DEMO-001').getByRole('row', { name: /Alex Taylor/ })).toContainText('To be removed');
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('At least one person must be assigned to each case');
+  await expect(page.locator('#cases [role="alert"]')).toContainText('At least one person must be assigned to each case');
   await expect(page).toHaveURL(/\/coverage\/case-sharing$/);
   await sharing.addSam();
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
@@ -70,7 +74,9 @@ test('removing the only assignee blocks continue until a replacement reaches con
   ]);
   await sharing.confirmation('DEMO-001').getByRole('link', { name: 'Change selected case' }).click();
   await expect(page).toHaveURL(/\/coverage\/case-sharing$/);
+  await sharing.openCase('DEMO-001');
   await expect(sharing.case('DEMO-001').getByRole('row', { name: /Alex Taylor/ })).toContainText('To be removed');
+  await sharing.openCase('DEMO-002');
   await expect(sharing.case('DEMO-002').getByRole('row', { name: /Sam Morgan/ })).toContainText('To be added');
 });
 

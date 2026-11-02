@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/rpx-xui-common-lib",
-  "version": "3.2.27",
+  "version": "3.2.27-postcode-accessibility",
   "engines": {
     "node": ">=24.22.1"
   },
