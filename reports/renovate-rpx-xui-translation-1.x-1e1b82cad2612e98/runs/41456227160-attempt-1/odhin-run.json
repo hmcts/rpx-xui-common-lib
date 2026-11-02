@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "renovate/rpx-xui-translation-1.x",
+  "branchSlug": "renovate-rpx-xui-translation-1.x-1e1b82cad2612e98",
+  "runKey": "41456227160-attempt-1",
+  "runId": "41456227160",
+  "runAttempt": "1",
+  "sha": "451106e4ffc4a34a53c855775457c3d631acfbf0",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/41456227160/attempts/1",
+  "createdAt": "2026-11-02T13:58:45.491Z"
+}
