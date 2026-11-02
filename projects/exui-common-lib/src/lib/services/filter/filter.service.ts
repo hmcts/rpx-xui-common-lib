@@ -12,8 +12,12 @@ export class FilterService {
   private readonly streams: { [id: string]: BehaviorSubject<FilterSetting> } = {};
 
   public persist(setting: FilterSetting, persistence: FilterPersistence): void {
+    setting = { ...setting };
+    delete (setting as FilterSetting & { idamId?: string }).idamId;
     switch (persistence) {
       case 'local':
+        this.persistLocal(setting);
+        break;
       case 'session':
         this.persistSession(setting);
         break;
@@ -26,13 +30,34 @@ export class FilterService {
 
   public get(id: string): FilterSetting | null {
     if (this.filterSettings[id]) {
-      return this.filterSettings[id];
+      const setting = this.filterSettings[id];
+      return !setting.ownerHash || this.isSameUser(setting) ? setting : null;
     }
-    const storedSetting = sessionStorage.getItem(id);
-    if (storedSetting) {
-      return JSON.parse(storedSetting);
+    const localSetting = localStorage.getItem(id);
+    if (localSetting) {
+      const setting: FilterSetting = JSON.parse(localSetting);
+      if (this.isSameUser(setting)) {
+        // A legacy session entry must not override the restored local filter.
+        sessionStorage.removeItem(id);
+        return setting;
+      }
+      localStorage.removeItem(id);
+    }
+    const sessionSetting = sessionStorage.getItem(id);
+    if (sessionSetting) {
+      return JSON.parse(sessionSetting);
     }
     return null;
+  }
+
+  private isSameUser(setting: FilterSetting): boolean {
+    const ownerHash = this.getOwnerHash();
+    return !!ownerHash && setting.ownerHash === ownerHash;
+  }
+
+  private getOwnerHash(): string | undefined {
+    const userInfoStr = window.sessionStorage.getItem('userDetails');
+    return userInfoStr ? JSON.parse(userInfoStr).filterOwnerHash : undefined;
   }
 
   public getStream(id: string): Observable<FilterSetting> {
@@ -44,6 +69,7 @@ export class FilterService {
 
   public clearSessionAndLocalPersistance(id: string) {
     sessionStorage.removeItem(id);
+    localStorage.removeItem(id);
     if (this.filterSettings[id] !== undefined) {
       this.filterSettings[id] = null;
     }
@@ -52,8 +78,22 @@ export class FilterService {
     }
   }
 
+  private persistLocal(setting: FilterSetting): void {
+    const ownerHash = this.getOwnerHash();
+    if (!ownerHash) {
+      // Without an owner reference, retain selections only in this session.
+      delete setting.ownerHash;
+      this.persistSession(setting);
+      return;
+    }
+    setting.ownerHash = ownerHash;
+    window.localStorage.setItem(setting.id, JSON.stringify(setting));
+    sessionStorage.removeItem(setting.id);
+  }
+
   private persistSession(setting: FilterSetting): void {
     sessionStorage.setItem(setting.id, JSON.stringify(setting));
+    localStorage.removeItem(setting.id);
   }
 
   private persistMemory(setting: FilterSetting): void {
@@ -75,5 +115,4 @@ export class FilterService {
     }
     return userId;
   }
-
 }
