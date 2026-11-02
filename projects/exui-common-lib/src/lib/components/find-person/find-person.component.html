@@ -14,7 +14,7 @@
       </div>
     }
     @if (findPersonGroup && findPersonGroup.errors) {
-      <span id="validation-error" class="govuk-error-message">
+      <span id="validation-error" class="govuk-error-message" role="alert">
         <span class="govuk-visually-hidden">{{'Error:' | rpxTranslate}}</span>{{findPersonGroup.errors.error ? findPersonGroup.errors.error : errorMessage}}
       </span>
     }

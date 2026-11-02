@@ -1,7 +1,7 @@
 <div class="govuk-form-group" [formGroup]="addressFormGroup"
   [ngClass]="{'govuk-form-group--error': optionErrorsPresent}">
   @if (optionErrorsPresent) {
-    <p class="govuk-error-message">
+    <p class="govuk-error-message" role="alert">
       <span class="govuk-visually-hidden">Error:</span>{{optionErrorMessage}}
     </p>
   }
@@ -14,7 +14,7 @@
           <span class="govuk-hint">Enter a UK postcode</span>
         </label>
         @if (missingPostcode || postcodeErrorPresent(true)) {
-          <p class="govuk-error-message">
+          <p class="govuk-error-message" role="alert">
             <span class="govuk-visually-hidden">Error:</span>{{postcodeErrorMessage}}
           </p>
         }
@@ -31,7 +31,7 @@
               <span class="form-label">Select an address</span>
             </label>
             @if (postcodeErrorPresent(false)) {
-              <p class="govuk-error-message">
+              <p class="govuk-error-message" role="alert">
                 <span class="govuk-visually-hidden">Error:</span>{{selectErrorMessage}}
               </p>
             }

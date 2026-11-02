@@ -14,7 +14,7 @@
       </div>
     }
     @if (findTaskNameGroup && findTaskNameGroup.errors) {
-      <span id="validation-error" class="govuk-error-message">
+      <span id="validation-error" class="govuk-error-message" role="alert">
         <span class="govuk-visually-hidden">Error:</span>{{findTaskNameGroup.errors.error ? findTaskNameGroup.errors.error : errorMessage}}
       </span>
     }

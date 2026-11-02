@@ -34,7 +34,7 @@
           </ul>
         }
         @if (showResultCount) {
-          <p class="hmcts-pagination__results">{{'Showing' | rpxTranslate}} <b>{{(p.getCurrent() * pageSize) - pageSize + 1}}</b>
+          <p class="hmcts-pagination__results" role="status">{{'Showing' | rpxTranslate}} <b>{{(p.getCurrent() * pageSize) - pageSize + 1}}</b>
           {{'to' | rpxTranslate}} <b>{{ p.getCurrent() * pageSize > p.getTotalItems() ? p.getTotalItems() : p.getCurrent() *
           pageSize}}</b> {{'of' | rpxTranslate}} <b>{{p.getTotalItems()}}</b> {{'results' | rpxTranslate}}</p>
         }

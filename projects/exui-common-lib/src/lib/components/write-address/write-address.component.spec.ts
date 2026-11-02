@@ -15,6 +15,7 @@ describe('WriteAddressFieldComponent', () => {
   const $POSTCODE_LOOKUP_INPUT = By.css('.postcodeinput');
   const $POSTCODE_LOOKUP_FIND = By.css('.postcode-lookup > .govuk-body > button');
   const $POSTCODE_LOOKUP_ERROR_MESSAGE = By.css('.govuk-error-message');
+  const $POSTCODE_LOOKUP_ALERT = By.css('.postcode-lookup [role="alert"]');
 
   const $SELECT_ADDRESS = By.css('#selectAddress');
   const $ADDRESS_LIST = By.css('#selectAddress > .govuk-body > .addressList');
@@ -108,6 +109,13 @@ describe('WriteAddressFieldComponent', () => {
     expect(debugElement.query($SELECT_ADDRESS)).toBeFalsy();
     expect(debugElement.query($MANUAL_LINK)).toBeTruthy();
 
+  });
+
+  it('should announce the missing postcode error when Find address is activated empty', () => {
+    debugElement.query($POSTCODE_LOOKUP_FIND)?.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(debugElement.query($POSTCODE_LOOKUP_ALERT)?.nativeElement.textContent).toContain('Enter a valid postcode');
   });
 
   it('should render only title, lookup component and address when address set', () => {
