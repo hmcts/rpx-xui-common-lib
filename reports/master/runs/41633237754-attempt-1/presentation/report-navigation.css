@@ -1,0 +1,68 @@
+.odhin-report-navigation {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  padding: 16px 24px;
+  border-bottom: 4px solid #5440c8;
+  background: #f4f2ff;
+  color: #202642;
+  font: 16px/1.5 system-ui, sans-serif;
+}
+
+.odhin-report-navigation > div {
+  flex: 1 1 240px;
+}
+
+.odhin-report-navigation strong,
+.odhin-report-navigation span {
+  display: block;
+}
+
+.odhin-report-navigation strong {
+  font-size: 18px;
+}
+
+.odhin-report-navigation .odhin-report-navigation-link {
+  display: inline-block;
+  padding: 12px 20px;
+  border: 2px solid #5440c8;
+  border-radius: 6px;
+  background: #5440c8;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.odhin-report-navigation .odhin-report-navigation-link:hover {
+  background: #382887;
+  border-color: #382887;
+}
+
+.odhin-report-navigation .odhin-report-navigation-link:focus-visible {
+  outline: 3px solid #202642;
+  outline-offset: 3px;
+  background: #ffdd00;
+  border-color: #202642;
+  color: #202642;
+}
+
+.odhin-report-navigation p {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .odhin-report-navigation {
+    padding: 16px;
+  }
+
+  .odhin-report-navigation .odhin-report-navigation-link {
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+  }
+}
