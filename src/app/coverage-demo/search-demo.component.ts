@@ -19,6 +19,7 @@ export class SearchDemoComponent {
   public readonly selectedJudicials = [judicialUsers[1]];
   public readonly peopleSelected: Person[] = [];
   public readonly judicialsSelected: JudicialUserModel[] = [];
+  public personSelection: Person | null = null;
 
   constructor(route: ActivatedRoute) {
     const query = route.snapshot.queryParamMap;
@@ -35,7 +36,8 @@ export class SearchDemoComponent {
     this.excludeSelected = query.get('exclude') === 'true';
   }
 
-  public recordPerson(person: Person): void {
+  public recordPerson(person: Person | null): void {
+    this.personSelection = person;
     if (person) {
       this.peopleSelected.push(person);
     }

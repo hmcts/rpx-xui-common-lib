@@ -19,6 +19,18 @@ export class UserManagementPage {
     return this.invitedDetails.getByRole('button', { name: 'Resend invitation', exact: true });
   }
 
+  public get toggleActions() {
+    return this.page.getByRole('button', { name: 'Toggle account actions', exact: true });
+  }
+
+  public get suspendEvents() {
+    return this.page.getByTestId('user-suspend-events');
+  }
+
+  public get reinviteEvents() {
+    return this.page.getByTestId('user-reinvite-events');
+  }
+
   public get bounds() {
     return this.page.locator('.hmcts-pagination__results');
   }

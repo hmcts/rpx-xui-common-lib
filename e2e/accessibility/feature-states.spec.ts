@@ -231,6 +231,29 @@ test('advanced filter — conditional detail visible', async ({ page }, testInfo
   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
 });
 
+test('advanced filter — maximum-selection error', async ({ page }, testInfo) => {
+  const filter = new AdvancedFilterPage(page);
+  await filter.open('limits');
+  await filter.civilPreference.check();
+  await filter.familyPreference.check();
+  await filter.applyFilters();
+  await expect(filter.categoriesError).toHaveText('Error: Choose at most one category');
+  const outcomes = await collectAccessibilityEvidence(page, testInfo);
+  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+});
+
+test('advanced filter — text and email validation errors', async ({ page }, testInfo) => {
+  const filter = new AdvancedFilterPage(page);
+  await filter.open('text');
+  await filter.name.fill('Al');
+  await filter.email.fill('invalid-email');
+  await filter.applyFilters();
+  await expect(filter.nameError).toHaveText('Error: Enter at least three characters');
+  await expect(filter.emailError).toHaveText('Error: Enter a valid email');
+  const outcomes = await collectAccessibilityEvidence(page, testInfo);
+  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+});
+
 test('find person — expanded judicial suggestions', async ({ page }, testInfo) => {
   const search = new SearchPage(page);
   await search.openPerson('judicial', true);
@@ -256,6 +279,15 @@ test('lifecycle — service messages and enabled feature content', async ({ page
   await expect(lifecycle.secondMessage).toBeVisible();
   await lifecycle.enableCurrentFeature();
   await expect(lifecycle.featureContent).toHaveCount(1);
+  const outcomes = await collectAccessibilityEvidence(page, testInfo);
+  expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
+});
+
+test('lifecycle — standalone bilingual service message', async ({ page, context }, testInfo) => {
+  const lifecycle = new LifecyclePage(page, context);
+  await lifecycle.open({ fixture: 'standalone' });
+  await expect(lifecycle.standalone.locator('strong')).toHaveText('Safe English notice');
+  await expect(lifecycle.standaloneHide).toBeVisible();
   const outcomes = await collectAccessibilityEvidence(page, testInfo);
   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
 });

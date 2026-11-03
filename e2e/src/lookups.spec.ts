@@ -35,7 +35,10 @@ test('location multi — adds two, excludes selected values, removes one and app
   await lookups.searchLocation('Centre');
   await expect(lookups.options).toHaveText(['Central London Hearing Centre', 'Manchester Civil Justice Centre']);
   await lookups.selectOption('Central London Hearing Centre');
+  await expect(lookups.locationInput).toHaveValue('Central London Hearing Centre');
+  await expect(lookups.locationValue).toHaveText('[]');
   await lookups.addLocation();
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation]);
 
   const secondRequest = page.waitForRequest('**/api/locations/getLocations');
   await lookups.searchLocation('Centre');
@@ -45,6 +48,8 @@ test('location multi — adds two, excludes selected values, removes one and app
   await expect(lookups.option('Central London Hearing Centre')).toHaveCount(0);
   await expect(lookups.options).toHaveText(['Manchester Civil Justice Centre']);
   await lookups.selectOption('Manchester Civil Justice Centre');
+  await expect(lookups.locationInput).toHaveValue('Manchester Civil Justice Centre');
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation]);
   await lookups.addLocation();
   await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText()))
     .toEqual([londonLocation, manchesterLocation]);
@@ -91,12 +96,17 @@ test('work type multi — adds two, excludes selected values, removes one and ap
   await lookups.searchWorkType('Task');
   await expect(lookups.options).toHaveText(['Review case', 'Create task']);
   await lookups.selectOption('Review case');
+  await expect(lookups.workTypeInput).toHaveValue('Review case');
+  await expect(lookups.workTypeValue).toHaveText('[]');
   await lookups.addWorkType();
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([reviewWorkType]);
 
   await lookups.searchWorkType('Task');
   await expect(lookups.option('Review case')).toHaveCount(0);
   await expect(lookups.options).toHaveText(['Create task']);
   await lookups.selectOption('Create task');
+  await expect(lookups.workTypeInput).toHaveValue('Create task');
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([reviewWorkType]);
   await lookups.addWorkType();
   await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText()))
     .toEqual([reviewWorkType, createWorkType]);
@@ -117,4 +127,82 @@ test('task name — maps the exact POST, filters client-side, supports pointer s
 
   await lookups.selectOption('Review Hearing bundle');
   await expect.poll(async () => JSON.parse(await lookups.taskNameSelection.innerText())).toEqual(taskNames[0]);
+});
+
+test('location single — new typing clears the old record and replacement is the sole submitted value', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  await lookups.openLocation('single');
+  await lookups.searchLocation('London');
+  await lookups.selectOption('Central London Hearing Centre');
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation]);
+
+  await lookups.searchLocation('Manchester');
+  await expect(lookups.locationValue).toHaveText('[]');
+  await expect(lookups.options).toHaveText(['Manchester Civil Justice Centre']);
+  await lookups.selectLocationWithKeyboard();
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([manchesterLocation]);
+  await lookups.submit.click();
+  await expect(lookups.locationInput).toHaveValue('Manchester Civil Justice Centre');
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([manchesterLocation]);
+});
+
+test('work type single — new typing clears the old record and replacement is the sole submitted value', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  await lookups.openWorkType('single');
+  await lookups.searchWorkType('Review');
+  await lookups.selectOption('Review case');
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([reviewWorkType]);
+
+  await lookups.searchWorkType('Create');
+  await expect(lookups.workTypeValue).toHaveText('[]');
+  await expect(lookups.options).toHaveText(['Create task']);
+  await lookups.selectWorkTypeWithKeyboard();
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([createWorkType]);
+  await lookups.submit.click();
+  await expect(lookups.workTypeInput).toHaveValue('Create task');
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([createWorkType]);
+});
+
+test('location — native digit keys are rejected while letters and Enter select the exact location', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  await lookups.openLocation('multi');
+  await lookups.locationInput.pressSequentially('12');
+  await expect(lookups.locationInput).toHaveValue('');
+  await lookups.locationInput.pressSequentially('London');
+  await expect(lookups.options).toHaveText(['Central London Hearing Centre']);
+  await lookups.selectLocationWithKeyboard();
+  await expect(lookups.locationValue).toHaveText('[]');
+  await lookups.addLocation();
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation]);
+});
+
+test('work type — native digit keys are rejected while letters and Enter select the exact work type', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  await lookups.openWorkType('multi');
+  await lookups.workTypeInput.pressSequentially('12');
+  await expect(lookups.workTypeInput).toHaveValue('');
+  await lookups.workTypeInput.pressSequentially('Review');
+  await expect(lookups.options).toHaveText(['Review case']);
+  await lookups.selectWorkTypeWithKeyboard();
+  await expect(lookups.workTypeValue).toHaveText('[]');
+  await lookups.addWorkType();
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([reviewWorkType]);
+});
+
+test('location — cached lookup deduplicates matching site names and reuses one service request', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  const requests = await lookups.openLocation('multi', true);
+  await lookups.searchLocation('london');
+  await expect(lookups.options).toHaveText(['Central London Hearing Centre']);
+  await lookups.selectOption('Central London Hearing Centre');
+  await lookups.addLocation();
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation]);
+
+  await lookups.searchLocation('manchester');
+  await expect(lookups.options).toHaveText(['Manchester Civil Justice Centre']);
+  await lookups.selectOption('Manchester Civil Justice Centre');
+  await lookups.addLocation();
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation, manchesterLocation]);
+  expect(requests.cachedLocationUrls).toHaveLength(1);
+  expect(Object.fromEntries(new URL(requests.cachedLocationUrls[0]).searchParams)).toEqual({ service_code: 'IA' });
 });

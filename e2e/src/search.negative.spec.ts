@@ -4,6 +4,27 @@ import { SearchPage } from './search.po';
 import { mockFindPersonRecovery } from './search.mock';
 import { recoveryPerson } from './search.data';
 
+test('FindPerson renders parent validation after an empty search without selecting a person', async ({ page }) => {
+  const search = new SearchPage(page);
+  await search.openPerson('judicial');
+  await mockFindPersonRecovery(page);
+  await search.replaceSearch('Nobody');
+  await expect(search.options).toHaveText(['No results found']);
+  await search.dismissSuggestions();
+  await expect(search.option('No results found')).toBeHidden();
+  await expect.poll(() => search.value()).toBe('Nobody');
+  await expect(search.personSelection).toHaveText('null');
+  await expect(search.personSelections).toHaveText('[]');
+  await expect(search.validationError).toHaveCount(0);
+  await search.personValidation.click();
+  await expect(search.validationError).toHaveText('Error:Choose a demo person');
+  await expect.poll(() => search.value()).toBe('Nobody');
+  await expect.poll(async () => ({
+    current: JSON.parse(await search.personSelection.innerText()),
+    history: JSON.parse(await search.personSelections.innerText())
+  })).toEqual({ current: null, history: [] });
+});
+
 test('FindPerson empty results recover to a new selection', async ({ page }) => {
   const search = new SearchPage(page);
   await search.openPerson('judicial');

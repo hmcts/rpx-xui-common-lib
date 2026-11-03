@@ -7,6 +7,9 @@ export class SearchPage {
   public readonly heading: Locator;
   public readonly options: Locator;
   public readonly personSelections: Locator;
+  public readonly personSelection: Locator;
+  public readonly personValidation: Locator;
+  public readonly validationError: Locator;
   public readonly judicialControl: Locator;
   public readonly judicialSelections: Locator;
   private input: Locator;
@@ -15,6 +18,9 @@ export class SearchPage {
     this.heading = page.getByRole('heading', { name: 'Search component demo' });
     this.options = page.getByRole('option');
     this.personSelections = page.getByTestId('person-selections');
+    this.personSelection = page.getByTestId('person-selection');
+    this.personValidation = page.getByRole('button', { name: 'Show person validation', exact: true });
+    this.validationError = page.locator('#validation-error');
     this.judicialControl = page.getByTestId('judicial-control');
     this.judicialSelections = page.getByTestId('judicial-selections');
   }
@@ -37,6 +43,15 @@ export class SearchPage {
 
   public async replaceSearch(term: string): Promise<void> {
     await this.input.fill(term);
+  }
+
+  public async clearWithKeyboard(): Promise<void> {
+    await this.input.press('ControlOrMeta+A');
+    await this.input.press('Backspace');
+  }
+
+  public async dismissSuggestions(): Promise<void> {
+    await this.input.press('Escape');
   }
 
   public async selectFirstWithKeyboard(): Promise<void> {

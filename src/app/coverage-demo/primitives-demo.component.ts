@@ -25,6 +25,7 @@ export class PrimitivesDemoComponent {
   public readonly checkboxes = primitiveCheckboxes;
   public readonly radios = primitiveRadios;
   public readonly tableRows = primitiveTableRows;
+  public firstCellIsHeader = true;
   public records = primitivePaginationRecords;
   public readonly paginationId = 'primitives-pagination';
   public currentPage = 1;
@@ -33,6 +34,16 @@ export class PrimitivesDemoComponent {
   public suppliedErrors = false;
   public identityContent = { name: 'Alex Taylor' };
   public backEventCount = 0;
+  public actionEventCount = 0;
+  public readonly actionButtons = [{
+    name: 'Run wrapper action',
+    class: '',
+    action: () => {
+      this.actionEventCount++;
+      return {};
+    }
+  }];
+
   public boundsCorrections: number[] = [];
 
   public suppliedError(message: string): ErrorMessagesModel | null {

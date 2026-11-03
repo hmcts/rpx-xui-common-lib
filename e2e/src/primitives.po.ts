@@ -47,6 +47,10 @@ export class PrimitivesPage {
     return this.page.getByTestId('primitives-table');
   }
 
+  public get toggleTableRowHeaders(): Locator {
+    return this.page.getByRole('button', { name: 'Toggle table row headers', exact: true });
+  }
+
   public get identity(): Locator {
     return this.page.locator('xuilib-hmcts-identity-bar');
   }
@@ -63,8 +67,20 @@ export class PrimitivesPage {
     return this.page.getByTestId('back-events');
   }
 
+  public get wrapperAction(): Locator {
+    return this.page.getByRole('button', { name: 'Run wrapper action', exact: true });
+  }
+
+  public get actionEvents(): Locator {
+    return this.page.getByTestId('wrapper-action-events');
+  }
+
   public get pageNumber(): Locator {
     return this.page.getByTestId('primitive-page-number');
+  }
+
+  public get records(): Locator {
+    return this.page.getByTestId('paged-records').locator('li');
   }
 
   public get pagination(): Locator {

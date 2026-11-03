@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import { FilterFieldConfig } from 'projects/exui-common-lib/src/public-api';
 import { serviceOptions } from './service-selection-demo.data';
 
@@ -14,6 +15,7 @@ export class ServiceSelectionDemoComponent {
   public readonly field: FilterFieldConfig;
   public disabled: boolean | null;
   public changes = 0;
+  public readonly submission$ = new Subject<void>();
 
   constructor(route: ActivatedRoute) {
     const single = route.snapshot.queryParamMap.get('mode') === 'single';

@@ -65,7 +65,7 @@ export class RemainingCoverageDemoComponent {
   public loadingState = false;
   public loadingTokens: string[] = [];
   public caseState: SharedCase[] = [];
-  public letValue = 'initial value';
+  public letValue: string | null = 'initial value';
   public pipeValue = 'MIXED CASE';
 
   public readonly dateResetForm = new FormGroup({

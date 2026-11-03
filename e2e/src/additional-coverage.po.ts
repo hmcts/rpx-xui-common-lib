@@ -63,6 +63,14 @@ export class AdditionalCoveragePage {
     return this.page.getByTestId('standalone-form-value');
   }
 
+  public get disableControls(): Locator {
+    return this.page.getByRole('button', { name: 'Disable standalone controls', exact: true });
+  }
+
+  public get enableControls(): Locator {
+    return this.page.getByRole('button', { name: 'Enable standalone controls', exact: true });
+  }
+
   public get extendedFormValue(): Locator {
     return this.page.getByTestId('extended-form-value');
   }

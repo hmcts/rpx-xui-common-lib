@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from './browser-diagnostics.fixture';
-import { createWorkType, manchesterLocation, taskNames } from './lookups.mock';
+import { createWorkType, londonLocation, manchesterLocation, reviewWorkType, taskNames } from './lookups.mock';
 import { LookupsPage } from './lookups.po';
 
 test('location empty results recover to a new keyboard selection', async ({ page }) => {
@@ -102,4 +102,64 @@ test('task name empty client-filtered results recover to a new pointer selection
   await expect(lookups.options).toHaveText(['Review Hearing bundle']);
   await lookups.selectOption('Review Hearing bundle');
   await expect.poll(async () => JSON.parse(await lookups.taskNameSelection.innerText())).toEqual(taskNames[0]);
+});
+
+test('task name renders parent validation after an empty search without selecting a task', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  await lookups.openTaskName();
+  await lookups.searchTaskName('unknown');
+  await expect(lookups.taskNameSelection).toHaveText('"null"');
+  await expect(lookups.options).toHaveCount(0);
+  await expect(lookups.validationError).toHaveCount(0);
+  await lookups.taskValidation.click();
+  await expect(lookups.validationError).toHaveText('Error:Choose a demo task');
+  await expect(lookups.taskNameSelection).toHaveText('"null"');
+});
+
+test('location multi — submission clears unmatched search text while preserving committed values', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  await lookups.openLocation('multi');
+  await lookups.searchLocation('Nobody');
+  await expect(lookups.options).toHaveText(['No results found']);
+  await expect(lookups.locationInput).toHaveValue('Nobody');
+  await lookups.submit.click();
+  await expect(lookups.locationInput).toHaveValue('');
+  await expect(lookups.locationValue).toHaveText('[]');
+
+  await lookups.searchLocation('London');
+  await lookups.selectOption('Central London Hearing Centre');
+  await lookups.addLocation();
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation]);
+  await lookups.searchLocation('Nobody');
+  await expect(lookups.options).toHaveText(['No results found']);
+  await expect(lookups.locationInput).toHaveValue('Nobody');
+  await lookups.submit.click();
+  await expect(lookups.locationInput).toHaveValue('');
+  await expect.poll(async () => JSON.parse(await lookups.locationValue.innerText())).toEqual([londonLocation]);
+});
+
+test('work type multi — submission clears unmatched search text while preserving committed values', async ({ page }) => {
+  const lookups = new LookupsPage(page);
+  await lookups.openWorkType('multi');
+  await lookups.searchWorkType('Nobody');
+  await expect(lookups.options).toHaveText(['No results found']);
+  await lookups.workTypeInput.press('Escape');
+  await expect(lookups.option('No results found')).toBeHidden();
+  await expect(lookups.workTypeInput).toHaveValue('Nobody');
+  await lookups.submit.click();
+  await expect(lookups.workTypeInput).toHaveValue('');
+  await expect(lookups.workTypeValue).toHaveText('[]');
+
+  await lookups.searchWorkType('Review');
+  await lookups.selectOption('Review case');
+  await lookups.addWorkType();
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([reviewWorkType]);
+  await lookups.searchWorkType('Nobody');
+  await expect(lookups.options).toHaveText(['No results found']);
+  await lookups.workTypeInput.press('Escape');
+  await expect(lookups.option('No results found')).toBeHidden();
+  await expect(lookups.workTypeInput).toHaveValue('Nobody');
+  await lookups.submit.click();
+  await expect(lookups.workTypeInput).toHaveValue('');
+  await expect.poll(async () => JSON.parse(await lookups.workTypeValue.innerText())).toEqual([reviewWorkType]);
 });

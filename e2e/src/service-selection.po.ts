@@ -8,6 +8,7 @@ export class ServiceSelectionPage {
   readonly add = this.page.getByRole('link', { name: 'Add service' });
   readonly disable = this.page.getByRole('button', { name: 'Disable service search', exact: true });
   readonly enable = this.page.getByRole('button', { name: 'Enable service search', exact: true });
+  readonly submit = this.page.getByRole('button', { name: 'Submit selection', exact: true });
   readonly value = this.page.getByTestId('services-value');
   readonly changes = this.page.getByTestId('services-changes');
   readonly selected = this.page.locator('xuilib-find-service .selection-container a');

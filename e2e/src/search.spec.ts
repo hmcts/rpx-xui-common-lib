@@ -80,3 +80,43 @@ test('judicials — maps the exact request, excludes selected idamId, and emits 
   await expect.poll(async () => JSON.parse(await search.judicialSelections.innerText())).toEqual([judicialUsers[0]]);
   expect(await search.value()).toBe('Judge Alex Taylor (alex@example.test)');
 });
+
+test('person — resumed typing clears the current selection without erasing selection history', async ({ page }) => {
+  const search = new SearchPage(page);
+  await search.openPerson('judicial', true);
+  await search.search('Alex');
+  await expect(search.options).toHaveText(['Judge Alex Taylor (alex@example.test)']);
+  await search.selectFirstWithKeyboard();
+  await expect.poll(async () => ({
+    current: JSON.parse(await search.personSelection.innerText()),
+    history: JSON.parse(await search.personSelections.innerText())
+  })).toEqual({ current: judicialPeople[0], history: [judicialPeople[0]] });
+
+  await search.replaceSearch('Al');
+  await expect.poll(() => search.value()).toBe('Al');
+  await expect.poll(async () => ({
+    current: JSON.parse(await search.personSelection.innerText()),
+    history: JSON.parse(await search.personSelections.innerText())
+  })).toEqual({ current: null, history: [judicialPeople[0]] });
+  await expect(search.options).toHaveCount(0);
+});
+
+test('judicials — keyboard clearing resets the current control without erasing selection history', async ({ page }) => {
+  const search = new SearchPage(page);
+  await search.openJudicials();
+  await search.search('Alex');
+  await expect(search.options).toHaveText(['Judge Alex Taylor (alex@example.test)']);
+  await search.selectFirstWithKeyboard();
+  await expect.poll(async () => ({
+    current: JSON.parse(await search.judicialControl.innerText()),
+    history: JSON.parse(await search.judicialSelections.innerText())
+  })).toEqual({ current: judicialUsers[0], history: [judicialUsers[0]] });
+
+  await search.clearWithKeyboard();
+  await expect.poll(() => search.value()).toBe('');
+  await expect.poll(async () => ({
+    current: JSON.parse(await search.judicialControl.innerText()),
+    history: JSON.parse(await search.judicialSelections.innerText())
+  })).toEqual({ current: null, history: [judicialUsers[0]] });
+  await expect(search.options).not.toBeVisible();
+});

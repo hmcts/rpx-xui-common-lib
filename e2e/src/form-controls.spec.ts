@@ -28,6 +28,59 @@ test('S1.3 supplied select and textarea errors render and clear', async ({ page 
   await expect(page.locator('#priority-error, #case-notes-error')).toHaveCount(0);
 });
 
+for (const hintState of ['configured', 'empty', 'absent'] as const) {
+  test(`S1.3 textarea ${hintState} hints preserve independent descriptions and values across errors`, async ({ page }) => {
+    const controls = new FormControlsPage(page);
+    await controls.notes.fill('Synthetic case note');
+    await controls.reviewNotes.fill('Independent synthetic review');
+    await expect(controls.notesHint).toHaveCount(1);
+    await expect(controls.reviewNotesHint).toHaveCount(1);
+    await expect(controls.notesHint).toHaveText('Include only synthetic notes.');
+    await expect(controls.reviewNotesHint).toHaveText('Add a synthetic review note.');
+    await expect(controls.notes).toHaveAttribute('aria-describedby', 'case-notes-hint');
+    await expect(controls.reviewNotes).toHaveAttribute('aria-describedby', 'review-notes-hint');
+    await expect(controls.notes).toHaveAccessibleDescription('Include only synthetic notes.');
+    await expect(controls.reviewNotes).toHaveAccessibleDescription('Add a synthetic review note.');
+
+    await controls.errors.click();
+    await expect(controls.notesError).toHaveText('Error:Enter case notes');
+    await expect(controls.reviewNotesError).toHaveText('Error:Enter review notes');
+    await expect(controls.notes).toHaveAttribute('aria-describedby', 'case-notes-hint case-notes-error');
+    await expect(controls.reviewNotes).toHaveAttribute('aria-describedby', 'review-notes-hint review-notes-error');
+    await expect(controls.notes).toHaveAccessibleDescription('Include only synthetic notes. Error: Enter case notes');
+    await expect(controls.reviewNotes).toHaveAccessibleDescription('Add a synthetic review note. Error: Enter review notes');
+
+    if (hintState !== 'configured') {
+      await (hintState === 'empty' ? controls.emptyReviewHint : controls.removeReviewHint).click();
+      await expect(controls.reviewNotesHint).toHaveText('');
+      await expect(controls.reviewNotes).toHaveAttribute('aria-describedby', 'review-notes-error');
+      await expect(controls.reviewNotes).toHaveAccessibleDescription('Error: Enter review notes');
+      await expect(controls.notes).toHaveAttribute('aria-describedby', 'case-notes-hint case-notes-error');
+      await expect(controls.notes).toHaveAccessibleDescription('Include only synthetic notes. Error: Enter case notes');
+    }
+    await expect(controls.notes).toHaveValue('Synthetic case note');
+    await expect(controls.reviewNotes).toHaveValue('Independent synthetic review');
+
+    await controls.errors.click();
+    await expect(controls.notesError).toHaveCount(0);
+    await expect(controls.reviewNotesError).toHaveCount(0);
+    await expect(controls.notes).toHaveAttribute('aria-describedby', 'case-notes-hint');
+    await expect(controls.notes).toHaveAccessibleDescription('Include only synthetic notes.');
+    if (hintState === 'configured') {
+      await expect(controls.reviewNotes).toHaveAttribute('aria-describedby', 'review-notes-hint');
+      await expect(controls.reviewNotes).toHaveAccessibleDescription('Add a synthetic review note.');
+    } else {
+      await expect(controls.reviewNotes).not.toHaveAttribute('aria-describedby');
+      await expect(controls.reviewNotes).toHaveAccessibleDescription('');
+    }
+    await expect(controls.notes).toHaveValue('Synthetic case note');
+    await expect(controls.reviewNotes).toHaveValue('Independent synthetic review');
+    await expect.poll(async () => JSON.parse(await controls.value.innerText())).toEqual({
+      priority: 'routine', notes: 'Synthetic case note', supportingFile: '', untouched: 'preserved'
+    });
+  });
+}
+
 test('S1.4 valid date updates parent controls and validity', async ({ page }) => {
   const controls = new FormControlsPage(page);
   await controls.fillDate('29', '02', '2024');
@@ -163,6 +216,28 @@ test('S1.4 clearing day month then year restores optional validity', async ({ pa
     .toEqual({ hearing_day: '', hearing_month: '', hearing_year: '' });
   await expect(page.locator('xuilib-gov-uk-date .govuk-error-message')).toHaveCount(0);
 });
+
+for (const field of ['day', 'month', 'year'] as const) {
+  test(`S1.4 clearing and refilling only ${field} revalidates the optional date`, async ({ page }) => {
+    const controls = new FormControlsPage(page);
+    const completeDate = { hearing_day: '29', hearing_month: '02', hearing_year: '2024' };
+    await controls.fillDate('29', '02', '2024');
+    await expect(controls.dateValid).toHaveText('true');
+    await expect.poll(async () => JSON.parse(await controls.dateValue.innerText())).toEqual(completeDate);
+    await expect(controls.dateError).toHaveCount(0);
+
+    await controls[field].fill('');
+    await expect(controls.dateValid).toHaveText('false');
+    await expect.poll(async () => JSON.parse(await controls.dateValue.innerText()))
+      .toEqual({ ...completeDate, [`hearing_${field}`]: '' });
+    await expect(controls.dateError).toHaveText('Error:Enter a valid hearing date');
+
+    await controls[field].fill(completeDate[`hearing_${field}`]);
+    await expect(controls.dateValid).toHaveText('true');
+    await expect.poll(async () => JSON.parse(await controls.dateValue.innerText())).toEqual(completeDate);
+    await expect(controls.dateError).toHaveCount(0);
+  });
+}
 
 test('S1.4 optional empty date remains valid after clearing all fields', async ({ page }) => {
   const controls = new FormControlsPage(page);

@@ -10,6 +10,7 @@ export interface TaskNameRecord {
 
 export interface LookupRequestCounts {
   taskNames: number;
+  cachedLocationUrls: string[];
 }
 
 export const londonLocation: LocationByEPIMMSModel = {
@@ -96,7 +97,16 @@ const workTypeResults: Record<string, WorkType[]> = {
 };
 
 export async function mockLookupHttp(page: Page): Promise<LookupRequestCounts> {
-  const requests: LookupRequestCounts = { taskNames: 0 };
+  const requests: LookupRequestCounts = { taskNames: 0, cachedLocationUrls: [] };
+
+  await page.route('**/locations-by-service-code?*', (route) => {
+    requests.cachedLocationUrls.push(route.request().url());
+    return route.fulfill({ json: { court_venues: [
+      londonLocation,
+      { ...londonLocation, epimms_id: 'loc-london-duplicate' },
+      manchesterLocation
+    ] } });
+  });
 
   await page.route('**/api/locations/getLocations', (route) => {
     const term = route.request().postDataJSON().searchTerm as string;

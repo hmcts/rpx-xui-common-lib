@@ -68,6 +68,66 @@ test('pending invitation explains resend restrictions and hides permissions', as
   await expect(users.reinvite).toBeVisible();
 });
 
+test('repeated native suspend actions emit only the newly selected user in order', async ({ page }) => {
+  const users = new UserManagementPage(page);
+  await expect(users.suspendEvents).toHaveText('[]');
+  await expect(users.reinviteEvents).toHaveText('[]');
+  await users.next.click();
+  await users.userLink(51).click();
+  await expect(page).toHaveURL(/\/coverage\/users\/user-51$/);
+  await expect(users.selectedDetails).toContainText('Demo User 51');
+  await expect(users.selectedDetails).toContainText('user51@example.test');
+
+  const expectedEvents: typeof expectedSelectedUser[] = [];
+  for (const activation of ['Enter', 'Space', 'click'] as const) {
+    if (activation === 'click') {
+      await users.suspend.click();
+    } else {
+      await users.suspend.press(activation);
+    }
+    expectedEvents.push(expectedSelectedUser);
+    await expect.poll(async () => ({
+      suspend: JSON.parse(await users.suspendEvents.innerText()),
+      reinvite: JSON.parse(await users.reinviteEvents.innerText())
+    })).toEqual({ suspend: expectedEvents, reinvite: [] });
+  }
+});
+
+test('recreated suspend action emits the current user once on Space', async ({ page }) => {
+  const users = new UserManagementPage(page);
+  await expect(users.suspend).toBeVisible();
+  await users.toggleActions.click();
+  await expect(users.suspend).toHaveCount(0);
+  await expect(users.suspendEvents).toHaveText('[]');
+  await users.toggleActions.click();
+  await expect(users.suspend).toBeVisible();
+  await users.suspend.press('Space');
+  await expect.poll(async () => ({
+    suspend: JSON.parse(await users.suspendEvents.innerText()),
+    reinvite: JSON.parse(await users.reinviteEvents.innerText())
+  })).toEqual({ suspend: [expectedFirstUser], reinvite: [] });
+});
+
+test('repeated native reinvite actions emit once each without suspending a user', async ({ page }) => {
+  const users = new UserManagementPage(page);
+  await expect(users.reinviteEvents).toHaveText('[]');
+  await expect(users.suspendEvents).toHaveText('[]');
+
+  const expectedEvents: typeof expectedInvitedUser[] = [];
+  for (const activation of ['Enter', 'Space', 'click'] as const) {
+    if (activation === 'click') {
+      await users.reinvite.click();
+    } else {
+      await users.reinvite.press(activation);
+    }
+    expectedEvents.push(expectedInvitedUser);
+    await expect.poll(async () => ({
+      reinvite: JSON.parse(await users.reinviteEvents.innerText()),
+      suspend: JSON.parse(await users.suspendEvents.innerText())
+    })).toEqual({ reinvite: expectedEvents, suspend: [] });
+  }
+});
+
 for (const activation of ['click', 'Enter', 'Space'] as const) {
   test(`suspend emits the exact user once on ${activation}`, async ({ page }) => {
     const users = new UserManagementPage(page);
