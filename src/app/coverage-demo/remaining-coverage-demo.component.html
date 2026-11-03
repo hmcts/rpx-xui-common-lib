@@ -45,6 +45,7 @@
   <section aria-labelledby="directive-pipe-heading">
     <h2 id="directive-pipe-heading">Directive and pipe contracts</h2>
     <button type="button" (click)="updateLetValue()">Update let value</button>
+    <button type="button" (click)="letValue = null">Clear let value</button>
     <p data-testid="remaining-let-value" *xuilibLet="letValue; let value; let explicit = xuilibLet">{{ value }}|{{ explicit }}</p>
     <p data-testid="remaining-capitalize-value">{{ pipeValue | capitalize }}</p>
   </section>

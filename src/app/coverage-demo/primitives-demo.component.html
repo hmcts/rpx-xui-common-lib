@@ -53,20 +53,26 @@
   </section>
 
   <xuilib-gov-uk-table data-testid="primitives-table" [caption]="'Primitive records'" [rows]="tableRows"
+    [firstCellIsHeader]="firstCellIsHeader"
     [columnConfig]="[
       {header: 'Case', key: 'caseId', type: 'link'},
       {header: 'Opened', key: 'opened', type: 'date'},
       {header: 'Status', key: 'status', type: 'text'}
     ]">
   </xuilib-gov-uk-table>
+  <button class="govuk-button govuk-button--secondary" type="button" (click)="firstCellIsHeader = !firstCellIsHeader">
+    Toggle table row headers
+  </button>
 
   <xuilib-hmcts-identity-bar [content]="identityContent"></xuilib-hmcts-identity-bar>
   <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleIdentity()">Toggle identity</button>
 
-  <xuilib-hmcts-main-wrapper [title]="'Main wrapper'" [backLink]="null" (backEvent)="backEventCount = backEventCount + 1">
+  <xuilib-hmcts-main-wrapper [title]="'Main wrapper'" [backLink]="null" [actionButtons]="actionButtons"
+    (backEvent)="backEventCount = backEventCount + 1">
     <p>Projected main-wrapper content</p>
   </xuilib-hmcts-main-wrapper>
   <output data-testid="back-events">{{ backEventCount }}</output>
+  <output data-testid="wrapper-action-events">{{ actionEventCount }}</output>
 
   <h2 class="govuk-heading-m">Paginated records</h2>
   <ul data-testid="paged-records">

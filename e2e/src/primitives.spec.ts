@@ -78,12 +78,18 @@ test('renders projected fieldset content with and without a page-heading variant
   await expect(primitives.fieldsets.nth(1)).toContainText('Projected fieldset content');
 });
 
-test('renders table headers, router links, and library-formatted dates', async ({ page }) => {
+test('switches table row headers to cells while retaining links and exact formatted dates', async ({ page }) => {
   const primitives = new PrimitivesPage(page);
   await expect(primitives.table.getByRole('columnheader')).toHaveText(['Case', 'Opened', 'Status']);
   await expect(primitives.table.getByRole('link', { name: 'Case 1001', exact: true })).toHaveAttribute('href', '/home');
-  await expect(primitives.table).toContainText('07/01/2024');
-  await expect(primitives.table).toContainText('Open');
+  await expect(primitives.table.getByRole('rowheader')).toHaveText(['Case 1001', 'Case 1002']);
+  await expect(primitives.table.getByRole('cell')).toHaveText(['07/01/2024', 'Open', '14/02/2024', 'Closed']);
+
+  await primitives.toggleTableRowHeaders.click();
+  await expect(primitives.table.getByRole('rowheader')).toHaveCount(0);
+  await expect(primitives.table.getByRole('cell'))
+    .toHaveText(['Case 1001', '07/01/2024', 'Open', 'Case 1002', '14/02/2024', 'Closed']);
+  await expect(primitives.table.getByRole('link', { name: 'Case 1001', exact: true })).toHaveAttribute('href', '/home');
 });
 
 test('toggles identity visibility and emits the main-wrapper back event', async ({ page }) => {
@@ -98,34 +104,58 @@ test('toggles identity visibility and emits the main-wrapper back event', async 
   await expect(primitives.backEvents).toHaveText('1');
 });
 
+test('calls the supplied main-wrapper action exactly once for each click', async ({ page }) => {
+  const primitives = new PrimitivesPage(page);
+  await expect(primitives.actionEvents).toHaveText('0');
+  await expect(primitives.backEvents).toHaveText('0');
+  await primitives.wrapperAction.click();
+  await expect(primitives.actionEvents).toHaveText('1');
+  await primitives.wrapperAction.click();
+  await expect(primitives.actionEvents).toHaveText('2');
+  await expect(primitives.backEvents).toHaveText('0');
+});
+
 test('supports next, previous, last, bounds correction, and display toggling', async ({ page }) => {
   const primitives = new PrimitivesPage(page);
   await expect(primitives.pageNumber).toHaveText('Page 1');
+  await expect(primitives.records).toHaveText(['Record 1', 'Record 2']);
+  await expect(primitives.previousPage).toHaveCount(0);
   await primitives.nextPage.click();
   await expect(primitives.pageNumber).toHaveText('Page 2');
+  await expect(primitives.records).toHaveText(['Record 3', 'Record 4']);
   await primitives.pageLink(3).click();
   await expect(primitives.pageNumber).toHaveText('Page 3');
+  await expect(primitives.records).toHaveText(['Record 5']);
+  await expect(primitives.nextPage).toHaveCount(0);
   await primitives.previousPage.click();
   await expect(primitives.pageNumber).toHaveText('Page 2');
-  await primitives.pageLink(3).click();
+  await expect(primitives.records).toHaveText(['Record 3', 'Record 4']);
   await expect(primitives.paginationResults).toBeVisible();
+  await expect(primitives.pageLink(3)).toBeVisible();
   await primitives.togglePaginationDisplays.click();
+  await expect(primitives.paginationResults).toHaveCount(0);
+  await expect(primitives.pageLink(3)).toHaveCount(0);
+  await primitives.nextPage.click();
+  await expect(primitives.pageNumber).toHaveText('Page 3');
+  await expect(primitives.records).toHaveText(['Record 5']);
   await expect(primitives.paginationResults).toHaveCount(0);
   await expect(primitives.pageLink(2)).toHaveCount(0);
   await primitives.togglePaginationDisplays.click();
-  await expect(primitives.paginationResults).toBeVisible();
+  await expect(primitives.pageLink(2)).toBeVisible();
+  await expect(primitives.paginationResults).toHaveText('Showing 5 to 5 of 5 results');
   await primitives.reduceRecords.click();
   await expect(primitives.pageNumber).toHaveText('Page 1');
+  await expect(primitives.records).toHaveText(['Record 1', 'Record 2']);
+  await expect(primitives.nextPage).toHaveCount(0);
+  await expect(primitives.previousPage).toHaveCount(0);
   await expect(page.getByTestId('pagination-bounds')).toHaveText('1');
 });
 
 test('renders the records belonging to the selected page', async ({ page }) => {
   const primitives = new PrimitivesPage(page);
-  const records = page.getByTestId('paged-records').locator('li');
-
-  await expect(records).toHaveText(['Record 1', 'Record 2']);
+  await expect(primitives.records).toHaveText(['Record 1', 'Record 2']);
   await primitives.nextPage.click();
-  await expect(records).toHaveText(['Record 3', 'Record 4']);
+  await expect(primitives.records).toHaveText(['Record 3', 'Record 4']);
   await primitives.previousPage.click();
-  await expect(records).toHaveText(['Record 1', 'Record 2']);
+  await expect(primitives.records).toHaveText(['Record 1', 'Record 2']);
 });

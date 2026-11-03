@@ -11,6 +11,8 @@
       [selectedPersons]="excludeSelected ? selectedPeople : []"
       (personSelected)="recordPerson($event)">
     </xuilib-find-person>
+    <button type="button" (click)="personGroup.setErrors({ error: 'Choose a demo person' })">Show person validation</button>
+    <pre data-testid="person-selection">{{ personSelection | json }}</pre>
     <pre data-testid="person-selections">{{ peopleSelected | json }}</pre>
   }
 

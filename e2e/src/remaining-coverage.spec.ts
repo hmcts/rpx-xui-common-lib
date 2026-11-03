@@ -153,13 +153,23 @@ test.describe('remaining CommonLib browser contracts', () => {
     await expect(page.getByTestId('remaining-filter-state')).toHaveText('null');
   });
 
-  test('LetDirective updates projected context and CapitalizePipe normalises case', async ({ page }) => {
+  test('LetDirective retains its view through null and restored context, and CapitalizePipe normalises case', async ({ page }) => {
     await page.goto(route);
     await expect(page.getByTestId('remaining-let-value')).toHaveText('initial value|initial value');
     await expect(page.getByTestId('remaining-capitalize-value')).toHaveText('Mixed case');
+    const originalView = await page.getByTestId('remaining-let-value').elementHandle();
 
     await page.getByRole('button', { name: 'Update let value', exact: true }).click();
     await expect(page.getByTestId('remaining-let-value')).toHaveText('updated value|updated value');
+    await page.getByRole('button', { name: 'Clear let value', exact: true }).click();
+    await expect(page.getByTestId('remaining-let-value')).toHaveCount(1);
+    await expect(page.getByTestId('remaining-let-value')).toHaveText('|');
+    await expect.poll(() => originalView.evaluate((element) => element.isConnected)).toBe(true);
+    await page.getByRole('button', { name: 'Update let value', exact: true }).click();
+    await expect(page.getByTestId('remaining-let-value')).toHaveCount(1);
+    await expect(page.getByTestId('remaining-let-value')).toHaveText('updated value|updated value');
+    await expect.poll(() => originalView.evaluate((element) => element.isConnected)).toBe(true);
+    await originalView.dispose();
   });
 
   test('validator edge states cover calendar, empty and disabled groups, and non-boolean values', async ({ page }) => {

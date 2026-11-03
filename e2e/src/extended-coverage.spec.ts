@@ -21,15 +21,29 @@ test.describe('extended CommonLib component coverage', () => {
     await expect(coverage.fullNameInput).not.toHaveAttribute('aria-invalid', 'true');
   });
 
-  test('selects and removes multi-checkbox values while preserving row layout', async ({ page }) => {
+  test('preserves checkbox insertion order, removes only unchecked values and clears every selection', async ({ page }) => {
     const coverage = new AdditionalCoveragePage(page);
     await coverage.openExtendedControls();
 
     await expect(coverage.checkboxOption('Alpha service')).toBeChecked();
+    await coverage.checkboxOption('Gamma service').check();
     await coverage.checkboxOption('Beta service').check();
+    await expect.poll(async () => JSON.parse(await coverage.extendedFormValue.innerText()))
+      .toEqual({ name: '', selections: ['alpha', 'gamma', 'beta'] });
     await coverage.checkboxOption('Alpha service').uncheck();
-    await expect.poll(async () => JSON.parse(await coverage.extendedFormValue.innerText())).toMatchObject({ selections: ['beta'] });
+    await expect.poll(async () => JSON.parse(await coverage.extendedFormValue.innerText()))
+      .toEqual({ name: '', selections: ['gamma', 'beta'] });
     await expect(coverage.checkboxOption('Beta service')).toBeChecked();
+    await expect(coverage.checkboxOption('Gamma service')).toBeChecked();
+    await coverage.checkboxOption('Gamma service').uncheck();
+    await expect.poll(async () => JSON.parse(await coverage.extendedFormValue.innerText()))
+      .toEqual({ name: '', selections: ['beta'] });
+    await coverage.checkboxOption('Beta service').uncheck();
+    await expect.poll(async () => JSON.parse(await coverage.extendedFormValue.innerText()))
+      .toEqual({ name: '', selections: [] });
+    await expect(coverage.checkboxOption('Alpha service')).not.toBeChecked();
+    await expect(coverage.checkboxOption('Beta service')).not.toBeChecked();
+    await expect(coverage.checkboxOption('Gamma service')).not.toBeChecked();
     await expect(page.locator('.govuk-checkboxes-multi-column__single')).toHaveCount(2);
 
     await coverage.toggleCheckboxErrorButton.click();

@@ -100,6 +100,39 @@ test('S2.4 single selection auto replaces the previous value without an Add butt
   await expect.poll(async () => JSON.parse(await services.value.innerText()))
     .toEqual([{ key: 'civil-damages', label: 'Civil damages' }]);
   await expect(services.changes).toHaveText('2');
+  await services.submit.click();
+  await expect(services.search).toHaveValue('Civil damages');
+  await expect.poll(async () => ({
+    value: JSON.parse(await services.value.innerText()),
+    changes: await services.changes.innerText()
+  })).toEqual({ value: [{ key: 'civil-damages', label: 'Civil damages' }], changes: '2' });
+});
+
+test('service submission clears unmatched search text without changing selected values or emitting changes', async ({ page }) => {
+  await page.goto('/coverage/service-selection');
+  const services = new ServiceSelectionPage(page);
+  await services.search.fill('Unknown');
+  await expect(services.options).toHaveCount(0);
+  await expect(services.search).toHaveValue('Unknown');
+  await services.submit.click();
+  await expect(services.search).toHaveValue('');
+  await expect.poll(async () => ({
+    value: JSON.parse(await services.value.innerText()),
+    changes: await services.changes.innerText()
+  })).toEqual({ value: [], changes: '0' });
+
+  await services.choose('Family');
+  await services.add.click();
+  await expect.poll(async () => JSON.parse(await services.value.innerText())).toEqual([{ key: 'family', label: 'Family' }]);
+  await services.search.fill('Unknown');
+  await expect(services.options).toHaveCount(0);
+  await expect(services.search).toHaveValue('Unknown');
+  await services.submit.click();
+  await expect(services.search).toHaveValue('');
+  await expect.poll(async () => ({
+    value: JSON.parse(await services.value.innerText()),
+    changes: await services.changes.innerText()
+  })).toEqual({ value: [{ key: 'family', label: 'Family' }], changes: '1' });
 });
 
 test('S2.4 single selection replacement restores the displaced option', async ({ page }) => {
@@ -156,4 +189,50 @@ test('EXUI-5359 preserves selection across disable and explicit re-enable', asyn
   await expect.poll(async () => JSON.parse(await services.value.innerText()))
     .toEqual([{ key: 'civil-damages', label: 'Civil damages' }]);
   await expect(services.changes).toHaveText('2');
+});
+
+test('EXUI-5359 preserves multiple selections across disable and re-enable without extra emissions', async ({ page }) => {
+  await page.goto('/coverage/service-selection');
+  const services = new ServiceSelectionPage(page);
+  const selectedServices = [
+    { key: 'civil-damages', label: 'Civil damages' },
+    { key: 'family', label: 'Family' }
+  ];
+  await services.choose('Civil damages');
+  await services.add.click();
+  await services.choose('Family');
+  await services.add.click();
+  await expect(services.selected).toHaveText(['Civil damages', 'Family']);
+  await expect.poll(async () => ({
+    value: JSON.parse(await services.value.innerText()),
+    changes: await services.changes.innerText()
+  })).toEqual({ value: selectedServices, changes: '2' });
+
+  await services.disable.click();
+  await expect(services.search).toBeDisabled();
+  await expect(services.selected).toHaveText(['Civil damages', 'Family']);
+  await expect.poll(async () => ({
+    value: JSON.parse(await services.value.innerText()),
+    changes: await services.changes.innerText()
+  })).toEqual({ value: selectedServices, changes: '2' });
+
+  await services.enable.click();
+  await expect(services.search).toBeEnabled();
+  await expect(services.selected).toHaveText(['Civil damages', 'Family']);
+  await expect.poll(async () => ({
+    value: JSON.parse(await services.value.innerText()),
+    changes: await services.changes.innerText()
+  })).toEqual({ value: selectedServices, changes: '2' });
+  await services.search.fill('Civil');
+  await expect(services.options).toHaveText(['Civil enforcement']);
+  await services.choose('Civil enforcement');
+  await services.add.click();
+  await expect(services.selected).toHaveText(['Civil damages', 'Family', 'Civil enforcement']);
+  await expect.poll(async () => ({
+    value: JSON.parse(await services.value.innerText()),
+    changes: await services.changes.innerText()
+  })).toEqual({
+    value: [...selectedServices, { key: 'civil-enforcement', label: 'Civil enforcement' }],
+    changes: '3'
+  });
 });

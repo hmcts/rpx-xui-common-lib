@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import {
   FilterFieldConfig,
   LocationByEPIMMSModel,
@@ -18,7 +19,12 @@ export class LookupsDemoComponent {
   public readonly singleMode: boolean;
   public readonly locationField: FilterFieldConfig;
   public readonly locationFields: FilterFieldConfig[];
-  public readonly locationForm = new FormGroup({ locations: new FormArray<FormControl<LocationByEPIMMSModel>>([]) });
+  public readonly locationForm = new FormGroup({
+    locations: new FormArray<FormControl<LocationByEPIMMSModel>>([]),
+    services: new FormArray([new FormControl({ key: 'IA', label: 'Immigration and Asylum' })])
+  });
+
+  public readonly submission$ = new Subject<void>();
   public readonly workTypeField: FilterFieldConfig;
   public readonly workTypeFields: FilterFieldConfig[];
   public readonly workTypeForm = new FormGroup({ workTypes: new FormArray<FormControl<WorkType>>([]) });
@@ -41,6 +47,9 @@ export class LookupsDemoComponent {
     this.feature = query.get('feature') ?? '';
     this.singleMode = query.get('mode') !== 'multi';
     this.locationField = createLocationField(this.singleMode);
+    if (query.get('lookup') === 'cached') {
+      this.locationField.servicesField = 'services';
+    }
     this.locationFields = [this.locationField];
     this.workTypeField = createWorkTypeField(this.singleMode);
     this.workTypeFields = [this.workTypeField];

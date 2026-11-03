@@ -11,9 +11,12 @@ export class LookupsPage {
   public readonly workTypeValue: Locator;
   public readonly workTypeApplied: Locator;
   public readonly taskNameSelection: Locator;
-  private readonly locationInput: Locator;
+  public readonly submit: Locator;
+  public readonly taskValidation: Locator;
+  public readonly validationError: Locator;
+  public readonly locationInput: Locator;
   private readonly venueInput: Locator;
-  private readonly workTypeInput: Locator;
+  public readonly workTypeInput: Locator;
   private readonly taskNameInput: Locator;
 
   constructor(private readonly page: Page) {
@@ -26,15 +29,19 @@ export class LookupsPage {
     this.workTypeValue = page.getByTestId('work-type-value');
     this.workTypeApplied = page.getByTestId('work-type-applied');
     this.taskNameSelection = page.getByTestId('task-name-selection');
+    this.submit = page.getByRole('button', { name: 'Submit selection', exact: true });
+    this.taskValidation = page.getByRole('button', { name: 'Show task validation', exact: true });
+    this.validationError = page.locator('#validation-error');
     this.locationInput = page.locator('#inputLocationSearch');
     this.venueInput = page.locator('#searchVenueLocation');
     this.workTypeInput = page.locator('#inputWorkTypeSearch');
     this.taskNameInput = page.locator('#inputSelectTaskName');
   }
 
-  public async openLocation(mode: 'single' | 'multi'): Promise<void> {
-    await mockLookupHttp(this.page);
-    await this.page.goto(`/coverage/lookups?feature=location&mode=${mode}`);
+  public async openLocation(mode: 'single' | 'multi', cached = false): Promise<LookupRequestCounts> {
+    const requests = await mockLookupHttp(this.page);
+    await this.page.goto(`/coverage/lookups?feature=location&mode=${mode}${cached ? '&lookup=cached' : ''}`);
+    return requests;
   }
 
   public async openVenue(filtered = false): Promise<void> {

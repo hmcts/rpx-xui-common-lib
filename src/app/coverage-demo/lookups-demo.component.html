@@ -6,9 +6,11 @@
     [form]="locationForm"
     [field]="locationField"
     [fields]="locationFields"
+    [formSubmissionEvent$]="submission$"
     [enableAddLocationButton]="!singleMode">
   </xuilib-find-location>
   <button type="button" (click)="applyLocations()">Apply filters</button>
+  <button type="button" (click)="submission$.next()">Submit selection</button>
   <pre data-testid="location-value">{{ locationForm.controls.locations.value | json }}</pre>
   <pre data-testid="location-applied">{{ locationApplied | json }}</pre>
 }
@@ -30,9 +32,11 @@
     [form]="workTypeForm"
     [field]="workTypeField"
     [fields]="workTypeFields"
+    [formSubmissionEvent$]="submission$"
     [enableAddWorkTypeButton]="!singleMode">
   </xuilib-find-work-type>
   <button type="button" (click)="applyWorkTypes()">Apply filters</button>
+  <button type="button" (click)="submission$.next()">Submit selection</button>
   <pre data-testid="work-type-value">{{ workTypeForm.controls.workTypes.value | json }}</pre>
   <pre data-testid="work-type-applied">{{ workTypeApplied | json }}</pre>
 }
@@ -55,6 +59,7 @@
     services="IA"
     (taskNameSelected)="taskNameSelection = $event">
   </xuilib-find-task-name>
+  <button type="button" (click)="taskNameForm.setErrors({ error: 'Choose a demo task' })">Show task validation</button>
   <pre data-testid="task-name-selection">{{ taskNameSelection | json }}</pre>
 }
 

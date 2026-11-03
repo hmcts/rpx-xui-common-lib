@@ -1,7 +1,12 @@
 import { BrowserContext, Page } from '@playwright/test';
 
 export class LifecyclePage {
-  public readonly serviceMessages = this.page.locator('xuilib-service-message');
+  public readonly heading = this.page.getByRole('heading', { name: 'Lifecycle behaviour coverage', exact: true });
+  public readonly serviceMessages = this.page.locator('xuilib-service-messages xuilib-service-message');
+  public readonly messageHeadings = this.serviceMessages.getByRole('heading', { level: 2 });
+  public readonly configurationError = this.page.locator('xuilib-service-messages').getByRole('heading', { name: 'Error:', exact: true });
+  // Configuration warnings have no test ID; scope the library's warning paragraph to its owning component.
+  public readonly configurationErrorText = this.page.locator('xuilib-service-messages .hmcts-banner__message p');
   public readonly firstMessage = this.serviceMessages.filter({ hasText: 'English planned maintenance is available.' });
   public readonly secondMessage = this.serviceMessages.filter({ hasText: 'English unaffected service message.' });
   public readonly firstEnglishHeading = this.firstMessage.getByRole('heading', {
@@ -18,11 +23,17 @@ export class LifecyclePage {
   public readonly firstDismissLink = this.firstMessage.getByText('Hide message', { exact: true });
   public readonly activeFeatureKey = this.page.getByTestId('active-feature-key');
   public readonly featureContent = this.page.getByTestId('feature-toggle-content');
+  public readonly featureAction = this.page.getByRole('button', { name: 'Use enabled feature', exact: true });
+  public readonly featureActions = this.page.getByTestId('lifecycle-feature-actions');
+  public readonly standalone = this.page.getByTestId('standalone-message');
+  public readonly standaloneHide = this.standalone.getByText('Hide message', { exact: true });
+  public readonly hiddenMessageKey = this.page.getByTestId('lifecycle-hidden-key');
+  public readonly hideEvents = this.page.getByTestId('lifecycle-hide-events');
 
   constructor(private readonly page: Page, private readonly context: BrowserContext) {}
 
-  public async open(): Promise<void> {
-    await this.page.goto('/coverage/lifecycle');
+  public async open(query: Record<string, string> = {}): Promise<void> {
+    await this.page.goto(`/coverage/lifecycle?${new URLSearchParams(query)}`);
   }
 
   public async focusFirstDismissLink(): Promise<void> {

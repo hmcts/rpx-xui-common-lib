@@ -3,7 +3,7 @@ import { test } from './browser-diagnostics.fixture';
 import { AdditionalCoveragePage } from './additional-coverage.po';
 
 test.describe('additional CommonLib component coverage', () => {
-  test('renders the page wrapper title, caption, back link and projected content', async ({ page }) => {
+  test('renders the page wrapper content and follows its back link', async ({ page }) => {
     const coverage = new AdditionalCoveragePage(page);
     await coverage.openStandalone();
 
@@ -11,6 +11,10 @@ test.describe('additional CommonLib component coverage', () => {
     await expect(coverage.pageCaption).toBeVisible();
     await expect(coverage.backLink).toHaveAttribute('href', '/coverage');
     await expect(coverage.wrapperContent).toHaveText('Projected wrapper content');
+
+    await coverage.backLink.click();
+    await expect(page).toHaveURL(/\/coverage$/);
+    await expect(page.getByRole('heading', { name: 'CommonLib component coverage examples', exact: true })).toBeVisible();
   });
 
   test('removes the page wrapper heading, caption and back link when inputs are cleared', async ({ page }) => {
@@ -51,7 +55,7 @@ test.describe('additional CommonLib component coverage', () => {
     await expect(page.locator('#choices-error')).toHaveCount(0);
   });
 
-  test('renders the standalone checkbox label, optional hint and focus id', async ({ page }) => {
+  test('renders the standalone checkbox label and returns its parent value to false with Space', async ({ page }) => {
     const coverage = new AdditionalCoveragePage(page);
 
     await coverage.openStandalone();
@@ -62,6 +66,37 @@ test.describe('additional CommonLib component coverage', () => {
     await expect(page.getByText('Receive status updates.', { exact: true })).toBeVisible();
     await coverage.checkbox.check();
     await expect.poll(async () => JSON.parse(await coverage.formValue.innerText())).toEqual({ choice: 'first', consent: true });
+    await coverage.checkbox.press('Space');
+    await expect(coverage.checkbox).not.toBeChecked();
+    await expect.poll(async () => JSON.parse(await coverage.formValue.innerText())).toEqual({ choice: 'first', consent: false });
+  });
+
+  test('preserves disabled checkbox and radio values and allows edits after re-enabling', async ({ page }) => {
+    const coverage = new AdditionalCoveragePage(page);
+    await coverage.openStandalone();
+    await coverage.checkbox.check();
+    await coverage.radio('Second route').check();
+    await expect.poll(async () => JSON.parse(await coverage.formValue.innerText())).toEqual({ choice: 'second', consent: true });
+
+    await coverage.disableControls.click();
+    await expect(coverage.checkbox).toBeDisabled();
+    await expect(coverage.radio('First route')).toBeDisabled();
+    await expect(coverage.radio('Second route')).toBeDisabled();
+    await expect(coverage.checkbox).toBeChecked();
+    await expect(coverage.radio('Second route')).toBeChecked();
+    await expect.poll(async () => JSON.parse(await coverage.formValue.innerText())).toEqual({ choice: 'second', consent: true });
+
+    await coverage.enableControls.click();
+    await expect(coverage.checkbox).toBeEnabled();
+    await expect(coverage.radio('First route')).toBeEnabled();
+    await expect(coverage.radio('Second route')).toBeEnabled();
+    await expect.poll(async () => JSON.parse(await coverage.formValue.innerText())).toEqual({ choice: 'second', consent: true });
+    await coverage.checkbox.press('Space');
+    await coverage.radio('First route').press('Space');
+    await expect(coverage.checkbox).not.toBeChecked();
+    await expect(coverage.radio('First route')).toBeChecked();
+    await expect(coverage.radio('Second route')).not.toBeChecked();
+    await expect.poll(async () => JSON.parse(await coverage.formValue.innerText())).toEqual({ choice: 'first', consent: false });
   });
 
   test('renders the organisation accessibility statement with service links and contact details', async ({ page }) => {
