@@ -1,0 +1,18 @@
+{
+  "rawBranch": "test/common-lib-post-582-coverage",
+  "slug": "test-common-lib-post-582-coverage-c4eb6f3e7f6aa851",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "test/common-lib-post-582-coverage",
+      "branchSlug": "test-common-lib-post-582-coverage-c4eb6f3e7f6aa851",
+      "runKey": "41630064969-attempt-1",
+      "runId": "41630064969",
+      "runAttempt": "1",
+      "sha": "7bdc9a122364395c3124916d014afdf2e6c75052",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/41630064969/attempts/1",
+      "createdAt": "2026-11-03T11:56:07.964Z"
+    }
+  ]
+}
