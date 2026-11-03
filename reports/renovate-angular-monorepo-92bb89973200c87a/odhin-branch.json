@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "renovate/angular-monorepo",
       "branchSlug": "renovate-angular-monorepo-92bb89973200c87a",
+      "runKey": "41630673032-attempt-1",
+      "runId": "41630673032",
+      "runAttempt": "1",
+      "sha": "3f430623730e293b4fc7ee0682843c70c28d7746",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/41630673032/attempts/1",
+      "createdAt": "2026-11-03T11:57:08.660Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "renovate/angular-monorepo",
+      "branchSlug": "renovate-angular-monorepo-92bb89973200c87a",
       "runKey": "41052201781-attempt-1",
       "runId": "41052201781",
       "runAttempt": "1",
