@@ -8,22 +8,19 @@
   </div>
 }
 @if (user) {
-  <dl class="govuk-table" role="presentation">
-    <div class="govuk-table__body">
-      <div class="govuk-table__row">
-        <dt class="govuk-table__header" scope="row">{{'Name' | rpxTranslate}}</dt>
-        <dd class="govuk-table__cell">{{user.fullName | rpxTranslate}}</dd>
-        <dd class="govuk-table__cell"></dd>
-      </div>
-      <div class="govuk-table__row">
-        <dt class="govuk-table__header" scope="row">{{'Email address' | rpxTranslate}}</dt>
-        <dd class="govuk-table__cell">{{user.email}}</dd>
-        <dd class="govuk-table__cell"></dd>
-      </div>
-      @if (!user.resendInvite) {
-        <div class="govuk-table__row">
-          <dt class="govuk-table__header" scope="row">{{'Permissions' | rpxTranslate}}</dt>
-          <dd class="govuk-table__cell">
+  <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">{{'Name' | rpxTranslate}}</dt>
+      <dd class="govuk-summary-list__value">{{user.fullName | rpxTranslate}}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">{{'Email address' | rpxTranslate}}</dt>
+      <dd class="govuk-summary-list__value">{{user.email}}</dd>
+    </div>
+    @if (!user.resendInvite) {
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">{{'Permissions' | rpxTranslate}}</dt>
+        <dd class="govuk-summary-list__value">
             @if (user.manageOrganisations === 'Yes') {
               <div>{{'Manage organisations' | rpxTranslate}}</div>
             }
@@ -42,13 +39,12 @@
             @for (accesstype of enabledAccessTypes; track accesstype) {
               <div>{{ accesstype | rpxTranslate}}</div>
             }
-          </dd>
-          <dd class="govuk-table__cell">@if (editPermissionRouterLink && showEditLink) {
-            <a role="link" [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a>
-          }</dd>
-        </div>
-      }
-    </div>
+        </dd>
+        <dd class="govuk-summary-list__actions">@if (editPermissionRouterLink && showEditLink) {
+          <a [routerLink]="editPermissionRouterLink">{{'Change' | rpxTranslate}} <span class="govuk-visually-hidden">{{'roles' | rpxTranslate}}</span></a>
+        }</dd>
+      </div>
+    }
   </dl>
 }
 @if (showSuspendUserButton) {
