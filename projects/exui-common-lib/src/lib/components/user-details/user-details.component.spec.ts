@@ -57,16 +57,13 @@ describe('UserDetailsComponent', () => {
     expect(resend).toBeTruthy();
   });
 
-  it('should call reinviteClick when the button clicked', waitForAsync(() => {
-    component.user.resendInvite = true;
-    spyOn(component, 'reinviteClick');
-    fixture.detectChanges();
+  it('emits the exact invited user once on click', () => {
+    const emitted = spyOn(component.reinvite, 'emit');
     const button = fixture.nativeElement.querySelector('#resend-invite-button');
     button.click();
-    fixture.whenStable().then(() => {
-      expect(component.reinviteClick).toHaveBeenCalled();
-    });
-  }));
+    expect(emitted).toHaveBeenCalledOnceWith(component.user);
+    expect(emitted.calls.first().args[0]).toBe(component.user);
+  });
 
   it('should show suspend user button when showSuspendUserButton is true', () => {
     component.showSuspendUserButton = true;
@@ -74,16 +71,15 @@ describe('UserDetailsComponent', () => {
     expect(fixture.debugElement.nativeElement.querySelector('button')).toBeTruthy();
   });
 
-  it('should call suspendUser when the button clicked', waitForAsync(() => {
+  it('emits the exact suspended user once on click', () => {
     component.showSuspendUserButton = true;
-    spyOn(component, 'suspendUser');
+    const emitted = spyOn(component.suspendUserEvent, 'emit');
     fixture.detectChanges();
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();
-    fixture.whenStable().then(() => {
-      expect(component.suspendUser).toHaveBeenCalled();
-    });
-  }));
+    expect(emitted).toHaveBeenCalledOnceWith(component.user);
+    expect(emitted.calls.first().args[0]).toBe(component.user);
+  });
 
   it('should verify if user has specific role', () => {
     component.user.roles = ['pui-finance-manager'];

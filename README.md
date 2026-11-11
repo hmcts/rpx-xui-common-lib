@@ -1,191 +1,444 @@
-# RpxXuiCommonLib
+RPX XUI COMMON LIBRARY
+======================
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.9.
-This Project is used for EXUI team as a common library.
-All the common libraries are located at `projects/exui-common-lib`.
+Overview
+--------
 
-## Development server
+@hmcts/rpx-xui-common-lib is a shared Angular library for EXUI applications.
+The library source is in projects/exui-common-lib and is consumed by XUI
+applications that need common components, services, directives and utilities.
 
-Run `ng serve` (or `yarn start:no-open`) for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-The main project is only a base to run `projects/exui-common-lib`.
+The repository also contains:
 
-## Code scaffolding
+- A demo application under src/.
+- Angular library source under projects/exui-common-lib/.
+- End-to-end tests under e2e/.
+- Playwright configuration and custom reporters.
+- Documentation generation with Compodoc.
+- Build, audit and publishing scripts.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The current package version is defined in package.json. The published package
+name is:
 
-## Build
-
-Run `ng build exui-common-lib` (or `yarn build`) to build the exui-common-lib project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test exui-common-lib` (or `yarn test`) to execute the unit tests via [Karma](https://karma-runner.github.io).
-It will run the tests for exui-common-lib.
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Playwright](https://playwright.dev/).
-
-You can also run Playwright tests directly:
-- `npx playwright test` - Run all tests
-- `npx playwright test --ui` - Run tests with UI mode
-- `npx playwright show-report` - View the last test report
-
-The e2e tests are located in the `e2e/` directory and use Playwright's modern testing framework for reliable, fast end-to-end testing across multiple browsers (Chromium, Firefox, and WebKit).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    @hmcts/rpx-xui-common-lib
 
 
-## Timeout Notification Service
+Prerequisites
+-------------
 
-The Timeout Notification Service allows your application to receive notifications
-when a User is approaching the the total time that a User has been idle for.
+- Node.js 24.x or a later version accepted by package.json.
+- Yarn 4.5.3, managed through the repository's Yarn configuration.
+- Chromium, Firefox and WebKit when running the full Playwright suite.
+- Git Bash or WSL on Windows for shell commands that use Unix-style syntax.
 
-This can be set by your application using the Timeout Notification Config object.
+Install dependencies from the repository root:
 
-Your application will then have to listen to events coming from the Timeout Notification Service,
-and handle these events within your application.
+    corepack enable
+    yarn install --immutable
 
-### How to implement the Timeout Notification Service
+The repository uses the node-modules linker. Do not commit node_modules,
+dist/, coverage/, docs/ or generated browser-test results.
 
-* Step 1. Import the TimeoutNotificationsService from rpx-xui-common-lib
-```
-import { TimeoutNotificationsService } from '@hmcts/rpx-xui-common-lib';
-```
-* Step 2. Add the TimeoutNotificationService to the constructor.
-```
-  constructor(
-    private readonly timeoutNotificationsService: TimeoutNotificationsService
-  ) {
-```
-* Step 3. Add a Handler, to handle the TimeoutNotificationService events.
-```
-public timeoutNotificationEventHandler(event) {
-	switch (event.eventType) {
-	  case 'countdown': {
-	  	// Implement application countdown logic, here we are using
-	  	// our timeout modal, which is another re-usable UI component.
-	    this.updateTimeoutModal(event.readableCountdown, true);
-	    return;
-	  }
-	  case 'sign-out': {
-	  	// Implement application signout logic
-	    this.updateTimeoutModal(undefined, false);
-	    return;
-	  }
-	  case 'keep-alive': {
-	  	// Implement application keep alive logic
-	    return;
-	  }
-	  default: {
-	    throw new Error('Invalid Timeout Notification Event');
-	  }
-	}
-}
-```
-* Step 4. Listen for the TimeoutNotificationService events, and send them onto the Handler.
-```
-this.timeoutNotificationsService.notificationOnChange().subscribe(event => {
-  this.timeoutNotificationEventHandler(event);
-});
-```
-* Step 5. Create a configuration object and pass the object to configure the service.
-```
-/**
- * Timeout Notification Config
- * 
- * Note that idleModalDisplayTime and totalIdleTime should be passed in
- * in milliseconds.
- */
-const timeoutNotificationConfig: any = {
-  idleModalDisplayTime: idleModalDisplayTimeInMilliseconds,
-  totalIdleTime: totalIdleTimeInMilliseconds,
-  idleServiceName: 'idleSession'
-};
 
-this.timeoutNotificationsService.initialise(timeoutNotificationConfig);
-```
+Repository layout
+-----------------
 
-@see app.component.ts
-@see https://github.com/hmcts/rpx-xui-webapp
-@see https://github.com/hmcts/rpx-xui-manage-organisations
+    projects/exui-common-lib/     Shared Angular library source
+    src/                          Demo and test-host application
+    e2e/                          Playwright end-to-end tests and reporters
+    scripts/                      Package synchronisation and helper scripts
+    docs/                         Generated Compodoc output
+    dist/                         Generated package output
+    angular.json                  Angular workspace configuration
+    package.json                  Workspace scripts and package metadata
 
-### What Timeout Notification Service Events should I handle?
+The library's public entry point is defined by the project configuration in
+projects/exui-common-lib/.
 
-The Timeout Notification Service currently has three events that you can handle. These are:
 
-The 'countdown' event. This event dispatches a readable countdown timer in it's event payload. the countdown
-timer is a readable version of the countdown time ie. '10 seconds' or '1 minute'. Note that this dispatches
-once per second when the timer has reached less than 60 seconds till the 'sign-out' event is fired.
+Run the demo application
+------------------------
 
-If the 'countdown' timer is above a minute this event is dispatched every minute.
+Start the Angular demo without automatically opening a browser:
 
-The 'keep-alive' event dispatches when the User has interacted with the page again.
+    yarn start:no-open
 
-The 'sign-out' event dispatches when the countdown timer has come to an end - when the User
-should be signed out.
+The demo is normally available at:
 
-### What does totalIdleTime and idleModalDisplayTime mean?
+    http://localhost:4200/
 
-```totalIdleTime``` is the total amount of time in milliseconds that the User is idle for. ie.
-A User is working, they then stop interacting with the page. When the User stops interacting 
-with the page is when the totalIdleTime begins.
+Start the demo and open it automatically:
 
-The Users Total Idle Time, includes the time in which we show the Timeout Modal to a User.
+    yarn start
 
-```idleModalDisplayTime``` is the total amount of time in milliseconds to display a Session Timeout Modal.
-Note that our xui re-usable Session Timeout Modal can be used.
+The demo is a development and test host. It is not a production deployment of
+the common library.
 
-*Important note*: The idleModalDisplayTime IS PART of the totalIdleTime. The idleModalDisplayTime does not get added to the end of the totalIdleTime.
 
-An example:
-`totalIdleTime: 120000`
-`idleModalDisplayTime: 60000`,
+Build the library
+-----------------
 
-totalIdleTime is 2 minutes.
-idleModalDisplayTime is 1 minute.
+Build the library and synchronise the generated package output:
 
-This would lead to:
-1. On the User being idle for 1 minute, 'countdown' events are thrown.
-2. When the User is Idle for 2 minutes a 'sign-out' event is thrown. 
-3. If the User interacts with the page within this time a 'keep-alive' event is thrown.
-4. By default when the User is idle for under 1 minute, countdown events are thrown each second. 
+    yarn build
 
-### What happens when the User is in the final minute of being idle?
+The explicit production library build is:
 
-When the User is in the final minute of them being idle,
-countdown events are thrown every second. So that you can display
-a 60 second countdown, within your modal dialog.
+    yarn build:library
 
-## Timeout Notification Service Modal
+Build continuously while editing library source:
 
-To implement the XUI Timeout Notification Service Modal, which is the view that goes along with the Timeout Notification Service.
+    yarn build:library:watch
 
-Step 1. Add the latest '@hmcts/rpx-xui-common-lib' into your project.
+The build also generates the condition parser from its Peggy grammar. The
+generated condition-parser.generated.ts file must not be edited by hand; edit
+the source grammar and run the generation task instead:
 
-Step 2. Add the following component into any parent Angular component where you wish to see the modal dialog. Within the XUI projects we've added this into our app.component.html file.
+    yarn generate:condition-parser
 
-```
-<xuilib-session-dialog positionTop="300px" *ngIf="timeoutModalConfig.isVisible" (close)="staySignedInHandler()">
-  <h3 class="govuk-heading-m">We are about to sign you out</h3>
-  <p class="govuk-body">For your security, we will sign you out of your account in
-    <strong>{{timeoutModalConfig.countdown}}</strong>
-  </p>
-  <p>Any information you have not saved will be lost</p>
-  <button type="submit" class="govuk-button" (click)="staySignedInHandler()">
-    Stay signed in
-  </button>
-  <div>
-    <a (click)="signOutHandler()" [routerLink]="">Sign out</a>
-  </div>
-</xuilib-session-dialog>
-```
+Generated package output is written below:
 
-@see app.component.html
-@see app.component.ts
-@see https://github.com/hmcts/rpx-xui-webapp
-@see https://github.com/hmcts/rpx-xui-manage-organisations
+    dist/rpx-xui-common-lib/
 
-END
+Create the compressed elements bundle when required:
+
+    yarn package
+
+
+Use the library in an Angular application
+-----------------------------------------
+
+Install the published package in the consuming application using the approved
+package version and compatible Angular peer dependencies.
+
+Import the module with forRoot in the application's root module:
+
+    import { ExuiCommonLibModule } from '@hmcts/rpx-xui-common-lib';
+
+    @NgModule({
+      imports: [
+        ExuiCommonLibModule.forRoot()
+      ]
+    })
+
+Import the module with forChild in lazy-loaded modules:
+
+    import { ExuiCommonLibModule } from '@hmcts/rpx-xui-common-lib';
+
+    @NgModule({
+      imports: [
+        ExuiCommonLibModule.forChild()
+      ]
+    })
+
+When adding a public component, service, directive, pipe or model, update the
+library public exports and add focused unit tests.
+
+
+Optional integrations
+---------------------
+
+Google Analytics
+
+Inject GoogleAnalyticsService and initialise it with the approved application
+configuration value:
+
+    export class AppComponent {
+      constructor(private googleAnalyticsService: GoogleAnalyticsService) {
+        this.googleAnalyticsService.init(config.googleAnalyticsKey);
+      }
+    }
+
+Terms and Conditions
+
+Import the common module and provide a document that conforms to the exported
+TCDocument interface:
+
+    <xuilib-terms-and-conditions
+      [document]="your_tc_document">
+    </xuilib-terms-and-conditions>
+
+Follow the consuming application's content, accessibility and configuration
+requirements when using these integrations.
+
+
+Timeout Notification Service
+----------------------------
+
+TimeoutNotificationsService notifies an application when a user is nearing
+the end of an idle session. The consuming application must subscribe to the
+events and decide how to display the countdown, keep the user signed in or
+sign the user out.
+
+Import the service:
+
+    import { TimeoutNotificationsService } from '@hmcts/rpx-xui-common-lib';
+
+Inject it into the component:
+
+    constructor(
+      private readonly timeoutNotificationsService: TimeoutNotificationsService
+    ) {}
+
+Handle the service events:
+
+    public timeoutNotificationEventHandler(event) {
+      switch (event.eventType) {
+        case 'countdown':
+          this.updateTimeoutModal(event.readableCountdown, true);
+          return;
+        case 'sign-out':
+          this.updateTimeoutModal(undefined, false);
+          return;
+        case 'keep-alive':
+          return;
+        default:
+          throw new Error('Invalid Timeout Notification Event');
+      }
+    }
+
+Subscribe to event changes:
+
+    this.timeoutNotificationsService
+      .notificationOnChange()
+      .subscribe(event => this.timeoutNotificationEventHandler(event));
+
+Initialise the service with a configuration object. Times are milliseconds:
+
+    const timeoutNotificationConfig = {
+      idleModalDisplayTime: idleModalDisplayTimeInMilliseconds,
+      totalIdleTime: totalIdleTimeInMilliseconds,
+      idleServiceName: 'idleSession'
+    };
+
+    this.timeoutNotificationsService.initialise(timeoutNotificationConfig);
+
+The timeout modal display period is included within totalIdleTime. It is not
+added after totalIdleTime.
+
+For example:
+
+    totalIdleTime: 120000
+    idleModalDisplayTime: 60000
+
+This means that countdown events begin after approximately one minute of
+inactivity and the sign-out event is emitted after two minutes. If the user
+interacts with the page, a keep-alive event is emitted.
+
+During the final minute, countdown events are emitted every second. Before the
+final minute, countdown events are emitted less frequently according to the
+service implementation.
+
+
+Timeout modal component
+-----------------------
+
+The reusable session dialog can display the timeout state:
+
+    <xuilib-session-dialog
+      positionTop="300px"
+      *ngIf="timeoutModalConfig.isVisible"
+      (close)="staySignedInHandler()">
+      <h3 class="govuk-heading-m">We are about to sign you out</h3>
+      <p class="govuk-body">
+        For your security, we will sign you out of your account in
+        <strong>{{timeoutModalConfig.countdown}}</strong>
+      </p>
+      <p>Any information you have not saved will be lost</p>
+      <button class="govuk-button" (click)="staySignedInHandler()">
+        Stay signed in
+      </button>
+      <a (click)="signOutHandler()" [routerLink]="">Sign out</a>
+    </xuilib-session-dialog>
+
+The consuming application remains responsible for the final sign-out action,
+unsaved-data warning and accessible modal behaviour.
+
+
+Unit tests and coverage
+-----------------------
+
+Run library unit tests:
+
+    yarn test
+
+Run them in watch mode:
+
+    yarn test:watch
+
+The Angular test command generates coverage output according to the workspace
+test configuration.
+
+
+Playwright tests
+----------------
+
+Install the required browsers:
+
+    yarn playwright install chromium firefox webkit
+
+Run the end-to-end suite. The runner starts the demo application when
+PLAYWRIGHT_TEST_BASE_URL is not set:
+
+    yarn playwright test
+
+Run the suite against an already running host:
+
+    PLAYWRIGHT_TEST_BASE_URL=http://localhost:4200 yarn playwright test
+
+Run type checks without opening a browser:
+
+    yarn test:e2e:typecheck
+
+The configured browsers are Chromium, Firefox and WebKit. Tests use the demo
+host, synthetic data and the configured Playwright base URL. They do not prove
+that every consuming application or deployed service is compatible.
+
+Useful reporter settings include:
+
+    PLAYWRIGHT_REPORTERS=list,html,junit,odhin
+    PW_ODHIN_OUTPUT=test-results/odhin
+    PW_ODHIN_INDEX=common-lib-playwright.html
+    PW_ODHIN_TITLE=RPX XUI CommonLib Playwright
+    PW_ODHIN_ENV=local
+    PW_ODHIN_PROJECT=RPX XUI CommonLib
+    PW_ODHIN_RELEASE=<release>
+
+Main local output locations include:
+
+    test-results/junit.xml
+    test-results/odhin/common-lib-playwright.html
+    test-results/                  screenshots and traces on failure
+
+Run the last HTML report with:
+
+    yarn playwright show-report
+
+Generated reports can contain test data and should be treated as potentially
+sensitive. Do not commit them.
+
+
+Linting, documentation and CI checks
+-------------------------------------
+
+Run the library lint checks:
+
+    yarn lint
+
+Generate Compodoc documentation:
+
+    yarn docs
+
+Run Playwright reporter checks where required:
+
+    yarn lint:playwright:reporting
+
+Run the dependency audit against the known-audit baseline:
+
+    yarn test:audit
+
+Run the main local CI sequence:
+
+    yarn ci
+
+The CI command runs lint, unit tests, the library build and documentation
+generation.
+
+
+Development workflow
+--------------------
+
+1. Create a focused branch.
+2. Install dependencies with yarn install --immutable.
+3. Start the demo with yarn start:no-open when working on a consumer view.
+4. Build the library with yarn build:library:watch while developing library
+   source.
+5. Run targeted unit and Playwright tests.
+6. Run yarn lint and yarn test.
+7. Run yarn ci for broad changes or before a release.
+8. Review dist/, coverage/, docs/ and test output before committing.
+9. Confirm that no credentials or sensitive test artefacts are staged.
+
+
+Publishing and release checks
+-----------------------------
+
+The package is published with public access configured in package.json. Use
+the approved release and CI process.
+
+Before publishing:
+
+- Confirm the package version and release notes.
+- Run yarn ci.
+- Run the relevant Playwright and consumer checks.
+- Review the generated dist/ package contents.
+- Check Angular peer dependency compatibility.
+- Confirm that generated reports and local configuration are excluded.
+
+
+Troubleshooting
+---------------
+
+The demo does not start
+
+- Check the Node.js and Yarn versions.
+- Run corepack enable and yarn install --immutable.
+- Check that port 4200 is free.
+- Check the Angular workspace configuration.
+
+Library changes are not visible in a consumer
+
+- Run yarn build:library:watch.
+- Confirm that the consumer resolves the intended package or workspace
+  output.
+- Check peer dependency versions.
+- Restart the consumer development server if its module cache is stale.
+
+The condition parser build fails
+
+- Run yarn generate:condition-parser.
+- Check the source condition grammar.
+- Do not edit the generated parser file manually.
+
+Playwright cannot start
+
+- Install Chromium, Firefox and WebKit.
+- Check that port 4200 is free.
+- Run yarn test:e2e:typecheck.
+- Set PLAYWRIGHT_TEST_BASE_URL only when the target host is already running.
+- Retain failure traces and screenshots before starting another run.
+
+The timeout modal behaves unexpectedly
+
+- Confirm that all timeout values are in milliseconds.
+- Confirm that idleModalDisplayTime is included in totalIdleTime.
+- Confirm that the application subscribes to notificationOnChange().
+- Check that countdown, keep-alive and sign-out events are handled.
+
+
+UK English and technical terminology
+-------------------------------------
+
+Use UK English in documentation, test descriptions, examples and user-facing
+content. Preferred spellings include:
+
+    organisation / organisations
+    authorise / authorisation
+    behaviour
+    centre
+    colour
+    customise / customisation
+    licence (noun) / license (verb)
+    analyse / analysed
+    catalogue
+    prioritise
+
+Keep package names, Angular selectors, TypeScript identifiers, route names,
+event names and other technical contracts unchanged.
+
+
+Licence
+-------
+
+This project is licensed under the MIT Licence. See LICENCE for the full
+licence text.

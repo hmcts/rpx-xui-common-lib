@@ -1,0 +1,9 @@
+<xuilib-share-case title="Share synthetic cases" addUserLabel="Add a person to all cases"
+  [shareCases$]="initialCases$" [users]="users" [removeUserFromCaseToggleOn]="true" [showRemoveUsers]="true"
+  confirmLink="/coverage/case-sharing/confirmation" cancelLink="/coverage"
+  (synchronizeStore)="synchronize($event)" (unselect)="unselected.push($event)">
+</xuilib-share-case>
+<h2 class="govuk-heading-m">Demo event outputs</h2>
+<pre data-testid="sharing-synchronized">{{ synchronized | json }}</pre>
+<pre data-testid="sharing-unselected">{{ unselected | json }}</pre>
+<pre data-testid="sharing-state">{{ state.state | async | json }}</pre>

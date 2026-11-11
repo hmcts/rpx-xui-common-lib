@@ -1,0 +1,44 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Extended control coverage</h1>
+
+  <form [formGroup]="form">
+    <xuilib-gov-uk-input
+      [group]="form"
+      [config]="{id: 'full-name', name: 'name', label: 'Full name', hint: 'Enter a synthetic name.', type: 'text'}"
+      [errorMessage]="inputError">
+    </xuilib-gov-uk-input>
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleInputError()">Toggle input error</button>
+
+    <xuilib-gov-uk-checkboxes
+      [group]="form"
+      [config]="checkboxConfig"
+      [items]="checkboxItems"
+      [errorMessage]="checkboxError">
+    </xuilib-gov-uk-checkboxes>
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleCheckboxError()">Toggle checkbox error</button>
+  </form>
+
+  <pre data-testid="extended-form-value">{{ form.getRawValue() | json }}</pre>
+
+  <label class="govuk-label" for="inputServiceSearch">Search services</label>
+  <exui-search-service
+    [options]="serviceOptions"
+    [selectedOptions]="selectedServices"
+    [searchTerm]="searchTerm"
+    [showAutocomplete]="true"
+    (searchTermChange)="searchTerm = $event"
+    (optionChanged)="selectService($event)">
+  </exui-search-service>
+  <p>Selected services: <output data-testid="selected-services">{{ selectedServices | json }}</output></p>
+
+  <section aria-labelledby="address-inputs-heading">
+    <h2 id="address-inputs-heading" class="govuk-heading-m">Address inputs</h2>
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleAddressSubmission()">Toggle address errors</button>
+    <button class="govuk-button govuk-button--secondary" type="button" (click)="toggleInternational()">Toggle international address</button>
+    <xuilib-write-address-inputs
+      [formGroup]="addressForm"
+      [isInternational]="international"
+      [submissionAttempted]="addressSubmissionAttempted">
+    </xuilib-write-address-inputs>
+  </section>
+</main>

@@ -2,8 +2,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
-import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -301,6 +301,35 @@ describe('SearchLocationComponent', () => {
       flush();
     }));
 
+    it('should wait for the debounce before querying with a valid term', fakeAsync(() => {
+      locationServiceMock.getAllLocations.calls.reset();
+      component.filteredList$.subscribe();
+
+      component.searchTermFormControl.setValue('MARCUS');
+      tick(299);
+      expect(locationServiceMock.getAllLocations).not.toHaveBeenCalled();
+
+      tick(1);
+
+      expect(locationServiceMock.getAllLocations).toHaveBeenCalledWith(
+        'api/locations/getLocations', '', '', 'MARCUS', undefined
+      );
+    }));
+
+    it('should exclude selected locations from the debounced API result', fakeAsync(() => {
+      const selectedLocation = dummyLocations[0];
+      const availableLocation = dummyLocations[2];
+      component.selectedLocations = [selectedLocation];
+      locationServiceMock.getAllLocations.and.returnValue(of([selectedLocation, availableLocation]));
+      const results: (LocationByEPIMMSModel[] | null)[] = [];
+      component.filteredList$.subscribe((result) => results.push(result));
+
+      component.searchTermFormControl.setValue('Aber');
+      tick(300);
+
+      expect(results).toEqual([[availableLocation]]);
+    }));
+
     it('should call get locations with the correct parameters', () => {
       component.serviceIds = 'IA,SSCS';
       component.bookingCheck = BookingCheckType.NO_CHECK;
@@ -480,5 +509,56 @@ describe('SearchLocationComponent', () => {
     input.triggerEventHandler('keydown', mockKeyboardEvent);
     fixture.detectChanges();
     expect(spyIsValidCharacter).toHaveBeenCalled();
+  });
+
+  it('should accept letters, spaces, punctuation and navigation keys', () => {
+    ['A', 'z', ' ', "'", '-', 'Tab', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Enter']
+      .forEach((key) => expect(component.isCharacterValid({ key } as KeyboardEvent)).toBeTrue());
+  });
+
+  it('should reject digits, symbols and unsupported navigation keys', () => {
+    ['1', '@', 'Escape', 'Delete'].forEach((key) => {
+      expect(component.isCharacterValid({ key } as KeyboardEvent)).toBeFalse();
+    });
+  });
+
+  it('should use keyCode when the keyboard event has no key', () => {
+    expect(component.isCharacterValid({ key: undefined, keyCode: 65 } as KeyboardEvent)).toBeTrue();
+    expect(component.isCharacterValid({ key: undefined, keyCode: 49 } as KeyboardEvent)).toBeFalse();
+  });
+
+  it('should prevent invalid input but leave valid input actionable', () => {
+    const invalidEvent = {
+      key: '1',
+      preventDefault: jasmine.createSpy('preventDefault')
+    } as unknown as KeyboardEvent;
+    const validEvent = {
+      key: 'A',
+      preventDefault: jasmine.createSpy('preventDefault')
+    } as unknown as KeyboardEvent;
+
+    component.removeInvalidString(invalidEvent);
+    component.removeInvalidString(validEvent);
+
+    expect(invalidEvent.preventDefault).toHaveBeenCalledTimes(1);
+    expect(validEvent.preventDefault).not.toHaveBeenCalled();
+  });
+
+  it('should set the selected location and emit the exact selected object', () => {
+    const locationSelectedSpy = spyOn(component.locationSelected, 'emit');
+    const selectedLocation = dummyLocations[2];
+
+    component.onSelectedLocation(selectedLocation);
+
+    expect(component.searchTermFormControl.value).toBe(selectedLocation.site_name);
+    expect(locationSelectedSpy).toHaveBeenCalledWith(selectedLocation);
+  });
+
+  it('should emit when the location input changes', () => {
+    const searchLocationChangedSpy = spyOn(component.searchLocationChanged, 'emit');
+
+    component.onInput();
+
+    expect(searchLocationChangedSpy).toHaveBeenCalledTimes(1);
   });
 });

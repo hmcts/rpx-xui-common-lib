@@ -1,0 +1,41 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container">
+  <h1 class="govuk-heading-xl">Lifecycle behaviour coverage</h1>
+
+  <section aria-labelledby="service-messages-heading">
+    <h2 id="service-messages-heading" class="govuk-heading-l">Service messages</h2>
+    @if (standalone) {
+      @if (hiddenMessageKey === null) {
+        <xuilib-service-message data-testid="standalone-message"
+          [message_en]="standaloneMessage.message_en"
+          [message_cy]="standaloneMessage.message_cy"
+          [key]="standaloneMessage"
+          (hideMessage)="hideStandalone($event)">
+        </xuilib-service-message>
+      }
+      <p>Hidden message key: <output data-testid="lifecycle-hidden-key">{{ hiddenMessageKey | json }}</output></p>
+      <p>Hide events: <output data-testid="lifecycle-hide-events">{{ hideEvents }}</output></p>
+    } @else {
+      <xuilib-service-messages
+        [userRoles]="userRoles"
+        [featureToggleKey]="messageKey"
+        [serviceMessageCookie]="messageCookie">
+      </xuilib-service-messages>
+    }
+  </section>
+
+  <section aria-labelledby="feature-toggle-heading">
+    <h2 id="feature-toggle-heading" class="govuk-heading-l">Feature toggle</h2>
+    <p>Active feature: <output data-testid="active-feature-key">{{ featureKey }}</output></p>
+    <button type="button" class="govuk-button" (click)="emitCurrentFeature(true)">Enable current feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="emitCurrentFeature(false)">Disable current feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="rebindFeature()">Rebind feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="emitOriginalFeature(true)">Enable original feature</button>
+    <button type="button" class="govuk-button govuk-button--secondary" (click)="emitOriginalFeature(false)">Disable original feature</button>
+
+    <div *xuilibFeatureToggle="featureKey">
+      <p data-testid="feature-toggle-content">Feature content for {{ featureKey }}</p>
+      <button type="button" class="govuk-button" (click)="featureActions = featureActions + 1">Use enabled feature</button>
+    </div>
+    <p>Feature actions: <output data-testid="lifecycle-feature-actions">{{ featureActions }}</output></p>
+  </section>
+</main>
