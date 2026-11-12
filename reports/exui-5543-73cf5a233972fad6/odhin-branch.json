@@ -1,0 +1,18 @@
+{
+  "rawBranch": "exui-5543",
+  "slug": "exui-5543-73cf5a233972fad6",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "exui-5543",
+      "branchSlug": "exui-5543-73cf5a233972fad6",
+      "runKey": "43212609529-attempt-1",
+      "runId": "43212609529",
+      "runAttempt": "1",
+      "sha": "7673f2e3753cf991c9e0eff76722c7aae8257488",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/43212609529/attempts/1",
+      "createdAt": "2026-11-12T12:01:04.024Z"
+    }
+  ]
+}
