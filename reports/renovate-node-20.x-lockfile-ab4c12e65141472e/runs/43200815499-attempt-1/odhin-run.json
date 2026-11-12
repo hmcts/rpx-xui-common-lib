@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "renovate/node-20.x-lockfile",
+  "branchSlug": "renovate-node-20.x-lockfile-ab4c12e65141472e",
+  "runKey": "43200815499-attempt-1",
+  "runId": "43200815499",
+  "runAttempt": "1",
+  "sha": "ac9cd42d4b0c9d7eccc0d354077544720feaf564",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/43200815499/attempts/1",
+  "createdAt": "2026-11-12T10:37:17.518Z"
+}
