@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "update-to-system-design",
       "branchSlug": "update-to-system-design-e4c2f667761f0977",
+      "runKey": "43111381127-attempt-2",
+      "runId": "43111381127",
+      "runAttempt": "2",
+      "sha": "fc7752afcbc926ae6d0b6aa580fe2c6e7a7fcc02",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/43111381127/attempts/2",
+      "createdAt": "2026-11-12T11:52:51.041Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "update-to-system-design",
+      "branchSlug": "update-to-system-design-e4c2f667761f0977",
       "runKey": "43111381127-attempt-1",
       "runId": "43111381127",
       "runAttempt": "1",
