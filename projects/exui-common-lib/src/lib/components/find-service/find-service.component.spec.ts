@@ -8,6 +8,13 @@ import { FilterConfigOption } from '../../models';
 import { SearchServiceComponent } from '../search-service/search-service.component';
 import { FindServiceComponent } from './find-service.component';
 
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({ name: 'rpxTranslate', standalone: true })
+class RpxTranslateMockPipe implements PipeTransform {
+  transform(value: string): string { return value; }
+}
+
 describe('FindServiceComponent', () => {
   let component: FindServiceComponent;
   let fixture: ComponentFixture<FindServiceComponent>;
@@ -20,7 +27,8 @@ describe('FindServiceComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule.withRoutes([]),
         MatAutocompleteModule,
-        MatOptionModule
+        MatOptionModule,
+        RpxTranslateMockPipe
       ],
       declarations: [FindServiceComponent, SearchServiceComponent],
       providers: []

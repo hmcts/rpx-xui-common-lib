@@ -4,7 +4,7 @@
       <h3 class="govuk-heading-m">{{ data.title }}</h3>
     }
     @if (data.badgeText) {
-      <p><span [className]="'hmcts-badge ' + data.badgeColour">{{ data.badgeText }}</span></p>
+      <p><strong [className]="'govuk-tag ' + data.badgeColour">{{ data.badgeText }}</strong></p>
     }
     @if (data.email) {
       <div class="email"><span class="govuk-!-font-weight-bold">{{'Email:' | rpxTranslate}} </span> <a href="mailto:{{ data.email }}">{{ data.email }}</a></div>
