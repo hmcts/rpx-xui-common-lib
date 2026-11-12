@@ -26,7 +26,7 @@ name is:
 Prerequisites
 -------------
 
-- Node.js 24.x or a later version accepted by package.json.
+- Node.js 24.22.2 or a later version accepted by package.json.
 - Yarn 4.5.3, managed through the repository's Yarn configuration.
 - Chromium, Firefox and WebKit when running the full Playwright suite.
 - Git Bash or WSL on Windows for shell commands that use Unix-style syntax.
