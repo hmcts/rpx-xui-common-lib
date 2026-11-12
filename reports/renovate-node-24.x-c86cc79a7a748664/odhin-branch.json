@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "renovate/node-24.x",
       "branchSlug": "renovate-node-24.x-c86cc79a7a748664",
+      "runKey": "43202618912-attempt-1",
+      "runId": "43202618912",
+      "runAttempt": "1",
+      "sha": "33ac138ddee997fad7c61c14822e37b509e729a3",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/43202618912/attempts/1",
+      "createdAt": "2026-11-12T10:49:12.332Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "renovate/node-24.x",
+      "branchSlug": "renovate-node-24.x-c86cc79a7a748664",
       "runKey": "43197472530-attempt-1",
       "runId": "43197472530",
       "runAttempt": "1",
