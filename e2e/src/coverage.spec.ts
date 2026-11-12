@@ -10,7 +10,7 @@ test.describe('CommonLib coverage', () => {
     test('requires a service before persisting a filter', async ({ page }) => {
       await page.getByRole('button', { name: 'Apply filters' }).click();
 
-      await expect(page.locator('#service')).toHaveClass(/form-group-error/);
+      await expect(page.locator('#service')).toHaveClass(/govuk-form-group--error/);
       await expect(page.getByTestId('filter-result')).toHaveText('null');
       await expect.poll(() => page.evaluate(() => sessionStorage.getItem('commonlib-coverage-filter'))).toBeNull();
       await page.reload();
@@ -60,7 +60,7 @@ test.describe('CommonLib coverage', () => {
 
       await family.uncheck();
       await page.getByRole('button', { name: 'Apply filters' }).click();
-      await expect(page.locator('#service')).toHaveClass(/form-group-error/);
+      await expect(page.locator('#service')).toHaveClass(/govuk-form-group--error/);
       await expect(page.getByTestId('filter-result')).toContainText('family');
 
       await page.reload();
