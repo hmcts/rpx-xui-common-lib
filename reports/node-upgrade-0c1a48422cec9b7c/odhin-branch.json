@@ -1,0 +1,18 @@
+{
+  "rawBranch": "node-upgrade",
+  "slug": "node-upgrade-0c1a48422cec9b7c",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "node-upgrade",
+      "branchSlug": "node-upgrade-0c1a48422cec9b7c",
+      "runKey": "43196298432-attempt-1",
+      "runId": "43196298432",
+      "runAttempt": "1",
+      "sha": "73cc0c9219b678e4d1c20839eb7bf7dcc9469fcc",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/43196298432/attempts/1",
+      "createdAt": "2026-11-12T10:08:46.847Z"
+    }
+  ]
+}
