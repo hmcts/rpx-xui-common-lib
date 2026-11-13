@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "test/EXUI-5327-lookup-composition-ids",
+  "branchSlug": "test-exui-5327-lookup-composition-ids-9c3940273046165d",
+  "runKey": "43359810766-attempt-1",
+  "runId": "43359810766",
+  "runAttempt": "1",
+  "sha": "5f690b0359e33ea11201147a108b612b2d16d45c",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/43359810766/attempts/1",
+  "createdAt": "2026-11-13T03:41:56.443Z"
+}
