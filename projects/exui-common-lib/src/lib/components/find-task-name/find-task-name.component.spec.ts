@@ -42,6 +42,18 @@ describe('FindTaskNameComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('connects an instance-specific hint and error to the input', () => {
+    component.idValue = 'filter-task';
+    component.subTitle = 'Choose a task';
+    component.findTaskNameGroup.setErrors({ error: 'Selection required' });
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('aria-describedby')).toBe('sub-title-hintfilter-task validation-errorfilter-task');
+    expect(fixture.nativeElement.querySelector('#sub-title-hintfilter-task')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#validation-errorfilter-task')).toBeTruthy();
+  });
+
   it('selection change emits change with task name', () => {
     const mockTaskName = { task_type: { task_type_name: 'Review Hearing bundle', task_type_id: 'reviewHearingBundle' } };
 
