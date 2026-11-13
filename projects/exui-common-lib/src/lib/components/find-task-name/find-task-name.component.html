@@ -6,19 +6,19 @@
 }
 <div class="govuk-form-group" [formGroup]="findTaskNameGroup"
   [ngClass]="{'form-group-error': findTaskNameGroup.get('findTaskNameControl')?.invalid && submitted}">
-  <fieldset class="govuk-fieldset" [attr.aria-describedby]="subTitle && subTitle.length ? 'sub-title-hint' : null">
+  <fieldset class="govuk-fieldset" [attr.aria-describedby]="descriptionIds">
     <legend class="govuk-visually-hidden">{{ boldTitle }}</legend>
     @if (subTitle && subTitle.length) {
-      <div id="sub-title-hint" class="govuk-hint">
+      <div [id]="hintId" class="govuk-hint">
         {{subTitle}}
       </div>
     }
     @if (findTaskNameGroup && findTaskNameGroup.errors) {
-      <span id="validation-error" class="govuk-error-message">
+      <span [id]="errorId" class="govuk-error-message">
         <span class="govuk-visually-hidden">Error:</span>{{findTaskNameGroup.errors.error ? findTaskNameGroup.errors.error : errorMessage}}
       </span>
     }
-    <input id="inputSelectTaskName{{idValue}}" type="text" aria-label="select a task name"
+    <input id="inputSelectTaskName{{idValue}}" type="text" aria-label="select a task name" [attr.aria-describedby]="descriptionIds"
       formControlName="findTaskNameControl"
       [matAutocomplete]="auto"
       class="govuk-input govuk-!-width-one-third"

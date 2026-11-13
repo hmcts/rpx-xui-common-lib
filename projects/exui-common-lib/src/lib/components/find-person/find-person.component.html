@@ -6,19 +6,19 @@
 }
 <div class="govuk-form-group" [formGroup]="findPersonGroup"
   [ngClass]="{'form-group-error': findPersonGroup.get('findPersonControl').invalid && submitted}">
-  <fieldset class="govuk-fieldset" [attr.aria-describedby]="subTitle && subTitle.length ? 'sub-title-hint' : null">
+  <fieldset class="govuk-fieldset" [attr.aria-describedby]="descriptionIds">
     <legend class="govuk-visually-hidden">{{boldTitle | rpxTranslate}}</legend>
     @if (subTitle && subTitle.length) {
-      <div id="sub-title-hint" class="govuk-hint">
+      <div [id]="hintId" class="govuk-hint">
         {{subTitle | rpxTranslate}}
       </div>
     }
     @if (findPersonGroup && findPersonGroup.errors) {
-      <span id="validation-error" class="govuk-error-message">
+      <span [id]="errorId" class="govuk-error-message">
         <span class="govuk-visually-hidden">{{'Error:' | rpxTranslate}}</span>{{findPersonGroup.errors.error ? findPersonGroup.errors.error : errorMessage}}
       </span>
     }
-    <input id="inputSelectPerson{{idValue}}" type="text" aria-label="select a person"
+    <input id="inputSelectPerson{{idValue}}" type="text" aria-label="select a person" [attr.aria-describedby]="descriptionIds"
       formControlName="findPersonControl"
       [matAutocomplete]="auto"
       class="govuk-input govuk-!-width-one-third"
