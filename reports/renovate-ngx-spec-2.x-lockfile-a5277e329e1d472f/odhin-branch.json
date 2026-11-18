@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "renovate/ngx-spec-2.x-lockfile",
       "branchSlug": "renovate-ngx-spec-2.x-lockfile-a5277e329e1d472f",
+      "runKey": "44264626328-attempt-1",
+      "runId": "44264626328",
+      "runAttempt": "1",
+      "sha": "a8b8e2e94b4aa2df78b88bced9d870ec4a008318",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/44264626328/attempts/1",
+      "createdAt": "2026-11-18T08:20:54.150Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "renovate/ngx-spec-2.x-lockfile",
+      "branchSlug": "renovate-ngx-spec-2.x-lockfile-a5277e329e1d472f",
       "runKey": "43200879540-attempt-1",
       "runId": "43200879540",
       "runAttempt": "1",
