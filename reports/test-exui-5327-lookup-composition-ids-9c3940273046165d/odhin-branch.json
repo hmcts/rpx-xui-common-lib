@@ -7,6 +7,18 @@
       "reportType": "functional",
       "rawBranch": "test/EXUI-5327-lookup-composition-ids",
       "branchSlug": "test-exui-5327-lookup-composition-ids-9c3940273046165d",
+      "runKey": "44272190450-attempt-1",
+      "runId": "44272190450",
+      "runAttempt": "1",
+      "sha": "7c0d6289dcdf3b6311bba72c439cba4097df2cfc",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/44272190450/attempts/1",
+      "createdAt": "2026-11-18T09:10:53.436Z"
+    },
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "test/EXUI-5327-lookup-composition-ids",
+      "branchSlug": "test-exui-5327-lookup-composition-ids-9c3940273046165d",
       "runKey": "43359810766-attempt-1",
       "runId": "43359810766",
       "runAttempt": "1",
