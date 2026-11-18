@@ -28,8 +28,13 @@ Prerequisites
 
 - Node.js 24.22.2 or a later version accepted by package.json.
 - Yarn 4.5.3, managed through the repository's Yarn configuration.
+- Angular 21.2.26, CLI 21.2.30, Material/CDK 21.2.14 and TypeScript 5.9.3 (installed locally).
 - Chromium, Firefox and WebKit when running the full Playwright suite.
 - Git Bash or WSL on Windows for shell commands that use Unix-style syntax.
+
+The pinned `rpx-xui-translation@1.2.18` dependency still declares Angular 20 peers.
+An Angular 21-compatible translation release is required to resolve that peer conflict;
+this upgrade does not override the dependency's published compatibility declaration.
 
 Install dependencies from the repository root:
 

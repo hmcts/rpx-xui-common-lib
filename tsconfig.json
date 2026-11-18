@@ -15,10 +15,6 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
     "paths": {
       "exui-common-lib": [
         "dist/exui-common-lib"
