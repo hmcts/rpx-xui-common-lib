@@ -9,7 +9,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@hmcts/rpx-xui-common-lib@workspace:."
   dependencies:
-    ngx-spec: "npm:^2.1.4"
+    ngx-spec: "npm:^2.1.6"
     tslib: "npm:^2.0.0"
   peerDependencies:
     "@angular/animations": ^20.3.35
@@ -66,12 +66,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ngx-spec@npm:^2.1.4":
-  version: 2.1.5
-  resolution: "ngx-spec@npm:2.1.5"
+"ngx-spec@npm:^2.1.6":
+  version: 2.1.6
+  resolution: "ngx-spec@npm:2.1.6"
   dependencies:
     minimatch: "npm:^3.0.4"
-  checksum: 10c0/d23a93274a51c3503f86630ae4690b0c6f429889e319fcbfd944aace605a21b2c24e8763edd6f551b4624487a7a500e647bc18e6522eedbd825856fc71b338bf
+  checksum: 10c0/536a8a378a5d9bac2a119b8e4d197589757b34ea7025689835530fccf99da79584453bd4705d89d4bdfc6ba053afb2bf575cf8ff81bb19ccf48bccddf745d83f
   languageName: node
   linkType: hard
 
