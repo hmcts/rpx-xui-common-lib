@@ -163,12 +163,12 @@
                     (personFieldChanged)="inputChanged(field)"
                     [submitted]="submitted"
                     [disabled]="disabled(field, form)"
-                    [domain]="form.get(field.domainField)?.value"
+                    [domain]="$safeNavigationMigration(form.get(field.domainField)?.value)"
                     [findPersonGroup]="form"
-                    [selectedPerson]="form.get(field.name)?.value?.email"
+                    [selectedPerson]="$safeNavigationMigration(form.get(field.name)?.value?.email)"
                     [userIncluded]="false"
                     [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
-                    [services]="form.get(field.servicesField)?.value"
+                    [services]="$safeNavigationMigration(form.get(field.servicesField)?.value)"
                   ></xuilib-find-person>
                 }
                 @case ('find-location') {
@@ -181,7 +181,7 @@
                     [disableInputField]="field.disable"
                     [submitted]="submitted"
                     [field]="field"
-                    [services]="form.get(field.findLocationField)?.value"
+                    [services]="$safeNavigationMigration(form.get(field.findLocationField)?.value)"
                     [formSubmissionEvent$]="formSubmissionEvent$"
                   ></xuilib-find-location>
                 }
@@ -190,11 +190,11 @@
                     (taskNameFieldChanged)="inputChanged(field)"
                     [submitted]="submitted"
                     [disabled]="disabled(field, form)"
-                    [domain]="form.get(field.domainField)?.value"
+                    [domain]="$safeNavigationMigration(form.get(field.domainField)?.value)"
                     [findTaskNameGroup]="form"
-                    [selectedTaskName]="form.get(field.name)?.value?.task_type_name"
+                    [selectedTaskName]="$safeNavigationMigration(form.get(field.name)?.value?.task_type_name)"
                     [placeholderContent]="field.placeholderContent ? field.placeholderContent : ''"
-                    [services]="form.get(field.servicesField)?.value"
+                    [services]="$safeNavigationMigration(form.get(field.servicesField)?.value)"
                   ></xuilib-find-task-name>
                 }
                 @case ('find-service') {
@@ -218,7 +218,7 @@
                     [disableInputField]="field.disable"
                     [submitted]="submitted"
                     [field]="field"
-                    [services]="form.get(field.findWorkTypeField)?.value"
+                    [services]="$safeNavigationMigration(form.get(field.findWorkTypeField)?.value)"
                     [formSubmissionEvent$]="formSubmissionEvent$"
                   ></xuilib-find-work-type>
                 }

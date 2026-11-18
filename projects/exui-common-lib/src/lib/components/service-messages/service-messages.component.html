@@ -19,8 +19,8 @@
   <div class="govuk-width-container govuk-!-margin-top-6">
     @for (message of filteredMessages; track message) {
       <xuilib-service-message [key]="message"
-        [message_en]="message?.message_en | rpxTranslate"
-        [message_cy]="message?.message_cy | rpxTranslate"
+        [message_en]="$safeNavigationMigration(message?.message_en) | rpxTranslate"
+        [message_cy]="$safeNavigationMigration(message?.message_cy) | rpxTranslate"
         (hideMessage)="hideMessage($event)">
       </xuilib-service-message>
     }

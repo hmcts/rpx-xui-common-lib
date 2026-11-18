@@ -1,5 +1,5 @@
 <div [formGroup]="group"
-class="govuk-form-group" [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
+class="govuk-form-group" [ngClass]="{'govuk-form-group--error': $safeNavigationMigration(errorMessage?.isInvalid)}">
 <xuilib-gov-label [config]="config"></xuilib-gov-label>
 <span [id]="config.id + '-hint'" class="govuk-hint">
   {{config.hint | rpxTranslate}}
@@ -7,6 +7,6 @@ class="govuk-form-group" [ngClass]="{'govuk-form-group--error': errorMessage?.is
 <xuilib-gov-uk-error-message [config]="config" [errorMessage]="errorMessage"></xuilib-gov-uk-error-message>
 <textarea
   class="govuk-textarea" [formControlName]="config.key"
-  [ngClass]="{'govuk-textarea--error': errorMessage?.isInvalid}"
+  [ngClass]="{'govuk-textarea--error': $safeNavigationMigration(errorMessage?.isInvalid)}"
   [id]="config.id" name="more-detail" [rows]="config.rows" [attr.aria-describedby]="setDescribedBy()"></textarea>
 </div>

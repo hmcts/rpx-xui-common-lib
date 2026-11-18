@@ -2,7 +2,8 @@ import {
   Component,
   Input,
   OnDestroy,
-  OnInit
+  OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ValidationErrors, ValidatorFn } from '@angular/forms';
 import { merge, Subscription } from 'rxjs';
@@ -18,6 +19,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
     selector: 'xuilib-gov-uk-date',
     templateUrl: './gov-uk-date.component.html',
     styleUrls: ['./gov-uk-date.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkDateComponent implements OnInit, OnDestroy {

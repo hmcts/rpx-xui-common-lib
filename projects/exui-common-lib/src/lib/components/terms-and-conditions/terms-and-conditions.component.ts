@@ -1,4 +1,4 @@
-import { Component, Input, SecurityContext } from '@angular/core';
+import { Component, Input, SecurityContext, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TCDocument } from '../../models';
 
@@ -6,6 +6,7 @@ import { TCDocument } from '../../models';
     selector: 'xuilib-terms-and-conditions',
     templateUrl: './terms-and-conditions.component.html',
     styleUrls: ['./terms-and-conditions.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TermsAndConditionsComponent {

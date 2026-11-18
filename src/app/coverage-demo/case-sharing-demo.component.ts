@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { SharedCase } from 'projects/exui-common-lib/src/lib/models';
 import { CaseSharingStateService } from 'projects/exui-common-lib/src/lib/services/case-sharing-state/case-sharing-state.service';
@@ -8,6 +8,7 @@ import { sharingCases, sharingUsers } from './case-sharing-demo.data';
   selector: 'app-case-sharing-demo',
   template: '<main id="main-content" tabindex="-1" class="govuk-width-container"><router-outlet></router-outlet></main>',
   providers: [CaseSharingStateService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class CaseSharingDemoComponent {
@@ -19,6 +20,7 @@ export class CaseSharingDemoComponent {
 @Component({
   selector: 'app-case-sharing-edit-demo',
   templateUrl: './case-sharing-demo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class CaseSharingEditDemoComponent {
@@ -45,6 +47,7 @@ export class CaseSharingEditDemoComponent {
       changeLink="/coverage/case-sharing" completeLink="/coverage"></xuilib-share-case-confirm>
     <a class="govuk-link" routerLink="/coverage/case-sharing">Cancel confirmation</a>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class CaseSharingConfirmDemoComponent {

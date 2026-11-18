@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -8,6 +8,7 @@ import { serviceOptions } from './service-selection-demo.data';
 @Component({
   selector: 'app-service-selection-demo',
   templateUrl: './service-selection-demo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ServiceSelectionDemoComponent {

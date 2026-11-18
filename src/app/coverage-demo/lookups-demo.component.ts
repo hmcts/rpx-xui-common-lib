@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -12,6 +12,7 @@ import { createLocationField, createWorkTypeField, selectedVenue } from './looku
 @Component({
   selector: 'app-lookups-demo',
   templateUrl: './lookups-demo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class LookupsDemoComponent {

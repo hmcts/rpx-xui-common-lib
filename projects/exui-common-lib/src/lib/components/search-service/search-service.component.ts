@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FilterConfigOption } from '../../models';
 import { MatOptionSelectionChange } from '@angular/material/core';
 
@@ -6,6 +6,7 @@ import { MatOptionSelectionChange } from '@angular/material/core';
     selector: 'exui-search-service',
     templateUrl: './search-service.component.html',
     styleUrls: ['./search-service.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SearchServiceComponent {

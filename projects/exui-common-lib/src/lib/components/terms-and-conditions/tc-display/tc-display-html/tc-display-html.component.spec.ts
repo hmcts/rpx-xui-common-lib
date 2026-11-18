@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TcDisplayHtmlComponent } from './tc-display-html.component';
 
 @Component({
   template: '<xuilib-tc-display-html><p id="terms-copy"><strong>Terms</strong></p></xuilib-tc-display-html>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class TestHostComponent {}

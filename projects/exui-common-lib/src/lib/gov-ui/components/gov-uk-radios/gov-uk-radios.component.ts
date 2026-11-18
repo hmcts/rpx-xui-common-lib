@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ErrorMessagesModel } from '../../models';
 import { RadioButtonsModel } from '../../models/radio-buttons.model';
 /*
@@ -11,6 +11,7 @@ import { RadioButtonsModel } from '../../models/radio-buttons.model';
 @Component({
     selector: 'xuilib-gov-uk-radios',
     templateUrl: './gov-uk-radios.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

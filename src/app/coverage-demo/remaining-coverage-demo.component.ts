@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import {
@@ -19,6 +19,7 @@ import { FilterSetting, PersonRole, SharedCase, UserDetails } from 'projects/exu
   selector: 'app-remaining-coverage-demo',
   templateUrl: './remaining-coverage-demo.component.html',
   providers: [AddressService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class RemainingCoverageDemoComponent {

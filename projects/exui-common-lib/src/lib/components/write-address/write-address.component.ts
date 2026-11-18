@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AddressMessageEnum, AddressModel } from '../../models';
 import { AddressOption } from '../../models/address-option.model';
@@ -8,6 +8,7 @@ import { AddressService } from '../../services/address/address.service';
     selector: 'xuilib-write-address-field',
     styleUrls: ['./write-address.component.scss'],
     templateUrl: './write-address.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WriteAddressFieldComponent implements OnInit, OnChanges {

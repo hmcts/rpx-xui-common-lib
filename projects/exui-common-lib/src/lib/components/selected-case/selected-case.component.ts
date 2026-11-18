@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,6 +10,7 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
     selector: 'xuilib-selected-case',
     templateUrl: './selected-case.component.html',
     styleUrls: ['./selected-case.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SelectedCaseComponent implements OnInit, OnChanges {
