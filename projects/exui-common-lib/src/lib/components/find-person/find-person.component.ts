@@ -31,6 +31,11 @@ export class FindPersonComponent implements OnInit, OnDestroy {
   @Input() public selectedPersons: Person[] = [];
   @Input() public errorMessage: string = 'You must select a name';
   @Input() public idValue: string = '';
+  public get hintId(): string { return `sub-title-hint${this.idValue || ''}`; }
+  public get errorId(): string { return `validation-error${this.idValue || ''}`; }
+  public get descriptionIds(): string | null {
+    return [this.subTitle?.length ? this.hintId : null, this.findPersonGroup?.errors ? this.errorId : null].filter(Boolean).join(' ') || null;
+  }
   @Input() public services: string = 'IA';
   @Input() public disabled: boolean = null;
   public showAutocomplete: boolean = false;

@@ -160,6 +160,7 @@
                 }
                 @case ('find-person') {
                   <xuilib-find-person subTitle="" (personSelected)="updatePersonControls($event, field)"
+                    [idValue]="config.id + '-' + field.name"
                     (personFieldChanged)="inputChanged(field)"
                     [submitted]="submitted"
                     [disabled]="disabled(field, form)"
@@ -187,6 +188,7 @@
                 }
                 @case ('find-task-name') {
                   <xuilib-find-task-name subTitle="" (taskNameSelected)="updateTaskNameControls($event, field)"
+                    [idValue]="config.id + '-' + field.name"
                     (taskNameFieldChanged)="inputChanged(field)"
                     [submitted]="submitted"
                     [disabled]="disabled(field, form)"

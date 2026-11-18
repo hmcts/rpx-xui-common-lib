@@ -55,6 +55,18 @@ describe('FindPersonComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('connects an instance-specific hint and error to the input', () => {
+    component.idValue = 'filter-person';
+    component.subTitle = 'Choose a person';
+    component.findPersonGroup.setErrors({ error: 'Selection required' });
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('aria-describedby')).toBe('sub-title-hintfilter-person validation-errorfilter-person');
+    expect(fixture.nativeElement.querySelector('#sub-title-hintfilter-person')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('#validation-errorfilter-person')).toBeTruthy();
+  });
+
   it('input element changes triggers search', waitForAsync(() => {
     mockFindAPersonService.find.and.returnValue(of([]));
     mockFindAPersonService.findCaseworkers.and.returnValue(of([]));
