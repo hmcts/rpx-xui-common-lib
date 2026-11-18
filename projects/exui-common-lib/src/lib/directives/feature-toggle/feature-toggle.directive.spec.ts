@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 import { FeatureToggleService } from '../../services/feature-toggle/feature-toggle.service';
@@ -6,7 +6,6 @@ import { FeatureToggleDirective } from './feature-toggle.directive';
 
 @Component({
   template: '<section *xuilibFeatureToggle="feature">Feature content</section>',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class FeatureToggleHostComponent {

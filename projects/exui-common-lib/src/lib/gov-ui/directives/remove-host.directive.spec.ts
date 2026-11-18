@@ -1,10 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RemoveHostDirective } from './remove-host.directive';
 
 @Component({
     template: '<div id="parent" appRemoveHost><div id="child"></div></div>',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestComponent {
@@ -12,7 +11,6 @@ class TestComponent {
 
 @Component({
     template: '<section id="multiple-parent"><div appRemoveHost><span id="first">First</span>text<span id="second">Second</span></div><span id="sibling">Sibling</span></section>',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class MultipleChildrenComponent {
@@ -20,7 +18,6 @@ class MultipleChildrenComponent {
 
 @Component({
     template: '<div id="empty-parent"><div appRemoveHost></div></div>',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class EmptyHostComponent {

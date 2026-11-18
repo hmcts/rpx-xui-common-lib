@@ -1,11 +1,10 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FeatureToggleService } from "../../services/feature-toggle/feature-toggle.service";
 import { ServiceMessages } from "../../models/service-message.model";
 
 @Component({
   selector: "xuilib-service-messages",
   templateUrl: "./service-messages.component.html",
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ServiceMessagesComponent implements OnInit {

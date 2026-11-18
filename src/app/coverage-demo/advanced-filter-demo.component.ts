@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilterConfig, FilterPersistence, FilterService } from 'projects/exui-common-lib/src/public-api';
 import { advancedFilterDefaults, advancedFilterFields } from './advanced-filter-demo.data';
@@ -6,7 +6,6 @@ import { advancedFilterDefaults, advancedFilterFields } from './advanced-filter-
 @Component({
   selector: 'app-advanced-filter-demo',
   templateUrl: './advanced-filter-demo.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class AdvancedFilterDemoComponent {

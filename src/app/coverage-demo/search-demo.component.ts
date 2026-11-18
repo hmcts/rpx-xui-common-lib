@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { JudicialUserModel, Person, PersonRole } from 'projects/exui-common-lib/src/public-api';
@@ -7,7 +7,6 @@ import { judicialPeople, judicialUsers } from './search-demo.data';
 @Component({
   selector: 'app-search-demo',
   templateUrl: './search-demo.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SearchDemoComponent {

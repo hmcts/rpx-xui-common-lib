@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pagination } from '../../models';
 import { User } from '../../models/user.model';
 
@@ -6,7 +6,6 @@ import { User } from '../../models/user.model';
     selector: 'xuilib-user-list',
     styleUrls: ['./user-list.component.scss'],
     templateUrl: './user-list.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UserListComponent implements OnInit {

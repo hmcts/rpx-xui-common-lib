@@ -1,5 +1,5 @@
 
-import { AfterViewInit, Component, Inject, Input, OnChanges, SimpleChanges, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, Inject, Input, OnChanges, SimpleChanges, DOCUMENT } from '@angular/core';
 /*
   Error Summary component
   State Less component
@@ -14,7 +14,6 @@ export interface HmctsErrorMessage {
 @Component({
   selector: 'xuilib-hmcts-error-summary',
   templateUrl: './hmcts-error-summary.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class HmctsErrorSummaryComponent implements AfterViewInit, OnChanges {

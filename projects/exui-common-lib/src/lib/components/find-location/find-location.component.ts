@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterFieldConfig, LocationByEPIMMSModel } from '../../models';
@@ -9,7 +9,6 @@ import { SearchLocationComponent } from '../search-location/search-location.comp
     selector: 'xuilib-find-location',
     templateUrl: './find-location.component.html',
     styleUrls: ['./find-location.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FindLocationComponent implements OnInit, OnDestroy {

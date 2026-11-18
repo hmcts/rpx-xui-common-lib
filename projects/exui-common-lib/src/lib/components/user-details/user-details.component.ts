@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../models';
 
 @Component({
     selector: 'xuilib-user-details',
     styleUrls: ['./user-details.component.scss'],
     templateUrl: './user-details.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UserDetailsComponent {

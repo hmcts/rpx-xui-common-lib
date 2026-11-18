@@ -1,10 +1,9 @@
-import {Component, EventEmitter, Input, Output, ChangeDetectionStrategy} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'xuilib-invite-user-form',
     templateUrl: './invite-user-form.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

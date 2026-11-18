@@ -1,11 +1,10 @@
-import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ErrorMessagesModel } from '../../gov-ui/models';
 
 @Component({
     selector: 'xuilib-invite-permission-form',
     templateUrl: './invite-user-permission.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

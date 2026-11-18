@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ErrorMessagesModel, GovUiConfigModel } from '../../models';
 import { HtmlTemplatesHelper } from '../../util/helpers/html-templates.helper';
@@ -13,7 +13,6 @@ import { HtmlTemplatesHelper } from '../../util/helpers/html-templates.helper';
     selector: 'xuilib-gov-uk-input',
     templateUrl: './gov-uk-input.component.html',
     styleUrls: ['./gov-uk-input.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkInputComponent implements OnInit {

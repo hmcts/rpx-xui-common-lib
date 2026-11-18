@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HmctsBannerInfo } from '../hmcts-banner/hmcts-banner-info.interface';
 /*
 * Main Content wrapper
@@ -13,7 +13,6 @@ import { HmctsBannerInfo } from '../hmcts-banner/hmcts-banner-info.interface';
     selector: 'xuilib-hmcts-main-wrapper',
     templateUrl: './hmcts-main-wrapper.component.html',
     styleUrls: ['./hmcts-main-wrapper.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HmctsMainWrapperComponent implements OnInit {

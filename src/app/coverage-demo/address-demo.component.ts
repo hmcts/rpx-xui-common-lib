@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AddressService } from 'projects/exui-common-lib/src/lib/services/address/address.service';
 
@@ -6,7 +6,6 @@ import { AddressService } from 'projects/exui-common-lib/src/lib/services/addres
   selector: 'app-address-demo',
   templateUrl: './address-demo.component.html',
   providers: [AddressService],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class AddressDemoComponent {

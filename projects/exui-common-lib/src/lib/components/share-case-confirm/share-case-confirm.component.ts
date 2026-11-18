@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
@@ -7,7 +7,6 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
     selector: 'xuilib-share-case-confirm',
     templateUrl: './share-case-confirm.component.html',
     styleUrls: ['./share-case-confirm.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ShareCaseConfirmComponent implements OnInit {

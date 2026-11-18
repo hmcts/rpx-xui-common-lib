@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { windowToken } from '../../window';
 
 @Component({
     selector: 'xuilib-cookie-banner',
     templateUrl: './cookie-banner.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -12,7 +12,6 @@ import { UserSelectComponent } from '../user-select/user-select.component';
     selector: 'xuilib-share-case',
     templateUrl: './share-case.component.html',
     styleUrls: ['./share-case.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ShareCaseComponent implements OnInit {

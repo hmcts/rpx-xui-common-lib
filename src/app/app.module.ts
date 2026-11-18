@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -36,7 +36,6 @@ import { RemainingCoverageDemoComponent } from './coverage-demo/remaining-covera
     <a class="govuk-skip-link" href="#main-content" (click)="focusMainContent($event)">Skip to main content</a>
     <router-outlet></router-outlet>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class AppShellComponent {

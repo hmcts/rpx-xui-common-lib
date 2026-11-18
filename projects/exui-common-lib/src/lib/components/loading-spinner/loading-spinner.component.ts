@@ -1,11 +1,10 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'xuilib-loading-spinner',
     templateUrl: './loading-spinner.component.html',
     styleUrls: ['./loading-spinner.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

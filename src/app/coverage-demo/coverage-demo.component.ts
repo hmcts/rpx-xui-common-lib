@@ -1,11 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FilterConfig, TCDocument, UserDetails } from 'projects/exui-common-lib/src';
 import { FilterService } from 'projects/exui-common-lib/src/lib/services';
 
 @Component({
   selector: 'app-coverage-demo',
   templateUrl: './coverage-demo.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class CoverageDemoComponent {

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   checkboxesBeCheckedValidator,
@@ -9,7 +9,6 @@ import {
 @Component({
   selector: 'app-validator-contracts-demo',
   templateUrl: './validator-contracts-demo.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ValidatorContractsDemoComponent {

@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy} from '@angular/core';
+import {AfterContentInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, mergeMap} from 'rxjs/operators';
@@ -9,7 +9,6 @@ import {LocationService} from '../../services/locations/location.service';
   selector: 'xuilib-search-venue',
   templateUrl: './search-venue.component.html',
   styleUrls: ['./search-venue.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SearchVenueComponent implements OnInit, AfterContentInit {

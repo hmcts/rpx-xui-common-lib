@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { iif, Observable, of } from 'rxjs';
 import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
@@ -9,7 +9,6 @@ import { TaskService } from '../../services/task/task.service';
   selector: 'exui-search-work-type',
   templateUrl: './search-work-type.component.html',
   styleUrls: ['./search-work-type.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SearchWorkTypeComponent implements OnInit {

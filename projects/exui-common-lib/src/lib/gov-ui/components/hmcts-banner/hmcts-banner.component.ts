@@ -1,10 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'xuilib-hmcts-banner',
     templateUrl: './hmcts-banner.component.html',
     styleUrls: ['./hmcts-banner.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HmctsBannerComponent {

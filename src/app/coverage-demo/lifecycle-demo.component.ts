@@ -1,4 +1,4 @@
-import { Component, Injectable, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { FeatureToggleService } from 'projects/exui-common-lib/src/public-api';
@@ -51,7 +51,6 @@ class LifecycleFeatureToggleService extends FeatureToggleService {
     LifecycleFeatureToggleService,
     { provide: FeatureToggleService, useExisting: LifecycleFeatureToggleService }
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class LifecycleDemoComponent {

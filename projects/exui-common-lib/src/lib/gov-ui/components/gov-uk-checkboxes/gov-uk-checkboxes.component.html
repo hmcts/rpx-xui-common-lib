@@ -1,5 +1,5 @@
 <div class="govuk-form-group gov-uk-input" [formGroup]="group"
-  [ngClass]="{'govuk-form-group--error': $safeNavigationMigration(errorMessage?.isInvalid)}">
+  [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
 
   <xuilib-gov-label [config]="config"></xuilib-gov-label>
 

@@ -1,10 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'xuilib-hmcts-sub-navigation',
     styleUrls: ['hmcts-sub-navigation.component.scss'],
     templateUrl: './hmcts-sub-navigation.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HmctsSubNavigationComponent {

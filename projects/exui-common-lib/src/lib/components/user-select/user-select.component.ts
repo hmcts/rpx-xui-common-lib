@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
@@ -9,7 +9,6 @@ import { UserDetails } from '../../models/user-details.model';
     selector: 'xuilib-user-select',
     templateUrl: './user-select.component.html',
     styleUrls: ['./user-select.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class UserSelectComponent implements OnInit {

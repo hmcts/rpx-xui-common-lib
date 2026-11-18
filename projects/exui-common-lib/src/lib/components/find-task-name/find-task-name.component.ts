@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {debounceTime, filter, mergeMap, tap} from 'rxjs/operators';
@@ -10,7 +10,6 @@ import { TaskService } from '../../services/task/task.service';
     selector: 'xuilib-find-task-name',
     templateUrl: './find-task-name.component.html',
     styleUrls: ['./find-task-name.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

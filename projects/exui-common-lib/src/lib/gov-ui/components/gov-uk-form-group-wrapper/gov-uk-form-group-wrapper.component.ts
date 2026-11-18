@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { ErrorMessagesModel } from '../../models';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
@@ -10,7 +10,6 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 @Component({
     selector: 'xuilib-gov-uk-form-group-wrapper',
     templateUrl: './gov-uk-form-group-wrapper.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkFormGroupWrapperComponent {

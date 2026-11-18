@@ -1,5 +1,5 @@
 <div class="govuk-form-group" [formGroup]="group"
-  [ngClass]="{'govuk-form-group--error': $safeNavigationMigration(errorMessage?.isInvalid)}">
+  [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
 
   <xuilib-gov-label [config]="config"></xuilib-gov-label>
 
@@ -14,7 +14,7 @@
   @if (reloadInput) {
     <input class="govuk-file-upload"
       [formControlName]="config.id"
-      [ngClass]="{'govuk-file-upload--error': $safeNavigationMigration(errorMessage?.isInvalid)}"
+      [ngClass]="{'govuk-file-upload--error': errorMessage?.isInvalid}"
       [id]="config.id" [name]="config.name"
       [attr.aria-describedby]="setDescribedBy()"
       type="file">

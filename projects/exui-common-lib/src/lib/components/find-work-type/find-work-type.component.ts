@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterFieldConfig, WorkType } from '../../models';
@@ -9,7 +9,6 @@ import { SearchWorkTypeComponent } from '../search-work-type/search-work-type.co
   selector: 'xuilib-find-work-type',
   templateUrl: './find-work-type.component.html',
   styleUrls: ['./find-work-type.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class FindWorkTypeComponent implements OnInit, OnDestroy {

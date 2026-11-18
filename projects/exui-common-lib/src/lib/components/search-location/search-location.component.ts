@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { iif, Observable, of } from 'rxjs';
 import { catchError, debounceTime, map, switchMap, tap } from 'rxjs/operators';
@@ -16,7 +16,6 @@ import { SessionStorageService } from '../../services/storage/session-storage/se
   selector: 'exui-search-location',
   templateUrl: './search-location.component.html',
   styleUrls: ['./search-location.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SearchLocationComponent implements OnInit {

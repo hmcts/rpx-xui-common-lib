@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export interface TabItem {
     text: string;
@@ -7,7 +7,6 @@ export interface TabItem {
 @Component({
     selector: 'xuilib-tab',
     templateUrl: './tab.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { CaseSharingStateService } from 'projects/exui-common-lib/src/lib/services/case-sharing-state/case-sharing-state.service';
@@ -9,7 +9,6 @@ import { sharingCases, sharingUsers } from './case-sharing-demo.data';
   selector: 'app-selected-case-demo',
   templateUrl: './selected-case-demo.component.html',
   providers: [CaseSharingStateService],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SelectedCaseDemoComponent {

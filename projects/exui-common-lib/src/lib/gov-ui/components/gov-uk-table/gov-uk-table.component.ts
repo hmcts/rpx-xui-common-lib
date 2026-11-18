@@ -1,11 +1,10 @@
 import {formatDate} from '@angular/common';
-import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'xuilib-gov-uk-table',
     templateUrl: './gov-uk-table.component.html',
     styleUrls: ['./gov-uk-table.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovukTableComponent {

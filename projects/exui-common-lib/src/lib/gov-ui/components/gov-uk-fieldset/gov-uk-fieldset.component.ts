@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { ErrorMessagesModel } from '../../models';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
@@ -13,7 +13,6 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 @Component({
     selector: 'xuilib-gov-uk-fieldset',
     templateUrl: './gov-uk-fieldset.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkFieldsetComponent {

@@ -11,7 +11,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "types": []
+    "types": [],
+    "baseUrl": "../../node_modules"
   },
   "angularCompilerOptions": {
     "enableIvy": true,
@@ -19,8 +20,7 @@
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "enableResourceInlining": true,
-    "strictTemplates": false
+    "enableResourceInlining": true
   },
   "exclude": [
     "src/test.ts",

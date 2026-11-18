@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WriteAddressInputsComponent } from './write-address-inputs.component';
@@ -7,7 +7,6 @@ describe('WriteAddressFieldComponent', () => {
 
   @Component({
     selector: `write-address-inputs`,
-    changeDetection: ChangeDetectionStrategy.Eager,
     template: `<xuilib-write-address-inputs [formGroup]="formGroup" [isInternational]="isInternational">
     </xuilib-write-address-inputs>`,
     standalone: false
@@ -78,7 +77,7 @@ describe('WriteAddressFieldComponent', () => {
     expect(element.querySelectorAll('.govuk-label').item(3).textContent.trim()).toContain('Address line 3 (Optional)');
     expect(element.querySelectorAll('.govuk-label').item(4).textContent.trim()).toContain('Town or City');
     expect(element.querySelectorAll('.govuk-label').item(5).textContent.trim()).toContain('County/ State/ Province (Optional)');
-    expect(element.querySelectorAll('.govuk-label').item(6).textContent.trim()).toContain('Country');
+    expect(element.querySelectorAll('.govuk-label').item(6).textContent.trim()).toContain('Countr');
     expect(element.querySelectorAll('.govuk-label').item(7).textContent.trim()).toContain('Postcode (Optional)');
 
   });

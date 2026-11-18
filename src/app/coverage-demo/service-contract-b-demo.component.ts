@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpBackend, HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
@@ -21,7 +21,6 @@ class ServiceContractBInterceptorHandler implements HttpHandler {
 @Component({
   selector: 'app-service-contract-b-demo',
   templateUrl: './service-contract-b-demo.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ServiceContractBDemoComponent {

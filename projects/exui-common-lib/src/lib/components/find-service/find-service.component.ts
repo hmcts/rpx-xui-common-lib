@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { FilterConfigOption, FilterFieldConfig } from '../../models';
@@ -8,7 +8,6 @@ import { SearchServiceComponent } from '../search-service/search-service.compone
     selector: 'xuilib-find-service',
     templateUrl: './find-service.component.html',
     styleUrls: ['./find-service.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FindServiceComponent implements OnInit, OnDestroy {

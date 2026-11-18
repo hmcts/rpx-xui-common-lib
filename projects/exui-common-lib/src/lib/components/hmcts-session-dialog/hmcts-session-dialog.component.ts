@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ChangeDetectionStrategy} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 /*
 * Gov UK Dialog Component
 * Responsible for displaying dialog layout
@@ -8,7 +8,6 @@ import {Component, EventEmitter, Input, Output, ChangeDetectionStrategy} from '@
     selector: 'xuilib-session-dialog',
     templateUrl: './hmcts-session-dialog.component.html',
     styleUrls: ['./hmcts-session-dialog.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HmctsSessionDialogComponent  {

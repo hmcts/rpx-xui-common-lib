@@ -1,4 +1,4 @@
-import { Component, Injectable, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { Idle } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
@@ -68,7 +68,6 @@ export class ServiceContractAKeepaliveStub {
     LaunchDarklyService,
     SessionStorageService
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ServiceContractADemoComponent implements OnInit, OnDestroy {

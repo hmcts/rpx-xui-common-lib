@@ -1,11 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FilterConfigOption } from 'projects/exui-common-lib/src/public-api';
 
 @Component({
   selector: 'app-extended-controls-demo',
   templateUrl: './extended-controls-demo.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ExtendedControlsDemoComponent {

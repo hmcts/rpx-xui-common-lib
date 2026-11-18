@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SharedCase } from '../../models/case-share.model';
 import { CaseSharingStateService } from '../../services/case-sharing-state/case-sharing-state.service';
@@ -7,7 +7,6 @@ import { CaseSharingStateService } from '../../services/case-sharing-state/case-
     selector: 'xuilib-selected-case-list',
     templateUrl: './selected-case-list.component.html',
     styleUrls: ['./selected-case-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SelectedCaseListComponent implements OnInit {

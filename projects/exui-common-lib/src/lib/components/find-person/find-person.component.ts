@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, Subscription, zip } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
@@ -10,7 +10,6 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
   selector: 'xuilib-find-person',
   templateUrl: './find-person.component.html',
   styleUrls: ['./find-person.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 
