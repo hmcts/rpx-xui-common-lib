@@ -1,4 +1,4 @@
-<div class="govuk-form-group" [attr.formGroupName]="group" [ngClass]="{'govuk-form-group--error': (error?.isInvalid)}">
+<div class="govuk-form-group" [attr.formGroupName]="group" [ngClass]="{'govuk-form-group--error': ($safeNavigationMigration(error?.isInvalid))}">
   <xuilib-gov-uk-fieldset
     [config]="{legend: config.legend, classes: 'govuk-label--m', id: config.key, hint: config.hint, isPageHeading: config.isPageHeading}"
     [errorMessage]="error">

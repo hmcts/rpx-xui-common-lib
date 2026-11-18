@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import { ErrorMessagesModel } from '../../models';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
@@ -10,6 +10,7 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 @Component({
     selector: 'xuilib-gov-select',
     templateUrl: './gov-uk-select.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkSelectComponent {

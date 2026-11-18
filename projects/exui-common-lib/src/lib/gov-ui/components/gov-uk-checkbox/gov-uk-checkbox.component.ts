@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
@@ -10,6 +10,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
     selector: 'xuilib-gov-checkbox',
     templateUrl: './gov-uk-checkbox.component.html',
     styleUrls: ['./gov-uk-checkbox.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 

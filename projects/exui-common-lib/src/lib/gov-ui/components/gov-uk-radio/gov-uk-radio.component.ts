@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
@@ -9,6 +9,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 @Component({
     selector: 'xuilib-gov-radio',
     templateUrl: './gov-uk-radio.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkRadioComponent implements OnInit {

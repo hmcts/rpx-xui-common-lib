@@ -1,5 +1,5 @@
 <div class="govuk-form-group gov-uk-input" [formGroup]="group"
-  [ngClass]="{'govuk-form-group--error': errorMessage?.isInvalid}">
+  [ngClass]="{'govuk-form-group--error': $safeNavigationMigration(errorMessage?.isInvalid)}">
 
   <xuilib-gov-label [config]="config"></xuilib-gov-label>
 
@@ -13,7 +13,7 @@
 
   <input class="govuk-input"
     [class.govuk-!-width-full]="config.fullWidth"
-    [ngClass]="{'govuk-input--error': errorMessage?.isInvalid}"
+    [ngClass]="{'govuk-input--error': $safeNavigationMigration(errorMessage?.isInvalid)}"
     [id]="config.id"
     [name]="config.name"
     [type]="config.type"

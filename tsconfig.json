@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -17,10 +16,13 @@
     ],
     "paths": {
       "exui-common-lib": [
-        "dist/exui-common-lib"
+        "./dist/exui-common-lib"
       ],
       "exui-common-lib/*": [
-        "dist/exui-common-lib/*"
+        "./dist/exui-common-lib/*"
+      ],
+      "projects/*": [
+        "./projects/*"
       ]
     },
     "noImplicitAny": true,
@@ -29,6 +31,7 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "skipLibCheck": true,
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "strict": false
   }
 }

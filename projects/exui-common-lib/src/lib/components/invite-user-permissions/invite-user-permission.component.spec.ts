@@ -1,4 +1,4 @@
-import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import { InviteUserPermissionComponent } from './invite-user-permission.componen
 @Component({
   selector: 'xuilib-gov-uk-form-group-wrapper',
   template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class FormGroupWrapperStubComponent {
@@ -18,6 +19,7 @@ class FormGroupWrapperStubComponent {
 @Component({
   selector: 'xuilib-gov-checkbox',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class GovCheckboxStubComponent {

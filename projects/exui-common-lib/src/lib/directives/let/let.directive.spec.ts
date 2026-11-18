@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LetDirective } from './let.directive';
 
 @Component({
   template: '<span *xuilibLet="value; let implicitValue; let explicitValue = xuilibLet">{{ implicitValue }}/{{ explicitValue }}</span>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class LetHostComponent {

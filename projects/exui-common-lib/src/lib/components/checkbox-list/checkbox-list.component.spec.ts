@@ -1,4 +1,4 @@
-import { Component, Input, Pipe, PipeTransform, ViewChild } from '@angular/core';
+import { Component, Input, Pipe, PipeTransform, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CheckboxListComponent } from './checkbox-list.component';
@@ -17,6 +17,7 @@ class RpxTranslateMockPipe implements PipeTransform {
 @Component({
     template: `
   <xuilib-checkbox-list [options]='options' [preselection]='preselection' [labelFunction]='labelFunction'></xuilib-checkbox-list>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class WrapperComponent {
