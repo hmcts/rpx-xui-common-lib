@@ -1,0 +1,18 @@
+{
+  "rawBranch": "exui-3755-remove-unused-scripts",
+  "slug": "exui-3755-remove-unused-scripts-00c656e0cecd172c",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "exui-3755-remove-unused-scripts",
+      "branchSlug": "exui-3755-remove-unused-scripts-00c656e0cecd172c",
+      "runKey": "44572407409-attempt-1",
+      "runId": "44572407409",
+      "runAttempt": "1",
+      "sha": "afbb65b32f9a37b87f092373d3ea815d213f920b",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/44572407409/attempts/1",
+      "createdAt": "2026-11-19T17:10:21.301Z"
+    }
+  ]
+}
