@@ -89,8 +89,7 @@ jobs:
 
       - name: Ensure npm version (Trusted Publishing)
         run: |
-          npm --version
-          npm i -g npm@11.5.1
+          npm i -g npm@11.21.2
           npm --version
 
       - name: Determine npm dist-tag from GitHub Release
@@ -103,15 +102,13 @@ jobs:
       
       - name: Publish version (OIDC via npm)
         working-directory: dist/exui-common-lib
-        env:
-          NPM_CONFIG_PROVENANCE: "false"
         run: |
           # Ensure we do NOT publish using token-based auth (classic/granular).
           unset NODE_AUTH_TOKEN
 
           # Use a fresh npm user config with no auth token to force OIDC Trusted Publishing.
           export NPM_CONFIG_USERCONFIG="$RUNNER_TEMP/npmrc-noauth"
-          printf "registry=https://registry.npmjs.org/\nprovenance=false\n" > "$NPM_CONFIG_USERCONFIG"
+          printf "registry=https://registry.npmjs.org/\n" > "$NPM_CONFIG_USERCONFIG"
 
           # Defensive: remove any auth token entries if something tries to inject them.
           npm config delete //registry.npmjs.org/:_authToken || true
