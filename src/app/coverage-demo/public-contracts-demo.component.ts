@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FilterConfigOption, LocationByEPIMMSModel } from 'projects/exui-common-lib/src/public-api';
@@ -6,6 +6,7 @@ import { FilterConfigOption, LocationByEPIMMSModel } from 'projects/exui-common-
 @Component({
   selector: 'app-public-contracts-demo',
   templateUrl: './public-contracts-demo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class PublicContractsDemoComponent {

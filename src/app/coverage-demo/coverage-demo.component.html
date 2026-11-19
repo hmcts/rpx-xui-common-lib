@@ -7,7 +7,7 @@
     <section data-testid="generic-filter-demo">
       <h2>Generic filter</h2>
       <xuilib-generic-filter [config]="filterConfig"></xuilib-generic-filter>
-      <output data-testid="filter-result">{{ (filterSettings$ | async)?.fields | json }}</output>
+      <output data-testid="filter-result">{{ $safeNavigationMigration((filterSettings$ | async)?.fields) | json }}</output>
     </section>
   }
   @case ('pagination') {

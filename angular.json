@@ -122,7 +122,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "eslintConfig": ".eslintrc.cjs",
+            "eslintConfig": "eslint.config.mjs",
             "lintFilePatterns": [
               "src/**/*.ts"
             ]
@@ -170,18 +170,6 @@
             "main": "projects/exui-common-lib/src/test.ts",
             "tsConfig": "projects/exui-common-lib/tsconfig.spec.json",
             "karmaConfig": "projects/exui-common-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/exui-common-lib/tsconfig.lib.json",
-              "projects/exui-common-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
 
 /*
 * Gov UK Label component
@@ -10,6 +10,7 @@ import {Component, Input} from '@angular/core';
     selector: 'xuilib-gov-label',
     templateUrl: './gov-uk-label.component.html',
     styleUrls: ['./gov-uk-label.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkLabelComponent {

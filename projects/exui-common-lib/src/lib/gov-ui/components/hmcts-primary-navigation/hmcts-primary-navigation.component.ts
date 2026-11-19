@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'xuilib-hmcts-primary-navigation',
     templateUrl: './hmcts-primary-navigation.component.html',
     styleUrls: ['./hmcts-primary-navigation.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HmctsPrimaryNavigationComponent {

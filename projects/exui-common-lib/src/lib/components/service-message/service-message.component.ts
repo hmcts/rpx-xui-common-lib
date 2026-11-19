@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SecurityContext } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SecurityContext, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ServiceMessages } from '../../models/service-message.model';
 
@@ -6,6 +6,7 @@ import { ServiceMessages } from '../../models/service-message.model';
     selector: 'xuilib-service-message',
     templateUrl: './service-message.component.html',
     styleUrls: ['./service-message.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ServiceMessageComponent {

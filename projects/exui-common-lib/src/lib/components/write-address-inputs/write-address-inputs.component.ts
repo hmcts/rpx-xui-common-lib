@@ -1,10 +1,11 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AddressMessageEnum } from '../../models';
 
 @Component({
     selector: 'xuilib-write-address-inputs',
     templateUrl: './write-address-inputs.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WriteAddressInputsComponent implements OnChanges {

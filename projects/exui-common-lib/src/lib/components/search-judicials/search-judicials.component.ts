@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, mergeMap } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { FindAPersonService } from '../../services/find-person/find-person.servi
   selector: 'xuilib-search-judicials',
   templateUrl: './search-judicials.component.html',
   styleUrls: ['./search-judicials.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SearchJudicialsComponent implements OnInit {

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { User } from 'projects/exui-common-lib/src/lib/models';
 import { invitedUser, managementUsers } from './user-management-demo.data';
 
 @Component({
   selector: 'app-user-management-demo',
   templateUrl: './user-management-demo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class UserManagementDemoComponent {

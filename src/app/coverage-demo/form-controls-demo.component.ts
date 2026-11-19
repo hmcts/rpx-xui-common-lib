@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ErrorMessagesModel } from 'projects/exui-common-lib/src/public-api';
 import { priorityOptions } from './form-controls-demo.data';
@@ -6,6 +6,7 @@ import { priorityOptions } from './form-controls-demo.data';
 @Component({
   selector: 'app-form-controls-demo',
   templateUrl: './form-controls-demo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class FormControlsDemoComponent {

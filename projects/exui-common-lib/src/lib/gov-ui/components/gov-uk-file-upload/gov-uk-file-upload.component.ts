@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import { ErrorMessagesModel } from '../../models';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
@@ -13,6 +13,7 @@ import {HtmlTemplatesHelper} from '../../util/helpers/html-templates.helper';
 @Component({
     selector: 'xuilib-gov-uk-file-upload',
     templateUrl: './gov-uk-file-upload.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkFileUploadComponent implements OnInit {

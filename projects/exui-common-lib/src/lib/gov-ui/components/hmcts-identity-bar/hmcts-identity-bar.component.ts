@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'xuilib-hmcts-identity-bar',
     templateUrl: './hmcts-identity-bar.component.html',
     styleUrls: ['./hmcts-identity-bar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HmctsIdentityBarComponent {

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
 /**
  * Main Page Wrapper
  * Responsible for:
@@ -13,6 +13,7 @@ import {Component, Input} from '@angular/core';
     selector: 'exui-page-wrapper',
     templateUrl: 'exui-page-wrapper.component.html',
     styleUrls: ['exui-page-wrapper.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ExuiPageWrapperComponent  {

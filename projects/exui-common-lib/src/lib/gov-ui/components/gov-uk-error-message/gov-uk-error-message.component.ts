@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import { ErrorMessagesModel } from '../../models';
 import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 /*
@@ -10,6 +10,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 @Component({
     selector: ' xuilib-gov-uk-error-message',
     templateUrl: './gov-uk-error-message.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GovUkErrorMessageComponent {
