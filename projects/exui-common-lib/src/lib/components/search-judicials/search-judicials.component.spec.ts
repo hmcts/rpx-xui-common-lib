@@ -82,7 +82,7 @@ describe('SearchJudicialsComponent', () => {
     const selectedJudicial = fixture.debugElement.query(By.css('.govuk-input'));
     selectedJudicial.nativeElement.dispatchEvent(new Event('focus'));
 
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.onFocus).toHaveBeenCalled();
     });
@@ -100,7 +100,7 @@ describe('SearchJudicialsComponent', () => {
     });
     selectedJudicial.nativeElement.dispatchEvent(mockKeyboardEvent);
 
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.keyUpSubject$.next).toHaveBeenCalledWith('MARCUS');
     });
@@ -112,7 +112,7 @@ describe('SearchJudicialsComponent', () => {
     const selectedJudicial = fixture.debugElement.query(By.css('.govuk-input'));
     selectedJudicial.nativeElement.value = 'ja';
     selectedJudicial.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(() => {
       fixture.detectChanges();
       spyOn(component, 'filter').and.callThrough();
       expect(component.filter).not.toHaveBeenCalled();
@@ -123,7 +123,7 @@ describe('SearchJudicialsComponent', () => {
     const selectedJudicial = fixture.debugElement.query(By.css('.govuk-input'));
     selectedJudicial.nativeElement.value = '';
     selectedJudicial.nativeElement.dispatchEvent(new Event('input'));
-    fixture.whenStable().then(() => {
+    await fixture.whenStable().then(() => {
       fixture.detectChanges();
       component.keyUpSubject$.subscribe(() => {
         expect(component.formGroup.controls.selectedFormControl.value).toEqual('');
