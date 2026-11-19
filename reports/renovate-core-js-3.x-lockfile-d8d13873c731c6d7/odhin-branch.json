@@ -1,0 +1,18 @@
+{
+  "rawBranch": "renovate/core-js-3.x-lockfile",
+  "slug": "renovate-core-js-3.x-lockfile-d8d13873c731c6d7",
+  "runs": [
+    {
+      "schemaVersion": 2,
+      "reportType": "functional",
+      "rawBranch": "renovate/core-js-3.x-lockfile",
+      "branchSlug": "renovate-core-js-3.x-lockfile-d8d13873c731c6d7",
+      "runKey": "44497860894-attempt-1",
+      "runId": "44497860894",
+      "runAttempt": "1",
+      "sha": "3a43232966743494540e857e523d7a9c9c8c6b8c",
+      "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/44497860894/attempts/1",
+      "createdAt": "2026-11-19T09:45:12.190Z"
+    }
+  ]
+}
