@@ -1,6 +1,6 @@
 @if (dueDate) {
-  <span class="due-date hmcts-badge" [ngClass]="badge"
+  <strong class="due-date govuk-tag" [ngClass]="badge"
     [title]="accessibleLabel | rpxTranslate" [attr.aria-label]="accessibleLabel | rpxTranslate">
     {{label | rpxTranslate}}
-  </span>
+  </strong>
 }

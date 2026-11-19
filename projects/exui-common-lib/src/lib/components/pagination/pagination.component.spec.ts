@@ -42,9 +42,11 @@ describe('PaginationComponent', () => {
     // First record needs to be greater than 1 to display the "Previous page" link
     component.firstRecord = 2;
     fixture.detectChanges();
-    fixture.debugElement.query(By.css('a:first-of-type')).triggerEventHandler('click', null);
+    const event = { preventDefault: jasmine.createSpy('preventDefault') };
+    fixture.debugElement.query(By.css('a:first-of-type')).triggerEventHandler('click', event);
     expect(component.onPrevious).toHaveBeenCalled();
     expect(component.previousPage.emit).toHaveBeenCalled();
+    expect(event.preventDefault).toHaveBeenCalled();
   });
 
   it('should emit a nextPage event when \"Next page\" is clicked', () => {
@@ -53,9 +55,11 @@ describe('PaginationComponent', () => {
     // "More items" needs to be true to display the "Next page" link
     component.moreItems = true;
     fixture.detectChanges();
-    fixture.debugElement.query(By.css('a:last-of-type')).triggerEventHandler('click', null);
+    const event = { preventDefault: jasmine.createSpy('preventDefault') };
+    fixture.debugElement.query(By.css('a:last-of-type')).triggerEventHandler('click', event);
     expect(component.onNext).toHaveBeenCalled();
     expect(component.nextPage.emit).toHaveBeenCalled();
+    expect(event.preventDefault).toHaveBeenCalled();
   });
 
   it('should not render \"Previous page\" as a hyperlink if first record is less than or equal to 1', () => {

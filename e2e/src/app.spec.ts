@@ -73,8 +73,8 @@ test.describe('workspace-project App', () => {
       const appPage = new AppPage(page);
 
       await expect(appPage.contactDetails.getByRole('heading', { name: 'Contact Details Component' })).toBeVisible();
-      await expect(appPage.contactDetails.locator('.hmcts-badge')).toHaveText('PRIVATE BETA');
-      await expect(appPage.contactDetails.locator('.hmcts-badge')).toHaveClass(/hmcts-badge--red/);
+      await expect(appPage.contactDetails.locator('.govuk-tag')).toHaveText('PRIVATE BETA');
+      await expect(appPage.contactDetails.locator('.govuk-tag')).toHaveClass(/govuk-tag--red/);
     });
 
     test('should render a mailto link for the contact email', async ({ page }) => {
@@ -129,7 +129,7 @@ test.describe('workspace-project App', () => {
       const appPage = new AppPage(page);
 
       await expect(appPage.dueDateBadge).toHaveText('TODAY');
-      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--orange/);
+      await expect(appPage.dueDateBadge).toHaveClass(/govuk-tag--orange/);
       await expect(appPage.dueDateBadge).toHaveAttribute('aria-label', 'This task is due to be completed today');
     });
 
@@ -137,7 +137,7 @@ test.describe('workspace-project App', () => {
       const appPage = new AppPage(page);
 
       await appPage.dueDateInput.fill('01/01/2000');
-      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--red/);
+      await expect(appPage.dueDateBadge).toHaveClass(/govuk-tag--red/);
       await expect(appPage.dueDateBadge).toHaveText(/\+\d+ days?/);
       await expect(appPage.dueDateBadge).toHaveAttribute('aria-label', /past its due date/);
     });
@@ -157,7 +157,7 @@ test.describe('workspace-project App', () => {
       await appPage.mediumUrgencyCutoffInput.fill('0');
       await appPage.dueDateInput.fill(dateAfterDays(10));
 
-      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--green/);
+      await expect(appPage.dueDateBadge).toHaveClass(/govuk-tag--green/);
       await expect(appPage.dueDateBadge).toHaveAttribute('aria-label', /due to be completed by/);
     });
 
@@ -182,7 +182,7 @@ test.describe('workspace-project App', () => {
       await appPage.mediumUrgencyCutoffInput.fill('2');
       await appPage.dueDateInput.fill(dateAfterDays(1));
 
-      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--orange/);
+      await expect(appPage.dueDateBadge).toHaveClass(/govuk-tag--orange/);
     });
 
     test('should mark a near-term date red at the high cutoff', async ({ page }) => {
@@ -192,7 +192,7 @@ test.describe('workspace-project App', () => {
       await appPage.mediumUrgencyCutoffInput.fill('2');
       await appPage.dueDateInput.fill(dateAfterDays(1));
 
-      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--red/);
+      await expect(appPage.dueDateBadge).toHaveClass(/govuk-tag--red/);
     });
 
     test('should keep a date at the high cutoff out of the red state', async ({ page }) => {
@@ -202,8 +202,8 @@ test.describe('workspace-project App', () => {
       await appPage.mediumUrgencyCutoffInput.fill('2');
       await appPage.dueDateInput.fill(dateAfterDays(1));
 
-      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--orange/);
-      await expect(appPage.dueDateBadge).not.toHaveClass(/hmcts-badge--red/);
+      await expect(appPage.dueDateBadge).toHaveClass(/govuk-tag--orange/);
+      await expect(appPage.dueDateBadge).not.toHaveClass(/govuk-tag--red/);
     });
 
     test('should keep a date at the medium cutoff out of the orange state', async ({ page }) => {
@@ -213,8 +213,8 @@ test.describe('workspace-project App', () => {
       await appPage.mediumUrgencyCutoffInput.fill('2');
       await appPage.dueDateInput.fill(dateAfterDays(2));
 
-      await expect(appPage.dueDateBadge).toHaveClass(/hmcts-badge--green/);
-      await expect(appPage.dueDateBadge).not.toHaveClass(/hmcts-badge--orange/);
+      await expect(appPage.dueDateBadge).toHaveClass(/govuk-tag--green/);
+      await expect(appPage.dueDateBadge).not.toHaveClass(/govuk-tag--orange/);
     });
 
     test('should retain the last valid due date when invalid input is entered', async ({ page }) => {
