@@ -28,7 +28,7 @@
               <strong class="govuk-tag govuk-tag--green">{{'To be added' | rpxTranslate}}</strong>
             </td>
           </tr>
-        }yes 
+        }
   @for (user of sharedCase.pendingUnshares; track trackByUserId(user)) {
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">{{ user.firstName + ' ' + user.lastName }}</td>
