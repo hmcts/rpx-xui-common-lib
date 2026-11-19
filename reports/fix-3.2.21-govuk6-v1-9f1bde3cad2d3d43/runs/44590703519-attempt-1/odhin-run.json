@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "fix-3.2.21-govuk6-v1",
+  "branchSlug": "fix-3.2.21-govuk6-v1-9f1bde3cad2d3d43",
+  "runKey": "44590703519-attempt-1",
+  "runId": "44590703519",
+  "runAttempt": "1",
+  "sha": "bd853aabd3f6f730eb8b4848386e50a479ae02ab",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/44590703519/attempts/1",
+  "createdAt": "2026-11-19T18:51:01.760Z"
+}
