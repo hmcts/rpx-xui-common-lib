@@ -1,6 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { TaskNameModel } from '../../models/task-name.model';
+import { WorkType } from '../../models/work-type.model';
 import { SessionStorageService } from '../storage/session-storage/session-storage.service';
 import { TaskService } from './task.service';
 
@@ -43,6 +44,17 @@ describe('TaskService', () => {
       expect(taskNames).toEqual(mockTaskNames);
       expect(sessionStorageService.getItem).toHaveBeenCalledWith(serviceTaskTypeKey);
     });
+    httpMock.expectNone('/workallocation/taskNames');
+  });
+
+  it('should return an empty cached task-name list without requesting the server', () => {
+    sessionStorageService.getItem.and.returnValue(JSON.stringify([]));
+    let taskNames: TaskNameModel[] | undefined;
+
+    service.getTaskName('testService').subscribe(value => taskNames = value);
+
+    expect(taskNames).toEqual([]);
+    httpMock.expectNone('/workallocation/taskNames');
   });
 
   it('should retrieve task names from the server', () => {
@@ -63,5 +75,22 @@ describe('TaskService', () => {
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({service: 'testService'});
     req.flush(mockResponse);
+  });
+
+  it('should POST the work-type search term and return the response', () => {
+    const mockWorkTypes: WorkType[] = [
+      { key: 'task-a', label: 'Task A' },
+      { key: 'task-b', label: 'Task B' }
+    ];
+    let result: WorkType[] | undefined;
+
+    service.searchWorkTypes('urgent task').subscribe(workTypes => result = workTypes);
+
+    const req = httpMock.expectOne('/workallocation/task/search-types-of-work');
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual({searchTerm: 'urgent task'});
+    req.flush(mockWorkTypes);
+
+    expect(result).toEqual(mockWorkTypes);
   });
 });

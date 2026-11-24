@@ -9,6 +9,7 @@ import { GovUiConfigModel } from '../../models/gov-ui-config-model';
 @Component({
     selector: 'xuilib-gov-checkbox',
     templateUrl: './gov-uk-checkbox.component.html',
+    styleUrls: ['./gov-uk-checkbox.component.scss'],
     standalone: false
 })
 
@@ -25,6 +26,7 @@ export class GovUkCheckboxComponent implements OnInit {
     const id =  this.config.focusOn ? this.config.focusOn : this.config.value;
     this.config.id = id;
     this.config.classes = this.config.classes ?
-      this.config.classes.concat(' govuk-checkboxes__label') : 'govuk-checkboxes__label';
+      this.config.classes.concat(' govuk-checkboxes__label govuk-checkboxes__label--top-aligned') :
+      'govuk-checkboxes__label govuk-checkboxes__label--top-aligned';
   }
 }

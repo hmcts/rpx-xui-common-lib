@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserDetails } from '../../models/user-details.model';
 import { UserSelectComponent } from './user-select.component';
 
@@ -88,25 +88,25 @@ describe('UserSelectComponent', () => {
     );
   });
 
-  it('should filter users correctly', waitForAsync(() => {
+  it('should emit exactly the matching user for neil', () => {
     component.users = testUsers;
+    const emissions: UserDetails[][] = [];
+    const subscription = component.filteredUsers.subscribe(filtered => emissions.push(filtered));
     component.control.setValue('neil');
-    fixture.detectChanges();
-    component.filteredUsers.subscribe((filtered) => {
-      expect(filtered.length).toBe(1);
-      expect(filtered[0].firstName).toEqual('Neil');
-      expect(filtered[0].lastName).toEqual('Peart');
-    });
-    fixture.detectChanges();
-  }));
+    subscription.unsubscribe();
+
+    expect(emissions.length).toBe(1);
+    expect(emissions).toEqual([[testUsers[2]]]);
+  });
 
   it('should clear filter users when value is empty', () => {
     component.users = testUsers;
+    const emissions: UserDetails[][] = [];
+    const subscription = component.filteredUsers.subscribe(filtered => emissions.push(filtered));
     component.control.setValue('');
-    fixture.detectChanges();
-    component.filteredUsers.subscribe((filtered) => {
-      expect(filtered.length).toBe(0);
-    });
-    fixture.detectChanges();
+    subscription.unsubscribe();
+
+    expect(emissions.length).toBe(1);
+    expect(emissions).toEqual([[]]);
   });
 });

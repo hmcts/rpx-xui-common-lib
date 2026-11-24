@@ -2,8 +2,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
-import { MatLegacyOptionModule as MatOptionModule } from '@angular/material/legacy-core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatOptionModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FilterConfig, FilterFieldConfig, GroupOptions, WorkType } from '../../models';
@@ -37,7 +37,6 @@ describe('GenericFilterComponent', () => {
   let fixture: ComponentFixture<GenericFilterComponent>;
   const mockFilterService: any = {
     getStream: () => of(null),
-    getUserId: jasmine.createSpy().and.returnValue('1234'),
     get: jasmine.createSpy(),
     persist: jasmine.createSpy(),
     givenErrors: {
@@ -169,7 +168,6 @@ describe('GenericFilterComponent', () => {
 
     const result = {
       id: 'examples',
-      idamId: '1234',
       fields: [
         {
           name: 'example1',
@@ -187,7 +185,6 @@ describe('GenericFilterComponent', () => {
       reset: false,
     };
     expect(component.form.valid).toBeTruthy();
-    mockFilterService.getUserId.and.returnValue('1234');
     expect(mockFilterService.persist).toHaveBeenCalledWith(result, 'session');
   });
 

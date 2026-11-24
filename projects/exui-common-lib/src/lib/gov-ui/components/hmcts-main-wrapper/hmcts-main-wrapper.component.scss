@@ -1,0 +1,12 @@
+@use "govuk-frontend/dist/govuk/base" as *;
+
+.hmcts-page-heading__actions-wrapper {
+  .govuk-button {
+    display: block;
+    margin-bottom: govuk-spacing(3);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

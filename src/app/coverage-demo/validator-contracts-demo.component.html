@@ -1,0 +1,29 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container govuk-main-wrapper">
+  <h1>Validator contract demo</h1>
+
+  <section aria-labelledby="date-validator-heading">
+    <h2 id="date-validator-heading">Date validator</h2>
+    <button type="button" (click)="setValidDate()">Set valid date</button>
+    <button type="button" (click)="setMalformedDate()">Set malformed date</button>
+    <button type="button" (click)="setCalendarInvalidDate()">Set calendar-invalid date</button>
+    <button type="button" (click)="clearDate()">Clear date</button>
+    <output data-testid="date-validator-status">{{ dateForm.valid ? 'valid' : 'invalid' }}</output>
+    <output data-testid="date-validator-errors">{{ dateForm.errors | json }}</output>
+  </section>
+
+  <section aria-labelledby="radio-validator-heading">
+    <h2 id="radio-validator-heading">Radio-group validator</h2>
+    <button type="button" (click)="selectBothRadios()">Select all radio controls</button>
+    <button type="button" (click)="clearRadios()">Clear radio controls</button>
+    <output data-testid="radio-validator-status">{{ radioForm.valid ? 'valid' : 'invalid' }}</output>
+    <output data-testid="radio-validator-errors">{{ radioForm.errors | json }}</output>
+  </section>
+
+  <section aria-labelledby="checkbox-validator-heading">
+    <h2 id="checkbox-validator-heading">Checkbox validator</h2>
+    <button type="button" (click)="checkCivil()">Check Civil</button>
+    <button type="button" (click)="clearCheckboxes()">Clear checkboxes</button>
+    <output data-testid="checkbox-validator-status">{{ checkboxForm.valid ? 'valid' : 'invalid' }}</output>
+    <output data-testid="checkbox-validator-errors">{{ checkboxForm.errors | json }}</output>
+  </section>
+</main>
