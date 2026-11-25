@@ -205,7 +205,9 @@ test('L1 standalone messages retain safe bilingual HTML and sanitize scripts, ev
   await expect(lifecycle.standalone.locator('em')).toHaveText('Hysbysiad Cymraeg');
   await expect(lifecycle.standalone.getByRole('link', { name: 'Read service details', exact: true })).toHaveAttribute('href', '/coverage');
   await expect(lifecycle.standalone.locator('script, [onclick]')).toHaveCount(0);
-  await expect(lifecycle.standalone.getByRole('link', { name: 'Unsafe link fixture', exact: true })).not.toHaveAttribute('href', /^javascript:/i);
+  const sanitizedAnchor = lifecycle.standalone.locator('a').filter({ hasText: /^Unsafe link fixture$/ });
+  await expect(sanitizedAnchor).toBeVisible();
+  await expect(sanitizedAnchor).not.toHaveAttribute('href');
   await expect(lifecycle.hideEvents).toHaveText('0');
 });
 
