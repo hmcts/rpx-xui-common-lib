@@ -9,7 +9,6 @@ import { windowToken } from '../../window';
 })
 
 export class GoogleAnalyticsService {
-
   private readonly document: Document;
   private readonly window: Window;
 
@@ -22,7 +21,6 @@ export class GoogleAnalyticsService {
   ) {
     this.window = window as Window;
     this.document = document as Document;
-
   }
 
   public init(googleAnalyticsKey: string) {
@@ -34,11 +32,11 @@ export class GoogleAnalyticsService {
       this.document.head.appendChild(script1);
 
       const script2 = this.document.createElement('script');
-      script2.innerHTML = `
+      script2.text = `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '${this.googleAnalyticsKey}', {'send_page_view': false});
+        gtag('config', ${JSON.stringify(this.googleAnalyticsKey)}, {'send_page_view': false});
       `;
       this.document.head.appendChild(script2);
     } catch (ex) {
@@ -50,11 +48,11 @@ export class GoogleAnalyticsService {
 
   private listenForRouteChanges() {
     if (this.googleAnalyticsKey) {
-      this.router.events.subscribe(event => {
+      this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           (this.window as any).gtag('config', this.googleAnalyticsKey, {
             page_path: event.urlAfterRedirects,
-            page_title: this.title.getTitle(),
+            page_title: this.title.getTitle()
           });
         }
       });
