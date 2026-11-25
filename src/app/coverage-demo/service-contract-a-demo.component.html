@@ -1,0 +1,77 @@
+<main id="main-content" tabindex="-1" class="govuk-width-container govuk-main-wrapper">
+  <h1 class="govuk-heading-xl">Service contract A demo</h1>
+
+  @switch (feature) {
+    @case ('role') {
+      <section aria-labelledby="role-heading">
+        <h2 id="role-heading" class="govuk-heading-l">Role guard and role service</h2>
+        <button type="button" class="govuk-button" (click)="setAllowedRole()">Allow any role</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="setDeniedRole()">Deny missing role</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="setAllRoles()">Allow all roles</button>
+        <output data-testid="service-contract-a-role-result">{{ roleResult }}</output>
+      </section>
+    }
+    @case ('storage') {
+      <section aria-labelledby="storage-heading">
+        <h2 id="storage-heading" class="govuk-heading-l">Session storage</h2>
+        <button type="button" class="govuk-button" (click)="writeStorage()">Write session value</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="readAndRemoveStorage()">Read and remove session value</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="clearStorage()">Clear session storage</button>
+        <output data-testid="service-contract-a-storage-result">{{ storageResult }}</output>
+      </section>
+    }
+    @case ('manage-session') {
+      <section aria-labelledby="manage-session-heading">
+        <h2 id="manage-session-heading" class="govuk-heading-l">Session management</h2>
+        <button type="button" class="govuk-button" (click)="emitManageWarning(61)">Emit 61-second warning</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="emitManageWarning(60)">Emit 60-second warning</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="emitManageKeepalive()">Emit keepalive</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="emitManageTimeout()">Emit timeout</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="emitManageIdleEnd()">End idle state</button>
+        <output data-testid="service-contract-a-manage-events">{{ manageSessionEvents | json }}</output>
+      </section>
+    }
+    @case ('timeout') {
+      <section aria-labelledby="timeout-heading">
+        <h2 id="timeout-heading" class="govuk-heading-l">Timeout notifications</h2>
+        <button type="button" class="govuk-button" (click)="emitTimeoutWarning(61)">Emit 61-second warning</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="emitTimeoutWarning(60)">Emit 60-second warning</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="emitKeepalive()">Emit keep-alive</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="emitTimeout()">Emit sign-out</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="resetTimeout()">Reset timeout service</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="closeTimeout()">Close timeout service</button>
+        <output data-testid="service-contract-a-timeout-events">{{ timeoutEvents | json }}</output>
+        <output data-testid="service-contract-a-timeout-status">{{ timeoutClosed ? 'closed' : 'open' }}</output>
+      </section>
+    }
+    @case ('analytics') {
+      <section aria-labelledby="analytics-heading">
+        <h2 id="analytics-heading" class="govuk-heading-l">Google Analytics</h2>
+        <button type="button" class="govuk-button" (click)="initialiseAnalytics()">Initialise analytics</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="sendAnalyticsEvent()">Send analytics event</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="sendAnalyticsEventWithoutStub()">Send without analytics stub</button>
+        <output data-testid="service-contract-a-analytics-status">{{ analyticsStatus }}</output>
+        <output data-testid="service-contract-a-analytics-events">{{ analyticsEvents | json }}</output>
+      </section>
+    }
+    @case ('tag-manager') {
+      <section aria-labelledby="tag-manager-heading">
+        <h2 id="tag-manager-heading" class="govuk-heading-l">Google Tag Manager</h2>
+        <button type="button" class="govuk-button" (click)="initialiseTagManager()">Initialise tag manager</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="sendTagManagerEvent()">Send tag-manager event</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="sendVirtualPageView()">Send virtual pageview</button>
+        <button type="button" class="govuk-button govuk-button--secondary" (click)="clearTagManagerLayer()">Clear data layer</button>
+        <output data-testid="service-contract-a-tag-manager-status">{{ tagManagerStatus }}</output>
+        <output data-testid="service-contract-a-tag-manager-events">{{ tagManagerEvents | json }}</output>
+      </section>
+    }
+    @case ('launchdarkly') {
+      <section aria-labelledby="launchdarkly-heading">
+        <h2 id="launchdarkly-heading" class="govuk-heading-l">LaunchDarkly</h2>
+        <button type="button" class="govuk-button" (click)="changeLaunchDarklyFlag()">Change enabled flag to false</button>
+        <output data-testid="service-contract-a-launchdarkly-values">{{ launchDarklyValues | json }}</output>
+        <output data-testid="service-contract-a-launchdarkly-array-values">{{ launchDarklyArrayValues | json }}</output>
+      </section>
+    }
+  }
+</main>

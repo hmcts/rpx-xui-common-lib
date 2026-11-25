@@ -4,7 +4,7 @@
     [value]="searchTerm"
     (input)="onSearchTermChanged($event.target.value)"
     [matAutocomplete]="autoSearchService"
-    [attr.disabled]="disabled">
+    [disabled]="disabled">
   <mat-autocomplete class="mat-autocomplete-panel-extend" autoActiveFirstOption #autoSearchService="matAutocomplete">
     @for (service of filteredOptions; track service) {
       <mat-option (onSelectionChange)="onSelectionChanged($event)" [value]="service.label">
