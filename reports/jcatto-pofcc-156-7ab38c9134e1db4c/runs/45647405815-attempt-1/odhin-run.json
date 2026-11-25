@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "jcatto/pofcc-156",
+  "branchSlug": "jcatto-pofcc-156-7ab38c9134e1db4c",
+  "runKey": "45647405815-attempt-1",
+  "runId": "45647405815",
+  "runAttempt": "1",
+  "sha": "87cd8c8da2d4b85e35d4be64e5814cb4600c764b",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/45647405815/attempts/1",
+  "createdAt": "2026-11-25T15:48:34.781Z"
+}
