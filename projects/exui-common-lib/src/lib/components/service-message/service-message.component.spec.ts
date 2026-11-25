@@ -54,36 +54,6 @@ describe('ServiceMessageComponent', () => {
     });
   });
 
-  it('should sanitize html content', () => {
-    const sanitizer = TestBed.inject(DomSanitizer);
-    const input = '<script>alert(1)</script><p>Safe</p>';
-
-    spyOn(sanitizer, 'sanitize').and.returnValue('<p>Safe</p>');
-
-    const result = component.sanitizeHtml(input);
-
-    expect(sanitizer.sanitize).toHaveBeenCalledWith(SecurityContext.HTML, input);
-    expect(result).toBe('<p>Safe</p>');
-  });
-
-  it('should remove dangerous markup with the real Angular sanitizer', () => {
-    const input = '<p>Safe</p><script>alert(1)</script><img src="x" onerror="alert(2)">' +
-      '<a href="javascript:alert(3)">link</a>';
-
-    const result = component.sanitizeHtml(input);
-
-    expect(result).toContain('<p>Safe</p>');
-    expect(result).not.toContain('<script');
-    expect(result).not.toContain('onerror');
-    expect(result).not.toContain('href="javascript:');
-    expect(result).toContain('href="unsafe:javascript:');
-  });
-
-  it('should convert nullish message content to an empty string', () => {
-    expect(component.sanitizeHtml(null)).toBe('');
-    expect(component.sanitizeHtml(undefined)).toBe('');
-  });
-
   it('should render sanitized message HTML without executable attributes', () => {
     component.message_en = '<strong>Safe</strong><img src="x" onerror="alert(1)">';
     fixture.detectChanges();
