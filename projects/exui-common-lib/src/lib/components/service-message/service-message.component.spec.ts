@@ -59,7 +59,7 @@ describe('ServiceMessageComponent', () => {
     fixture.detectChanges();
 
     const heading = fixture.nativeElement.querySelector('h2') as HTMLElement;
-    expect(heading.innerHTML).toContain('<strong>Safe</strong>');
-    expect(heading.innerHTML).not.toContain('onerror');
+    expect(heading.querySelector('strong')?.textContent).toBe('Safe');
+    expect(heading.querySelector('[onerror]')).toBeNull();
   });
 });
