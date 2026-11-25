@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "renovate/axe-core-playwright-4.x",
+  "branchSlug": "renovate-axe-core-playwright-4.x-88cb81f27c8bfed4",
+  "runKey": "45599545274-attempt-1",
+  "runId": "45599545274",
+  "runAttempt": "1",
+  "sha": "73fb684fbdd1256938a21da95eceeb3195b5bff9",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/45599545274/attempts/1",
+  "createdAt": "2026-11-25T11:04:50.048Z"
+}
