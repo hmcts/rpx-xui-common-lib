@@ -24,7 +24,7 @@ describe('FindPersonComponent', () => {
   let mockFindAPersonService: any;
 
   beforeEach(() => {
-    mockFindAPersonService = jasmine.createSpyObj('FindAPersonService', ['find', 'findCaseworkers']);
+    mockFindAPersonService = jasmine.createSpyObj('FindAPersonService', ['findByPersonRole']);
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -56,13 +56,11 @@ describe('FindPersonComponent', () => {
   });
 
   it('input element changes triggers search', waitForAsync(() => {
-    mockFindAPersonService.find.and.returnValue(of([]));
-    mockFindAPersonService.findCaseworkers.and.returnValue(of([]));
+    mockFindAPersonService.findByPersonRole.and.returnValue(of([]));
     component.findPersonControl.setValue('test');
     fixture.detectChanges();
     setTimeout(() => {
-      expect(mockFindAPersonService.find).toHaveBeenCalled();
-      expect(mockFindAPersonService.findCaseworkers).toHaveBeenCalled();
+      expect(mockFindAPersonService.findByPersonRole).toHaveBeenCalled();
     }, 500);
   }));
 
@@ -144,10 +142,14 @@ describe('FindPersonComponent', () => {
       email: 'person@email.com',
       domain: PersonRole.ADMIN
     };
-    mockFindAPersonService.find.and.returnValue(of([mockPersonOne]));
-    mockFindAPersonService.findCaseworkers.and.returnValue(of([mockPersonTwo, mockPersonThree]));
+    mockFindAPersonService.findByPersonRole.and.returnValue(of([mockPersonOne, mockPersonTwo, mockPersonThree]));
     component.filter('ast').subscribe(result => expect(result).toEqual([mockPersonOne, mockPersonTwo, mockPersonThree]));
+    expect(mockFindAPersonService.findByPersonRole).toHaveBeenCalledWith('ast', PersonRole.ALL, [], 'IA', false, undefined);
+  });
+
+  it('does nothing when no search term is specified', () => {
     component.filter('').subscribe(result => expect(result.length).toBe(0));
+    expect(mockFindAPersonService.findByPersonRole).not.toHaveBeenCalled();
   });
 
   it('should emit an event when search person emits an event to the component', () => {
