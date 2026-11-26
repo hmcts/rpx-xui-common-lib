@@ -32,7 +32,7 @@ export class UserManagementPage {
   }
 
   public get bounds() {
-    return this.page.locator('.hmcts-pagination__results');
+    return this.page.locator('[data-pagination-results]');
   }
 
   public userLink(number: number) {

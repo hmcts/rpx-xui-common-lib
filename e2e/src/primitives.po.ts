@@ -108,6 +108,6 @@ export class PrimitivesPage {
   }
 
   public get paginationResults(): Locator {
-    return this.pagination.locator('.hmcts-pagination__results');
+    return this.pagination.locator('[data-pagination-results]');
   }
 }
