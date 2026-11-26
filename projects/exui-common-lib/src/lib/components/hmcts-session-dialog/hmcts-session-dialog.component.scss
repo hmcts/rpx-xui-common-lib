@@ -9,6 +9,14 @@
   overflow-x: hidden;
   overflow-y: scroll;
   outline: 0;
+
+  &--open {
+    display: block;
+  }
+}
+
+.st0 {
+  fill: #ffffff;
 }
 
 .gem-c-modal-dialogue__box {

@@ -33,6 +33,10 @@
       align-items: center;
       margin-bottom: 10px;
     }
+
+    &__field-heading {
+      margin-bottom: 0 !important;
+    }
   }
 
   .govuk-select {
