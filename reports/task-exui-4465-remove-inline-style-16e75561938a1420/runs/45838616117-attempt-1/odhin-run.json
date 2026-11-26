@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reportType": "functional",
+  "rawBranch": "task/EXUI-4465-remove-inline-style",
+  "branchSlug": "task-exui-4465-remove-inline-style-16e75561938a1420",
+  "runKey": "45838616117-attempt-1",
+  "runId": "45838616117",
+  "runAttempt": "1",
+  "sha": "689b506856da027e267d072c906afc7cd18876b4",
+  "runUrl": "https://github.com/hmcts/rpx-xui-common-lib/actions/runs/45838616117/attempts/1",
+  "createdAt": "2026-11-26T14:32:24.678Z"
+}
