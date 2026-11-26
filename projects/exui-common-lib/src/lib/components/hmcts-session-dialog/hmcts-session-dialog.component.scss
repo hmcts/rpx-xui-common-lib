@@ -1,5 +1,5 @@
 .gem-c-modal-dialogue {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -9,6 +9,14 @@
   overflow-x: hidden;
   overflow-y: scroll;
   outline: 0;
+
+  &--open {
+    display: block;
+  }
+}
+
+.st0 {
+  fill: #ffffff;
 }
 
 .gem-c-modal-dialogue__box {
