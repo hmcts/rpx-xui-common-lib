@@ -1,46 +1,63 @@
 <pagination-template #p="paginationApi" [id]="id" [maxSize]="maxSize" (pageChange)="pageChange.emit($event)"
   (pageBoundsCorrection)="pageBoundsCorrection.emit($event)">
 
-  <nav class="hmcts-pagination" id="pagination-label">
-    <p class="govuk-visually-hidden" aria-labelledby="pagination-label">{{'Pagination navigation' | rpxTranslate}}</p>
-    @if (!(p.pages.length <= 1)) {
-      <ul class="hmcts-pagination__list">
-        <li class="hmcts-pagination__item  hmcts-pagination__item--prev" [class.disabled]="p.isFirstPage()">
-          @if (1 < p.getCurrent()) {
-            <a [routerLink]="" class="hmcts-pagination__link" (keyup.enter)="p.previous()"
-              (click)="p.previous()">{{'Previous' | rpxTranslate}} <span class="govuk-visually-hidden">{{'set of pages' | rpxTranslate}}</span></a>
-            }
-          </li>
-          @if (showPageNumbers) {
-            @for (page of p.pages; track page) {
-              <li class="hmcts-pagination__item" [class.hmcts-pagination__item--active]="p.getCurrent() === page.value"
-                [class.hmcts-pagination__item--dots]="page.label === '...'">
-                @if (p.getCurrent() !== page.value) {
-                  <a class="hmcts-pagination__link" [routerLink]="" (keyup.enter)="p.setCurrent(page.value)"
-                    (click)="p.setCurrent(page.value)">
-                    <span class="govuk-visually-hidden">{{'page' | rpxTranslate}} </span>
-                    <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
-                  </a>
-                }
-                @if (p.getCurrent() === page.value) {
-                  <span>{{ (page.label === '...') ? page.label : (page.label | number:'') }}</span>
-                }
+  @if (p.pages.length > 1) {
+    <nav class="govuk-pagination" [class.govuk-pagination--block]="!showPageNumbers"
+      [attr.aria-label]="'Pagination' | rpxTranslate">
+      @if (!p.isFirstPage()) {
+        <div class="govuk-pagination__prev">
+          <a href="#" class="govuk-link govuk-pagination__link" rel="prev" (click)="onPrevious($event, p)">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title" [class.govuk-pagination__link-title--decorated]="!showPageNumbers">{{'Previous' | rpxTranslate}}<span class="govuk-visually-hidden"> {{'page' | rpxTranslate}}</span></span>
+          </a>
+        </div>
+      }
+
+      @if (showPageNumbers) {
+        <ul class="govuk-pagination__list">
+          @for (page of p.pages; track $index) {
+            @if (page.label === '...') {
+              <li class="govuk-pagination__item govuk-pagination__item--ellipsis">&ctdot;</li>
+            } @else {
+              <li class="govuk-pagination__item" [class.govuk-pagination__item--current]="p.getCurrent() === page.value">
+                <a href="#" class="govuk-link govuk-pagination__link"
+                  [attr.aria-label]="('Page' | rpxTranslate) + ' ' + page.value"
+                  [attr.aria-current]="p.getCurrent() === page.value ? 'page' : null"
+                  (click)="onPage($event, p, page.value)">{{ page.label | number:'' }}</a>
               </li>
             }
           }
-          <li class="hmcts-pagination__item  hmcts-pagination__item--next" [class.disabled]="p.isLastPage()">
-            @if (!p.isLastPage()) {
-              <a [routerLink]="" class="hmcts-pagination__link" (keyup.enter)="p.next()"
-                (click)="p.next()">{{'Next' | rpxTranslate}}<span class="govuk-visually-hidden"> {{'page' | rpxTranslate}}</span></a>
-              }
-            </li>
-          </ul>
-        }
-        @if (showResultCount) {
-          <p class="hmcts-pagination__results">{{'Showing' | rpxTranslate}} <b>{{(p.getCurrent() * pageSize) - pageSize + 1}}</b>
-          {{'to' | rpxTranslate}} <b>{{ p.getCurrent() * pageSize > p.getTotalItems() ? p.getTotalItems() : p.getCurrent() *
-          pageSize}}</b> {{'of' | rpxTranslate}} <b>{{p.getTotalItems()}}</b> {{'results' | rpxTranslate}}</p>
-        }
-      </nav>
+        </ul>
+      }
 
-    </pagination-template>
+      @if (!p.isLastPage()) {
+        <div class="govuk-pagination__next">
+          <a href="#" class="govuk-link govuk-pagination__link" rel="next" (click)="onNext($event, p)">
+            @if (!showPageNumbers) {
+              <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+              </svg>
+            }
+            <span class="govuk-pagination__link-title" [class.govuk-pagination__link-title--decorated]="!showPageNumbers">{{'Next' | rpxTranslate}}<span class="govuk-visually-hidden"> {{'page' | rpxTranslate}}</span></span>
+            @if (showPageNumbers) {
+              <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+              </svg>
+            }
+          </a>
+        </div>
+      }
+    </nav>
+  }
+
+  @if (showResultCount) {
+    <p class="xuilib-pagination__results" data-pagination-results>
+      {{'Showing' | rpxTranslate}} <b>{{ firstItemOnPage(p) }}</b>
+      {{'to' | rpxTranslate}} <b>{{ lastItemOnPage(p) }}</b>
+      {{'of' | rpxTranslate}} <b>{{ p.getTotalItems() }}</b> {{'results' | rpxTranslate}}
+    </p>
+  }
+
+</pagination-template>

@@ -217,7 +217,7 @@ test('user management — next page', async ({ page }, testInfo) => {
   await page.goto('/coverage/users');
   await new UserManagementPage(page).next.click();
   await expect(page.getByRole('link', { name: 'Demo User 51', exact: true })).toBeVisible();
-  await expect(page.locator('.hmcts-pagination__results')).toHaveText('Showing 51 to 51 of 51 results');
+  await expect(page.locator('[data-pagination-results]')).toHaveText('Showing 51 to 51 of 51 results');
   const outcomes = await collectAccessibilityEvidence(page, testInfo);
   expect(outcomes.filter((outcome) => outcome.issueCount > 0), ASSERTION_MARKER).toEqual([]);
 });
